@@ -1,3 +1,4 @@
+```rb
 require 'appwrite'
 
 client = Appwrite::Client.new()
@@ -13,3 +14,4 @@ users = Appwrite::Users.new(client);
 response = users.delete_session(user_id: '[USER_ID]', session_id: '[SESSION_ID]');
 
 puts response
+```

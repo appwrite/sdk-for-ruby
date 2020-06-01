@@ -1,3 +1,4 @@
+```rb
 require 'appwrite'
 
 client = Appwrite::Client.new()
@@ -13,3 +14,4 @@ users = Appwrite::Users.new(client);
 response = users.update_status(user_id: '[USER_ID]', status: '1');
 
 puts response
+```

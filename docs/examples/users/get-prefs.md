@@ -1,3 +1,4 @@
+```rb
 require 'appwrite'
 
 client = Appwrite::Client.new()
@@ -13,3 +14,4 @@ users = Appwrite::Users.new(client);
 response = users.get_prefs(user_id: '[USER_ID]');
 
 puts response
+```

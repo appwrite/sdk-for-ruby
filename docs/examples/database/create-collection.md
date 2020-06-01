@@ -1,3 +1,4 @@
+```rb
 require 'appwrite'
 
 client = Appwrite::Client.new()
@@ -13,3 +14,4 @@ database = Appwrite::Database.new(client);
 response = database.create_collection(name: '[NAME]', read: [], write: [], rules: []);
 
 puts response
+```

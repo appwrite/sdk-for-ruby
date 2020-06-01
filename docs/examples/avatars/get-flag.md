@@ -1,3 +1,4 @@
+```rb
 require 'appwrite'
 
 client = Appwrite::Client.new()
@@ -13,3 +14,4 @@ avatars = Appwrite::Avatars.new(client);
 response = avatars.get_flag(code: 'af');
 
 puts response
+```

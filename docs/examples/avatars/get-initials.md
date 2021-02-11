@@ -8,8 +8,8 @@ client
     .set_key('919c2d18fb5d4...a2ae413da83346ad2') # Your secret API key
 ;
 
-database = Appwrite::Database.new(client);
+avatars = Appwrite::Avatars.new(client);
 
-response = database.get_collection_logs(collection_id: '[COLLECTION_ID]');
+response = avatars.get_initials();
 
 puts response

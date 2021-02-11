@@ -8,8 +8,8 @@ client
     .set_key('919c2d18fb5d4...a2ae413da83346ad2') # Your secret API key
 ;
 
-storage = Appwrite::Storage.new(client);
+functions = Appwrite::Functions.new(client);
 
-response = storage.create_file(file: Appwrite::File.new(), read: [], write: []);
+response = functions.create(name: '[NAME]', execute: [], env: 'node-14.5');
 
 puts response

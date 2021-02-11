@@ -66,11 +66,15 @@ module Appwrite
             }, params);
         end
 
-        def get_memberships(team_id:)
+        def get_memberships(team_id:, search: '', limit: 25, offset: 0, order_type: 'ASC')
             path = '/teams/{teamId}/memberships'
                 .gsub('{teamId}', team_id)
 
             params = {
+                'search': search, 
+                'limit': limit, 
+                'offset': offset, 
+                'orderType': order_type
             }
 
             return @client.call('get', path, {

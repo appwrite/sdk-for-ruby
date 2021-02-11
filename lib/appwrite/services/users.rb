@@ -42,6 +42,18 @@ module Appwrite
             }, params);
         end
 
+        def delete_user(user_id:)
+            path = '/users/{userId}'
+                .gsub('{userId}', user_id)
+
+            params = {
+            }
+
+            return @client.call('delete', path, {
+                'content-type' => 'application/json',
+            }, params);
+        end
+
         def get_logs(user_id:)
             path = '/users/{userId}/logs'
                 .gsub('{userId}', user_id)

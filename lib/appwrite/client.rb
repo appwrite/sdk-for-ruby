@@ -20,7 +20,8 @@ module Appwrite
             @headers = {
                 'content-type' => '',
                 'user-agent' => RUBY_PLATFORM + ':ruby-' + RUBY_VERSION,
-                'x-sdk-version' => 'appwrite:ruby:1.0.11'
+                'x-sdk-version' => 'appwrite:ruby:2.0.0'                
+
             }
             @endpoint = 'https://appwrite.io/v1';
         end
@@ -72,11 +73,14 @@ module Appwrite
             payload = ''
             
             headers = @headers.merge(headers)
-
+            @BOUNDARY = "----A30#3ad1"
             if (method != METHOD_GET)
                 case headers['content-type'][0, headers['content-type'].index(';') || headers['content-type'].length]
                     when 'application/json'
                         payload = params.to_json
+                    when 'multipart/form-data'
+                        payload = "--#{@BOUNDARY}\r\n" + encodeFormData(params)
+                        headers['content-type'] = "multipart/form-data; boundary=#{@BOUNDARY}"
                     else
                         payload = encode(params)
                 end
@@ -97,6 +101,27 @@ module Appwrite
             end
 
             return JSON.parse(response.body);
+        end
+        
+        def encodeFormData(value, key=nil)
+            case value
+            when Hash  then value.map { |k,v| encodeFormData(v,k) }.join
+            when Array then value.map { |v| encodeFormData(v, "#{key}[]") }.join
+            when nil   then ''
+            else
+                post_body = []
+                if(value.instance_of? File)
+                    post_body << "Content-Disposition: form-data; name=\"#{key}\"; filename=\"#{value.name}\"\r\n"
+                    post_body << "Content-Type: #{value.mimeType}\r\n\r\n"
+                    post_body << value.content
+                    post_body << "\r\n--#{@BOUNDARY}--\r\n"
+                else          
+                    post_body << "Content-Disposition: form-data; name=\"#{key}\"\r\n\r\n"
+                    post_body << "#{value.to_s}" 
+                    post_body << "\r\n--#{@BOUNDARY}\r\n"
+                end
+                post_body.join
+            end
         end
 
         def encode(value, key = nil)

@@ -8,8 +8,8 @@ client
     .set_key('919c2d18fb5d4...a2ae413da83346ad2') # Your secret API key
 ;
 
-storage = Appwrite::Storage.new(client);
+users = Appwrite::Users.new(client);
 
-response = storage.create_file(file: Appwrite::File.new(), read: [], write: []);
+response = users.delete_user(user_id: '[USER_ID]');
 
 puts response

@@ -67,6 +67,17 @@ module Appwrite
             }, params);
         end
 
+        def get_languages()
+            path = '/locale/languages'
+
+            params = {
+            }
+
+            return @client.call('get', path, {
+                'content-type' => 'application/json',
+            }, params);
+        end
+
 
         protected
 

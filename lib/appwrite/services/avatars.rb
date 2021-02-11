@@ -72,7 +72,23 @@ module Appwrite
             }, params);
         end
 
-        def get_q_r(text:, size: 400, margin: 1, download: 0)
+        def get_initials(name: '', width: 500, height: 500, color: '', background: '')
+            path = '/avatars/initials'
+
+            params = {
+                'name': name, 
+                'width': width, 
+                'height': height, 
+                'color': color, 
+                'background': background
+            }
+
+            return @client.call('get', path, {
+                'content-type' => 'application/json',
+            }, params);
+        end
+
+        def get_q_r(text:, size: 400, margin: 1, download: false)
             path = '/avatars/qr'
 
             params = {

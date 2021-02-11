@@ -97,12 +97,11 @@ module Appwrite
             }, params);
         end
 
-        def get_file_view(file_id:, as: '')
+        def get_file_view(file_id:)
             path = '/storage/files/{fileId}/view'
                 .gsub('{fileId}', file_id)
 
             params = {
-                'as': as
             }
 
             return @client.call('get', path, {

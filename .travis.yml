@@ -11,5 +11,6 @@ jobs:
       deploy:
         provider: rubygems
         api_key: $RUBYGEMS_TOKEN
+        gem: appwrite
         on:
           tags: true

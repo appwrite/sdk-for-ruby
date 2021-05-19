@@ -20,8 +20,8 @@ module Appwrite
             @headers = {
                 'content-type' => '',
                 'user-agent' => RUBY_PLATFORM + ':ruby-' + RUBY_VERSION,
-                'x-sdk-version' => 'appwrite:ruby:2.0.0'                
-
+                'x-sdk-version' => 'appwrite:ruby:2.1.0',                
+                'X-Appwrite-Response-Format' => '0.8.0'
             }
             @endpoint = 'https://appwrite.io/v1';
         end
@@ -34,6 +34,12 @@ module Appwrite
 
         def set_key(value)
             add_header('x-appwrite-key', value)
+
+            return self
+        end
+
+        def set_j_w_t(value)
+            add_header('x-appwrite-jwt', value)
 
             return self
         end
@@ -89,7 +95,7 @@ module Appwrite
             begin
                 response = http.send_request(method.upcase, uri.request_uri, payload, headers)
             rescue => error
-                raise 'Request Failed: '  + error.message
+                raise Appwrite::Exception.new(error.message)
             end
             
             # Handle Redirects
@@ -99,8 +105,18 @@ module Appwrite
                 
                 return fetch(method, uri, headers, {}, limit - 1)
             end
+            
+            begin
+                res = JSON.parse(response.body);
+            rescue JSON::ParserError => e
+                raise Appwrite::Exception.new(response.body, response.code, nil)
+            end
 
-            return JSON.parse(response.body);
+            if(response.code.to_i >= 400)
+                raise Appwrite::Exception.new(res['message'], res['status'], res)
+            end
+
+            return res;
         end
         
         def encodeFormData(value, key=nil)

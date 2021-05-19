@@ -5,11 +5,11 @@ client = Appwrite::Client.new()
 client
     .set_endpoint('https://[HOSTNAME_OR_IP]/v1') # Your API Endpoint
     .set_project('5df5acd0d48c2') # Your project ID
-    .set_key('919c2d18fb5d4...a2ae413da83346ad2') # Your secret API key
+    .set_j_w_t('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ...') # Your secret JSON Web Token
 ;
 
-storage = Appwrite::Storage.new(client);
+account = Appwrite::Account.new(client);
 
-response = storage.create_file(file: Appwrite::File.new());
+response = account.update_name(name: '[NAME]');
 
 puts response

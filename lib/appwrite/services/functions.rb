@@ -92,11 +92,12 @@ module Appwrite
             }, params);
         end
 
-        def create_execution(function_id:)
+        def create_execution(function_id:, data: '')
             path = '/functions/{functionId}/executions'
                 .gsub('{functionId}', function_id)
 
             params = {
+                'data': data
             }
 
             return @client.call('post', path, {

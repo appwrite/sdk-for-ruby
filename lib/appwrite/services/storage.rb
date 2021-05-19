@@ -16,7 +16,7 @@ module Appwrite
             }, params);
         end
 
-        def create_file(file:, read:, write:)
+        def create_file(file:, read: [], write: [])
             path = '/storage/files'
 
             params = {
@@ -80,7 +80,7 @@ module Appwrite
             }, params);
         end
 
-        def get_file_preview(file_id:, width: 0, height: 0, quality: 100, background: '', output: '')
+        def get_file_preview(file_id:, width: 0, height: 0, quality: 100, border_width: 0, border_color: '', border_radius: 0, opacity: 1, rotation: 0, background: '', output: '')
             path = '/storage/files/{fileId}/preview'
                 .gsub('{fileId}', file_id)
 
@@ -88,6 +88,11 @@ module Appwrite
                 'width': width, 
                 'height': height, 
                 'quality': quality, 
+                'borderWidth': border_width, 
+                'borderColor': border_color, 
+                'borderRadius': border_radius, 
+                'opacity': opacity, 
+                'rotation': rotation, 
                 'background': background, 
                 'output': output
             }

@@ -43,7 +43,7 @@ module Appwrite
             }, params);
         end
 
-        def update_collection(collection_id:, name:, read:, write:, rules: [])
+        def update_collection(collection_id:, name:, read: [], write: [], rules: [])
             path = '/database/collections/{collectionId}'
                 .gsub('{collectionId}', collection_id)
 
@@ -90,7 +90,7 @@ module Appwrite
             }, params);
         end
 
-        def create_document(collection_id:, data:, read:, write:, parent_document: '', parent_property: '', parent_property_type: 'assign')
+        def create_document(collection_id:, data:, read: [], write: [], parent_document: '', parent_property: '', parent_property_type: 'assign')
             path = '/database/collections/{collectionId}/documents'
                 .gsub('{collectionId}', collection_id)
 
@@ -121,7 +121,7 @@ module Appwrite
             }, params);
         end
 
-        def update_document(collection_id:, document_id:, data:, read:, write:)
+        def update_document(collection_id:, document_id:, data:, read: [], write: [])
             path = '/database/collections/{collectionId}/documents/{documentId}'
                 .gsub('{collectionId}', collection_id)
                 .gsub('{documentId}', document_id)

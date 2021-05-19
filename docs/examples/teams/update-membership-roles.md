@@ -8,8 +8,8 @@ client
     .set_key('919c2d18fb5d4...a2ae413da83346ad2') # Your secret API key
 ;
 
-storage = Appwrite::Storage.new(client);
+teams = Appwrite::Teams.new(client);
 
-response = storage.create_file(file: Appwrite::File.new());
+response = teams.update_membership_roles(team_id: '[TEAM_ID]', membership_id: '[MEMBERSHIP_ID]', roles: []);
 
 puts response

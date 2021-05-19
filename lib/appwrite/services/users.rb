@@ -42,7 +42,7 @@ module Appwrite
             }, params);
         end
 
-        def delete_user(user_id:)
+        def delete(user_id:)
             path = '/users/{userId}'
                 .gsub('{userId}', user_id)
 

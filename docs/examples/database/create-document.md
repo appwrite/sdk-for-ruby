@@ -10,6 +10,6 @@ client
 
 database = Appwrite::Database.new(client);
 
-response = database.create_document(collection_id: '[COLLECTION_ID]', data: {}, read: [], write: []);
+response = database.create_document(collection_id: '[COLLECTION_ID]', data: {});
 
 puts response

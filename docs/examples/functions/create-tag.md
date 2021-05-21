@@ -10,6 +10,6 @@ client
 
 functions = Appwrite::Functions.new(client);
 
-response = functions.create_tag(function_id: '[FUNCTION_ID]', command: '[COMMAND]', code: Appwrite::File.new());
+response = functions.create_tag(function_id: '[FUNCTION_ID]', command: '[COMMAND]', code: '');
 
 puts response

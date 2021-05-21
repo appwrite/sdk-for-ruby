@@ -10,6 +10,6 @@ client
 
 storage = Appwrite::Storage.new(client);
 
-response = storage.create_file(file: Appwrite::File.new());
+response = storage.create_file(file: '');
 
 puts response

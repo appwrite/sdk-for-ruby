@@ -4,8 +4,7 @@ module Appwrite
         def get()
             path = '/locale'
 
-            params = {
-            }
+            params = {}
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',
@@ -15,8 +14,7 @@ module Appwrite
         def get_continents()
             path = '/locale/continents'
 
-            params = {
-            }
+            params = {}
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',
@@ -26,8 +24,7 @@ module Appwrite
         def get_countries()
             path = '/locale/countries'
 
-            params = {
-            }
+            params = {}
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',
@@ -37,8 +34,7 @@ module Appwrite
         def get_countries_e_u()
             path = '/locale/countries/eu'
 
-            params = {
-            }
+            params = {}
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',
@@ -48,8 +44,7 @@ module Appwrite
         def get_countries_phones()
             path = '/locale/countries/phones'
 
-            params = {
-            }
+            params = {}
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',
@@ -59,8 +54,7 @@ module Appwrite
         def get_currencies()
             path = '/locale/currencies'
 
-            params = {
-            }
+            params = {}
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',
@@ -70,8 +64,7 @@ module Appwrite
         def get_languages()
             path = '/locale/languages'
 
-            params = {
-            }
+            params = {}
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',

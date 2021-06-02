@@ -20,7 +20,7 @@ module Appwrite
             @headers = {
                 'content-type' => '',
                 'user-agent' => RUBY_PLATFORM + ':ruby-' + RUBY_VERSION,
-                'x-sdk-version' => 'appwrite:ruby:2.1.1',                
+                'x-sdk-version' => 'appwrite:ruby:2.1.2',                
                 'X-Appwrite-Response-Format' => '0.8.0'
             }
             @endpoint = 'https://appwrite.io/v1';

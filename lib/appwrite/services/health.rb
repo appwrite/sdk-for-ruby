@@ -4,8 +4,7 @@ module Appwrite
         def get()
             path = '/health'
 
-            params = {
-            }
+            params = {}
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',
@@ -15,8 +14,7 @@ module Appwrite
         def get_anti_virus()
             path = '/health/anti-virus'
 
-            params = {
-            }
+            params = {}
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',
@@ -26,8 +24,7 @@ module Appwrite
         def get_cache()
             path = '/health/cache'
 
-            params = {
-            }
+            params = {}
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',
@@ -37,8 +34,7 @@ module Appwrite
         def get_d_b()
             path = '/health/db'
 
-            params = {
-            }
+            params = {}
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',
@@ -48,8 +44,7 @@ module Appwrite
         def get_queue_certificates()
             path = '/health/queue/certificates'
 
-            params = {
-            }
+            params = {}
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',
@@ -59,8 +54,7 @@ module Appwrite
         def get_queue_functions()
             path = '/health/queue/functions'
 
-            params = {
-            }
+            params = {}
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',
@@ -70,8 +64,7 @@ module Appwrite
         def get_queue_logs()
             path = '/health/queue/logs'
 
-            params = {
-            }
+            params = {}
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',
@@ -81,8 +74,7 @@ module Appwrite
         def get_queue_tasks()
             path = '/health/queue/tasks'
 
-            params = {
-            }
+            params = {}
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',
@@ -92,8 +84,7 @@ module Appwrite
         def get_queue_usage()
             path = '/health/queue/usage'
 
-            params = {
-            }
+            params = {}
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',
@@ -103,8 +94,7 @@ module Appwrite
         def get_queue_webhooks()
             path = '/health/queue/webhooks'
 
-            params = {
-            }
+            params = {}
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',
@@ -114,8 +104,7 @@ module Appwrite
         def get_storage_local()
             path = '/health/storage/local'
 
-            params = {
-            }
+            params = {}
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',
@@ -125,8 +114,7 @@ module Appwrite
         def get_time()
             path = '/health/time'
 
-            params = {
-            }
+            params = {}
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',

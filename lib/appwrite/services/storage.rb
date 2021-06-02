@@ -1,29 +1,52 @@
 module Appwrite
     class Storage < Service
 
-        def list_files(search: '', limit: 25, offset: 0, order_type: 'ASC')
+        def list_files(search: nil, limit: nil, offset: nil, order_type: nil)
             path = '/storage/files'
 
-            params = {
-                'search': search, 
-                'limit': limit, 
-                'offset': offset, 
-                'orderType': order_type
-            }
+            params = {}
+
+            if !search.nil?
+                params[:search] = search
+            end
+
+            if !limit.nil?
+                params[:limit] = limit
+            end
+
+            if !offset.nil?
+                params[:offset] = offset
+            end
+
+            if !order_type.nil?
+                params[:orderType] = order_type
+            end
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',
             }, params);
         end
 
-        def create_file(file:, read: [], write: [])
+        def create_file(file:, read: nil, write: nil)
+            if file.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "file"')
+            end
+
             path = '/storage/files'
 
-            params = {
-                'file': file, 
-                'read': read, 
-                'write': write
-            }
+            params = {}
+
+            if !file.nil?
+                params[:file] = file
+            end
+
+            if !read.nil?
+                params[:read] = read
+            end
+
+            if !write.nil?
+                params[:write] = write
+            end
 
             return @client.call('post', path, {
                 'content-type' => 'multipart/form-data',
@@ -31,11 +54,14 @@ module Appwrite
         end
 
         def get_file(file_id:)
+            if file_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "fileId"')
+            end
+
             path = '/storage/files/{fileId}'
                 .gsub('{fileId}', file_id)
 
-            params = {
-            }
+            params = {}
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',
@@ -43,13 +69,30 @@ module Appwrite
         end
 
         def update_file(file_id:, read:, write:)
+            if file_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "fileId"')
+            end
+
+            if read.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "read"')
+            end
+
+            if write.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "write"')
+            end
+
             path = '/storage/files/{fileId}'
                 .gsub('{fileId}', file_id)
 
-            params = {
-                'read': read, 
-                'write': write
-            }
+            params = {}
+
+            if !read.nil?
+                params[:read] = read
+            end
+
+            if !write.nil?
+                params[:write] = write
+            end
 
             return @client.call('put', path, {
                 'content-type' => 'application/json',
@@ -57,11 +100,14 @@ module Appwrite
         end
 
         def delete_file(file_id:)
+            if file_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "fileId"')
+            end
+
             path = '/storage/files/{fileId}'
                 .gsub('{fileId}', file_id)
 
-            params = {
-            }
+            params = {}
 
             return @client.call('delete', path, {
                 'content-type' => 'application/json',
@@ -69,33 +115,69 @@ module Appwrite
         end
 
         def get_file_download(file_id:)
+            if file_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "fileId"')
+            end
+
             path = '/storage/files/{fileId}/download'
                 .gsub('{fileId}', file_id)
 
-            params = {
-            }
+            params = {}
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',
             }, params);
         end
 
-        def get_file_preview(file_id:, width: 0, height: 0, quality: 100, border_width: 0, border_color: '', border_radius: 0, opacity: 1, rotation: 0, background: '', output: '')
+        def get_file_preview(file_id:, width: nil, height: nil, quality: nil, border_width: nil, border_color: nil, border_radius: nil, opacity: nil, rotation: nil, background: nil, output: nil)
+            if file_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "fileId"')
+            end
+
             path = '/storage/files/{fileId}/preview'
                 .gsub('{fileId}', file_id)
 
-            params = {
-                'width': width, 
-                'height': height, 
-                'quality': quality, 
-                'borderWidth': border_width, 
-                'borderColor': border_color, 
-                'borderRadius': border_radius, 
-                'opacity': opacity, 
-                'rotation': rotation, 
-                'background': background, 
-                'output': output
-            }
+            params = {}
+
+            if !width.nil?
+                params[:width] = width
+            end
+
+            if !height.nil?
+                params[:height] = height
+            end
+
+            if !quality.nil?
+                params[:quality] = quality
+            end
+
+            if !border_width.nil?
+                params[:borderWidth] = border_width
+            end
+
+            if !border_color.nil?
+                params[:borderColor] = border_color
+            end
+
+            if !border_radius.nil?
+                params[:borderRadius] = border_radius
+            end
+
+            if !opacity.nil?
+                params[:opacity] = opacity
+            end
+
+            if !rotation.nil?
+                params[:rotation] = rotation
+            end
+
+            if !background.nil?
+                params[:background] = background
+            end
+
+            if !output.nil?
+                params[:output] = output
+            end
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',
@@ -103,11 +185,14 @@ module Appwrite
         end
 
         def get_file_view(file_id:)
+            if file_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "fileId"')
+            end
+
             path = '/storage/files/{fileId}/view'
                 .gsub('{fileId}', file_id)
 
-            params = {
-            }
+            params = {}
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',

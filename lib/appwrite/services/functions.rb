@@ -1,33 +1,76 @@
 module Appwrite
     class Functions < Service
 
-        def list(search: '', limit: 25, offset: 0, order_type: 'ASC')
+        def list(search: nil, limit: nil, offset: nil, order_type: nil)
             path = '/functions'
 
-            params = {
-                'search': search, 
-                'limit': limit, 
-                'offset': offset, 
-                'orderType': order_type
-            }
+            params = {}
+
+            if !search.nil?
+                params[:search] = search
+            end
+
+            if !limit.nil?
+                params[:limit] = limit
+            end
+
+            if !offset.nil?
+                params[:offset] = offset
+            end
+
+            if !order_type.nil?
+                params[:orderType] = order_type
+            end
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',
             }, params);
         end
 
-        def create(name:, execute:, env:, vars: {}, events: [], schedule: '', timeout: 15)
+        def create(name:, execute:, env:, vars: nil, events: nil, schedule: nil, timeout: nil)
+            if name.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
+            end
+
+            if execute.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "execute"')
+            end
+
+            if env.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "env"')
+            end
+
             path = '/functions'
 
-            params = {
-                'name': name, 
-                'execute': execute, 
-                'env': env, 
-                'vars': vars, 
-                'events': events, 
-                'schedule': schedule, 
-                'timeout': timeout
-            }
+            params = {}
+
+            if !name.nil?
+                params[:name] = name
+            end
+
+            if !execute.nil?
+                params[:execute] = execute
+            end
+
+            if !env.nil?
+                params[:env] = env
+            end
+
+            if !vars.nil?
+                params[:vars] = vars
+            end
+
+            if !events.nil?
+                params[:events] = events
+            end
+
+            if !schedule.nil?
+                params[:schedule] = schedule
+            end
+
+            if !timeout.nil?
+                params[:timeout] = timeout
+            end
 
             return @client.call('post', path, {
                 'content-type' => 'application/json',
@@ -35,29 +78,61 @@ module Appwrite
         end
 
         def get(function_id:)
+            if function_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+            end
+
             path = '/functions/{functionId}'
                 .gsub('{functionId}', function_id)
 
-            params = {
-            }
+            params = {}
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',
             }, params);
         end
 
-        def update(function_id:, name:, execute:, vars: {}, events: [], schedule: '', timeout: 15)
+        def update(function_id:, name:, execute:, vars: nil, events: nil, schedule: nil, timeout: nil)
+            if function_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+            end
+
+            if name.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
+            end
+
+            if execute.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "execute"')
+            end
+
             path = '/functions/{functionId}'
                 .gsub('{functionId}', function_id)
 
-            params = {
-                'name': name, 
-                'execute': execute, 
-                'vars': vars, 
-                'events': events, 
-                'schedule': schedule, 
-                'timeout': timeout
-            }
+            params = {}
+
+            if !name.nil?
+                params[:name] = name
+            end
+
+            if !execute.nil?
+                params[:execute] = execute
+            end
+
+            if !vars.nil?
+                params[:vars] = vars
+            end
+
+            if !events.nil?
+                params[:events] = events
+            end
+
+            if !schedule.nil?
+                params[:schedule] = schedule
+            end
+
+            if !timeout.nil?
+                params[:timeout] = timeout
+            end
 
             return @client.call('put', path, {
                 'content-type' => 'application/json',
@@ -65,40 +140,64 @@ module Appwrite
         end
 
         def delete(function_id:)
+            if function_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+            end
+
             path = '/functions/{functionId}'
                 .gsub('{functionId}', function_id)
 
-            params = {
-            }
+            params = {}
 
             return @client.call('delete', path, {
                 'content-type' => 'application/json',
             }, params);
         end
 
-        def list_executions(function_id:, search: '', limit: 25, offset: 0, order_type: 'ASC')
+        def list_executions(function_id:, search: nil, limit: nil, offset: nil, order_type: nil)
+            if function_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+            end
+
             path = '/functions/{functionId}/executions'
                 .gsub('{functionId}', function_id)
 
-            params = {
-                'search': search, 
-                'limit': limit, 
-                'offset': offset, 
-                'orderType': order_type
-            }
+            params = {}
+
+            if !search.nil?
+                params[:search] = search
+            end
+
+            if !limit.nil?
+                params[:limit] = limit
+            end
+
+            if !offset.nil?
+                params[:offset] = offset
+            end
+
+            if !order_type.nil?
+                params[:orderType] = order_type
+            end
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',
             }, params);
         end
 
-        def create_execution(function_id:, data: '')
+        def create_execution(function_id:, data: nil)
+            if function_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+            end
+
             path = '/functions/{functionId}/executions'
                 .gsub('{functionId}', function_id)
 
-            params = {
-                'data': data
-            }
+            params = {}
+
+            if !data.nil?
+                params[:data] = data
+            end
 
             return @client.call('post', path, {
                 'content-type' => 'application/json',
@@ -106,12 +205,19 @@ module Appwrite
         end
 
         def get_execution(function_id:, execution_id:)
+            if function_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+            end
+
+            if execution_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "executionId"')
+            end
+
             path = '/functions/{functionId}/executions/{executionId}'
                 .gsub('{functionId}', function_id)
                 .gsub('{executionId}', execution_id)
 
-            params = {
-            }
+            params = {}
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',
@@ -119,28 +225,53 @@ module Appwrite
         end
 
         def update_tag(function_id:, tag:)
+            if function_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+            end
+
+            if tag.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "tag"')
+            end
+
             path = '/functions/{functionId}/tag'
                 .gsub('{functionId}', function_id)
 
-            params = {
-                'tag': tag
-            }
+            params = {}
+
+            if !tag.nil?
+                params[:tag] = tag
+            end
 
             return @client.call('patch', path, {
                 'content-type' => 'application/json',
             }, params);
         end
 
-        def list_tags(function_id:, search: '', limit: 25, offset: 0, order_type: 'ASC')
+        def list_tags(function_id:, search: nil, limit: nil, offset: nil, order_type: nil)
+            if function_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+            end
+
             path = '/functions/{functionId}/tags'
                 .gsub('{functionId}', function_id)
 
-            params = {
-                'search': search, 
-                'limit': limit, 
-                'offset': offset, 
-                'orderType': order_type
-            }
+            params = {}
+
+            if !search.nil?
+                params[:search] = search
+            end
+
+            if !limit.nil?
+                params[:limit] = limit
+            end
+
+            if !offset.nil?
+                params[:offset] = offset
+            end
+
+            if !order_type.nil?
+                params[:orderType] = order_type
+            end
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',
@@ -148,13 +279,30 @@ module Appwrite
         end
 
         def create_tag(function_id:, command:, code:)
+            if function_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+            end
+
+            if command.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "command"')
+            end
+
+            if code.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "code"')
+            end
+
             path = '/functions/{functionId}/tags'
                 .gsub('{functionId}', function_id)
 
-            params = {
-                'command': command, 
-                'code': code
-            }
+            params = {}
+
+            if !command.nil?
+                params[:command] = command
+            end
+
+            if !code.nil?
+                params[:code] = code
+            end
 
             return @client.call('post', path, {
                 'content-type' => 'multipart/form-data',
@@ -162,12 +310,19 @@ module Appwrite
         end
 
         def get_tag(function_id:, tag_id:)
+            if function_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+            end
+
+            if tag_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "tagId"')
+            end
+
             path = '/functions/{functionId}/tags/{tagId}'
                 .gsub('{functionId}', function_id)
                 .gsub('{tagId}', tag_id)
 
-            params = {
-            }
+            params = {}
 
             return @client.call('get', path, {
                 'content-type' => 'application/json',
@@ -175,12 +330,19 @@ module Appwrite
         end
 
         def delete_tag(function_id:, tag_id:)
+            if function_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+            end
+
+            if tag_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "tagId"')
+            end
+
             path = '/functions/{functionId}/tags/{tagId}'
                 .gsub('{functionId}', function_id)
                 .gsub('{tagId}', tag_id)
 
-            params = {
-            }
+            params = {}
 
             return @client.call('delete', path, {
                 'content-type' => 'application/json',

@@ -156,7 +156,7 @@ module Appwrite
             }, params);
         end
 
-        def get_q_r(text:, size: nil, margin: nil, download: nil)
+        def get_qr(text:, size: nil, margin: nil, download: nil)
             if text.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "text"')
             end

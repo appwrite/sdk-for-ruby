@@ -20,7 +20,7 @@ module Appwrite
             @headers = {
                 'content-type' => '',
                 'user-agent' => RUBY_PLATFORM + ':ruby-' + RUBY_VERSION,
-                'x-sdk-version' => 'appwrite:ruby:2.1.2',                
+                'x-sdk-version' => 'appwrite:ruby:2.2.0',                
                 'X-Appwrite-Response-Format' => '0.8.0'
             }
             @endpoint = 'https://appwrite.io/v1';
@@ -38,7 +38,7 @@ module Appwrite
             return self
         end
 
-        def set_j_w_t(value)
+        def set_jwt(value)
             add_header('x-appwrite-jwt', value)
 
             return self

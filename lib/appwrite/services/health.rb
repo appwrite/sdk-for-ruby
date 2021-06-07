@@ -31,7 +31,7 @@ module Appwrite
             }, params);
         end
 
-        def get_d_b()
+        def get_db()
             path = '/health/db'
 
             params = {}

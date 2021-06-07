@@ -31,7 +31,7 @@ module Appwrite
             }, params);
         end
 
-        def get_countries_e_u()
+        def get_countries_eu()
             path = '/locale/countries/eu'
 
             params = {}

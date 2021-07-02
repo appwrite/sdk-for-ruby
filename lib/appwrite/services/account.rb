@@ -213,6 +213,21 @@ module Appwrite
             }, params);
         end
 
+        def get_session(session_id:)
+            if session_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "sessionId"')
+            end
+
+            path = '/account/sessions/{sessionId}'
+                .gsub('{sessionId}', session_id)
+
+            params = {}
+
+            return @client.call('get', path, {
+                'content-type' => 'application/json',
+            }, params);
+        end
+
         def delete_session(session_id:)
             if session_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "sessionId"')

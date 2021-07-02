@@ -27,7 +27,7 @@ module Appwrite
             }, params);
         end
 
-        def create(name:, execute:, env:, vars: nil, events: nil, schedule: nil, timeout: nil)
+        def create(name:, execute:, runtime:, vars: nil, events: nil, schedule: nil, timeout: nil)
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
@@ -36,8 +36,8 @@ module Appwrite
                 raise Appwrite::Exception.new('Missing required parameter: "execute"')
             end
 
-            if env.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "env"')
+            if runtime.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "runtime"')
             end
 
             path = '/functions'
@@ -52,8 +52,8 @@ module Appwrite
                 params[:execute] = execute
             end
 
-            if !env.nil?
-                params[:env] = env
+            if !runtime.nil?
+                params[:runtime] = runtime
             end
 
             if !vars.nil?

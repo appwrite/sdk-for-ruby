@@ -129,7 +129,7 @@ module Appwrite
             }, params);
         end
 
-        def get_file_preview(file_id:, width: nil, height: nil, quality: nil, border_width: nil, border_color: nil, border_radius: nil, opacity: nil, rotation: nil, background: nil, output: nil)
+        def get_file_preview(file_id:, width: nil, height: nil, gravity: nil, quality: nil, border_width: nil, border_color: nil, border_radius: nil, opacity: nil, rotation: nil, background: nil, output: nil)
             if file_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
@@ -145,6 +145,10 @@ module Appwrite
 
             if !height.nil?
                 params[:height] = height
+            end
+
+            if !gravity.nil?
+                params[:gravity] = gravity
             end
 
             if !quality.nil?

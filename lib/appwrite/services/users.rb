@@ -213,6 +213,29 @@ module Appwrite
             }, params);
         end
 
+        def update_verification(user_id:, email_verification:)
+            if user_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            if email_verification.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "emailVerification"')
+            end
+
+            path = '/users/{userId}/verification'
+                .gsub('{userId}', user_id)
+
+            params = {}
+
+            if !email_verification.nil?
+                params[:emailVerification] = email_verification
+            end
+
+            return @client.call('patch', path, {
+                'content-type' => 'application/json',
+            }, params);
+        end
+
 
         protected
 

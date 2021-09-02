@@ -8,8 +8,8 @@ client
     .set_key('919c2d18fb5d4...a2ae413da83346ad2') # Your secret API key
 ;
 
-functions = Appwrite::Functions.new(client);
+users = Appwrite::Users.new(client);
 
-response = functions.create(name: '[NAME]', execute: [], runtime: 'dotnet-5.0');
+response = users.update_name(user_id: '[USER_ID]', name: '[NAME]');
 
 puts response

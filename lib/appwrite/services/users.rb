@@ -87,6 +87,29 @@ module Appwrite
             }, params);
         end
 
+        def update_email(user_id:, email:)
+            if user_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            if email.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "email"')
+            end
+
+            path = '/users/{userId}/email'
+                .gsub('{userId}', user_id)
+
+            params = {}
+
+            if !email.nil?
+                params[:email] = email
+            end
+
+            return @client.call('patch', path, {
+                'content-type' => 'application/json',
+            }, params);
+        end
+
         def get_logs(user_id:)
             if user_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userId"')
@@ -98,6 +121,52 @@ module Appwrite
             params = {}
 
             return @client.call('get', path, {
+                'content-type' => 'application/json',
+            }, params);
+        end
+
+        def update_name(user_id:, name:)
+            if user_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            if name.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
+            end
+
+            path = '/users/{userId}/name'
+                .gsub('{userId}', user_id)
+
+            params = {}
+
+            if !name.nil?
+                params[:name] = name
+            end
+
+            return @client.call('patch', path, {
+                'content-type' => 'application/json',
+            }, params);
+        end
+
+        def update_password(user_id:, password:)
+            if user_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            if password.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "password"')
+            end
+
+            path = '/users/{userId}/password'
+                .gsub('{userId}', user_id)
+
+            params = {}
+
+            if !password.nil?
+                params[:password] = password
+            end
+
+            return @client.call('patch', path, {
                 'content-type' => 'application/json',
             }, params);
         end

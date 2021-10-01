@@ -20,7 +20,7 @@ body:
     attributes:
       label: "📜 Example code for reproducing this bug"
       description: Please copy and paste here some code for reproducing this error. This step is not required. This will be automatically formatted into code, so no need for backticks.
-      render: rb
+      render: ruby
   - type: textarea
     id: expected-behavior
     validations:

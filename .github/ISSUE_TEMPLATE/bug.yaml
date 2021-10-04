@@ -16,12 +16,6 @@ body:
       description: "How do you trigger this bug? Please walk us through it step by step."
       placeholder: "When I ..."
   - type: textarea
-    id: code-to-reproduce
-    attributes:
-      label: "📜 Example code for reproducing this bug"
-      description: Please copy and paste here some code for reproducing this error. This step is not required. This will be automatically formatted into code, so no need for backticks.
-      render: ruby
-  - type: textarea
     id: expected-behavior
     validations:
       required: true
@@ -49,14 +43,6 @@ body:
         - Version 0.7.x
         - Version 0.6.x
         - Different version (specify in environment)
-    validations:
-      required: true
-  - type: input
-    id: appwrite-sdk-version
-    attributes:
-      label: "🎲 Appwrite SDK for Ruby version"
-      description: "What version of Appwrite SDK are you using?"
-      placeholder: "2.4.0"
     validations:
       required: true
   - type: dropdown

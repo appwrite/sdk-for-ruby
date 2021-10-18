@@ -159,16 +159,16 @@ module Appwrite
                 params[:email] = email
             end
 
-            if !name.nil?
-                params[:name] = name
-            end
-
             if !roles.nil?
                 params[:roles] = roles
             end
 
             if !url.nil?
                 params[:url] = url
+            end
+
+            if !name.nil?
+                params[:name] = name
             end
 
             return @client.call('post', path, {

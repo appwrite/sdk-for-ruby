@@ -17,7 +17,7 @@ Appwrite is an open-source backend as a service server that abstract and simplif
 To install via [Gem](https://rubygems.org/):
 
 ```bash
-gem install appwrite --save
+gem install appwrite
 ```
 
 

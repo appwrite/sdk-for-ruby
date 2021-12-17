@@ -1,32 +1,48 @@
+#frozen_string_literal: true
+
 module Appwrite
     class Users < Service
 
+        include Models
+        # Get a list of all the project's users. You can use the query params to
+        # filter your results.
+        #
+        # @param [string] search Search term to filter your list results. Max length: 256 chars.
+        # @param [number] limit Results limit value. By default will return maximum 25 results. Maximum of 100 results allowed per request.
+        # @param [number] offset Results offset. The default value is 0. Use this param to manage pagination.
+        # @param [string] order_type Order result by ASC or DESC order.
+        #
+        # @return [UserList]
         def list(search: nil, limit: nil, offset: nil, order_type: nil)
             path = '/users'
 
-            params = {}
+            params = {
+                search: search,
+                limit: limit,
+                offset: offset,
+                orderType: order_type,
+            }
 
-            if !search.nil?
-                params[:search] = search
-            end
+            headers = {
+                "content-type": 'application/json',
+            }
 
-            if !limit.nil?
-                params[:limit] = limit
-            end
-
-            if !offset.nil?
-                params[:offset] = offset
-            end
-
-            if !order_type.nil?
-                params[:orderType] = order_type
-            end
-
-            return @client.call('get', path, {
-                'content-type' => 'application/json',
-            }, params);
+            @client.call(
+                method: 'GET',
+                path: path,
+                params: params,
+                headers: headers,
+                response_type: UserList
+            )
         end
 
+        # Create a new user.
+        #
+        # @param [string] email User email.
+        # @param [string] password User password. Must be between 6 to 32 chars.
+        # @param [string] name User name. Max length: 128 chars.
+        #
+        # @return [User]
         def create(email:, password:, name: nil)
             if email.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "email"')
@@ -38,25 +54,30 @@ module Appwrite
 
             path = '/users'
 
-            params = {}
+            params = {
+                email: email,
+                password: password,
+                name: name,
+            }
 
-            if !email.nil?
-                params[:email] = email
-            end
+            headers = {
+                "content-type": 'application/json',
+            }
 
-            if !password.nil?
-                params[:password] = password
-            end
-
-            if !name.nil?
-                params[:name] = name
-            end
-
-            return @client.call('post', path, {
-                'content-type' => 'application/json',
-            }, params);
+            @client.call(
+                method: 'POST',
+                path: path,
+                params: params,
+                headers: headers,
+                response_type: User
+            )
         end
 
+        # Get a user by its unique ID.
+        #
+        # @param [string] user_id User unique ID.
+        #
+        # @return [User]
         def get(user_id:)
             if user_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userId"')
@@ -65,13 +86,27 @@ module Appwrite
             path = '/users/{userId}'
                 .gsub('{userId}', user_id)
 
-            params = {}
+            params = {
+            }
 
-            return @client.call('get', path, {
-                'content-type' => 'application/json',
-            }, params);
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: path,
+                params: params,
+                headers: headers,
+                response_type: User
+            )
         end
 
+        # Delete a user by its unique ID.
+        #
+        # @param [string] user_id User unique ID.
+        #
+        # @return []
         def delete(user_id:)
             if user_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userId"')
@@ -80,13 +115,27 @@ module Appwrite
             path = '/users/{userId}'
                 .gsub('{userId}', user_id)
 
-            params = {}
+            params = {
+            }
 
-            return @client.call('delete', path, {
-                'content-type' => 'application/json',
-            }, params);
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: path,
+                params: params,
+                headers: headers,
+            )
         end
 
+        # Update the user email by its unique ID.
+        #
+        # @param [string] user_id User unique ID.
+        # @param [string] email User email.
+        #
+        # @return [User]
         def update_email(user_id:, email:)
             if user_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userId"')
@@ -99,17 +148,28 @@ module Appwrite
             path = '/users/{userId}/email'
                 .gsub('{userId}', user_id)
 
-            params = {}
+            params = {
+                email: email,
+            }
 
-            if !email.nil?
-                params[:email] = email
-            end
+            headers = {
+                "content-type": 'application/json',
+            }
 
-            return @client.call('patch', path, {
-                'content-type' => 'application/json',
-            }, params);
+            @client.call(
+                method: 'PATCH',
+                path: path,
+                params: params,
+                headers: headers,
+                response_type: User
+            )
         end
 
+        # Get a user activity logs list by its unique ID.
+        #
+        # @param [string] user_id User unique ID.
+        #
+        # @return [LogList]
         def get_logs(user_id:)
             if user_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userId"')
@@ -118,13 +178,28 @@ module Appwrite
             path = '/users/{userId}/logs'
                 .gsub('{userId}', user_id)
 
-            params = {}
+            params = {
+            }
 
-            return @client.call('get', path, {
-                'content-type' => 'application/json',
-            }, params);
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: path,
+                params: params,
+                headers: headers,
+                response_type: LogList
+            )
         end
 
+        # Update the user name by its unique ID.
+        #
+        # @param [string] user_id User unique ID.
+        # @param [string] name User name. Max length: 128 chars.
+        #
+        # @return [User]
         def update_name(user_id:, name:)
             if user_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userId"')
@@ -137,17 +212,29 @@ module Appwrite
             path = '/users/{userId}/name'
                 .gsub('{userId}', user_id)
 
-            params = {}
+            params = {
+                name: name,
+            }
 
-            if !name.nil?
-                params[:name] = name
-            end
+            headers = {
+                "content-type": 'application/json',
+            }
 
-            return @client.call('patch', path, {
-                'content-type' => 'application/json',
-            }, params);
+            @client.call(
+                method: 'PATCH',
+                path: path,
+                params: params,
+                headers: headers,
+                response_type: User
+            )
         end
 
+        # Update the user password by its unique ID.
+        #
+        # @param [string] user_id User unique ID.
+        # @param [string] password New user password. Must be between 6 to 32 chars.
+        #
+        # @return [User]
         def update_password(user_id:, password:)
             if user_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userId"')
@@ -160,17 +247,28 @@ module Appwrite
             path = '/users/{userId}/password'
                 .gsub('{userId}', user_id)
 
-            params = {}
+            params = {
+                password: password,
+            }
 
-            if !password.nil?
-                params[:password] = password
-            end
+            headers = {
+                "content-type": 'application/json',
+            }
 
-            return @client.call('patch', path, {
-                'content-type' => 'application/json',
-            }, params);
+            @client.call(
+                method: 'PATCH',
+                path: path,
+                params: params,
+                headers: headers,
+                response_type: User
+            )
         end
 
+        # Get the user preferences by its unique ID.
+        #
+        # @param [string] user_id User unique ID.
+        #
+        # @return [Preferences]
         def get_prefs(user_id:)
             if user_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userId"')
@@ -179,13 +277,29 @@ module Appwrite
             path = '/users/{userId}/prefs'
                 .gsub('{userId}', user_id)
 
-            params = {}
+            params = {
+            }
 
-            return @client.call('get', path, {
-                'content-type' => 'application/json',
-            }, params);
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: path,
+                params: params,
+                headers: headers,
+                response_type: Preferences
+            )
         end
 
+        # Update the user preferences by its unique ID. You can pass only the
+        # specific settings you wish to update.
+        #
+        # @param [string] user_id User unique ID.
+        # @param [object] prefs Prefs key-value JSON object.
+        #
+        # @return [Preferences]
         def update_prefs(user_id:, prefs:)
             if user_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userId"')
@@ -198,17 +312,28 @@ module Appwrite
             path = '/users/{userId}/prefs'
                 .gsub('{userId}', user_id)
 
-            params = {}
+            params = {
+                prefs: prefs,
+            }
 
-            if !prefs.nil?
-                params[:prefs] = prefs
-            end
+            headers = {
+                "content-type": 'application/json',
+            }
 
-            return @client.call('patch', path, {
-                'content-type' => 'application/json',
-            }, params);
+            @client.call(
+                method: 'PATCH',
+                path: path,
+                params: params,
+                headers: headers,
+                response_type: Preferences
+            )
         end
 
+        # Get the user sessions list by its unique ID.
+        #
+        # @param [string] user_id User unique ID.
+        #
+        # @return [SessionList]
         def get_sessions(user_id:)
             if user_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userId"')
@@ -217,13 +342,27 @@ module Appwrite
             path = '/users/{userId}/sessions'
                 .gsub('{userId}', user_id)
 
-            params = {}
+            params = {
+            }
 
-            return @client.call('get', path, {
-                'content-type' => 'application/json',
-            }, params);
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: path,
+                params: params,
+                headers: headers,
+                response_type: SessionList
+            )
         end
 
+        # Delete all user's sessions by using the user's unique ID.
+        #
+        # @param [string] user_id User unique ID.
+        #
+        # @return []
         def delete_sessions(user_id:)
             if user_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userId"')
@@ -232,13 +371,27 @@ module Appwrite
             path = '/users/{userId}/sessions'
                 .gsub('{userId}', user_id)
 
-            params = {}
+            params = {
+            }
 
-            return @client.call('delete', path, {
-                'content-type' => 'application/json',
-            }, params);
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: path,
+                params: params,
+                headers: headers,
+            )
         end
 
+        # Delete a user sessions by its unique ID.
+        #
+        # @param [string] user_id User unique ID.
+        # @param [string] session_id User unique session ID.
+        #
+        # @return []
         def delete_session(user_id:, session_id:)
             if user_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userId"')
@@ -252,13 +405,27 @@ module Appwrite
                 .gsub('{userId}', user_id)
                 .gsub('{sessionId}', session_id)
 
-            params = {}
+            params = {
+            }
 
-            return @client.call('delete', path, {
-                'content-type' => 'application/json',
-            }, params);
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: path,
+                params: params,
+                headers: headers,
+            )
         end
 
+        # Update the user status by its unique ID.
+        #
+        # @param [string] user_id User unique ID.
+        # @param [number] status User Status code. To activate the user pass 1, to block the user pass 2 and for disabling the user pass 0
+        #
+        # @return [User]
         def update_status(user_id:, status:)
             if user_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userId"')
@@ -271,17 +438,29 @@ module Appwrite
             path = '/users/{userId}/status'
                 .gsub('{userId}', user_id)
 
-            params = {}
+            params = {
+                status: status,
+            }
 
-            if !status.nil?
-                params[:status] = status
-            end
+            headers = {
+                "content-type": 'application/json',
+            }
 
-            return @client.call('patch', path, {
-                'content-type' => 'application/json',
-            }, params);
+            @client.call(
+                method: 'PATCH',
+                path: path,
+                params: params,
+                headers: headers,
+                response_type: User
+            )
         end
 
+        # Update the user email verification status by its unique ID.
+        #
+        # @param [string] user_id User unique ID.
+        # @param [boolean] email_verification User Email Verification Status.
+        #
+        # @return [User]
         def update_verification(user_id:, email_verification:)
             if user_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userId"')
@@ -294,20 +473,22 @@ module Appwrite
             path = '/users/{userId}/verification'
                 .gsub('{userId}', user_id)
 
-            params = {}
+            params = {
+                emailVerification: email_verification,
+            }
 
-            if !email_verification.nil?
-                params[:emailVerification] = email_verification
-            end
+            headers = {
+                "content-type": 'application/json',
+            }
 
-            return @client.call('patch', path, {
-                'content-type' => 'application/json',
-            }, params);
+            @client.call(
+                method: 'PATCH',
+                path: path,
+                params: params,
+                headers: headers,
+                response_type: User
+            )
         end
 
-
-        protected
-
-        private
     end 
 end

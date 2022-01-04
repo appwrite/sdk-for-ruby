@@ -11,7 +11,7 @@ module Appwrite
         def initialize
             @headers = {
                 'user-agent' => RUBY_PLATFORM + ':ruby-' + RUBY_VERSION,
-                'x-sdk-version' => 'appwrite:ruby:2.4.1',                
+                'x-sdk-version' => 'appwrite:ruby:3.0.0',                
                 'X-Appwrite-Response-Format' => '0.12.0'
             }
             @endpoint = 'https://HOSTNAME/v1'

@@ -2,29 +2,29 @@
 
 module Appwrite
     module Models
-        class LogList
+        class IndexList
             attr_reader :sum
-            attr_reader :logs
+            attr_reader :indexes
 
             def initialize(
                 sum:,
-                logs:
+                indexes:
             )
                 @sum = sum
-                @logs = logs
+                @indexes = indexes
             end
 
             def self.from(map:)
-                LogList.new(
+                IndexList.new(
                     sum: map["sum"],
-                    logs: map["logs"].map { |it| Log.from(map: it) }
+                    indexes: map["indexes"].map { |it| Index.from(map: it) }
                 )
             end
 
             def to_map
                 {
                     "sum": @sum,
-                    "logs": @logs.map { |it| it.to_map }
+                    "indexes": @indexes.map { |it| it.to_map }
                 }
             end
         end

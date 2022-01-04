@@ -7,7 +7,7 @@ module Appwrite
         # Check the Appwrite HTTP server is up and responsive.
         #
         #
-        # @return []
+        # @return [HealthStatus]
         def get()
             path = '/health'
 
@@ -23,14 +23,15 @@ module Appwrite
                 path: path,
                 params: params,
                 headers: headers,
+                response_type: HealthStatus
             )
         end
 
-        # Check the Appwrite Anti Virus server is up and connection is successful.
+        # Check the Appwrite Antivirus server is up and connection is successful.
         #
         #
-        # @return []
-        def get_anti_virus()
+        # @return [HealthAntivirus]
+        def get_antivirus()
             path = '/health/anti-virus'
 
             params = {
@@ -45,6 +46,7 @@ module Appwrite
                 path: path,
                 params: params,
                 headers: headers,
+                response_type: HealthAntivirus
             )
         end
 
@@ -52,7 +54,7 @@ module Appwrite
         # successful.
         #
         #
-        # @return []
+        # @return [HealthStatus]
         def get_cache()
             path = '/health/cache'
 
@@ -68,13 +70,14 @@ module Appwrite
                 path: path,
                 params: params,
                 headers: headers,
+                response_type: HealthStatus
             )
         end
 
         # Check the Appwrite database server is up and connection is successful.
         #
         #
-        # @return []
+        # @return [HealthStatus]
         def get_db()
             path = '/health/db'
 
@@ -90,6 +93,7 @@ module Appwrite
                 path: path,
                 params: params,
                 headers: headers,
+                response_type: HealthStatus
             )
         end
 
@@ -98,7 +102,7 @@ module Appwrite
         # server.
         #
         #
-        # @return []
+        # @return [HealthQueue]
         def get_queue_certificates()
             path = '/health/queue/certificates'
 
@@ -114,13 +118,14 @@ module Appwrite
                 path: path,
                 params: params,
                 headers: headers,
+                response_type: HealthQueue
             )
         end
 
         # 
         #
         #
-        # @return []
+        # @return [HealthQueue]
         def get_queue_functions()
             path = '/health/queue/functions'
 
@@ -136,6 +141,7 @@ module Appwrite
                 path: path,
                 params: params,
                 headers: headers,
+                response_type: HealthQueue
             )
         end
 
@@ -143,7 +149,7 @@ module Appwrite
         # internal queue server.
         #
         #
-        # @return []
+        # @return [HealthQueue]
         def get_queue_logs()
             path = '/health/queue/logs'
 
@@ -159,29 +165,7 @@ module Appwrite
                 path: path,
                 params: params,
                 headers: headers,
-            )
-        end
-
-        # Get the number of tasks that are waiting to be processed in the Appwrite
-        # internal queue server.
-        #
-        #
-        # @return []
-        def get_queue_tasks()
-            path = '/health/queue/tasks'
-
-            params = {
-            }
-
-            headers = {
-                "content-type": 'application/json',
-            }
-
-            @client.call(
-                method: 'GET',
-                path: path,
-                params: params,
-                headers: headers,
+                response_type: HealthQueue
             )
         end
 
@@ -189,7 +173,7 @@ module Appwrite
         # Appwrite internal queue server.
         #
         #
-        # @return []
+        # @return [HealthQueue]
         def get_queue_usage()
             path = '/health/queue/usage'
 
@@ -205,6 +189,7 @@ module Appwrite
                 path: path,
                 params: params,
                 headers: headers,
+                response_type: HealthQueue
             )
         end
 
@@ -212,7 +197,7 @@ module Appwrite
         # internal queue server.
         #
         #
-        # @return []
+        # @return [HealthQueue]
         def get_queue_webhooks()
             path = '/health/queue/webhooks'
 
@@ -228,13 +213,14 @@ module Appwrite
                 path: path,
                 params: params,
                 headers: headers,
+                response_type: HealthQueue
             )
         end
 
         # Check the Appwrite local storage device is up and connection is successful.
         #
         #
-        # @return []
+        # @return [HealthStatus]
         def get_storage_local()
             path = '/health/storage/local'
 
@@ -250,6 +236,7 @@ module Appwrite
                 path: path,
                 params: params,
                 headers: headers,
+                response_type: HealthStatus
             )
         end
 
@@ -262,7 +249,7 @@ module Appwrite
         # uses NTP.
         #
         #
-        # @return []
+        # @return [HealthTime]
         def get_time()
             path = '/health/time'
 
@@ -278,6 +265,7 @@ module Appwrite
                 path: path,
                 params: params,
                 headers: headers,
+                response_type: HealthTime
             )
         end
 

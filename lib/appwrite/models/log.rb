@@ -4,6 +4,10 @@ module Appwrite
     module Models
         class Log
             attr_reader :event
+            attr_reader :user_id
+            attr_reader :user_email
+            attr_reader :user_name
+            attr_reader :mode
             attr_reader :ip
             attr_reader :time
             attr_reader :os_code
@@ -23,6 +27,10 @@ module Appwrite
 
             def initialize(
                 event:,
+                user_id:,
+                user_email:,
+                user_name:,
+                mode:,
                 ip:,
                 time:,
                 os_code:,
@@ -41,6 +49,10 @@ module Appwrite
                 country_name:
             )
                 @event = event
+                @user_id = user_id
+                @user_email = user_email
+                @user_name = user_name
+                @mode = mode
                 @ip = ip
                 @time = time
                 @os_code = os_code
@@ -62,6 +74,10 @@ module Appwrite
             def self.from(map:)
                 Log.new(
                     event: map["event"],
+                    user_id: map["userId"],
+                    user_email: map["userEmail"],
+                    user_name: map["userName"],
+                    mode: map["mode"],
                     ip: map["ip"],
                     time: map["time"],
                     os_code: map["osCode"],
@@ -84,6 +100,10 @@ module Appwrite
             def to_map
                 {
                     "event": @event,
+                    "userId": @user_id,
+                    "userEmail": @user_email,
+                    "userName": @user_name,
+                    "mode": @mode,
                     "ip": @ip,
                     "time": @time,
                     "osCode": @os_code,

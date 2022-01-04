@@ -2,29 +2,29 @@
 
 module Appwrite
     module Models
-        class LogList
+        class RuntimeList
             attr_reader :sum
-            attr_reader :logs
+            attr_reader :runtimes
 
             def initialize(
                 sum:,
-                logs:
+                runtimes:
             )
                 @sum = sum
-                @logs = logs
+                @runtimes = runtimes
             end
 
             def self.from(map:)
-                LogList.new(
+                RuntimeList.new(
                     sum: map["sum"],
-                    logs: map["logs"].map { |it| Log.from(map: it) }
+                    runtimes: map["runtimes"].map { |it| Runtime.from(map: it) }
                 )
             end
 
             def to_map
                 {
                     "sum": @sum,
-                    "logs": @logs.map { |it| it.to_map }
+                    "runtimes": @runtimes.map { |it| it.to_map }
                 }
             end
         end

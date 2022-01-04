@@ -4,47 +4,57 @@ module Appwrite
     module Models
         class Collection
             attr_reader :id
-            attr_reader :permissions
+            attr_reader :read
+            attr_reader :write
             attr_reader :name
-            attr_reader :date_created
-            attr_reader :date_updated
-            attr_reader :rules
+            attr_reader :enabled
+            attr_reader :permission
+            attr_reader :attributes
+            attr_reader :indexes
 
             def initialize(
                 id:,
-                permissions:,
+                read:,
+                write:,
                 name:,
-                date_created:,
-                date_updated:,
-                rules:
+                enabled:,
+                permission:,
+                attributes:,
+                indexes:
             )
                 @id = id
-                @permissions = permissions
+                @read = read
+                @write = write
                 @name = name
-                @date_created = date_created
-                @date_updated = date_updated
-                @rules = rules
+                @enabled = enabled
+                @permission = permission
+                @attributes = attributes
+                @indexes = indexes
             end
 
             def self.from(map:)
                 Collection.new(
                     id: map["$id"],
-                    permissions: Permissions.from(map: map["$permissions"]),
+                    read: map["$read"],
+                    write: map["$write"],
                     name: map["name"],
-                    date_created: map["dateCreated"],
-                    date_updated: map["dateUpdated"],
-                    rules: map["rules"].map { |it| Rule.from(map: it) }
+                    enabled: map["enabled"],
+                    permission: map["permission"],
+                    attributes: map["attributes"],
+                    indexes: map["indexes"].map { |it| Index.from(map: it) }
                 )
             end
 
             def to_map
                 {
                     "$id": @id,
-                    "$permissions": @permissions.to_map,
+                    "$read": @read,
+                    "$write": @write,
                     "name": @name,
-                    "dateCreated": @date_created,
-                    "dateUpdated": @date_updated,
-                    "rules": @rules.map { |it| it.to_map }
+                    "enabled": @enabled,
+                    "permission": @permission,
+                    "attributes": @attributes,
+                    "indexes": @indexes.map { |it| it.to_map }
                 }
             end
         end

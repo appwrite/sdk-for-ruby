@@ -7,8 +7,8 @@ client
     .set_project('5df5acd0d48c2') # Your project ID
     .set_key('919c2d18fb5d4...a2ae413da83346ad2') # Your secret API key
 
-health = Appwrite::Health.new(client)
+database = Appwrite::Database.new(client)
 
-response = health.get_anti_virus()
+response = database.delete_attribute(collection_id: '[COLLECTION_ID]', key: '')
 
 puts response.inspect

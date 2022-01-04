@@ -8,18 +8,22 @@ module Appwrite
         # filter your results.
         #
         # @param [string] search Search term to filter your list results. Max length: 256 chars.
-        # @param [number] limit Results limit value. By default will return maximum 25 results. Maximum of 100 results allowed per request.
-        # @param [number] offset Results offset. The default value is 0. Use this param to manage pagination.
+        # @param [number] limit Maximum number of functions to return in response. By default will return maximum 25 results. Maximum of 100 results allowed per request.
+        # @param [number] offset Offset value. The default value is 0. Use this value to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination)
+        # @param [string] cursor ID of the function used as the starting point for the query, excluding the function itself. Should be used for efficient pagination when working with large sets of data. [learn more about pagination](https://appwrite.io/docs/pagination)
+        # @param [string] cursor_direction Direction of the cursor.
         # @param [string] order_type Order result by ASC or DESC order.
         #
         # @return [FunctionList]
-        def list(search: nil, limit: nil, offset: nil, order_type: nil)
+        def list(search: nil, limit: nil, offset: nil, cursor: nil, cursor_direction: nil, order_type: nil)
             path = '/functions'
 
             params = {
                 search: search,
                 limit: limit,
                 offset: offset,
+                cursor: cursor,
+                cursorDirection: cursor_direction,
                 orderType: order_type,
             }
 
@@ -40,16 +44,21 @@ module Appwrite
         # [permissions](/docs/permissions) to allow different project users or team
         # with access to execute the function using the client API.
         #
+        # @param [string] function_id Function ID. Choose your own unique ID or pass the string `unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [string] name Function name. Max length: 128 chars.
-        # @param [array] execute An array of strings with execution permissions. By default no user is granted with any execute permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions.
+        # @param [array] execute An array of strings with execution permissions. By default no user is granted with any execute permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions.
         # @param [string] runtime Execution runtime.
-        # @param [object] vars Key-value JSON object.
+        # @param [object] vars Key-value JSON object that will be passed to the function as environment variables.
         # @param [array] events Events list.
         # @param [string] schedule Schedule CRON syntax.
         # @param [number] timeout Function maximum execution time in seconds.
         #
         # @return [Function]
-        def create(name:, execute:, runtime:, vars: nil, events: nil, schedule: nil, timeout: nil)
+        def create(function_id:, name:, execute:, runtime:, vars: nil, events: nil, schedule: nil, timeout: nil)
+            if function_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+            end
+
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
@@ -65,6 +74,7 @@ module Appwrite
             path = '/functions'
 
             params = {
+                functionId: function_id,
                 name: name,
                 execute: execute,
                 runtime: runtime,
@@ -87,9 +97,32 @@ module Appwrite
             )
         end
 
+        # Get a list of all runtimes that are currently active in your project.
+        #
+        #
+        # @return [RuntimeList]
+        def list_runtimes()
+            path = '/functions/runtimes'
+
+            params = {
+            }
+
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: path,
+                params: params,
+                headers: headers,
+                response_type: RuntimeList
+            )
+        end
+
         # Get a function by its unique ID.
         #
-        # @param [string] function_id Function unique ID.
+        # @param [string] function_id Function ID.
         #
         # @return [Function]
         def get(function_id:)
@@ -118,13 +151,13 @@ module Appwrite
 
         # Update function by its unique ID.
         #
-        # @param [string] function_id Function unique ID.
+        # @param [string] function_id Function ID.
         # @param [string] name Function name. Max length: 128 chars.
-        # @param [array] execute An array of strings with execution permissions. By default no user is granted with any execute permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions.
-        # @param [object] vars Key-value JSON object.
+        # @param [array] execute An array of strings with execution permissions. By default no user is granted with any execute permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions.
+        # @param [object] vars Key-value JSON object that will be passed to the function as environment variables.
         # @param [array] events Events list.
         # @param [string] schedule Schedule CRON syntax.
-        # @param [number] timeout Function maximum execution time in seconds.
+        # @param [number] timeout Maximum execution time in seconds.
         #
         # @return [Function]
         def update(function_id:, name:, execute:, vars: nil, events: nil, schedule: nil, timeout: nil)
@@ -167,7 +200,7 @@ module Appwrite
 
         # Delete a function by its unique ID.
         #
-        # @param [string] function_id Function unique ID.
+        # @param [string] function_id Function ID.
         #
         # @return []
         def delete(function_id:)
@@ -198,14 +231,15 @@ module Appwrite
         # return a list of all of the project's executions. [Learn more about
         # different API modes](/docs/admin).
         #
-        # @param [string] function_id Function unique ID.
+        # @param [string] function_id Function ID.
+        # @param [number] limit Maximum number of executions to return in response. By default will return maximum 25 results. Maximum of 100 results allowed per request.
+        # @param [number] offset Offset value. The default value is 0. Use this value to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination)
         # @param [string] search Search term to filter your list results. Max length: 256 chars.
-        # @param [number] limit Results limit value. By default will return maximum 25 results. Maximum of 100 results allowed per request.
-        # @param [number] offset Results offset. The default value is 0. Use this param to manage pagination.
-        # @param [string] order_type Order result by ASC or DESC order.
+        # @param [string] cursor ID of the execution used as the starting point for the query, excluding the execution itself. Should be used for efficient pagination when working with large sets of data. [learn more about pagination](https://appwrite.io/docs/pagination)
+        # @param [string] cursor_direction Direction of the cursor.
         #
         # @return [ExecutionList]
-        def list_executions(function_id:, search: nil, limit: nil, offset: nil, order_type: nil)
+        def list_executions(function_id:, limit: nil, offset: nil, search: nil, cursor: nil, cursor_direction: nil)
             if function_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
@@ -214,10 +248,11 @@ module Appwrite
                 .gsub('{functionId}', function_id)
 
             params = {
-                search: search,
                 limit: limit,
                 offset: offset,
-                orderType: order_type,
+                search: search,
+                cursor: cursor,
+                cursorDirection: cursor_direction,
             }
 
             headers = {
@@ -238,7 +273,7 @@ module Appwrite
         # updates on the current execution status. Once this endpoint is called, your
         # function execution process will start asynchronously.
         #
-        # @param [string] function_id Function unique ID.
+        # @param [string] function_id Function ID.
         # @param [string] data String of custom data to send to function.
         #
         # @return [Execution]
@@ -269,8 +304,8 @@ module Appwrite
 
         # Get a function execution log by its unique ID.
         #
-        # @param [string] function_id Function unique ID.
-        # @param [string] execution_id Execution unique ID.
+        # @param [string] function_id Function ID.
+        # @param [string] execution_id Execution ID.
         #
         # @return [Execution]
         def get_execution(function_id:, execution_id:)
@@ -306,8 +341,8 @@ module Appwrite
         # endpoint to switch the code tag that should be executed by the execution
         # endpoint.
         #
-        # @param [string] function_id Function unique ID.
-        # @param [string] tag Tag unique ID.
+        # @param [string] function_id Function ID.
+        # @param [string] tag Tag ID.
         #
         # @return [Function]
         def update_tag(function_id:, tag:)
@@ -342,14 +377,16 @@ module Appwrite
         # Get a list of all the project's code tags. You can use the query params to
         # filter your results.
         #
-        # @param [string] function_id Function unique ID.
+        # @param [string] function_id Function ID.
         # @param [string] search Search term to filter your list results. Max length: 256 chars.
-        # @param [number] limit Results limit value. By default will return maximum 25 results. Maximum of 100 results allowed per request.
-        # @param [number] offset Results offset. The default value is 0. Use this param to manage pagination.
+        # @param [number] limit Maximum number of tags to return in response. By default will return maximum 25 results. Maximum of 100 results allowed per request.
+        # @param [number] offset Offset value. The default value is 0. Use this value to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination)
+        # @param [string] cursor ID of the tag used as the starting point for the query, excluding the tag itself. Should be used for efficient pagination when working with large sets of data. [learn more about pagination](https://appwrite.io/docs/pagination)
+        # @param [string] cursor_direction Direction of the cursor.
         # @param [string] order_type Order result by ASC or DESC order.
         #
         # @return [TagList]
-        def list_tags(function_id:, search: nil, limit: nil, offset: nil, order_type: nil)
+        def list_tags(function_id:, search: nil, limit: nil, offset: nil, cursor: nil, cursor_direction: nil, order_type: nil)
             if function_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
@@ -361,6 +398,8 @@ module Appwrite
                 search: search,
                 limit: limit,
                 offset: offset,
+                cursor: cursor,
+                cursorDirection: cursor_direction,
                 orderType: order_type,
             }
 
@@ -388,7 +427,7 @@ module Appwrite
         # 
         # Use the "command" param to set the entry point used to execute your code.
         #
-        # @param [string] function_id Function unique ID.
+        # @param [string] function_id Function ID.
         # @param [string] command Code execution command.
         # @param [File] code Gzip file with your code package. When used with the Appwrite CLI, pass the path to your code directory, and the CLI will automatically package your code. Use a path that is within the current directory.
         #
@@ -429,8 +468,8 @@ module Appwrite
 
         # Get a code tag by its unique ID.
         #
-        # @param [string] function_id Function unique ID.
-        # @param [string] tag_id Tag unique ID.
+        # @param [string] function_id Function ID.
+        # @param [string] tag_id Tag ID.
         #
         # @return [Tag]
         def get_tag(function_id:, tag_id:)
@@ -464,8 +503,8 @@ module Appwrite
 
         # Delete a code tag by its unique ID.
         #
-        # @param [string] function_id Function unique ID.
-        # @param [string] tag_id Tag unique ID.
+        # @param [string] function_id Function ID.
+        # @param [string] tag_id Tag ID.
         #
         # @return []
         def delete_tag(function_id:, tag_id:)

@@ -12,9 +12,9 @@ module Appwrite
             @headers = {
                 'user-agent' => RUBY_PLATFORM + ':ruby-' + RUBY_VERSION,
                 'x-sdk-version' => 'appwrite:ruby:2.4.1',                
-                'X-Appwrite-Response-Format' => '0.11.0'
+                'X-Appwrite-Response-Format' => '0.12.0'
             }
-            @endpoint = 'https://appwrite.io/v1'
+            @endpoint = 'https://HOSTNAME/v1'
         end
 
         # Set Project

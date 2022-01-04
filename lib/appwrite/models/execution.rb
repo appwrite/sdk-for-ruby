@@ -4,7 +4,7 @@ module Appwrite
     module Models
         class Execution
             attr_reader :id
-            attr_reader :permissions
+            attr_reader :read
             attr_reader :function_id
             attr_reader :date_created
             attr_reader :trigger
@@ -16,7 +16,7 @@ module Appwrite
 
             def initialize(
                 id:,
-                permissions:,
+                read:,
                 function_id:,
                 date_created:,
                 trigger:,
@@ -27,7 +27,7 @@ module Appwrite
                 time:
             )
                 @id = id
-                @permissions = permissions
+                @read = read
                 @function_id = function_id
                 @date_created = date_created
                 @trigger = trigger
@@ -41,7 +41,7 @@ module Appwrite
             def self.from(map:)
                 Execution.new(
                     id: map["$id"],
-                    permissions: Permissions.from(map: map["$permissions"]),
+                    read: map["$read"],
                     function_id: map["functionId"],
                     date_created: map["dateCreated"],
                     trigger: map["trigger"],
@@ -56,7 +56,7 @@ module Appwrite
             def to_map
                 {
                     "$id": @id,
-                    "$permissions": @permissions.to_map,
+                    "$read": @read,
                     "functionId": @function_id,
                     "dateCreated": @date_created,
                     "trigger": @trigger,

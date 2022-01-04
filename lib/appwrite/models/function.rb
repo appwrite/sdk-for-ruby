@@ -4,7 +4,7 @@ module Appwrite
     module Models
         class Function
             attr_reader :id
-            attr_reader :permissions
+            attr_reader :execute
             attr_reader :name
             attr_reader :date_created
             attr_reader :date_updated
@@ -20,7 +20,7 @@ module Appwrite
 
             def initialize(
                 id:,
-                permissions:,
+                execute:,
                 name:,
                 date_created:,
                 date_updated:,
@@ -35,7 +35,7 @@ module Appwrite
                 timeout:
             )
                 @id = id
-                @permissions = permissions
+                @execute = execute
                 @name = name
                 @date_created = date_created
                 @date_updated = date_updated
@@ -53,7 +53,7 @@ module Appwrite
             def self.from(map:)
                 Function.new(
                     id: map["$id"],
-                    permissions: Permissions.from(map: map["$permissions"]),
+                    execute: map["execute"],
                     name: map["name"],
                     date_created: map["dateCreated"],
                     date_updated: map["dateUpdated"],
@@ -72,7 +72,7 @@ module Appwrite
             def to_map
                 {
                     "$id": @id,
-                    "$permissions": @permissions.to_map,
+                    "execute": @execute,
                     "name": @name,
                     "dateCreated": @date_created,
                     "dateUpdated": @date_updated,

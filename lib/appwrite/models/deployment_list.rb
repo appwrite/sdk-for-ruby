@@ -2,29 +2,29 @@
 
 module Appwrite
     module Models
-        class LogList
+        class DeploymentList
             attr_reader :total
-            attr_reader :logs
+            attr_reader :deployments
 
             def initialize(
                 total:,
-                logs:
+                deployments:
             )
                 @total = total
-                @logs = logs
+                @deployments = deployments
             end
 
             def self.from(map:)
-                LogList.new(
+                DeploymentList.new(
                     total: map["total"],
-                    logs: map["logs"].map { |it| Log.from(map: it) }
+                    deployments: map["deployments"].map { |it| Deployment.from(map: it) }
                 )
             end
 
             def to_map
                 {
                     "total": @total,
-                    "logs": @logs.map { |it| it.to_map }
+                    "deployments": @deployments.map { |it| it.to_map }
                 }
             end
         end

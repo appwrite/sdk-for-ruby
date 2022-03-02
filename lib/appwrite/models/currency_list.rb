@@ -3,27 +3,27 @@
 module Appwrite
     module Models
         class CurrencyList
-            attr_reader :sum
+            attr_reader :total
             attr_reader :currencies
 
             def initialize(
-                sum:,
+                total:,
                 currencies:
             )
-                @sum = sum
+                @total = total
                 @currencies = currencies
             end
 
             def self.from(map:)
                 CurrencyList.new(
-                    sum: map["sum"],
+                    total: map["total"],
                     currencies: map["currencies"].map { |it| Currency.from(map: it) }
                 )
             end
 
             def to_map
                 {
-                    "sum": @sum,
+                    "total": @total,
                     "currencies": @currencies.map { |it| it.to_map }
                 }
             end

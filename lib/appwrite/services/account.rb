@@ -3,7 +3,6 @@
 module Appwrite
     class Account < Service
 
-        include Models
         # Get currently logged in user data as JSON object.
         #
         #
@@ -21,9 +20,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: User
+                params: params,
+                response_type: Models::User
             )
         end
 
@@ -48,8 +47,8 @@ module Appwrite
             @client.call(
                 method: 'DELETE',
                 path: path,
-                params: params,
                 headers: headers,
+                params: params,
             )
         end
 
@@ -89,9 +88,9 @@ module Appwrite
             @client.call(
                 method: 'PATCH',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: User
+                params: params,
+                response_type: Models::User
             )
         end
 
@@ -117,9 +116,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: LogList
+                params: params,
+                response_type: Models::LogList
             )
         end
 
@@ -146,9 +145,9 @@ module Appwrite
             @client.call(
                 method: 'PATCH',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: User
+                params: params,
+                response_type: Models::User
             )
         end
 
@@ -179,9 +178,9 @@ module Appwrite
             @client.call(
                 method: 'PATCH',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: User
+                params: params,
+                response_type: Models::User
             )
         end
 
@@ -202,14 +201,15 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: Preferences
+                params: params,
+                response_type: Models::Preferences
             )
         end
 
-        # Update currently logged in user account preferences. You can pass only the
-        # specific settings you wish to update.
+        # Update currently logged in user account preferences. The object you pass is
+        # stored as is, and replaces any previous value. The maximum allowed prefs
+        # size is 64kB and throws error if exceeded.
         #
         # @param [object] prefs Prefs key-value JSON object.
         #
@@ -232,9 +232,9 @@ module Appwrite
             @client.call(
                 method: 'PATCH',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: User
+                params: params,
+                response_type: Models::User
             )
         end
 
@@ -274,9 +274,9 @@ module Appwrite
             @client.call(
                 method: 'POST',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: Token
+                params: params,
+                response_type: Models::Token
             )
         end
 
@@ -329,9 +329,9 @@ module Appwrite
             @client.call(
                 method: 'PUT',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: Token
+                params: params,
+                response_type: Models::Token
             )
         end
 
@@ -353,9 +353,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: SessionList
+                params: params,
+                response_type: Models::SessionList
             )
         end
 
@@ -377,8 +377,8 @@ module Appwrite
             @client.call(
                 method: 'DELETE',
                 path: path,
-                params: params,
                 headers: headers,
+                params: params,
             )
         end
 
@@ -406,15 +406,45 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: Session
+                params: params,
+                response_type: Models::Session
+            )
+        end
+
+        # 
+        #
+        # @param [string] session_id Session ID. Use the string &#039;current&#039; to update the current device session.
+        #
+        # @return [Session]
+        def update_session(session_id:)
+            if session_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "sessionId"')
+            end
+
+            path = '/account/sessions/{sessionId}'
+                .gsub('{sessionId}', session_id)
+
+            params = {
+            }
+
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: path,
+                headers: headers,
+                params: params,
+                response_type: Models::Session
             )
         end
 
         # Use this endpoint to log out the currently logged in user from all their
         # account sessions across all of their different devices. When using the
-        # option id argument, only the session unique ID provider will be deleted.
+        # Session ID argument, only the unique session ID provided is deleted.
+        # 
         #
         # @param [string] session_id Session ID. Use the string &#039;current&#039; to delete the current device session.
         #
@@ -437,8 +467,8 @@ module Appwrite
             @client.call(
                 method: 'DELETE',
                 path: path,
-                params: params,
                 headers: headers,
+                params: params,
             )
         end
 
@@ -479,9 +509,9 @@ module Appwrite
             @client.call(
                 method: 'POST',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: Token
+                params: params,
+                response_type: Models::Token
             )
         end
 
@@ -517,9 +547,9 @@ module Appwrite
             @client.call(
                 method: 'PUT',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: Token
+                params: params,
+                response_type: Models::Token
             )
         end
 

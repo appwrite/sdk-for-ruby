@@ -3,7 +3,6 @@
 module Appwrite
     class Users < Service
 
-        include Models
         # Get a list of all the project's users. You can use the query params to
         # filter your results.
         #
@@ -34,15 +33,15 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: UserList
+                params: params,
+                response_type: Models::UserList
             )
         end
 
         # Create a new user.
         #
-        # @param [string] user_id User ID. Choose your own unique ID or pass the string `unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
+        # @param [string] user_id User ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [string] email User email.
         # @param [string] password User password. Must be at least 8 chars.
         # @param [string] name User name. Max length: 128 chars.
@@ -77,9 +76,9 @@ module Appwrite
             @client.call(
                 method: 'POST',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: User
+                params: params,
+                response_type: Models::User
             )
         end
 
@@ -106,9 +105,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: User
+                params: params,
+                response_type: Models::User
             )
         end
 
@@ -135,8 +134,8 @@ module Appwrite
             @client.call(
                 method: 'DELETE',
                 path: path,
-                params: params,
                 headers: headers,
+                params: params,
             )
         end
 
@@ -169,9 +168,9 @@ module Appwrite
             @client.call(
                 method: 'PATCH',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: User
+                params: params,
+                response_type: Models::User
             )
         end
 
@@ -202,9 +201,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: LogList
+                params: params,
+                response_type: Models::LogList
             )
         end
 
@@ -237,9 +236,9 @@ module Appwrite
             @client.call(
                 method: 'PATCH',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: User
+                params: params,
+                response_type: Models::User
             )
         end
 
@@ -272,9 +271,9 @@ module Appwrite
             @client.call(
                 method: 'PATCH',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: User
+                params: params,
+                response_type: Models::User
             )
         end
 
@@ -301,14 +300,15 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: Preferences
+                params: params,
+                response_type: Models::Preferences
             )
         end
 
-        # Update the user preferences by its unique ID. You can pass only the
-        # specific settings you wish to update.
+        # Update the user preferences by its unique ID. The object you pass is stored
+        # as is, and replaces any previous value. The maximum allowed prefs size is
+        # 64kB and throws error if exceeded.
         #
         # @param [string] user_id User ID.
         # @param [object] prefs Prefs key-value JSON object.
@@ -337,9 +337,9 @@ module Appwrite
             @client.call(
                 method: 'PATCH',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: Preferences
+                params: params,
+                response_type: Models::Preferences
             )
         end
 
@@ -366,9 +366,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: SessionList
+                params: params,
+                response_type: Models::SessionList
             )
         end
 
@@ -395,8 +395,8 @@ module Appwrite
             @client.call(
                 method: 'DELETE',
                 path: path,
-                params: params,
                 headers: headers,
+                params: params,
             )
         end
 
@@ -429,8 +429,8 @@ module Appwrite
             @client.call(
                 method: 'DELETE',
                 path: path,
-                params: params,
                 headers: headers,
+                params: params,
             )
         end
 
@@ -463,9 +463,9 @@ module Appwrite
             @client.call(
                 method: 'PATCH',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: User
+                params: params,
+                response_type: Models::User
             )
         end
 
@@ -498,9 +498,9 @@ module Appwrite
             @client.call(
                 method: 'PATCH',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: User
+                params: params,
+                response_type: Models::User
             )
         end
 

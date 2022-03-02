@@ -3,27 +3,27 @@
 module Appwrite
     module Models
         class FileList
-            attr_reader :sum
+            attr_reader :total
             attr_reader :files
 
             def initialize(
-                sum:,
+                total:,
                 files:
             )
-                @sum = sum
+                @total = total
                 @files = files
             end
 
             def self.from(map:)
                 FileList.new(
-                    sum: map["sum"],
+                    total: map["total"],
                     files: map["files"].map { |it| File.from(map: it) }
                 )
             end
 
             def to_map
                 {
-                    "sum": @sum,
+                    "total": @total,
                     "files": @files.map { |it| it.to_map }
                 }
             end

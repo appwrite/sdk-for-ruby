@@ -3,27 +3,27 @@
 module Appwrite
     module Models
         class CollectionList
-            attr_reader :sum
+            attr_reader :total
             attr_reader :collections
 
             def initialize(
-                sum:,
+                total:,
                 collections:
             )
-                @sum = sum
+                @total = total
                 @collections = collections
             end
 
             def self.from(map:)
                 CollectionList.new(
-                    sum: map["sum"],
+                    total: map["total"],
                     collections: map["collections"].map { |it| Collection.from(map: it) }
                 )
             end
 
             def to_map
                 {
-                    "sum": @sum,
+                    "total": @total,
                     "collections": @collections.map { |it| it.to_map }
                 }
             end

@@ -3,27 +3,27 @@
 module Appwrite
     module Models
         class UserList
-            attr_reader :sum
+            attr_reader :total
             attr_reader :users
 
             def initialize(
-                sum:,
+                total:,
                 users:
             )
-                @sum = sum
+                @total = total
                 @users = users
             end
 
             def self.from(map:)
                 UserList.new(
-                    sum: map["sum"],
+                    total: map["total"],
                     users: map["users"].map { |it| User.from(map: it) }
                 )
             end
 
             def to_map
                 {
-                    "sum": @sum,
+                    "total": @total,
                     "users": @users.map { |it| it.to_map }
                 }
             end

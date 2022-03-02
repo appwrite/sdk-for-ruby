@@ -3,27 +3,27 @@
 module Appwrite
     module Models
         class LanguageList
-            attr_reader :sum
+            attr_reader :total
             attr_reader :languages
 
             def initialize(
-                sum:,
+                total:,
                 languages:
             )
-                @sum = sum
+                @total = total
                 @languages = languages
             end
 
             def self.from(map:)
                 LanguageList.new(
-                    sum: map["sum"],
+                    total: map["total"],
                     languages: map["languages"].map { |it| Language.from(map: it) }
                 )
             end
 
             def to_map
                 {
-                    "sum": @sum,
+                    "total": @total,
                     "languages": @languages.map { |it| it.to_map }
                 }
             end

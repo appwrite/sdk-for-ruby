@@ -2,29 +2,29 @@
 
 module Appwrite
     module Models
-        class LogList
+        class BucketList
             attr_reader :total
-            attr_reader :logs
+            attr_reader :buckets
 
             def initialize(
                 total:,
-                logs:
+                buckets:
             )
                 @total = total
-                @logs = logs
+                @buckets = buckets
             end
 
             def self.from(map:)
-                LogList.new(
+                BucketList.new(
                     total: map["total"],
-                    logs: map["logs"].map { |it| Log.from(map: it) }
+                    buckets: map["buckets"].map { |it| Bucket.from(map: it) }
                 )
             end
 
             def to_map
                 {
                     "total": @total,
-                    "logs": @logs.map { |it| it.to_map }
+                    "buckets": @buckets.map { |it| it.to_map }
                 }
             end
         end

@@ -3,7 +3,6 @@
 module Appwrite
     class Locale < Service
 
-        include Models
         # Get the current user location based on IP. Returns an object with user
         # country code, country name, continent name, continent code, ip address and
         # suggested currency. You can use the locale header to get the data in a
@@ -26,9 +25,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: Locale
+                params: params,
+                response_type: Models::Locale
             )
         end
 
@@ -50,9 +49,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: ContinentList
+                params: params,
+                response_type: Models::ContinentList
             )
         end
 
@@ -74,9 +73,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: CountryList
+                params: params,
+                response_type: Models::CountryList
             )
         end
 
@@ -98,9 +97,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: CountryList
+                params: params,
+                response_type: Models::CountryList
             )
         end
 
@@ -122,9 +121,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: PhoneList
+                params: params,
+                response_type: Models::PhoneList
             )
         end
 
@@ -147,9 +146,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: CurrencyList
+                params: params,
+                response_type: Models::CurrencyList
             )
         end
 
@@ -171,9 +170,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: LanguageList
+                params: params,
+                response_type: Models::LanguageList
             )
         end
 

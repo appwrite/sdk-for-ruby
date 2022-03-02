@@ -3,27 +3,27 @@
 module Appwrite
     module Models
         class SessionList
-            attr_reader :sum
+            attr_reader :total
             attr_reader :sessions
 
             def initialize(
-                sum:,
+                total:,
                 sessions:
             )
-                @sum = sum
+                @total = total
                 @sessions = sessions
             end
 
             def self.from(map:)
                 SessionList.new(
-                    sum: map["sum"],
+                    total: map["total"],
                     sessions: map["sessions"].map { |it| Session.from(map: it) }
                 )
             end
 
             def to_map
                 {
-                    "sum": @sum,
+                    "total": @total,
                     "sessions": @sessions.map { |it| it.to_map }
                 }
             end

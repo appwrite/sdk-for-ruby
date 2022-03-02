@@ -3,27 +3,27 @@
 module Appwrite
     module Models
         class IndexList
-            attr_reader :sum
+            attr_reader :total
             attr_reader :indexes
 
             def initialize(
-                sum:,
+                total:,
                 indexes:
             )
-                @sum = sum
+                @total = total
                 @indexes = indexes
             end
 
             def self.from(map:)
                 IndexList.new(
-                    sum: map["sum"],
+                    total: map["total"],
                     indexes: map["indexes"].map { |it| Index.from(map: it) }
                 )
             end
 
             def to_map
                 {
-                    "sum": @sum,
+                    "total": @total,
                     "indexes": @indexes.map { |it| it.to_map }
                 }
             end

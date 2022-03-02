@@ -10,7 +10,7 @@ module Appwrite
             attr_reader :date_updated
             attr_reader :status
             attr_reader :runtime
-            attr_reader :tag
+            attr_reader :deployment
             attr_reader :vars
             attr_reader :events
             attr_reader :schedule
@@ -26,7 +26,7 @@ module Appwrite
                 date_updated:,
                 status:,
                 runtime:,
-                tag:,
+                deployment:,
                 vars:,
                 events:,
                 schedule:,
@@ -41,7 +41,7 @@ module Appwrite
                 @date_updated = date_updated
                 @status = status
                 @runtime = runtime
-                @tag = tag
+                @deployment = deployment
                 @vars = vars
                 @events = events
                 @schedule = schedule
@@ -59,7 +59,7 @@ module Appwrite
                     date_updated: map["dateUpdated"],
                     status: map["status"],
                     runtime: map["runtime"],
-                    tag: map["tag"],
+                    deployment: map["deployment"],
                     vars: map["vars"],
                     events: map["events"],
                     schedule: map["schedule"],
@@ -78,7 +78,7 @@ module Appwrite
                     "dateUpdated": @date_updated,
                     "status": @status,
                     "runtime": @runtime,
-                    "tag": @tag,
+                    "deployment": @deployment,
                     "vars": @vars,
                     "events": @events,
                     "schedule": @schedule,

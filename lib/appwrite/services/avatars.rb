@@ -3,7 +3,6 @@
 module Appwrite
     class Avatars < Service
 
-        include Models
         # You can use this endpoint to show different browser icons to your users.
         # The code argument receives the browser code as it appears in your user
         # /account/sessions endpoint. Use width, height and quality arguments to
@@ -36,8 +35,8 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
+                params: params,
             )
         end
 
@@ -72,8 +71,8 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
+                params: params,
             )
         end
 
@@ -102,8 +101,8 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
+                params: params,
             )
         end
 
@@ -138,8 +137,8 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
+                params: params,
             )
         end
 
@@ -173,8 +172,8 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
+                params: params,
             )
         end
 
@@ -214,8 +213,8 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
+                params: params,
             )
         end
 
@@ -249,8 +248,8 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
+                params: params,
             )
         end
 

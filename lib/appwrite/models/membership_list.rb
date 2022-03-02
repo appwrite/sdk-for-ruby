@@ -3,27 +3,27 @@
 module Appwrite
     module Models
         class MembershipList
-            attr_reader :sum
+            attr_reader :total
             attr_reader :memberships
 
             def initialize(
-                sum:,
+                total:,
                 memberships:
             )
-                @sum = sum
+                @total = total
                 @memberships = memberships
             end
 
             def self.from(map:)
                 MembershipList.new(
-                    sum: map["sum"],
+                    total: map["total"],
                     memberships: map["memberships"].map { |it| Membership.from(map: it) }
                 )
             end
 
             def to_map
                 {
-                    "sum": @sum,
+                    "total": @total,
                     "memberships": @memberships.map { |it| it.to_map }
                 }
             end

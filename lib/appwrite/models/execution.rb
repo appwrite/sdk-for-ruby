@@ -9,7 +9,7 @@ module Appwrite
             attr_reader :date_created
             attr_reader :trigger
             attr_reader :status
-            attr_reader :exit_code
+            attr_reader :status_code
             attr_reader :stdout
             attr_reader :stderr
             attr_reader :time
@@ -21,7 +21,7 @@ module Appwrite
                 date_created:,
                 trigger:,
                 status:,
-                exit_code:,
+                status_code:,
                 stdout:,
                 stderr:,
                 time:
@@ -32,7 +32,7 @@ module Appwrite
                 @date_created = date_created
                 @trigger = trigger
                 @status = status
-                @exit_code = exit_code
+                @status_code = status_code
                 @stdout = stdout
                 @stderr = stderr
                 @time = time
@@ -46,7 +46,7 @@ module Appwrite
                     date_created: map["dateCreated"],
                     trigger: map["trigger"],
                     status: map["status"],
-                    exit_code: map["exitCode"],
+                    status_code: map["statusCode"],
                     stdout: map["stdout"],
                     stderr: map["stderr"],
                     time: map["time"]
@@ -61,7 +61,7 @@ module Appwrite
                     "dateCreated": @date_created,
                     "trigger": @trigger,
                     "status": @status,
-                    "exitCode": @exit_code,
+                    "statusCode": @status_code,
                     "stdout": @stdout,
                     "stderr": @stderr,
                     "time": @time

@@ -6,18 +6,18 @@ module Appwrite
             attr_reader :id
             attr_reader :name
             attr_reader :date_created
-            attr_reader :sum
+            attr_reader :total
 
             def initialize(
                 id:,
                 name:,
                 date_created:,
-                sum:
+                total:
             )
                 @id = id
                 @name = name
                 @date_created = date_created
-                @sum = sum
+                @total = total
             end
 
             def self.from(map:)
@@ -25,7 +25,7 @@ module Appwrite
                     id: map["$id"],
                     name: map["name"],
                     date_created: map["dateCreated"],
-                    sum: map["sum"]
+                    total: map["total"]
                 )
             end
 
@@ -34,7 +34,7 @@ module Appwrite
                     "$id": @id,
                     "name": @name,
                     "dateCreated": @date_created,
-                    "sum": @sum
+                    "total": @total
                 }
             end
         end

@@ -3,27 +3,27 @@
 module Appwrite
     module Models
         class RuntimeList
-            attr_reader :sum
+            attr_reader :total
             attr_reader :runtimes
 
             def initialize(
-                sum:,
+                total:,
                 runtimes:
             )
-                @sum = sum
+                @total = total
                 @runtimes = runtimes
             end
 
             def self.from(map:)
                 RuntimeList.new(
-                    sum: map["sum"],
+                    total: map["total"],
                     runtimes: map["runtimes"].map { |it| Runtime.from(map: it) }
                 )
             end
 
             def to_map
                 {
-                    "sum": @sum,
+                    "total": @total,
                     "runtimes": @runtimes.map { |it| it.to_map }
                 }
             end

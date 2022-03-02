@@ -5,10 +5,10 @@ client = Appwrite::Client.new
 client
     .set_endpoint('https://[HOSTNAME_OR_IP]/v1') # Your API Endpoint
     .set_project('5df5acd0d48c2') # Your project ID
-    .set_key('919c2d18fb5d4...a2ae413da83346ad2') # Your secret API key
+    .set_jwt('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ...') # Your secret JSON Web Token
 
-functions = Appwrite::Functions.new(client)
+account = Appwrite::Account.new(client)
 
-response = functions.get_tag(function_id: '[FUNCTION_ID]', tag_id: '[TAG_ID]')
+response = account.update_session(session_id: '[SESSION_ID]')
 
 puts response.inspect

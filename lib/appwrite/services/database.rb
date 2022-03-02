@@ -3,7 +3,6 @@
 module Appwrite
     class Database < Service
 
-        include Models
         # Get a list of all the user collections. You can use the query params to
         # filter your results. On admin mode, this endpoint will return a list of all
         # of the project's collections. [Learn more about different API
@@ -36,15 +35,15 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: CollectionList
+                params: params,
+                response_type: Models::CollectionList
             )
         end
 
         # Create a new Collection.
         #
-        # @param [string] collection_id Unique Id. Choose your own unique ID or pass the string `unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
+        # @param [string] collection_id Unique Id. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [string] name Collection name. Max length: 128 chars.
         # @param [string] permission Permissions type model to use for reading documents in this collection. You can use collection-level permission set once on the collection using the `read` and `write` params, or you can set document-level permission where each document read and write params will decide who has access to read and write to each document individually. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions.
         # @param [array] read An array of strings with read permissions. By default no user is granted with any read permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions.
@@ -89,9 +88,9 @@ module Appwrite
             @client.call(
                 method: 'POST',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: Collection
+                params: params,
+                response_type: Models::Collection
             )
         end
 
@@ -119,9 +118,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: Collection
+                params: params,
+                response_type: Models::Collection
             )
         end
 
@@ -166,9 +165,9 @@ module Appwrite
             @client.call(
                 method: 'PUT',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: Collection
+                params: params,
+                response_type: Models::Collection
             )
         end
 
@@ -196,8 +195,8 @@ module Appwrite
             @client.call(
                 method: 'DELETE',
                 path: path,
-                params: params,
                 headers: headers,
+                params: params,
             )
         end
 
@@ -224,9 +223,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: AttributeList
+                params: params,
+                response_type: Models::AttributeList
             )
         end
 
@@ -270,9 +269,9 @@ module Appwrite
             @client.call(
                 method: 'POST',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: AttributeBoolean
+                params: params,
+                response_type: Models::AttributeBoolean
             )
         end
 
@@ -316,9 +315,9 @@ module Appwrite
             @client.call(
                 method: 'POST',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: AttributeEmail
+                params: params,
+                response_type: Models::AttributeEmail
             )
         end
 
@@ -367,9 +366,9 @@ module Appwrite
             @client.call(
                 method: 'POST',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: AttributeEnum
+                params: params,
+                response_type: Models::AttributeEnum
             )
         end
 
@@ -380,9 +379,9 @@ module Appwrite
         # @param [string] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/database#createCollection).
         # @param [string] key Attribute Key.
         # @param [boolean] required Is attribute required?
-        # @param [string] min Minimum value to enforce on new documents
-        # @param [string] max Maximum value to enforce on new documents
-        # @param [string] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        # @param [number] min Minimum value to enforce on new documents
+        # @param [number] max Maximum value to enforce on new documents
+        # @param [number] default Default value for attribute when not provided. Cannot be set when attribute is required.
         # @param [boolean] array Is attribute an array?
         #
         # @return [AttributeFloat]
@@ -418,9 +417,9 @@ module Appwrite
             @client.call(
                 method: 'POST',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: AttributeFloat
+                params: params,
+                response_type: Models::AttributeFloat
             )
         end
 
@@ -469,9 +468,9 @@ module Appwrite
             @client.call(
                 method: 'POST',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: AttributeInteger
+                params: params,
+                response_type: Models::AttributeInteger
             )
         end
 
@@ -515,9 +514,9 @@ module Appwrite
             @client.call(
                 method: 'POST',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: AttributeIp
+                params: params,
+                response_type: Models::AttributeIp
             )
         end
 
@@ -567,9 +566,9 @@ module Appwrite
             @client.call(
                 method: 'POST',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: AttributeString
+                params: params,
+                response_type: Models::AttributeString
             )
         end
 
@@ -613,9 +612,9 @@ module Appwrite
             @client.call(
                 method: 'POST',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: AttributeUrl
+                params: params,
+                response_type: Models::AttributeUrl
             )
         end
 
@@ -648,8 +647,8 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
+                params: params,
             )
         end
 
@@ -682,8 +681,8 @@ module Appwrite
             @client.call(
                 method: 'DELETE',
                 path: path,
-                params: params,
                 headers: headers,
+                params: params,
             )
         end
 
@@ -727,9 +726,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: DocumentList
+                params: params,
+                response_type: Models::DocumentList
             )
         end
 
@@ -738,8 +737,8 @@ module Appwrite
         # integration](/docs/server/database#databaseCreateCollection) API or
         # directly from your database console.
         #
-        # @param [string] collection_id Collection ID. You can create a new collection with validation rules using the Database service [server integration](https://appwrite.io/docs/server/database#createCollection).
-        # @param [string] document_id Document ID. Choose your own unique ID or pass the string `unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
+        # @param [string] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/database#createCollection). Make sure to define attributes before creating documents.
+        # @param [string] document_id Document ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [object] data Document data as JSON object.
         # @param [array] read An array of strings with read permissions. By default only the current user is granted with read permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions.
         # @param [array] write An array of strings with write permissions. By default only the current user is granted with write permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions.
@@ -775,9 +774,9 @@ module Appwrite
             @client.call(
                 method: 'POST',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: Document
+                params: params,
+                response_type: Models::Document
             )
         end
 
@@ -811,16 +810,16 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: Document
+                params: params,
+                response_type: Models::Document
             )
         end
 
         # Update a document by its unique ID. Using the patch method you can pass
         # only specific fields that will get updated.
         #
-        # @param [string] collection_id Collection ID. You can create a new collection with validation rules using the Database service [server integration](https://appwrite.io/docs/server/database#createCollection).
+        # @param [string] collection_id Collection ID.
         # @param [string] document_id Document ID.
         # @param [object] data Document data as JSON object.
         # @param [array] read An array of strings with read permissions. By default inherits the existing read permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions.
@@ -857,9 +856,9 @@ module Appwrite
             @client.call(
                 method: 'PATCH',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: Document
+                params: params,
+                response_type: Models::Document
             )
         end
 
@@ -894,8 +893,8 @@ module Appwrite
             @client.call(
                 method: 'DELETE',
                 path: path,
-                params: params,
                 headers: headers,
+                params: params,
             )
         end
 
@@ -922,9 +921,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: IndexList
+                params: params,
+                response_type: Models::IndexList
             )
         end
 
@@ -971,9 +970,9 @@ module Appwrite
             @client.call(
                 method: 'POST',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: Index
+                params: params,
+                response_type: Models::Index
             )
         end
 
@@ -1006,9 +1005,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: Index
+                params: params,
+                response_type: Models::Index
             )
         end
 
@@ -1041,8 +1040,8 @@ module Appwrite
             @client.call(
                 method: 'DELETE',
                 path: path,
-                params: params,
                 headers: headers,
+                params: params,
             )
         end
 

@@ -3,27 +3,27 @@
 module Appwrite
     module Models
         class ContinentList
-            attr_reader :sum
+            attr_reader :total
             attr_reader :continents
 
             def initialize(
-                sum:,
+                total:,
                 continents:
             )
-                @sum = sum
+                @total = total
                 @continents = continents
             end
 
             def self.from(map:)
                 ContinentList.new(
-                    sum: map["sum"],
+                    total: map["total"],
                     continents: map["continents"].map { |it| Continent.from(map: it) }
                 )
             end
 
             def to_map
                 {
-                    "sum": @sum,
+                    "total": @total,
                     "continents": @continents.map { |it| it.to_map }
                 }
             end

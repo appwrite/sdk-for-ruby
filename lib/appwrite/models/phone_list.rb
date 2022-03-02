@@ -3,27 +3,27 @@
 module Appwrite
     module Models
         class PhoneList
-            attr_reader :sum
+            attr_reader :total
             attr_reader :phones
 
             def initialize(
-                sum:,
+                total:,
                 phones:
             )
-                @sum = sum
+                @total = total
                 @phones = phones
             end
 
             def self.from(map:)
                 PhoneList.new(
-                    sum: map["sum"],
+                    total: map["total"],
                     phones: map["phones"].map { |it| Phone.from(map: it) }
                 )
             end
 
             def to_map
                 {
-                    "sum": @sum,
+                    "total": @total,
                     "phones": @phones.map { |it| it.to_map }
                 }
             end

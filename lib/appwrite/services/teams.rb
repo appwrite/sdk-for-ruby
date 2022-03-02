@@ -3,7 +3,6 @@
 module Appwrite
     class Teams < Service
 
-        include Models
         # Get a list of all the teams in which the current user is a member. You can
         # use the parameters to filter your results.
         # 
@@ -37,9 +36,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: TeamList
+                params: params,
+                response_type: Models::TeamList
             )
         end
 
@@ -47,7 +46,7 @@ module Appwrite
         # assigned as the owner of the team. Only the users with the owner role can
         # invite new members, add new owners and delete or update the team.
         #
-        # @param [string] team_id Team ID. Choose your own unique ID or pass the string `unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
+        # @param [string] team_id Team ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [string] name Team name. Max length: 128 chars.
         # @param [array] roles Array of strings. Use this param to set the roles in the team for the user who created it. The default role is **owner**. A role can be any string. Learn more about [roles and permissions](/docs/permissions). Max length for each role is 32 chars.
         #
@@ -76,9 +75,9 @@ module Appwrite
             @client.call(
                 method: 'POST',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: Team
+                params: params,
+                response_type: Models::Team
             )
         end
 
@@ -105,9 +104,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: Team
+                params: params,
+                response_type: Models::Team
             )
         end
 
@@ -141,9 +140,9 @@ module Appwrite
             @client.call(
                 method: 'PUT',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: Team
+                params: params,
+                response_type: Models::Team
             )
         end
 
@@ -171,8 +170,8 @@ module Appwrite
             @client.call(
                 method: 'DELETE',
                 path: path,
-                params: params,
                 headers: headers,
+                params: params,
             )
         end
 
@@ -212,9 +211,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: MembershipList
+                params: params,
+                response_type: Models::MembershipList
             )
         end
 
@@ -275,9 +274,9 @@ module Appwrite
             @client.call(
                 method: 'POST',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: Membership
+                params: params,
+                response_type: Models::Membership
             )
         end
 
@@ -311,9 +310,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: MembershipList
+                params: params,
+                response_type: Models::MembershipList
             )
         end
 
@@ -354,9 +353,9 @@ module Appwrite
             @client.call(
                 method: 'PATCH',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: Membership
+                params: params,
+                response_type: Models::Membership
             )
         end
 
@@ -391,14 +390,18 @@ module Appwrite
             @client.call(
                 method: 'DELETE',
                 path: path,
-                params: params,
                 headers: headers,
+                params: params,
             )
         end
 
         # Use this endpoint to allow a user to accept an invitation to join a team
         # after being redirected back to your app from the invitation email received
         # by the user.
+        # 
+        # If the request is successful, a session for the user is automatically
+        # created.
+        # 
         #
         # @param [string] team_id Team ID.
         # @param [string] membership_id Membership ID.
@@ -439,9 +442,9 @@ module Appwrite
             @client.call(
                 method: 'PATCH',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: Membership
+                params: params,
+                response_type: Models::Membership
             )
         end
 

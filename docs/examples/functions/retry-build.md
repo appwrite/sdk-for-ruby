@@ -9,6 +9,6 @@ client
 
 functions = Appwrite::Functions.new(client)
 
-response = functions.update_tag(function_id: '[FUNCTION_ID]', tag: '[TAG]')
+response = functions.retry_build(function_id: '[FUNCTION_ID]', deployment_id: '[DEPLOYMENT_ID]', build_id: '[BUILD_ID]')
 
 puts response.inspect

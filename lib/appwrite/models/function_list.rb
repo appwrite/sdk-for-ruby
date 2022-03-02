@@ -3,27 +3,27 @@
 module Appwrite
     module Models
         class FunctionList
-            attr_reader :sum
+            attr_reader :total
             attr_reader :functions
 
             def initialize(
-                sum:,
+                total:,
                 functions:
             )
-                @sum = sum
+                @total = total
                 @functions = functions
             end
 
             def self.from(map:)
                 FunctionList.new(
-                    sum: map["sum"],
+                    total: map["total"],
                     functions: map["functions"].map { |it| Function.from(map: it) }
                 )
             end
 
             def to_map
                 {
-                    "sum": @sum,
+                    "total": @total,
                     "functions": @functions.map { |it| it.to_map }
                 }
             end

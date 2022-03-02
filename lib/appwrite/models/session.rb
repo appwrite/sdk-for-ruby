@@ -8,7 +8,9 @@ module Appwrite
             attr_reader :expire
             attr_reader :provider
             attr_reader :provider_uid
-            attr_reader :provider_token
+            attr_reader :provider_access_token
+            attr_reader :provider_access_token_expiry
+            attr_reader :provider_refresh_token
             attr_reader :ip
             attr_reader :os_code
             attr_reader :os_name
@@ -32,7 +34,9 @@ module Appwrite
                 expire:,
                 provider:,
                 provider_uid:,
-                provider_token:,
+                provider_access_token:,
+                provider_access_token_expiry:,
+                provider_refresh_token:,
                 ip:,
                 os_code:,
                 os_name:,
@@ -55,7 +59,9 @@ module Appwrite
                 @expire = expire
                 @provider = provider
                 @provider_uid = provider_uid
-                @provider_token = provider_token
+                @provider_access_token = provider_access_token
+                @provider_access_token_expiry = provider_access_token_expiry
+                @provider_refresh_token = provider_refresh_token
                 @ip = ip
                 @os_code = os_code
                 @os_name = os_name
@@ -81,7 +87,9 @@ module Appwrite
                     expire: map["expire"],
                     provider: map["provider"],
                     provider_uid: map["providerUid"],
-                    provider_token: map["providerToken"],
+                    provider_access_token: map["providerAccessToken"],
+                    provider_access_token_expiry: map["providerAccessTokenExpiry"],
+                    provider_refresh_token: map["providerRefreshToken"],
                     ip: map["ip"],
                     os_code: map["osCode"],
                     os_name: map["osName"],
@@ -108,7 +116,9 @@ module Appwrite
                     "expire": @expire,
                     "provider": @provider,
                     "providerUid": @provider_uid,
-                    "providerToken": @provider_token,
+                    "providerAccessToken": @provider_access_token,
+                    "providerAccessTokenExpiry": @provider_access_token_expiry,
+                    "providerRefreshToken": @provider_refresh_token,
                     "ip": @ip,
                     "osCode": @os_code,
                     "osName": @os_name,

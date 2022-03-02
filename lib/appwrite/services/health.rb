@@ -3,7 +3,6 @@
 module Appwrite
     class Health < Service
 
-        include Models
         # Check the Appwrite HTTP server is up and responsive.
         #
         #
@@ -21,9 +20,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: HealthStatus
+                params: params,
+                response_type: Models::HealthStatus
             )
         end
 
@@ -44,9 +43,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: HealthAntivirus
+                params: params,
+                response_type: Models::HealthAntivirus
             )
         end
 
@@ -68,9 +67,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: HealthStatus
+                params: params,
+                response_type: Models::HealthStatus
             )
         end
 
@@ -91,9 +90,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: HealthStatus
+                params: params,
+                response_type: Models::HealthStatus
             )
         end
 
@@ -116,9 +115,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: HealthQueue
+                params: params,
+                response_type: Models::HealthQueue
             )
         end
 
@@ -139,9 +138,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: HealthQueue
+                params: params,
+                response_type: Models::HealthQueue
             )
         end
 
@@ -163,9 +162,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: HealthQueue
+                params: params,
+                response_type: Models::HealthQueue
             )
         end
 
@@ -187,9 +186,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: HealthQueue
+                params: params,
+                response_type: Models::HealthQueue
             )
         end
 
@@ -211,9 +210,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: HealthQueue
+                params: params,
+                response_type: Models::HealthQueue
             )
         end
 
@@ -234,9 +233,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: HealthStatus
+                params: params,
+                response_type: Models::HealthStatus
             )
         end
 
@@ -263,9 +262,9 @@ module Appwrite
             @client.call(
                 method: 'GET',
                 path: path,
-                params: params,
                 headers: headers,
-                response_type: HealthTime
+                params: params,
+                response_type: Models::HealthTime
             )
         end
 

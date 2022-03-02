@@ -3,27 +3,27 @@
 module Appwrite
     module Models
         class AttributeList
-            attr_reader :sum
+            attr_reader :total
             attr_reader :attributes
 
             def initialize(
-                sum:,
+                total:,
                 attributes:
             )
-                @sum = sum
+                @total = total
                 @attributes = attributes
             end
 
             def self.from(map:)
                 AttributeList.new(
-                    sum: map["sum"],
+                    total: map["total"],
                     attributes: map["attributes"]
                 )
             end
 
             def to_map
                 {
-                    "sum": @sum,
+                    "total": @total,
                     "attributes": @attributes
                 }
             end

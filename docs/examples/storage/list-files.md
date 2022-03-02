@@ -9,6 +9,6 @@ client
 
 storage = Appwrite::Storage.new(client)
 
-response = storage.list_files()
+response = storage.list_files(bucket_id: '[BUCKET_ID]')
 
 puts response.inspect

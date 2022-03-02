@@ -9,6 +9,6 @@ client
 
 storage = Appwrite::Storage.new(client)
 
-response = storage.get_file_view(file_id: '[FILE_ID]')
+response = storage.get_file_view(bucket_id: '[BUCKET_ID]', file_id: '[FILE_ID]')
 
 puts response.inspect

@@ -9,6 +9,6 @@ client
 
 functions = Appwrite::Functions.new(client)
 
-response = functions.delete_tag(function_id: '[FUNCTION_ID]', tag_id: '[TAG_ID]')
+response = functions.update_deployment(function_id: '[FUNCTION_ID]', deployment_id: '[DEPLOYMENT_ID]')
 
 puts response.inspect

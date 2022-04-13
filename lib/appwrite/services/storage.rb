@@ -303,6 +303,7 @@ module Appwrite
                 "content-type": 'multipart/form-data',
             }
 
+            id_param_name = "fileId"
             param_name = 'file'
 
             @client.chunked_upload(
@@ -310,6 +311,7 @@ module Appwrite
                 headers: headers,
                 params: params,
                 param_name: param_name,
+                id_param_name: id_param_name,
                 on_progress: on_progress,
                 response_type: Models::File
             )

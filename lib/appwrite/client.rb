@@ -12,7 +12,7 @@ module Appwrite
             @chunk_size = 5*1024*1024
             @headers = {
                 'user-agent' => RUBY_PLATFORM + ':ruby-' + RUBY_VERSION,
-                'x-sdk-version' => 'appwrite:ruby:4.0.0',                
+                'x-sdk-version' => 'appwrite:ruby:4.1.0',                
                 'X-Appwrite-Response-Format' => '0.13.0'
             }
             @endpoint = 'https://HOSTNAME/v1'
@@ -129,6 +129,7 @@ module Appwrite
             headers:,
             params:,
             param_name: '',
+            id_param_name: nil,
             on_progress: nil,
             response_type: nil
         )
@@ -147,11 +148,22 @@ module Appwrite
                 )
             end
 
-            input = ::File.open(file_path)
             offset = 0
+            id_param_name = id_param_name.to_sym if id_param_name
+            if id_param_name&.empty? == false && params[id_param_name] != "unique()"
+                # Make a request to check if a file already exists
+                current = call(
+                    method: "GET",
+                    path: "#{path}/#{params[id_param_name]}",
+                    headers: headers,
+                    params: {}
+                )
+                chunks_uploaded = current['chunksUploaded'].to_i
+                offset = [size, (chunks_uploaded * @chunk_size)].min
+            end
 
             while offset < size
-                slice = input.read(@chunk_size)
+                slice = IO.read(file_path, @chunk_size, offset)
 
                 params[param_name] = File.new(file_path, slice)
                 headers['content-range'] = "bytes #{offset}-#{[offset + @chunk_size - 1, size].min}/#{size}"
@@ -173,8 +185,8 @@ module Appwrite
                     id: result['$id'],
                     progress: ([offset, size].min).to_f/size.to_f * 100.0,
                     size_uploaded: [offset, size].min,
-                    chunks_total: result['chunks_total'],
-                    chunks_uploaded: result['chunks_uploaded']
+                    chunks_total: result['chunksTotal'],
+                    chunks_uploaded: result['chunksUploaded']
                 }) unless on_progress.nil?
             end
 

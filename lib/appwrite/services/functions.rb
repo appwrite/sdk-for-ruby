@@ -96,7 +96,7 @@ module Appwrite
             )
         end
 
-        # Get a list of all runtimes that are currently active in your project.
+        # Get a list of all runtimes that are currently active on your instance.
         #
         #
         # @return [RuntimeList]
@@ -314,6 +314,7 @@ module Appwrite
                 "content-type": 'multipart/form-data',
             }
 
+            id_param_name = nil
             param_name = 'code'
 
             @client.chunked_upload(
@@ -321,6 +322,7 @@ module Appwrite
                 headers: headers,
                 params: params,
                 param_name: param_name,
+                id_param_name: id_param_name,
                 on_progress: on_progress,
                 response_type: Models::Deployment
             )

@@ -168,30 +168,6 @@ module Appwrite
             )
         end
 
-        # Get the number of usage stats that are waiting to be processed in the
-        # Appwrite internal queue server.
-        #
-        #
-        # @return [HealthQueue]
-        def get_queue_usage()
-            path = '/health/queue/usage'
-
-            params = {
-            }
-
-            headers = {
-                "content-type": 'application/json',
-            }
-
-            @client.call(
-                method: 'GET',
-                path: path,
-                headers: headers,
-                params: params,
-                response_type: Models::HealthQueue
-            )
-        end
-
         # Get the number of webhooks that are waiting to be processed in the Appwrite
         # internal queue server.
         #

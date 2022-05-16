@@ -48,7 +48,7 @@ module Appwrite
         # @param [array] write An array of strings with write permissions. By default no user is granted with any write permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions.
         # @param [boolean] enabled Is bucket enabled?
         # @param [number] maximum_file_size Maximum file size allowed in bytes. Maximum allowed value is 30MB. For self-hosted setups you can change the max limit by changing the `_APP_STORAGE_LIMIT` environment variable. [Learn more about storage environment variables](docs/environment-variables#storage)
-        # @param [array] allowed_file_extensions Allowed file extensions
+        # @param [array] allowed_file_extensions Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long.
         # @param [boolean] encryption Is encryption enabled? For file size above 20MB encryption is skipped even if it&#039;s enabled
         # @param [boolean] antivirus Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it&#039;s enabled
         #
@@ -133,7 +133,7 @@ module Appwrite
         # @param [array] write An array of strings with write permissions. By default inherits the existing write permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions.
         # @param [boolean] enabled Is bucket enabled?
         # @param [number] maximum_file_size Maximum file size allowed in bytes. Maximum allowed value is 30MB. For self hosted version you can change the limit by changing _APP_STORAGE_LIMIT environment variable. [Learn more about storage environment variables](docs/environment-variables#storage)
-        # @param [array] allowed_file_extensions Allowed file extensions
+        # @param [array] allowed_file_extensions Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long.
         # @param [boolean] encryption Is encryption enabled? For file size above 20MB encryption is skipped even if it&#039;s enabled
         # @param [boolean] antivirus Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it&#039;s enabled
         #

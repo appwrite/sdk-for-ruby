@@ -48,7 +48,7 @@ module Appwrite
         #
         # @param [string] team_id Team ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [string] name Team name. Max length: 128 chars.
-        # @param [array] roles Array of strings. Use this param to set the roles in the team for the user who created it. The default role is **owner**. A role can be any string. Learn more about [roles and permissions](/docs/permissions). Max length for each role is 32 chars.
+        # @param [array] roles Array of strings. Use this param to set the roles in the team for the user who created it. The default role is **owner**. A role can be any string. Learn more about [roles and permissions](/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long.
         #
         # @return [Team]
         def create(team_id:, name:, roles: nil)
@@ -235,7 +235,7 @@ module Appwrite
         #
         # @param [string] team_id Team ID.
         # @param [string] email Email of the new team member.
-        # @param [array] roles Array of strings. Use this param to set the user roles in the team. A role can be any string. Learn more about [roles and permissions](/docs/permissions). Max length for each role is 32 chars.
+        # @param [array] roles Array of strings. Use this param to set the user roles in the team. A role can be any string. Learn more about [roles and permissions](/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long.
         # @param [string] url URL to redirect the user back to your app from the invitation email.  Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.
         # @param [string] name Name of the new team member. Max length: 128 chars.
         #
@@ -322,7 +322,7 @@ module Appwrite
         #
         # @param [string] team_id Team ID.
         # @param [string] membership_id Membership ID.
-        # @param [array] roles An array of strings. Use this param to set the user&#039;s roles in the team. A role can be any string. Learn more about [roles and permissions](https://appwrite.io/docs/permissions). Max length for each role is 32 chars.
+        # @param [array] roles An array of strings. Use this param to set the user&#039;s roles in the team. A role can be any string. Learn more about [roles and permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long.
         #
         # @return [Membership]
         def update_membership_roles(team_id:, membership_id:, roles:)

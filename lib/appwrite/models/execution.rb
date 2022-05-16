@@ -10,7 +10,7 @@ module Appwrite
             attr_reader :trigger
             attr_reader :status
             attr_reader :status_code
-            attr_reader :stdout
+            attr_reader :response
             attr_reader :stderr
             attr_reader :time
 
@@ -22,7 +22,7 @@ module Appwrite
                 trigger:,
                 status:,
                 status_code:,
-                stdout:,
+                response:,
                 stderr:,
                 time:
             )
@@ -33,7 +33,7 @@ module Appwrite
                 @trigger = trigger
                 @status = status
                 @status_code = status_code
-                @stdout = stdout
+                @response = response
                 @stderr = stderr
                 @time = time
             end
@@ -47,7 +47,7 @@ module Appwrite
                     trigger: map["trigger"],
                     status: map["status"],
                     status_code: map["statusCode"],
-                    stdout: map["stdout"],
+                    response: map["response"],
                     stderr: map["stderr"],
                     time: map["time"]
                 )
@@ -62,7 +62,7 @@ module Appwrite
                     "trigger": @trigger,
                     "status": @status,
                     "statusCode": @status_code,
-                    "stdout": @stdout,
+                    "response": @response,
                     "stderr": @stderr,
                     "time": @time
                 }

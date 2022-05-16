@@ -26,32 +26,6 @@ module Appwrite
             )
         end
 
-        # Delete a currently logged in user account. Behind the scene, the user
-        # record is not deleted but permanently blocked from any access. This is done
-        # to avoid deleted accounts being overtaken by new users with the same email
-        # address. Any user-related resources like documents or storage files should
-        # be deleted separately.
-        #
-        #
-        # @return []
-        def delete()
-            path = '/account'
-
-            params = {
-            }
-
-            headers = {
-                "content-type": 'application/json',
-            }
-
-            @client.call(
-                method: 'DELETE',
-                path: path,
-                headers: headers,
-                params: params,
-            )
-        end
-
         # Update currently logged in user account email address. After changing user
         # address, the user confirmation status will get reset. A new confirmation
         # email is not sent automatically however you can use the send confirmation
@@ -153,7 +127,7 @@ module Appwrite
 
         # Update currently logged in user password. For validation, user is required
         # to pass in the new password, and the old password. For users created with
-        # OAuth and Team Invites, oldPassword is optional.
+        # OAuth, Team Invites and Magic URL, oldPassword is optional.
         #
         # @param [string] password New user password. Must be at least 8 chars.
         # @param [string] old_password Current user password. Must be at least 8 chars.
@@ -412,7 +386,9 @@ module Appwrite
             )
         end
 
-        # 
+        # Access tokens have limited lifespan and expire to mitigate security risks.
+        # If session was created using an OAuth provider, this route can be used to
+        # "refresh" the access token.
         #
         # @param [string] session_id Session ID. Use the string &#039;current&#039; to update the current device session.
         #
@@ -469,6 +445,31 @@ module Appwrite
                 path: path,
                 headers: headers,
                 params: params,
+            )
+        end
+
+        # Block the currently logged in user account. Behind the scene, the user
+        # record is not deleted but permanently blocked from any access. To
+        # completely delete a user, use the Users API instead.
+        #
+        #
+        # @return [User]
+        def update_status()
+            path = '/account/status'
+
+            params = {
+            }
+
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: path,
+                headers: headers,
+                params: params,
+                response_type: Models::User
             )
         end
 

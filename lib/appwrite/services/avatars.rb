@@ -3,6 +3,7 @@
 module Appwrite
     class Avatars < Service
 
+
         # You can use this endpoint to show different browser icons to your users.
         # The code argument receives the browser code as it appears in your user [GET
         # /account/sessions](/docs/client/account#accountGetSessions) endpoint. Use

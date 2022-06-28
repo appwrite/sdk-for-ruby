@@ -3,6 +3,7 @@
 module Appwrite
     class Users < Service
 
+
         # Get a list of all the project's users. You can use the query params to
         # filter your results.
         #
@@ -10,7 +11,7 @@ module Appwrite
         # @param [number] limit Maximum number of users to return in response. By default will return maximum 25 results. Maximum of 100 results allowed per request.
         # @param [number] offset Offset value. The default value is 0. Use this param to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination)
         # @param [string] cursor ID of the user used as the starting point for the query, excluding the user itself. Should be used for efficient pagination when working with large sets of data. [learn more about pagination](https://appwrite.io/docs/pagination)
-        # @param [string] cursor_direction Direction of the cursor.
+        # @param [string] cursor_direction Direction of the cursor, can be either &#039;before&#039; or &#039;after&#039;.
         # @param [string] order_type Order result by ASC or DESC order.
         #
         # @return [UserList]
@@ -310,6 +311,41 @@ module Appwrite
             )
         end
 
+        # Update the user phone by its unique ID.
+        #
+        # @param [string] user_id User ID.
+        # @param [string] number User phone number.
+        #
+        # @return [User]
+        def update_phone(user_id:, number:)
+            if user_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            if number.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "number"')
+            end
+
+            path = '/users/{userId}/phone'
+                .gsub('{userId}', user_id)
+
+            params = {
+                number: number,
+            }
+
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: path,
+                headers: headers,
+                params: params,
+                response_type: Models::User
+            )
+        end
+
         # Get the user preferences by its unique ID.
         #
         # @param [string] user_id User ID.
@@ -509,7 +545,7 @@ module Appwrite
         # @param [boolean] email_verification User email verification status.
         #
         # @return [User]
-        def update_verification(user_id:, email_verification:)
+        def update_email_verification(user_id:, email_verification:)
             if user_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userId"')
             end
@@ -523,6 +559,41 @@ module Appwrite
 
             params = {
                 emailVerification: email_verification,
+            }
+
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: path,
+                headers: headers,
+                params: params,
+                response_type: Models::User
+            )
+        end
+
+        # Update the user phone verification status by its unique ID.
+        #
+        # @param [string] user_id User ID.
+        # @param [boolean] phone_verification User phone verification status.
+        #
+        # @return [User]
+        def update_phone_verification(user_id:, phone_verification:)
+            if user_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            if phone_verification.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "phoneVerification"')
+            end
+
+            path = '/users/{userId}/verification/phone'
+                .gsub('{userId}', user_id)
+
+            params = {
+                phoneVerification: phone_verification,
             }
 
             headers = {

@@ -4,11 +4,11 @@ module Appwrite
     module Models
         class Bucket
             attr_reader :id
+            attr_reader :created_at
+            attr_reader :updated_at
             attr_reader :read
             attr_reader :write
             attr_reader :permission
-            attr_reader :date_created
-            attr_reader :date_updated
             attr_reader :name
             attr_reader :enabled
             attr_reader :maximum_file_size
@@ -18,11 +18,11 @@ module Appwrite
 
             def initialize(
                 id:,
+                created_at:,
+                updated_at:,
                 read:,
                 write:,
                 permission:,
-                date_created:,
-                date_updated:,
                 name:,
                 enabled:,
                 maximum_file_size:,
@@ -31,11 +31,11 @@ module Appwrite
                 antivirus:
             )
                 @id = id
+                @created_at = created_at
+                @updated_at = updated_at
                 @read = read
                 @write = write
                 @permission = permission
-                @date_created = date_created
-                @date_updated = date_updated
                 @name = name
                 @enabled = enabled
                 @maximum_file_size = maximum_file_size
@@ -47,11 +47,11 @@ module Appwrite
             def self.from(map:)
                 Bucket.new(
                     id: map["$id"],
+                    created_at: map["$createdAt"],
+                    updated_at: map["$updatedAt"],
                     read: map["$read"],
                     write: map["$write"],
                     permission: map["permission"],
-                    date_created: map["dateCreated"],
-                    date_updated: map["dateUpdated"],
                     name: map["name"],
                     enabled: map["enabled"],
                     maximum_file_size: map["maximumFileSize"],
@@ -64,11 +64,11 @@ module Appwrite
             def to_map
                 {
                     "$id": @id,
+                    "$createdAt": @created_at,
+                    "$updatedAt": @updated_at,
                     "$read": @read,
                     "$write": @write,
                     "permission": @permission,
-                    "dateCreated": @date_created,
-                    "dateUpdated": @date_updated,
                     "name": @name,
                     "enabled": @enabled,
                     "maximumFileSize": @maximum_file_size,

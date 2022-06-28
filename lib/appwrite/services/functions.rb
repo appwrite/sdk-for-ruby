@@ -3,6 +3,7 @@
 module Appwrite
     class Functions < Service
 
+
         # Get a list of all the project's functions. You can use the query params to
         # filter your results.
         #
@@ -10,7 +11,7 @@ module Appwrite
         # @param [number] limit Maximum number of functions to return in response. By default will return maximum 25 results. Maximum of 100 results allowed per request.
         # @param [number] offset Offset value. The default value is 0. Use this value to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination)
         # @param [string] cursor ID of the function used as the starting point for the query, excluding the function itself. Should be used for efficient pagination when working with large sets of data. [learn more about pagination](https://appwrite.io/docs/pagination)
-        # @param [string] cursor_direction Direction of the cursor.
+        # @param [string] cursor_direction Direction of the cursor, can be either &#039;before&#039; or &#039;after&#039;.
         # @param [string] order_type Order result by ASC or DESC order.
         #
         # @return [FunctionList]
@@ -233,7 +234,7 @@ module Appwrite
         # @param [number] limit Maximum number of deployments to return in response. By default will return maximum 25 results. Maximum of 100 results allowed per request.
         # @param [number] offset Offset value. The default value is 0. Use this value to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination)
         # @param [string] cursor ID of the deployment used as the starting point for the query, excluding the deployment itself. Should be used for efficient pagination when working with large sets of data. [learn more about pagination](https://appwrite.io/docs/pagination)
-        # @param [string] cursor_direction Direction of the cursor.
+        # @param [string] cursor_direction Direction of the cursor, can be either &#039;before&#039; or &#039;after&#039;.
         # @param [string] order_type Order result by ASC or DESC order.
         #
         # @return [DeploymentList]
@@ -484,7 +485,7 @@ module Appwrite
         # @param [number] offset Offset value. The default value is 0. Use this value to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination)
         # @param [string] search Search term to filter your list results. Max length: 256 chars.
         # @param [string] cursor ID of the execution used as the starting point for the query, excluding the execution itself. Should be used for efficient pagination when working with large sets of data. [learn more about pagination](https://appwrite.io/docs/pagination)
-        # @param [string] cursor_direction Direction of the cursor.
+        # @param [string] cursor_direction Direction of the cursor, can be either &#039;before&#039; or &#039;after&#039;.
         #
         # @return [ExecutionList]
         def list_executions(function_id:, limit: nil, offset: nil, search: nil, cursor: nil, cursor_direction: nil)

@@ -3,6 +3,7 @@
 module Appwrite
     class Health < Service
 
+
         # Check the Appwrite HTTP server is up and responsive.
         #
         #

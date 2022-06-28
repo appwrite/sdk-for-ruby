@@ -4,9 +4,10 @@ module Appwrite
     module Models
         class Deployment
             attr_reader :id
+            attr_reader :created_at
+            attr_reader :updated_at
             attr_reader :resource_id
             attr_reader :resource_type
-            attr_reader :date_created
             attr_reader :entrypoint
             attr_reader :size
             attr_reader :build_id
@@ -17,9 +18,10 @@ module Appwrite
 
             def initialize(
                 id:,
+                created_at:,
+                updated_at:,
                 resource_id:,
                 resource_type:,
-                date_created:,
                 entrypoint:,
                 size:,
                 build_id:,
@@ -29,9 +31,10 @@ module Appwrite
                 build_stderr:
             )
                 @id = id
+                @created_at = created_at
+                @updated_at = updated_at
                 @resource_id = resource_id
                 @resource_type = resource_type
-                @date_created = date_created
                 @entrypoint = entrypoint
                 @size = size
                 @build_id = build_id
@@ -44,9 +47,10 @@ module Appwrite
             def self.from(map:)
                 Deployment.new(
                     id: map["$id"],
+                    created_at: map["$createdAt"],
+                    updated_at: map["$updatedAt"],
                     resource_id: map["resourceId"],
                     resource_type: map["resourceType"],
-                    date_created: map["dateCreated"],
                     entrypoint: map["entrypoint"],
                     size: map["size"],
                     build_id: map["buildId"],
@@ -60,9 +64,10 @@ module Appwrite
             def to_map
                 {
                     "$id": @id,
+                    "$createdAt": @created_at,
+                    "$updatedAt": @updated_at,
                     "resourceId": @resource_id,
                     "resourceType": @resource_type,
-                    "dateCreated": @date_created,
                     "entrypoint": @entrypoint,
                     "size": @size,
                     "buildId": @build_id,

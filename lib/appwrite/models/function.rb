@@ -4,10 +4,10 @@ module Appwrite
     module Models
         class Function
             attr_reader :id
+            attr_reader :created_at
+            attr_reader :updated_at
             attr_reader :execute
             attr_reader :name
-            attr_reader :date_created
-            attr_reader :date_updated
             attr_reader :status
             attr_reader :runtime
             attr_reader :deployment
@@ -20,10 +20,10 @@ module Appwrite
 
             def initialize(
                 id:,
+                created_at:,
+                updated_at:,
                 execute:,
                 name:,
-                date_created:,
-                date_updated:,
                 status:,
                 runtime:,
                 deployment:,
@@ -35,10 +35,10 @@ module Appwrite
                 timeout:
             )
                 @id = id
+                @created_at = created_at
+                @updated_at = updated_at
                 @execute = execute
                 @name = name
-                @date_created = date_created
-                @date_updated = date_updated
                 @status = status
                 @runtime = runtime
                 @deployment = deployment
@@ -53,10 +53,10 @@ module Appwrite
             def self.from(map:)
                 Function.new(
                     id: map["$id"],
+                    created_at: map["$createdAt"],
+                    updated_at: map["$updatedAt"],
                     execute: map["execute"],
                     name: map["name"],
-                    date_created: map["dateCreated"],
-                    date_updated: map["dateUpdated"],
                     status: map["status"],
                     runtime: map["runtime"],
                     deployment: map["deployment"],
@@ -72,10 +72,10 @@ module Appwrite
             def to_map
                 {
                     "$id": @id,
+                    "$createdAt": @created_at,
+                    "$updatedAt": @updated_at,
                     "execute": @execute,
                     "name": @name,
-                    "dateCreated": @date_created,
-                    "dateUpdated": @date_updated,
                     "status": @status,
                     "runtime": @runtime,
                     "deployment": @deployment,

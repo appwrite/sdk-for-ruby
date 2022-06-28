@@ -3,6 +3,7 @@
 module Appwrite
     class Teams < Service
 
+
         # Get a list of all the teams in which the current user is a member. You can
         # use the parameters to filter your results.
         # 
@@ -13,7 +14,7 @@ module Appwrite
         # @param [number] limit Maximum number of teams to return in response. By default will return maximum 25 results. Maximum of 100 results allowed per request.
         # @param [number] offset Offset value. The default value is 0. Use this param to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination)
         # @param [string] cursor ID of the team used as the starting point for the query, excluding the team itself. Should be used for efficient pagination when working with large sets of data. [learn more about pagination](https://appwrite.io/docs/pagination)
-        # @param [string] cursor_direction Direction of the cursor.
+        # @param [string] cursor_direction Direction of the cursor, can be either &#039;before&#039; or &#039;after&#039;.
         # @param [string] order_type Order result by ASC or DESC order.
         #
         # @return [TeamList]
@@ -183,7 +184,7 @@ module Appwrite
         # @param [number] limit Maximum number of memberships to return in response. By default will return maximum 25 results. Maximum of 100 results allowed per request.
         # @param [number] offset Offset value. The default value is 0. Use this value to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination)
         # @param [string] cursor ID of the membership used as the starting point for the query, excluding the membership itself. Should be used for efficient pagination when working with large sets of data. [learn more about pagination](https://appwrite.io/docs/pagination)
-        # @param [string] cursor_direction Direction of the cursor.
+        # @param [string] cursor_direction Direction of the cursor, can be either &#039;before&#039; or &#039;after&#039;.
         # @param [string] order_type Order result by ASC or DESC order.
         #
         # @return [MembershipList]

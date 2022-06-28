@@ -4,27 +4,31 @@ module Appwrite
     module Models
         class Team
             attr_reader :id
+            attr_reader :created_at
+            attr_reader :updated_at
             attr_reader :name
-            attr_reader :date_created
             attr_reader :total
 
             def initialize(
                 id:,
+                created_at:,
+                updated_at:,
                 name:,
-                date_created:,
                 total:
             )
                 @id = id
+                @created_at = created_at
+                @updated_at = updated_at
                 @name = name
-                @date_created = date_created
                 @total = total
             end
 
             def self.from(map:)
                 Team.new(
                     id: map["$id"],
+                    created_at: map["$createdAt"],
+                    updated_at: map["$updatedAt"],
                     name: map["name"],
-                    date_created: map["dateCreated"],
                     total: map["total"]
                 )
             end
@@ -32,8 +36,9 @@ module Appwrite
             def to_map
                 {
                     "$id": @id,
+                    "$createdAt": @created_at,
+                    "$updatedAt": @updated_at,
                     "name": @name,
-                    "dateCreated": @date_created,
                     "total": @total
                 }
             end

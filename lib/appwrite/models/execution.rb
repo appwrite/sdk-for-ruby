@@ -4,9 +4,10 @@ module Appwrite
     module Models
         class Execution
             attr_reader :id
+            attr_reader :created_at
+            attr_reader :updated_at
             attr_reader :read
             attr_reader :function_id
-            attr_reader :date_created
             attr_reader :trigger
             attr_reader :status
             attr_reader :status_code
@@ -16,9 +17,10 @@ module Appwrite
 
             def initialize(
                 id:,
+                created_at:,
+                updated_at:,
                 read:,
                 function_id:,
-                date_created:,
                 trigger:,
                 status:,
                 status_code:,
@@ -27,9 +29,10 @@ module Appwrite
                 time:
             )
                 @id = id
+                @created_at = created_at
+                @updated_at = updated_at
                 @read = read
                 @function_id = function_id
-                @date_created = date_created
                 @trigger = trigger
                 @status = status
                 @status_code = status_code
@@ -41,9 +44,10 @@ module Appwrite
             def self.from(map:)
                 Execution.new(
                     id: map["$id"],
+                    created_at: map["$createdAt"],
+                    updated_at: map["$updatedAt"],
                     read: map["$read"],
                     function_id: map["functionId"],
-                    date_created: map["dateCreated"],
                     trigger: map["trigger"],
                     status: map["status"],
                     status_code: map["statusCode"],
@@ -56,9 +60,10 @@ module Appwrite
             def to_map
                 {
                     "$id": @id,
+                    "$createdAt": @created_at,
+                    "$updatedAt": @updated_at,
                     "$read": @read,
                     "functionId": @function_id,
-                    "dateCreated": @date_created,
                     "trigger": @trigger,
                     "status": @status,
                     "statusCode": @status_code,

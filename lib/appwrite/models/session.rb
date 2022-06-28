@@ -4,6 +4,7 @@ module Appwrite
     module Models
         class Session
             attr_reader :id
+            attr_reader :created_at
             attr_reader :user_id
             attr_reader :expire
             attr_reader :provider
@@ -30,6 +31,7 @@ module Appwrite
 
             def initialize(
                 id:,
+                created_at:,
                 user_id:,
                 expire:,
                 provider:,
@@ -55,6 +57,7 @@ module Appwrite
                 current:
             )
                 @id = id
+                @created_at = created_at
                 @user_id = user_id
                 @expire = expire
                 @provider = provider
@@ -83,6 +86,7 @@ module Appwrite
             def self.from(map:)
                 Session.new(
                     id: map["$id"],
+                    created_at: map["$createdAt"],
                     user_id: map["userId"],
                     expire: map["expire"],
                     provider: map["provider"],
@@ -112,6 +116,7 @@ module Appwrite
             def to_map
                 {
                     "$id": @id,
+                    "$createdAt": @created_at,
                     "userId": @user_id,
                     "expire": @expire,
                     "provider": @provider,

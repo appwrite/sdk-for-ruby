@@ -5,10 +5,11 @@ module Appwrite
         class File
             attr_reader :id
             attr_reader :bucket_id
+            attr_reader :created_at
+            attr_reader :updated_at
             attr_reader :read
             attr_reader :write
             attr_reader :name
-            attr_reader :date_created
             attr_reader :signature
             attr_reader :mime_type
             attr_reader :size_original
@@ -18,10 +19,11 @@ module Appwrite
             def initialize(
                 id:,
                 bucket_id:,
+                created_at:,
+                updated_at:,
                 read:,
                 write:,
                 name:,
-                date_created:,
                 signature:,
                 mime_type:,
                 size_original:,
@@ -30,10 +32,11 @@ module Appwrite
             )
                 @id = id
                 @bucket_id = bucket_id
+                @created_at = created_at
+                @updated_at = updated_at
                 @read = read
                 @write = write
                 @name = name
-                @date_created = date_created
                 @signature = signature
                 @mime_type = mime_type
                 @size_original = size_original
@@ -45,10 +48,11 @@ module Appwrite
                 File.new(
                     id: map["$id"],
                     bucket_id: map["bucketId"],
+                    created_at: map["$createdAt"],
+                    updated_at: map["$updatedAt"],
                     read: map["$read"],
                     write: map["$write"],
                     name: map["name"],
-                    date_created: map["dateCreated"],
                     signature: map["signature"],
                     mime_type: map["mimeType"],
                     size_original: map["sizeOriginal"],
@@ -61,10 +65,11 @@ module Appwrite
                 {
                     "$id": @id,
                     "bucketId": @bucket_id,
+                    "$createdAt": @created_at,
+                    "$updatedAt": @updated_at,
                     "$read": @read,
                     "$write": @write,
                     "name": @name,
-                    "dateCreated": @date_created,
                     "signature": @signature,
                     "mimeType": @mime_type,
                     "sizeOriginal": @size_original,

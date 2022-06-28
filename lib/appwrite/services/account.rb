@@ -3,6 +3,7 @@
 module Appwrite
     class Account < Service
 
+
         # Get currently logged in user data as JSON object.
         #
         #
@@ -143,6 +144,44 @@ module Appwrite
             params = {
                 password: password,
                 oldPassword: old_password,
+            }
+
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: path,
+                headers: headers,
+                params: params,
+                response_type: Models::User
+            )
+        end
+
+        # Update currently logged in user account phone number. After changing phone
+        # number, the user confirmation status will get reset. A new confirmation SMS
+        # is not sent automatically however you can use the phone confirmation
+        # endpoint again to send the confirmation SMS.
+        #
+        # @param [string] number Phone number. Format this number with a leading &#039;+&#039; and a country code, e.g., +16175551212.
+        # @param [string] password User password. Must be at least 8 chars.
+        #
+        # @return [User]
+        def update_phone(number:, password:)
+            if number.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "number"')
+            end
+
+            if password.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "password"')
+            end
+
+            path = '/account/phone'
+
+            params = {
+                number: number,
+                password: password,
             }
 
             headers = {
@@ -480,8 +519,8 @@ module Appwrite
         # should redirect the user back to your app and allow you to complete the
         # verification process by verifying both the **userId** and **secret**
         # parameters. Learn more about how to [complete the verification
-        # process](/docs/client/account#accountUpdateVerification). The verification
-        # link sent to the user's email address is valid for 7 days.
+        # process](/docs/client/account#accountUpdateEmailVerification). The
+        # verification link sent to the user's email address is valid for 7 days.
         # 
         # Please note that in order to avoid a [Redirect
         # Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md),
@@ -535,6 +574,73 @@ module Appwrite
             end
 
             path = '/account/verification'
+
+            params = {
+                userId: user_id,
+                secret: secret,
+            }
+
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PUT',
+                path: path,
+                headers: headers,
+                params: params,
+                response_type: Models::Token
+            )
+        end
+
+        # Use this endpoint to send a verification message to your user's phone
+        # number to confirm they are the valid owners of that address. The provided
+        # secret should allow you to complete the verification process by verifying
+        # both the **userId** and **secret** parameters. Learn more about how to
+        # [complete the verification
+        # process](/docs/client/account#accountUpdatePhoneVerification). The
+        # verification link sent to the user's phone number is valid for 15 minutes.
+        #
+        #
+        # @return [Token]
+        def create_phone_verification()
+            path = '/account/verification/phone'
+
+            params = {
+            }
+
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: path,
+                headers: headers,
+                params: params,
+                response_type: Models::Token
+            )
+        end
+
+        # Use this endpoint to complete the user phone verification process. Use the
+        # **userId** and **secret** that were sent to your user's phone number to
+        # verify the user email ownership. If confirmed this route will return a 200
+        # status code.
+        #
+        # @param [string] user_id User ID.
+        # @param [string] secret Valid verification token.
+        #
+        # @return [Token]
+        def update_phone_verification(user_id:, secret:)
+            if user_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            if secret.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "secret"')
+            end
+
+            path = '/account/verification/phone'
 
             params = {
                 userId: user_id,

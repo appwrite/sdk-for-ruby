@@ -12,8 +12,8 @@ module Appwrite
             @chunk_size = 5*1024*1024
             @headers = {
                 'user-agent' => RUBY_PLATFORM + ':ruby-' + RUBY_VERSION,
-                'x-sdk-version' => 'appwrite:ruby:5.0.0',                
-                'X-Appwrite-Response-Format' => '0.14.0'
+                'x-sdk-version' => 'appwrite:ruby:6.0.0',                
+                'X-Appwrite-Response-Format' => '0.15.0'
             }
             @endpoint = 'https://HOSTNAME/v1'
         end
@@ -133,12 +133,20 @@ module Appwrite
             on_progress: nil,
             response_type: nil
         )
-            file_path = params[param_name.to_sym]
-            size = ::File.size(file_path)
+            input_file = params[param_name.to_sym]
+
+            case input_file.source_type
+            when 'path'
+                size = ::File.size(input_file.path)
+            when 'string'
+                size = input_file.data.bytesize
+            end
 
             if size < @chunk_size
-                slice = ::File.read(file_path)
-                params[param_name] = File.new(file_path, slice)
+                if input_file.source_type == 'path'
+                    input_file.data = IO.read(input_file.path)
+                end
+                params[param_name.to_sym] = input_file
                 return call(
                     method: 'POST',
                     path: path,
@@ -163,9 +171,19 @@ module Appwrite
             end
 
             while offset < size
-                slice = IO.read(file_path, @chunk_size, offset)
+                case input_file.source_type
+                when 'path'
+                    string = IO.read(input_file.path, @chunk_size, offset)
+                when 'string'
+                    string = input_file.data.byteslice(offset, [@chunk_size, size - offset].min)
+                end
 
-                params[param_name] = File.new(file_path, slice)
+                params[param_name.to_sym] = InputFile::from_string(
+                    string,
+                    filename: input_file.filename,
+                    mime_type: input_file.mime_type
+                )
+
                 headers['content-range'] = "bytes #{offset}-#{[offset + @chunk_size - 1, size].min}/#{size}"
 
                 result = call(
@@ -279,10 +297,10 @@ module Appwrite
                 ''
             else
                 post_body = []
-                if value.instance_of? File
-                    post_body << "Content-Disposition: form-data; name=\"#{key}\"; filename=\"#{value.name}\"\r\n"
+                if value.instance_of? InputFile
+                    post_body << "Content-Disposition: form-data; name=\"#{key}\"; filename=\"#{value.filename}\"\r\n"
                     post_body << "Content-Type: #{value.mime_type}\r\n\r\n"
-                    post_body << value.content
+                    post_body << value.data
                     post_body << "\r\n--#{@boundary}--\r\n"
                 else          
                     post_body << "Content-Disposition: form-data; name=\"#{key}\"\r\n\r\n"

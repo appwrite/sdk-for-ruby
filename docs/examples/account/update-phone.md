@@ -9,6 +9,6 @@ client
 
 account = Appwrite::Account.new(client)
 
-response = account.update_phone(number: '', password: 'password')
+response = account.update_phone(phone: '', password: 'password')
 
 puts response.inspect

@@ -7,24 +7,21 @@ module Appwrite
             attr_reader :collection
             attr_reader :created_at
             attr_reader :updated_at
-            attr_reader :read
-            attr_reader :write
+            attr_reader :permissions
 
             def initialize(
                 id:,
                 collection:,
                 created_at:,
                 updated_at:,
-                read:,
-                write:,
+                permissions:,
                 data:
             )
                 @id = id
                 @collection = collection
                 @created_at = created_at
                 @updated_at = updated_at
-                @read = read
-                @write = write
+                @permissions = permissions
                 @data = data
             end
 
@@ -34,8 +31,7 @@ module Appwrite
                     collection: map["$collection"],
                     created_at: map["$createdAt"],
                     updated_at: map["$updatedAt"],
-                    read: map["$read"],
-                    write: map["$write"],
+                    permissions: map["$permissions"],
                     data: map["data"]
                 )
             end
@@ -46,8 +42,7 @@ module Appwrite
                     "$collection": @collection,
                     "$createdAt": @created_at,
                     "$updatedAt": @updated_at,
-                    "$read": @read,
-                    "$write": @write,
+                    "$permissions": @permissions,
                     "data": @data
                 }
             end

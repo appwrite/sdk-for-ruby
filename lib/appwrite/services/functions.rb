@@ -3,30 +3,26 @@
 module Appwrite
     class Functions < Service
 
+        def initialize(client)
+            @client = client
+        end
 
         # Get a list of all the project's functions. You can use the query params to
         # filter your results.
         #
-        # @param [string] search Search term to filter your list results. Max length: 256 chars.
-        # @param [number] limit Maximum number of functions to return in response. By default will return maximum 25 results. Maximum of 100 results allowed per request.
-        # @param [number] offset Offset value. The default value is 0. Use this value to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination)
-        # @param [string] cursor ID of the function used as the starting point for the query, excluding the function itself. Should be used for efficient pagination when working with large sets of data. [learn more about pagination](https://appwrite.io/docs/pagination)
-        # @param [string] cursor_direction Direction of the cursor, can be either &#039;before&#039; or &#039;after&#039;.
-        # @param [string] order_type Order result by ASC or DESC order.
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, status, runtime, deployment, schedule, scheduleNext, schedulePrevious, timeout
+        # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [FunctionList]
-        def list(search: nil, limit: nil, offset: nil, cursor: nil, cursor_direction: nil, order_type: nil)
+        def list(queries: nil, search: nil)
+
             path = '/functions'
 
             params = {
+                queries: queries,
                 search: search,
-                limit: limit,
-                offset: offset,
-                cursor: cursor,
-                cursorDirection: cursor_direction,
-                orderType: order_type,
             }
-
+            
             headers = {
                 "content-type": 'application/json',
             }
@@ -40,21 +36,37 @@ module Appwrite
             )
         end
 
+        
         # Create a new function. You can pass a list of
         # [permissions](/docs/permissions) to allow different project users or team
         # with access to execute the function using the client API.
         #
-        # @param [string] function_id Function ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
-        # @param [string] name Function name. Max length: 128 chars.
-        # @param [array] execute An array of strings with execution permissions. By default no user is granted with any execute permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions. Maximum of 100 scopes are allowed, each 64 characters long.
-        # @param [string] runtime Execution runtime.
-        # @param [object] vars Key-value JSON object that will be passed to the function as environment variables.
-        # @param [array] events Events list. Maximum of 100 events are allowed.
-        # @param [string] schedule Schedule CRON syntax.
-        # @param [number] timeout Function maximum execution time in seconds.
+        # @param [String] function_id Function ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
+        # @param [String] name Function name. Max length: 128 chars.
+        # @param [Array] execute An array of strings with execution roles. By default no user is granted with any execute permissions. [learn more about permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 64 characters long.
+        # @param [String] runtime Execution runtime.
+        # @param [Array] events Events list. Maximum of 100 events are allowed.
+        # @param [String] schedule Schedule CRON syntax.
+        # @param [Integer] timeout Function maximum execution time in seconds.
         #
         # @return [Function]
-        def create(function_id:, name:, execute:, runtime:, vars: nil, events: nil, schedule: nil, timeout: nil)
+        def create(function_id:, name:, execute:, runtime:, events: nil, schedule: nil, timeout: nil)
+
+            path = '/functions'
+
+            params = {
+                functionId: function_id,
+                name: name,
+                execute: execute,
+                runtime: runtime,
+                events: events,
+                schedule: schedule,
+                timeout: timeout,
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
             if function_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
@@ -71,22 +83,6 @@ module Appwrite
                 raise Appwrite::Exception.new('Missing required parameter: "runtime"')
             end
 
-            path = '/functions'
-
-            params = {
-                functionId: function_id,
-                name: name,
-                execute: execute,
-                runtime: runtime,
-                vars: vars,
-                events: events,
-                schedule: schedule,
-                timeout: timeout,
-            }
-
-            headers = {
-                "content-type": 'application/json',
-            }
 
             @client.call(
                 method: 'POST',
@@ -97,16 +93,18 @@ module Appwrite
             )
         end
 
+        
         # Get a list of all runtimes that are currently active on your instance.
         #
         #
         # @return [RuntimeList]
         def list_runtimes()
+
             path = '/functions/runtimes'
 
             params = {
             }
-
+            
             headers = {
                 "content-type": 'application/json',
             }
@@ -120,25 +118,27 @@ module Appwrite
             )
         end
 
+        
         # Get a function by its unique ID.
         #
-        # @param [string] function_id Function ID.
+        # @param [String] function_id Function ID.
         #
         # @return [Function]
         def get(function_id:)
+
+            path = '/functions/{functionId}'
+
+            params = {
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
             if function_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
-            path = '/functions/{functionId}'
                 .gsub('{functionId}', function_id)
-
-            params = {
-            }
-
-            headers = {
-                "content-type": 'application/json',
-            }
 
             @client.call(
                 method: 'GET',
@@ -149,18 +149,32 @@ module Appwrite
             )
         end
 
+        
         # Update function by its unique ID.
         #
-        # @param [string] function_id Function ID.
-        # @param [string] name Function name. Max length: 128 chars.
-        # @param [array] execute An array of strings with execution permissions. By default no user is granted with any execute permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions. Maximum of 100 scopes are allowed, each 64 characters long.
-        # @param [object] vars Key-value JSON object that will be passed to the function as environment variables.
-        # @param [array] events Events list. Maximum of 100 events are allowed.
-        # @param [string] schedule Schedule CRON syntax.
-        # @param [number] timeout Maximum execution time in seconds.
+        # @param [String] function_id Function ID.
+        # @param [String] name Function name. Max length: 128 chars.
+        # @param [Array] execute An array of strings with execution roles. By default no user is granted with any execute permissions. [learn more about permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 64 characters long.
+        # @param [Array] events Events list. Maximum of 100 events are allowed.
+        # @param [String] schedule Schedule CRON syntax.
+        # @param [Integer] timeout Maximum execution time in seconds.
         #
         # @return [Function]
-        def update(function_id:, name:, execute:, vars: nil, events: nil, schedule: nil, timeout: nil)
+        def update(function_id:, name:, execute:, events: nil, schedule: nil, timeout: nil)
+
+            path = '/functions/{functionId}'
+
+            params = {
+                name: name,
+                execute: execute,
+                events: events,
+                schedule: schedule,
+                timeout: timeout,
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
             if function_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
@@ -173,21 +187,7 @@ module Appwrite
                 raise Appwrite::Exception.new('Missing required parameter: "execute"')
             end
 
-            path = '/functions/{functionId}'
                 .gsub('{functionId}', function_id)
-
-            params = {
-                name: name,
-                execute: execute,
-                vars: vars,
-                events: events,
-                schedule: schedule,
-                timeout: timeout,
-            }
-
-            headers = {
-                "content-type": 'application/json',
-            }
 
             @client.call(
                 method: 'PUT',
@@ -198,25 +198,27 @@ module Appwrite
             )
         end
 
+        
         # Delete a function by its unique ID.
         #
-        # @param [string] function_id Function ID.
+        # @param [String] function_id Function ID.
         #
         # @return []
         def delete(function_id:)
+
+            path = '/functions/{functionId}'
+
+            params = {
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
             if function_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
-            path = '/functions/{functionId}'
                 .gsub('{functionId}', function_id)
-
-            params = {
-            }
-
-            headers = {
-                "content-type": 'application/json',
-            }
 
             @client.call(
                 method: 'DELETE',
@@ -226,38 +228,32 @@ module Appwrite
             )
         end
 
+        
         # Get a list of all the project's code deployments. You can use the query
         # params to filter your results.
         #
-        # @param [string] function_id Function ID.
-        # @param [string] search Search term to filter your list results. Max length: 256 chars.
-        # @param [number] limit Maximum number of deployments to return in response. By default will return maximum 25 results. Maximum of 100 results allowed per request.
-        # @param [number] offset Offset value. The default value is 0. Use this value to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination)
-        # @param [string] cursor ID of the deployment used as the starting point for the query, excluding the deployment itself. Should be used for efficient pagination when working with large sets of data. [learn more about pagination](https://appwrite.io/docs/pagination)
-        # @param [string] cursor_direction Direction of the cursor, can be either &#039;before&#039; or &#039;after&#039;.
-        # @param [string] order_type Order result by ASC or DESC order.
+        # @param [String] function_id Function ID.
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: entrypoint, size, buildId, activate
+        # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [DeploymentList]
-        def list_deployments(function_id:, search: nil, limit: nil, offset: nil, cursor: nil, cursor_direction: nil, order_type: nil)
+        def list_deployments(function_id:, queries: nil, search: nil)
+
+            path = '/functions/{functionId}/deployments'
+
+            params = {
+                queries: queries,
+                search: search,
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
             if function_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
-            path = '/functions/{functionId}/deployments'
                 .gsub('{functionId}', function_id)
-
-            params = {
-                search: search,
-                limit: limit,
-                offset: offset,
-                cursor: cursor,
-                cursorDirection: cursor_direction,
-                orderType: order_type,
-            }
-
-            headers = {
-                "content-type": 'application/json',
-            }
 
             @client.call(
                 method: 'GET',
@@ -268,6 +264,7 @@ module Appwrite
             )
         end
 
+        
         # Create a new function code deployment. Use this endpoint to upload a new
         # version of your code function. To execute your newly uploaded code, you'll
         # need to update the function's deployment to use your new deployment UID.
@@ -279,13 +276,25 @@ module Appwrite
         # 
         # Use the "command" param to set the entry point used to execute your code.
         #
-        # @param [string] function_id Function ID.
-        # @param [string] entrypoint Entrypoint File.
+        # @param [String] function_id Function ID.
+        # @param [String] entrypoint Entrypoint File.
         # @param [file] code Gzip file with your code package. When used with the Appwrite CLI, pass the path to your code directory, and the CLI will automatically package your code. Use a path that is within the current directory.
-        # @param [boolean] activate Automatically activate the deployment when it is finished building.
+        # @param [] activate Automatically activate the deployment when it is finished building.
         #
         # @return [Deployment]
         def create_deployment(function_id:, entrypoint:, code:, activate:, on_progress: nil)
+
+            path = '/functions/{functionId}/deployments'
+
+            params = {
+                entrypoint: entrypoint,
+                code: code,
+                activate: activate,
+            }
+            
+            headers = {
+                "content-type": 'multipart/form-data',
+            }
             if function_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
@@ -302,18 +311,7 @@ module Appwrite
                 raise Appwrite::Exception.new('Missing required parameter: "activate"')
             end
 
-            path = '/functions/{functionId}/deployments'
                 .gsub('{functionId}', function_id)
-
-            params = {
-                entrypoint: entrypoint,
-                code: code,
-                activate: activate,
-            }
-
-            headers = {
-                "content-type": 'multipart/form-data',
-            }
 
             id_param_name = nil
             param_name = 'code'
@@ -329,13 +327,23 @@ module Appwrite
             )
         end
 
+        
         # Get a code deployment by its unique ID.
         #
-        # @param [string] function_id Function ID.
-        # @param [string] deployment_id Deployment ID.
+        # @param [String] function_id Function ID.
+        # @param [String] deployment_id Deployment ID.
         #
-        # @return [DeploymentList]
+        # @return [Deployment]
         def get_deployment(function_id:, deployment_id:)
+
+            path = '/functions/{functionId}/deployments/{deploymentId}'
+
+            params = {
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
             if function_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
@@ -344,35 +352,37 @@ module Appwrite
                 raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
             end
 
-            path = '/functions/{functionId}/deployments/{deploymentId}'
                 .gsub('{functionId}', function_id)
                 .gsub('{deploymentId}', deployment_id)
-
-            params = {
-            }
-
-            headers = {
-                "content-type": 'application/json',
-            }
 
             @client.call(
                 method: 'GET',
                 path: path,
                 headers: headers,
                 params: params,
-                response_type: Models::DeploymentList
+                response_type: Models::Deployment
             )
         end
 
+        
         # Update the function code deployment ID using the unique function ID. Use
         # this endpoint to switch the code deployment that should be executed by the
         # execution endpoint.
         #
-        # @param [string] function_id Function ID.
-        # @param [string] deployment_id Deployment ID.
+        # @param [String] function_id Function ID.
+        # @param [String] deployment_id Deployment ID.
         #
         # @return [Function]
         def update_deployment(function_id:, deployment_id:)
+
+            path = '/functions/{functionId}/deployments/{deploymentId}'
+
+            params = {
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
             if function_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
@@ -381,16 +391,8 @@ module Appwrite
                 raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
             end
 
-            path = '/functions/{functionId}/deployments/{deploymentId}'
                 .gsub('{functionId}', function_id)
                 .gsub('{deploymentId}', deployment_id)
-
-            params = {
-            }
-
-            headers = {
-                "content-type": 'application/json',
-            }
 
             @client.call(
                 method: 'PATCH',
@@ -401,13 +403,23 @@ module Appwrite
             )
         end
 
+        
         # Delete a code deployment by its unique ID.
         #
-        # @param [string] function_id Function ID.
-        # @param [string] deployment_id Deployment ID.
+        # @param [String] function_id Function ID.
+        # @param [String] deployment_id Deployment ID.
         #
         # @return []
         def delete_deployment(function_id:, deployment_id:)
+
+            path = '/functions/{functionId}/deployments/{deploymentId}'
+
+            params = {
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
             if function_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
@@ -416,16 +428,8 @@ module Appwrite
                 raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
             end
 
-            path = '/functions/{functionId}/deployments/{deploymentId}'
                 .gsub('{functionId}', function_id)
                 .gsub('{deploymentId}', deployment_id)
-
-            params = {
-            }
-
-            headers = {
-                "content-type": 'application/json',
-            }
 
             @client.call(
                 method: 'DELETE',
@@ -435,14 +439,24 @@ module Appwrite
             )
         end
 
+        
         # 
         #
-        # @param [string] function_id Function ID.
-        # @param [string] deployment_id Deployment ID.
-        # @param [string] build_id Build unique ID.
+        # @param [String] function_id Function ID.
+        # @param [String] deployment_id Deployment ID.
+        # @param [String] build_id Build unique ID.
         #
         # @return []
         def retry_build(function_id:, deployment_id:, build_id:)
+
+            path = '/functions/{functionId}/deployments/{deploymentId}/builds/{buildId}'
+
+            params = {
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
             if function_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
@@ -455,17 +469,9 @@ module Appwrite
                 raise Appwrite::Exception.new('Missing required parameter: "buildId"')
             end
 
-            path = '/functions/{functionId}/deployments/{deploymentId}/builds/{buildId}'
                 .gsub('{functionId}', function_id)
                 .gsub('{deploymentId}', deployment_id)
                 .gsub('{buildId}', build_id)
-
-            params = {
-            }
-
-            headers = {
-                "content-type": 'application/json',
-            }
 
             @client.call(
                 method: 'POST',
@@ -475,38 +481,34 @@ module Appwrite
             )
         end
 
+        
         # Get a list of all the current user function execution logs. You can use the
         # query params to filter your results. On admin mode, this endpoint will
         # return a list of all of the project's executions. [Learn more about
         # different API modes](/docs/admin).
         #
-        # @param [string] function_id Function ID.
-        # @param [number] limit Maximum number of executions to return in response. By default will return maximum 25 results. Maximum of 100 results allowed per request.
-        # @param [number] offset Offset value. The default value is 0. Use this value to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination)
-        # @param [string] search Search term to filter your list results. Max length: 256 chars.
-        # @param [string] cursor ID of the execution used as the starting point for the query, excluding the execution itself. Should be used for efficient pagination when working with large sets of data. [learn more about pagination](https://appwrite.io/docs/pagination)
-        # @param [string] cursor_direction Direction of the cursor, can be either &#039;before&#039; or &#039;after&#039;.
+        # @param [String] function_id Function ID.
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: trigger, status, statusCode, time
+        # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [ExecutionList]
-        def list_executions(function_id:, limit: nil, offset: nil, search: nil, cursor: nil, cursor_direction: nil)
+        def list_executions(function_id:, queries: nil, search: nil)
+
+            path = '/functions/{functionId}/executions'
+
+            params = {
+                queries: queries,
+                search: search,
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
             if function_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
-            path = '/functions/{functionId}/executions'
                 .gsub('{functionId}', function_id)
-
-            params = {
-                limit: limit,
-                offset: offset,
-                search: search,
-                cursor: cursor,
-                cursorDirection: cursor_direction,
-            }
-
-            headers = {
-                "content-type": 'application/json',
-            }
 
             @client.call(
                 method: 'GET',
@@ -517,32 +519,34 @@ module Appwrite
             )
         end
 
+        
         # Trigger a function execution. The returned object will return you the
         # current execution status. You can ping the `Get Execution` endpoint to get
         # updates on the current execution status. Once this endpoint is called, your
         # function execution process will start asynchronously.
         #
-        # @param [string] function_id Function ID.
-        # @param [string] data String of custom data to send to function.
-        # @param [boolean] async Execute code asynchronously. Default value is true.
+        # @param [String] function_id Function ID.
+        # @param [String] data String of custom data to send to function.
+        # @param [] async Execute code asynchronously. Default value is true.
         #
         # @return [Execution]
         def create_execution(function_id:, data: nil, async: nil)
-            if function_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
-            end
 
             path = '/functions/{functionId}/executions'
-                .gsub('{functionId}', function_id)
 
             params = {
                 data: data,
                 async: async,
             }
-
+            
             headers = {
                 "content-type": 'application/json',
             }
+            if function_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+            end
+
+                .gsub('{functionId}', function_id)
 
             @client.call(
                 method: 'POST',
@@ -553,13 +557,23 @@ module Appwrite
             )
         end
 
+        
         # Get a function execution log by its unique ID.
         #
-        # @param [string] function_id Function ID.
-        # @param [string] execution_id Execution ID.
+        # @param [String] function_id Function ID.
+        # @param [String] execution_id Execution ID.
         #
         # @return [Execution]
         def get_execution(function_id:, execution_id:)
+
+            path = '/functions/{functionId}/executions/{executionId}'
+
+            params = {
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
             if function_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
@@ -568,16 +582,8 @@ module Appwrite
                 raise Appwrite::Exception.new('Missing required parameter: "executionId"')
             end
 
-            path = '/functions/{functionId}/executions/{executionId}'
                 .gsub('{functionId}', function_id)
                 .gsub('{executionId}', execution_id)
-
-            params = {
-            }
-
-            headers = {
-                "content-type": 'application/json',
-            }
 
             @client.call(
                 method: 'GET',
@@ -588,5 +594,203 @@ module Appwrite
             )
         end
 
+        
+        # Get a list of all variables of a specific function.
+        #
+        # @param [String] function_id Function unique ID.
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: key
+        # @param [String] search Search term to filter your list results. Max length: 256 chars.
+        #
+        # @return [VariableList]
+        def list_variables(function_id:, queries: nil, search: nil)
+
+            path = '/functions/{functionId}/variables'
+
+            params = {
+                queries: queries,
+                search: search,
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+            if function_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+            end
+
+                .gsub('{functionId}', function_id)
+
+            @client.call(
+                method: 'GET',
+                path: path,
+                headers: headers,
+                params: params,
+                response_type: Models::VariableList
+            )
+        end
+
+        
+        # Create a new function variable. These variables can be accessed within
+        # function in the `env` object under the request variable.
+        #
+        # @param [String] function_id Function unique ID.
+        # @param [String] key Variable key. Max length: 255 chars.
+        # @param [String] value Variable value. Max length: 8192 chars.
+        #
+        # @return [Variable]
+        def create_variable(function_id:, key:, value:)
+
+            path = '/functions/{functionId}/variables'
+
+            params = {
+                key: key,
+                value: value,
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+            if function_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+            end
+
+            if key.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if value.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "value"')
+            end
+
+                .gsub('{functionId}', function_id)
+
+            @client.call(
+                method: 'POST',
+                path: path,
+                headers: headers,
+                params: params,
+                response_type: Models::Variable
+            )
+        end
+
+        
+        # Get a variable by its unique ID.
+        #
+        # @param [String] function_id Function unique ID.
+        # @param [String] variable_id Variable unique ID.
+        #
+        # @return [Variable]
+        def get_variable(function_id:, variable_id:)
+
+            path = '/functions/{functionId}/variables/{variableId}'
+
+            params = {
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+            if function_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+            end
+
+            if variable_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "variableId"')
+            end
+
+                .gsub('{functionId}', function_id)
+                .gsub('{variableId}', variable_id)
+
+            @client.call(
+                method: 'GET',
+                path: path,
+                headers: headers,
+                params: params,
+                response_type: Models::Variable
+            )
+        end
+
+        
+        # Update variable by its unique ID.
+        #
+        # @param [String] function_id Function unique ID.
+        # @param [String] variable_id Variable unique ID.
+        # @param [String] key Variable key. Max length: 255 chars.
+        # @param [String] value Variable value. Max length: 8192 chars.
+        #
+        # @return [Variable]
+        def update_variable(function_id:, variable_id:, key:, value: nil)
+
+            path = '/functions/{functionId}/variables/{variableId}'
+
+            params = {
+                key: key,
+                value: value,
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+            if function_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+            end
+
+            if variable_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "variableId"')
+            end
+
+            if key.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+                .gsub('{functionId}', function_id)
+                .gsub('{variableId}', variable_id)
+
+            @client.call(
+                method: 'PUT',
+                path: path,
+                headers: headers,
+                params: params,
+                response_type: Models::Variable
+            )
+        end
+
+        
+        # Delete a variable by its unique ID.
+        #
+        # @param [String] function_id Function unique ID.
+        # @param [String] variable_id Variable unique ID.
+        #
+        # @return []
+        def delete_variable(function_id:, variable_id:)
+
+            path = '/functions/{functionId}/variables/{variableId}'
+
+            params = {
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+            if function_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+            end
+
+            if variable_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "variableId"')
+            end
+
+                .gsub('{functionId}', function_id)
+                .gsub('{variableId}', variable_id)
+
+            @client.call(
+                method: 'DELETE',
+                path: path,
+                headers: headers,
+                params: params,
+            )
+        end
+
+        
     end 
 end

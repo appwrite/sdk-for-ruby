@@ -3,6 +3,9 @@
 module Appwrite
     class Locale < Service
 
+        def initialize(client)
+            @client = client
+        end
 
         # Get the current user location based on IP. Returns an object with user
         # country code, country name, continent name, continent code, ip address and
@@ -14,11 +17,12 @@ module Appwrite
         #
         # @return [Locale]
         def get()
+
             path = '/locale'
 
             params = {
             }
-
+            
             headers = {
                 "content-type": 'application/json',
             }
@@ -32,17 +36,19 @@ module Appwrite
             )
         end
 
+        
         # List of all continents. You can use the locale header to get the data in a
         # supported language.
         #
         #
         # @return [ContinentList]
         def get_continents()
+
             path = '/locale/continents'
 
             params = {
             }
-
+            
             headers = {
                 "content-type": 'application/json',
             }
@@ -56,17 +62,19 @@ module Appwrite
             )
         end
 
+        
         # List of all countries. You can use the locale header to get the data in a
         # supported language.
         #
         #
         # @return [CountryList]
         def get_countries()
+
             path = '/locale/countries'
 
             params = {
             }
-
+            
             headers = {
                 "content-type": 'application/json',
             }
@@ -80,17 +88,19 @@ module Appwrite
             )
         end
 
+        
         # List of all countries that are currently members of the EU. You can use the
         # locale header to get the data in a supported language.
         #
         #
         # @return [CountryList]
         def get_countries_eu()
+
             path = '/locale/countries/eu'
 
             params = {
             }
-
+            
             headers = {
                 "content-type": 'application/json',
             }
@@ -104,17 +114,19 @@ module Appwrite
             )
         end
 
+        
         # List of all countries phone codes. You can use the locale header to get the
         # data in a supported language.
         #
         #
         # @return [PhoneList]
         def get_countries_phones()
+
             path = '/locale/countries/phones'
 
             params = {
             }
-
+            
             headers = {
                 "content-type": 'application/json',
             }
@@ -128,6 +140,7 @@ module Appwrite
             )
         end
 
+        
         # List of all currencies, including currency symbol, name, plural, and
         # decimal digits for all major and minor currencies. You can use the locale
         # header to get the data in a supported language.
@@ -135,11 +148,12 @@ module Appwrite
         #
         # @return [CurrencyList]
         def get_currencies()
+
             path = '/locale/currencies'
 
             params = {
             }
-
+            
             headers = {
                 "content-type": 'application/json',
             }
@@ -153,17 +167,19 @@ module Appwrite
             )
         end
 
+        
         # List of all languages classified by ISO 639-1 including 2-letter code, name
         # in English, and name in the respective language.
         #
         #
         # @return [LanguageList]
         def get_languages()
+
             path = '/locale/languages'
 
             params = {
             }
-
+            
             headers = {
                 "content-type": 'application/json',
             }
@@ -177,5 +193,6 @@ module Appwrite
             )
         end
 
+        
     end 
 end

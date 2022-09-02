@@ -7,8 +7,7 @@ module Appwrite
             attr_reader :bucket_id
             attr_reader :created_at
             attr_reader :updated_at
-            attr_reader :read
-            attr_reader :write
+            attr_reader :permissions
             attr_reader :name
             attr_reader :signature
             attr_reader :mime_type
@@ -21,8 +20,7 @@ module Appwrite
                 bucket_id:,
                 created_at:,
                 updated_at:,
-                read:,
-                write:,
+                permissions:,
                 name:,
                 signature:,
                 mime_type:,
@@ -34,8 +32,7 @@ module Appwrite
                 @bucket_id = bucket_id
                 @created_at = created_at
                 @updated_at = updated_at
-                @read = read
-                @write = write
+                @permissions = permissions
                 @name = name
                 @signature = signature
                 @mime_type = mime_type
@@ -50,8 +47,7 @@ module Appwrite
                     bucket_id: map["bucketId"],
                     created_at: map["$createdAt"],
                     updated_at: map["$updatedAt"],
-                    read: map["$read"],
-                    write: map["$write"],
+                    permissions: map["$permissions"],
                     name: map["name"],
                     signature: map["signature"],
                     mime_type: map["mimeType"],
@@ -67,8 +63,7 @@ module Appwrite
                     "bucketId": @bucket_id,
                     "$createdAt": @created_at,
                     "$updatedAt": @updated_at,
-                    "$read": @read,
-                    "$write": @write,
+                    "$permissions": @permissions,
                     "name": @name,
                     "signature": @signature,
                     "mimeType": @mime_type,

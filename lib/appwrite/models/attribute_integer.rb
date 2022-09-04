@@ -17,10 +17,10 @@ module Appwrite
                 type:,
                 status:,
                 required:,
-                array:,
-                min:,
-                max:,
-                default:
+                array: ,
+                min: ,
+                max: ,
+                default: 
             )
                 @key = key
                 @type = type

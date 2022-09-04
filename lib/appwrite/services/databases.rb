@@ -223,7 +223,7 @@ module Appwrite
         # @param [] document_security Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](/docs/permissions).
         #
         # @return [Collection]
-        def create_collection(database_id:, collection_id:, name:, permissions:, document_security:)
+        def create_collection(database_id:, collection_id:, name:, permissions: nil, document_security: nil)
 
             path = '/databases/{databaseId}/collections'
 
@@ -247,14 +247,6 @@ module Appwrite
 
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
-            end
-
-            if permissions.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "permissions"')
-            end
-
-            if document_security.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "documentSecurity"')
             end
 
                 .gsub('{databaseId}', database_id)
@@ -312,12 +304,12 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID.
         # @param [String] name Collection name. Max length: 128 chars.
-        # @param [] document_security Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](/docs/permissions).
         # @param [Array] permissions An array of permission strings. By default the current permission are inherited. [Learn more about permissions](/docs/permissions).
+        # @param [] document_security Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](/docs/permissions).
         # @param [] enabled Is collection enabled?
         #
         # @return [Collection]
-        def update_collection(database_id:, collection_id:, name:, document_security:, permissions: nil, enabled: nil)
+        def update_collection(database_id:, collection_id:, name:, permissions: nil, document_security: nil, enabled: nil)
 
             path = '/databases/{databaseId}/collections/{collectionId}'
 
@@ -341,10 +333,6 @@ module Appwrite
 
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
-            end
-
-            if document_security.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "documentSecurity"')
             end
 
                 .gsub('{databaseId}', database_id)
@@ -494,7 +482,7 @@ module Appwrite
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
-        # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        # @param [String] default Default value for the attribute in ISO 8601 format. Cannot be set when attribute is required.
         # @param [] array Is attribute an array?
         #
         # @return [AttributeDatetime]

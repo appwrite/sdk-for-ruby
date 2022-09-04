@@ -14,7 +14,7 @@ module Appwrite
                 type:,
                 status:,
                 attributes:,
-                orders:
+                orders: 
             )
                 @key = key
                 @type = type

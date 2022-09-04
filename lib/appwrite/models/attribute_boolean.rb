@@ -15,8 +15,8 @@ module Appwrite
                 type:,
                 status:,
                 required:,
-                array:,
-                default:
+                array: ,
+                default: 
             )
                 @key = key
                 @type = type

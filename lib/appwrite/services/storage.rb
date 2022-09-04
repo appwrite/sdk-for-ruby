@@ -41,8 +41,8 @@ module Appwrite
         #
         # @param [String] bucket_id Unique Id. Choose your own unique ID or pass the string `unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] name Bucket name
-        # @param [] file_security Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](/docs/permissions).
         # @param [Array] permissions An array of permission strings. By default no user is granted with any permissions. [Learn more about permissions](/docs/permissions).
+        # @param [] file_security Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](/docs/permissions).
         # @param [] enabled Is bucket enabled?
         # @param [Integer] maximum_file_size Maximum file size allowed in bytes. Maximum allowed value is 30MB. For self-hosted setups you can change the max limit by changing the `_APP_STORAGE_LIMIT` environment variable. [Learn more about storage environment variables](docs/environment-variables#storage)
         # @param [Array] allowed_file_extensions Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long.
@@ -51,7 +51,7 @@ module Appwrite
         # @param [] antivirus Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it&#039;s enabled
         #
         # @return [Bucket]
-        def create_bucket(bucket_id:, name:, file_security:, permissions: nil, enabled: nil, maximum_file_size: nil, allowed_file_extensions: nil, compression: nil, encryption: nil, antivirus: nil)
+        def create_bucket(bucket_id:, name:, permissions: nil, file_security: nil, enabled: nil, maximum_file_size: nil, allowed_file_extensions: nil, compression: nil, encryption: nil, antivirus: nil)
 
             path = '/storage/buckets'
 
@@ -77,10 +77,6 @@ module Appwrite
 
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
-            end
-
-            if file_security.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "fileSecurity"')
             end
 
 
@@ -130,8 +126,8 @@ module Appwrite
         #
         # @param [String] bucket_id Bucket unique ID.
         # @param [String] name Bucket name
-        # @param [] file_security Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](/docs/permissions).
         # @param [Array] permissions An array of permission strings. By default the current permissions are inherited. [Learn more about permissions](/docs/permissions).
+        # @param [] file_security Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](/docs/permissions).
         # @param [] enabled Is bucket enabled?
         # @param [Integer] maximum_file_size Maximum file size allowed in bytes. Maximum allowed value is 30MB. For self hosted version you can change the limit by changing _APP_STORAGE_LIMIT environment variable. [Learn more about storage environment variables](docs/environment-variables#storage)
         # @param [Array] allowed_file_extensions Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long.
@@ -140,7 +136,7 @@ module Appwrite
         # @param [] antivirus Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it&#039;s enabled
         #
         # @return [Bucket]
-        def update_bucket(bucket_id:, name:, file_security:, permissions: nil, enabled: nil, maximum_file_size: nil, allowed_file_extensions: nil, compression: nil, encryption: nil, antivirus: nil)
+        def update_bucket(bucket_id:, name:, permissions: nil, file_security: nil, enabled: nil, maximum_file_size: nil, allowed_file_extensions: nil, compression: nil, encryption: nil, antivirus: nil)
 
             path = '/storage/buckets/{bucketId}'
 
@@ -165,10 +161,6 @@ module Appwrite
 
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
-            end
-
-            if file_security.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "fileSecurity"')
             end
 
                 .gsub('{bucketId}', bucket_id)

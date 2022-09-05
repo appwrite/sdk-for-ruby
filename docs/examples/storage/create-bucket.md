@@ -9,6 +9,6 @@ client
 
 storage = Appwrite::Storage.new(client)
 
-response = storage.create_bucket(bucket_id: '[BUCKET_ID]', name: '[NAME]', permission: 'file')
+response = storage.create_bucket(bucket_id: '[BUCKET_ID]', name: '[NAME]')
 
 puts response.inspect

@@ -6,12 +6,11 @@ module Appwrite
             attr_reader :id
             attr_reader :created_at
             attr_reader :updated_at
-            attr_reader :read
-            attr_reader :write
+            attr_reader :permissions
             attr_reader :database_id
             attr_reader :name
             attr_reader :enabled
-            attr_reader :permission
+            attr_reader :document_security
             attr_reader :attributes
             attr_reader :indexes
 
@@ -19,24 +18,22 @@ module Appwrite
                 id:,
                 created_at:,
                 updated_at:,
-                read:,
-                write:,
+                permissions:,
                 database_id:,
                 name:,
                 enabled:,
-                permission:,
+                document_security:,
                 attributes:,
                 indexes:
             )
                 @id = id
                 @created_at = created_at
                 @updated_at = updated_at
-                @read = read
-                @write = write
+                @permissions = permissions
                 @database_id = database_id
                 @name = name
                 @enabled = enabled
-                @permission = permission
+                @document_security = document_security
                 @attributes = attributes
                 @indexes = indexes
             end
@@ -46,12 +43,11 @@ module Appwrite
                     id: map["$id"],
                     created_at: map["$createdAt"],
                     updated_at: map["$updatedAt"],
-                    read: map["$read"],
-                    write: map["$write"],
+                    permissions: map["$permissions"],
                     database_id: map["databaseId"],
                     name: map["name"],
                     enabled: map["enabled"],
-                    permission: map["permission"],
+                    document_security: map["documentSecurity"],
                     attributes: map["attributes"],
                     indexes: map["indexes"].map { |it| Index.from(map: it) }
                 )
@@ -62,12 +58,11 @@ module Appwrite
                     "$id": @id,
                     "$createdAt": @created_at,
                     "$updatedAt": @updated_at,
-                    "$read": @read,
-                    "$write": @write,
+                    "$permissions": @permissions,
                     "databaseId": @database_id,
                     "name": @name,
                     "enabled": @enabled,
-                    "permission": @permission,
+                    "documentSecurity": @document_security,
                     "attributes": @attributes,
                     "indexes": @indexes.map { |it| it.to_map }
                 }

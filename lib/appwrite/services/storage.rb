@@ -3,30 +3,26 @@
 module Appwrite
     class Storage < Service
 
+        def initialize(client)
+            @client = client
+        end
 
         # Get a list of all the storage buckets. You can use the query params to
         # filter your results.
         #
-        # @param [string] search Search term to filter your list results. Max length: 256 chars.
-        # @param [number] limit Results limit value. By default will return maximum 25 results. Maximum of 100 results allowed per request.
-        # @param [number] offset Results offset. The default value is 0. Use this param to manage pagination.
-        # @param [string] cursor ID of the bucket used as the starting point for the query, excluding the bucket itself. Should be used for efficient pagination when working with large sets of data.
-        # @param [string] cursor_direction Direction of the cursor, can be either &#039;before&#039; or &#039;after&#039;.
-        # @param [string] order_type Order result by ASC or DESC order.
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: enabled, name, fileSecurity, maximumFileSize, encryption, antivirus
+        # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [BucketList]
-        def list_buckets(search: nil, limit: nil, offset: nil, cursor: nil, cursor_direction: nil, order_type: nil)
+        def list_buckets(queries: nil, search: nil)
+
             path = '/storage/buckets'
 
             params = {
+                queries: queries,
                 search: search,
-                limit: limit,
-                offset: offset,
-                cursor: cursor,
-                cursorDirection: cursor_direction,
-                orderType: order_type,
             }
-
+            
             headers = {
                 "content-type": 'application/json',
             }
@@ -40,21 +36,41 @@ module Appwrite
             )
         end
 
+        
         # Create a new storage bucket.
         #
-        # @param [string] bucket_id Unique Id. Choose your own unique ID or pass the string `unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
-        # @param [string] name Bucket name
-        # @param [string] permission Permissions type model to use for reading files in this bucket. You can use bucket-level permission set once on the bucket using the `read` and `write` params, or you can set file-level permission where each file read and write params will decide who has access to read and write to each file individually. [learn more about permissions](/docs/permissions) and get a full list of available permissions.
-        # @param [array] read An array of strings with read permissions. By default no user is granted with any read permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions.
-        # @param [array] write An array of strings with write permissions. By default no user is granted with any write permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions.
-        # @param [boolean] enabled Is bucket enabled?
-        # @param [number] maximum_file_size Maximum file size allowed in bytes. Maximum allowed value is 30MB. For self-hosted setups you can change the max limit by changing the `_APP_STORAGE_LIMIT` environment variable. [Learn more about storage environment variables](docs/environment-variables#storage)
-        # @param [array] allowed_file_extensions Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long.
-        # @param [boolean] encryption Is encryption enabled? For file size above 20MB encryption is skipped even if it&#039;s enabled
-        # @param [boolean] antivirus Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it&#039;s enabled
+        # @param [String] bucket_id Unique Id. Choose your own unique ID or pass the string `unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
+        # @param [String] name Bucket name
+        # @param [Array] permissions An array of permission strings. By default no user is granted with any permissions. [Learn more about permissions](/docs/permissions).
+        # @param [] file_security Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](/docs/permissions).
+        # @param [] enabled Is bucket enabled?
+        # @param [Integer] maximum_file_size Maximum file size allowed in bytes. Maximum allowed value is 30MB. For self-hosted setups you can change the max limit by changing the `_APP_STORAGE_LIMIT` environment variable. [Learn more about storage environment variables](docs/environment-variables#storage)
+        # @param [Array] allowed_file_extensions Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long.
+        # @param [String] compression Compression algorithm choosen for compression. Can be one of none,  [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd), For file size above 20MB compression is skipped even if it&#039;s enabled
+        # @param [] encryption Is encryption enabled? For file size above 20MB encryption is skipped even if it&#039;s enabled
+        # @param [] antivirus Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it&#039;s enabled
         #
         # @return [Bucket]
-        def create_bucket(bucket_id:, name:, permission:, read: nil, write: nil, enabled: nil, maximum_file_size: nil, allowed_file_extensions: nil, encryption: nil, antivirus: nil)
+        def create_bucket(bucket_id:, name:, permissions: nil, file_security: nil, enabled: nil, maximum_file_size: nil, allowed_file_extensions: nil, compression: nil, encryption: nil, antivirus: nil)
+
+            path = '/storage/buckets'
+
+            params = {
+                bucketId: bucket_id,
+                name: name,
+                permissions: permissions,
+                fileSecurity: file_security,
+                enabled: enabled,
+                maximumFileSize: maximum_file_size,
+                allowedFileExtensions: allowed_file_extensions,
+                compression: compression,
+                encryption: encryption,
+                antivirus: antivirus,
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
             if bucket_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
@@ -63,28 +79,6 @@ module Appwrite
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
-            if permission.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "permission"')
-            end
-
-            path = '/storage/buckets'
-
-            params = {
-                bucketId: bucket_id,
-                name: name,
-                permission: permission,
-                read: read,
-                write: write,
-                enabled: enabled,
-                maximumFileSize: maximum_file_size,
-                allowedFileExtensions: allowed_file_extensions,
-                encryption: encryption,
-                antivirus: antivirus,
-            }
-
-            headers = {
-                "content-type": 'application/json',
-            }
 
             @client.call(
                 method: 'POST',
@@ -95,26 +89,28 @@ module Appwrite
             )
         end
 
+        
         # Get a storage bucket by its unique ID. This endpoint response returns a
         # JSON object with the storage bucket metadata.
         #
-        # @param [string] bucket_id Bucket unique ID.
+        # @param [String] bucket_id Bucket unique ID.
         #
         # @return [Bucket]
         def get_bucket(bucket_id:)
+
+            path = '/storage/buckets/{bucketId}'
+
+            params = {
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
             if bucket_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
-            path = '/storage/buckets/{bucketId}'
                 .gsub('{bucketId}', bucket_id)
-
-            params = {
-            }
-
-            headers = {
-                "content-type": 'application/json',
-            }
 
             @client.call(
                 method: 'GET',
@@ -125,21 +121,40 @@ module Appwrite
             )
         end
 
+        
         # Update a storage bucket by its unique ID.
         #
-        # @param [string] bucket_id Bucket unique ID.
-        # @param [string] name Bucket name
-        # @param [string] permission Permissions type model to use for reading files in this bucket. You can use bucket-level permission set once on the bucket using the `read` and `write` params, or you can set file-level permission where each file read and write params will decide who has access to read and write to each file individually. [learn more about permissions](/docs/permissions) and get a full list of available permissions.
-        # @param [array] read An array of strings with read permissions. By default inherits the existing read permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions.
-        # @param [array] write An array of strings with write permissions. By default inherits the existing write permissions. [learn more about permissions](/docs/permissions) and get a full list of available permissions.
-        # @param [boolean] enabled Is bucket enabled?
-        # @param [number] maximum_file_size Maximum file size allowed in bytes. Maximum allowed value is 30MB. For self hosted version you can change the limit by changing _APP_STORAGE_LIMIT environment variable. [Learn more about storage environment variables](docs/environment-variables#storage)
-        # @param [array] allowed_file_extensions Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long.
-        # @param [boolean] encryption Is encryption enabled? For file size above 20MB encryption is skipped even if it&#039;s enabled
-        # @param [boolean] antivirus Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it&#039;s enabled
+        # @param [String] bucket_id Bucket unique ID.
+        # @param [String] name Bucket name
+        # @param [Array] permissions An array of permission strings. By default the current permissions are inherited. [Learn more about permissions](/docs/permissions).
+        # @param [] file_security Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](/docs/permissions).
+        # @param [] enabled Is bucket enabled?
+        # @param [Integer] maximum_file_size Maximum file size allowed in bytes. Maximum allowed value is 30MB. For self hosted version you can change the limit by changing _APP_STORAGE_LIMIT environment variable. [Learn more about storage environment variables](docs/environment-variables#storage)
+        # @param [Array] allowed_file_extensions Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long.
+        # @param [String] compression Compression algorithm choosen for compression. Can be one of none, [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd), For file size above 20MB compression is skipped even if it&#039;s enabled
+        # @param [] encryption Is encryption enabled? For file size above 20MB encryption is skipped even if it&#039;s enabled
+        # @param [] antivirus Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it&#039;s enabled
         #
         # @return [Bucket]
-        def update_bucket(bucket_id:, name:, permission:, read: nil, write: nil, enabled: nil, maximum_file_size: nil, allowed_file_extensions: nil, encryption: nil, antivirus: nil)
+        def update_bucket(bucket_id:, name:, permissions: nil, file_security: nil, enabled: nil, maximum_file_size: nil, allowed_file_extensions: nil, compression: nil, encryption: nil, antivirus: nil)
+
+            path = '/storage/buckets/{bucketId}'
+
+            params = {
+                name: name,
+                permissions: permissions,
+                fileSecurity: file_security,
+                enabled: enabled,
+                maximumFileSize: maximum_file_size,
+                allowedFileExtensions: allowed_file_extensions,
+                compression: compression,
+                encryption: encryption,
+                antivirus: antivirus,
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
             if bucket_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
@@ -148,28 +163,7 @@ module Appwrite
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
-            if permission.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "permission"')
-            end
-
-            path = '/storage/buckets/{bucketId}'
                 .gsub('{bucketId}', bucket_id)
-
-            params = {
-                name: name,
-                permission: permission,
-                read: read,
-                write: write,
-                enabled: enabled,
-                maximumFileSize: maximum_file_size,
-                allowedFileExtensions: allowed_file_extensions,
-                encryption: encryption,
-                antivirus: antivirus,
-            }
-
-            headers = {
-                "content-type": 'application/json',
-            }
 
             @client.call(
                 method: 'PUT',
@@ -180,25 +174,27 @@ module Appwrite
             )
         end
 
+        
         # Delete a storage bucket by its unique ID.
         #
-        # @param [string] bucket_id Bucket unique ID.
+        # @param [String] bucket_id Bucket unique ID.
         #
         # @return []
         def delete_bucket(bucket_id:)
+
+            path = '/storage/buckets/{bucketId}'
+
+            params = {
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
             if bucket_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
-            path = '/storage/buckets/{bucketId}'
                 .gsub('{bucketId}', bucket_id)
-
-            params = {
-            }
-
-            headers = {
-                "content-type": 'application/json',
-            }
 
             @client.call(
                 method: 'DELETE',
@@ -208,39 +204,33 @@ module Appwrite
             )
         end
 
+        
         # Get a list of all the user files. You can use the query params to filter
         # your results. On admin mode, this endpoint will return a list of all of the
         # project's files. [Learn more about different API modes](/docs/admin).
         #
-        # @param [string] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
-        # @param [string] search Search term to filter your list results. Max length: 256 chars.
-        # @param [number] limit Maximum number of files to return in response. By default will return maximum 25 results. Maximum of 100 results allowed per request.
-        # @param [number] offset Offset value. The default value is 0. Use this param to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination)
-        # @param [string] cursor ID of the file used as the starting point for the query, excluding the file itself. Should be used for efficient pagination when working with large sets of data. [learn more about pagination](https://appwrite.io/docs/pagination)
-        # @param [string] cursor_direction Direction of the cursor, can be either &#039;before&#039; or &#039;after&#039;.
-        # @param [string] order_type Order result by ASC or DESC order.
+        # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, signature, mimeType, sizeOriginal, chunksTotal, chunksUploaded
+        # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [FileList]
-        def list_files(bucket_id:, search: nil, limit: nil, offset: nil, cursor: nil, cursor_direction: nil, order_type: nil)
+        def list_files(bucket_id:, queries: nil, search: nil)
+
+            path = '/storage/buckets/{bucketId}/files'
+
+            params = {
+                queries: queries,
+                search: search,
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
             if bucket_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
-            path = '/storage/buckets/{bucketId}/files'
                 .gsub('{bucketId}', bucket_id)
-
-            params = {
-                search: search,
-                limit: limit,
-                offset: offset,
-                cursor: cursor,
-                cursorDirection: cursor_direction,
-                orderType: order_type,
-            }
-
-            headers = {
-                "content-type": 'application/json',
-            }
 
             @client.call(
                 method: 'GET',
@@ -251,10 +241,11 @@ module Appwrite
             )
         end
 
+        
         # Create a new file. Before using this route, you should create a new bucket
         # resource using either a [server
-        # integration](/docs/server/database#storageCreateBucket) API or directly
-        # from your Appwrite console.
+        # integration](/docs/server/storage#storageCreateBucket) API or directly from
+        # your Appwrite console.
         # 
         # Larger files should be uploaded using multiple requests with the
         # [content-range](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Range)
@@ -270,14 +261,25 @@ module Appwrite
         # chunking logic will be managed by the SDK internally.
         # 
         #
-        # @param [string] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
-        # @param [string] file_id File ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
+        # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
+        # @param [String] file_id File ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [file] file Binary file.
-        # @param [array] read An array of strings with read permissions. By default only the current user is granted with read permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions.
-        # @param [array] write An array of strings with write permissions. By default only the current user is granted with write permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions.
+        # @param [Array] permissions An array of permission strings. By default the current user is granted with all permissions. [Learn more about permissions](/docs/permissions).
         #
         # @return [File]
-        def create_file(bucket_id:, file_id:, file:, read: nil, write: nil, on_progress: nil)
+        def create_file(bucket_id:, file_id:, file:, permissions: nil, on_progress: nil)
+
+            path = '/storage/buckets/{bucketId}/files'
+
+            params = {
+                fileId: file_id,
+                file: file,
+                permissions: permissions,
+            }
+            
+            headers = {
+                "content-type": 'multipart/form-data',
+            }
             if bucket_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
@@ -290,19 +292,7 @@ module Appwrite
                 raise Appwrite::Exception.new('Missing required parameter: "file"')
             end
 
-            path = '/storage/buckets/{bucketId}/files'
                 .gsub('{bucketId}', bucket_id)
-
-            params = {
-                fileId: file_id,
-                file: file,
-                read: read,
-                write: write,
-            }
-
-            headers = {
-                "content-type": 'multipart/form-data',
-            }
 
             id_param_name = "fileId"
             param_name = 'file'
@@ -318,14 +308,24 @@ module Appwrite
             )
         end
 
+        
         # Get a file by its unique ID. This endpoint response returns a JSON object
         # with the file metadata.
         #
-        # @param [string] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
-        # @param [string] file_id File ID.
+        # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
+        # @param [String] file_id File ID.
         #
         # @return [File]
         def get_file(bucket_id:, file_id:)
+
+            path = '/storage/buckets/{bucketId}/files/{fileId}'
+
+            params = {
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
             if bucket_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
@@ -334,16 +334,8 @@ module Appwrite
                 raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
 
-            path = '/storage/buckets/{bucketId}/files/{fileId}'
                 .gsub('{bucketId}', bucket_id)
                 .gsub('{fileId}', file_id)
-
-            params = {
-            }
-
-            headers = {
-                "content-type": 'application/json',
-            }
 
             @client.call(
                 method: 'GET',
@@ -354,16 +346,26 @@ module Appwrite
             )
         end
 
+        
         # Update a file by its unique ID. Only users with write permissions have
         # access to update this resource.
         #
-        # @param [string] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
-        # @param [string] file_id File unique ID.
-        # @param [array] read An array of strings with read permissions. By default no user is granted with any read permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions.
-        # @param [array] write An array of strings with write permissions. By default no user is granted with any write permissions. [learn more about permissions](https://appwrite.io/docs/permissions) and get a full list of available permissions.
+        # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
+        # @param [String] file_id File unique ID.
+        # @param [Array] permissions An array of permission string. By default the current permissions are inherited. [Learn more about permissions](/docs/permissions).
         #
         # @return [File]
-        def update_file(bucket_id:, file_id:, read: nil, write: nil)
+        def update_file(bucket_id:, file_id:, permissions: nil)
+
+            path = '/storage/buckets/{bucketId}/files/{fileId}'
+
+            params = {
+                permissions: permissions,
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
             if bucket_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
@@ -372,18 +374,8 @@ module Appwrite
                 raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
 
-            path = '/storage/buckets/{bucketId}/files/{fileId}'
                 .gsub('{bucketId}', bucket_id)
                 .gsub('{fileId}', file_id)
-
-            params = {
-                read: read,
-                write: write,
-            }
-
-            headers = {
-                "content-type": 'application/json',
-            }
 
             @client.call(
                 method: 'PUT',
@@ -394,14 +386,24 @@ module Appwrite
             )
         end
 
+        
         # Delete a file by its unique ID. Only users with write permissions have
         # access to delete this resource.
         #
-        # @param [string] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
-        # @param [string] file_id File ID.
+        # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
+        # @param [String] file_id File ID.
         #
         # @return []
         def delete_file(bucket_id:, file_id:)
+
+            path = '/storage/buckets/{bucketId}/files/{fileId}'
+
+            params = {
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
             if bucket_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
@@ -410,16 +412,8 @@ module Appwrite
                 raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
 
-            path = '/storage/buckets/{bucketId}/files/{fileId}'
                 .gsub('{bucketId}', bucket_id)
                 .gsub('{fileId}', file_id)
-
-            params = {
-            }
-
-            headers = {
-                "content-type": 'application/json',
-            }
 
             @client.call(
                 method: 'DELETE',
@@ -429,15 +423,25 @@ module Appwrite
             )
         end
 
+        
         # Get a file content by its unique ID. The endpoint response return with a
         # 'Content-Disposition: attachment' header that tells the browser to start
         # downloading the file to user downloads directory.
         #
-        # @param [string] bucket_id Storage bucket ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
-        # @param [string] file_id File ID.
+        # @param [String] bucket_id Storage bucket ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
+        # @param [String] file_id File ID.
         #
         # @return []
         def get_file_download(bucket_id:, file_id:)
+
+            path = '/storage/buckets/{bucketId}/files/{fileId}/download'
+
+            params = {
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
             if bucket_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
@@ -446,16 +450,8 @@ module Appwrite
                 raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
 
-            path = '/storage/buckets/{bucketId}/files/{fileId}/download'
                 .gsub('{bucketId}', bucket_id)
                 .gsub('{fileId}', file_id)
-
-            params = {
-            }
-
-            headers = {
-                "content-type": 'application/json',
-            }
 
             @client.call(
                 method: 'GET',
@@ -465,39 +461,31 @@ module Appwrite
             )
         end
 
+        
         # Get a file preview image. Currently, this method supports preview for image
         # files (jpg, png, and gif), other supported formats, like pdf, docs, slides,
         # and spreadsheets, will return the file icon image. You can also pass query
         # string arguments for cutting and resizing your preview image. Preview is
         # supported only for image files smaller than 10MB.
         #
-        # @param [string] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
-        # @param [string] file_id File ID
-        # @param [number] width Resize preview image width, Pass an integer between 0 to 4000.
-        # @param [number] height Resize preview image height, Pass an integer between 0 to 4000.
-        # @param [string] gravity Image crop gravity. Can be one of center,top-left,top,top-right,left,right,bottom-left,bottom,bottom-right
-        # @param [number] quality Preview image quality. Pass an integer between 0 to 100. Defaults to 100.
-        # @param [number] border_width Preview image border in pixels. Pass an integer between 0 to 100. Defaults to 0.
-        # @param [string] border_color Preview image border color. Use a valid HEX color, no # is needed for prefix.
-        # @param [number] border_radius Preview image border radius in pixels. Pass an integer between 0 to 4000.
-        # @param [number] opacity Preview image opacity. Only works with images having an alpha channel (like png). Pass a number between 0 to 1.
-        # @param [number] rotation Preview image rotation in degrees. Pass an integer between -360 and 360.
-        # @param [string] background Preview image background color. Only works with transparent images (png). Use a valid HEX color, no # is needed for prefix.
-        # @param [string] output Output format type (jpeg, jpg, png, gif and webp).
+        # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
+        # @param [String] file_id File ID
+        # @param [Integer] width Resize preview image width, Pass an integer between 0 to 4000.
+        # @param [Integer] height Resize preview image height, Pass an integer between 0 to 4000.
+        # @param [String] gravity Image crop gravity. Can be one of center,top-left,top,top-right,left,right,bottom-left,bottom,bottom-right
+        # @param [Integer] quality Preview image quality. Pass an integer between 0 to 100. Defaults to 100.
+        # @param [Integer] border_width Preview image border in pixels. Pass an integer between 0 to 100. Defaults to 0.
+        # @param [String] border_color Preview image border color. Use a valid HEX color, no # is needed for prefix.
+        # @param [Integer] border_radius Preview image border radius in pixels. Pass an integer between 0 to 4000.
+        # @param [Float] opacity Preview image opacity. Only works with images having an alpha channel (like png). Pass a number between 0 to 1.
+        # @param [Integer] rotation Preview image rotation in degrees. Pass an integer between -360 and 360.
+        # @param [String] background Preview image background color. Only works with transparent images (png). Use a valid HEX color, no # is needed for prefix.
+        # @param [String] output Output format type (jpeg, jpg, png, gif and webp).
         #
         # @return []
         def get_file_preview(bucket_id:, file_id:, width: nil, height: nil, gravity: nil, quality: nil, border_width: nil, border_color: nil, border_radius: nil, opacity: nil, rotation: nil, background: nil, output: nil)
-            if bucket_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
-            end
-
-            if file_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "fileId"')
-            end
 
             path = '/storage/buckets/{bucketId}/files/{fileId}/preview'
-                .gsub('{bucketId}', bucket_id)
-                .gsub('{fileId}', file_id)
 
             params = {
                 width: width,
@@ -512,28 +500,10 @@ module Appwrite
                 background: background,
                 output: output,
             }
-
+            
             headers = {
                 "content-type": 'application/json',
             }
-
-            @client.call(
-                method: 'GET',
-                path: path,
-                headers: headers,
-                params: params,
-            )
-        end
-
-        # Get a file content by its unique ID. This endpoint is similar to the
-        # download method but returns with no  'Content-Disposition: attachment'
-        # header.
-        #
-        # @param [string] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
-        # @param [string] file_id File ID.
-        #
-        # @return []
-        def get_file_view(bucket_id:, file_id:)
             if bucket_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
@@ -542,16 +512,8 @@ module Appwrite
                 raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
 
-            path = '/storage/buckets/{bucketId}/files/{fileId}/view'
                 .gsub('{bucketId}', bucket_id)
                 .gsub('{fileId}', file_id)
-
-            params = {
-            }
-
-            headers = {
-                "content-type": 'application/json',
-            }
 
             @client.call(
                 method: 'GET',
@@ -561,5 +523,44 @@ module Appwrite
             )
         end
 
+        
+        # Get a file content by its unique ID. This endpoint is similar to the
+        # download method but returns with no  'Content-Disposition: attachment'
+        # header.
+        #
+        # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
+        # @param [String] file_id File ID.
+        #
+        # @return []
+        def get_file_view(bucket_id:, file_id:)
+
+            path = '/storage/buckets/{bucketId}/files/{fileId}/view'
+
+            params = {
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+            if bucket_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
+            end
+
+            if file_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "fileId"')
+            end
+
+                .gsub('{bucketId}', bucket_id)
+                .gsub('{fileId}', file_id)
+
+            @client.call(
+                method: 'GET',
+                path: path,
+                headers: headers,
+                params: params,
+            )
+        end
+
+        
     end 
 end

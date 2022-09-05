@@ -12,8 +12,11 @@ module Appwrite
             @chunk_size = 5*1024*1024
             @headers = {
                 'user-agent' => RUBY_PLATFORM + ':ruby-' + RUBY_VERSION,
-                'x-sdk-version' => 'appwrite:ruby:6.0.0',                
-                'X-Appwrite-Response-Format' => '0.15.0'
+                'x-sdk-name'=> 'Ruby',
+                'x-sdk-platform'=> 'server',
+                'x-sdk-language'=> 'ruby',
+                'x-sdk-version'=> '7.0.0-RC1',                
+                'X-Appwrite-Response-Format' => '1.0.0-RC1'
             }
             @endpoint = 'https://HOSTNAME/v1'
         end

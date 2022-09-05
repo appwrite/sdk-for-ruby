@@ -7,6 +7,9 @@ module Appwrite
             attr_reader :created_at
             attr_reader :updated_at
             attr_reader :name
+            attr_reader :password
+            attr_reader :hash
+            attr_reader :hash_options
             attr_reader :registration
             attr_reader :status
             attr_reader :password_update
@@ -21,6 +24,9 @@ module Appwrite
                 created_at:,
                 updated_at:,
                 name:,
+                password:,
+                hash:,
+                hash_options:,
                 registration:,
                 status:,
                 password_update:,
@@ -34,6 +40,9 @@ module Appwrite
                 @created_at = created_at
                 @updated_at = updated_at
                 @name = name
+                @password = password
+                @hash = hash
+                @hash_options = hash_options
                 @registration = registration
                 @status = status
                 @password_update = password_update
@@ -50,6 +59,9 @@ module Appwrite
                     created_at: map["$createdAt"],
                     updated_at: map["$updatedAt"],
                     name: map["name"],
+                    password: map["password"],
+                    hash: map["hash"],
+                    hash_options: map["hashOptions"],
                     registration: map["registration"],
                     status: map["status"],
                     password_update: map["passwordUpdate"],
@@ -67,6 +79,9 @@ module Appwrite
                     "$createdAt": @created_at,
                     "$updatedAt": @updated_at,
                     "name": @name,
+                    "password": @password,
+                    "hash": @hash,
+                    "hashOptions": @hash_options,
                     "registration": @registration,
                     "status": @status,
                     "passwordUpdate": @password_update,

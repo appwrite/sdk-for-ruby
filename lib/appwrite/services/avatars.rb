@@ -235,11 +235,10 @@ module Appwrite
         # @param [String] name Full Name. When empty, current user name or email will be used. Max length: 128 chars.
         # @param [Integer] width Image width. Pass an integer between 0 to 2000. Defaults to 100.
         # @param [Integer] height Image height. Pass an integer between 0 to 2000. Defaults to 100.
-        # @param [String] color Changes text color. By default a random color will be picked and stay will persistent to the given name.
         # @param [String] background Changes background color. By default a random color will be picked and stay will persistent to the given name.
         #
         # @return []
-        def get_initials(name: nil, width: nil, height: nil, color: nil, background: nil)
+        def get_initials(name: nil, width: nil, height: nil, background: nil)
 
             path = '/avatars/initials'
 
@@ -247,7 +246,6 @@ module Appwrite
                 name: name,
                 width: width,
                 height: height,
-                color: color,
                 background: background,
             }
             

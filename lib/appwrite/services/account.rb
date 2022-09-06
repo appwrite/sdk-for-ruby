@@ -176,7 +176,7 @@ module Appwrite
         # /account/verification/phone](/docs/client/account#accountCreatePhoneVerification)
         # endpoint to send a confirmation SMS.
         #
-        # @param [String] phone Phone number. Format this number with a leading &#039;+&#039; and a country code, e.g., +16175551212.
+        # @param [String] phone Phone number. Format this number with a leading '+' and a country code, e.g., +16175551212.
         # @param [String] password User password. Must be at least 8 chars.
         #
         # @return [Account]
@@ -424,7 +424,7 @@ module Appwrite
         # Use this endpoint to get a logged in user's session using a Session ID.
         # Inputting 'current' will return the current session being used.
         #
-        # @param [String] session_id Session ID. Use the string &#039;current&#039; to get the current device session.
+        # @param [String] session_id Session ID. Use the string 'current' to get the current device session.
         #
         # @return [Session]
         def get_session(session_id:)
@@ -457,7 +457,7 @@ module Appwrite
         # If session was created using an OAuth provider, this route can be used to
         # "refresh" the access token.
         #
-        # @param [String] session_id Session ID. Use the string &#039;current&#039; to update the current device session.
+        # @param [String] session_id Session ID. Use the string 'current' to update the current device session.
         #
         # @return [Session]
         def update_session(session_id:)
@@ -491,7 +491,7 @@ module Appwrite
         # Session ID argument, only the unique session ID provided is deleted.
         # 
         #
-        # @param [String] session_id Session ID. Use the string &#039;current&#039; to delete the current device session.
+        # @param [String] session_id Session ID. Use the string 'current' to delete the current device session.
         #
         # @return []
         def delete_session(session_id:)

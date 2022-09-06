@@ -269,7 +269,7 @@ module Appwrite
         # @param [String] text Plain text to be converted to QR code image.
         # @param [Integer] size QR code size. Pass an integer between 1 to 1000. Defaults to 400.
         # @param [Integer] margin Margin from edge. Pass an integer between 0 to 10. Defaults to 1.
-        # @param [] download Return resulting image with &#039;Content-Disposition: attachment &#039; headers for the browser to start downloading it. Pass 0 for no header, or 1 for otherwise. Default value is set to 0.
+        # @param [] download Return resulting image with 'Content-Disposition: attachment ' headers for the browser to start downloading it. Pass 0 for no header, or 1 for otherwise. Default value is set to 0.
         #
         # @return []
         def get_qr(text:, size: nil, margin: nil, download: nil)

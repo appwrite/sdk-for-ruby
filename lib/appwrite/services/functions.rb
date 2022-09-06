@@ -41,7 +41,7 @@ module Appwrite
         # [permissions](/docs/permissions) to allow different project users or team
         # with access to execute the function using the client API.
         #
-        # @param [String] function_id Function ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
+        # @param [String] function_id Function ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Function name. Max length: 128 chars.
         # @param [Array] execute An array of strings with execution roles. By default no user is granted with any execute permissions. [learn more about permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 64 characters long.
         # @param [String] runtime Execution runtime.

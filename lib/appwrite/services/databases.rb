@@ -40,7 +40,7 @@ module Appwrite
         # Create a new Database.
         # 
         #
-        # @param [String] database_id Unique Id. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
+        # @param [String] database_id Unique Id. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Collection name. Max length: 128 chars.
         #
         # @return [Database]
@@ -217,7 +217,7 @@ module Appwrite
         # directly from your database console.
         #
         # @param [String] database_id Database ID.
-        # @param [String] collection_id Unique Id. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
+        # @param [String] collection_id Unique Id. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Collection name. Max length: 128 chars.
         # @param [Array] permissions An array of permissions strings. By default no user is granted with any permissions. [Learn more about permissions](/docs/permissions).
         # @param [] document_security Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](/docs/permissions).
@@ -1061,7 +1061,7 @@ module Appwrite
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). Make sure to define attributes before creating documents.
-        # @param [String] document_id Document ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
+        # @param [String] document_id Document ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [Hash] data Document data as JSON object.
         # @param [Array] permissions An array of permissions strings. By default the current user is granted with all permissions. [Learn more about permissions](/docs/permissions).
         #

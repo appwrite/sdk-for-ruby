@@ -39,16 +39,16 @@ module Appwrite
         
         # Create a new storage bucket.
         #
-        # @param [String] bucket_id Unique Id. Choose your own unique ID or pass the string `unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
+        # @param [String] bucket_id Unique Id. Choose your own unique ID or pass the string `unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Bucket name
         # @param [Array] permissions An array of permission strings. By default no user is granted with any permissions. [Learn more about permissions](/docs/permissions).
         # @param [] file_security Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](/docs/permissions).
         # @param [] enabled Is bucket enabled?
         # @param [Integer] maximum_file_size Maximum file size allowed in bytes. Maximum allowed value is 30MB. For self-hosted setups you can change the max limit by changing the `_APP_STORAGE_LIMIT` environment variable. [Learn more about storage environment variables](docs/environment-variables#storage)
         # @param [Array] allowed_file_extensions Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long.
-        # @param [String] compression Compression algorithm choosen for compression. Can be one of none,  [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd), For file size above 20MB compression is skipped even if it&#039;s enabled
-        # @param [] encryption Is encryption enabled? For file size above 20MB encryption is skipped even if it&#039;s enabled
-        # @param [] antivirus Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it&#039;s enabled
+        # @param [String] compression Compression algorithm choosen for compression. Can be one of none,  [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd), For file size above 20MB compression is skipped even if it's enabled
+        # @param [] encryption Is encryption enabled? For file size above 20MB encryption is skipped even if it's enabled
+        # @param [] antivirus Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it's enabled
         #
         # @return [Bucket]
         def create_bucket(bucket_id:, name:, permissions: nil, file_security: nil, enabled: nil, maximum_file_size: nil, allowed_file_extensions: nil, compression: nil, encryption: nil, antivirus: nil)
@@ -131,9 +131,9 @@ module Appwrite
         # @param [] enabled Is bucket enabled?
         # @param [Integer] maximum_file_size Maximum file size allowed in bytes. Maximum allowed value is 30MB. For self hosted version you can change the limit by changing _APP_STORAGE_LIMIT environment variable. [Learn more about storage environment variables](docs/environment-variables#storage)
         # @param [Array] allowed_file_extensions Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long.
-        # @param [String] compression Compression algorithm choosen for compression. Can be one of none, [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd), For file size above 20MB compression is skipped even if it&#039;s enabled
-        # @param [] encryption Is encryption enabled? For file size above 20MB encryption is skipped even if it&#039;s enabled
-        # @param [] antivirus Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it&#039;s enabled
+        # @param [String] compression Compression algorithm choosen for compression. Can be one of none, [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd), For file size above 20MB compression is skipped even if it's enabled
+        # @param [] encryption Is encryption enabled? For file size above 20MB encryption is skipped even if it's enabled
+        # @param [] antivirus Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it's enabled
         #
         # @return [Bucket]
         def update_bucket(bucket_id:, name:, permissions: nil, file_security: nil, enabled: nil, maximum_file_size: nil, allowed_file_extensions: nil, compression: nil, encryption: nil, antivirus: nil)
@@ -262,7 +262,7 @@ module Appwrite
         # 
         #
         # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
-        # @param [String] file_id File ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
+        # @param [String] file_id File ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [file] file Binary file.
         # @param [Array] permissions An array of permission strings. By default the current user is granted with all permissions. [Learn more about permissions](/docs/permissions).
         #

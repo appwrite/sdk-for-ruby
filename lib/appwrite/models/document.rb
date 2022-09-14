@@ -4,21 +4,24 @@ module Appwrite
     module Models
         class Document
             attr_reader :id
-            attr_reader :collection
+            attr_reader :collection_id
+            attr_reader :database_id
             attr_reader :created_at
             attr_reader :updated_at
             attr_reader :permissions
 
             def initialize(
                 id:,
-                collection:,
+                collection_id:,
+                database_id:,
                 created_at:,
                 updated_at:,
                 permissions:,
                 data:
             )
                 @id = id
-                @collection = collection
+                @collection_id = collection_id
+                @database_id = database_id
                 @created_at = created_at
                 @updated_at = updated_at
                 @permissions = permissions
@@ -28,7 +31,8 @@ module Appwrite
             def self.from(map:)
                 Document.new(
                     id: map["$id"],
-                    collection: map["$collection"],
+                    collection_id: map["$collectionId"],
+                    database_id: map["$databaseId"],
                     created_at: map["$createdAt"],
                     updated_at: map["$updatedAt"],
                     permissions: map["$permissions"],
@@ -39,7 +43,8 @@ module Appwrite
             def to_map
                 {
                     "$id": @id,
-                    "$collection": @collection,
+                    "$collectionId": @collection_id,
+                    "$databaseId": @database_id,
                     "$createdAt": @created_at,
                     "$updatedAt": @updated_at,
                     "$permissions": @permissions,

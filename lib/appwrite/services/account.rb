@@ -12,7 +12,6 @@ module Appwrite
         #
         # @return [Account]
         def get()
-
             path = '/account'
 
             params = {
@@ -46,8 +45,15 @@ module Appwrite
         #
         # @return [Account]
         def update_email(email:, password:)
-
             path = '/account/email'
+
+            if email.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "email"')
+            end
+
+            if password.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "password"')
+            end
 
             params = {
                 email: email,
@@ -57,14 +63,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if email.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "email"')
-            end
-
-            if password.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "password"')
-            end
-
 
             @client.call(
                 method: 'PATCH',
@@ -82,8 +80,7 @@ module Appwrite
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Only supported methods are limit and offset
         #
         # @return [LogList]
-        def get_logs(queries: nil)
-
+        def list_logs(queries: nil)
             path = '/account/logs'
 
             params = {
@@ -110,8 +107,11 @@ module Appwrite
         #
         # @return [Account]
         def update_name(name:)
-
             path = '/account/name'
+
+            if name.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "name"')
+            end
 
             params = {
                 name: name,
@@ -120,10 +120,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if name.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "name"')
-            end
-
 
             @client.call(
                 method: 'PATCH',
@@ -144,8 +140,11 @@ module Appwrite
         #
         # @return [Account]
         def update_password(password:, old_password: nil)
-
             path = '/account/password'
+
+            if password.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "password"')
+            end
 
             params = {
                 password: password,
@@ -155,10 +154,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if password.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "password"')
-            end
-
 
             @client.call(
                 method: 'PATCH',
@@ -181,8 +176,15 @@ module Appwrite
         #
         # @return [Account]
         def update_phone(phone:, password:)
-
             path = '/account/phone'
+
+            if phone.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "phone"')
+            end
+
+            if password.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "password"')
+            end
 
             params = {
                 phone: phone,
@@ -192,14 +194,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if phone.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "phone"')
-            end
-
-            if password.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "password"')
-            end
-
 
             @client.call(
                 method: 'PATCH',
@@ -216,7 +210,6 @@ module Appwrite
         #
         # @return [Preferences]
         def get_prefs()
-
             path = '/account/prefs'
 
             params = {
@@ -244,8 +237,11 @@ module Appwrite
         #
         # @return [Account]
         def update_prefs(prefs:)
-
             path = '/account/prefs'
+
+            if prefs.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "prefs"')
+            end
 
             params = {
                 prefs: prefs,
@@ -254,10 +250,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if prefs.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "prefs"')
-            end
-
 
             @client.call(
                 method: 'PATCH',
@@ -283,8 +275,15 @@ module Appwrite
         #
         # @return [Token]
         def create_recovery(email:, url:)
-
             path = '/account/recovery'
+
+            if email.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "email"')
+            end
+
+            if url.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "url"')
+            end
 
             params = {
                 email: email,
@@ -294,14 +293,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if email.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "email"')
-            end
-
-            if url.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "url"')
-            end
-
 
             @client.call(
                 method: 'POST',
@@ -330,8 +321,23 @@ module Appwrite
         #
         # @return [Token]
         def update_recovery(user_id:, secret:, password:, password_again:)
-
             path = '/account/recovery'
+
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            if secret.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "secret"')
+            end
+
+            if password.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "password"')
+            end
+
+            if password_again.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "passwordAgain"')
+            end
 
             params = {
                 userId: user_id,
@@ -343,22 +349,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if user_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "userId"')
-            end
-
-            if secret.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "secret"')
-            end
-
-            if password.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "password"')
-            end
-
-            if password_again.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "passwordAgain"')
-            end
-
 
             @client.call(
                 method: 'PUT',
@@ -375,8 +365,7 @@ module Appwrite
         #
         #
         # @return [SessionList]
-        def get_sessions()
-
+        def list_sessions()
             path = '/account/sessions'
 
             params = {
@@ -402,7 +391,6 @@ module Appwrite
         #
         # @return []
         def delete_sessions()
-
             path = '/account/sessions'
 
             params = {
@@ -428,8 +416,12 @@ module Appwrite
         #
         # @return [Session]
         def get_session(session_id:)
-
             path = '/account/sessions/{sessionId}'
+                .gsub('{sessionId}', session_id)
+
+            if session_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "sessionId"')
+            end
 
             params = {
             }
@@ -437,11 +429,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if session_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "sessionId"')
-            end
-
-                .gsub('{sessionId}', session_id)
 
             @client.call(
                 method: 'GET',
@@ -461,8 +448,12 @@ module Appwrite
         #
         # @return [Session]
         def update_session(session_id:)
-
             path = '/account/sessions/{sessionId}'
+                .gsub('{sessionId}', session_id)
+
+            if session_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "sessionId"')
+            end
 
             params = {
             }
@@ -470,11 +461,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if session_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "sessionId"')
-            end
-
-                .gsub('{sessionId}', session_id)
 
             @client.call(
                 method: 'PATCH',
@@ -495,8 +481,12 @@ module Appwrite
         #
         # @return []
         def delete_session(session_id:)
-
             path = '/account/sessions/{sessionId}'
+                .gsub('{sessionId}', session_id)
+
+            if session_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "sessionId"')
+            end
 
             params = {
             }
@@ -504,11 +494,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if session_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "sessionId"')
-            end
-
-                .gsub('{sessionId}', session_id)
 
             @client.call(
                 method: 'DELETE',
@@ -526,7 +511,6 @@ module Appwrite
         #
         # @return [Account]
         def update_status()
-
             path = '/account/status'
 
             params = {
@@ -566,8 +550,11 @@ module Appwrite
         #
         # @return [Token]
         def create_verification(url:)
-
             path = '/account/verification'
+
+            if url.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "url"')
+            end
 
             params = {
                 url: url,
@@ -576,10 +563,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if url.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "url"')
-            end
-
 
             @client.call(
                 method: 'POST',
@@ -601,8 +584,15 @@ module Appwrite
         #
         # @return [Token]
         def update_verification(user_id:, secret:)
-
             path = '/account/verification'
+
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            if secret.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "secret"')
+            end
 
             params = {
                 userId: user_id,
@@ -612,14 +602,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if user_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "userId"')
-            end
-
-            if secret.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "secret"')
-            end
-
 
             @client.call(
                 method: 'PUT',
@@ -641,7 +623,6 @@ module Appwrite
         #
         # @return [Token]
         def create_phone_verification()
-
             path = '/account/verification/phone'
 
             params = {
@@ -671,8 +652,15 @@ module Appwrite
         #
         # @return [Token]
         def update_phone_verification(user_id:, secret:)
-
             path = '/account/verification/phone'
+
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            if secret.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "secret"')
+            end
 
             params = {
                 userId: user_id,
@@ -682,14 +670,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if user_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "userId"')
-            end
-
-            if secret.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "secret"')
-            end
-
 
             @client.call(
                 method: 'PUT',

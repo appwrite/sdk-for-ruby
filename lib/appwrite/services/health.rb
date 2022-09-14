@@ -12,7 +12,6 @@ module Appwrite
         #
         # @return [HealthStatus]
         def get()
-
             path = '/health'
 
             params = {
@@ -37,7 +36,6 @@ module Appwrite
         #
         # @return [HealthAntivirus]
         def get_antivirus()
-
             path = '/health/anti-virus'
 
             params = {
@@ -63,7 +61,6 @@ module Appwrite
         #
         # @return [HealthStatus]
         def get_cache()
-
             path = '/health/cache'
 
             params = {
@@ -88,7 +85,6 @@ module Appwrite
         #
         # @return [HealthStatus]
         def get_db()
-
             path = '/health/db'
 
             params = {
@@ -115,7 +111,6 @@ module Appwrite
         #
         # @return [HealthQueue]
         def get_queue_certificates()
-
             path = '/health/queue/certificates'
 
             params = {
@@ -140,7 +135,6 @@ module Appwrite
         #
         # @return [HealthQueue]
         def get_queue_functions()
-
             path = '/health/queue/functions'
 
             params = {
@@ -166,7 +160,6 @@ module Appwrite
         #
         # @return [HealthQueue]
         def get_queue_logs()
-
             path = '/health/queue/logs'
 
             params = {
@@ -192,7 +185,6 @@ module Appwrite
         #
         # @return [HealthQueue]
         def get_queue_webhooks()
-
             path = '/health/queue/webhooks'
 
             params = {
@@ -217,7 +209,6 @@ module Appwrite
         #
         # @return [HealthStatus]
         def get_storage_local()
-
             path = '/health/storage/local'
 
             params = {
@@ -248,7 +239,6 @@ module Appwrite
         #
         # @return [HealthTime]
         def get_time()
-
             path = '/health/time'
 
             params = {

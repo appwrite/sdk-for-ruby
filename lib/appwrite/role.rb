@@ -4,12 +4,20 @@ module Appwrite
             'any'
         end
 
-        def self.user(id)
-            "user:#{id}"
+        def self.user(id, status = "")
+            if(status.empty?)
+                "user:#{id}"
+            else
+                "user:#{id}/#{status}"
+            end
         end
         
-        def self.users
-            'users'
+        def self.users(status = "")
+            if(status.empty?)
+                'users'
+            else
+                "users/#{status}"
+            end
         end
         
         def self.guests
@@ -22,6 +30,10 @@ module Appwrite
             else
                 "team:#{id}/#{role}"
             end
+        end
+
+        def self.member(id)
+            "member:#{id}"
         end
         
         def self.status(status)

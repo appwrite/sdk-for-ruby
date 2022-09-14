@@ -18,7 +18,6 @@ module Appwrite
         #
         # @return [TeamList]
         def list(queries: nil, search: nil)
-
             path = '/teams'
 
             params = {
@@ -50,8 +49,15 @@ module Appwrite
         #
         # @return [Team]
         def create(team_id:, name:, roles: nil)
-
             path = '/teams'
+
+            if team_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "teamId"')
+            end
+
+            if name.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "name"')
+            end
 
             params = {
                 teamId: team_id,
@@ -62,14 +68,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if team_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "teamId"')
-            end
-
-            if name.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "name"')
-            end
-
 
             @client.call(
                 method: 'POST',
@@ -87,8 +85,12 @@ module Appwrite
         #
         # @return [Team]
         def get(team_id:)
-
             path = '/teams/{teamId}'
+                .gsub('{teamId}', team_id)
+
+            if team_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "teamId"')
+            end
 
             params = {
             }
@@ -96,11 +98,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if team_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "teamId"')
-            end
-
-                .gsub('{teamId}', team_id)
 
             @client.call(
                 method: 'GET',
@@ -120,8 +117,16 @@ module Appwrite
         #
         # @return [Team]
         def update(team_id:, name:)
-
             path = '/teams/{teamId}'
+                .gsub('{teamId}', team_id)
+
+            if team_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "teamId"')
+            end
+
+            if name.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "name"')
+            end
 
             params = {
                 name: name,
@@ -130,15 +135,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if team_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "teamId"')
-            end
-
-            if name.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "name"')
-            end
-
-                .gsub('{teamId}', team_id)
 
             @client.call(
                 method: 'PUT',
@@ -157,8 +153,12 @@ module Appwrite
         #
         # @return []
         def delete(team_id:)
-
             path = '/teams/{teamId}'
+                .gsub('{teamId}', team_id)
+
+            if team_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "teamId"')
+            end
 
             params = {
             }
@@ -166,11 +166,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if team_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "teamId"')
-            end
-
-                .gsub('{teamId}', team_id)
 
             @client.call(
                 method: 'DELETE',
@@ -189,9 +184,13 @@ module Appwrite
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [MembershipList]
-        def get_memberships(team_id:, queries: nil, search: nil)
-
+        def list_memberships(team_id:, queries: nil, search: nil)
             path = '/teams/{teamId}/memberships'
+                .gsub('{teamId}', team_id)
+
+            if team_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "teamId"')
+            end
 
             params = {
                 queries: queries,
@@ -201,11 +200,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if team_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "teamId"')
-            end
-
-                .gsub('{teamId}', team_id)
 
             @client.call(
                 method: 'GET',
@@ -241,8 +235,24 @@ module Appwrite
         #
         # @return [Membership]
         def create_membership(team_id:, email:, roles:, url:, name: nil)
-
             path = '/teams/{teamId}/memberships'
+                .gsub('{teamId}', team_id)
+
+            if team_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "teamId"')
+            end
+
+            if email.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "email"')
+            end
+
+            if roles.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "roles"')
+            end
+
+            if url.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "url"')
+            end
 
             params = {
                 email: email,
@@ -254,23 +264,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if team_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "teamId"')
-            end
-
-            if email.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "email"')
-            end
-
-            if roles.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "roles"')
-            end
-
-            if url.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "url"')
-            end
-
-                .gsub('{teamId}', team_id)
 
             @client.call(
                 method: 'POST',
@@ -290,8 +283,17 @@ module Appwrite
         #
         # @return [MembershipList]
         def get_membership(team_id:, membership_id:)
-
             path = '/teams/{teamId}/memberships/{membershipId}'
+                .gsub('{teamId}', team_id)
+                .gsub('{membershipId}', membership_id)
+
+            if team_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "teamId"')
+            end
+
+            if membership_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "membershipId"')
+            end
 
             params = {
             }
@@ -299,16 +301,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if team_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "teamId"')
-            end
-
-            if membership_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "membershipId"')
-            end
-
-                .gsub('{teamId}', team_id)
-                .gsub('{membershipId}', membership_id)
 
             @client.call(
                 method: 'GET',
@@ -330,8 +322,21 @@ module Appwrite
         #
         # @return [Membership]
         def update_membership_roles(team_id:, membership_id:, roles:)
-
             path = '/teams/{teamId}/memberships/{membershipId}'
+                .gsub('{teamId}', team_id)
+                .gsub('{membershipId}', membership_id)
+
+            if team_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "teamId"')
+            end
+
+            if membership_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "membershipId"')
+            end
+
+            if roles.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "roles"')
+            end
 
             params = {
                 roles: roles,
@@ -340,20 +345,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if team_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "teamId"')
-            end
-
-            if membership_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "membershipId"')
-            end
-
-            if roles.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "roles"')
-            end
-
-                .gsub('{teamId}', team_id)
-                .gsub('{membershipId}', membership_id)
 
             @client.call(
                 method: 'PATCH',
@@ -374,8 +365,17 @@ module Appwrite
         #
         # @return []
         def delete_membership(team_id:, membership_id:)
-
             path = '/teams/{teamId}/memberships/{membershipId}'
+                .gsub('{teamId}', team_id)
+                .gsub('{membershipId}', membership_id)
+
+            if team_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "teamId"')
+            end
+
+            if membership_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "membershipId"')
+            end
 
             params = {
             }
@@ -383,16 +383,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if team_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "teamId"')
-            end
-
-            if membership_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "membershipId"')
-            end
-
-                .gsub('{teamId}', team_id)
-                .gsub('{membershipId}', membership_id)
 
             @client.call(
                 method: 'DELETE',
@@ -418,8 +408,25 @@ module Appwrite
         #
         # @return [Membership]
         def update_membership_status(team_id:, membership_id:, user_id:, secret:)
-
             path = '/teams/{teamId}/memberships/{membershipId}/status'
+                .gsub('{teamId}', team_id)
+                .gsub('{membershipId}', membership_id)
+
+            if team_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "teamId"')
+            end
+
+            if membership_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "membershipId"')
+            end
+
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            if secret.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "secret"')
+            end
 
             params = {
                 userId: user_id,
@@ -429,24 +436,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if team_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "teamId"')
-            end
-
-            if membership_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "membershipId"')
-            end
-
-            if user_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "userId"')
-            end
-
-            if secret.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "secret"')
-            end
-
-                .gsub('{teamId}', team_id)
-                .gsub('{membershipId}', membership_id)
 
             @client.call(
                 method: 'PATCH',

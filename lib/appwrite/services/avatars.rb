@@ -24,8 +24,12 @@ module Appwrite
         #
         # @return []
         def get_browser(code:, width: nil, height: nil, quality: nil)
-
             path = '/avatars/browsers/{code}'
+                .gsub('{code}', code)
+
+            if code.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "code"')
+            end
 
             params = {
                 width: width,
@@ -36,11 +40,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if code.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "code"')
-            end
-
-                .gsub('{code}', code)
 
             @client.call(
                 method: 'GET',
@@ -68,8 +67,12 @@ module Appwrite
         #
         # @return []
         def get_credit_card(code:, width: nil, height: nil, quality: nil)
-
             path = '/avatars/credit-cards/{code}'
+                .gsub('{code}', code)
+
+            if code.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "code"')
+            end
 
             params = {
                 width: width,
@@ -80,11 +83,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if code.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "code"')
-            end
-
-                .gsub('{code}', code)
 
             @client.call(
                 method: 'GET',
@@ -103,8 +101,11 @@ module Appwrite
         #
         # @return []
         def get_favicon(url:)
-
             path = '/avatars/favicon'
+
+            if url.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "url"')
+            end
 
             params = {
                 url: url,
@@ -113,10 +114,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if url.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "url"')
-            end
-
 
             @client.call(
                 method: 'GET',
@@ -145,8 +142,12 @@ module Appwrite
         #
         # @return []
         def get_flag(code:, width: nil, height: nil, quality: nil)
-
             path = '/avatars/flags/{code}'
+                .gsub('{code}', code)
+
+            if code.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "code"')
+            end
 
             params = {
                 width: width,
@@ -157,11 +158,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if code.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "code"')
-            end
-
-                .gsub('{code}', code)
 
             @client.call(
                 method: 'GET',
@@ -189,8 +185,11 @@ module Appwrite
         #
         # @return []
         def get_image(url:, width: nil, height: nil)
-
             path = '/avatars/image'
+
+            if url.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "url"')
+            end
 
             params = {
                 url: url,
@@ -201,10 +200,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if url.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "url"')
-            end
-
 
             @client.call(
                 method: 'GET',
@@ -239,7 +234,6 @@ module Appwrite
         #
         # @return []
         def get_initials(name: nil, width: nil, height: nil, background: nil)
-
             path = '/avatars/initials'
 
             params = {
@@ -273,8 +267,11 @@ module Appwrite
         #
         # @return []
         def get_qr(text:, size: nil, margin: nil, download: nil)
-
             path = '/avatars/qr'
+
+            if text.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "text"')
+            end
 
             params = {
                 text: text,
@@ -286,10 +283,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if text.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "text"')
-            end
-
 
             @client.call(
                 method: 'GET',

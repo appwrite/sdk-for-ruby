@@ -14,7 +14,7 @@ module Appwrite
             attr_reader :response
             attr_reader :stdout
             attr_reader :stderr
-            attr_reader :time
+            attr_reader :duration
 
             def initialize(
                 id:,
@@ -28,7 +28,7 @@ module Appwrite
                 response:,
                 stdout:,
                 stderr:,
-                time:
+                duration:
             )
                 @id = id
                 @created_at = created_at
@@ -41,7 +41,7 @@ module Appwrite
                 @response = response
                 @stdout = stdout
                 @stderr = stderr
-                @time = time
+                @duration = duration
             end
 
             def self.from(map:)
@@ -57,7 +57,7 @@ module Appwrite
                     response: map["response"],
                     stdout: map["stdout"],
                     stderr: map["stderr"],
-                    time: map["time"]
+                    duration: map["duration"]
                 )
             end
 
@@ -74,7 +74,7 @@ module Appwrite
                     "response": @response,
                     "stdout": @stdout,
                     "stderr": @stderr,
-                    "time": @time
+                    "duration": @duration
                 }
             end
         end

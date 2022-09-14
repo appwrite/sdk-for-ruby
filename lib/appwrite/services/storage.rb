@@ -15,7 +15,6 @@ module Appwrite
         #
         # @return [BucketList]
         def list_buckets(queries: nil, search: nil)
-
             path = '/storage/buckets'
 
             params = {
@@ -52,8 +51,15 @@ module Appwrite
         #
         # @return [Bucket]
         def create_bucket(bucket_id:, name:, permissions: nil, file_security: nil, enabled: nil, maximum_file_size: nil, allowed_file_extensions: nil, compression: nil, encryption: nil, antivirus: nil)
-
             path = '/storage/buckets'
+
+            if bucket_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
+            end
+
+            if name.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "name"')
+            end
 
             params = {
                 bucketId: bucket_id,
@@ -71,14 +77,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if bucket_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
-            end
-
-            if name.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "name"')
-            end
-
 
             @client.call(
                 method: 'POST',
@@ -97,8 +95,12 @@ module Appwrite
         #
         # @return [Bucket]
         def get_bucket(bucket_id:)
-
             path = '/storage/buckets/{bucketId}'
+                .gsub('{bucketId}', bucket_id)
+
+            if bucket_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
+            end
 
             params = {
             }
@@ -106,11 +108,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if bucket_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
-            end
-
-                .gsub('{bucketId}', bucket_id)
 
             @client.call(
                 method: 'GET',
@@ -137,8 +134,16 @@ module Appwrite
         #
         # @return [Bucket]
         def update_bucket(bucket_id:, name:, permissions: nil, file_security: nil, enabled: nil, maximum_file_size: nil, allowed_file_extensions: nil, compression: nil, encryption: nil, antivirus: nil)
-
             path = '/storage/buckets/{bucketId}'
+                .gsub('{bucketId}', bucket_id)
+
+            if bucket_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
+            end
+
+            if name.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "name"')
+            end
 
             params = {
                 name: name,
@@ -155,15 +160,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if bucket_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
-            end
-
-            if name.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "name"')
-            end
-
-                .gsub('{bucketId}', bucket_id)
 
             @client.call(
                 method: 'PUT',
@@ -181,8 +177,12 @@ module Appwrite
         #
         # @return []
         def delete_bucket(bucket_id:)
-
             path = '/storage/buckets/{bucketId}'
+                .gsub('{bucketId}', bucket_id)
+
+            if bucket_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
+            end
 
             params = {
             }
@@ -190,11 +190,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if bucket_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
-            end
-
-                .gsub('{bucketId}', bucket_id)
 
             @client.call(
                 method: 'DELETE',
@@ -215,8 +210,12 @@ module Appwrite
         #
         # @return [FileList]
         def list_files(bucket_id:, queries: nil, search: nil)
-
             path = '/storage/buckets/{bucketId}/files'
+                .gsub('{bucketId}', bucket_id)
+
+            if bucket_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
+            end
 
             params = {
                 queries: queries,
@@ -226,11 +225,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if bucket_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
-            end
-
-                .gsub('{bucketId}', bucket_id)
 
             @client.call(
                 method: 'GET',
@@ -268,8 +262,20 @@ module Appwrite
         #
         # @return [File]
         def create_file(bucket_id:, file_id:, file:, permissions: nil, on_progress: nil)
-
             path = '/storage/buckets/{bucketId}/files'
+                .gsub('{bucketId}', bucket_id)
+
+            if bucket_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
+            end
+
+            if file_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "fileId"')
+            end
+
+            if file.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "file"')
+            end
 
             params = {
                 fileId: file_id,
@@ -280,19 +286,6 @@ module Appwrite
             headers = {
                 "content-type": 'multipart/form-data',
             }
-            if bucket_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
-            end
-
-            if file_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "fileId"')
-            end
-
-            if file.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "file"')
-            end
-
-                .gsub('{bucketId}', bucket_id)
 
             id_param_name = "fileId"
             param_name = 'file'
@@ -317,8 +310,17 @@ module Appwrite
         #
         # @return [File]
         def get_file(bucket_id:, file_id:)
-
             path = '/storage/buckets/{bucketId}/files/{fileId}'
+                .gsub('{bucketId}', bucket_id)
+                .gsub('{fileId}', file_id)
+
+            if bucket_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
+            end
+
+            if file_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "fileId"')
+            end
 
             params = {
             }
@@ -326,16 +328,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if bucket_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
-            end
-
-            if file_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "fileId"')
-            end
-
-                .gsub('{bucketId}', bucket_id)
-                .gsub('{fileId}', file_id)
 
             @client.call(
                 method: 'GET',
@@ -356,8 +348,17 @@ module Appwrite
         #
         # @return [File]
         def update_file(bucket_id:, file_id:, permissions: nil)
-
             path = '/storage/buckets/{bucketId}/files/{fileId}'
+                .gsub('{bucketId}', bucket_id)
+                .gsub('{fileId}', file_id)
+
+            if bucket_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
+            end
+
+            if file_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "fileId"')
+            end
 
             params = {
                 permissions: permissions,
@@ -366,16 +367,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if bucket_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
-            end
-
-            if file_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "fileId"')
-            end
-
-                .gsub('{bucketId}', bucket_id)
-                .gsub('{fileId}', file_id)
 
             @client.call(
                 method: 'PUT',
@@ -395,8 +386,17 @@ module Appwrite
         #
         # @return []
         def delete_file(bucket_id:, file_id:)
-
             path = '/storage/buckets/{bucketId}/files/{fileId}'
+                .gsub('{bucketId}', bucket_id)
+                .gsub('{fileId}', file_id)
+
+            if bucket_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
+            end
+
+            if file_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "fileId"')
+            end
 
             params = {
             }
@@ -404,16 +404,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if bucket_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
-            end
-
-            if file_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "fileId"')
-            end
-
-                .gsub('{bucketId}', bucket_id)
-                .gsub('{fileId}', file_id)
 
             @client.call(
                 method: 'DELETE',
@@ -433,8 +423,17 @@ module Appwrite
         #
         # @return []
         def get_file_download(bucket_id:, file_id:)
-
             path = '/storage/buckets/{bucketId}/files/{fileId}/download'
+                .gsub('{bucketId}', bucket_id)
+                .gsub('{fileId}', file_id)
+
+            if bucket_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
+            end
+
+            if file_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "fileId"')
+            end
 
             params = {
             }
@@ -442,16 +441,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if bucket_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
-            end
-
-            if file_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "fileId"')
-            end
-
-                .gsub('{bucketId}', bucket_id)
-                .gsub('{fileId}', file_id)
 
             @client.call(
                 method: 'GET',
@@ -484,8 +473,17 @@ module Appwrite
         #
         # @return []
         def get_file_preview(bucket_id:, file_id:, width: nil, height: nil, gravity: nil, quality: nil, border_width: nil, border_color: nil, border_radius: nil, opacity: nil, rotation: nil, background: nil, output: nil)
-
             path = '/storage/buckets/{bucketId}/files/{fileId}/preview'
+                .gsub('{bucketId}', bucket_id)
+                .gsub('{fileId}', file_id)
+
+            if bucket_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
+            end
+
+            if file_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "fileId"')
+            end
 
             params = {
                 width: width,
@@ -504,16 +502,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if bucket_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
-            end
-
-            if file_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "fileId"')
-            end
-
-                .gsub('{bucketId}', bucket_id)
-                .gsub('{fileId}', file_id)
 
             @client.call(
                 method: 'GET',
@@ -533,8 +521,17 @@ module Appwrite
         #
         # @return []
         def get_file_view(bucket_id:, file_id:)
-
             path = '/storage/buckets/{bucketId}/files/{fileId}/view'
+                .gsub('{bucketId}', bucket_id)
+                .gsub('{fileId}', file_id)
+
+            if bucket_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
+            end
+
+            if file_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "fileId"')
+            end
 
             params = {
             }
@@ -542,16 +539,6 @@ module Appwrite
             headers = {
                 "content-type": 'application/json',
             }
-            if bucket_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
-            end
-
-            if file_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "fileId"')
-            end
-
-                .gsub('{bucketId}', bucket_id)
-                .gsub('{fileId}', file_id)
 
             @client.call(
                 method: 'GET',

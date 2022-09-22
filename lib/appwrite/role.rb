@@ -35,9 +35,5 @@ module Appwrite
         def self.member(id)
             "member:#{id}"
         end
-        
-        def self.status(status)
-            "status:#{status}"
-        end
     end
 end

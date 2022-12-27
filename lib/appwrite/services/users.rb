@@ -38,7 +38,7 @@ module Appwrite
         
         # Create a new user.
         #
-        # @param [String] user_id User ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] user_id User ID. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] email User email.
         # @param [String] phone Phone number. Format this number with a leading '+' and a country code, e.g., +16175551212.
         # @param [String] password Plain text user password. Must be at least 8 chars.
@@ -79,7 +79,7 @@ module Appwrite
         # /users](/docs/server/users#usersCreate) endpoint to create users with a
         # plain text password.
         #
-        # @param [String] user_id User ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] user_id User ID. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] email User email.
         # @param [String] password User password hashed using Argon2.
         # @param [String] name User name. Max length: 128 chars.
@@ -126,7 +126,7 @@ module Appwrite
         # /users](/docs/server/users#usersCreate) endpoint to create users with a
         # plain text password.
         #
-        # @param [String] user_id User ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] user_id User ID. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] email User email.
         # @param [String] password User password hashed using Bcrypt.
         # @param [String] name User name. Max length: 128 chars.
@@ -173,7 +173,7 @@ module Appwrite
         # /users](/docs/server/users#usersCreate) endpoint to create users with a
         # plain text password.
         #
-        # @param [String] user_id User ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] user_id User ID. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] email User email.
         # @param [String] password User password hashed using MD5.
         # @param [String] name User name. Max length: 128 chars.
@@ -220,7 +220,7 @@ module Appwrite
         # /users](/docs/server/users#usersCreate) endpoint to create users with a
         # plain text password.
         #
-        # @param [String] user_id User ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] user_id User ID. Choose your own unique ID or pass the string `ID.unique()`to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] email User email.
         # @param [String] password User password hashed using PHPass.
         # @param [String] name User name. Max length: 128 chars.
@@ -267,7 +267,7 @@ module Appwrite
         # /users](/docs/server/users#usersCreate) endpoint to create users with a
         # plain text password.
         #
-        # @param [String] user_id User ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] user_id User ID. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] email User email.
         # @param [String] password User password hashed using Scrypt.
         # @param [String] password_salt Optional salt used to hash password.
@@ -344,7 +344,7 @@ module Appwrite
         # algorithm. Use the [POST /users](/docs/server/users#usersCreate) endpoint
         # to create users with a plain text password.
         #
-        # @param [String] user_id User ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] user_id User ID. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] email User email.
         # @param [String] password User password hashed using Scrypt Modified.
         # @param [String] password_salt Salt used to hash password.
@@ -409,7 +409,7 @@ module Appwrite
         # the [POST /users](/docs/server/users#usersCreate) endpoint to create users
         # with a plain text password.
         #
-        # @param [String] user_id User ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] user_id User ID. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] email User email.
         # @param [String] password User password hashed using SHA.
         # @param [String] password_version Optional SHA version used to hash password. Allowed values are: 'sha1', 'sha224', 'sha256', 'sha384', 'sha512/224', 'sha512/256', 'sha512', 'sha3-224', 'sha3-256', 'sha3-384', 'sha3-512'

@@ -38,7 +38,7 @@ module Appwrite
         
         # Create a new storage bucket.
         #
-        # @param [String] bucket_id Unique Id. Choose your own unique ID or pass the string `unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] bucket_id Unique Id. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Bucket name
         # @param [Array] permissions An array of permission strings. By default no user is granted with any permissions. [Learn more about permissions](/docs/permissions).
         # @param [] file_security Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](/docs/permissions).
@@ -201,8 +201,7 @@ module Appwrite
 
         
         # Get a list of all the user files. You can use the query params to filter
-        # your results. On admin mode, this endpoint will return a list of all of the
-        # project's files. [Learn more about different API modes](/docs/admin).
+        # your results.
         #
         # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, signature, mimeType, sizeOriginal, chunksTotal, chunksUploaded
@@ -256,7 +255,7 @@ module Appwrite
         # 
         #
         # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
-        # @param [String] file_id File ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] file_id File ID. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [file] file Binary file.
         # @param [Array] permissions An array of permission strings. By default the current user is granted with all permissions. [Learn more about permissions](/docs/permissions).
         #

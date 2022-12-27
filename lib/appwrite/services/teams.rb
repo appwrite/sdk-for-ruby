@@ -9,9 +9,6 @@ module Appwrite
 
         # Get a list of all the teams in which the current user is a member. You can
         # use the parameters to filter your results.
-        # 
-        # In admin mode, this endpoint returns a list of all the teams in the current
-        # project. [Learn more about different API modes](/docs/admin).
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, total
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
@@ -43,7 +40,7 @@ module Appwrite
         # assigned as the owner of the team. Only the users with the owner role can
         # invite new members, add new owners and delete or update the team.
         #
-        # @param [String] team_id Team ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] team_id Team ID. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Team name. Max length: 128 chars.
         # @param [Array] roles Array of strings. Use this param to set the roles in the team for the user who created it. The default role is **owner**. A role can be any string. Learn more about [roles and permissions](/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long.
         #
@@ -281,7 +278,7 @@ module Appwrite
         # @param [String] team_id Team ID.
         # @param [String] membership_id Membership ID.
         #
-        # @return [MembershipList]
+        # @return [Membership]
         def get_membership(team_id:, membership_id:)
             path = '/teams/{teamId}/memberships/{membershipId}'
                 .gsub('{teamId}', team_id)
@@ -307,7 +304,7 @@ module Appwrite
                 path: path,
                 headers: headers,
                 params: params,
-                response_type: Models::MembershipList
+                response_type: Models::Membership
             )
         end
 

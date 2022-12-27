@@ -40,7 +40,7 @@ module Appwrite
         # [permissions](/docs/permissions) to allow different project users or team
         # with access to execute the function using the client API.
         #
-        # @param [String] function_id Function ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] function_id Function ID. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Function name. Max length: 128 chars.
         # @param [Array] execute An array of strings with execution roles. By default no user is granted with any execute permissions. [learn more about permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 64 characters long.
         # @param [String] runtime Execution runtime.
@@ -440,7 +440,7 @@ module Appwrite
         # @param [String] build_id Build unique ID.
         #
         # @return []
-        def retry_build(function_id:, deployment_id:, build_id:)
+        def create_build(function_id:, deployment_id:, build_id:)
             path = '/functions/{functionId}/deployments/{deploymentId}/builds/{buildId}'
                 .gsub('{functionId}', function_id)
                 .gsub('{deploymentId}', deployment_id)
@@ -475,9 +475,7 @@ module Appwrite
 
         
         # Get a list of all the current user function execution logs. You can use the
-        # query params to filter your results. On admin mode, this endpoint will
-        # return a list of all of the project's executions. [Learn more about
-        # different API modes](/docs/admin).
+        # query params to filter your results.
         #
         # @param [String] function_id Function ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: trigger, status, statusCode, duration

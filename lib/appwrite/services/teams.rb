@@ -9,11 +9,8 @@ module Appwrite
 
         # Get a list of all the teams in which the current user is a member. You can
         # use the parameters to filter your results.
-        # 
-        # In admin mode, this endpoint returns a list of all the teams in the current
-        # project. [Learn more about different API modes](/docs/admin).
         #
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, total
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, total
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [TeamList]
@@ -43,7 +40,7 @@ module Appwrite
         # assigned as the owner of the team. Only the users with the owner role can
         # invite new members, add new owners and delete or update the team.
         #
-        # @param [String] team_id Team ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] team_id Team ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Team name. Max length: 128 chars.
         # @param [Array] roles Array of strings. Use this param to set the roles in the team for the user who created it. The default role is **owner**. A role can be any string. Learn more about [roles and permissions](/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long.
         #
@@ -109,14 +106,13 @@ module Appwrite
         end
 
         
-        # Update a team using its ID. Only members with the owner role can update the
-        # team.
+        # Update the team's name by its unique ID.
         #
         # @param [String] team_id Team ID.
         # @param [String] name New team name. Max length: 128 chars.
         #
         # @return [Team]
-        def update(team_id:, name:)
+        def update_name(team_id:, name:)
             path = '/teams/{teamId}'
                 .gsub('{teamId}', team_id)
 
@@ -180,7 +176,7 @@ module Appwrite
         # members have read access to this endpoint.
         #
         # @param [String] team_id Team ID.
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, teamId, invited, joined, confirm
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, teamId, invited, joined, confirm
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [MembershipList]
@@ -211,39 +207,43 @@ module Appwrite
         end
 
         
-        # Invite a new member to join your team. If initiated from the client SDK, an
-        # email with a link to join the team will be sent to the member's email
-        # address and an account will be created for them should they not be signed
-        # up already. If initiated from server-side SDKs, the new member will
-        # automatically be added to the team.
+        # Invite a new member to join your team. Provide an ID for existing users, or
+        # invite unregistered users using an email or phone number. If initiated from
+        # a Client SDK, Appwrite will send an email or sms with a link to join the
+        # team to the invited user, and an account will be created for them if one
+        # doesn't exist. If initiated from a Server SDK, the new member will be added
+        # automatically to the team.
         # 
-        # Use the 'url' parameter to redirect the user from the invitation email back
-        # to your app. When the user is redirected, use the [Update Team Membership
+        # You only need to provide one of a user ID, email, or phone number. Appwrite
+        # will prioritize accepting the user ID > email > phone number if you provide
+        # more than one of these parameters.
+        # 
+        # Use the `url` parameter to redirect the user from the invitation email to
+        # your app. After the user is redirected, use the [Update Team Membership
         # Status](/docs/client/teams#teamsUpdateMembershipStatus) endpoint to allow
         # the user to accept the invitation to the team. 
         # 
         # Please note that to avoid a [Redirect
         # Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md)
-        # the only valid redirect URL's are the once from domains you have set when
-        # adding your platforms in the console interface.
+        # Appwrite will accept the only redirect URLs under the domains you have
+        # added as a platform on the Appwrite Console.
+        # 
         #
         # @param [String] team_id Team ID.
-        # @param [String] email Email of the new team member.
         # @param [Array] roles Array of strings. Use this param to set the user roles in the team. A role can be any string. Learn more about [roles and permissions](/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long.
         # @param [String] url URL to redirect the user back to your app from the invitation email.  Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.
+        # @param [String] email Email of the new team member.
+        # @param [String] user_id ID of the user to be added to a team.
+        # @param [String] phone Phone number. Format this number with a leading '+' and a country code, e.g., +16175551212.
         # @param [String] name Name of the new team member. Max length: 128 chars.
         #
         # @return [Membership]
-        def create_membership(team_id:, email:, roles:, url:, name: nil)
+        def create_membership(team_id:, roles:, url:, email: nil, user_id: nil, phone: nil, name: nil)
             path = '/teams/{teamId}/memberships'
                 .gsub('{teamId}', team_id)
 
             if team_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "teamId"')
-            end
-
-            if email.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "email"')
             end
 
             if roles.nil?
@@ -256,6 +256,8 @@ module Appwrite
 
             params = {
                 email: email,
+                userId: user_id,
+                phone: phone,
                 roles: roles,
                 url: url,
                 name: name,
@@ -281,7 +283,7 @@ module Appwrite
         # @param [String] team_id Team ID.
         # @param [String] membership_id Membership ID.
         #
-        # @return [MembershipList]
+        # @return [Membership]
         def get_membership(team_id:, membership_id:)
             path = '/teams/{teamId}/memberships/{membershipId}'
                 .gsub('{teamId}', team_id)
@@ -307,7 +309,7 @@ module Appwrite
                 path: path,
                 headers: headers,
                 params: params,
-                response_type: Models::MembershipList
+                response_type: Models::Membership
             )
         end
 
@@ -443,6 +445,76 @@ module Appwrite
                 headers: headers,
                 params: params,
                 response_type: Models::Membership
+            )
+        end
+
+        
+        # Get the team's shared preferences by its unique ID. If a preference doesn't
+        # need to be shared by all team members, prefer storing them in [user
+        # preferences](/docs/client/account#accountGetPrefs).
+        #
+        # @param [String] team_id Team ID.
+        #
+        # @return [Preferences]
+        def get_prefs(team_id:)
+            path = '/teams/{teamId}/prefs'
+                .gsub('{teamId}', team_id)
+
+            if team_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "teamId"')
+            end
+
+            params = {
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: path,
+                headers: headers,
+                params: params,
+                response_type: Models::Preferences
+            )
+        end
+
+        
+        # Update the team's preferences by its unique ID. The object you pass is
+        # stored as is and replaces any previous value. The maximum allowed prefs
+        # size is 64kB and throws an error if exceeded.
+        #
+        # @param [String] team_id Team ID.
+        # @param [Hash] prefs Prefs key-value JSON object.
+        #
+        # @return [Preferences]
+        def update_prefs(team_id:, prefs:)
+            path = '/teams/{teamId}/prefs'
+                .gsub('{teamId}', team_id)
+
+            if team_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "teamId"')
+            end
+
+            if prefs.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "prefs"')
+            end
+
+            params = {
+                prefs: prefs,
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PUT',
+                path: path,
+                headers: headers,
+                params: params,
+                response_type: Models::Preferences
             )
         end
 

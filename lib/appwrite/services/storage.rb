@@ -10,7 +10,7 @@ module Appwrite
         # Get a list of all the storage buckets. You can use the query params to
         # filter your results.
         #
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: enabled, name, fileSecurity, maximumFileSize, encryption, antivirus
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: enabled, name, fileSecurity, maximumFileSize, encryption, antivirus
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [BucketList]
@@ -38,9 +38,9 @@ module Appwrite
         
         # Create a new storage bucket.
         #
-        # @param [String] bucket_id Unique Id. Choose your own unique ID or pass the string `unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] bucket_id Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Bucket name
-        # @param [Array] permissions An array of permission strings. By default no user is granted with any permissions. [Learn more about permissions](/docs/permissions).
+        # @param [Array] permissions An array of permission strings. By default, no user is granted with any permissions. [Learn more about permissions](/docs/permissions).
         # @param [] file_security Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](/docs/permissions).
         # @param [] enabled Is bucket enabled?
         # @param [Integer] maximum_file_size Maximum file size allowed in bytes. Maximum allowed value is 30MB. For self-hosted setups you can change the max limit by changing the `_APP_STORAGE_LIMIT` environment variable. [Learn more about storage environment variables](docs/environment-variables#storage)
@@ -123,7 +123,7 @@ module Appwrite
         #
         # @param [String] bucket_id Bucket unique ID.
         # @param [String] name Bucket name
-        # @param [Array] permissions An array of permission strings. By default the current permissions are inherited. [Learn more about permissions](/docs/permissions).
+        # @param [Array] permissions An array of permission strings. By default, the current permissions are inherited. [Learn more about permissions](/docs/permissions).
         # @param [] file_security Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](/docs/permissions).
         # @param [] enabled Is bucket enabled?
         # @param [Integer] maximum_file_size Maximum file size allowed in bytes. Maximum allowed value is 30MB. For self hosted version you can change the limit by changing _APP_STORAGE_LIMIT environment variable. [Learn more about storage environment variables](docs/environment-variables#storage)
@@ -201,11 +201,10 @@ module Appwrite
 
         
         # Get a list of all the user files. You can use the query params to filter
-        # your results. On admin mode, this endpoint will return a list of all of the
-        # project's files. [Learn more about different API modes](/docs/admin).
+        # your results.
         #
         # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, signature, mimeType, sizeOriginal, chunksTotal, chunksUploaded
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, signature, mimeType, sizeOriginal, chunksTotal, chunksUploaded
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [FileList]
@@ -256,9 +255,9 @@ module Appwrite
         # 
         #
         # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
-        # @param [String] file_id File ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] file_id File ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [file] file Binary file.
-        # @param [Array] permissions An array of permission strings. By default the current user is granted with all permissions. [Learn more about permissions](/docs/permissions).
+        # @param [Array] permissions An array of permission strings. By default, only the current user is granted all permissions. [Learn more about permissions](/docs/permissions).
         #
         # @return [File]
         def create_file(bucket_id:, file_id:, file:, permissions: nil, on_progress: nil)
@@ -344,7 +343,7 @@ module Appwrite
         #
         # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
         # @param [String] file_id File unique ID.
-        # @param [Array] permissions An array of permission string. By default the current permissions are inherited. [Learn more about permissions](/docs/permissions).
+        # @param [Array] permissions An array of permission string. By default, the current permissions are inherited. [Learn more about permissions](/docs/permissions).
         #
         # @return [File]
         def update_file(bucket_id:, file_id:, permissions: nil)

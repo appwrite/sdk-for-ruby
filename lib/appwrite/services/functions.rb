@@ -10,7 +10,7 @@ module Appwrite
         # Get a list of all the project's functions. You can use the query params to
         # filter your results.
         #
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, enabled, runtime, deployment, schedule, scheduleNext, schedulePrevious, timeout
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, enabled, runtime, deployment, schedule, scheduleNext, schedulePrevious, timeout
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [FunctionList]
@@ -40,17 +40,17 @@ module Appwrite
         # [permissions](/docs/permissions) to allow different project users or team
         # with access to execute the function using the client API.
         #
-        # @param [String] function_id Function ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] function_id Function ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Function name. Max length: 128 chars.
-        # @param [Array] execute An array of strings with execution roles. By default no user is granted with any execute permissions. [learn more about permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 64 characters long.
         # @param [String] runtime Execution runtime.
+        # @param [Array] execute An array of strings with execution roles. By default no user is granted with any execute permissions. [learn more about permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 64 characters long.
         # @param [Array] events Events list. Maximum of 100 events are allowed.
         # @param [String] schedule Schedule CRON syntax.
         # @param [Integer] timeout Function maximum execution time in seconds.
         # @param [] enabled Is function enabled?
         #
         # @return [Function]
-        def create(function_id:, name:, execute:, runtime:, events: nil, schedule: nil, timeout: nil, enabled: nil)
+        def create(function_id:, name:, runtime:, execute: nil, events: nil, schedule: nil, timeout: nil, enabled: nil)
             path = '/functions'
 
             if function_id.nil?
@@ -59,10 +59,6 @@ module Appwrite
 
             if name.nil?
               raise Appwrite::Exception.new('Missing required parameter: "name"')
-            end
-
-            if execute.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "execute"')
             end
 
             if runtime.nil?
@@ -159,7 +155,7 @@ module Appwrite
         # @param [] enabled Is function enabled?
         #
         # @return [Function]
-        def update(function_id:, name:, execute:, events: nil, schedule: nil, timeout: nil, enabled: nil)
+        def update(function_id:, name:, execute: nil, events: nil, schedule: nil, timeout: nil, enabled: nil)
             path = '/functions/{functionId}'
                 .gsub('{functionId}', function_id)
 
@@ -169,10 +165,6 @@ module Appwrite
 
             if name.nil?
               raise Appwrite::Exception.new('Missing required parameter: "name"')
-            end
-
-            if execute.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "execute"')
             end
 
             params = {
@@ -231,7 +223,7 @@ module Appwrite
         # params to filter your results.
         #
         # @param [String] function_id Function ID.
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: entrypoint, size, buildId, activate
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: entrypoint, size, buildId, activate
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [DeploymentList]
@@ -440,7 +432,7 @@ module Appwrite
         # @param [String] build_id Build unique ID.
         #
         # @return []
-        def retry_build(function_id:, deployment_id:, build_id:)
+        def create_build(function_id:, deployment_id:, build_id:)
             path = '/functions/{functionId}/deployments/{deploymentId}/builds/{buildId}'
                 .gsub('{functionId}', function_id)
                 .gsub('{deploymentId}', deployment_id)
@@ -475,12 +467,10 @@ module Appwrite
 
         
         # Get a list of all the current user function execution logs. You can use the
-        # query params to filter your results. On admin mode, this endpoint will
-        # return a list of all of the project's executions. [Learn more about
-        # different API modes](/docs/admin).
+        # query params to filter your results.
         #
         # @param [String] function_id Function ID.
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: trigger, status, statusCode, duration
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: trigger, status, statusCode, duration
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [ExecutionList]

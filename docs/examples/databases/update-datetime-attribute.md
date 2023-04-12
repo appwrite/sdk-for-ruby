@@ -7,8 +7,8 @@ client = Client.new
     .set_project('5df5acd0d48c2') # Your project ID
     .set_key('919c2d18fb5d4...a2ae413da83346ad2') # Your secret API key
 
-teams = Teams.new(client)
+databases = Databases.new(client)
 
-response = teams.update(team_id: '[TEAM_ID]', name: '[NAME]')
+response = databases.update_datetime_attribute(database_id: '[DATABASE_ID]', collection_id: '[COLLECTION_ID]', key: '', required: false, default: '')
 
 puts response.inspect

@@ -9,6 +9,6 @@ client = Client.new
 
 users = Users.new(client)
 
-response = users.update_password(user_id: '[USER_ID]', password: 'password')
+response = users.update_password(user_id: '[USER_ID]', password: '')
 
 puts response.inspect

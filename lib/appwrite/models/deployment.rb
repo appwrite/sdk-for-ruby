@@ -15,6 +15,7 @@ module Appwrite
             attr_reader :status
             attr_reader :build_stdout
             attr_reader :build_stderr
+            attr_reader :build_time
 
             def initialize(
                 id:,
@@ -28,7 +29,8 @@ module Appwrite
                 activate:,
                 status:,
                 build_stdout:,
-                build_stderr:
+                build_stderr:,
+                build_time:
             )
                 @id = id
                 @created_at = created_at
@@ -42,6 +44,7 @@ module Appwrite
                 @status = status
                 @build_stdout = build_stdout
                 @build_stderr = build_stderr
+                @build_time = build_time
             end
 
             def self.from(map:)
@@ -57,7 +60,8 @@ module Appwrite
                     activate: map["activate"],
                     status: map["status"],
                     build_stdout: map["buildStdout"],
-                    build_stderr: map["buildStderr"]
+                    build_stderr: map["buildStderr"],
+                    build_time: map["buildTime"]
                 )
             end
 
@@ -74,7 +78,8 @@ module Appwrite
                     "activate": @activate,
                     "status": @status,
                     "buildStdout": @build_stdout,
-                    "buildStderr": @build_stderr
+                    "buildStderr": @build_stderr,
+                    "buildTime": @build_time
                 }
             end
         end

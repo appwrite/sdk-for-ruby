@@ -10,7 +10,7 @@ module Appwrite
         # Get a list of all databases from the current Appwrite project. You can use
         # the search parameter to filter your results.
         #
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [DatabaseList]
@@ -39,7 +39,7 @@ module Appwrite
         # Create a new Database.
         # 
         #
-        # @param [String] database_id Unique Id. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] database_id Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Collection name. Max length: 128 chars.
         #
         # @return [Database]
@@ -107,7 +107,7 @@ module Appwrite
         # Update a database by its unique ID.
         #
         # @param [String] database_id Database ID.
-        # @param [String] name Collection name. Max length: 128 chars.
+        # @param [String] name Database name. Max length: 128 chars.
         #
         # @return [Database]
         def update(database_id:, name:)
@@ -174,7 +174,7 @@ module Appwrite
         # can use the search parameter to filter your results.
         #
         # @param [String] database_id Database ID.
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, enabled, documentSecurity
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, enabled, documentSecurity
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [CollectionList]
@@ -211,9 +211,9 @@ module Appwrite
         # directly from your database console.
         #
         # @param [String] database_id Database ID.
-        # @param [String] collection_id Unique Id. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] collection_id Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Collection name. Max length: 128 chars.
-        # @param [Array] permissions An array of permissions strings. By default no user is granted with any permissions. [Learn more about permissions](/docs/permissions).
+        # @param [Array] permissions An array of permissions strings. By default, no user is granted with any permissions. [Learn more about permissions](/docs/permissions).
         # @param [] document_security Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](/docs/permissions).
         #
         # @return [Collection]
@@ -296,7 +296,7 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID.
         # @param [String] name Collection name. Max length: 128 chars.
-        # @param [Array] permissions An array of permission strings. By default the current permission are inherited. [Learn more about permissions](/docs/permissions).
+        # @param [Array] permissions An array of permission strings. By default, the current permissions are inherited. [Learn more about permissions](/docs/permissions).
         # @param [] document_security Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](/docs/permissions).
         # @param [] enabled Is collection enabled?
         #
@@ -470,6 +470,60 @@ module Appwrite
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
+        # @param [] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        #
+        # @return [AttributeBoolean]
+        def update_boolean_attribute(database_id:, collection_id:, key:, required:, default:)
+            path = '/databases/{databaseId}/collections/{collectionId}/attributes/boolean/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+                .gsub('{key}', key)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            if default.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "default"')
+            end
+
+            params = {
+                required: required,
+                default: default,
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: path,
+                headers: headers,
+                params: params,
+                response_type: Models::AttributeBoolean
+            )
+        end
+
+        
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] key Attribute Key.
+        # @param [] required Is attribute required?
         # @param [String] default Default value for the attribute in ISO 8601 format. Cannot be set when attribute is required.
         # @param [] array Is attribute an array?
         #
@@ -508,6 +562,60 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
+                path: path,
+                headers: headers,
+                params: params,
+                response_type: Models::AttributeDatetime
+            )
+        end
+
+        
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] key Attribute Key.
+        # @param [] required Is attribute required?
+        # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        #
+        # @return [AttributeDatetime]
+        def update_datetime_attribute(database_id:, collection_id:, key:, required:, default:)
+            path = '/databases/{databaseId}/collections/{collectionId}/attributes/datetime/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+                .gsub('{key}', key)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            if default.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "default"')
+            end
+
+            params = {
+                required: required,
+                default: default,
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
                 path: path,
                 headers: headers,
                 params: params,
@@ -561,6 +669,62 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
+                path: path,
+                headers: headers,
+                params: params,
+                response_type: Models::AttributeEmail
+            )
+        end
+
+        
+        # Update an email attribute. Changing the `default` value will not update
+        # already existing documents.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] key Attribute Key.
+        # @param [] required Is attribute required?
+        # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        #
+        # @return [AttributeEmail]
+        def update_email_attribute(database_id:, collection_id:, key:, required:, default:)
+            path = '/databases/{databaseId}/collections/{collectionId}/attributes/email/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+                .gsub('{key}', key)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            if default.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "default"')
+            end
+
+            params = {
+                required: required,
+                default: default,
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
                 path: path,
                 headers: headers,
                 params: params,
@@ -627,6 +791,68 @@ module Appwrite
         end
 
         
+        # Update an enum attribute. Changing the `default` value will not update
+        # already existing documents.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] key Attribute Key.
+        # @param [Array] elements Array of elements in enumerated type. Uses length of longest element to determine size. Maximum of 100 elements are allowed, each 4096 characters long.
+        # @param [] required Is attribute required?
+        # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        #
+        # @return [AttributeEnum]
+        def update_enum_attribute(database_id:, collection_id:, key:, elements:, required:, default:)
+            path = '/databases/{databaseId}/collections/{collectionId}/attributes/enum/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+                .gsub('{key}', key)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if elements.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "elements"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            if default.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "default"')
+            end
+
+            params = {
+                elements: elements,
+                required: required,
+                default: default,
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: path,
+                headers: headers,
+                params: params,
+                response_type: Models::AttributeEnum
+            )
+        end
+
+        
         # Create a float attribute. Optionally, minimum and maximum values can be
         # provided.
         # 
@@ -677,6 +903,74 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
+                path: path,
+                headers: headers,
+                params: params,
+                response_type: Models::AttributeFloat
+            )
+        end
+
+        
+        # Update a float attribute. Changing the `default` value will not update
+        # already existing documents.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] key Attribute Key.
+        # @param [] required Is attribute required?
+        # @param [Float] min Minimum value to enforce on new documents
+        # @param [Float] max Maximum value to enforce on new documents
+        # @param [Float] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        #
+        # @return [AttributeFloat]
+        def update_float_attribute(database_id:, collection_id:, key:, required:, min:, max:, default:)
+            path = '/databases/{databaseId}/collections/{collectionId}/attributes/float/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+                .gsub('{key}', key)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            if min.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "min"')
+            end
+
+            if max.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "max"')
+            end
+
+            if default.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "default"')
+            end
+
+            params = {
+                required: required,
+                min: min,
+                max: max,
+                default: default,
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
                 path: path,
                 headers: headers,
                 params: params,
@@ -743,6 +1037,74 @@ module Appwrite
         end
 
         
+        # Update an integer attribute. Changing the `default` value will not update
+        # already existing documents.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] key Attribute Key.
+        # @param [] required Is attribute required?
+        # @param [Integer] min Minimum value to enforce on new documents
+        # @param [Integer] max Maximum value to enforce on new documents
+        # @param [Integer] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        #
+        # @return [AttributeInteger]
+        def update_integer_attribute(database_id:, collection_id:, key:, required:, min:, max:, default:)
+            path = '/databases/{databaseId}/collections/{collectionId}/attributes/integer/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+                .gsub('{key}', key)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            if min.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "min"')
+            end
+
+            if max.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "max"')
+            end
+
+            if default.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "default"')
+            end
+
+            params = {
+                required: required,
+                min: min,
+                max: max,
+                default: default,
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: path,
+                headers: headers,
+                params: params,
+                response_type: Models::AttributeInteger
+            )
+        end
+
+        
         # Create IP address attribute.
         # 
         #
@@ -792,6 +1154,120 @@ module Appwrite
                 headers: headers,
                 params: params,
                 response_type: Models::AttributeIp
+            )
+        end
+
+        
+        # Update an ip attribute. Changing the `default` value will not update
+        # already existing documents.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] key Attribute Key.
+        # @param [] required Is attribute required?
+        # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        #
+        # @return [AttributeIp]
+        def update_ip_attribute(database_id:, collection_id:, key:, required:, default:)
+            path = '/databases/{databaseId}/collections/{collectionId}/attributes/ip/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+                .gsub('{key}', key)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            if default.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "default"')
+            end
+
+            params = {
+                required: required,
+                default: default,
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: path,
+                headers: headers,
+                params: params,
+                response_type: Models::AttributeIp
+            )
+        end
+
+        
+        # Create relationship attribute. [Learn more about relationship
+        # attributes](docs/databases-relationships#relationship-attributes).
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] related_collection_id Related Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] type Relation type
+        # @param [] two_way Is Two Way?
+        # @param [String] key Attribute Key.
+        # @param [String] two_way_key Two Way Attribute Key.
+        # @param [String] on_delete Constraints option
+        #
+        # @return [AttributeRelationship]
+        def create_relationship_attribute(database_id:, collection_id:, related_collection_id:, type:, two_way: nil, key: nil, two_way_key: nil, on_delete: nil)
+            path = '/databases/{databaseId}/collections/{collectionId}/attributes/relationship'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if related_collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "relatedCollectionId"')
+            end
+
+            if type.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "type"')
+            end
+
+            params = {
+                relatedCollectionId: related_collection_id,
+                type: type,
+                twoWay: two_way,
+                key: key,
+                twoWayKey: two_way_key,
+                onDelete: on_delete,
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: path,
+                headers: headers,
+                params: params,
+                response_type: Models::AttributeRelationship
             )
         end
 
@@ -855,6 +1331,62 @@ module Appwrite
         end
 
         
+        # Update a string attribute. Changing the `default` value will not update
+        # already existing documents.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] key Attribute Key.
+        # @param [] required Is attribute required?
+        # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        #
+        # @return [AttributeString]
+        def update_string_attribute(database_id:, collection_id:, key:, required:, default:)
+            path = '/databases/{databaseId}/collections/{collectionId}/attributes/string/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+                .gsub('{key}', key)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            if default.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "default"')
+            end
+
+            params = {
+                required: required,
+                default: default,
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: path,
+                headers: headers,
+                params: params,
+                response_type: Models::AttributeString
+            )
+        end
+
+        
         # Create a URL attribute.
         # 
         #
@@ -900,6 +1432,62 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
+                path: path,
+                headers: headers,
+                params: params,
+                response_type: Models::AttributeUrl
+            )
+        end
+
+        
+        # Update an url attribute. Changing the `default` value will not update
+        # already existing documents.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] key Attribute Key.
+        # @param [] required Is attribute required?
+        # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        #
+        # @return [AttributeUrl]
+        def update_url_attribute(database_id:, collection_id:, key:, required:, default:)
+            path = '/databases/{databaseId}/collections/{collectionId}/attributes/url/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+                .gsub('{key}', key)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            if default.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "default"')
+            end
+
+            params = {
+                required: required,
+                default: default,
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
                 path: path,
                 headers: headers,
                 params: params,
@@ -990,14 +1578,58 @@ module Appwrite
         end
 
         
-        # Get a list of all the user's documents in a given collection. You can use
-        # the query params to filter your results. On admin mode, this endpoint will
-        # return a list of all of documents belonging to the provided collectionId.
-        # [Learn more about different API modes](/docs/admin).
+        # Update relationship attribute. [Learn more about relationship
+        # attributes](docs/databases-relationships#relationship-attributes).
+        # 
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long.
+        # @param [String] key Attribute Key.
+        # @param [String] on_delete Constraints option
+        #
+        # @return [AttributeRelationship]
+        def update_relationship_attribute(database_id:, collection_id:, key:, on_delete: nil)
+            path = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}/relationship'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+                .gsub('{key}', key)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            params = {
+                onDelete: on_delete,
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: path,
+                headers: headers,
+                params: params,
+                response_type: Models::AttributeRelationship
+            )
+        end
+
+        
+        # Get a list of all the user's documents in a given collection. You can use
+        # the query params to filter your results.
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
         #
         # @return [DocumentList]
         def list_documents(database_id:, collection_id:, queries: nil)
@@ -1038,9 +1670,9 @@ module Appwrite
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). Make sure to define attributes before creating documents.
-        # @param [String] document_id Document ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] document_id Document ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [Hash] data Document data as JSON object.
-        # @param [Array] permissions An array of permissions strings. By default the current user is granted with all permissions. [Learn more about permissions](/docs/permissions).
+        # @param [Array] permissions An array of permissions strings. By default, only the current user is granted all permissions. [Learn more about permissions](/docs/permissions).
         #
         # @return [Document]
         def create_document(database_id:, collection_id:, document_id:, data:, permissions: nil)
@@ -1090,9 +1722,10 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
         # @param [String] document_id Document ID.
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Only method allowed is select.
         #
         # @return [Document]
-        def get_document(database_id:, collection_id:, document_id:)
+        def get_document(database_id:, collection_id:, document_id:, queries: nil)
             path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -1111,6 +1744,7 @@ module Appwrite
             end
 
             params = {
+                queries: queries,
             }
             
             headers = {
@@ -1134,7 +1768,7 @@ module Appwrite
         # @param [String] collection_id Collection ID.
         # @param [String] document_id Document ID.
         # @param [Hash] data Document data as JSON object. Include only attribute and value pairs to be updated.
-        # @param [Array] permissions An array of permissions strings. By default the current permissions are inherited. [Learn more about permissions](/docs/permissions).
+        # @param [Array] permissions An array of permissions strings. By default, the current permissions are inherited. [Learn more about permissions](/docs/permissions).
         #
         # @return [Document]
         def update_document(database_id:, collection_id:, document_id:, data: nil, permissions: nil)

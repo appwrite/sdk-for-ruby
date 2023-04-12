@@ -9,6 +9,6 @@ client = Client.new
 
 users = Users.new(client)
 
-response = users.update_phone(user_id: '[USER_ID]', number: '')
+response = users.update_phone(user_id: '[USER_ID]', number: '+12065550100')
 
 puts response.inspect

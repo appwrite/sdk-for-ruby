@@ -10,7 +10,7 @@ module Appwrite
         # Get currently logged in user data as JSON object.
         #
         #
-        # @return [Account]
+        # @return [User]
         def get()
             path = '/account'
 
@@ -26,7 +26,7 @@ module Appwrite
                 path: path,
                 headers: headers,
                 params: params,
-                response_type: Models::Account
+                response_type: Models::User
             )
         end
 
@@ -43,7 +43,7 @@ module Appwrite
         # @param [String] email User email.
         # @param [String] password User password. Must be at least 8 chars.
         #
-        # @return [Account]
+        # @return [User]
         def update_email(email:, password:)
             path = '/account/email'
 
@@ -69,7 +69,7 @@ module Appwrite
                 path: path,
                 headers: headers,
                 params: params,
-                response_type: Models::Account
+                response_type: Models::User
             )
         end
 
@@ -77,7 +77,7 @@ module Appwrite
         # Get currently logged in user list of latest security activity logs. Each
         # log returns user IP address, location and date and time of log.
         #
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Only supported methods are limit and offset
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset
         #
         # @return [LogList]
         def list_logs(queries: nil)
@@ -105,7 +105,7 @@ module Appwrite
         #
         # @param [String] name User name. Max length: 128 chars.
         #
-        # @return [Account]
+        # @return [User]
         def update_name(name:)
             path = '/account/name'
 
@@ -126,7 +126,7 @@ module Appwrite
                 path: path,
                 headers: headers,
                 params: params,
-                response_type: Models::Account
+                response_type: Models::User
             )
         end
 
@@ -138,7 +138,7 @@ module Appwrite
         # @param [String] password New user password. Must be at least 8 chars.
         # @param [String] old_password Current user password. Must be at least 8 chars.
         #
-        # @return [Account]
+        # @return [User]
         def update_password(password:, old_password: nil)
             path = '/account/password'
 
@@ -160,7 +160,7 @@ module Appwrite
                 path: path,
                 headers: headers,
                 params: params,
-                response_type: Models::Account
+                response_type: Models::User
             )
         end
 
@@ -174,7 +174,7 @@ module Appwrite
         # @param [String] phone Phone number. Format this number with a leading '+' and a country code, e.g., +16175551212.
         # @param [String] password User password. Must be at least 8 chars.
         #
-        # @return [Account]
+        # @return [User]
         def update_phone(phone:, password:)
             path = '/account/phone'
 
@@ -200,7 +200,7 @@ module Appwrite
                 path: path,
                 headers: headers,
                 params: params,
-                response_type: Models::Account
+                response_type: Models::User
             )
         end
 
@@ -235,7 +235,7 @@ module Appwrite
         #
         # @param [Hash] prefs Prefs key-value JSON object.
         #
-        # @return [Account]
+        # @return [User]
         def update_prefs(prefs:)
             path = '/account/prefs'
 
@@ -256,7 +256,7 @@ module Appwrite
                 path: path,
                 headers: headers,
                 params: params,
-                response_type: Models::Account
+                response_type: Models::User
             )
         end
 
@@ -509,7 +509,7 @@ module Appwrite
         # completely delete a user, use the Users API instead.
         #
         #
-        # @return [Account]
+        # @return [User]
         def update_status()
             path = '/account/status'
 
@@ -525,7 +525,7 @@ module Appwrite
                 path: path,
                 headers: headers,
                 params: params,
-                response_type: Models::Account
+                response_type: Models::User
             )
         end
 

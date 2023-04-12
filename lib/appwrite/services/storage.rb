@@ -256,7 +256,7 @@ module Appwrite
         #
         # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
         # @param [String] file_id File ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
-        # @param [file] file Binary file.
+        # @param [file] file Binary file. Appwrite SDKs provide helpers to handle file input. [Learn about file input](/docs/storage#file-input).
         # @param [Array] permissions An array of permission strings. By default, only the current user is granted all permissions. [Learn more about permissions](/docs/permissions).
         #
         # @return [File]

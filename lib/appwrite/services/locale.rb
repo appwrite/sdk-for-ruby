@@ -17,7 +17,7 @@ module Appwrite
         #
         # @return [Locale]
         def get()
-            path = '/locale'
+            api_path = '/locale'
 
             params = {
             }
@@ -28,10 +28,35 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Locale
+            )
+        end
+
+        
+        # List of all locale codes in [ISO
+        # 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
+        #
+        #
+        # @return [LocaleCodeList]
+        def list_codes()
+            api_path = '/locale/codes'
+
+            params = {
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: headers,
+                params: params,
+                response_type: Models::LocaleCodeList
             )
         end
 
@@ -42,7 +67,7 @@ module Appwrite
         #
         # @return [ContinentList]
         def list_continents()
-            path = '/locale/continents'
+            api_path = '/locale/continents'
 
             params = {
             }
@@ -53,7 +78,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::ContinentList
@@ -67,7 +92,7 @@ module Appwrite
         #
         # @return [CountryList]
         def list_countries()
-            path = '/locale/countries'
+            api_path = '/locale/countries'
 
             params = {
             }
@@ -78,7 +103,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::CountryList
@@ -92,7 +117,7 @@ module Appwrite
         #
         # @return [CountryList]
         def list_countries_eu()
-            path = '/locale/countries/eu'
+            api_path = '/locale/countries/eu'
 
             params = {
             }
@@ -103,7 +128,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::CountryList
@@ -117,7 +142,7 @@ module Appwrite
         #
         # @return [PhoneList]
         def list_countries_phones()
-            path = '/locale/countries/phones'
+            api_path = '/locale/countries/phones'
 
             params = {
             }
@@ -128,7 +153,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::PhoneList
@@ -143,7 +168,7 @@ module Appwrite
         #
         # @return [CurrencyList]
         def list_currencies()
-            path = '/locale/currencies'
+            api_path = '/locale/currencies'
 
             params = {
             }
@@ -154,7 +179,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::CurrencyList
@@ -168,7 +193,7 @@ module Appwrite
         #
         # @return [LanguageList]
         def list_languages()
-            path = '/locale/languages'
+            api_path = '/locale/languages'
 
             params = {
             }
@@ -179,7 +204,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::LanguageList

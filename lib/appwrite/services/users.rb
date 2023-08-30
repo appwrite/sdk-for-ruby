@@ -15,7 +15,7 @@ module Appwrite
         #
         # @return [UserList]
         def list(queries: nil, search: nil)
-            path = '/users'
+            api_path = '/users'
 
             params = {
                 queries: queries,
@@ -28,7 +28,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::UserList
@@ -46,7 +46,7 @@ module Appwrite
         #
         # @return [User]
         def create(user_id:, email: nil, phone: nil, password: nil, name: nil)
-            path = '/users'
+            api_path = '/users'
 
             if user_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "userId"')
@@ -66,7 +66,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::User
@@ -86,7 +86,7 @@ module Appwrite
         #
         # @return [User]
         def create_argon2_user(user_id:, email:, password:, name: nil)
-            path = '/users/argon2'
+            api_path = '/users/argon2'
 
             if user_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "userId"')
@@ -113,7 +113,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::User
@@ -133,7 +133,7 @@ module Appwrite
         #
         # @return [User]
         def create_bcrypt_user(user_id:, email:, password:, name: nil)
-            path = '/users/bcrypt'
+            api_path = '/users/bcrypt'
 
             if user_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "userId"')
@@ -160,10 +160,67 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::User
+            )
+        end
+
+        
+        # Get identities for all users.
+        #
+        # @param [String] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, provider, providerUid, providerEmail, providerAccessTokenExpiry
+        # @param [String] search Search term to filter your list results. Max length: 256 chars.
+        #
+        # @return [IdentityList]
+        def list_identities(queries: nil, search: nil)
+            api_path = '/users/identities'
+
+            params = {
+                queries: queries,
+                search: search,
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: headers,
+                params: params,
+                response_type: Models::IdentityList
+            )
+        end
+
+        
+        # Delete an identity by its unique ID.
+        #
+        # @param [String] identity_id Identity ID.
+        #
+        # @return []
+        def delete_identity(identity_id:)
+            api_path = '/users/identities/{identityId}'
+                .gsub('{identityId}', identity_id)
+
+            if identity_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "identityId"')
+            end
+
+            params = {
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: api_path,
+                headers: headers,
+                params: params,
             )
         end
 
@@ -180,7 +237,7 @@ module Appwrite
         #
         # @return [User]
         def create_md5_user(user_id:, email:, password:, name: nil)
-            path = '/users/md5'
+            api_path = '/users/md5'
 
             if user_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "userId"')
@@ -207,7 +264,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::User
@@ -227,7 +284,7 @@ module Appwrite
         #
         # @return [User]
         def create_ph_pass_user(user_id:, email:, password:, name: nil)
-            path = '/users/phpass'
+            api_path = '/users/phpass'
 
             if user_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "userId"')
@@ -254,7 +311,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::User
@@ -279,7 +336,7 @@ module Appwrite
         #
         # @return [User]
         def create_scrypt_user(user_id:, email:, password:, password_salt:, password_cpu:, password_memory:, password_parallel:, password_length:, name: nil)
-            path = '/users/scrypt'
+            api_path = '/users/scrypt'
 
             if user_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "userId"')
@@ -331,7 +388,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::User
@@ -354,7 +411,7 @@ module Appwrite
         #
         # @return [User]
         def create_scrypt_modified_user(user_id:, email:, password:, password_salt:, password_salt_separator:, password_signer_key:, name: nil)
-            path = '/users/scrypt-modified'
+            api_path = '/users/scrypt-modified'
 
             if user_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "userId"')
@@ -396,7 +453,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::User
@@ -417,7 +474,7 @@ module Appwrite
         #
         # @return [User]
         def create_sha_user(user_id:, email:, password:, password_version: nil, name: nil)
-            path = '/users/sha'
+            api_path = '/users/sha'
 
             if user_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "userId"')
@@ -445,7 +502,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::User
@@ -459,7 +516,7 @@ module Appwrite
         #
         # @return [User]
         def get(user_id:)
-            path = '/users/{userId}'
+            api_path = '/users/{userId}'
                 .gsub('{userId}', user_id)
 
             if user_id.nil?
@@ -475,7 +532,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::User
@@ -493,7 +550,7 @@ module Appwrite
         #
         # @return []
         def delete(user_id:)
-            path = '/users/{userId}'
+            api_path = '/users/{userId}'
                 .gsub('{userId}', user_id)
 
             if user_id.nil?
@@ -509,7 +566,7 @@ module Appwrite
 
             @client.call(
                 method: 'DELETE',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )
@@ -523,7 +580,7 @@ module Appwrite
         #
         # @return [User]
         def update_email(user_id:, email:)
-            path = '/users/{userId}/email'
+            api_path = '/users/{userId}/email'
                 .gsub('{userId}', user_id)
 
             if user_id.nil?
@@ -544,7 +601,48 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
+                headers: headers,
+                params: params,
+                response_type: Models::User
+            )
+        end
+
+        
+        # Update the user labels by its unique ID. 
+        # 
+        # Labels can be used to grant access to resources. While teams are a way for
+        # user's to share access to a resource, labels can be defined by the
+        # developer to grant access without an invitation. See the [Permissions
+        # docs](/docs/permissions) for more info.
+        #
+        # @param [String] user_id User ID.
+        # @param [Array] labels Array of user labels. Replaces the previous labels. Maximum of 5 labels are allowed, each up to 36 alphanumeric characters long.
+        #
+        # @return [User]
+        def update_labels(user_id:, labels:)
+            api_path = '/users/{userId}/labels'
+                .gsub('{userId}', user_id)
+
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            if labels.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "labels"')
+            end
+
+            params = {
+                labels: labels,
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PUT',
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::User
@@ -559,7 +657,7 @@ module Appwrite
         #
         # @return [LogList]
         def list_logs(user_id:, queries: nil)
-            path = '/users/{userId}/logs'
+            api_path = '/users/{userId}/logs'
                 .gsub('{userId}', user_id)
 
             if user_id.nil?
@@ -576,7 +674,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::LogList
@@ -590,7 +688,7 @@ module Appwrite
         #
         # @return [MembershipList]
         def list_memberships(user_id:)
-            path = '/users/{userId}/memberships'
+            api_path = '/users/{userId}/memberships'
                 .gsub('{userId}', user_id)
 
             if user_id.nil?
@@ -606,7 +704,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::MembershipList
@@ -621,7 +719,7 @@ module Appwrite
         #
         # @return [User]
         def update_name(user_id:, name:)
-            path = '/users/{userId}/name'
+            api_path = '/users/{userId}/name'
                 .gsub('{userId}', user_id)
 
             if user_id.nil?
@@ -642,7 +740,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::User
@@ -657,7 +755,7 @@ module Appwrite
         #
         # @return [User]
         def update_password(user_id:, password:)
-            path = '/users/{userId}/password'
+            api_path = '/users/{userId}/password'
                 .gsub('{userId}', user_id)
 
             if user_id.nil?
@@ -678,7 +776,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::User
@@ -693,7 +791,7 @@ module Appwrite
         #
         # @return [User]
         def update_phone(user_id:, number:)
-            path = '/users/{userId}/phone'
+            api_path = '/users/{userId}/phone'
                 .gsub('{userId}', user_id)
 
             if user_id.nil?
@@ -714,7 +812,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::User
@@ -728,7 +826,7 @@ module Appwrite
         #
         # @return [Preferences]
         def get_prefs(user_id:)
-            path = '/users/{userId}/prefs'
+            api_path = '/users/{userId}/prefs'
                 .gsub('{userId}', user_id)
 
             if user_id.nil?
@@ -744,7 +842,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Preferences
@@ -761,7 +859,7 @@ module Appwrite
         #
         # @return [Preferences]
         def update_prefs(user_id:, prefs:)
-            path = '/users/{userId}/prefs'
+            api_path = '/users/{userId}/prefs'
                 .gsub('{userId}', user_id)
 
             if user_id.nil?
@@ -782,7 +880,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Preferences
@@ -796,7 +894,7 @@ module Appwrite
         #
         # @return [SessionList]
         def list_sessions(user_id:)
-            path = '/users/{userId}/sessions'
+            api_path = '/users/{userId}/sessions'
                 .gsub('{userId}', user_id)
 
             if user_id.nil?
@@ -812,7 +910,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::SessionList
@@ -826,7 +924,7 @@ module Appwrite
         #
         # @return []
         def delete_sessions(user_id:)
-            path = '/users/{userId}/sessions'
+            api_path = '/users/{userId}/sessions'
                 .gsub('{userId}', user_id)
 
             if user_id.nil?
@@ -842,7 +940,7 @@ module Appwrite
 
             @client.call(
                 method: 'DELETE',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )
@@ -856,7 +954,7 @@ module Appwrite
         #
         # @return []
         def delete_session(user_id:, session_id:)
-            path = '/users/{userId}/sessions/{sessionId}'
+            api_path = '/users/{userId}/sessions/{sessionId}'
                 .gsub('{userId}', user_id)
                 .gsub('{sessionId}', session_id)
 
@@ -877,7 +975,7 @@ module Appwrite
 
             @client.call(
                 method: 'DELETE',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )
@@ -892,7 +990,7 @@ module Appwrite
         #
         # @return [User]
         def update_status(user_id:, status:)
-            path = '/users/{userId}/status'
+            api_path = '/users/{userId}/status'
                 .gsub('{userId}', user_id)
 
             if user_id.nil?
@@ -913,7 +1011,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::User
@@ -928,7 +1026,7 @@ module Appwrite
         #
         # @return [User]
         def update_email_verification(user_id:, email_verification:)
-            path = '/users/{userId}/verification'
+            api_path = '/users/{userId}/verification'
                 .gsub('{userId}', user_id)
 
             if user_id.nil?
@@ -949,7 +1047,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::User
@@ -964,7 +1062,7 @@ module Appwrite
         #
         # @return [User]
         def update_phone_verification(user_id:, phone_verification:)
-            path = '/users/{userId}/verification/phone'
+            api_path = '/users/{userId}/verification/phone'
                 .gsub('{userId}', user_id)
 
             if user_id.nil?
@@ -985,7 +1083,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::User

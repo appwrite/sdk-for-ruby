@@ -7,12 +7,12 @@ module Appwrite
             @client = client
         end
 
-        # Get currently logged in user data as JSON object.
+        # Get the currently logged in user.
         #
         #
         # @return [User]
         def get()
-            path = '/account'
+            api_path = '/account'
 
             params = {
             }
@@ -23,7 +23,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::User
@@ -45,7 +45,7 @@ module Appwrite
         #
         # @return [User]
         def update_email(email:, password:)
-            path = '/account/email'
+            api_path = '/account/email'
 
             if email.nil?
               raise Appwrite::Exception.new('Missing required parameter: "email"')
@@ -66,7 +66,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::User
@@ -74,14 +74,13 @@ module Appwrite
         end
 
         
-        # Get currently logged in user list of latest security activity logs. Each
-        # log returns user IP address, location and date and time of log.
+        # Get the list of identities for the currently logged in user.
         #
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset
+        # @param [String] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, provider, providerUid, providerEmail, providerAccessTokenExpiry
         #
-        # @return [LogList]
-        def list_logs(queries: nil)
-            path = '/account/logs'
+        # @return [IdentityList]
+        def list_identities(queries: nil)
+            api_path = '/account/identities'
 
             params = {
                 queries: queries,
@@ -93,7 +92,63 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
+                headers: headers,
+                params: params,
+                response_type: Models::IdentityList
+            )
+        end
+
+        
+        # Delete an identity by its unique ID.
+        #
+        # @param [String] identity_id Identity ID.
+        #
+        # @return []
+        def delete_identity(identity_id:)
+            api_path = '/account/identities/{identityId}'
+                .gsub('{identityId}', identity_id)
+
+            if identity_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "identityId"')
+            end
+
+            params = {
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: api_path,
+                headers: headers,
+                params: params,
+            )
+        end
+
+        
+        # Get the list of latest security activity logs for the currently logged in
+        # user. Each log returns user IP address, location and date and time of log.
+        #
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset
+        #
+        # @return [LogList]
+        def list_logs(queries: nil)
+            api_path = '/account/logs'
+
+            params = {
+                queries: queries,
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::LogList
@@ -107,7 +162,7 @@ module Appwrite
         #
         # @return [User]
         def update_name(name:)
-            path = '/account/name'
+            api_path = '/account/name'
 
             if name.nil?
               raise Appwrite::Exception.new('Missing required parameter: "name"')
@@ -123,7 +178,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::User
@@ -140,7 +195,7 @@ module Appwrite
         #
         # @return [User]
         def update_password(password:, old_password: nil)
-            path = '/account/password'
+            api_path = '/account/password'
 
             if password.nil?
               raise Appwrite::Exception.new('Missing required parameter: "password"')
@@ -157,7 +212,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::User
@@ -176,7 +231,7 @@ module Appwrite
         #
         # @return [User]
         def update_phone(phone:, password:)
-            path = '/account/phone'
+            api_path = '/account/phone'
 
             if phone.nil?
               raise Appwrite::Exception.new('Missing required parameter: "phone"')
@@ -197,7 +252,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::User
@@ -205,12 +260,12 @@ module Appwrite
         end
 
         
-        # Get currently logged in user preferences as a key-value object.
+        # Get the preferences as a key-value object for the currently logged in user.
         #
         #
         # @return [Preferences]
         def get_prefs()
-            path = '/account/prefs'
+            api_path = '/account/prefs'
 
             params = {
             }
@@ -221,7 +276,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Preferences
@@ -237,7 +292,7 @@ module Appwrite
         #
         # @return [User]
         def update_prefs(prefs:)
-            path = '/account/prefs'
+            api_path = '/account/prefs'
 
             if prefs.nil?
               raise Appwrite::Exception.new('Missing required parameter: "prefs"')
@@ -253,7 +308,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::User
@@ -275,7 +330,7 @@ module Appwrite
         #
         # @return [Token]
         def create_recovery(email:, url:)
-            path = '/account/recovery'
+            api_path = '/account/recovery'
 
             if email.nil?
               raise Appwrite::Exception.new('Missing required parameter: "email"')
@@ -296,7 +351,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Token
@@ -321,7 +376,7 @@ module Appwrite
         #
         # @return [Token]
         def update_recovery(user_id:, secret:, password:, password_again:)
-            path = '/account/recovery'
+            api_path = '/account/recovery'
 
             if user_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "userId"')
@@ -352,7 +407,7 @@ module Appwrite
 
             @client.call(
                 method: 'PUT',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Token
@@ -360,13 +415,13 @@ module Appwrite
         end
 
         
-        # Get currently logged in user list of active sessions across different
-        # devices.
+        # Get the list of active sessions across different devices for the currently
+        # logged in user.
         #
         #
         # @return [SessionList]
         def list_sessions()
-            path = '/account/sessions'
+            api_path = '/account/sessions'
 
             params = {
             }
@@ -377,7 +432,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::SessionList
@@ -391,7 +446,7 @@ module Appwrite
         #
         # @return []
         def delete_sessions()
-            path = '/account/sessions'
+            api_path = '/account/sessions'
 
             params = {
             }
@@ -402,7 +457,7 @@ module Appwrite
 
             @client.call(
                 method: 'DELETE',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )
@@ -416,7 +471,7 @@ module Appwrite
         #
         # @return [Session]
         def get_session(session_id:)
-            path = '/account/sessions/{sessionId}'
+            api_path = '/account/sessions/{sessionId}'
                 .gsub('{sessionId}', session_id)
 
             if session_id.nil?
@@ -432,7 +487,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Session
@@ -448,7 +503,7 @@ module Appwrite
         #
         # @return [Session]
         def update_session(session_id:)
-            path = '/account/sessions/{sessionId}'
+            api_path = '/account/sessions/{sessionId}'
                 .gsub('{sessionId}', session_id)
 
             if session_id.nil?
@@ -464,7 +519,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Session
@@ -472,16 +527,16 @@ module Appwrite
         end
 
         
-        # Use this endpoint to log out the currently logged in user from all their
-        # account sessions across all of their different devices. When using the
-        # Session ID argument, only the unique session ID provided is deleted.
-        # 
+        # Logout the user. Use 'current' as the session ID to logout on this device,
+        # use a session ID to logout on another device. If you're looking to logout
+        # the user on all devices, use [Delete
+        # Sessions](/docs/client/account#accountDeleteSessions) instead.
         #
         # @param [String] session_id Session ID. Use the string 'current' to delete the current device session.
         #
         # @return []
         def delete_session(session_id:)
-            path = '/account/sessions/{sessionId}'
+            api_path = '/account/sessions/{sessionId}'
                 .gsub('{sessionId}', session_id)
 
             if session_id.nil?
@@ -497,7 +552,7 @@ module Appwrite
 
             @client.call(
                 method: 'DELETE',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )
@@ -511,7 +566,7 @@ module Appwrite
         #
         # @return [User]
         def update_status()
-            path = '/account/status'
+            api_path = '/account/status'
 
             params = {
             }
@@ -522,7 +577,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::User
@@ -550,7 +605,7 @@ module Appwrite
         #
         # @return [Token]
         def create_verification(url:)
-            path = '/account/verification'
+            api_path = '/account/verification'
 
             if url.nil?
               raise Appwrite::Exception.new('Missing required parameter: "url"')
@@ -566,7 +621,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Token
@@ -584,7 +639,7 @@ module Appwrite
         #
         # @return [Token]
         def update_verification(user_id:, secret:)
-            path = '/account/verification'
+            api_path = '/account/verification'
 
             if user_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "userId"')
@@ -605,7 +660,7 @@ module Appwrite
 
             @client.call(
                 method: 'PUT',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Token
@@ -623,7 +678,7 @@ module Appwrite
         #
         # @return [Token]
         def create_phone_verification()
-            path = '/account/verification/phone'
+            api_path = '/account/verification/phone'
 
             params = {
             }
@@ -634,7 +689,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Token
@@ -652,7 +707,7 @@ module Appwrite
         #
         # @return [Token]
         def update_phone_verification(user_id:, secret:)
-            path = '/account/verification/phone'
+            api_path = '/account/verification/phone'
 
             if user_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "userId"')
@@ -673,7 +728,7 @@ module Appwrite
 
             @client.call(
                 method: 'PUT',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Token

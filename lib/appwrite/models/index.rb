@@ -6,6 +6,7 @@ module Appwrite
             attr_reader :key
             attr_reader :type
             attr_reader :status
+            attr_reader :error
             attr_reader :attributes
             attr_reader :orders
 
@@ -13,12 +14,14 @@ module Appwrite
                 key:,
                 type:,
                 status:,
+                error:,
                 attributes:,
                 orders: 
             )
                 @key = key
                 @type = type
                 @status = status
+                @error = error
                 @attributes = attributes
                 @orders = orders
             end
@@ -28,6 +31,7 @@ module Appwrite
                     key: map["key"],
                     type: map["type"],
                     status: map["status"],
+                    error: map["error"],
                     attributes: map["attributes"],
                     orders: map["orders"]
                 )
@@ -38,6 +42,7 @@ module Appwrite
                     "key": @key,
                     "type": @type,
                     "status": @status,
+                    "error": @error,
                     "attributes": @attributes,
                     "orders": @orders
                 }

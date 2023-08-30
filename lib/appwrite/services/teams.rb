@@ -15,7 +15,7 @@ module Appwrite
         #
         # @return [TeamList]
         def list(queries: nil, search: nil)
-            path = '/teams'
+            api_path = '/teams'
 
             params = {
                 queries: queries,
@@ -28,7 +28,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::TeamList
@@ -46,7 +46,7 @@ module Appwrite
         #
         # @return [Team]
         def create(team_id:, name:, roles: nil)
-            path = '/teams'
+            api_path = '/teams'
 
             if team_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "teamId"')
@@ -68,7 +68,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Team
@@ -82,7 +82,7 @@ module Appwrite
         #
         # @return [Team]
         def get(team_id:)
-            path = '/teams/{teamId}'
+            api_path = '/teams/{teamId}'
                 .gsub('{teamId}', team_id)
 
             if team_id.nil?
@@ -98,7 +98,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Team
@@ -113,7 +113,7 @@ module Appwrite
         #
         # @return [Team]
         def update_name(team_id:, name:)
-            path = '/teams/{teamId}'
+            api_path = '/teams/{teamId}'
                 .gsub('{teamId}', team_id)
 
             if team_id.nil?
@@ -134,7 +134,7 @@ module Appwrite
 
             @client.call(
                 method: 'PUT',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Team
@@ -149,7 +149,7 @@ module Appwrite
         #
         # @return []
         def delete(team_id:)
-            path = '/teams/{teamId}'
+            api_path = '/teams/{teamId}'
                 .gsub('{teamId}', team_id)
 
             if team_id.nil?
@@ -165,7 +165,7 @@ module Appwrite
 
             @client.call(
                 method: 'DELETE',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )
@@ -181,7 +181,7 @@ module Appwrite
         #
         # @return [MembershipList]
         def list_memberships(team_id:, queries: nil, search: nil)
-            path = '/teams/{teamId}/memberships'
+            api_path = '/teams/{teamId}/memberships'
                 .gsub('{teamId}', team_id)
 
             if team_id.nil?
@@ -199,7 +199,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::MembershipList
@@ -239,7 +239,7 @@ module Appwrite
         #
         # @return [Membership]
         def create_membership(team_id:, roles:, url:, email: nil, user_id: nil, phone: nil, name: nil)
-            path = '/teams/{teamId}/memberships'
+            api_path = '/teams/{teamId}/memberships'
                 .gsub('{teamId}', team_id)
 
             if team_id.nil?
@@ -269,7 +269,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Membership
@@ -285,7 +285,7 @@ module Appwrite
         #
         # @return [Membership]
         def get_membership(team_id:, membership_id:)
-            path = '/teams/{teamId}/memberships/{membershipId}'
+            api_path = '/teams/{teamId}/memberships/{membershipId}'
                 .gsub('{teamId}', team_id)
                 .gsub('{membershipId}', membership_id)
 
@@ -306,7 +306,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Membership
@@ -317,14 +317,15 @@ module Appwrite
         # Modify the roles of a team member. Only team members with the owner role
         # have access to this endpoint. Learn more about [roles and
         # permissions](/docs/permissions).
+        # 
         #
         # @param [String] team_id Team ID.
         # @param [String] membership_id Membership ID.
         # @param [Array] roles An array of strings. Use this param to set the user's roles in the team. A role can be any string. Learn more about [roles and permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long.
         #
         # @return [Membership]
-        def update_membership_roles(team_id:, membership_id:, roles:)
-            path = '/teams/{teamId}/memberships/{membershipId}'
+        def update_membership(team_id:, membership_id:, roles:)
+            api_path = '/teams/{teamId}/memberships/{membershipId}'
                 .gsub('{teamId}', team_id)
                 .gsub('{membershipId}', membership_id)
 
@@ -350,7 +351,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Membership
@@ -367,7 +368,7 @@ module Appwrite
         #
         # @return []
         def delete_membership(team_id:, membership_id:)
-            path = '/teams/{teamId}/memberships/{membershipId}'
+            api_path = '/teams/{teamId}/memberships/{membershipId}'
                 .gsub('{teamId}', team_id)
                 .gsub('{membershipId}', membership_id)
 
@@ -388,7 +389,7 @@ module Appwrite
 
             @client.call(
                 method: 'DELETE',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )
@@ -410,7 +411,7 @@ module Appwrite
         #
         # @return [Membership]
         def update_membership_status(team_id:, membership_id:, user_id:, secret:)
-            path = '/teams/{teamId}/memberships/{membershipId}/status'
+            api_path = '/teams/{teamId}/memberships/{membershipId}/status'
                 .gsub('{teamId}', team_id)
                 .gsub('{membershipId}', membership_id)
 
@@ -441,7 +442,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Membership
@@ -457,7 +458,7 @@ module Appwrite
         #
         # @return [Preferences]
         def get_prefs(team_id:)
-            path = '/teams/{teamId}/prefs'
+            api_path = '/teams/{teamId}/prefs'
                 .gsub('{teamId}', team_id)
 
             if team_id.nil?
@@ -473,7 +474,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Preferences
@@ -490,7 +491,7 @@ module Appwrite
         #
         # @return [Preferences]
         def update_prefs(team_id:, prefs:)
-            path = '/teams/{teamId}/prefs'
+            api_path = '/teams/{teamId}/prefs'
                 .gsub('{teamId}', team_id)
 
             if team_id.nil?
@@ -511,7 +512,7 @@ module Appwrite
 
             @client.call(
                 method: 'PUT',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Preferences

@@ -9,14 +9,22 @@ module Appwrite
             attr_reader :execute
             attr_reader :name
             attr_reader :enabled
+            attr_reader :live
+            attr_reader :logging
             attr_reader :runtime
             attr_reader :deployment
             attr_reader :vars
             attr_reader :events
             attr_reader :schedule
-            attr_reader :schedule_next
-            attr_reader :schedule_previous
             attr_reader :timeout
+            attr_reader :entrypoint
+            attr_reader :commands
+            attr_reader :version
+            attr_reader :installation_id
+            attr_reader :provider_repository_id
+            attr_reader :provider_branch
+            attr_reader :provider_root_directory
+            attr_reader :provider_silent_mode
 
             def initialize(
                 id:,
@@ -25,14 +33,22 @@ module Appwrite
                 execute:,
                 name:,
                 enabled:,
+                live:,
+                logging:,
                 runtime:,
                 deployment:,
                 vars:,
                 events:,
                 schedule:,
-                schedule_next:,
-                schedule_previous:,
-                timeout:
+                timeout:,
+                entrypoint:,
+                commands:,
+                version:,
+                installation_id:,
+                provider_repository_id:,
+                provider_branch:,
+                provider_root_directory:,
+                provider_silent_mode:
             )
                 @id = id
                 @created_at = created_at
@@ -40,14 +56,22 @@ module Appwrite
                 @execute = execute
                 @name = name
                 @enabled = enabled
+                @live = live
+                @logging = logging
                 @runtime = runtime
                 @deployment = deployment
                 @vars = vars
                 @events = events
                 @schedule = schedule
-                @schedule_next = schedule_next
-                @schedule_previous = schedule_previous
                 @timeout = timeout
+                @entrypoint = entrypoint
+                @commands = commands
+                @version = version
+                @installation_id = installation_id
+                @provider_repository_id = provider_repository_id
+                @provider_branch = provider_branch
+                @provider_root_directory = provider_root_directory
+                @provider_silent_mode = provider_silent_mode
             end
 
             def self.from(map:)
@@ -58,14 +82,22 @@ module Appwrite
                     execute: map["execute"],
                     name: map["name"],
                     enabled: map["enabled"],
+                    live: map["live"],
+                    logging: map["logging"],
                     runtime: map["runtime"],
                     deployment: map["deployment"],
                     vars: map["vars"].map { |it| Variable.from(map: it) },
                     events: map["events"],
                     schedule: map["schedule"],
-                    schedule_next: map["scheduleNext"],
-                    schedule_previous: map["schedulePrevious"],
-                    timeout: map["timeout"]
+                    timeout: map["timeout"],
+                    entrypoint: map["entrypoint"],
+                    commands: map["commands"],
+                    version: map["version"],
+                    installation_id: map["installationId"],
+                    provider_repository_id: map["providerRepositoryId"],
+                    provider_branch: map["providerBranch"],
+                    provider_root_directory: map["providerRootDirectory"],
+                    provider_silent_mode: map["providerSilentMode"]
                 )
             end
 
@@ -77,14 +109,22 @@ module Appwrite
                     "execute": @execute,
                     "name": @name,
                     "enabled": @enabled,
+                    "live": @live,
+                    "logging": @logging,
                     "runtime": @runtime,
                     "deployment": @deployment,
                     "vars": @vars.map { |it| it.to_map },
                     "events": @events,
                     "schedule": @schedule,
-                    "scheduleNext": @schedule_next,
-                    "schedulePrevious": @schedule_previous,
-                    "timeout": @timeout
+                    "timeout": @timeout,
+                    "entrypoint": @entrypoint,
+                    "commands": @commands,
+                    "version": @version,
+                    "installationId": @installation_id,
+                    "providerRepositoryId": @provider_repository_id,
+                    "providerBranch": @provider_branch,
+                    "providerRootDirectory": @provider_root_directory,
+                    "providerSilentMode": @provider_silent_mode
                 }
             end
         end

@@ -15,7 +15,7 @@ module Appwrite
         #
         # @return [BucketList]
         def list_buckets(queries: nil, search: nil)
-            path = '/storage/buckets'
+            api_path = '/storage/buckets'
 
             params = {
                 queries: queries,
@@ -28,7 +28,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::BucketList
@@ -42,8 +42,8 @@ module Appwrite
         # @param [String] name Bucket name
         # @param [Array] permissions An array of permission strings. By default, no user is granted with any permissions. [Learn more about permissions](/docs/permissions).
         # @param [] file_security Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](/docs/permissions).
-        # @param [] enabled Is bucket enabled?
-        # @param [Integer] maximum_file_size Maximum file size allowed in bytes. Maximum allowed value is 30MB. For self-hosted setups you can change the max limit by changing the `_APP_STORAGE_LIMIT` environment variable. [Learn more about storage environment variables](docs/environment-variables#storage)
+        # @param [] enabled Is bucket enabled? When set to 'disabled', users cannot access the files in this bucket but Server SDKs with and API key can still access the bucket. No files are lost when this is toggled.
+        # @param [Integer] maximum_file_size Maximum file size allowed in bytes. Maximum allowed value is 30MB.
         # @param [Array] allowed_file_extensions Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long.
         # @param [String] compression Compression algorithm choosen for compression. Can be one of none,  [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd), For file size above 20MB compression is skipped even if it's enabled
         # @param [] encryption Is encryption enabled? For file size above 20MB encryption is skipped even if it's enabled
@@ -51,7 +51,7 @@ module Appwrite
         #
         # @return [Bucket]
         def create_bucket(bucket_id:, name:, permissions: nil, file_security: nil, enabled: nil, maximum_file_size: nil, allowed_file_extensions: nil, compression: nil, encryption: nil, antivirus: nil)
-            path = '/storage/buckets'
+            api_path = '/storage/buckets'
 
             if bucket_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
@@ -80,7 +80,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Bucket
@@ -95,7 +95,7 @@ module Appwrite
         #
         # @return [Bucket]
         def get_bucket(bucket_id:)
-            path = '/storage/buckets/{bucketId}'
+            api_path = '/storage/buckets/{bucketId}'
                 .gsub('{bucketId}', bucket_id)
 
             if bucket_id.nil?
@@ -111,7 +111,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Bucket
@@ -125,8 +125,8 @@ module Appwrite
         # @param [String] name Bucket name
         # @param [Array] permissions An array of permission strings. By default, the current permissions are inherited. [Learn more about permissions](/docs/permissions).
         # @param [] file_security Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](/docs/permissions).
-        # @param [] enabled Is bucket enabled?
-        # @param [Integer] maximum_file_size Maximum file size allowed in bytes. Maximum allowed value is 30MB. For self hosted version you can change the limit by changing _APP_STORAGE_LIMIT environment variable. [Learn more about storage environment variables](docs/environment-variables#storage)
+        # @param [] enabled Is bucket enabled? When set to 'disabled', users cannot access the files in this bucket but Server SDKs with and API key can still access the bucket. No files are lost when this is toggled.
+        # @param [Integer] maximum_file_size Maximum file size allowed in bytes. Maximum allowed value is 30MB.
         # @param [Array] allowed_file_extensions Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long.
         # @param [String] compression Compression algorithm choosen for compression. Can be one of none, [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd), For file size above 20MB compression is skipped even if it's enabled
         # @param [] encryption Is encryption enabled? For file size above 20MB encryption is skipped even if it's enabled
@@ -134,7 +134,7 @@ module Appwrite
         #
         # @return [Bucket]
         def update_bucket(bucket_id:, name:, permissions: nil, file_security: nil, enabled: nil, maximum_file_size: nil, allowed_file_extensions: nil, compression: nil, encryption: nil, antivirus: nil)
-            path = '/storage/buckets/{bucketId}'
+            api_path = '/storage/buckets/{bucketId}'
                 .gsub('{bucketId}', bucket_id)
 
             if bucket_id.nil?
@@ -163,7 +163,7 @@ module Appwrite
 
             @client.call(
                 method: 'PUT',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Bucket
@@ -177,7 +177,7 @@ module Appwrite
         #
         # @return []
         def delete_bucket(bucket_id:)
-            path = '/storage/buckets/{bucketId}'
+            api_path = '/storage/buckets/{bucketId}'
                 .gsub('{bucketId}', bucket_id)
 
             if bucket_id.nil?
@@ -193,7 +193,7 @@ module Appwrite
 
             @client.call(
                 method: 'DELETE',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )
@@ -209,7 +209,7 @@ module Appwrite
         #
         # @return [FileList]
         def list_files(bucket_id:, queries: nil, search: nil)
-            path = '/storage/buckets/{bucketId}/files'
+            api_path = '/storage/buckets/{bucketId}/files'
                 .gsub('{bucketId}', bucket_id)
 
             if bucket_id.nil?
@@ -227,7 +227,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::FileList
@@ -261,7 +261,7 @@ module Appwrite
         #
         # @return [File]
         def create_file(bucket_id:, file_id:, file:, permissions: nil, on_progress: nil)
-            path = '/storage/buckets/{bucketId}/files'
+            api_path = '/storage/buckets/{bucketId}/files'
                 .gsub('{bucketId}', bucket_id)
 
             if bucket_id.nil?
@@ -290,7 +290,7 @@ module Appwrite
             param_name = 'file'
 
             @client.chunked_upload(
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 param_name: param_name,
@@ -309,7 +309,7 @@ module Appwrite
         #
         # @return [File]
         def get_file(bucket_id:, file_id:)
-            path = '/storage/buckets/{bucketId}/files/{fileId}'
+            api_path = '/storage/buckets/{bucketId}/files/{fileId}'
                 .gsub('{bucketId}', bucket_id)
                 .gsub('{fileId}', file_id)
 
@@ -330,7 +330,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::File
@@ -343,11 +343,12 @@ module Appwrite
         #
         # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
         # @param [String] file_id File unique ID.
+        # @param [String] name Name of the file
         # @param [Array] permissions An array of permission string. By default, the current permissions are inherited. [Learn more about permissions](/docs/permissions).
         #
         # @return [File]
-        def update_file(bucket_id:, file_id:, permissions: nil)
-            path = '/storage/buckets/{bucketId}/files/{fileId}'
+        def update_file(bucket_id:, file_id:, name: nil, permissions: nil)
+            api_path = '/storage/buckets/{bucketId}/files/{fileId}'
                 .gsub('{bucketId}', bucket_id)
                 .gsub('{fileId}', file_id)
 
@@ -360,6 +361,7 @@ module Appwrite
             end
 
             params = {
+                name: name,
                 permissions: permissions,
             }
             
@@ -369,7 +371,7 @@ module Appwrite
 
             @client.call(
                 method: 'PUT',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::File
@@ -385,7 +387,7 @@ module Appwrite
         #
         # @return []
         def delete_file(bucket_id:, file_id:)
-            path = '/storage/buckets/{bucketId}/files/{fileId}'
+            api_path = '/storage/buckets/{bucketId}/files/{fileId}'
                 .gsub('{bucketId}', bucket_id)
                 .gsub('{fileId}', file_id)
 
@@ -406,7 +408,7 @@ module Appwrite
 
             @client.call(
                 method: 'DELETE',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )
@@ -422,7 +424,7 @@ module Appwrite
         #
         # @return []
         def get_file_download(bucket_id:, file_id:)
-            path = '/storage/buckets/{bucketId}/files/{fileId}/download'
+            api_path = '/storage/buckets/{bucketId}/files/{fileId}/download'
                 .gsub('{bucketId}', bucket_id)
                 .gsub('{fileId}', file_id)
 
@@ -443,7 +445,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )
@@ -472,7 +474,7 @@ module Appwrite
         #
         # @return []
         def get_file_preview(bucket_id:, file_id:, width: nil, height: nil, gravity: nil, quality: nil, border_width: nil, border_color: nil, border_radius: nil, opacity: nil, rotation: nil, background: nil, output: nil)
-            path = '/storage/buckets/{bucketId}/files/{fileId}/preview'
+            api_path = '/storage/buckets/{bucketId}/files/{fileId}/preview'
                 .gsub('{bucketId}', bucket_id)
                 .gsub('{fileId}', file_id)
 
@@ -504,7 +506,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )
@@ -520,7 +522,7 @@ module Appwrite
         #
         # @return []
         def get_file_view(bucket_id:, file_id:)
-            path = '/storage/buckets/{bucketId}/files/{fileId}/view'
+            api_path = '/storage/buckets/{bucketId}/files/{fileId}/view'
                 .gsub('{bucketId}', bucket_id)
                 .gsub('{fileId}', file_id)
 
@@ -541,7 +543,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )

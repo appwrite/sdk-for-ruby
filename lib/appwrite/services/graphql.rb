@@ -13,7 +13,7 @@ module Appwrite
         #
         # @return [Any]
         def query(query:)
-            path = '/graphql'
+            api_path = '/graphql'
 
             if query.nil?
               raise Appwrite::Exception.new('Missing required parameter: "query"')
@@ -30,7 +30,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )
@@ -43,7 +43,7 @@ module Appwrite
         #
         # @return [Any]
         def mutation(query:)
-            path = '/graphql/mutation'
+            api_path = '/graphql/mutation'
 
             if query.nil?
               raise Appwrite::Exception.new('Missing required parameter: "query"')
@@ -60,7 +60,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )

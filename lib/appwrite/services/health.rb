@@ -12,7 +12,7 @@ module Appwrite
         #
         # @return [HealthStatus]
         def get()
-            path = '/health'
+            api_path = '/health'
 
             params = {
             }
@@ -23,7 +23,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::HealthStatus
@@ -36,7 +36,7 @@ module Appwrite
         #
         # @return [HealthAntivirus]
         def get_antivirus()
-            path = '/health/anti-virus'
+            api_path = '/health/anti-virus'
 
             params = {
             }
@@ -47,7 +47,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::HealthAntivirus
@@ -55,13 +55,13 @@ module Appwrite
         end
 
         
-        # Check the Appwrite in-memory cache server is up and connection is
+        # Check the Appwrite in-memory cache servers are up and connection is
         # successful.
         #
         #
         # @return [HealthStatus]
         def get_cache()
-            path = '/health/cache'
+            api_path = '/health/cache'
 
             params = {
             }
@@ -72,7 +72,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::HealthStatus
@@ -80,12 +80,12 @@ module Appwrite
         end
 
         
-        # Check the Appwrite database server is up and connection is successful.
+        # Check the Appwrite database servers are up and connection is successful.
         #
         #
         # @return [HealthStatus]
         def get_db()
-            path = '/health/db'
+            api_path = '/health/db'
 
             params = {
             }
@@ -96,7 +96,56 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
+                headers: headers,
+                params: params,
+                response_type: Models::HealthStatus
+            )
+        end
+
+        
+        # Check the Appwrite pub-sub servers are up and connection is successful.
+        #
+        #
+        # @return [HealthStatus]
+        def get_pub_sub()
+            api_path = '/health/pubsub'
+
+            params = {
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: headers,
+                params: params,
+                response_type: Models::HealthStatus
+            )
+        end
+
+        
+        # Check the Appwrite queue messaging servers are up and connection is
+        # successful.
+        #
+        #
+        # @return [HealthStatus]
+        def get_queue()
+            api_path = '/health/queue'
+
+            params = {
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::HealthStatus
@@ -111,7 +160,7 @@ module Appwrite
         #
         # @return [HealthQueue]
         def get_queue_certificates()
-            path = '/health/queue/certificates'
+            api_path = '/health/queue/certificates'
 
             params = {
             }
@@ -122,7 +171,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::HealthQueue
@@ -135,7 +184,7 @@ module Appwrite
         #
         # @return [HealthQueue]
         def get_queue_functions()
-            path = '/health/queue/functions'
+            api_path = '/health/queue/functions'
 
             params = {
             }
@@ -146,7 +195,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::HealthQueue
@@ -160,7 +209,7 @@ module Appwrite
         #
         # @return [HealthQueue]
         def get_queue_logs()
-            path = '/health/queue/logs'
+            api_path = '/health/queue/logs'
 
             params = {
             }
@@ -171,7 +220,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::HealthQueue
@@ -185,7 +234,7 @@ module Appwrite
         #
         # @return [HealthQueue]
         def get_queue_webhooks()
-            path = '/health/queue/webhooks'
+            api_path = '/health/queue/webhooks'
 
             params = {
             }
@@ -196,7 +245,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::HealthQueue
@@ -209,7 +258,7 @@ module Appwrite
         #
         # @return [HealthStatus]
         def get_storage_local()
-            path = '/health/storage/local'
+            api_path = '/health/storage/local'
 
             params = {
             }
@@ -220,7 +269,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::HealthStatus
@@ -239,7 +288,7 @@ module Appwrite
         #
         # @return [HealthTime]
         def get_time()
-            path = '/health/time'
+            api_path = '/health/time'
 
             params = {
             }
@@ -250,7 +299,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::HealthTime

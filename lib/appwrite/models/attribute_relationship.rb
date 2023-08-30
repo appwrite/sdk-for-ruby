@@ -6,6 +6,7 @@ module Appwrite
             attr_reader :key
             attr_reader :type
             attr_reader :status
+            attr_reader :error
             attr_reader :required
             attr_reader :array
             attr_reader :related_collection
@@ -19,6 +20,7 @@ module Appwrite
                 key:,
                 type:,
                 status:,
+                error:,
                 required:,
                 array: ,
                 related_collection:,
@@ -31,6 +33,7 @@ module Appwrite
                 @key = key
                 @type = type
                 @status = status
+                @error = error
                 @required = required
                 @array = array
                 @related_collection = related_collection
@@ -46,6 +49,7 @@ module Appwrite
                     key: map["key"],
                     type: map["type"],
                     status: map["status"],
+                    error: map["error"],
                     required: map["required"],
                     array: map["array"],
                     related_collection: map["relatedCollection"],
@@ -62,6 +66,7 @@ module Appwrite
                     "key": @key,
                     "type": @type,
                     "status": @status,
+                    "error": @error,
                     "required": @required,
                     "array": @array,
                     "relatedCollection": @related_collection,

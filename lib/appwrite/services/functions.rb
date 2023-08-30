@@ -10,12 +10,12 @@ module Appwrite
         # Get a list of all the project's functions. You can use the query params to
         # filter your results.
         #
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, enabled, runtime, deployment, schedule, scheduleNext, schedulePrevious, timeout
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, enabled, runtime, deployment, schedule, scheduleNext, schedulePrevious, timeout, entrypoint, commands, installationId
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [FunctionList]
         def list(queries: nil, search: nil)
-            path = '/functions'
+            api_path = '/functions'
 
             params = {
                 queries: queries,
@@ -28,7 +28,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::FunctionList
@@ -43,15 +43,27 @@ module Appwrite
         # @param [String] function_id Function ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Function name. Max length: 128 chars.
         # @param [String] runtime Execution runtime.
-        # @param [Array] execute An array of strings with execution roles. By default no user is granted with any execute permissions. [learn more about permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 64 characters long.
+        # @param [Array] execute An array of role strings with execution permissions. By default no user is granted with any execute permissions. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long.
         # @param [Array] events Events list. Maximum of 100 events are allowed.
         # @param [String] schedule Schedule CRON syntax.
         # @param [Integer] timeout Function maximum execution time in seconds.
-        # @param [] enabled Is function enabled?
+        # @param [] enabled Is function enabled? When set to 'disabled', users cannot access the function but Server SDKs with and API key can still access the function. No data is lost when this is toggled.
+        # @param [] logging Whether executions will be logged. When set to false, executions will not be logged, but will reduce resource used by your Appwrite project.
+        # @param [String] entrypoint Entrypoint File. This path is relative to the "providerRootDirectory".
+        # @param [String] commands Build Commands.
+        # @param [String] installation_id Appwrite Installation ID for VCS (Version Control System) deployment.
+        # @param [String] provider_repository_id Repository ID of the repo linked to the function.
+        # @param [String] provider_branch Production branch for the repo linked to the function.
+        # @param [] provider_silent_mode Is the VCS (Version Control System) connection in silent mode for the repo linked to the function? In silent mode, comments will not be made on commits and pull requests.
+        # @param [String] provider_root_directory Path to function code in the linked repo.
+        # @param [String] template_repository Repository name of the template.
+        # @param [String] template_owner The name of the owner of the template.
+        # @param [String] template_root_directory Path to function code in the template repo.
+        # @param [String] template_branch Production branch for the repo linked to the function template.
         #
         # @return [Function]
-        def create(function_id:, name:, runtime:, execute: nil, events: nil, schedule: nil, timeout: nil, enabled: nil)
-            path = '/functions'
+        def create(function_id:, name:, runtime:, execute: nil, events: nil, schedule: nil, timeout: nil, enabled: nil, logging: nil, entrypoint: nil, commands: nil, installation_id: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil, template_repository: nil, template_owner: nil, template_root_directory: nil, template_branch: nil)
+            api_path = '/functions'
 
             if function_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "functionId"')
@@ -68,12 +80,24 @@ module Appwrite
             params = {
                 functionId: function_id,
                 name: name,
-                execute: execute,
                 runtime: runtime,
+                execute: execute,
                 events: events,
                 schedule: schedule,
                 timeout: timeout,
                 enabled: enabled,
+                logging: logging,
+                entrypoint: entrypoint,
+                commands: commands,
+                installationId: installation_id,
+                providerRepositoryId: provider_repository_id,
+                providerBranch: provider_branch,
+                providerSilentMode: provider_silent_mode,
+                providerRootDirectory: provider_root_directory,
+                templateRepository: template_repository,
+                templateOwner: template_owner,
+                templateRootDirectory: template_root_directory,
+                templateBranch: template_branch,
             }
             
             headers = {
@@ -82,7 +106,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Function
@@ -95,7 +119,7 @@ module Appwrite
         #
         # @return [RuntimeList]
         def list_runtimes()
-            path = '/functions/runtimes'
+            api_path = '/functions/runtimes'
 
             params = {
             }
@@ -106,7 +130,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::RuntimeList
@@ -120,7 +144,7 @@ module Appwrite
         #
         # @return [Function]
         def get(function_id:)
-            path = '/functions/{functionId}'
+            api_path = '/functions/{functionId}'
                 .gsub('{functionId}', function_id)
 
             if function_id.nil?
@@ -136,7 +160,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Function
@@ -148,15 +172,24 @@ module Appwrite
         #
         # @param [String] function_id Function ID.
         # @param [String] name Function name. Max length: 128 chars.
-        # @param [Array] execute An array of strings with execution roles. By default no user is granted with any execute permissions. [learn more about permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 64 characters long.
+        # @param [String] runtime Execution runtime.
+        # @param [Array] execute An array of role strings with execution permissions. By default no user is granted with any execute permissions. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long.
         # @param [Array] events Events list. Maximum of 100 events are allowed.
         # @param [String] schedule Schedule CRON syntax.
         # @param [Integer] timeout Maximum execution time in seconds.
-        # @param [] enabled Is function enabled?
+        # @param [] enabled Is function enabled? When set to 'disabled', users cannot access the function but Server SDKs with and API key can still access the function. No data is lost when this is toggled.
+        # @param [] logging Whether executions will be logged. When set to false, executions will not be logged, but will reduce resource used by your Appwrite project.
+        # @param [String] entrypoint Entrypoint File. This path is relative to the "providerRootDirectory".
+        # @param [String] commands Build Commands.
+        # @param [String] installation_id Appwrite Installation ID for VCS (Version Controle System) deployment.
+        # @param [String] provider_repository_id Repository ID of the repo linked to the function
+        # @param [String] provider_branch Production branch for the repo linked to the function
+        # @param [] provider_silent_mode Is the VCS (Version Control System) connection in silent mode for the repo linked to the function? In silent mode, comments will not be made on commits and pull requests.
+        # @param [String] provider_root_directory Path to function code in the linked repo.
         #
         # @return [Function]
-        def update(function_id:, name:, execute: nil, events: nil, schedule: nil, timeout: nil, enabled: nil)
-            path = '/functions/{functionId}'
+        def update(function_id:, name:, runtime:, execute: nil, events: nil, schedule: nil, timeout: nil, enabled: nil, logging: nil, entrypoint: nil, commands: nil, installation_id: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil)
+            api_path = '/functions/{functionId}'
                 .gsub('{functionId}', function_id)
 
             if function_id.nil?
@@ -167,13 +200,26 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
+            if runtime.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "runtime"')
+            end
+
             params = {
                 name: name,
+                runtime: runtime,
                 execute: execute,
                 events: events,
                 schedule: schedule,
                 timeout: timeout,
                 enabled: enabled,
+                logging: logging,
+                entrypoint: entrypoint,
+                commands: commands,
+                installationId: installation_id,
+                providerRepositoryId: provider_repository_id,
+                providerBranch: provider_branch,
+                providerSilentMode: provider_silent_mode,
+                providerRootDirectory: provider_root_directory,
             }
             
             headers = {
@@ -182,7 +228,7 @@ module Appwrite
 
             @client.call(
                 method: 'PUT',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Function
@@ -196,7 +242,7 @@ module Appwrite
         #
         # @return []
         def delete(function_id:)
-            path = '/functions/{functionId}'
+            api_path = '/functions/{functionId}'
                 .gsub('{functionId}', function_id)
 
             if function_id.nil?
@@ -212,7 +258,7 @@ module Appwrite
 
             @client.call(
                 method: 'DELETE',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )
@@ -223,12 +269,12 @@ module Appwrite
         # params to filter your results.
         #
         # @param [String] function_id Function ID.
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: entrypoint, size, buildId, activate
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: size, buildId, activate, entrypoint, commands
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [DeploymentList]
         def list_deployments(function_id:, queries: nil, search: nil)
-            path = '/functions/{functionId}/deployments'
+            api_path = '/functions/{functionId}/deployments'
                 .gsub('{functionId}', function_id)
 
             if function_id.nil?
@@ -246,7 +292,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::DeploymentList
@@ -263,24 +309,21 @@ module Appwrite
         # learn more about code packaging in the [Appwrite Cloud Functions
         # tutorial](/docs/functions).
         # 
-        # Use the "command" param to set the entry point used to execute your code.
+        # Use the "command" param to set the entrypoint used to execute your code.
         #
         # @param [String] function_id Function ID.
-        # @param [String] entrypoint Entrypoint File.
         # @param [file] code Gzip file with your code package. When used with the Appwrite CLI, pass the path to your code directory, and the CLI will automatically package your code. Use a path that is within the current directory.
         # @param [] activate Automatically activate the deployment when it is finished building.
+        # @param [String] entrypoint Entrypoint File.
+        # @param [String] commands Build Commands.
         #
         # @return [Deployment]
-        def create_deployment(function_id:, entrypoint:, code:, activate:, on_progress: nil)
-            path = '/functions/{functionId}/deployments'
+        def create_deployment(function_id:, code:, activate:, entrypoint: nil, commands: nil, on_progress: nil)
+            api_path = '/functions/{functionId}/deployments'
                 .gsub('{functionId}', function_id)
 
             if function_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "functionId"')
-            end
-
-            if entrypoint.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "entrypoint"')
             end
 
             if code.nil?
@@ -293,6 +336,7 @@ module Appwrite
 
             params = {
                 entrypoint: entrypoint,
+                commands: commands,
                 code: code,
                 activate: activate,
             }
@@ -305,7 +349,7 @@ module Appwrite
             param_name = 'code'
 
             @client.chunked_upload(
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 param_name: param_name,
@@ -323,7 +367,7 @@ module Appwrite
         #
         # @return [Deployment]
         def get_deployment(function_id:, deployment_id:)
-            path = '/functions/{functionId}/deployments/{deploymentId}'
+            api_path = '/functions/{functionId}/deployments/{deploymentId}'
                 .gsub('{functionId}', function_id)
                 .gsub('{deploymentId}', deployment_id)
 
@@ -344,7 +388,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Deployment
@@ -361,7 +405,7 @@ module Appwrite
         #
         # @return [Function]
         def update_deployment(function_id:, deployment_id:)
-            path = '/functions/{functionId}/deployments/{deploymentId}'
+            api_path = '/functions/{functionId}/deployments/{deploymentId}'
                 .gsub('{functionId}', function_id)
                 .gsub('{deploymentId}', deployment_id)
 
@@ -382,7 +426,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Function
@@ -397,7 +441,7 @@ module Appwrite
         #
         # @return []
         def delete_deployment(function_id:, deployment_id:)
-            path = '/functions/{functionId}/deployments/{deploymentId}'
+            api_path = '/functions/{functionId}/deployments/{deploymentId}'
                 .gsub('{functionId}', function_id)
                 .gsub('{deploymentId}', deployment_id)
 
@@ -418,14 +462,15 @@ module Appwrite
 
             @client.call(
                 method: 'DELETE',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )
         end
 
         
-        # 
+        # Create a new build for an Appwrite Function deployment. This endpoint can
+        # be used to retry a failed build.
         #
         # @param [String] function_id Function ID.
         # @param [String] deployment_id Deployment ID.
@@ -433,7 +478,7 @@ module Appwrite
         #
         # @return []
         def create_build(function_id:, deployment_id:, build_id:)
-            path = '/functions/{functionId}/deployments/{deploymentId}/builds/{buildId}'
+            api_path = '/functions/{functionId}/deployments/{deploymentId}/builds/{buildId}'
                 .gsub('{functionId}', function_id)
                 .gsub('{deploymentId}', deployment_id)
                 .gsub('{buildId}', build_id)
@@ -459,7 +504,42 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
+                headers: headers,
+                params: params,
+            )
+        end
+
+        
+        # 
+        #
+        # @param [String] function_id Function ID.
+        # @param [String] deployment_id Deployment ID.
+        #
+        # @return []
+        def download_deployment(function_id:, deployment_id:)
+            api_path = '/functions/{functionId}/deployments/{deploymentId}/download'
+                .gsub('{functionId}', function_id)
+                .gsub('{deploymentId}', deployment_id)
+
+            if function_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+            end
+
+            if deployment_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
+            end
+
+            params = {
+            }
+            
+            headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
                 headers: headers,
                 params: params,
             )
@@ -470,12 +550,12 @@ module Appwrite
         # query params to filter your results.
         #
         # @param [String] function_id Function ID.
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: trigger, status, statusCode, duration
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: trigger, status, responseStatusCode, duration
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [ExecutionList]
         def list_executions(function_id:, queries: nil, search: nil)
-            path = '/functions/{functionId}/executions'
+            api_path = '/functions/{functionId}/executions'
                 .gsub('{functionId}', function_id)
 
             if function_id.nil?
@@ -493,7 +573,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::ExecutionList
@@ -507,12 +587,15 @@ module Appwrite
         # function execution process will start asynchronously.
         #
         # @param [String] function_id Function ID.
-        # @param [String] data String of custom data to send to function.
+        # @param [String] body HTTP body of execution. Default value is empty string.
         # @param [] async Execute code in the background. Default value is false.
+        # @param [String] xpath HTTP path of execution. Path can include query params. Default value is /
+        # @param [String] method HTTP method of execution. Default value is GET.
+        # @param [Hash] headers HTTP headers of execution. Defaults to empty.
         #
         # @return [Execution]
-        def create_execution(function_id:, data: nil, async: nil)
-            path = '/functions/{functionId}/executions'
+        def create_execution(function_id:, body: nil, async: nil, xpath: nil, method: nil, headers: nil)
+            api_path = '/functions/{functionId}/executions'
                 .gsub('{functionId}', function_id)
 
             if function_id.nil?
@@ -520,8 +603,11 @@ module Appwrite
             end
 
             params = {
-                data: data,
+                body: body,
                 async: async,
+                path: xpath,
+                method: method,
+                headers: headers,
             }
             
             headers = {
@@ -530,7 +616,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Execution
@@ -545,7 +631,7 @@ module Appwrite
         #
         # @return [Execution]
         def get_execution(function_id:, execution_id:)
-            path = '/functions/{functionId}/executions/{executionId}'
+            api_path = '/functions/{functionId}/executions/{executionId}'
                 .gsub('{functionId}', function_id)
                 .gsub('{executionId}', execution_id)
 
@@ -566,7 +652,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Execution
@@ -580,7 +666,7 @@ module Appwrite
         #
         # @return [VariableList]
         def list_variables(function_id:)
-            path = '/functions/{functionId}/variables'
+            api_path = '/functions/{functionId}/variables'
                 .gsub('{functionId}', function_id)
 
             if function_id.nil?
@@ -596,7 +682,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::VariableList
@@ -604,8 +690,8 @@ module Appwrite
         end
 
         
-        # Create a new function variable. These variables can be accessed within
-        # function in the `env` object under the request variable.
+        # Create a new function environment variable. These variables can be accessed
+        # in the function at runtime as environment variables.
         #
         # @param [String] function_id Function unique ID.
         # @param [String] key Variable key. Max length: 255 chars.
@@ -613,7 +699,7 @@ module Appwrite
         #
         # @return [Variable]
         def create_variable(function_id:, key:, value:)
-            path = '/functions/{functionId}/variables'
+            api_path = '/functions/{functionId}/variables'
                 .gsub('{functionId}', function_id)
 
             if function_id.nil?
@@ -639,7 +725,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Variable
@@ -654,7 +740,7 @@ module Appwrite
         #
         # @return [Variable]
         def get_variable(function_id:, variable_id:)
-            path = '/functions/{functionId}/variables/{variableId}'
+            api_path = '/functions/{functionId}/variables/{variableId}'
                 .gsub('{functionId}', function_id)
                 .gsub('{variableId}', variable_id)
 
@@ -675,7 +761,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Variable
@@ -692,7 +778,7 @@ module Appwrite
         #
         # @return [Variable]
         def update_variable(function_id:, variable_id:, key:, value: nil)
-            path = '/functions/{functionId}/variables/{variableId}'
+            api_path = '/functions/{functionId}/variables/{variableId}'
                 .gsub('{functionId}', function_id)
                 .gsub('{variableId}', variable_id)
 
@@ -719,7 +805,7 @@ module Appwrite
 
             @client.call(
                 method: 'PUT',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Variable
@@ -734,7 +820,7 @@ module Appwrite
         #
         # @return []
         def delete_variable(function_id:, variable_id:)
-            path = '/functions/{functionId}/variables/{variableId}'
+            api_path = '/functions/{functionId}/variables/{variableId}'
                 .gsub('{functionId}', function_id)
                 .gsub('{variableId}', variable_id)
 
@@ -755,7 +841,7 @@ module Appwrite
 
             @client.call(
                 method: 'DELETE',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )

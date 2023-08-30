@@ -15,7 +15,7 @@ module Appwrite
         #
         # @return [DatabaseList]
         def list(queries: nil, search: nil)
-            path = '/databases'
+            api_path = '/databases'
 
             params = {
                 queries: queries,
@@ -28,7 +28,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::DatabaseList
@@ -40,11 +40,12 @@ module Appwrite
         # 
         #
         # @param [String] database_id Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
-        # @param [String] name Collection name. Max length: 128 chars.
+        # @param [String] name Database name. Max length: 128 chars.
+        # @param [] enabled Is the database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled.
         #
         # @return [Database]
-        def create(database_id:, name:)
-            path = '/databases'
+        def create(database_id:, name:, enabled: nil)
+            api_path = '/databases'
 
             if database_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -57,6 +58,7 @@ module Appwrite
             params = {
                 databaseId: database_id,
                 name: name,
+                enabled: enabled,
             }
             
             headers = {
@@ -65,7 +67,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Database
@@ -80,7 +82,7 @@ module Appwrite
         #
         # @return [Database]
         def get(database_id:)
-            path = '/databases/{databaseId}'
+            api_path = '/databases/{databaseId}'
                 .gsub('{databaseId}', database_id)
 
             if database_id.nil?
@@ -96,7 +98,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Database
@@ -108,10 +110,11 @@ module Appwrite
         #
         # @param [String] database_id Database ID.
         # @param [String] name Database name. Max length: 128 chars.
+        # @param [] enabled Is database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled.
         #
         # @return [Database]
-        def update(database_id:, name:)
-            path = '/databases/{databaseId}'
+        def update(database_id:, name:, enabled: nil)
+            api_path = '/databases/{databaseId}'
                 .gsub('{databaseId}', database_id)
 
             if database_id.nil?
@@ -124,6 +127,7 @@ module Appwrite
 
             params = {
                 name: name,
+                enabled: enabled,
             }
             
             headers = {
@@ -132,7 +136,7 @@ module Appwrite
 
             @client.call(
                 method: 'PUT',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Database
@@ -147,7 +151,7 @@ module Appwrite
         #
         # @return []
         def delete(database_id:)
-            path = '/databases/{databaseId}'
+            api_path = '/databases/{databaseId}'
                 .gsub('{databaseId}', database_id)
 
             if database_id.nil?
@@ -163,7 +167,7 @@ module Appwrite
 
             @client.call(
                 method: 'DELETE',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )
@@ -179,7 +183,7 @@ module Appwrite
         #
         # @return [CollectionList]
         def list_collections(database_id:, queries: nil, search: nil)
-            path = '/databases/{databaseId}/collections'
+            api_path = '/databases/{databaseId}/collections'
                 .gsub('{databaseId}', database_id)
 
             if database_id.nil?
@@ -197,7 +201,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::CollectionList
@@ -215,10 +219,11 @@ module Appwrite
         # @param [String] name Collection name. Max length: 128 chars.
         # @param [Array] permissions An array of permissions strings. By default, no user is granted with any permissions. [Learn more about permissions](/docs/permissions).
         # @param [] document_security Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](/docs/permissions).
+        # @param [] enabled Is collection enabled? When set to 'disabled', users cannot access the collection but Server SDKs with and API key can still read and write to the collection. No data is lost when this is toggled.
         #
         # @return [Collection]
-        def create_collection(database_id:, collection_id:, name:, permissions: nil, document_security: nil)
-            path = '/databases/{databaseId}/collections'
+        def create_collection(database_id:, collection_id:, name:, permissions: nil, document_security: nil, enabled: nil)
+            api_path = '/databases/{databaseId}/collections'
                 .gsub('{databaseId}', database_id)
 
             if database_id.nil?
@@ -238,6 +243,7 @@ module Appwrite
                 name: name,
                 permissions: permissions,
                 documentSecurity: document_security,
+                enabled: enabled,
             }
             
             headers = {
@@ -246,7 +252,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Collection
@@ -262,7 +268,7 @@ module Appwrite
         #
         # @return [Collection]
         def get_collection(database_id:, collection_id:)
-            path = '/databases/{databaseId}/collections/{collectionId}'
+            api_path = '/databases/{databaseId}/collections/{collectionId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
@@ -283,7 +289,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Collection
@@ -298,11 +304,11 @@ module Appwrite
         # @param [String] name Collection name. Max length: 128 chars.
         # @param [Array] permissions An array of permission strings. By default, the current permissions are inherited. [Learn more about permissions](/docs/permissions).
         # @param [] document_security Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](/docs/permissions).
-        # @param [] enabled Is collection enabled?
+        # @param [] enabled Is collection enabled? When set to 'disabled', users cannot access the collection but Server SDKs with and API key can still read and write to the collection. No data is lost when this is toggled.
         #
         # @return [Collection]
         def update_collection(database_id:, collection_id:, name:, permissions: nil, document_security: nil, enabled: nil)
-            path = '/databases/{databaseId}/collections/{collectionId}'
+            api_path = '/databases/{databaseId}/collections/{collectionId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
@@ -331,7 +337,7 @@ module Appwrite
 
             @client.call(
                 method: 'PUT',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Collection
@@ -347,7 +353,7 @@ module Appwrite
         #
         # @return []
         def delete_collection(database_id:, collection_id:)
-            path = '/databases/{databaseId}/collections/{collectionId}'
+            api_path = '/databases/{databaseId}/collections/{collectionId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
@@ -368,7 +374,7 @@ module Appwrite
 
             @client.call(
                 method: 'DELETE',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )
@@ -379,10 +385,11 @@ module Appwrite
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: key, type, size, required, array, status, error
         #
         # @return [AttributeList]
-        def list_attributes(database_id:, collection_id:)
-            path = '/databases/{databaseId}/collections/{collectionId}/attributes'
+        def list_attributes(database_id:, collection_id:, queries: nil)
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
@@ -395,6 +402,7 @@ module Appwrite
             end
 
             params = {
+                queries: queries,
             }
             
             headers = {
@@ -403,7 +411,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::AttributeList
@@ -423,7 +431,7 @@ module Appwrite
         #
         # @return [AttributeBoolean]
         def create_boolean_attribute(database_id:, collection_id:, key:, required:, default: nil, array: nil)
-            path = '/databases/{databaseId}/collections/{collectionId}/attributes/boolean'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/boolean'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
@@ -456,7 +464,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::AttributeBoolean
@@ -474,7 +482,7 @@ module Appwrite
         #
         # @return [AttributeBoolean]
         def update_boolean_attribute(database_id:, collection_id:, key:, required:, default:)
-            path = '/databases/{databaseId}/collections/{collectionId}/attributes/boolean/{key}'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/boolean/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
@@ -510,7 +518,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::AttributeBoolean
@@ -529,7 +537,7 @@ module Appwrite
         #
         # @return [AttributeDatetime]
         def create_datetime_attribute(database_id:, collection_id:, key:, required:, default: nil, array: nil)
-            path = '/databases/{databaseId}/collections/{collectionId}/attributes/datetime'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/datetime'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
@@ -562,7 +570,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::AttributeDatetime
@@ -580,7 +588,7 @@ module Appwrite
         #
         # @return [AttributeDatetime]
         def update_datetime_attribute(database_id:, collection_id:, key:, required:, default:)
-            path = '/databases/{databaseId}/collections/{collectionId}/attributes/datetime/{key}'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/datetime/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
@@ -616,7 +624,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::AttributeDatetime
@@ -636,7 +644,7 @@ module Appwrite
         #
         # @return [AttributeEmail]
         def create_email_attribute(database_id:, collection_id:, key:, required:, default: nil, array: nil)
-            path = '/databases/{databaseId}/collections/{collectionId}/attributes/email'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/email'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
@@ -669,7 +677,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::AttributeEmail
@@ -689,7 +697,7 @@ module Appwrite
         #
         # @return [AttributeEmail]
         def update_email_attribute(database_id:, collection_id:, key:, required:, default:)
-            path = '/databases/{databaseId}/collections/{collectionId}/attributes/email/{key}'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/email/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
@@ -725,7 +733,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::AttributeEmail
@@ -745,7 +753,7 @@ module Appwrite
         #
         # @return [AttributeEnum]
         def create_enum_attribute(database_id:, collection_id:, key:, elements:, required:, default: nil, array: nil)
-            path = '/databases/{databaseId}/collections/{collectionId}/attributes/enum'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/enum'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
@@ -783,7 +791,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::AttributeEnum
@@ -804,7 +812,7 @@ module Appwrite
         #
         # @return [AttributeEnum]
         def update_enum_attribute(database_id:, collection_id:, key:, elements:, required:, default:)
-            path = '/databases/{databaseId}/collections/{collectionId}/attributes/enum/{key}'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/enum/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
@@ -845,7 +853,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::AttributeEnum
@@ -868,7 +876,7 @@ module Appwrite
         #
         # @return [AttributeFloat]
         def create_float_attribute(database_id:, collection_id:, key:, required:, min: nil, max: nil, default: nil, array: nil)
-            path = '/databases/{databaseId}/collections/{collectionId}/attributes/float'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/float'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
@@ -903,7 +911,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::AttributeFloat
@@ -925,7 +933,7 @@ module Appwrite
         #
         # @return [AttributeFloat]
         def update_float_attribute(database_id:, collection_id:, key:, required:, min:, max:, default:)
-            path = '/databases/{databaseId}/collections/{collectionId}/attributes/float/{key}'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/float/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
@@ -971,7 +979,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::AttributeFloat
@@ -994,7 +1002,7 @@ module Appwrite
         #
         # @return [AttributeInteger]
         def create_integer_attribute(database_id:, collection_id:, key:, required:, min: nil, max: nil, default: nil, array: nil)
-            path = '/databases/{databaseId}/collections/{collectionId}/attributes/integer'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/integer'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
@@ -1029,7 +1037,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::AttributeInteger
@@ -1051,7 +1059,7 @@ module Appwrite
         #
         # @return [AttributeInteger]
         def update_integer_attribute(database_id:, collection_id:, key:, required:, min:, max:, default:)
-            path = '/databases/{databaseId}/collections/{collectionId}/attributes/integer/{key}'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/integer/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
@@ -1097,7 +1105,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::AttributeInteger
@@ -1117,7 +1125,7 @@ module Appwrite
         #
         # @return [AttributeIp]
         def create_ip_attribute(database_id:, collection_id:, key:, required:, default: nil, array: nil)
-            path = '/databases/{databaseId}/collections/{collectionId}/attributes/ip'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/ip'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
@@ -1150,7 +1158,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::AttributeIp
@@ -1170,7 +1178,7 @@ module Appwrite
         #
         # @return [AttributeIp]
         def update_ip_attribute(database_id:, collection_id:, key:, required:, default:)
-            path = '/databases/{databaseId}/collections/{collectionId}/attributes/ip/{key}'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/ip/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
@@ -1206,7 +1214,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::AttributeIp
@@ -1215,7 +1223,7 @@ module Appwrite
 
         
         # Create relationship attribute. [Learn more about relationship
-        # attributes](docs/databases-relationships#relationship-attributes).
+        # attributes](/docs/databases-relationships#relationship-attributes).
         # 
         #
         # @param [String] database_id Database ID.
@@ -1229,7 +1237,7 @@ module Appwrite
         #
         # @return [AttributeRelationship]
         def create_relationship_attribute(database_id:, collection_id:, related_collection_id:, type:, two_way: nil, key: nil, two_way_key: nil, on_delete: nil)
-            path = '/databases/{databaseId}/collections/{collectionId}/attributes/relationship'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/relationship'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
@@ -1264,7 +1272,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::AttributeRelationship
@@ -1282,10 +1290,11 @@ module Appwrite
         # @param [] required Is attribute required?
         # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
         # @param [] array Is attribute an array?
+        # @param [] encrypt Toggle encryption for the attribute. Encryption enhances security by not storing any plain text values in the database. However, encrypted attributes cannot be queried.
         #
         # @return [AttributeString]
-        def create_string_attribute(database_id:, collection_id:, key:, size:, required:, default: nil, array: nil)
-            path = '/databases/{databaseId}/collections/{collectionId}/attributes/string'
+        def create_string_attribute(database_id:, collection_id:, key:, size:, required:, default: nil, array: nil, encrypt: nil)
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/string'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
@@ -1315,6 +1324,7 @@ module Appwrite
                 required: required,
                 default: default,
                 array: array,
+                encrypt: encrypt,
             }
             
             headers = {
@@ -1323,7 +1333,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::AttributeString
@@ -1343,7 +1353,7 @@ module Appwrite
         #
         # @return [AttributeString]
         def update_string_attribute(database_id:, collection_id:, key:, required:, default:)
-            path = '/databases/{databaseId}/collections/{collectionId}/attributes/string/{key}'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/string/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
@@ -1379,7 +1389,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::AttributeString
@@ -1399,7 +1409,7 @@ module Appwrite
         #
         # @return [AttributeUrl]
         def create_url_attribute(database_id:, collection_id:, key:, required:, default: nil, array: nil)
-            path = '/databases/{databaseId}/collections/{collectionId}/attributes/url'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/url'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
@@ -1432,7 +1442,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::AttributeUrl
@@ -1452,7 +1462,7 @@ module Appwrite
         #
         # @return [AttributeUrl]
         def update_url_attribute(database_id:, collection_id:, key:, required:, default:)
-            path = '/databases/{databaseId}/collections/{collectionId}/attributes/url/{key}'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/url/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
@@ -1488,7 +1498,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::AttributeUrl
@@ -1504,7 +1514,7 @@ module Appwrite
         #
         # @return []
         def get_attribute(database_id:, collection_id:, key:)
-            path = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
@@ -1530,7 +1540,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )
@@ -1545,7 +1555,7 @@ module Appwrite
         #
         # @return []
         def delete_attribute(database_id:, collection_id:, key:)
-            path = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
@@ -1571,7 +1581,7 @@ module Appwrite
 
             @client.call(
                 method: 'DELETE',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )
@@ -1579,7 +1589,7 @@ module Appwrite
 
         
         # Update relationship attribute. [Learn more about relationship
-        # attributes](docs/databases-relationships#relationship-attributes).
+        # attributes](/docs/databases-relationships#relationship-attributes).
         # 
         #
         # @param [String] database_id Database ID.
@@ -1589,7 +1599,7 @@ module Appwrite
         #
         # @return [AttributeRelationship]
         def update_relationship_attribute(database_id:, collection_id:, key:, on_delete: nil)
-            path = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}/relationship'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}/relationship'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
@@ -1616,7 +1626,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::AttributeRelationship
@@ -1633,7 +1643,7 @@ module Appwrite
         #
         # @return [DocumentList]
         def list_documents(database_id:, collection_id:, queries: nil)
-            path = '/databases/{databaseId}/collections/{collectionId}/documents'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/documents'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
@@ -1655,7 +1665,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::DocumentList
@@ -1676,7 +1686,7 @@ module Appwrite
         #
         # @return [Document]
         def create_document(database_id:, collection_id:, document_id:, data:, permissions: nil)
-            path = '/databases/{databaseId}/collections/{collectionId}/documents'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/documents'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
@@ -1708,7 +1718,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Document
@@ -1726,7 +1736,7 @@ module Appwrite
         #
         # @return [Document]
         def get_document(database_id:, collection_id:, document_id:, queries: nil)
-            path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{documentId}', document_id)
@@ -1753,7 +1763,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Document
@@ -1772,7 +1782,7 @@ module Appwrite
         #
         # @return [Document]
         def update_document(database_id:, collection_id:, document_id:, data: nil, permissions: nil)
-            path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{documentId}', document_id)
@@ -1800,7 +1810,7 @@ module Appwrite
 
             @client.call(
                 method: 'PATCH',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Document
@@ -1816,7 +1826,7 @@ module Appwrite
         #
         # @return []
         def delete_document(database_id:, collection_id:, document_id:)
-            path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{documentId}', document_id)
@@ -1842,7 +1852,7 @@ module Appwrite
 
             @client.call(
                 method: 'DELETE',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )
@@ -1853,10 +1863,11 @@ module Appwrite
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: key, type, status, attributes, error
         #
         # @return [IndexList]
-        def list_indexes(database_id:, collection_id:)
-            path = '/databases/{databaseId}/collections/{collectionId}/indexes'
+        def list_indexes(database_id:, collection_id:, queries: nil)
+            api_path = '/databases/{databaseId}/collections/{collectionId}/indexes'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
@@ -1869,6 +1880,7 @@ module Appwrite
             end
 
             params = {
+                queries: queries,
             }
             
             headers = {
@@ -1877,7 +1889,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::IndexList
@@ -1896,7 +1908,7 @@ module Appwrite
         #
         # @return [Index]
         def create_index(database_id:, collection_id:, key:, type:, attributes:, orders: nil)
-            path = '/databases/{databaseId}/collections/{collectionId}/indexes'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/indexes'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
@@ -1933,7 +1945,7 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Index
@@ -1949,7 +1961,7 @@ module Appwrite
         #
         # @return [Index]
         def get_index(database_id:, collection_id:, key:)
-            path = '/databases/{databaseId}/collections/{collectionId}/indexes/{key}'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/indexes/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
@@ -1975,7 +1987,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
                 response_type: Models::Index
@@ -1991,7 +2003,7 @@ module Appwrite
         #
         # @return []
         def delete_index(database_id:, collection_id:, key:)
-            path = '/databases/{databaseId}/collections/{collectionId}/indexes/{key}'
+            api_path = '/databases/{databaseId}/collections/{collectionId}/indexes/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
@@ -2017,7 +2029,7 @@ module Appwrite
 
             @client.call(
                 method: 'DELETE',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )

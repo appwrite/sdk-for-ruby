@@ -24,7 +24,7 @@ module Appwrite
         #
         # @return []
         def get_browser(code:, width: nil, height: nil, quality: nil)
-            path = '/avatars/browsers/{code}'
+            api_path = '/avatars/browsers/{code}'
                 .gsub('{code}', code)
 
             if code.nil?
@@ -43,7 +43,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )
@@ -67,7 +67,7 @@ module Appwrite
         #
         # @return []
         def get_credit_card(code:, width: nil, height: nil, quality: nil)
-            path = '/avatars/credit-cards/{code}'
+            api_path = '/avatars/credit-cards/{code}'
                 .gsub('{code}', code)
 
             if code.nil?
@@ -86,7 +86,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )
@@ -101,7 +101,7 @@ module Appwrite
         #
         # @return []
         def get_favicon(url:)
-            path = '/avatars/favicon'
+            api_path = '/avatars/favicon'
 
             if url.nil?
               raise Appwrite::Exception.new('Missing required parameter: "url"')
@@ -117,7 +117,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )
@@ -142,7 +142,7 @@ module Appwrite
         #
         # @return []
         def get_flag(code:, width: nil, height: nil, quality: nil)
-            path = '/avatars/flags/{code}'
+            api_path = '/avatars/flags/{code}'
                 .gsub('{code}', code)
 
             if code.nil?
@@ -161,7 +161,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )
@@ -185,7 +185,7 @@ module Appwrite
         #
         # @return []
         def get_image(url:, width: nil, height: nil)
-            path = '/avatars/image'
+            api_path = '/avatars/image'
 
             if url.nil?
               raise Appwrite::Exception.new('Missing required parameter: "url"')
@@ -203,7 +203,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )
@@ -234,7 +234,7 @@ module Appwrite
         #
         # @return []
         def get_initials(name: nil, width: nil, height: nil, background: nil)
-            path = '/avatars/initials'
+            api_path = '/avatars/initials'
 
             params = {
                 name: name,
@@ -249,7 +249,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )
@@ -267,7 +267,7 @@ module Appwrite
         #
         # @return []
         def get_qr(text:, size: nil, margin: nil, download: nil)
-            path = '/avatars/qr'
+            api_path = '/avatars/qr'
 
             if text.nil?
               raise Appwrite::Exception.new('Missing required parameter: "text"')
@@ -286,7 +286,7 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
-                path: path,
+                path: api_path,
                 headers: headers,
                 params: params,
             )

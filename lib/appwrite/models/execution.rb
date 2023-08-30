@@ -10,10 +10,14 @@ module Appwrite
             attr_reader :function_id
             attr_reader :trigger
             attr_reader :status
-            attr_reader :status_code
-            attr_reader :response
-            attr_reader :stdout
-            attr_reader :stderr
+            attr_reader :request_method
+            attr_reader :request_path
+            attr_reader :request_headers
+            attr_reader :response_status_code
+            attr_reader :response_body
+            attr_reader :response_headers
+            attr_reader :logs
+            attr_reader :errors
             attr_reader :duration
 
             def initialize(
@@ -24,10 +28,14 @@ module Appwrite
                 function_id:,
                 trigger:,
                 status:,
-                status_code:,
-                response:,
-                stdout:,
-                stderr:,
+                request_method:,
+                request_path:,
+                request_headers:,
+                response_status_code:,
+                response_body:,
+                response_headers:,
+                logs:,
+                errors:,
                 duration:
             )
                 @id = id
@@ -37,10 +45,14 @@ module Appwrite
                 @function_id = function_id
                 @trigger = trigger
                 @status = status
-                @status_code = status_code
-                @response = response
-                @stdout = stdout
-                @stderr = stderr
+                @request_method = request_method
+                @request_path = request_path
+                @request_headers = request_headers
+                @response_status_code = response_status_code
+                @response_body = response_body
+                @response_headers = response_headers
+                @logs = logs
+                @errors = errors
                 @duration = duration
             end
 
@@ -53,10 +65,14 @@ module Appwrite
                     function_id: map["functionId"],
                     trigger: map["trigger"],
                     status: map["status"],
-                    status_code: map["statusCode"],
-                    response: map["response"],
-                    stdout: map["stdout"],
-                    stderr: map["stderr"],
+                    request_method: map["requestMethod"],
+                    request_path: map["requestPath"],
+                    request_headers: map["requestHeaders"].map { |it| Headers.from(map: it) },
+                    response_status_code: map["responseStatusCode"],
+                    response_body: map["responseBody"],
+                    response_headers: map["responseHeaders"].map { |it| Headers.from(map: it) },
+                    logs: map["logs"],
+                    errors: map["errors"],
                     duration: map["duration"]
                 )
             end
@@ -70,10 +86,14 @@ module Appwrite
                     "functionId": @function_id,
                     "trigger": @trigger,
                     "status": @status,
-                    "statusCode": @status_code,
-                    "response": @response,
-                    "stdout": @stdout,
-                    "stderr": @stderr,
+                    "requestMethod": @request_method,
+                    "requestPath": @request_path,
+                    "requestHeaders": @request_headers.map { |it| it.to_map },
+                    "responseStatusCode": @response_status_code,
+                    "responseBody": @response_body,
+                    "responseHeaders": @response_headers.map { |it| it.to_map },
+                    "logs": @logs,
+                    "errors": @errors,
                     "duration": @duration
                 }
             end

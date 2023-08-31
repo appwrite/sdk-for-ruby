@@ -15,7 +15,7 @@ module Appwrite
                 'x-sdk-name'=> 'Ruby',
                 'x-sdk-platform'=> 'server',
                 'x-sdk-language'=> 'ruby',
-                'x-sdk-version'=> '9.0.0',                
+                'x-sdk-version'=> '9.0.1',                
                 'X-Appwrite-Response-Format' => '1.4.0'
             }
             @endpoint = 'https://HOSTNAME/v1'
@@ -170,7 +170,7 @@ module Appwrite
                     params: {}
                 )
                 chunks_uploaded = current['chunksUploaded'].to_i
-                offset = [size, (chunks_uploaded * @chunk_size)].min
+                offset = chunks_uploaded * @chunk_size
             end
 
             while offset < size
@@ -187,7 +187,7 @@ module Appwrite
                     mime_type: input_file.mime_type
                 )
 
-                headers['content-range'] = "bytes #{offset}-#{[offset + @chunk_size - 1, size].min}/#{size}"
+                headers['content-range'] = "bytes #{offset}-#{[offset + @chunk_size - 1, size - 1].min}/#{size}"
 
                 result = call(
                     method: 'POST',

@@ -17,20 +17,20 @@ module Appwrite
         def list(queries: nil, search: nil)
             api_path = '/users'
 
-            params = {
+            api_params = {
                 queries: queries,
                 search: search,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::UserList
             )
         end
@@ -52,7 +52,7 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "userId"')
             end
 
-            params = {
+            api_params = {
                 userId: user_id,
                 email: email,
                 phone: phone,
@@ -60,15 +60,15 @@ module Appwrite
                 name: name,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'POST',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::User
             )
         end
@@ -100,22 +100,22 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "password"')
             end
 
-            params = {
+            api_params = {
                 userId: user_id,
                 email: email,
                 password: password,
                 name: name,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'POST',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::User
             )
         end
@@ -147,22 +147,22 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "password"')
             end
 
-            params = {
+            api_params = {
                 userId: user_id,
                 email: email,
                 password: password,
                 name: name,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'POST',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::User
             )
         end
@@ -177,20 +177,20 @@ module Appwrite
         def list_identities(queries: nil, search: nil)
             api_path = '/users/identities'
 
-            params = {
+            api_params = {
                 queries: queries,
                 search: search,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::IdentityList
             )
         end
@@ -209,18 +209,18 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "identityId"')
             end
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'DELETE',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
             )
         end
 
@@ -251,22 +251,22 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "password"')
             end
 
-            params = {
+            api_params = {
                 userId: user_id,
                 email: email,
                 password: password,
                 name: name,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'POST',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::User
             )
         end
@@ -298,22 +298,22 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "password"')
             end
 
-            params = {
+            api_params = {
                 userId: user_id,
                 email: email,
                 password: password,
                 name: name,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'POST',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::User
             )
         end
@@ -370,7 +370,7 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "passwordLength"')
             end
 
-            params = {
+            api_params = {
                 userId: user_id,
                 email: email,
                 password: password,
@@ -382,15 +382,15 @@ module Appwrite
                 name: name,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'POST',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::User
             )
         end
@@ -437,7 +437,7 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "passwordSignerKey"')
             end
 
-            params = {
+            api_params = {
                 userId: user_id,
                 email: email,
                 password: password,
@@ -447,15 +447,15 @@ module Appwrite
                 name: name,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'POST',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::User
             )
         end
@@ -488,7 +488,7 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "password"')
             end
 
-            params = {
+            api_params = {
                 userId: user_id,
                 email: email,
                 password: password,
@@ -496,15 +496,15 @@ module Appwrite
                 name: name,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'POST',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::User
             )
         end
@@ -523,18 +523,18 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "userId"')
             end
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::User
             )
         end
@@ -557,18 +557,18 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "userId"')
             end
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'DELETE',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
             )
         end
 
@@ -591,19 +591,19 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "email"')
             end
 
-            params = {
+            api_params = {
                 email: email,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'PATCH',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::User
             )
         end
@@ -632,19 +632,19 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "labels"')
             end
 
-            params = {
+            api_params = {
                 labels: labels,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'PUT',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::User
             )
         end
@@ -664,19 +664,19 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "userId"')
             end
 
-            params = {
+            api_params = {
                 queries: queries,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::LogList
             )
         end
@@ -695,18 +695,18 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "userId"')
             end
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::MembershipList
             )
         end
@@ -730,19 +730,19 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
-            params = {
+            api_params = {
                 name: name,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'PATCH',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::User
             )
         end
@@ -766,19 +766,19 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "password"')
             end
 
-            params = {
+            api_params = {
                 password: password,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'PATCH',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::User
             )
         end
@@ -802,19 +802,19 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "number"')
             end
 
-            params = {
+            api_params = {
                 number: number,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'PATCH',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::User
             )
         end
@@ -833,18 +833,18 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "userId"')
             end
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::Preferences
             )
         end
@@ -870,19 +870,19 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "prefs"')
             end
 
-            params = {
+            api_params = {
                 prefs: prefs,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'PATCH',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::Preferences
             )
         end
@@ -901,18 +901,18 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "userId"')
             end
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::SessionList
             )
         end
@@ -931,18 +931,18 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "userId"')
             end
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'DELETE',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
             )
         end
 
@@ -966,18 +966,18 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "sessionId"')
             end
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'DELETE',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
             )
         end
 
@@ -1001,19 +1001,19 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "status"')
             end
 
-            params = {
+            api_params = {
                 status: status,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'PATCH',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::User
             )
         end
@@ -1037,19 +1037,19 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "emailVerification"')
             end
 
-            params = {
+            api_params = {
                 emailVerification: email_verification,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'PATCH',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::User
             )
         end
@@ -1073,19 +1073,19 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "phoneVerification"')
             end
 
-            params = {
+            api_params = {
                 phoneVerification: phone_verification,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'PATCH',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::User
             )
         end

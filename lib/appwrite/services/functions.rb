@@ -17,20 +17,20 @@ module Appwrite
         def list(queries: nil, search: nil)
             api_path = '/functions'
 
-            params = {
+            api_params = {
                 queries: queries,
                 search: search,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::FunctionList
             )
         end
@@ -77,7 +77,7 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "runtime"')
             end
 
-            params = {
+            api_params = {
                 functionId: function_id,
                 name: name,
                 runtime: runtime,
@@ -100,15 +100,15 @@ module Appwrite
                 templateBranch: template_branch,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'POST',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::Function
             )
         end
@@ -121,18 +121,18 @@ module Appwrite
         def list_runtimes()
             api_path = '/functions/runtimes'
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::RuntimeList
             )
         end
@@ -151,18 +151,18 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::Function
             )
         end
@@ -204,7 +204,7 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "runtime"')
             end
 
-            params = {
+            api_params = {
                 name: name,
                 runtime: runtime,
                 execute: execute,
@@ -222,15 +222,15 @@ module Appwrite
                 providerRootDirectory: provider_root_directory,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'PUT',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::Function
             )
         end
@@ -249,18 +249,18 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'DELETE',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
             )
         end
 
@@ -281,20 +281,20 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
-            params = {
+            api_params = {
                 queries: queries,
                 search: search,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::DeploymentList
             )
         end
@@ -334,14 +334,14 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "activate"')
             end
 
-            params = {
+            api_params = {
                 entrypoint: entrypoint,
                 commands: commands,
                 code: code,
                 activate: activate,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'multipart/form-data',
             }
 
@@ -350,8 +350,8 @@ module Appwrite
 
             @client.chunked_upload(
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 param_name: param_name,
                 id_param_name: id_param_name,
                 on_progress: on_progress,
@@ -379,18 +379,18 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
             end
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::Deployment
             )
         end
@@ -417,18 +417,18 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
             end
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'PATCH',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::Function
             )
         end
@@ -453,18 +453,18 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
             end
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'DELETE',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
             )
         end
 
@@ -495,18 +495,18 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "buildId"')
             end
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'POST',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
             )
         end
 
@@ -530,18 +530,18 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
             end
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
             )
         end
 
@@ -562,20 +562,20 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
-            params = {
+            api_params = {
                 queries: queries,
                 search: search,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::ExecutionList
             )
         end
@@ -602,7 +602,7 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
-            params = {
+            api_params = {
                 body: body,
                 async: async,
                 path: xpath,
@@ -610,15 +610,15 @@ module Appwrite
                 headers: headers,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'POST',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::Execution
             )
         end
@@ -643,18 +643,18 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "executionId"')
             end
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::Execution
             )
         end
@@ -673,18 +673,18 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::VariableList
             )
         end
@@ -714,20 +714,20 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "value"')
             end
 
-            params = {
+            api_params = {
                 key: key,
                 value: value,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'POST',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::Variable
             )
         end
@@ -752,18 +752,18 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "variableId"')
             end
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::Variable
             )
         end
@@ -794,20 +794,20 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
-            params = {
+            api_params = {
                 key: key,
                 value: value,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'PUT',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::Variable
             )
         end
@@ -832,18 +832,18 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "variableId"')
             end
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'DELETE',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
             )
         end
 

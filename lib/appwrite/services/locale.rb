@@ -19,18 +19,18 @@ module Appwrite
         def get()
             api_path = '/locale'
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::Locale
             )
         end
@@ -44,18 +44,18 @@ module Appwrite
         def list_codes()
             api_path = '/locale/codes'
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::LocaleCodeList
             )
         end
@@ -69,18 +69,18 @@ module Appwrite
         def list_continents()
             api_path = '/locale/continents'
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::ContinentList
             )
         end
@@ -94,18 +94,18 @@ module Appwrite
         def list_countries()
             api_path = '/locale/countries'
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::CountryList
             )
         end
@@ -119,18 +119,18 @@ module Appwrite
         def list_countries_eu()
             api_path = '/locale/countries/eu'
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::CountryList
             )
         end
@@ -144,18 +144,18 @@ module Appwrite
         def list_countries_phones()
             api_path = '/locale/countries/phones'
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::PhoneList
             )
         end
@@ -170,18 +170,18 @@ module Appwrite
         def list_currencies()
             api_path = '/locale/currencies'
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::CurrencyList
             )
         end
@@ -195,18 +195,18 @@ module Appwrite
         def list_languages()
             api_path = '/locale/languages'
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::LanguageList
             )
         end

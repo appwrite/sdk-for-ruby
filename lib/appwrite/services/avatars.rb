@@ -31,21 +31,21 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "code"')
             end
 
-            params = {
+            api_params = {
                 width: width,
                 height: height,
                 quality: quality,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
             )
         end
 
@@ -74,21 +74,21 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "code"')
             end
 
-            params = {
+            api_params = {
                 width: width,
                 height: height,
                 quality: quality,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
             )
         end
 
@@ -107,19 +107,19 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "url"')
             end
 
-            params = {
+            api_params = {
                 url: url,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
             )
         end
 
@@ -149,21 +149,21 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "code"')
             end
 
-            params = {
+            api_params = {
                 width: width,
                 height: height,
                 quality: quality,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
             )
         end
 
@@ -191,21 +191,21 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "url"')
             end
 
-            params = {
+            api_params = {
                 url: url,
                 width: width,
                 height: height,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
             )
         end
 
@@ -236,22 +236,22 @@ module Appwrite
         def get_initials(name: nil, width: nil, height: nil, background: nil)
             api_path = '/avatars/initials'
 
-            params = {
+            api_params = {
                 name: name,
                 width: width,
                 height: height,
                 background: background,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
             )
         end
 
@@ -273,22 +273,22 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "text"')
             end
 
-            params = {
+            api_params = {
                 text: text,
                 size: size,
                 margin: margin,
                 download: download,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
             )
         end
 

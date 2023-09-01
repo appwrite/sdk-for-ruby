@@ -19,11 +19,11 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "query"')
             end
 
-            params = {
+            api_params = {
                 query: query,
             }
             
-            headers = {
+            api_headers = {
                 "x-sdk-graphql": 'true',
                 "content-type": 'application/json',
             }
@@ -31,8 +31,8 @@ module Appwrite
             @client.call(
                 method: 'POST',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
             )
         end
 
@@ -49,11 +49,11 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "query"')
             end
 
-            params = {
+            api_params = {
                 query: query,
             }
             
-            headers = {
+            api_headers = {
                 "x-sdk-graphql": 'true',
                 "content-type": 'application/json',
             }
@@ -61,8 +61,8 @@ module Appwrite
             @client.call(
                 method: 'POST',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
             )
         end
 

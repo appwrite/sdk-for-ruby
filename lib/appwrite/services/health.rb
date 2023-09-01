@@ -14,18 +14,18 @@ module Appwrite
         def get()
             api_path = '/health'
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::HealthStatus
             )
         end
@@ -38,18 +38,18 @@ module Appwrite
         def get_antivirus()
             api_path = '/health/anti-virus'
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::HealthAntivirus
             )
         end
@@ -63,18 +63,18 @@ module Appwrite
         def get_cache()
             api_path = '/health/cache'
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::HealthStatus
             )
         end
@@ -87,18 +87,18 @@ module Appwrite
         def get_db()
             api_path = '/health/db'
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::HealthStatus
             )
         end
@@ -111,18 +111,18 @@ module Appwrite
         def get_pub_sub()
             api_path = '/health/pubsub'
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::HealthStatus
             )
         end
@@ -136,18 +136,18 @@ module Appwrite
         def get_queue()
             api_path = '/health/queue'
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::HealthStatus
             )
         end
@@ -162,18 +162,18 @@ module Appwrite
         def get_queue_certificates()
             api_path = '/health/queue/certificates'
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::HealthQueue
             )
         end
@@ -186,18 +186,18 @@ module Appwrite
         def get_queue_functions()
             api_path = '/health/queue/functions'
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::HealthQueue
             )
         end
@@ -211,18 +211,18 @@ module Appwrite
         def get_queue_logs()
             api_path = '/health/queue/logs'
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::HealthQueue
             )
         end
@@ -236,18 +236,18 @@ module Appwrite
         def get_queue_webhooks()
             api_path = '/health/queue/webhooks'
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::HealthQueue
             )
         end
@@ -260,18 +260,18 @@ module Appwrite
         def get_storage_local()
             api_path = '/health/storage/local'
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::HealthStatus
             )
         end
@@ -290,18 +290,18 @@ module Appwrite
         def get_time()
             api_path = '/health/time'
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::HealthTime
             )
         end

@@ -17,20 +17,20 @@ module Appwrite
         def list_buckets(queries: nil, search: nil)
             api_path = '/storage/buckets'
 
-            params = {
+            api_params = {
                 queries: queries,
                 search: search,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::BucketList
             )
         end
@@ -61,7 +61,7 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
-            params = {
+            api_params = {
                 bucketId: bucket_id,
                 name: name,
                 permissions: permissions,
@@ -74,15 +74,15 @@ module Appwrite
                 antivirus: antivirus,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'POST',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::Bucket
             )
         end
@@ -102,18 +102,18 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::Bucket
             )
         end
@@ -145,7 +145,7 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
-            params = {
+            api_params = {
                 name: name,
                 permissions: permissions,
                 fileSecurity: file_security,
@@ -157,15 +157,15 @@ module Appwrite
                 antivirus: antivirus,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'PUT',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::Bucket
             )
         end
@@ -184,18 +184,18 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'DELETE',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
             )
         end
 
@@ -216,20 +216,20 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
-            params = {
+            api_params = {
                 queries: queries,
                 search: search,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::FileList
             )
         end
@@ -276,13 +276,13 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "file"')
             end
 
-            params = {
+            api_params = {
                 fileId: file_id,
                 file: file,
                 permissions: permissions,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'multipart/form-data',
             }
 
@@ -291,8 +291,8 @@ module Appwrite
 
             @client.chunked_upload(
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 param_name: param_name,
                 id_param_name: id_param_name,
                 on_progress: on_progress,
@@ -321,18 +321,18 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::File
             )
         end
@@ -360,20 +360,20 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
 
-            params = {
+            api_params = {
                 name: name,
                 permissions: permissions,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'PUT',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
                 response_type: Models::File
             )
         end
@@ -399,18 +399,18 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'DELETE',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
             )
         end
 
@@ -436,18 +436,18 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
             )
         end
 
@@ -486,7 +486,7 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
 
-            params = {
+            api_params = {
                 width: width,
                 height: height,
                 gravity: gravity,
@@ -500,15 +500,15 @@ module Appwrite
                 output: output,
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
             )
         end
 
@@ -534,18 +534,18 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
 
-            params = {
+            api_params = {
             }
             
-            headers = {
+            api_headers = {
                 "content-type": 'application/json',
             }
 
             @client.call(
                 method: 'GET',
                 path: api_path,
-                headers: headers,
-                params: params,
+                headers: api_headers,
+                params: api_params,
             )
         end
 

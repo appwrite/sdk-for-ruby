@@ -231,14 +231,14 @@ module Appwrite
         #
         # @param [String] team_id Team ID.
         # @param [Array] roles Array of strings. Use this param to set the user roles in the team. A role can be any string. Learn more about [roles and permissions](/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long.
-        # @param [String] url URL to redirect the user back to your app from the invitation email.  Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.
         # @param [String] email Email of the new team member.
         # @param [String] user_id ID of the user to be added to a team.
         # @param [String] phone Phone number. Format this number with a leading '+' and a country code, e.g., +16175551212.
+        # @param [String] url URL to redirect the user back to your app from the invitation email.  Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.
         # @param [String] name Name of the new team member. Max length: 128 chars.
         #
         # @return [Membership]
-        def create_membership(team_id:, roles:, url:, email: nil, user_id: nil, phone: nil, name: nil)
+        def create_membership(team_id:, roles:, email: nil, user_id: nil, phone: nil, url: nil, name: nil)
             api_path = '/teams/{teamId}/memberships'
                 .gsub('{teamId}', team_id)
 
@@ -248,10 +248,6 @@ module Appwrite
 
             if roles.nil?
               raise Appwrite::Exception.new('Missing required parameter: "roles"')
-            end
-
-            if url.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "url"')
             end
 
             api_params = {

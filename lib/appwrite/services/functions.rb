@@ -188,7 +188,7 @@ module Appwrite
         # @param [String] provider_root_directory Path to function code in the linked repo.
         #
         # @return [Function]
-        def update(function_id:, name:, runtime:, execute: nil, events: nil, schedule: nil, timeout: nil, enabled: nil, logging: nil, entrypoint: nil, commands: nil, installation_id: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil)
+        def update(function_id:, name:, runtime: nil, execute: nil, events: nil, schedule: nil, timeout: nil, enabled: nil, logging: nil, entrypoint: nil, commands: nil, installation_id: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil)
             api_path = '/functions/{functionId}'
                 .gsub('{functionId}', function_id)
 
@@ -198,10 +198,6 @@ module Appwrite
 
             if name.nil?
               raise Appwrite::Exception.new('Missing required parameter: "name"')
-            end
-
-            if runtime.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "runtime"')
             end
 
             api_params = {

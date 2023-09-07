@@ -617,7 +617,7 @@ module Appwrite
         # docs](/docs/permissions) for more info.
         #
         # @param [String] user_id User ID.
-        # @param [Array] labels Array of user labels. Replaces the previous labels. Maximum of 5 labels are allowed, each up to 36 alphanumeric characters long.
+        # @param [Array] labels Array of user labels. Replaces the previous labels. Maximum of 100 labels are allowed, each up to 36 alphanumeric characters long.
         #
         # @return [User]
         def update_labels(user_id:, labels:)

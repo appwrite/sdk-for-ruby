@@ -40,8 +40,8 @@ module Appwrite
         #
         # @param [String] bucket_id Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Bucket name
-        # @param [Array] permissions An array of permission strings. By default, no user is granted with any permissions. [Learn more about permissions](/docs/permissions).
-        # @param [] file_security Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](/docs/permissions).
+        # @param [Array] permissions An array of permission strings. By default, no user is granted with any permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
+        # @param [] file_security Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](https://appwrite.io/docs/permissions).
         # @param [] enabled Is bucket enabled? When set to 'disabled', users cannot access the files in this bucket but Server SDKs with and API key can still access the bucket. No files are lost when this is toggled.
         # @param [Integer] maximum_file_size Maximum file size allowed in bytes. Maximum allowed value is 30MB.
         # @param [Array] allowed_file_extensions Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long.
@@ -123,8 +123,8 @@ module Appwrite
         #
         # @param [String] bucket_id Bucket unique ID.
         # @param [String] name Bucket name
-        # @param [Array] permissions An array of permission strings. By default, the current permissions are inherited. [Learn more about permissions](/docs/permissions).
-        # @param [] file_security Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](/docs/permissions).
+        # @param [Array] permissions An array of permission strings. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions).
+        # @param [] file_security Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](https://appwrite.io/docs/permissions).
         # @param [] enabled Is bucket enabled? When set to 'disabled', users cannot access the files in this bucket but Server SDKs with and API key can still access the bucket. No files are lost when this is toggled.
         # @param [Integer] maximum_file_size Maximum file size allowed in bytes. Maximum allowed value is 30MB.
         # @param [Array] allowed_file_extensions Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long.
@@ -203,7 +203,7 @@ module Appwrite
         # Get a list of all the user files. You can use the query params to filter
         # your results.
         #
-        # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
+        # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket).
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, signature, mimeType, sizeOriginal, chunksTotal, chunksUploaded
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
@@ -237,8 +237,8 @@ module Appwrite
         
         # Create a new file. Before using this route, you should create a new bucket
         # resource using either a [server
-        # integration](/docs/server/storage#storageCreateBucket) API or directly from
-        # your Appwrite console.
+        # integration](https://appwrite.io/docs/server/storage#storageCreateBucket)
+        # API or directly from your Appwrite console.
         # 
         # Larger files should be uploaded using multiple requests with the
         # [content-range](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Range)
@@ -254,10 +254,10 @@ module Appwrite
         # chunking logic will be managed by the SDK internally.
         # 
         #
-        # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
+        # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket).
         # @param [String] file_id File ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
-        # @param [file] file Binary file. Appwrite SDKs provide helpers to handle file input. [Learn about file input](/docs/storage#file-input).
-        # @param [Array] permissions An array of permission strings. By default, only the current user is granted all permissions. [Learn more about permissions](/docs/permissions).
+        # @param [file] file Binary file. Appwrite SDKs provide helpers to handle file input. [Learn about file input](https://appwrite.io/docs/storage#file-input).
+        # @param [Array] permissions An array of permission strings. By default, only the current user is granted all permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
         #
         # @return [File]
         def create_file(bucket_id:, file_id:, file:, permissions: nil, on_progress: nil)
@@ -304,7 +304,7 @@ module Appwrite
         # Get a file by its unique ID. This endpoint response returns a JSON object
         # with the file metadata.
         #
-        # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
+        # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket).
         # @param [String] file_id File ID.
         #
         # @return [File]
@@ -341,10 +341,10 @@ module Appwrite
         # Update a file by its unique ID. Only users with write permissions have
         # access to update this resource.
         #
-        # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
+        # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket).
         # @param [String] file_id File unique ID.
         # @param [String] name Name of the file
-        # @param [Array] permissions An array of permission string. By default, the current permissions are inherited. [Learn more about permissions](/docs/permissions).
+        # @param [Array] permissions An array of permission string. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions).
         #
         # @return [File]
         def update_file(bucket_id:, file_id:, name: nil, permissions: nil)
@@ -382,7 +382,7 @@ module Appwrite
         # Delete a file by its unique ID. Only users with write permissions have
         # access to delete this resource.
         #
-        # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
+        # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket).
         # @param [String] file_id File ID.
         #
         # @return []
@@ -419,7 +419,7 @@ module Appwrite
         # 'Content-Disposition: attachment' header that tells the browser to start
         # downloading the file to user downloads directory.
         #
-        # @param [String] bucket_id Storage bucket ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
+        # @param [String] bucket_id Storage bucket ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket).
         # @param [String] file_id File ID.
         #
         # @return []
@@ -458,7 +458,7 @@ module Appwrite
         # string arguments for cutting and resizing your preview image. Preview is
         # supported only for image files smaller than 10MB.
         #
-        # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
+        # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket).
         # @param [String] file_id File ID
         # @param [Integer] width Resize preview image width, Pass an integer between 0 to 4000.
         # @param [Integer] height Resize preview image height, Pass an integer between 0 to 4000.
@@ -517,7 +517,7 @@ module Appwrite
         # download method but returns with no  'Content-Disposition: attachment'
         # header.
         #
-        # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](/docs/server/storage#createBucket).
+        # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket).
         # @param [String] file_id File ID.
         #
         # @return []

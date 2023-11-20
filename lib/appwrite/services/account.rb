@@ -223,7 +223,7 @@ module Appwrite
         # Update the currently logged in user's phone number. After updating the
         # phone number, the phone verification status will be reset. A confirmation
         # SMS is not sent automatically, however you can use the [POST
-        # /account/verification/phone](/docs/client/account#accountCreatePhoneVerification)
+        # /account/verification/phone](https://appwrite.io/docs/references/cloud/client-web/account#createPhoneVerification)
         # endpoint to send a confirmation SMS.
         #
         # @param [String] phone Phone number. Format this number with a leading '+' and a country code, e.g., +16175551212.
@@ -321,9 +321,9 @@ module Appwrite
         # app password reset URL with the secret key and email address values
         # attached to the URL query string. Use the query string params to submit a
         # request to the [PUT
-        # /account/recovery](/docs/client/account#accountUpdateRecovery) endpoint to
-        # complete the process. The verification link sent to the user's email
-        # address is valid for 1 hour.
+        # /account/recovery](https://appwrite.io/docs/references/cloud/client-web/account#updateRecovery)
+        # endpoint to complete the process. The verification link sent to the user's
+        # email address is valid for 1 hour.
         #
         # @param [String] email User email.
         # @param [String] url URL to redirect the user back to your app from the recovery email. Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.
@@ -362,7 +362,8 @@ module Appwrite
         # Use this endpoint to complete the user account password reset. Both the
         # **userId** and **secret** arguments will be passed as query parameters to
         # the redirect URL you have provided when sending your request to the [POST
-        # /account/recovery](/docs/client/account#accountCreateRecovery) endpoint.
+        # /account/recovery](https://appwrite.io/docs/references/cloud/client-web/account#createRecovery)
+        # endpoint.
         # 
         # Please note that in order to avoid a [Redirect
         # Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md)
@@ -530,7 +531,8 @@ module Appwrite
         # Logout the user. Use 'current' as the session ID to logout on this device,
         # use a session ID to logout on another device. If you're looking to logout
         # the user on all devices, use [Delete
-        # Sessions](/docs/client/account#accountDeleteSessions) instead.
+        # Sessions](https://appwrite.io/docs/references/cloud/client-web/account#deleteSessions)
+        # instead.
         #
         # @param [String] session_id Session ID. Use the string 'current' to delete the current device session.
         #
@@ -592,8 +594,8 @@ module Appwrite
         # should redirect the user back to your app and allow you to complete the
         # verification process by verifying both the **userId** and **secret**
         # parameters. Learn more about how to [complete the verification
-        # process](/docs/client/account#accountUpdateEmailVerification). The
-        # verification link sent to the user's email address is valid for 7 days.
+        # process](https://appwrite.io/docs/references/cloud/client-web/account#updateVerification).
+        # The verification link sent to the user's email address is valid for 7 days.
         # 
         # Please note that in order to avoid a [Redirect
         # Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md),
@@ -670,10 +672,12 @@ module Appwrite
         
         # Use this endpoint to send a verification SMS to the currently logged in
         # user. This endpoint is meant for use after updating a user's phone number
-        # using the [accountUpdatePhone](/docs/client/account#accountUpdatePhone)
+        # using the
+        # [accountUpdatePhone](https://appwrite.io/docs/references/cloud/client-web/account#updatePhone)
         # endpoint. Learn more about how to [complete the verification
-        # process](/docs/client/account#accountUpdatePhoneVerification). The
-        # verification code sent to the user's phone number is valid for 15 minutes.
+        # process](https://appwrite.io/docs/references/cloud/client-web/account#updatePhoneVerification).
+        # The verification code sent to the user's phone number is valid for 15
+        # minutes.
         #
         #
         # @return [Token]

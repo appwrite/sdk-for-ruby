@@ -9,8 +9,9 @@ module Appwrite
 
         # You can use this endpoint to show different browser icons to your users.
         # The code argument receives the browser code as it appears in your user [GET
-        # /account/sessions](/docs/client/account#accountGetSessions) endpoint. Use
-        # width, height and quality arguments to change the output settings.
+        # /account/sessions](https://appwrite.io/docs/references/cloud/client-web/account#getSessions)
+        # endpoint. Use width, height and quality arguments to change the output
+        # settings.
         # 
         # When one dimension is specified and the other is 0, the image is scaled
         # with preserved aspect ratio. If both dimensions are 0, the API provides an
@@ -127,7 +128,7 @@ module Appwrite
         # You can use this endpoint to show different country flags icons to your
         # users. The code argument receives the 2 letter country code. Use width,
         # height and quality arguments to change the output settings. Country codes
-        # follow the [ISO 3166-1](http://en.wikipedia.org/wiki/ISO_3166-1) standard.
+        # follow the [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) standard.
         # 
         # When one dimension is specified and the other is 0, the image is scaled
         # with preserved aspect ratio. If both dimensions are 0, the API provides an

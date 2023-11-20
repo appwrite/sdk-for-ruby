@@ -76,8 +76,8 @@ module Appwrite
         
         # Create a new user. Password provided must be hashed with the
         # [Argon2](https://en.wikipedia.org/wiki/Argon2) algorithm. Use the [POST
-        # /users](/docs/server/users#usersCreate) endpoint to create users with a
-        # plain text password.
+        # /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
+        # create users with a plain text password.
         #
         # @param [String] user_id User ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] email User email.
@@ -123,8 +123,8 @@ module Appwrite
         
         # Create a new user. Password provided must be hashed with the
         # [Bcrypt](https://en.wikipedia.org/wiki/Bcrypt) algorithm. Use the [POST
-        # /users](/docs/server/users#usersCreate) endpoint to create users with a
-        # plain text password.
+        # /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
+        # create users with a plain text password.
         #
         # @param [String] user_id User ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] email User email.
@@ -227,8 +227,8 @@ module Appwrite
         
         # Create a new user. Password provided must be hashed with the
         # [MD5](https://en.wikipedia.org/wiki/MD5) algorithm. Use the [POST
-        # /users](/docs/server/users#usersCreate) endpoint to create users with a
-        # plain text password.
+        # /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
+        # create users with a plain text password.
         #
         # @param [String] user_id User ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] email User email.
@@ -274,8 +274,8 @@ module Appwrite
         
         # Create a new user. Password provided must be hashed with the
         # [PHPass](https://www.openwall.com/phpass/) algorithm. Use the [POST
-        # /users](/docs/server/users#usersCreate) endpoint to create users with a
-        # plain text password.
+        # /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
+        # create users with a plain text password.
         #
         # @param [String] user_id User ID. Choose a custom ID or pass the string `ID.unique()`to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] email User email.
@@ -321,8 +321,8 @@ module Appwrite
         
         # Create a new user. Password provided must be hashed with the
         # [Scrypt](https://github.com/Tarsnap/scrypt) algorithm. Use the [POST
-        # /users](/docs/server/users#usersCreate) endpoint to create users with a
-        # plain text password.
+        # /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
+        # create users with a plain text password.
         #
         # @param [String] user_id User ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] email User email.
@@ -398,8 +398,9 @@ module Appwrite
         
         # Create a new user. Password provided must be hashed with the [Scrypt
         # Modified](https://gist.github.com/Meldiron/eecf84a0225eccb5a378d45bb27462cc)
-        # algorithm. Use the [POST /users](/docs/server/users#usersCreate) endpoint
-        # to create users with a plain text password.
+        # algorithm. Use the [POST
+        # /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
+        # create users with a plain text password.
         #
         # @param [String] user_id User ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] email User email.
@@ -463,8 +464,8 @@ module Appwrite
         
         # Create a new user. Password provided must be hashed with the
         # [SHA](https://en.wikipedia.org/wiki/Secure_Hash_Algorithm) algorithm. Use
-        # the [POST /users](/docs/server/users#usersCreate) endpoint to create users
-        # with a plain text password.
+        # the [POST /users](https://appwrite.io/docs/server/users#usersCreate)
+        # endpoint to create users with a plain text password.
         #
         # @param [String] user_id User ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] email User email.
@@ -543,7 +544,8 @@ module Appwrite
         # Delete a user by its unique ID, thereby releasing it's ID. Since ID is
         # released and can be reused, all user-related resources like documents or
         # storage files should be deleted before user deletion. If you want to keep
-        # ID reserved, use the [updateStatus](/docs/server/users#usersUpdateStatus)
+        # ID reserved, use the
+        # [updateStatus](https://appwrite.io/docs/server/users#usersUpdateStatus)
         # endpoint instead.
         #
         # @param [String] user_id User ID.
@@ -614,7 +616,7 @@ module Appwrite
         # Labels can be used to grant access to resources. While teams are a way for
         # user's to share access to a resource, labels can be defined by the
         # developer to grant access without an invitation. See the [Permissions
-        # docs](/docs/permissions) for more info.
+        # docs](https://appwrite.io/docs/permissions) for more info.
         #
         # @param [String] user_id User ID.
         # @param [Array] labels Array of user labels. Replaces the previous labels. Maximum of 100 labels are allowed, each up to 36 alphanumeric characters long.

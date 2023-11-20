@@ -153,16 +153,101 @@ module Appwrite
         end
 
         
+        # Get the number of builds that are waiting to be processed in the Appwrite
+        # internal queue server.
+        #
+        # @param [Integer] threshold Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.
+        #
+        # @return [HealthQueue]
+        def get_queue_builds(threshold: nil)
+            api_path = '/health/queue/builds'
+
+            api_params = {
+                threshold: threshold,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::HealthQueue
+            )
+        end
+
+        
         # Get the number of certificates that are waiting to be issued against
         # [Letsencrypt](https://letsencrypt.org/) in the Appwrite internal queue
         # server.
         #
+        # @param [Integer] threshold Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.
         #
         # @return [HealthQueue]
-        def get_queue_certificates()
+        def get_queue_certificates(threshold: nil)
             api_path = '/health/queue/certificates'
 
             api_params = {
+                threshold: threshold,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::HealthQueue
+            )
+        end
+
+        
+        # Get the number of database changes that are waiting to be processed in the
+        # Appwrite internal queue server.
+        #
+        # @param [String] name Queue name for which to check the queue size
+        # @param [Integer] threshold Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.
+        #
+        # @return [HealthQueue]
+        def get_queue_databases(name: nil, threshold: nil)
+            api_path = '/health/queue/databases'
+
+            api_params = {
+                name: name,
+                threshold: threshold,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::HealthQueue
+            )
+        end
+
+        
+        # Get the number of background destructive changes that are waiting to be
+        # processed in the Appwrite internal queue server.
+        #
+        # @param [Integer] threshold Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.
+        #
+        # @return [HealthQueue]
+        def get_queue_deletes(threshold: nil)
+            api_path = '/health/queue/deletes'
+
+            api_params = {
+                threshold: threshold,
             }
             
             api_headers = {
@@ -181,12 +266,14 @@ module Appwrite
         
         # 
         #
+        # @param [Integer] threshold Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.
         #
         # @return [HealthQueue]
-        def get_queue_functions()
+        def get_queue_functions(threshold: nil)
             api_path = '/health/queue/functions'
 
             api_params = {
+                threshold: threshold,
             }
             
             api_headers = {
@@ -206,12 +293,95 @@ module Appwrite
         # Get the number of logs that are waiting to be processed in the Appwrite
         # internal queue server.
         #
+        # @param [Integer] threshold Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.
         #
         # @return [HealthQueue]
-        def get_queue_logs()
+        def get_queue_logs(threshold: nil)
             api_path = '/health/queue/logs'
 
             api_params = {
+                threshold: threshold,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::HealthQueue
+            )
+        end
+
+        
+        # Get the number of mails that are waiting to be processed in the Appwrite
+        # internal queue server.
+        #
+        # @param [Integer] threshold Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.
+        #
+        # @return [HealthQueue]
+        def get_queue_mails(threshold: nil)
+            api_path = '/health/queue/mails'
+
+            api_params = {
+                threshold: threshold,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::HealthQueue
+            )
+        end
+
+        
+        # Get the number of messages that are waiting to be processed in the Appwrite
+        # internal queue server.
+        #
+        # @param [Integer] threshold Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.
+        #
+        # @return [HealthQueue]
+        def get_queue_messaging(threshold: nil)
+            api_path = '/health/queue/messaging'
+
+            api_params = {
+                threshold: threshold,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::HealthQueue
+            )
+        end
+
+        
+        # Get the number of migrations that are waiting to be processed in the
+        # Appwrite internal queue server.
+        #
+        # @param [Integer] threshold Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.
+        #
+        # @return [HealthQueue]
+        def get_queue_migrations(threshold: nil)
+            api_path = '/health/queue/migrations'
+
+            api_params = {
+                threshold: threshold,
             }
             
             api_headers = {
@@ -231,12 +401,14 @@ module Appwrite
         # Get the number of webhooks that are waiting to be processed in the Appwrite
         # internal queue server.
         #
+        # @param [Integer] threshold Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.
         #
         # @return [HealthQueue]
-        def get_queue_webhooks()
+        def get_queue_webhooks(threshold: nil)
             api_path = '/health/queue/webhooks'
 
             api_params = {
+                threshold: threshold,
             }
             
             api_headers = {

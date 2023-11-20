@@ -37,8 +37,9 @@ module Appwrite
 
         
         # Create a new function. You can pass a list of
-        # [permissions](/docs/permissions) to allow different project users or team
-        # with access to execute the function using the client API.
+        # [permissions](https://appwrite.io/docs/permissions) to allow different
+        # project users or team with access to execute the function using the client
+        # API.
         #
         # @param [String] function_id Function ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Function name. Max length: 128 chars.
@@ -303,7 +304,7 @@ module Appwrite
         # This endpoint accepts a tar.gz file compressed with your code. Make sure to
         # include any dependencies your code has within the compressed file. You can
         # learn more about code packaging in the [Appwrite Cloud Functions
-        # tutorial](/docs/functions).
+        # tutorial](https://appwrite.io/docs/functions).
         # 
         # Use the "command" param to set the entrypoint used to execute your code.
         #
@@ -507,7 +508,8 @@ module Appwrite
         end
 
         
-        # 
+        # Get a Deployment's contents by its unique ID. This endpoint supports range
+        # requests for partial or streaming file download.
         #
         # @param [String] function_id Function ID.
         # @param [String] deployment_id Deployment ID.

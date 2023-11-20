@@ -42,7 +42,7 @@ module Appwrite
         #
         # @param [String] team_id Team ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Team name. Max length: 128 chars.
-        # @param [Array] roles Array of strings. Use this param to set the roles in the team for the user who created it. The default role is **owner**. A role can be any string. Learn more about [roles and permissions](/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long.
+        # @param [Array] roles Array of strings. Use this param to set the roles in the team for the user who created it. The default role is **owner**. A role can be any string. Learn more about [roles and permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long.
         #
         # @return [Team]
         def create(team_id:, name:, roles: nil)
@@ -220,8 +220,8 @@ module Appwrite
         # 
         # Use the `url` parameter to redirect the user from the invitation email to
         # your app. After the user is redirected, use the [Update Team Membership
-        # Status](/docs/client/teams#teamsUpdateMembershipStatus) endpoint to allow
-        # the user to accept the invitation to the team. 
+        # Status](https://appwrite.io/docs/references/cloud/client-web/teams#updateMembershipStatus)
+        # endpoint to allow the user to accept the invitation to the team. 
         # 
         # Please note that to avoid a [Redirect
         # Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md)
@@ -230,7 +230,7 @@ module Appwrite
         # 
         #
         # @param [String] team_id Team ID.
-        # @param [Array] roles Array of strings. Use this param to set the user roles in the team. A role can be any string. Learn more about [roles and permissions](/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long.
+        # @param [Array] roles Array of strings. Use this param to set the user roles in the team. A role can be any string. Learn more about [roles and permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long.
         # @param [String] email Email of the new team member.
         # @param [String] user_id ID of the user to be added to a team.
         # @param [String] phone Phone number. Format this number with a leading '+' and a country code, e.g., +16175551212.
@@ -312,7 +312,7 @@ module Appwrite
         
         # Modify the roles of a team member. Only team members with the owner role
         # have access to this endpoint. Learn more about [roles and
-        # permissions](/docs/permissions).
+        # permissions](https://appwrite.io/docs/permissions).
         # 
         #
         # @param [String] team_id Team ID.
@@ -448,7 +448,7 @@ module Appwrite
         
         # Get the team's shared preferences by its unique ID. If a preference doesn't
         # need to be shared by all team members, prefer storing them in [user
-        # preferences](/docs/client/account#accountGetPrefs).
+        # preferences](https://appwrite.io/docs/references/cloud/client-web/account#getPrefs).
         #
         # @param [String] team_id Team ID.
         #

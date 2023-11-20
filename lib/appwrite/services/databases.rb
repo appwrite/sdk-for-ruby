@@ -211,14 +211,14 @@ module Appwrite
         
         # Create a new Collection. Before using this route, you should create a new
         # database resource using either a [server
-        # integration](/docs/server/databases#databasesCreateCollection) API or
-        # directly from your database console.
+        # integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
+        # API or directly from your database console.
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Collection name. Max length: 128 chars.
-        # @param [Array] permissions An array of permissions strings. By default, no user is granted with any permissions. [Learn more about permissions](/docs/permissions).
-        # @param [] document_security Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](/docs/permissions).
+        # @param [Array] permissions An array of permissions strings. By default, no user is granted with any permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
+        # @param [] document_security Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](https://appwrite.io/docs/permissions).
         # @param [] enabled Is collection enabled? When set to 'disabled', users cannot access the collection but Server SDKs with and API key can still read and write to the collection. No data is lost when this is toggled.
         #
         # @return [Collection]
@@ -302,8 +302,8 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID.
         # @param [String] name Collection name. Max length: 128 chars.
-        # @param [Array] permissions An array of permission strings. By default, the current permissions are inherited. [Learn more about permissions](/docs/permissions).
-        # @param [] document_security Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](/docs/permissions).
+        # @param [Array] permissions An array of permission strings. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions).
+        # @param [] document_security Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](https://appwrite.io/docs/permissions).
         # @param [] enabled Is collection enabled? When set to 'disabled', users cannot access the collection but Server SDKs with and API key can still read and write to the collection. No data is lost when this is toggled.
         #
         # @return [Collection]
@@ -1223,7 +1223,7 @@ module Appwrite
 
         
         # Create relationship attribute. [Learn more about relationship
-        # attributes](/docs/databases-relationships#relationship-attributes).
+        # attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
         # 
         #
         # @param [String] database_id Database ID.
@@ -1589,7 +1589,7 @@ module Appwrite
 
         
         # Update relationship attribute. [Learn more about relationship
-        # attributes](/docs/databases-relationships#relationship-attributes).
+        # attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
         # 
         #
         # @param [String] database_id Database ID.
@@ -1675,14 +1675,14 @@ module Appwrite
         
         # Create a new Document. Before using this route, you should create a new
         # collection resource using either a [server
-        # integration](/docs/server/databases#databasesCreateCollection) API or
-        # directly from your database console.
+        # integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
+        # API or directly from your database console.
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). Make sure to define attributes before creating documents.
         # @param [String] document_id Document ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [Hash] data Document data as JSON object.
-        # @param [Array] permissions An array of permissions strings. By default, only the current user is granted all permissions. [Learn more about permissions](/docs/permissions).
+        # @param [Array] permissions An array of permissions strings. By default, only the current user is granted all permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
         #
         # @return [Document]
         def create_document(database_id:, collection_id:, document_id:, data:, permissions: nil)
@@ -1778,7 +1778,7 @@ module Appwrite
         # @param [String] collection_id Collection ID.
         # @param [String] document_id Document ID.
         # @param [Hash] data Document data as JSON object. Include only attribute and value pairs to be updated.
-        # @param [Array] permissions An array of permissions strings. By default, the current permissions are inherited. [Learn more about permissions](/docs/permissions).
+        # @param [Array] permissions An array of permissions strings. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions).
         #
         # @return [Document]
         def update_document(database_id:, collection_id:, document_id:, data: nil, permissions: nil)

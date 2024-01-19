@@ -15,7 +15,7 @@ module Appwrite
                 'x-sdk-name'=> 'Ruby',
                 'x-sdk-platform'=> 'server',
                 'x-sdk-language'=> 'ruby',
-                'x-sdk-version'=> '10.1.0',                
+                'x-sdk-version'=> '10.1.1',                
                 'X-Appwrite-Response-Format' => '1.4.0'
             }
             @endpoint = 'https://HOSTNAME/v1'
@@ -233,6 +233,8 @@ module Appwrite
             payload = ''
             
             headers = @headers.merge(headers)
+
+            params.compact!
 
             @boundary = "----A30#3ad1"
             if method != "GET"

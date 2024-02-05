@@ -15,7 +15,7 @@ module Appwrite
                 'x-sdk-name'=> 'Ruby',
                 'x-sdk-platform'=> 'server',
                 'x-sdk-language'=> 'ruby',
-                'x-sdk-version'=> '10.1.1',                
+                'x-sdk-version'=> '11.0.0-rc.1',                
                 'X-Appwrite-Response-Format' => '1.4.0'
             }
             @endpoint = 'https://HOSTNAME/v1'
@@ -67,6 +67,45 @@ module Appwrite
         # @return [self]
         def set_locale(value)
             add_header('x-appwrite-locale', value)
+
+            self
+        end
+
+        # Set Session
+        #
+        # The user session to authenticate with
+        #
+        # @param [String] value The value to set for the Session header
+        #
+        # @return [self]
+        def set_session(value)
+            add_header('x-appwrite-session', value)
+
+            self
+        end
+
+        # Set ForwardedFor
+        #
+        # The IP address of the client that made the request
+        #
+        # @param [String] value The value to set for the ForwardedFor header
+        #
+        # @return [self]
+        def set_forwarded_for(value)
+            add_header('x-forwarded-for', value)
+
+            self
+        end
+
+        # Set ForwardedUserAgent
+        #
+        # The user agent string of the client that made the request
+        #
+        # @param [String] value The value to set for the ForwardedUserAgent header
+        #
+        # @return [self]
+        def set_forwarded_user_agent(value)
+            add_header('x-forwarded-user-agent', value)
 
             self
         end
@@ -199,7 +238,7 @@ module Appwrite
                 offset += @chunk_size
 
                 if defined? result['$id']
-                    headers['x-Appwrite-id'] = result['$id']
+                    headers['x-appwrite-id'] = result['$id']
                 end
 
                 on_progress.call({

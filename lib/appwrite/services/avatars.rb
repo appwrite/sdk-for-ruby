@@ -18,7 +18,7 @@ module Appwrite
         # image at source quality. If dimensions are not specified, the default size
         # of image returned is 100x100px.
         #
-        # @param [String] code Browser Code.
+        # @param [Browser] code Browser Code.
         # @param [Integer] width Image width. Pass an integer between 0 to 2000. Defaults to 100.
         # @param [Integer] height Image height. Pass an integer between 0 to 2000. Defaults to 100.
         # @param [Integer] quality Image quality. Pass an integer between 0 to 100. Defaults to 100.
@@ -61,7 +61,7 @@ module Appwrite
         # of image returned is 100x100px.
         # 
         #
-        # @param [String] code Credit Card Code. Possible values: amex, argencard, cabal, censosud, diners, discover, elo, hipercard, jcb, mastercard, naranja, targeta-shopping, union-china-pay, visa, mir, maestro.
+        # @param [CreditCard] code Credit Card Code. Possible values: amex, argencard, cabal, censosud, diners, discover, elo, hipercard, jcb, mastercard, naranja, targeta-shopping, union-china-pay, visa, mir, maestro.
         # @param [Integer] width Image width. Pass an integer between 0 to 2000. Defaults to 100.
         # @param [Integer] height Image height. Pass an integer between 0 to 2000. Defaults to 100.
         # @param [Integer] quality Image quality. Pass an integer between 0 to 100. Defaults to 100.
@@ -136,7 +136,7 @@ module Appwrite
         # of image returned is 100x100px.
         # 
         #
-        # @param [String] code Country Code. ISO Alpha-2 country code format.
+        # @param [Flag] code Country Code. ISO Alpha-2 country code format.
         # @param [Integer] width Image width. Pass an integer between 0 to 2000. Defaults to 100.
         # @param [Integer] height Image height. Pass an integer between 0 to 2000. Defaults to 100.
         # @param [Integer] quality Image quality. Pass an integer between 0 to 100. Defaults to 100.

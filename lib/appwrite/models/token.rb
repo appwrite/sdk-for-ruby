@@ -8,19 +8,22 @@ module Appwrite
             attr_reader :user_id
             attr_reader :secret
             attr_reader :expire
+            attr_reader :phrase
 
             def initialize(
                 id:,
                 created_at:,
                 user_id:,
                 secret:,
-                expire:
+                expire:,
+                phrase:
             )
                 @id = id
                 @created_at = created_at
                 @user_id = user_id
                 @secret = secret
                 @expire = expire
+                @phrase = phrase
             end
 
             def self.from(map:)
@@ -29,7 +32,8 @@ module Appwrite
                     created_at: map["$createdAt"],
                     user_id: map["userId"],
                     secret: map["secret"],
-                    expire: map["expire"]
+                    expire: map["expire"],
+                    phrase: map["phrase"]
                 )
             end
 
@@ -39,7 +43,8 @@ module Appwrite
                     "$createdAt": @created_at,
                     "userId": @user_id,
                     "secret": @secret,
-                    "expire": @expire
+                    "expire": @expire,
+                    "phrase": @phrase
                 }
             end
         end

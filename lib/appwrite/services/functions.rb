@@ -43,7 +43,7 @@ module Appwrite
         #
         # @param [String] function_id Function ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Function name. Max length: 128 chars.
-        # @param [String] runtime Execution runtime.
+        # @param [Runtime] runtime Execution runtime.
         # @param [Array] execute An array of role strings with execution permissions. By default no user is granted with any execute permissions. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long.
         # @param [Array] events Events list. Maximum of 100 events are allowed.
         # @param [String] schedule Schedule CRON syntax.
@@ -173,7 +173,7 @@ module Appwrite
         #
         # @param [String] function_id Function ID.
         # @param [String] name Function name. Max length: 128 chars.
-        # @param [String] runtime Execution runtime.
+        # @param [Runtime] runtime Execution runtime.
         # @param [Array] execute An array of role strings with execution permissions. By default no user is granted with any execute permissions. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long.
         # @param [Array] events Events list. Maximum of 100 events are allowed.
         # @param [String] schedule Schedule CRON syntax.
@@ -588,7 +588,7 @@ module Appwrite
         # @param [String] body HTTP body of execution. Default value is empty string.
         # @param [] async Execute code in the background. Default value is false.
         # @param [String] xpath HTTP path of execution. Path can include query params. Default value is /
-        # @param [String] method HTTP method of execution. Default value is GET.
+        # @param [ExecutionMethod] method HTTP method of execution. Default value is GET.
         # @param [Hash] headers HTTP headers of execution. Defaults to empty.
         #
         # @return [Execution]

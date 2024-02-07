@@ -8,22 +8,19 @@ module Appwrite
             attr_reader :updated_at
             attr_reader :name
             attr_reader :total
-            attr_reader :description
 
             def initialize(
                 id:,
                 created_at:,
                 updated_at:,
                 name:,
-                total:,
-                description: 
+                total:
             )
                 @id = id
                 @created_at = created_at
                 @updated_at = updated_at
                 @name = name
                 @total = total
-                @description = description
             end
 
             def self.from(map:)
@@ -32,8 +29,7 @@ module Appwrite
                     created_at: map["$createdAt"],
                     updated_at: map["$updatedAt"],
                     name: map["name"],
-                    total: map["total"],
-                    description: map["description"]
+                    total: map["total"]
                 )
             end
 
@@ -43,8 +39,7 @@ module Appwrite
                     "$createdAt": @created_at,
                     "$updatedAt": @updated_at,
                     "name": @name,
-                    "total": @total,
-                    "description": @description
+                    "total": @total
                 }
             end
         end

@@ -16,7 +16,6 @@ module Appwrite
             attr_reader :delivered_total
             attr_reader :data
             attr_reader :status
-            attr_reader :description
 
             def initialize(
                 id:,
@@ -31,8 +30,7 @@ module Appwrite
                 delivery_errors: ,
                 delivered_total:,
                 data:,
-                status:,
-                description: 
+                status:
             )
                 @id = id
                 @created_at = created_at
@@ -47,7 +45,6 @@ module Appwrite
                 @delivered_total = delivered_total
                 @data = data
                 @status = status
-                @description = description
             end
 
             def self.from(map:)
@@ -64,8 +61,7 @@ module Appwrite
                     delivery_errors: map["deliveryErrors"],
                     delivered_total: map["deliveredTotal"],
                     data: map["data"],
-                    status: map["status"],
-                    description: map["description"]
+                    status: map["status"]
                 )
             end
 
@@ -83,8 +79,7 @@ module Appwrite
                     "deliveryErrors": @delivery_errors,
                     "deliveredTotal": @delivered_total,
                     "data": @data,
-                    "status": @status,
-                    "description": @description
+                    "status": @status
                 }
             end
         end

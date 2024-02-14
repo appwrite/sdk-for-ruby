@@ -9,6 +9,7 @@ module Appwrite
             attr_reader :created_at
             attr_reader :updated_at
             attr_reader :permissions
+            attr_reader :data
 
             def initialize(
                 id:,

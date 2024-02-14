@@ -3,6 +3,7 @@
 module Appwrite
     module Models
         class Preferences
+            attr_reader :data
 
             def initialize(
                 data:

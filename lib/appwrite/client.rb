@@ -15,7 +15,7 @@ module Appwrite
                 'x-sdk-name'=> 'Ruby',
                 'x-sdk-platform'=> 'server',
                 'x-sdk-language'=> 'ruby',
-                'x-sdk-version'=> '10.1.1',                
+                'x-sdk-version'=> '10.1.2',                
                 'X-Appwrite-Response-Format' => '1.4.0'
             }
             @endpoint = 'https://HOSTNAME/v1'

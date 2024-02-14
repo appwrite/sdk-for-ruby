@@ -1,119 +1,94 @@
-require 'json'
-
 module Appwrite
     class Query
-        def initialize(method, attribute = nil, values = nil)
-            @method = method
-            @attribute = attribute
-
-            if values != nil
-                if values.is_a?(Array)
-                    @values = values
-                else
-                    @values = [values]
-                end
-            end
-        end
-
-        def to_json(*args)
-            {
-                method: @method,
-                attribute: @attribute,
-                values: @values
-            }.compact.to_json(*args)
-        end
-
-        def to_s
-            return self.to_json
-        end
-
         class << Query
             def equal(attribute, value)
-                return Query.new("equal", attribute, value).to_s
+                return add_query(attribute, "equal", value)
             end
 
             def not_equal(attribute, value)
-                return Query.new("notEqual", attribute, value).to_s
+                return add_query(attribute, "notEqual", value)
             end
 
             def less_than(attribute, value)
-                return Query.new("lessThan", attribute, value).to_s
+                return add_query(attribute, "lessThan", value)
             end
             
             def less_than_equal(attribute, value)
-                return Query.new("lessThanEqual", attribute, value).to_s
+                return add_query(attribute, "lessThanEqual", value)
             end
             
             def greater_than(attribute, value)
-                return Query.new("greaterThan", attribute, value).to_s
+                return add_query(attribute, "greaterThan", value)
             end
             
             def greater_than_equal(attribute, value)
-                return Query.new("greaterThanEqual", attribute, value).to_s
+                return add_query(attribute, "greaterThanEqual", value)
             end
 
             def is_null(attribute)
-                return Query.new("isNull", attribute, nil).to_s
+                return "isNull(\"#{attribute}\")"
             end
 
             def is_not_null(attribute)
-                return Query.new("isNotNull", attribute, nil).to_s
+                return "isNotNull(\"#{attribute}\")"
             end
 
             def between(attribute, start, ending)
-                return Query.new("between", attribute, [start, ending]).to_s
+                return "between(\"#{attribute}\", #{parse_values(start)}, #{parse_values(ending)})"
             end
 
             def starts_with(attribute, value)
-                return Query.new("startsWith", attribute, value).to_s
+                return add_query(attribute, "startsWith", value)
             end
 
             def ends_with(attribute, value)
-                return Query.new("endsWith", attribute, value).to_s
+                return add_query(attribute, "endsWith", value)
             end
 
             def select(attributes)
-                return Query.new("select", nil, attributes).to_s
+                return "select([#{attributes.map {|attribute| "\"#{attribute}\""}.join(',')}])"
             end
             
             def search(attribute, value)
-                return Query.new("search", attribute, value).to_s
+                return add_query(attribute, "search", value)
             end
 
             def order_asc(attribute)
-                return Query.new("orderAsc", attribute, nil).to_s
+                return "orderAsc(\"#{attribute}\")"
             end
 
             def order_desc(attribute)
-                return Query.new("orderDesc", attribute, nil).to_s
+                return "orderDesc(\"#{attribute}\")"
             end
 
             def cursor_before(id)
-                return Query.new("cursorBefore", nil, id).to_s
+                return "cursorBefore(\"#{id}\")"
             end
 
             def cursor_after(id)
-                return Query.new("cursorAfter", nil, id).to_s
+                return "cursorAfter(\"#{id}\")"
             end
 
             def limit(limit)
-                return Query.new("limit", nil, limit).to_s
+                return "limit(#{limit})"
             end
 
             def offset(offset)
-                return Query.new("offset", nil, offset).to_s
+                return "offset(#{offset})"
             end
 
-            def contains(attribute, value)
-                return Query.new("contains", attribute, value).to_s
+            private
+
+            def add_query(attribute, method, value)
+                if value.is_a?(Array)
+                    "#{method}(\"#{attribute}\", [#{value.map {|item| parse_values(item)}.join(',')}])"
+                else
+                   return "#{method}(\"#{attribute}\", [#{parse_values(value)}])"
+				end
             end
 
-            def or(queries)
-                return Query.new("or", nil, queries.map { |query| JSON.parse(query) }).to_s
-            end
-
-            def and(queries)
-                return Query.new("and", nil, queries.map { |query| JSON.parse(query) }).to_s
+            def parse_values(value)
+                return value.is_a?(String) ? "\"#{value}\"" : value
             end
         end
     end

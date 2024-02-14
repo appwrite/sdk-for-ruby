@@ -9,6 +9,7 @@ module Appwrite
             attr_reader :created_at
             attr_reader :updated_at
             attr_reader :permissions
+            attr_reader :data
 
             def initialize(
                 id:,
@@ -36,7 +37,7 @@ module Appwrite
                     created_at: map["$createdAt"],
                     updated_at: map["$updatedAt"],
                     permissions: map["$permissions"],
-                    data: map["data"]
+                    data: map
                 )
             end
 

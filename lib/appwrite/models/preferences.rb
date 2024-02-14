@@ -3,6 +3,7 @@
 module Appwrite
     module Models
         class Preferences
+            attr_reader :data
 
             def initialize(
                 data:
@@ -12,7 +13,7 @@ module Appwrite
 
             def self.from(map:)
                 Preferences.new(
-                    data: map["data"]
+                    data: map
                 )
             end
 

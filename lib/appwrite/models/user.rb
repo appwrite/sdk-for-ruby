@@ -18,10 +18,7 @@ module Appwrite
             attr_reader :phone
             attr_reader :email_verification
             attr_reader :phone_verification
-            attr_reader :mfa
-            attr_reader :totp
             attr_reader :prefs
-            attr_reader :targets
             attr_reader :accessed_at
 
             def initialize(
@@ -40,10 +37,7 @@ module Appwrite
                 phone:,
                 email_verification:,
                 phone_verification:,
-                mfa:,
-                totp:,
                 prefs:,
-                targets:,
                 accessed_at:
             )
                 @id = id
@@ -61,10 +55,7 @@ module Appwrite
                 @phone = phone
                 @email_verification = email_verification
                 @phone_verification = phone_verification
-                @mfa = mfa
-                @totp = totp
                 @prefs = prefs
-                @targets = targets
                 @accessed_at = accessed_at
             end
 
@@ -85,10 +76,7 @@ module Appwrite
                     phone: map["phone"],
                     email_verification: map["emailVerification"],
                     phone_verification: map["phoneVerification"],
-                    mfa: map["mfa"],
-                    totp: map["totp"],
                     prefs: Preferences.from(map: map["prefs"]),
-                    targets: map["targets"].map { |it| Target.from(map: it) },
                     accessed_at: map["accessedAt"]
                 )
             end
@@ -110,10 +98,7 @@ module Appwrite
                     "phone": @phone,
                     "emailVerification": @email_verification,
                     "phoneVerification": @phone_verification,
-                    "mfa": @mfa,
-                    "totp": @totp,
                     "prefs": @prefs.to_map,
-                    "targets": @targets.map { |it| it.to_map },
                     "accessedAt": @accessed_at
                 }
             end

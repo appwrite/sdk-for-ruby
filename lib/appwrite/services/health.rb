@@ -80,6 +80,32 @@ module Appwrite
         end
 
         
+        # Get the SSL certificate for a domain
+        #
+        # @param [String] domain string
+        #
+        # @return [HealthCertificate]
+        def get_certificate(domain: nil)
+            api_path = '/health/certificate'
+
+            api_params = {
+                domain: domain,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::HealthCertificate
+            )
+        end
+
+        
         # Check the Appwrite database servers are up and connection is successful.
         #
         #
@@ -245,6 +271,39 @@ module Appwrite
         # @return [HealthQueue]
         def get_queue_deletes(threshold: nil)
             api_path = '/health/queue/deletes'
+
+            api_params = {
+                threshold: threshold,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::HealthQueue
+            )
+        end
+
+        
+        # Returns the amount of failed jobs in a given queue.
+        # 
+        #
+        # @param [Name] name The name of the queue
+        # @param [Integer] threshold Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.
+        #
+        # @return [HealthQueue]
+        def get_failed_jobs(name:, threshold: nil)
+            api_path = '/health/queue/failed/{name}'
+                .gsub('{name}', name)
+
+            if name.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "name"')
+            end
 
             api_params = {
                 threshold: threshold,

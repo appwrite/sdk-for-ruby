@@ -28,6 +28,8 @@ module Appwrite
             attr_reader :country_code
             attr_reader :country_name
             attr_reader :current
+            attr_reader :factors
+            attr_reader :secret
 
             def initialize(
                 id:,
@@ -54,7 +56,9 @@ module Appwrite
                 device_model:,
                 country_code:,
                 country_name:,
-                current:
+                current:,
+                factors:,
+                secret:
             )
                 @id = id
                 @created_at = created_at
@@ -81,6 +85,8 @@ module Appwrite
                 @country_code = country_code
                 @country_name = country_name
                 @current = current
+                @factors = factors
+                @secret = secret
             end
 
             def self.from(map:)
@@ -109,7 +115,9 @@ module Appwrite
                     device_model: map["deviceModel"],
                     country_code: map["countryCode"],
                     country_name: map["countryName"],
-                    current: map["current"]
+                    current: map["current"],
+                    factors: map["factors"],
+                    secret: map["secret"]
                 )
             end
 
@@ -139,7 +147,9 @@ module Appwrite
                     "deviceModel": @device_model,
                     "countryCode": @country_code,
                     "countryName": @country_name,
-                    "current": @current
+                    "current": @current,
+                    "factors": @factors,
+                    "secret": @secret
                 }
             end
         end

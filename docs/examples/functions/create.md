@@ -1,6 +1,7 @@
 require 'appwrite'
 
 include Appwrite
+include Appwrite::Enums
 
 client = Client.new
     .set_endpoint('https://cloud.appwrite.io/v1') # Your API Endpoint
@@ -9,6 +10,6 @@ client = Client.new
 
 functions = Functions.new(client)
 
-response = functions.create(function_id: '[FUNCTION_ID]', name: '[NAME]', runtime: 'node-18.0')
+response = functions.create(function_id: '[FUNCTION_ID]', name: '[NAME]', runtime: ::NODE-18.0)
 
 puts response.inspect

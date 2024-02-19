@@ -1,9 +1,7 @@
 module Appwrite
     module Enums
-        module Factor
+        module AuthenticatorType
             TOTP = 'totp'
-            PHONE = 'phone'
-            EMAIL = 'email'
         end
     end
 end

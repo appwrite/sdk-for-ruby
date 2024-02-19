@@ -783,7 +783,7 @@ module Appwrite
         # 
         #
         # @param [String] user_id User ID.
-        # @param [Type] type Type of authenticator.
+        # @param [AuthenticatorType] type Type of authenticator.
         # @param [String] otp Valid verification token.
         #
         # @return [User]

@@ -266,7 +266,7 @@ module Appwrite
         
         # 
         #
-        # @param [Factor] factor Factor used for verification.
+        # @param [AuthenticationFactor] factor Factor used for verification.
         #
         # @return [MfaChallenge]
         def create2_fa_challenge(factor:)
@@ -355,7 +355,7 @@ module Appwrite
         
         # 
         #
-        # @param [Type] type Type of authenticator.
+        # @param [AuthenticatorType] type Type of authenticator.
         #
         # @return [MfaType]
         def add_authenticator(type:)
@@ -385,7 +385,7 @@ module Appwrite
         
         # 
         #
-        # @param [Type] type Type of authenticator.
+        # @param [AuthenticatorType] type Type of authenticator.
         # @param [String] otp Valid verification token.
         #
         # @return [User]
@@ -421,7 +421,7 @@ module Appwrite
         
         # 
         #
-        # @param [Type] type Type of authenticator.
+        # @param [AuthenticatorType] type Type of authenticator.
         # @param [String] otp Valid verification token.
         #
         # @return [User]

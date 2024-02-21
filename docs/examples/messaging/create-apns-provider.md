@@ -9,6 +9,14 @@ client = Client.new
 
 messaging = Messaging.new(client)
 
-response = messaging.create_smtp_provider(provider_id: '[PROVIDER_ID]', name: '[NAME]', host: '[HOST]')
+response = messaging.create_apns_provider(
+    provider_id: '[PROVIDER_ID]',
+    name: '[NAME]',
+    auth_key: '[AUTH_KEY]', # optional
+    auth_key_id: '[AUTH_KEY_ID]', # optional
+    team_id: '[TEAM_ID]', # optional
+    bundle_id: '[BUNDLE_ID]', # optional
+    enabled: false # optional
+)
 
 puts response.inspect

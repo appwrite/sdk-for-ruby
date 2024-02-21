@@ -9,6 +9,14 @@ client = Client.new
 
 messaging = Messaging.new(client)
 
-response = messaging.create_apns_provider(provider_id: '[PROVIDER_ID]', name: '[NAME]')
+response = messaging.update_sms(
+    message_id: '[MESSAGE_ID]',
+    topics: [], # optional
+    users: [], # optional
+    targets: [], # optional
+    content: '[CONTENT]', # optional
+    status: MessageStatus::DRAFT, # optional
+    scheduled_at: '' # optional
+)
 
 puts response.inspect

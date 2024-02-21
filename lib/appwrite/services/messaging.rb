@@ -7,7 +7,7 @@ module Appwrite
             @client = client
         end
 
-        # 
+        # Get a list of all messages from the current Appwrite project.
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: scheduledAt, deliveredAt, deliveredTotal, status, description, providerType
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
@@ -35,7 +35,7 @@ module Appwrite
         end
 
         
-        # 
+        # Create a new email message.
         #
         # @param [String] message_id Message ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] subject Email Subject.
@@ -45,12 +45,13 @@ module Appwrite
         # @param [Array] targets List of Targets IDs.
         # @param [Array] cc Array of target IDs to be added as CC.
         # @param [Array] bcc Array of target IDs to be added as BCC.
+        # @param [Array] attachments Array of compound bucket IDs to file IDs to be attached to the email.
         # @param [MessageStatus] status Message Status. Value must be one of: draft, scheduled, processing.
         # @param [] html Is content of type HTML
         # @param [String] scheduled_at Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future.
         #
         # @return [Message]
-        def create_email(message_id:, subject:, content:, topics: nil, users: nil, targets: nil, cc: nil, bcc: nil, status: nil, html: nil, scheduled_at: nil)
+        def create_email(message_id:, subject:, content:, topics: nil, users: nil, targets: nil, cc: nil, bcc: nil, attachments: nil, status: nil, html: nil, scheduled_at: nil)
             api_path = '/messaging/messages/email'
 
             if message_id.nil?
@@ -74,6 +75,7 @@ module Appwrite
                 targets: targets,
                 cc: cc,
                 bcc: bcc,
+                attachments: attachments,
                 status: status,
                 html: html,
                 scheduledAt: scheduled_at,
@@ -93,6 +95,7 @@ module Appwrite
         end
 
         
+        # Update an email message by its unique ID.
         # 
         #
         # @param [String] message_id Message ID.
@@ -143,7 +146,7 @@ module Appwrite
         end
 
         
-        # 
+        # Create a new push notification.
         #
         # @param [String] message_id Message ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] title Title for push notification.
@@ -153,6 +156,7 @@ module Appwrite
         # @param [Array] targets List of Targets IDs.
         # @param [Hash] data Additional Data for push notification.
         # @param [String] action Action for push notification.
+        # @param [String] image Image for push notification. Must be a compound bucket ID to file ID of a jpeg, png, or bmp image in Appwrite Storage.
         # @param [String] icon Icon for push notification. Available only for Android and Web Platform.
         # @param [String] sound Sound for push notification. Available only for Android and IOS Platform.
         # @param [String] color Color for push notification. Available only for Android Platform.
@@ -162,7 +166,7 @@ module Appwrite
         # @param [String] scheduled_at Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future.
         #
         # @return [Message]
-        def create_push(message_id:, title:, body:, topics: nil, users: nil, targets: nil, data: nil, action: nil, icon: nil, sound: nil, color: nil, tag: nil, badge: nil, status: nil, scheduled_at: nil)
+        def create_push(message_id:, title:, body:, topics: nil, users: nil, targets: nil, data: nil, action: nil, image: nil, icon: nil, sound: nil, color: nil, tag: nil, badge: nil, status: nil, scheduled_at: nil)
             api_path = '/messaging/messages/push'
 
             if message_id.nil?
@@ -186,6 +190,7 @@ module Appwrite
                 targets: targets,
                 data: data,
                 action: action,
+                image: image,
                 icon: icon,
                 sound: sound,
                 color: color,
@@ -209,6 +214,7 @@ module Appwrite
         end
 
         
+        # Update a push notification by its unique ID.
         # 
         #
         # @param [String] message_id Message ID.
@@ -219,6 +225,7 @@ module Appwrite
         # @param [String] body Body for push notification.
         # @param [Hash] data Additional Data for push notification.
         # @param [String] action Action for push notification.
+        # @param [String] image Image for push notification. Must be a compound bucket ID to file ID of a jpeg, png, or bmp image in Appwrite Storage.
         # @param [String] icon Icon for push notification. Available only for Android and Web platforms.
         # @param [String] sound Sound for push notification. Available only for Android and iOS platforms.
         # @param [String] color Color for push notification. Available only for Android platforms.
@@ -228,7 +235,7 @@ module Appwrite
         # @param [String] scheduled_at Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future.
         #
         # @return [Message]
-        def update_push(message_id:, topics: nil, users: nil, targets: nil, title: nil, body: nil, data: nil, action: nil, icon: nil, sound: nil, color: nil, tag: nil, badge: nil, status: nil, scheduled_at: nil)
+        def update_push(message_id:, topics: nil, users: nil, targets: nil, title: nil, body: nil, data: nil, action: nil, image: nil, icon: nil, sound: nil, color: nil, tag: nil, badge: nil, status: nil, scheduled_at: nil)
             api_path = '/messaging/messages/push/{messageId}'
                 .gsub('{messageId}', message_id)
 
@@ -244,6 +251,7 @@ module Appwrite
                 body: body,
                 data: data,
                 action: action,
+                image: image,
                 icon: icon,
                 sound: sound,
                 color: color,
@@ -267,7 +275,7 @@ module Appwrite
         end
 
         
-        # 
+        # Create a new SMS message.
         #
         # @param [String] message_id Message ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] content SMS Content.
@@ -313,6 +321,7 @@ module Appwrite
         end
 
         
+        # Update an email message by its unique ID.
         # 
         #
         # @param [String] message_id Message ID.
@@ -355,6 +364,7 @@ module Appwrite
         end
 
         
+        # Get a message by its unique ID.
         # 
         #
         # @param [String] message_id Message ID.
@@ -414,7 +424,7 @@ module Appwrite
         end
 
         
-        # 
+        # Get the message activity logs listed by its unique ID.
         #
         # @param [String] message_id Message ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset
@@ -446,8 +456,7 @@ module Appwrite
         end
 
         
-        # List the targets associated with a message as set via the targets
-        # attribute.
+        # Get a list of the targets associated with a message.
         #
         # @param [String] message_id Message ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, providerId, identifier, providerType
@@ -479,7 +488,7 @@ module Appwrite
         end
 
         
-        # 
+        # Get a list of all providers from the current Appwrite project.
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, provider, type, enabled
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
@@ -507,7 +516,7 @@ module Appwrite
         end
 
         
-        # 
+        # Create a new Apple Push Notification service provider.
         #
         # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Provider name.
@@ -553,7 +562,7 @@ module Appwrite
         end
 
         
-        # 
+        # Update a Apple Push Notification service provider by its unique ID.
         #
         # @param [String] provider_id Provider ID.
         # @param [String] name Provider name.
@@ -595,7 +604,7 @@ module Appwrite
         end
 
         
-        # 
+        # Create a new Firebase Cloud Messaging provider.
         #
         # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Provider name.
@@ -635,7 +644,7 @@ module Appwrite
         end
 
         
-        # 
+        # Update a Firebase Cloud Messaging provider by its unique ID.
         #
         # @param [String] provider_id Provider ID.
         # @param [String] name Provider name.
@@ -671,7 +680,7 @@ module Appwrite
         end
 
         
-        # 
+        # Create a new Mailgun provider.
         #
         # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Provider name.
@@ -723,7 +732,7 @@ module Appwrite
         end
 
         
-        # 
+        # Update a Mailgun provider by its unique ID.
         #
         # @param [String] provider_id Provider ID.
         # @param [String] name Provider name.
@@ -771,7 +780,7 @@ module Appwrite
         end
 
         
-        # 
+        # Create a new MSG91 provider.
         #
         # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Provider name.
@@ -815,7 +824,7 @@ module Appwrite
         end
 
         
-        # 
+        # Update a MSG91 provider by its unique ID.
         #
         # @param [String] provider_id Provider ID.
         # @param [String] name Provider name.
@@ -903,7 +912,7 @@ module Appwrite
         end
 
         
-        # 
+        # Update a Sendgrid provider by its unique ID.
         #
         # @param [String] provider_id Provider ID.
         # @param [String] name Provider name.
@@ -947,15 +956,15 @@ module Appwrite
         end
 
         
-        # 
+        # Create a new SMTP provider.
         #
         # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Provider name.
-        # @param [String] host SMTP hosts. Either a single hostname or multiple semicolon-delimited hostnames. You can also specify a different port for each host by using this format: [hostname:port] (e.g. "smtp1.example.com:25;smtp2.example.com"). You can also specify encryption type, for example: (e.g. "tls://smtp1.example.com:587;ssl://smtp2.example.com:465"). Hosts will be tried in order.
+        # @param [String] host SMTP hosts. Either a single hostname or multiple semicolon-delimited hostnames. You can also specify a different port for each host such as `smtp1.example.com:25;smtp2.example.com`. You can also specify encryption type, for example: `tls://smtp1.example.com:587;ssl://smtp2.example.com:465"`. Hosts will be tried in order.
         # @param [Integer] port The default SMTP server port.
         # @param [String] username Authentication username.
         # @param [String] password Authentication password.
-        # @param [SMTPEncryption] encryption Encryption type. Can be omitted, 'ssl', or 'tls'
+        # @param [Encryption] encryption Encryption type. Can be omitted, 'ssl', or 'tls'
         # @param [] auto_tls Enable SMTP AutoTLS feature.
         # @param [String] mailer The value to use for the X-Mailer header.
         # @param [String] from_name Sender Name.
@@ -1011,15 +1020,15 @@ module Appwrite
         end
 
         
-        # 
+        # Update a SMTP provider by its unique ID.
         #
         # @param [String] provider_id Provider ID.
         # @param [String] name Provider name.
-        # @param [String] host SMTP hosts. Either a single hostname or multiple semicolon-delimited hostnames. You can also specify a different port for each host by using this format: [hostname:port] (e.g. "smtp1.example.com:25;smtp2.example.com"). You can also specify encryption type, for example: (e.g. "tls://smtp1.example.com:587;ssl://smtp2.example.com:465"). Hosts will be tried in order.
+        # @param [String] host SMTP hosts. Either a single hostname or multiple semicolon-delimited hostnames. You can also specify a different port for each host such as `smtp1.example.com:25;smtp2.example.com`. You can also specify encryption type, for example: `tls://smtp1.example.com:587;ssl://smtp2.example.com:465"`. Hosts will be tried in order.
         # @param [Integer] port SMTP port.
         # @param [String] username Authentication username.
         # @param [String] password Authentication password.
-        # @param [SMTPEncryption] encryption Encryption type. Can be 'ssl' or 'tls'
+        # @param [Encryption] encryption Encryption type. Can be 'ssl' or 'tls'
         # @param [] auto_tls Enable SMTP AutoTLS feature.
         # @param [String] mailer The value to use for the X-Mailer header.
         # @param [String] from_name Sender Name.
@@ -1067,7 +1076,7 @@ module Appwrite
         end
 
         
-        # 
+        # Create a new Telesign provider.
         #
         # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Provider name.
@@ -1111,7 +1120,7 @@ module Appwrite
         end
 
         
-        # 
+        # Update a Telesign provider by its unique ID.
         #
         # @param [String] provider_id Provider ID.
         # @param [String] name Provider name.
@@ -1151,7 +1160,7 @@ module Appwrite
         end
 
         
-        # 
+        # Create a new Textmagic provider.
         #
         # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Provider name.
@@ -1195,7 +1204,7 @@ module Appwrite
         end
 
         
-        # 
+        # Update a Textmagic provider by its unique ID.
         #
         # @param [String] provider_id Provider ID.
         # @param [String] name Provider name.
@@ -1235,7 +1244,7 @@ module Appwrite
         end
 
         
-        # 
+        # Create a new Twilio provider.
         #
         # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Provider name.
@@ -1279,7 +1288,7 @@ module Appwrite
         end
 
         
-        # 
+        # Update a Twilio provider by its unique ID.
         #
         # @param [String] provider_id Provider ID.
         # @param [String] name Provider name.
@@ -1319,7 +1328,7 @@ module Appwrite
         end
 
         
-        # 
+        # Create a new Vonage provider.
         #
         # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Provider name.
@@ -1363,7 +1372,7 @@ module Appwrite
         end
 
         
-        # 
+        # Update a Vonage provider by its unique ID.
         #
         # @param [String] provider_id Provider ID.
         # @param [String] name Provider name.
@@ -1403,6 +1412,7 @@ module Appwrite
         end
 
         
+        # Get a provider by its unique ID.
         # 
         #
         # @param [String] provider_id Provider ID.
@@ -1433,7 +1443,7 @@ module Appwrite
         end
 
         
-        # 
+        # Delete a provider by its unique ID.
         #
         # @param [String] provider_id Provider ID.
         #
@@ -1462,7 +1472,7 @@ module Appwrite
         end
 
         
-        # 
+        # Get the provider activity logs listed by its unique ID.
         #
         # @param [String] provider_id Provider ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset
@@ -1494,7 +1504,7 @@ module Appwrite
         end
 
         
-        # 
+        # Get the subscriber activity logs listed by its unique ID.
         #
         # @param [String] subscriber_id Subscriber ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset
@@ -1526,7 +1536,7 @@ module Appwrite
         end
 
         
-        # 
+        # Get a list of all topics from the current Appwrite project.
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, description, emailTotal, smsTotal, pushTotal
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
@@ -1554,7 +1564,7 @@ module Appwrite
         end
 
         
-        # 
+        # Create a new topic.
         #
         # @param [String] topic_id Topic ID. Choose a custom Topic ID or a new Topic ID.
         # @param [String] name Topic Name.
@@ -1592,6 +1602,7 @@ module Appwrite
         end
 
         
+        # Get a topic by its unique ID.
         # 
         #
         # @param [String] topic_id Topic ID.
@@ -1622,6 +1633,7 @@ module Appwrite
         end
 
         
+        # Update a topic by its unique ID.
         # 
         #
         # @param [String] topic_id Topic ID.
@@ -1654,7 +1666,7 @@ module Appwrite
         end
 
         
-        # 
+        # Delete a topic by its unique ID.
         #
         # @param [String] topic_id Topic ID.
         #
@@ -1683,7 +1695,7 @@ module Appwrite
         end
 
         
-        # 
+        # Get the topic activity logs listed by its unique ID.
         #
         # @param [String] topic_id Topic ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset
@@ -1715,7 +1727,7 @@ module Appwrite
         end
 
         
-        # 
+        # Get a list of all subscribers from the current Appwrite project.
         #
         # @param [String] topic_id Topic ID. The topic ID subscribed to.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, provider, type, enabled
@@ -1749,7 +1761,7 @@ module Appwrite
         end
 
         
-        # 
+        # Create a new subscriber.
         #
         # @param [String] topic_id Topic ID. The topic ID to subscribe to.
         # @param [String] subscriber_id Subscriber ID. Choose a custom Subscriber ID or a new Subscriber ID.
@@ -1791,6 +1803,7 @@ module Appwrite
         end
 
         
+        # Get a subscriber by its unique ID.
         # 
         #
         # @param [String] topic_id Topic ID. The topic ID subscribed to.
@@ -1827,7 +1840,7 @@ module Appwrite
         end
 
         
-        # 
+        # Delete a subscriber by its unique ID.
         #
         # @param [String] topic_id Topic ID. The topic ID subscribed to.
         # @param [String] subscriber_id Subscriber ID.

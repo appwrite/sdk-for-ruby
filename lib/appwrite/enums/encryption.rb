@@ -1,6 +1,6 @@
 module Appwrite
     module Enums
-        module SMTPEncryption
+        module Encryption
             NONE = 'none'
             SSL = 'ssl'
             TLS = 'tls'

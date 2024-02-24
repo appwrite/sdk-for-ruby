@@ -15,7 +15,7 @@ module Appwrite
                 'x-sdk-name'=> 'Ruby',
                 'x-sdk-platform'=> 'server',
                 'x-sdk-language'=> 'ruby',
-                'x-sdk-version'=> '11.0.0-rc.4',                
+                'x-sdk-version'=> '11.0.0-rc.5',                
                 'X-Appwrite-Response-Format' => '1.5.0'
             }
             @endpoint = 'https://cloud.appwrite.io/v1'
@@ -80,19 +80,6 @@ module Appwrite
         # @return [self]
         def set_session(value)
             add_header('x-appwrite-session', value)
-
-            self
-        end
-
-        # Set ForwardedFor
-        #
-        # The IP address of the client that made the request
-        #
-        # @param [String] value The value to set for the ForwardedFor header
-        #
-        # @return [self]
-        def set_forwarded_for(value)
-            add_header('x-forwarded-for', value)
 
             self
         end
@@ -293,12 +280,15 @@ module Appwrite
             rescue => error
                 raise Appwrite::Exception.new(error.message)
             end
+
+            location = response['location']
+            if response_type == "location"
+                return location
+            end
             
             # Handle Redirects
-            if response.class == Net::HTTPRedirection || response.class == Net::HTTPMovedPermanently
-                location = response['location']
+            if (response.class == Net::HTTPRedirection || response.class == Net::HTTPMovedPermanently)
                 uri = URI.parse(uri.scheme + "://" + uri.host + "" + location)
-                
                 return fetch(method, uri, headers, {}, response_type, limit - 1)
             end
 

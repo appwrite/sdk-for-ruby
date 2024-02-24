@@ -33,7 +33,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-            )
+                            )
         end
 
         
@@ -63,7 +63,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-            )
+                            )
         end
 
         

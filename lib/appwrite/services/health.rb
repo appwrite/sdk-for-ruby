@@ -26,8 +26,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::HealthStatus
-            )
+                response_type: Models::HealthStatus            )
         end
 
         
@@ -50,8 +49,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::HealthAntivirus
-            )
+                response_type: Models::HealthAntivirus            )
         end
 
         
@@ -75,8 +73,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::HealthStatus
-            )
+                response_type: Models::HealthStatus            )
         end
 
         
@@ -101,8 +98,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::HealthCertificate
-            )
+                response_type: Models::HealthCertificate            )
         end
 
         
@@ -125,8 +121,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::HealthStatus
-            )
+                response_type: Models::HealthStatus            )
         end
 
         
@@ -149,8 +144,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::HealthStatus
-            )
+                response_type: Models::HealthStatus            )
         end
 
         
@@ -174,8 +168,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::HealthStatus
-            )
+                response_type: Models::HealthStatus            )
         end
 
         
@@ -201,8 +194,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::HealthQueue
-            )
+                response_type: Models::HealthQueue            )
         end
 
         
@@ -229,8 +221,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::HealthQueue
-            )
+                response_type: Models::HealthQueue            )
         end
 
         
@@ -258,8 +249,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::HealthQueue
-            )
+                response_type: Models::HealthQueue            )
         end
 
         
@@ -285,8 +275,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::HealthQueue
-            )
+                response_type: Models::HealthQueue            )
         end
 
         
@@ -318,8 +307,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::HealthQueue
-            )
+                response_type: Models::HealthQueue            )
         end
 
         
@@ -344,8 +332,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::HealthQueue
-            )
+                response_type: Models::HealthQueue            )
         end
 
         
@@ -371,8 +358,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::HealthQueue
-            )
+                response_type: Models::HealthQueue            )
         end
 
         
@@ -398,8 +384,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::HealthQueue
-            )
+                response_type: Models::HealthQueue            )
         end
 
         
@@ -425,8 +410,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::HealthQueue
-            )
+                response_type: Models::HealthQueue            )
         end
 
         
@@ -452,8 +436,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::HealthQueue
-            )
+                response_type: Models::HealthQueue            )
         end
 
         
@@ -479,8 +462,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::HealthQueue
-            )
+                response_type: Models::HealthQueue            )
         end
 
         
@@ -503,8 +485,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::HealthStatus
-            )
+                response_type: Models::HealthStatus            )
         end
 
         
@@ -533,8 +514,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::HealthTime
-            )
+                response_type: Models::HealthTime            )
         end
 
         

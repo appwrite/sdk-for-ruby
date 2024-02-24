@@ -31,8 +31,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Locale
-            )
+                response_type: Models::Locale            )
         end
 
         
@@ -56,8 +55,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::LocaleCodeList
-            )
+                response_type: Models::LocaleCodeList            )
         end
 
         
@@ -81,8 +79,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::ContinentList
-            )
+                response_type: Models::ContinentList            )
         end
 
         
@@ -106,8 +103,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::CountryList
-            )
+                response_type: Models::CountryList            )
         end
 
         
@@ -131,8 +127,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::CountryList
-            )
+                response_type: Models::CountryList            )
         end
 
         
@@ -156,8 +151,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::PhoneList
-            )
+                response_type: Models::PhoneList            )
         end
 
         
@@ -182,8 +176,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::CurrencyList
-            )
+                response_type: Models::CurrencyList            )
         end
 
         
@@ -207,8 +200,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::LanguageList
-            )
+                response_type: Models::LanguageList            )
         end
 
         

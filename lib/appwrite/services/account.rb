@@ -26,8 +26,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::User
-            )
+                response_type: Models::User            )
         end
 
         
@@ -76,8 +75,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::User
-            )
+                response_type: Models::User            )
         end
 
         
@@ -119,8 +117,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::User
-            )
+                response_type: Models::User            )
         end
 
         
@@ -145,8 +142,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::IdentityList
-            )
+                response_type: Models::IdentityList            )
         end
 
         
@@ -175,7 +171,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-            )
+                            )
         end
 
         
@@ -202,8 +198,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Jwt
-            )
+                response_type: Models::Jwt            )
         end
 
         
@@ -229,8 +224,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::LogList
-            )
+                response_type: Models::LogList            )
         end
 
         
@@ -259,8 +253,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::User
-            )
+                response_type: Models::User            )
         end
 
         
@@ -269,7 +262,7 @@ module Appwrite
         # @param [AuthenticationFactor] factor Factor used for verification.
         #
         # @return [MfaChallenge]
-        def create2_fa_challenge(factor:)
+        def create_challenge(factor:)
             api_path = '/account/mfa/challenge'
 
             if factor.nil?
@@ -289,8 +282,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::MfaChallenge
-            )
+                response_type: Models::MfaChallenge            )
         end
 
         
@@ -325,7 +317,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-            )
+                            )
         end
 
         
@@ -348,8 +340,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::MfaFactors
-            )
+                response_type: Models::MfaFactors            )
         end
 
         
@@ -378,8 +369,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::MfaType
-            )
+                response_type: Models::MfaType            )
         end
 
         
@@ -414,8 +404,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::User
-            )
+                response_type: Models::User            )
         end
 
         
@@ -450,8 +439,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::User
-            )
+                response_type: Models::User            )
         end
 
         
@@ -480,8 +468,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::User
-            )
+                response_type: Models::User            )
         end
 
         
@@ -514,8 +501,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::User
-            )
+                response_type: Models::User            )
         end
 
         
@@ -554,8 +540,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::User
-            )
+                response_type: Models::User            )
         end
 
         
@@ -578,8 +563,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Preferences
-            )
+                response_type: Models::Preferences            )
         end
 
         
@@ -610,8 +594,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::User
-            )
+                response_type: Models::User            )
         end
 
         
@@ -653,8 +636,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Token
-            )
+                response_type: Models::Token            )
         end
 
         
@@ -704,8 +686,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Token
-            )
+                response_type: Models::Token            )
         end
 
         
@@ -729,8 +710,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::SessionList
-            )
+                response_type: Models::SessionList            )
         end
 
         
@@ -754,7 +734,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-            )
+                            )
         end
 
         
@@ -783,8 +763,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Session
-            )
+                response_type: Models::Session            )
         end
 
         
@@ -824,8 +803,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Session
-            )
+                response_type: Models::Session            )
         end
 
         
@@ -862,8 +840,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Session
-            )
+                response_type: Models::Session            )
         end
 
         
@@ -887,11 +864,10 @@ module Appwrite
         # @param [OAuthProvider] provider OAuth2 Provider. Currently, supported providers are: amazon, apple, auth0, authentik, autodesk, bitbucket, bitly, box, dailymotion, discord, disqus, dropbox, etsy, facebook, github, gitlab, google, linkedin, microsoft, notion, oidc, okta, paypal, paypalSandbox, podio, salesforce, slack, spotify, stripe, tradeshift, tradeshiftBox, twitch, wordpress, yahoo, yammer, yandex, zoho, zoom.
         # @param [String] success URL to redirect back to your app after a successful login attempt.  Only URLs from hostnames in your project's platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.
         # @param [String] failure URL to redirect back to your app after a failed login attempt.  Only URLs from hostnames in your project's platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.
-        # @param [] token Include token credentials in the final redirect, useful for server-side integrations, or when cookies are not available.
         # @param [Array] scopes A list of custom OAuth2 scopes. Check each provider internal docs for a list of supported scopes. Maximum of 100 scopes are allowed, each 4096 characters long.
         #
         # @return []
-        def create_o_auth2_session(provider:, success: nil, failure: nil, token: nil, scopes: nil)
+        def create_o_auth2_session(provider:, success: nil, failure: nil, scopes: nil)
             api_path = '/account/sessions/oauth2/{provider}'
                 .gsub('{provider}', provider)
 
@@ -902,7 +878,6 @@ module Appwrite
             api_params = {
                 success: success,
                 failure: failure,
-                token: token,
                 scopes: scopes,
             }
             
@@ -915,7 +890,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-            )
+                response_type: "location"            )
         end
 
         
@@ -952,8 +927,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Session
-            )
+                response_type: Models::Session            )
         end
 
         
@@ -983,8 +957,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Session
-            )
+                response_type: Models::Session            )
         end
 
         
@@ -1014,8 +987,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Session
-            )
+                response_type: Models::Session            )
         end
 
         
@@ -1048,7 +1020,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-            )
+                            )
         end
 
         
@@ -1073,8 +1045,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::User
-            )
+                response_type: Models::User            )
         end
 
         
@@ -1120,8 +1091,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Token
-            )
+                response_type: Models::Token            )
         end
 
         
@@ -1175,8 +1145,55 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Token
-            )
+                response_type: Models::Token            )
+        end
+
+        
+        # Allow the user to login to their account using the OAuth2 provider of their
+        # choice. Each OAuth2 provider should be enabled from the Appwrite console
+        # first. Use the success and failure arguments to provide a redirect URL's
+        # back to your app when login is completed. 
+        # 
+        # If authentication succeeds, `userId` and `secret` of a token will be
+        # appended to the success URL as query parameters. These can be used to
+        # create a new session using the [Create
+        # session](https://appwrite.io/docs/references/cloud/client-web/account#createSession)
+        # endpoint.
+        # 
+        # A user is limited to 10 active sessions at a time by default. [Learn more
+        # about session
+        # limits](https://appwrite.io/docs/authentication-security#limits).
+        #
+        # @param [OAuthProvider] provider OAuth2 Provider. Currently, supported providers are: amazon, apple, auth0, authentik, autodesk, bitbucket, bitly, box, dailymotion, discord, disqus, dropbox, etsy, facebook, github, gitlab, google, linkedin, microsoft, notion, oidc, okta, paypal, paypalSandbox, podio, salesforce, slack, spotify, stripe, tradeshift, tradeshiftBox, twitch, wordpress, yahoo, yammer, yandex, zoho, zoom.
+        # @param [String] success URL to redirect back to your app after a successful login attempt.  Only URLs from hostnames in your project's platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.
+        # @param [String] failure URL to redirect back to your app after a failed login attempt.  Only URLs from hostnames in your project's platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.
+        # @param [Array] scopes A list of custom OAuth2 scopes. Check each provider internal docs for a list of supported scopes. Maximum of 100 scopes are allowed, each 4096 characters long.
+        #
+        # @return []
+        def create_o_auth2_token(provider:, success: nil, failure: nil, scopes: nil)
+            api_path = '/account/tokens/oauth2/{provider}'
+                .gsub('{provider}', provider)
+
+            if provider.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "provider"')
+            end
+
+            api_params = {
+                success: success,
+                failure: failure,
+                scopes: scopes,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: "location"            )
         end
 
         
@@ -1220,8 +1237,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Token
-            )
+                response_type: Models::Token            )
         end
 
         
@@ -1264,8 +1280,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Token
-            )
+                response_type: Models::Token            )
         end
 
         
@@ -1303,8 +1318,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Token
-            )
+                response_type: Models::Token            )
         end
 
         
@@ -1334,8 +1348,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Token
-            )
+                response_type: Models::Token            )
         end
 
         
@@ -1373,8 +1386,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Token
-            )
+                response_type: Models::Token            )
         end
 
         

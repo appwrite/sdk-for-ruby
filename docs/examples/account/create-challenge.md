@@ -9,7 +9,7 @@ client = Client.new
 
 account = Account.new(client)
 
-response = account.create2_fa_challenge(
+response = account.create_challenge(
     factor: AuthenticationFactor::TOTP
 )
 

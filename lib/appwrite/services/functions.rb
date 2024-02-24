@@ -31,8 +31,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::FunctionList
-            )
+                response_type: Models::FunctionList            )
         end
 
         
@@ -110,8 +109,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Function
-            )
+                response_type: Models::Function            )
         end
 
         
@@ -134,8 +132,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::RuntimeList
-            )
+                response_type: Models::RuntimeList            )
         end
 
         
@@ -164,8 +161,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Function
-            )
+                response_type: Models::Function            )
         end
 
         
@@ -228,8 +224,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Function
-            )
+                response_type: Models::Function            )
         end
 
         
@@ -258,7 +253,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-            )
+                            )
         end
 
         
@@ -292,8 +287,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::DeploymentList
-            )
+                response_type: Models::DeploymentList            )
         end
 
         
@@ -388,8 +382,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Deployment
-            )
+                response_type: Models::Deployment            )
         end
 
         
@@ -426,8 +419,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Function
-            )
+                response_type: Models::Function            )
         end
 
         
@@ -462,7 +454,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-            )
+                            )
         end
 
         
@@ -504,7 +496,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-            )
+                            )
         end
 
         
@@ -540,7 +532,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-            )
+                            )
         end
 
         
@@ -574,8 +566,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::ExecutionList
-            )
+                response_type: Models::ExecutionList            )
         end
 
         
@@ -617,8 +608,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Execution
-            )
+                response_type: Models::Execution            )
         end
 
         
@@ -653,8 +643,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Execution
-            )
+                response_type: Models::Execution            )
         end
 
         
@@ -683,8 +672,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::VariableList
-            )
+                response_type: Models::VariableList            )
         end
 
         
@@ -726,8 +714,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Variable
-            )
+                response_type: Models::Variable            )
         end
 
         
@@ -762,8 +749,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Variable
-            )
+                response_type: Models::Variable            )
         end
 
         
@@ -806,8 +792,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Variable
-            )
+                response_type: Models::Variable            )
         end
 
         
@@ -842,7 +827,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-            )
+                            )
         end
 
         

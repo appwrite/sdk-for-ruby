@@ -1,6 +1,7 @@
 require 'appwrite'
 
 include Appwrite
+include Appwrite::Enums
 
 client = Client.new
     .set_endpoint('https://cloud.appwrite.io/v1') # Your API Endpoint
@@ -8,11 +9,11 @@ client = Client.new
 
 account = Account.new(client)
 
-response = account.create_magic_url_token(
-    user_id: '<USER_ID>',
-    email: 'email@example.com',
-    url: 'https://example.com', # optional
-    phrase: false # optional
+response = account.create_o_auth2_token(
+    provider: OAuthProvider::AMAZON,
+    success: 'https://example.com', # optional
+    failure: 'https://example.com', # optional
+    scopes: [] # optional
 )
 
 puts response.inspect

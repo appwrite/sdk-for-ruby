@@ -373,7 +373,7 @@ module Appwrite
         end
 
         
-        # 
+        # List attributes in the collection.
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -462,7 +462,8 @@ module Appwrite
         end
 
         
-        # 
+        # Update a boolean attribute. Changing the `default` value will not update
+        # already existing documents.
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -515,7 +516,7 @@ module Appwrite
         end
 
         
-        # 
+        # Create a date time attribute according to the ISO 8601 standard.
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -566,7 +567,8 @@ module Appwrite
         end
 
         
-        # 
+        # Update a date time attribute. Changing the `default` value will not update
+        # already existing documents.
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -726,6 +728,8 @@ module Appwrite
         end
 
         
+        # Create an enumeration attribute. The `elements` param acts as a white-list
+        # of accepted values for this attribute. 
         # 
         #
         # @param [String] database_id Database ID.
@@ -1478,7 +1482,7 @@ module Appwrite
         end
 
         
-        # 
+        # Get attribute by ID.
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -1519,7 +1523,7 @@ module Appwrite
         end
 
         
-        # 
+        # Deletes an attribute.
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -1826,7 +1830,7 @@ module Appwrite
         end
 
         
-        # 
+        # List indexes in the collection.
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -1863,7 +1867,9 @@ module Appwrite
         end
 
         
-        # 
+        # Creates an index on the attributes listed. Your index should include all
+        # the attributes you will query in a single request.
+        # Attributes can be `key`, `fulltext`, and `unique`.
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -1918,7 +1924,7 @@ module Appwrite
         end
 
         
-        # 
+        # Get index by ID.
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -1959,7 +1965,7 @@ module Appwrite
         end
 
         
-        # 
+        # Delete an index.
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).

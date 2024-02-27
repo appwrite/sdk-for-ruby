@@ -5,8 +5,10 @@ include Appwrite
 client = Client.new
     .set_endpoint('https://cloud.appwrite.io/v1') # Your API Endpoint
     .set_project('5df5acd0d48c2') # Your project ID
-    .set_session('') # The user session to authenticate with
 
-locale = Locale.new(client)
+account = Account.new(client)
 
-result = locale.list_languages()
+result = account.update_phone_session(
+    user_id: '<USER_ID>',
+    secret: '<SECRET>'
+)

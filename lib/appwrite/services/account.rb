@@ -228,7 +228,7 @@ module Appwrite
         end
 
         
-        # 
+        # Enable or disable MFA on an account.
         #
         # @param [] mfa Enable or disable MFA.
         #
@@ -286,7 +286,7 @@ module Appwrite
         end
 
         
-        # 
+        # Complete the MFA challenge by providing the one-time password.
         #
         # @param [String] challenge_id ID of the challenge.
         # @param [String] otp Valid verification token.
@@ -321,7 +321,7 @@ module Appwrite
         end
 
         
-        # 
+        # List the factors available on the account to be used as a MFA challange.
         #
         #
         # @return [MfaFactors]
@@ -344,7 +344,10 @@ module Appwrite
         end
 
         
-        # 
+        # Add an authenticator app to be used as an MFA factor. Verify the
+        # authenticator using the [verify
+        # authenticator](/docs/references/cloud/client-web/account#verifyAuthenticator)
+        # method.
         #
         # @param [AuthenticatorType] type Type of authenticator.
         #
@@ -373,7 +376,9 @@ module Appwrite
         end
 
         
-        # 
+        # Verify an authenticator app after adding it using the [add
+        # authenticator](/docs/references/cloud/client-web/account#addAuthenticator)
+        # method.
         #
         # @param [AuthenticatorType] type Type of authenticator.
         # @param [String] otp Valid verification token.
@@ -408,7 +413,7 @@ module Appwrite
         end
 
         
-        # 
+        # Delete an authenticator for a user by ID.
         #
         # @param [AuthenticatorType] type Type of authenticator.
         # @param [String] otp Valid verification token.
@@ -844,41 +849,28 @@ module Appwrite
         end
 
         
-        # Allow the user to login to their account using the OAuth2 provider of their
-        # choice. Each OAuth2 provider should be enabled from the Appwrite console
-        # first. Use the success and failure arguments to provide a redirect URL's
-        # back to your app when login is completed.
-        # 
-        # If there is already an active session, the new session will be attached to
-        # the logged-in account. If there are no active sessions, the server will
-        # attempt to look for a user with the same email address as the email
-        # received from the OAuth2 provider and attach the new session to the
-        # existing user. If no matching user is found - the server will create a new
-        # user.
-        # 
-        # A user is limited to 10 active sessions at a time by default. [Learn more
-        # about session
-        # limits](https://appwrite.io/docs/authentication-security#limits).
-        # 
+        # Use this endpoint to create a session from token. Provide the **userId**
+        # and **secret** parameters from the successful response of authentication
+        # flows initiated by token creation. For example, magic URL and phone login.
         #
-        # @param [OAuthProvider] provider OAuth2 Provider. Currently, supported providers are: amazon, apple, auth0, authentik, autodesk, bitbucket, bitly, box, dailymotion, discord, disqus, dropbox, etsy, facebook, github, gitlab, google, linkedin, microsoft, notion, oidc, okta, paypal, paypalSandbox, podio, salesforce, slack, spotify, stripe, tradeshift, tradeshiftBox, twitch, wordpress, yahoo, yammer, yandex, zoho, zoom.
-        # @param [String] success URL to redirect back to your app after a successful login attempt.  Only URLs from hostnames in your project's platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.
-        # @param [String] failure URL to redirect back to your app after a failed login attempt.  Only URLs from hostnames in your project's platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.
-        # @param [Array] scopes A list of custom OAuth2 scopes. Check each provider internal docs for a list of supported scopes. Maximum of 100 scopes are allowed, each 4096 characters long.
+        # @param [String] user_id User ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] secret Valid verification token.
         #
-        # @return []
-        def create_o_auth2_session(provider:, success: nil, failure: nil, scopes: nil)
-            api_path = '/account/sessions/oauth2/{provider}'
-                .gsub('{provider}', provider)
+        # @return [Session]
+        def update_phone_session(user_id:, secret:)
+            api_path = '/account/sessions/phone'
 
-            if provider.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "provider"')
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            if secret.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "secret"')
             end
 
             api_params = {
-                success: success,
-                failure: failure,
-                scopes: scopes,
+                userId: user_id,
+                secret: secret,
             }
             
             api_headers = {
@@ -886,11 +878,11 @@ module Appwrite
             }
 
             @client.call(
-                method: 'GET',
+                method: 'PUT',
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: "location"            )
+                response_type: Models::Session            )
         end
 
         

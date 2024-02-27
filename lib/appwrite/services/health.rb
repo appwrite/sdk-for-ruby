@@ -311,7 +311,8 @@ module Appwrite
         end
 
         
-        # 
+        # Get the number of function executions that are waiting to be processed in
+        # the Appwrite internal queue server.
         #
         # @param [Integer] threshold Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.
         #

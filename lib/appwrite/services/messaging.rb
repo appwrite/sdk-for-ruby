@@ -45,12 +45,12 @@ module Appwrite
         # @param [Array] cc Array of target IDs to be added as CC.
         # @param [Array] bcc Array of target IDs to be added as BCC.
         # @param [Array] attachments Array of compound bucket IDs to file IDs to be attached to the email.
-        # @param [MessageStatus] status Message Status. Value must be one of: draft, scheduled, processing.
+        # @param [] draft Is message a draft
         # @param [] html Is content of type HTML
         # @param [String] scheduled_at Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future.
         #
         # @return [Message]
-        def create_email(message_id:, subject:, content:, topics: nil, users: nil, targets: nil, cc: nil, bcc: nil, attachments: nil, status: nil, html: nil, scheduled_at: nil)
+        def create_email(message_id:, subject:, content:, topics: nil, users: nil, targets: nil, cc: nil, bcc: nil, attachments: nil, draft: nil, html: nil, scheduled_at: nil)
             api_path = '/messaging/messages/email'
 
             if message_id.nil?
@@ -75,7 +75,7 @@ module Appwrite
                 cc: cc,
                 bcc: bcc,
                 attachments: attachments,
-                status: status,
+                draft: draft,
                 html: html,
                 scheduledAt: scheduled_at,
             }
@@ -102,14 +102,14 @@ module Appwrite
         # @param [Array] targets List of Targets IDs.
         # @param [String] subject Email Subject.
         # @param [String] content Email Content.
-        # @param [MessageStatus] status Message Status. Value must be one of: draft, scheduled, processing.
+        # @param [] draft Is message a draft
         # @param [] html Is content of type HTML
         # @param [Array] cc Array of target IDs to be added as CC.
         # @param [Array] bcc Array of target IDs to be added as BCC.
         # @param [String] scheduled_at Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future.
         #
         # @return [Message]
-        def update_email(message_id:, topics: nil, users: nil, targets: nil, subject: nil, content: nil, status: nil, html: nil, cc: nil, bcc: nil, scheduled_at: nil)
+        def update_email(message_id:, topics: nil, users: nil, targets: nil, subject: nil, content: nil, draft: nil, html: nil, cc: nil, bcc: nil, scheduled_at: nil)
             api_path = '/messaging/messages/email/{messageId}'
                 .gsub('{messageId}', message_id)
 
@@ -123,7 +123,7 @@ module Appwrite
                 targets: targets,
                 subject: subject,
                 content: content,
-                status: status,
+                draft: draft,
                 html: html,
                 cc: cc,
                 bcc: bcc,
@@ -159,11 +159,11 @@ module Appwrite
         # @param [String] color Color for push notification. Available only for Android Platform.
         # @param [String] tag Tag for push notification. Available only for Android Platform.
         # @param [String] badge Badge for push notification. Available only for IOS Platform.
-        # @param [MessageStatus] status Message Status. Value must be one of: draft, scheduled, processing.
+        # @param [] draft Is message a draft
         # @param [String] scheduled_at Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future.
         #
         # @return [Message]
-        def create_push(message_id:, title:, body:, topics: nil, users: nil, targets: nil, data: nil, action: nil, image: nil, icon: nil, sound: nil, color: nil, tag: nil, badge: nil, status: nil, scheduled_at: nil)
+        def create_push(message_id:, title:, body:, topics: nil, users: nil, targets: nil, data: nil, action: nil, image: nil, icon: nil, sound: nil, color: nil, tag: nil, badge: nil, draft: nil, scheduled_at: nil)
             api_path = '/messaging/messages/push'
 
             if message_id.nil?
@@ -193,7 +193,7 @@ module Appwrite
                 color: color,
                 tag: tag,
                 badge: badge,
-                status: status,
+                draft: draft,
                 scheduledAt: scheduled_at,
             }
             
@@ -227,11 +227,11 @@ module Appwrite
         # @param [String] color Color for push notification. Available only for Android platforms.
         # @param [String] tag Tag for push notification. Available only for Android platforms.
         # @param [Integer] badge Badge for push notification. Available only for iOS platforms.
-        # @param [MessageStatus] status Message Status. Value must be one of: draft, scheduled, processing.
+        # @param [] draft Is message a draft
         # @param [String] scheduled_at Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future.
         #
         # @return [Message]
-        def update_push(message_id:, topics: nil, users: nil, targets: nil, title: nil, body: nil, data: nil, action: nil, image: nil, icon: nil, sound: nil, color: nil, tag: nil, badge: nil, status: nil, scheduled_at: nil)
+        def update_push(message_id:, topics: nil, users: nil, targets: nil, title: nil, body: nil, data: nil, action: nil, image: nil, icon: nil, sound: nil, color: nil, tag: nil, badge: nil, draft: nil, scheduled_at: nil)
             api_path = '/messaging/messages/push/{messageId}'
                 .gsub('{messageId}', message_id)
 
@@ -253,7 +253,7 @@ module Appwrite
                 color: color,
                 tag: tag,
                 badge: badge,
-                status: status,
+                draft: draft,
                 scheduledAt: scheduled_at,
             }
             
@@ -277,11 +277,11 @@ module Appwrite
         # @param [Array] topics List of Topic IDs.
         # @param [Array] users List of User IDs.
         # @param [Array] targets List of Targets IDs.
-        # @param [MessageStatus] status Message Status. Value must be one of: draft, scheduled, processing.
+        # @param [] draft Is message a draft
         # @param [String] scheduled_at Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future.
         #
         # @return [Message]
-        def create_sms(message_id:, content:, topics: nil, users: nil, targets: nil, status: nil, scheduled_at: nil)
+        def create_sms(message_id:, content:, topics: nil, users: nil, targets: nil, draft: nil, scheduled_at: nil)
             api_path = '/messaging/messages/sms'
 
             if message_id.nil?
@@ -298,7 +298,7 @@ module Appwrite
                 topics: topics,
                 users: users,
                 targets: targets,
-                status: status,
+                draft: draft,
                 scheduledAt: scheduled_at,
             }
             
@@ -323,11 +323,11 @@ module Appwrite
         # @param [Array] users List of User IDs.
         # @param [Array] targets List of Targets IDs.
         # @param [String] content Email Content.
-        # @param [MessageStatus] status Message Status. Value must be one of: draft, scheduled, processing.
+        # @param [] draft Is message a draft
         # @param [String] scheduled_at Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future.
         #
         # @return [Message]
-        def update_sms(message_id:, topics: nil, users: nil, targets: nil, content: nil, status: nil, scheduled_at: nil)
+        def update_sms(message_id:, topics: nil, users: nil, targets: nil, content: nil, draft: nil, scheduled_at: nil)
             api_path = '/messaging/messages/sms/{messageId}'
                 .gsub('{messageId}', message_id)
 
@@ -340,7 +340,7 @@ module Appwrite
                 users: users,
                 targets: targets,
                 content: content,
-                status: status,
+                draft: draft,
                 scheduledAt: scheduled_at,
             }
             
@@ -387,7 +387,8 @@ module Appwrite
         end
 
         
-        # 
+        # Delete a message. If the message is not a draft or scheduled, but has been
+        # sent, this will not recall the message.
         #
         # @param [String] message_id Message ID.
         #
@@ -849,7 +850,7 @@ module Appwrite
         end
 
         
-        # 
+        # Create a new Sendgrid provider.
         #
         # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Provider name.

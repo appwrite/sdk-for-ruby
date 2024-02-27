@@ -699,7 +699,7 @@ module Appwrite
         end
 
         
-        # 
+        # Enable or disable MFA on a user account.
         #
         # @param [String] user_id User ID.
         # @param [] mfa Enable or disable MFA.
@@ -734,7 +734,7 @@ module Appwrite
         end
 
         
-        # 
+        # List the factors available on the account to be used as a MFA challange.
         #
         # @param [String] user_id User ID.
         #
@@ -763,14 +763,13 @@ module Appwrite
         end
 
         
-        # 
+        # Delete an authenticator app.
         #
         # @param [String] user_id User ID.
         # @param [AuthenticatorType] type Type of authenticator.
-        # @param [String] otp Valid verification token.
         #
         # @return [User]
-        def delete_authenticator(user_id:, type:, otp:)
+        def delete_authenticator(user_id:, type:)
             api_path = '/users/{userId}/mfa/{type}'
                 .gsub('{userId}', user_id)
                 .gsub('{type}', type)
@@ -783,12 +782,7 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "type"')
             end
 
-            if otp.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "otp"')
-            end
-
             api_params = {
-                otp: otp,
             }
             
             api_headers = {
@@ -1138,7 +1132,7 @@ module Appwrite
         end
 
         
-        # 
+        # List the messaging targets that are associated with a user.
         #
         # @param [String] user_id User ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, email, phone, status, passwordUpdate, registration, emailVerification, phoneVerification, labels
@@ -1169,7 +1163,7 @@ module Appwrite
         end
 
         
-        # 
+        # Create a messaging target.
         #
         # @param [String] user_id User ID.
         # @param [String] target_id Target ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
@@ -1220,7 +1214,7 @@ module Appwrite
         end
 
         
-        # 
+        # Get a user's push notification target by ID.
         #
         # @param [String] user_id User ID.
         # @param [String] target_id Target ID.
@@ -1255,7 +1249,7 @@ module Appwrite
         end
 
         
-        # 
+        # Update a messaging target.
         #
         # @param [String] user_id User ID.
         # @param [String] target_id Target ID.
@@ -1296,7 +1290,7 @@ module Appwrite
         end
 
         
-        # 
+        # Delete a messaging target.
         #
         # @param [String] user_id User ID.
         # @param [String] target_id Target ID.

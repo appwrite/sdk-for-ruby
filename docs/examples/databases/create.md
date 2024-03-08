@@ -9,6 +9,8 @@ client = Client.new
 
 databases = Databases.new(client)
 
-response = databases.create(database_id: '[DATABASE_ID]', name: '[NAME]')
-
-puts response.inspect
+result = databases.create(
+    database_id: '<DATABASE_ID>',
+    name: '<NAME>',
+    enabled: false # optional
+)

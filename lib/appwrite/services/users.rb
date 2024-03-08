@@ -10,7 +10,7 @@ module Appwrite
         # Get a list of all the project's users. You can use the query params to
         # filter your results.
         #
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, email, phone, status, passwordUpdate, registration, emailVerification, phoneVerification
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, email, phone, status, passwordUpdate, registration, emailVerification, phoneVerification, labels
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [UserList]
@@ -170,7 +170,7 @@ module Appwrite
         
         # Get identities for all users.
         #
-        # @param [String] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, provider, providerUid, providerEmail, providerAccessTokenExpiry
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, provider, providerUid, providerEmail, providerAccessTokenExpiry
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [IdentityList]
@@ -470,7 +470,7 @@ module Appwrite
         # @param [String] user_id User ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] email User email.
         # @param [String] password User password hashed using SHA.
-        # @param [String] password_version Optional SHA version used to hash password. Allowed values are: 'sha1', 'sha224', 'sha256', 'sha384', 'sha512/224', 'sha512/256', 'sha512', 'sha3-224', 'sha3-256', 'sha3-384', 'sha3-512'
+        # @param [PasswordHash] password_version Optional SHA version used to hash password. Allowed values are: 'sha1', 'sha224', 'sha256', 'sha384', 'sha512/224', 'sha512/256', 'sha512', 'sha3-224', 'sha3-256', 'sha3-384', 'sha3-512'
         # @param [String] name User name. Max length: 128 chars.
         #
         # @return [User]
@@ -619,7 +619,7 @@ module Appwrite
         # docs](https://appwrite.io/docs/permissions) for more info.
         #
         # @param [String] user_id User ID.
-        # @param [Array] labels Array of user labels. Replaces the previous labels. Maximum of 100 labels are allowed, each up to 36 alphanumeric characters long.
+        # @param [Array] labels Array of user labels. Replaces the previous labels. Maximum of 1000 labels are allowed, each up to 36 alphanumeric characters long.
         #
         # @return [User]
         def update_labels(user_id:, labels:)
@@ -710,6 +710,207 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::MembershipList
+            )
+        end
+
+        
+        # Enable or disable MFA on a user account.
+        #
+        # @param [String] user_id User ID.
+        # @param [] mfa Enable or disable MFA.
+        #
+        # @return [User]
+        def update_mfa(user_id:, mfa:)
+            api_path = '/users/{userId}/mfa'
+                .gsub('{userId}', user_id)
+
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            if mfa.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "mfa"')
+            end
+
+            api_params = {
+                mfa: mfa,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::User
+            )
+        end
+
+        
+        # Delete an authenticator app.
+        #
+        # @param [String] user_id User ID.
+        # @param [AuthenticatorType] type Type of authenticator.
+        #
+        # @return [User]
+        def delete_mfa_authenticator(user_id:, type:)
+            api_path = '/users/{userId}/mfa/authenticators/{type}'
+                .gsub('{userId}', user_id)
+                .gsub('{type}', type)
+
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            if type.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "type"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::User
+            )
+        end
+
+        
+        # List the factors available on the account to be used as a MFA challange.
+        #
+        # @param [String] user_id User ID.
+        #
+        # @return [MfaFactors]
+        def list_mfa_factors(user_id:)
+            api_path = '/users/{userId}/mfa/factors'
+                .gsub('{userId}', user_id)
+
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::MfaFactors
+            )
+        end
+
+        
+        # Get recovery codes that can be used as backup for MFA flow by User ID.
+        # Before getting codes, they must be generated using
+        # [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
+        # method.
+        #
+        # @param [String] user_id User ID.
+        #
+        # @return [MfaRecoveryCodes]
+        def get_mfa_recovery_codes(user_id:)
+            api_path = '/users/{userId}/mfa/recovery-codes'
+                .gsub('{userId}', user_id)
+
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::MfaRecoveryCodes
+            )
+        end
+
+        
+        # Regenerate recovery codes that can be used as backup for MFA flow by User
+        # ID. Before regenerating codes, they must be first generated using
+        # [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
+        # method.
+        #
+        # @param [String] user_id User ID.
+        #
+        # @return [MfaRecoveryCodes]
+        def update_mfa_recovery_codes(user_id:)
+            api_path = '/users/{userId}/mfa/recovery-codes'
+                .gsub('{userId}', user_id)
+
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PUT',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::MfaRecoveryCodes
+            )
+        end
+
+        
+        # Generate recovery codes used as backup for MFA flow for User ID. Recovery
+        # codes can be used as a MFA verification type in
+        # [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
+        # method by client SDK.
+        #
+        # @param [String] user_id User ID.
+        #
+        # @return [MfaRecoveryCodes]
+        def create_mfa_recovery_codes(user_id:)
+            api_path = '/users/{userId}/mfa/recovery-codes'
+                .gsub('{userId}', user_id)
+
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::MfaRecoveryCodes
             )
         end
 
@@ -920,6 +1121,41 @@ module Appwrite
         end
 
         
+        # Creates a session for a user. Returns an immediately usable session object.
+        # 
+        # If you want to generate a token for a custom authentication flow, use the
+        # [POST
+        # /users/{userId}/tokens](https://appwrite.io/docs/server/users#createToken)
+        # endpoint.
+        #
+        # @param [String] user_id User ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        #
+        # @return [Session]
+        def create_session(user_id:)
+            api_path = '/users/{userId}/sessions'
+                .gsub('{userId}', user_id)
+
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Session
+            )
+        end
+
+        
         # Delete all user's sessions by using the user's unique ID.
         #
         # @param [String] user_id User ID.
@@ -1017,6 +1253,241 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::User
+            )
+        end
+
+        
+        # List the messaging targets that are associated with a user.
+        #
+        # @param [String] user_id User ID.
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, email, phone, status, passwordUpdate, registration, emailVerification, phoneVerification, labels
+        #
+        # @return [TargetList]
+        def list_targets(user_id:, queries: nil)
+            api_path = '/users/{userId}/targets'
+                .gsub('{userId}', user_id)
+
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            api_params = {
+                queries: queries,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::TargetList
+            )
+        end
+
+        
+        # Create a messaging target.
+        #
+        # @param [String] user_id User ID.
+        # @param [String] target_id Target ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [MessagingProviderType] provider_type The target provider type. Can be one of the following: `email`, `sms` or `push`.
+        # @param [String] identifier The target identifier (token, email, phone etc.)
+        # @param [String] provider_id Provider ID. Message will be sent to this target from the specified provider ID. If no provider ID is set the first setup provider will be used.
+        # @param [String] name Target name. Max length: 128 chars. For example: My Awesome App Galaxy S23.
+        #
+        # @return [Target]
+        def create_target(user_id:, target_id:, provider_type:, identifier:, provider_id: nil, name: nil)
+            api_path = '/users/{userId}/targets'
+                .gsub('{userId}', user_id)
+
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            if target_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "targetId"')
+            end
+
+            if provider_type.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "providerType"')
+            end
+
+            if identifier.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "identifier"')
+            end
+
+            api_params = {
+                targetId: target_id,
+                providerType: provider_type,
+                identifier: identifier,
+                providerId: provider_id,
+                name: name,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Target
+            )
+        end
+
+        
+        # Get a user's push notification target by ID.
+        #
+        # @param [String] user_id User ID.
+        # @param [String] target_id Target ID.
+        #
+        # @return [Target]
+        def get_target(user_id:, target_id:)
+            api_path = '/users/{userId}/targets/{targetId}'
+                .gsub('{userId}', user_id)
+                .gsub('{targetId}', target_id)
+
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            if target_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "targetId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Target
+            )
+        end
+
+        
+        # Update a messaging target.
+        #
+        # @param [String] user_id User ID.
+        # @param [String] target_id Target ID.
+        # @param [String] identifier The target identifier (token, email, phone etc.)
+        # @param [String] provider_id Provider ID. Message will be sent to this target from the specified provider ID. If no provider ID is set the first setup provider will be used.
+        # @param [String] name Target name. Max length: 128 chars. For example: My Awesome App Galaxy S23.
+        #
+        # @return [Target]
+        def update_target(user_id:, target_id:, identifier: nil, provider_id: nil, name: nil)
+            api_path = '/users/{userId}/targets/{targetId}'
+                .gsub('{userId}', user_id)
+                .gsub('{targetId}', target_id)
+
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            if target_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "targetId"')
+            end
+
+            api_params = {
+                identifier: identifier,
+                providerId: provider_id,
+                name: name,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Target
+            )
+        end
+
+        
+        # Delete a messaging target.
+        #
+        # @param [String] user_id User ID.
+        # @param [String] target_id Target ID.
+        #
+        # @return []
+        def delete_target(user_id:, target_id:)
+            api_path = '/users/{userId}/targets/{targetId}'
+                .gsub('{userId}', user_id)
+                .gsub('{targetId}', target_id)
+
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            if target_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "targetId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+            )
+        end
+
+        
+        # Returns a token with a secret key for creating a session. If the provided
+        # user ID has not be registered, a new user will be created. Use the returned
+        # user ID and secret and submit a request to the [PUT
+        # /account/sessions/custom](https://appwrite.io/docs/references/cloud/client-web/account#updateCustomSession)
+        # endpoint to complete the login process.
+        #
+        # @param [String] user_id User ID.
+        # @param [Integer] length Token length in characters. The default length is 6 characters
+        # @param [Integer] expire Token expiration period in seconds. The default expiration is 15 minutes.
+        #
+        # @return [Token]
+        def create_token(user_id:, length: nil, expire: nil)
+            api_path = '/users/{userId}/tokens'
+                .gsub('{userId}', user_id)
+
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            api_params = {
+                length: length,
+                expire: expire,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Token
             )
         end
 

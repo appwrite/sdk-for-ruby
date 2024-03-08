@@ -9,6 +9,6 @@ client = Client.new
 
 health = Health.new(client)
 
-response = health.get_queue_migrations()
-
-puts response.inspect
+result = health.get_queue_migrations(
+    threshold: null # optional
+)

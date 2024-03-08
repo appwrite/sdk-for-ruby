@@ -45,7 +45,7 @@ module Appwrite
         # @param [] enabled Is bucket enabled? When set to 'disabled', users cannot access the files in this bucket but Server SDKs with and API key can still access the bucket. No files are lost when this is toggled.
         # @param [Integer] maximum_file_size Maximum file size allowed in bytes. Maximum allowed value is 30MB.
         # @param [Array] allowed_file_extensions Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long.
-        # @param [String] compression Compression algorithm choosen for compression. Can be one of none,  [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd), For file size above 20MB compression is skipped even if it's enabled
+        # @param [Compression] compression Compression algorithm choosen for compression. Can be one of none,  [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd), For file size above 20MB compression is skipped even if it's enabled
         # @param [] encryption Is encryption enabled? For file size above 20MB encryption is skipped even if it's enabled
         # @param [] antivirus Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it's enabled
         #
@@ -128,7 +128,7 @@ module Appwrite
         # @param [] enabled Is bucket enabled? When set to 'disabled', users cannot access the files in this bucket but Server SDKs with and API key can still access the bucket. No files are lost when this is toggled.
         # @param [Integer] maximum_file_size Maximum file size allowed in bytes. Maximum allowed value is 30MB.
         # @param [Array] allowed_file_extensions Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long.
-        # @param [String] compression Compression algorithm choosen for compression. Can be one of none, [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd), For file size above 20MB compression is skipped even if it's enabled
+        # @param [Compression] compression Compression algorithm choosen for compression. Can be one of none, [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd), For file size above 20MB compression is skipped even if it's enabled
         # @param [] encryption Is encryption enabled? For file size above 20MB encryption is skipped even if it's enabled
         # @param [] antivirus Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it's enabled
         #
@@ -462,7 +462,7 @@ module Appwrite
         # @param [String] file_id File ID
         # @param [Integer] width Resize preview image width, Pass an integer between 0 to 4000.
         # @param [Integer] height Resize preview image height, Pass an integer between 0 to 4000.
-        # @param [String] gravity Image crop gravity. Can be one of center,top-left,top,top-right,left,right,bottom-left,bottom,bottom-right
+        # @param [ImageGravity] gravity Image crop gravity. Can be one of center,top-left,top,top-right,left,right,bottom-left,bottom,bottom-right
         # @param [Integer] quality Preview image quality. Pass an integer between 0 to 100. Defaults to 100.
         # @param [Integer] border_width Preview image border in pixels. Pass an integer between 0 to 100. Defaults to 0.
         # @param [String] border_color Preview image border color. Use a valid HEX color, no # is needed for prefix.
@@ -470,7 +470,7 @@ module Appwrite
         # @param [Float] opacity Preview image opacity. Only works with images having an alpha channel (like png). Pass a number between 0 to 1.
         # @param [Integer] rotation Preview image rotation in degrees. Pass an integer between -360 and 360.
         # @param [String] background Preview image background color. Only works with transparent images (png). Use a valid HEX color, no # is needed for prefix.
-        # @param [String] output Output format type (jpeg, jpg, png, gif and webp).
+        # @param [ImageFormat] output Output format type (jpeg, jpg, png, gif and webp).
         #
         # @return []
         def get_file_preview(bucket_id:, file_id:, width: nil, height: nil, gravity: nil, quality: nil, border_width: nil, border_color: nil, border_radius: nil, opacity: nil, rotation: nil, background: nil, output: nil)

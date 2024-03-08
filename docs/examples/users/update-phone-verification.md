@@ -9,6 +9,7 @@ client = Client.new
 
 users = Users.new(client)
 
-response = users.update_phone_verification(user_id: '[USER_ID]', phone_verification: false)
-
-puts response.inspect
+result = users.update_phone_verification(
+    user_id: '<USER_ID>',
+    phone_verification: false
+)

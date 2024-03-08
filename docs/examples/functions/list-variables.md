@@ -9,6 +9,6 @@ client = Client.new
 
 functions = Functions.new(client)
 
-response = functions.list_variables(function_id: '[FUNCTION_ID]')
-
-puts response.inspect
+result = functions.list_variables(
+    function_id: '<FUNCTION_ID>'
+)

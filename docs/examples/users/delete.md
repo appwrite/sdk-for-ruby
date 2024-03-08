@@ -9,6 +9,6 @@ client = Client.new
 
 users = Users.new(client)
 
-response = users.delete(user_id: '[USER_ID]')
-
-puts response.inspect
+result = users.delete(
+    user_id: '<USER_ID>'
+)

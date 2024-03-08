@@ -9,6 +9,13 @@ client = Client.new
 
 databases = Databases.new(client)
 
-response = databases.create_float_attribute(database_id: '[DATABASE_ID]', collection_id: '[COLLECTION_ID]', key: '', required: false)
-
-puts response.inspect
+result = databases.create_float_attribute(
+    database_id: '<DATABASE_ID>',
+    collection_id: '<COLLECTION_ID>',
+    key: '',
+    required: false,
+    min: null, # optional
+    max: null, # optional
+    default: null, # optional
+    array: false # optional
+)

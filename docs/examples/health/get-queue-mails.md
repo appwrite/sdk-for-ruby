@@ -9,6 +9,6 @@ client = Client.new
 
 health = Health.new(client)
 
-response = health.get_queue_mails()
-
-puts response.inspect
+result = health.get_queue_mails(
+    threshold: null # optional
+)

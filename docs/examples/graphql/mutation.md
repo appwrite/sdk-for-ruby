@@ -9,6 +9,6 @@ client = Client.new
 
 graphql = Graphql.new(client)
 
-response = graphql.mutation(query: {})
-
-puts response.inspect
+result = graphql.mutation(
+    query: {}
+)

@@ -9,6 +9,9 @@ client = Client.new
 
 users = Users.new(client)
 
-response = users.create_ph_pass_user(user_id: '[USER_ID]', email: 'email@example.com', password: 'password')
-
-puts response.inspect
+result = users.create_ph_pass_user(
+    user_id: '<USER_ID>',
+    email: 'email@example.com',
+    password: 'password',
+    name: '<NAME>' # optional
+)

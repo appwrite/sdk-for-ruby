@@ -9,6 +9,7 @@ client = Client.new
 
 users = Users.new(client)
 
-response = users.list_logs(user_id: '[USER_ID]')
-
-puts response.inspect
+result = users.list_logs(
+    user_id: '<USER_ID>',
+    queries: [] # optional
+)

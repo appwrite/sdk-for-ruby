@@ -9,6 +9,11 @@ client = Client.new
 
 databases = Databases.new(client)
 
-response = databases.create_boolean_attribute(database_id: '[DATABASE_ID]', collection_id: '[COLLECTION_ID]', key: '', required: false)
-
-puts response.inspect
+result = databases.create_boolean_attribute(
+    database_id: '<DATABASE_ID>',
+    collection_id: '<COLLECTION_ID>',
+    key: '',
+    required: false,
+    default: false, # optional
+    array: false # optional
+)

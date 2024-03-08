@@ -9,6 +9,8 @@ client = Client.new
 
 databases = Databases.new(client)
 
-response = databases.update(database_id: '[DATABASE_ID]', name: '[NAME]')
-
-puts response.inspect
+result = databases.update(
+    database_id: '<DATABASE_ID>',
+    name: '<NAME>',
+    enabled: false # optional
+)

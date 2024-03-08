@@ -1,16 +1,16 @@
 # Appwrite Ruby SDK
 
 ![License](https://img.shields.io/github/license/appwrite/sdk-for-ruby.svg?style=flat-square)
-![Version](https://img.shields.io/badge/api%20version-1.4.13-blue.svg?style=flat-square)
+![Version](https://img.shields.io/badge/api%20version-1.5.0-blue.svg?style=flat-square)
 [![Build Status](https://img.shields.io/travis/com/appwrite/sdk-generator?style=flat-square)](https://travis-ci.com/appwrite/sdk-generator)
 [![Twitter Account](https://img.shields.io/twitter/follow/appwrite?color=00acee&label=twitter&style=flat-square)](https://twitter.com/appwrite)
 [![Discord](https://img.shields.io/discord/564160730845151244?label=discord&style=flat-square)](https://appwrite.io/discord)
 
-**This SDK is compatible with Appwrite server version 1.4.x. For older versions, please check [previous releases](https://github.com/appwrite/sdk-for-ruby/releases).**
+**This SDK is compatible with Appwrite server version 1.5.x. For older versions, please check [previous releases](https://github.com/appwrite/sdk-for-ruby/releases).**
 
 Appwrite is an open-source backend as a service server that abstract and simplify complex and repetitive development tasks behind a very simple to use REST API. Appwrite aims to help you develop your apps faster and in a more secure way. Use the Ruby SDK to integrate your app with the Appwrite server to easily start interacting with all of Appwrite backend APIs and tools. For full API documentation and tutorials go to [https://appwrite.io/docs](https://appwrite.io/docs)
 
-![Appwrite](https://appwrite.io/images/github.png)
+![Appwrite](https://github.com/appwrite/appwrite/raw/main/public/images/github.png)
 
 ## Installation
 
@@ -45,7 +45,7 @@ Once your SDK object is set, create any of the Appwrite service objects and choo
 ```ruby
 users = Appwrite::Users.new(client);
 
-user = users.create(userId: Appwrite::ID::unique(), email: 'email@example.com', password: 'password');
+user = users.create(userId: Appwrite::ID::unique(), email: "email@example.com", phone: "+123456789", password: "password", name: "Walter O'Brien");
 ```
 
 ### Full Example
@@ -63,7 +63,7 @@ client
 
 users = Appwrite::Users.new(client);
 
-user = users.create(userId: Appwrite::ID::unique(), email: 'email@example.com', password: 'password');
+user = users.create(userId: Appwrite::ID::unique(), email: "email@example.com", phone: "+123456789", password: "password", name: "Walter O'Brien");
 ```
 
 ### Error Handling
@@ -73,7 +73,7 @@ The Appwrite Ruby SDK raises `Appwrite::Exception` object with `message`, `code`
 users = Appwrite::Users.new(client);
 
 begin
-    user = users.create(userId: Appwrite::ID::unique(), email: 'email@example.com', password: 'password');
+    user = users.create(userId: Appwrite::ID::unique(), email: "email@example.com", phone: "+123456789", password: "password", name: "Walter O'Brien");
 rescue Appwrite::Exception => error
     puts error.message
 end

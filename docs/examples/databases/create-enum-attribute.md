@@ -9,6 +9,12 @@ client = Client.new
 
 databases = Databases.new(client)
 
-response = databases.create_enum_attribute(database_id: '[DATABASE_ID]', collection_id: '[COLLECTION_ID]', key: '', elements: [], required: false)
-
-puts response.inspect
+result = databases.create_enum_attribute(
+    database_id: '<DATABASE_ID>',
+    collection_id: '<COLLECTION_ID>',
+    key: '',
+    elements: [],
+    required: false,
+    default: '<DEFAULT>', # optional
+    array: false # optional
+)

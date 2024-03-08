@@ -9,6 +9,7 @@ client = Client.new
 
 users = Users.new(client)
 
-response = users.list()
-
-puts response.inspect
+result = users.list(
+    queries: [], # optional
+    search: '<SEARCH>' # optional
+)

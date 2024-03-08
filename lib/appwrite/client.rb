@@ -15,10 +15,10 @@ module Appwrite
                 'x-sdk-name'=> 'Ruby',
                 'x-sdk-platform'=> 'server',
                 'x-sdk-language'=> 'ruby',
-                'x-sdk-version'=> '10.1.2',                
-                'X-Appwrite-Response-Format' => '1.4.0'
+                'x-sdk-version'=> '11.0.0',                
+                'X-Appwrite-Response-Format' => '1.5.0'
             }
-            @endpoint = 'https://HOSTNAME/v1'
+            @endpoint = 'https://cloud.appwrite.io/v1'
         end
 
         # Set Project
@@ -67,6 +67,32 @@ module Appwrite
         # @return [self]
         def set_locale(value)
             add_header('x-appwrite-locale', value)
+
+            self
+        end
+
+        # Set Session
+        #
+        # The user session to authenticate with
+        #
+        # @param [String] value The value to set for the Session header
+        #
+        # @return [self]
+        def set_session(value)
+            add_header('x-appwrite-session', value)
+
+            self
+        end
+
+        # Set ForwardedUserAgent
+        #
+        # The user agent string of the client that made the request
+        #
+        # @param [String] value The value to set for the ForwardedUserAgent header
+        #
+        # @return [self]
+        def set_forwarded_user_agent(value)
+            add_header('x-forwarded-user-agent', value)
 
             self
         end
@@ -199,7 +225,7 @@ module Appwrite
                 offset += @chunk_size
 
                 if defined? result['$id']
-                    headers['x-Appwrite-id'] = result['$id']
+                    headers['x-appwrite-id'] = result['$id']
                 end
 
                 on_progress.call({
@@ -254,12 +280,15 @@ module Appwrite
             rescue => error
                 raise Appwrite::Exception.new(error.message)
             end
+
+            location = response['location']
+            if response_type == "location"
+                return location
+            end
             
             # Handle Redirects
-            if response.class == Net::HTTPRedirection || response.class == Net::HTTPMovedPermanently
-                location = response['location']
+            if (response.class == Net::HTTPRedirection || response.class == Net::HTTPMovedPermanently)
                 uri = URI.parse(uri.scheme + "://" + uri.host + "" + location)
-                
                 return fetch(method, uri, headers, {}, response_type, limit - 1)
             end
 

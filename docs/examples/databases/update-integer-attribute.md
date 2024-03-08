@@ -9,6 +9,12 @@ client = Client.new
 
 databases = Databases.new(client)
 
-response = databases.update_integer_attribute(database_id: '[DATABASE_ID]', collection_id: '[COLLECTION_ID]', key: '', required: false, min: null, max: null, default: null)
-
-puts response.inspect
+result = databases.update_integer_attribute(
+    database_id: '<DATABASE_ID>',
+    collection_id: '<COLLECTION_ID>',
+    key: '',
+    required: false,
+    min: null,
+    max: null,
+    default: null
+)

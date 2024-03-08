@@ -381,7 +381,7 @@ module Appwrite
         end
 
         
-        # 
+        # List attributes in the collection.
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -472,7 +472,8 @@ module Appwrite
         end
 
         
-        # 
+        # Update a boolean attribute. Changing the `default` value will not update
+        # already existing documents.
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -526,13 +527,13 @@ module Appwrite
         end
 
         
-        # 
+        # Create a date time attribute according to the ISO 8601 standard.
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
-        # @param [String] default Default value for the attribute in ISO 8601 format. Cannot be set when attribute is required.
+        # @param [String] default Default value for the attribute in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Cannot be set when attribute is required.
         # @param [] array Is attribute an array?
         #
         # @return [AttributeDatetime]
@@ -578,7 +579,8 @@ module Appwrite
         end
 
         
-        # 
+        # Update a date time attribute. Changing the `default` value will not update
+        # already existing documents.
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -741,6 +743,8 @@ module Appwrite
         end
 
         
+        # Create an enumeration attribute. The `elements` param acts as a white-list
+        # of accepted values for this attribute. 
         # 
         #
         # @param [String] database_id Database ID.
@@ -1229,11 +1233,11 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
         # @param [String] related_collection_id Related Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
-        # @param [String] type Relation type
+        # @param [RelationshipType] type Relation type
         # @param [] two_way Is Two Way?
         # @param [String] key Attribute Key.
         # @param [String] two_way_key Two Way Attribute Key.
-        # @param [String] on_delete Constraints option
+        # @param [RelationMutate] on_delete Constraints option
         #
         # @return [AttributeRelationship]
         def create_relationship_attribute(database_id:, collection_id:, related_collection_id:, type:, two_way: nil, key: nil, two_way_key: nil, on_delete: nil)
@@ -1506,7 +1510,7 @@ module Appwrite
         end
 
         
-        # 
+        # Get attribute by ID.
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -1547,7 +1551,7 @@ module Appwrite
         end
 
         
-        # 
+        # Deletes an attribute.
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -1595,7 +1599,7 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
         # @param [String] key Attribute Key.
-        # @param [String] on_delete Constraints option
+        # @param [RelationMutate] on_delete Constraints option
         #
         # @return [AttributeRelationship]
         def update_relationship_attribute(database_id:, collection_id:, key:, on_delete: nil)
@@ -1732,7 +1736,7 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
         # @param [String] document_id Document ID.
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Only method allowed is select.
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
         #
         # @return [Document]
         def get_document(database_id:, collection_id:, document_id:, queries: nil)
@@ -1859,7 +1863,7 @@ module Appwrite
         end
 
         
-        # 
+        # List indexes in the collection.
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -1897,12 +1901,14 @@ module Appwrite
         end
 
         
-        # 
+        # Creates an index on the attributes listed. Your index should include all
+        # the attributes you will query in a single request.
+        # Attributes can be `key`, `fulltext`, and `unique`.
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
         # @param [String] key Index Key.
-        # @param [String] type Index type.
+        # @param [IndexType] type Index type.
         # @param [Array] attributes Array of attributes to index. Maximum of 100 attributes are allowed, each 32 characters long.
         # @param [Array] orders Array of index orders. Maximum of 100 orders are allowed.
         #
@@ -1953,7 +1959,7 @@ module Appwrite
         end
 
         
-        # 
+        # Get index by ID.
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -1995,7 +2001,7 @@ module Appwrite
         end
 
         
-        # 
+        # Delete an index.
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).

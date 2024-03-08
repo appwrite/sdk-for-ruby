@@ -1,7 +1,6 @@
 require 'appwrite'
 
 include Appwrite
-include Appwrite::Enums
 
 client = Client.new
     .set_endpoint('https://cloud.appwrite.io/v1') # Your API Endpoint
@@ -10,7 +9,6 @@ client = Client.new
 
 users = Users.new(client)
 
-result = users.delete_authenticator(
-    user_id: '<USER_ID>',
-    type: AuthenticatorType::TOTP
+result = users.create_mfa_recovery_codes(
+    user_id: '<USER_ID>'
 )

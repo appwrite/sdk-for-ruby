@@ -10,6 +10,6 @@ client = Client.new
 
 account = Account.new(client)
 
-result = account.add_authenticator(
+result = account.create_mfa_authenticator(
     type: AuthenticatorType::TOTP
 )

@@ -9,4 +9,4 @@ client = Client.new
 
 account = Account.new(client)
 
-result = account.list_factors()
+result = account.update_mfa_recovery_codes()

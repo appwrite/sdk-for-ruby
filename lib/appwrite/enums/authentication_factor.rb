@@ -1,9 +1,10 @@
 module Appwrite
     module Enums
         module AuthenticationFactor
-            TOTP = 'totp'
-            PHONE = 'phone'
             EMAIL = 'email'
+            PHONE = 'phone'
+            TOTP = 'totp'
+            RECOVERYCODE = 'recoverycode'
         end
     end
 end

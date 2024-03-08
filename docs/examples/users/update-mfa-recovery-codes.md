@@ -9,6 +9,6 @@ client = Client.new
 
 users = Users.new(client)
 
-result = users.list_factors(
+result = users.update_mfa_recovery_codes(
     user_id: '<USER_ID>'
 )

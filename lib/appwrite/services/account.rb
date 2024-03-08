@@ -257,103 +257,16 @@ module Appwrite
         end
 
         
-        # 
-        #
-        # @param [AuthenticationFactor] factor Factor used for verification.
-        #
-        # @return [MfaChallenge]
-        def create_challenge(factor:)
-            api_path = '/account/mfa/challenge'
-
-            if factor.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "factor"')
-            end
-
-            api_params = {
-                factor: factor,
-            }
-            
-            api_headers = {
-                "content-type": 'application/json',
-            }
-
-            @client.call(
-                method: 'POST',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                response_type: Models::MfaChallenge            )
-        end
-
-        
-        # Complete the MFA challenge by providing the one-time password.
-        #
-        # @param [String] challenge_id ID of the challenge.
-        # @param [String] otp Valid verification token.
-        #
-        # @return []
-        def update_challenge(challenge_id:, otp:)
-            api_path = '/account/mfa/challenge'
-
-            if challenge_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "challengeId"')
-            end
-
-            if otp.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "otp"')
-            end
-
-            api_params = {
-                challengeId: challenge_id,
-                otp: otp,
-            }
-            
-            api_headers = {
-                "content-type": 'application/json',
-            }
-
-            @client.call(
-                method: 'PUT',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                            )
-        end
-
-        
-        # List the factors available on the account to be used as a MFA challange.
-        #
-        #
-        # @return [MfaFactors]
-        def list_factors()
-            api_path = '/account/mfa/factors'
-
-            api_params = {
-            }
-            
-            api_headers = {
-                "content-type": 'application/json',
-            }
-
-            @client.call(
-                method: 'GET',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                response_type: Models::MfaFactors            )
-        end
-
-        
         # Add an authenticator app to be used as an MFA factor. Verify the
         # authenticator using the [verify
         # authenticator](/docs/references/cloud/client-web/account#verifyAuthenticator)
         # method.
         #
-        # @param [AuthenticatorType] type Type of authenticator.
+        # @param [AuthenticatorType] type Type of authenticator. Must be `totp`
         #
         # @return [MfaType]
-        def add_authenticator(type:)
-            api_path = '/account/mfa/{type}'
+        def create_mfa_authenticator(type:)
+            api_path = '/account/mfa/authenticators/{type}'
                 .gsub('{type}', type)
 
             if type.nil?
@@ -384,8 +297,8 @@ module Appwrite
         # @param [String] otp Valid verification token.
         #
         # @return [User]
-        def verify_authenticator(type:, otp:)
-            api_path = '/account/mfa/{type}'
+        def update_mfa_authenticator(type:, otp:)
+            api_path = '/account/mfa/authenticators/{type}'
                 .gsub('{type}', type)
 
             if type.nil?
@@ -419,8 +332,8 @@ module Appwrite
         # @param [String] otp Valid verification token.
         #
         # @return [User]
-        def delete_authenticator(type:, otp:)
-            api_path = '/account/mfa/{type}'
+        def delete_mfa_authenticator(type:, otp:)
+            api_path = '/account/mfa/authenticators/{type}'
                 .gsub('{type}', type)
 
             if type.nil?
@@ -445,6 +358,178 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::User            )
+        end
+
+        
+        # Begin the process of MFA verification after sign-in. Finish the flow with
+        # [updateMfaChallenge](/docs/references/cloud/client-web/account#updateMfaChallenge)
+        # method.
+        #
+        # @param [AuthenticationFactor] factor Factor used for verification. Must be one of following: `email`, `phone`, `totp`, `recoveryCode`.
+        #
+        # @return [MfaChallenge]
+        def create_mfa_challenge(factor:)
+            api_path = '/account/mfa/challenge'
+
+            if factor.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "factor"')
+            end
+
+            api_params = {
+                factor: factor,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::MfaChallenge            )
+        end
+
+        
+        # Complete the MFA challenge by providing the one-time password. Finish the
+        # process of MFA verification by providing the one-time password. To begin
+        # the flow, use
+        # [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
+        # method.
+        #
+        # @param [String] challenge_id ID of the challenge.
+        # @param [String] otp Valid verification token.
+        #
+        # @return []
+        def update_mfa_challenge(challenge_id:, otp:)
+            api_path = '/account/mfa/challenge'
+
+            if challenge_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "challengeId"')
+            end
+
+            if otp.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "otp"')
+            end
+
+            api_params = {
+                challengeId: challenge_id,
+                otp: otp,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PUT',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                            )
+        end
+
+        
+        # List the factors available on the account to be used as a MFA challange.
+        #
+        #
+        # @return [MfaFactors]
+        def list_mfa_factors()
+            api_path = '/account/mfa/factors'
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::MfaFactors            )
+        end
+
+        
+        # Get recovery codes that can be used as backup for MFA flow. Before getting
+        # codes, they must be generated using
+        # [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
+        # method. An OTP challenge is required to read recovery codes.
+        #
+        #
+        # @return [MfaRecoveryCodes]
+        def get_mfa_recovery_codes()
+            api_path = '/account/mfa/recovery-codes'
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::MfaRecoveryCodes            )
+        end
+
+        
+        # Generate recovery codes as backup for MFA flow. It's recommended to
+        # generate and show then immediately after user successfully adds their
+        # authehticator. Recovery codes can be used as a MFA verification type in
+        # [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
+        # method.
+        #
+        #
+        # @return [MfaRecoveryCodes]
+        def create_mfa_recovery_codes()
+            api_path = '/account/mfa/recovery-codes'
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::MfaRecoveryCodes            )
+        end
+
+        
+        # Regenerate recovery codes that can be used as backup for MFA flow. Before
+        # regenerating codes, they must be first generated using
+        # [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
+        # method. An OTP challenge is required to regenreate recovery codes.
+        #
+        #
+        # @return [MfaRecoveryCodes]
+        def update_mfa_recovery_codes()
+            api_path = '/account/mfa/recovery-codes'
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::MfaRecoveryCodes            )
         end
 
         
@@ -953,8 +1038,9 @@ module Appwrite
         end
 
         
-        # Extend session's expiry to increase it's lifespan. Extending a session is
-        # useful when session length is short such as 5 minutes.
+        # Use this endpoint to extend a session's length. Extending a session is
+        # useful when session expiry is short. If the session was created using an
+        # OAuth provider, this endpoint refreshes the access token from the provider.
         #
         # @param [String] session_id Session ID. Use the string 'current' to update the current device session.
         #

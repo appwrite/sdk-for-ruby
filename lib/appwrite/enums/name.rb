@@ -7,6 +7,7 @@ module Appwrite
             V1_MAILS = 'v1-mails'
             V1_FUNCTIONS = 'v1-functions'
             V1_USAGE = 'v1-usage'
+            V1_USAGE_DUMP = 'v1-usage-dump'
             WEBHOOKSV1 = 'webhooksv1'
             V1_CERTIFICATES = 'v1-certificates'
             V1_BUILDS = 'v1-builds'

@@ -441,6 +441,58 @@ module Appwrite
         end
 
         
+        # Get the number of metrics that are waiting to be processed in the Appwrite
+        # internal queue server.
+        #
+        # @param [Integer] threshold Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.
+        #
+        # @return [HealthQueue]
+        def get_queue_usage(threshold: nil)
+            api_path = '/health/queue/usage'
+
+            api_params = {
+                threshold: threshold,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::HealthQueue            )
+        end
+
+        
+        # Get the number of projects containing metrics that are waiting to be
+        # processed in the Appwrite internal queue server.
+        #
+        # @param [Integer] threshold Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.
+        #
+        # @return [HealthQueue]
+        def get_queue_usage(threshold: nil)
+            api_path = '/health/queue/usage-dump'
+
+            api_params = {
+                threshold: threshold,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::HealthQueue            )
+        end
+
+        
         # Get the number of webhooks that are waiting to be processed in the Appwrite
         # internal queue server.
         #
@@ -464,6 +516,29 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::HealthQueue            )
+        end
+
+        
+        # Check the Appwrite storage device is up and connection is successful.
+        #
+        #
+        # @return [HealthStatus]
+        def get_storage()
+            api_path = '/health/storage'
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::HealthStatus            )
         end
 
         

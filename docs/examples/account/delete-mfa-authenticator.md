@@ -10,7 +10,7 @@ client = Client.new
 
 account = Account.new(client)
 
-result = account.verify_authenticator(
+result = account.delete_mfa_authenticator(
     type: AuthenticatorType::TOTP,
     otp: '<OTP>'
 )

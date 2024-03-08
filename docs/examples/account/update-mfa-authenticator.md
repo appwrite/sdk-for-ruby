@@ -6,11 +6,11 @@ include Appwrite::Enums
 client = Client.new
     .set_endpoint('https://cloud.appwrite.io/v1') # Your API Endpoint
     .set_project('5df5acd0d48c2') # Your project ID
-    .set_key('919c2d18fb5d4...a2ae413da83346ad2') # Your secret API key
+    .set_session('') # The user session to authenticate with
 
-health = Health.new(client)
+account = Account.new(client)
 
-result = health.get_failed_jobs(
-    name: ::V1_DATABASE,
-    threshold: null # optional
+result = account.update_mfa_authenticator(
+    type: AuthenticatorType::TOTP,
+    otp: '<OTP>'
 )

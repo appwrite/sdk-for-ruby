@@ -30,6 +30,7 @@ module Appwrite
             attr_reader :current
             attr_reader :factors
             attr_reader :secret
+            attr_reader :mfa_updated_at
 
             def initialize(
                 id:,
@@ -58,7 +59,8 @@ module Appwrite
                 country_name:,
                 current:,
                 factors:,
-                secret:
+                secret:,
+                mfa_updated_at:
             )
                 @id = id
                 @created_at = created_at
@@ -87,6 +89,7 @@ module Appwrite
                 @current = current
                 @factors = factors
                 @secret = secret
+                @mfa_updated_at = mfa_updated_at
             end
 
             def self.from(map:)
@@ -117,7 +120,8 @@ module Appwrite
                     country_name: map["countryName"],
                     current: map["current"],
                     factors: map["factors"],
-                    secret: map["secret"]
+                    secret: map["secret"],
+                    mfa_updated_at: map["mfaUpdatedAt"]
                 )
             end
 
@@ -149,7 +153,8 @@ module Appwrite
                     "countryName": @country_name,
                     "current": @current,
                     "factors": @factors,
-                    "secret": @secret
+                    "secret": @secret,
+                    "mfaUpdatedAt": @mfa_updated_at
                 }
             end
         end

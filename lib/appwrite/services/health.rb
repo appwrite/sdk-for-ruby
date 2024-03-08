@@ -491,7 +491,7 @@ module Appwrite
         # @param [Integer] threshold Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.
         #
         # @return [HealthQueue]
-        def get_queue_usage(threshold: nil)
+        def get_queue_usage_dump(threshold: nil)
             api_path = '/health/queue/usage-dump'
 
             api_params = {

@@ -31,7 +31,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::BucketList            )
+                response_type: Models::BucketList
+            )
         end
 
         
@@ -82,7 +83,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Bucket            )
+                response_type: Models::Bucket
+            )
         end
 
         
@@ -112,7 +114,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Bucket            )
+                response_type: Models::Bucket
+            )
         end
 
         
@@ -163,7 +166,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Bucket            )
+                response_type: Models::Bucket
+            )
         end
 
         
@@ -192,7 +196,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                            )
+            )
         end
 
         
@@ -226,7 +230,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::FileList            )
+                response_type: Models::FileList
+            )
         end
 
         
@@ -328,7 +333,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::File            )
+                response_type: Models::File
+            )
         end
 
         
@@ -368,7 +374,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::File            )
+                response_type: Models::File
+            )
         end
 
         
@@ -404,7 +411,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                            )
+            )
         end
 
         
@@ -441,7 +448,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                            )
+            )
         end
 
         
@@ -502,7 +509,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                            )
+            )
         end
 
         
@@ -539,7 +546,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                            )
+            )
         end
 
         

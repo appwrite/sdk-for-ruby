@@ -31,7 +31,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::TeamList            )
+                response_type: Models::TeamList
+            )
         end
 
         
@@ -70,7 +71,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Team            )
+                response_type: Models::Team
+            )
         end
 
         
@@ -99,7 +101,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Team            )
+                response_type: Models::Team
+            )
         end
 
         
@@ -134,7 +137,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Team            )
+                response_type: Models::Team
+            )
         end
 
         
@@ -164,7 +168,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                            )
+            )
         end
 
         
@@ -198,7 +202,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::MembershipList            )
+                response_type: Models::MembershipList
+            )
         end
 
         
@@ -263,7 +268,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Membership            )
+                response_type: Models::Membership
+            )
         end
 
         
@@ -299,7 +305,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Membership            )
+                response_type: Models::Membership
+            )
         end
 
         
@@ -343,7 +350,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Membership            )
+                response_type: Models::Membership
+            )
         end
 
         
@@ -380,7 +388,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                            )
+            )
         end
 
         
@@ -433,7 +441,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Membership            )
+                response_type: Models::Membership
+            )
         end
 
         
@@ -464,7 +473,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Preferences            )
+                response_type: Models::Preferences
+            )
         end
 
         
@@ -501,7 +511,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Preferences            )
+                response_type: Models::Preferences
+            )
         end
 
         

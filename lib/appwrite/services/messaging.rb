@@ -30,7 +30,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::MessageList            )
+                response_type: Models::MessageList
+            )
         end
 
         
@@ -89,7 +90,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Message            )
+                response_type: Models::Message
+            )
         end
 
         
@@ -139,7 +141,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Message            )
+                response_type: Models::Message
+            )
         end
 
         
@@ -206,7 +209,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Message            )
+                response_type: Models::Message
+            )
         end
 
         
@@ -266,7 +270,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Message            )
+                response_type: Models::Message
+            )
         end
 
         
@@ -311,7 +316,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Message            )
+                response_type: Models::Message
+            )
         end
 
         
@@ -353,7 +359,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Message            )
+                response_type: Models::Message
+            )
         end
 
         
@@ -383,7 +390,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Message            )
+                response_type: Models::Message
+            )
         end
 
         
@@ -413,7 +421,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                            )
+            )
         end
 
         
@@ -444,7 +452,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::LogList            )
+                response_type: Models::LogList
+            )
         end
 
         
@@ -475,7 +484,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::TargetList            )
+                response_type: Models::TargetList
+            )
         end
 
         
@@ -502,7 +512,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::ProviderList            )
+                response_type: Models::ProviderList
+            )
         end
 
         
@@ -549,7 +560,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Provider            )
+                response_type: Models::Provider
+            )
         end
 
         
@@ -592,7 +604,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Provider            )
+                response_type: Models::Provider
+            )
         end
 
         
@@ -631,7 +644,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Provider            )
+                response_type: Models::Provider
+            )
         end
 
         
@@ -666,7 +680,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Provider            )
+                response_type: Models::Provider
+            )
         end
 
         
@@ -717,7 +732,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Provider            )
+                response_type: Models::Provider
+            )
         end
 
         
@@ -764,7 +780,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Provider            )
+                response_type: Models::Provider
+            )
         end
 
         
@@ -807,7 +824,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Provider            )
+                response_type: Models::Provider
+            )
         end
 
         
@@ -846,7 +864,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Provider            )
+                response_type: Models::Provider
+            )
         end
 
         
@@ -893,7 +912,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Provider            )
+                response_type: Models::Provider
+            )
         end
 
         
@@ -936,7 +956,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Provider            )
+                response_type: Models::Provider
+            )
         end
 
         
@@ -999,7 +1020,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Provider            )
+                response_type: Models::Provider
+            )
         end
 
         
@@ -1054,7 +1076,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Provider            )
+                response_type: Models::Provider
+            )
         end
 
         
@@ -1097,7 +1120,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Provider            )
+                response_type: Models::Provider
+            )
         end
 
         
@@ -1136,7 +1160,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Provider            )
+                response_type: Models::Provider
+            )
         end
 
         
@@ -1179,7 +1204,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Provider            )
+                response_type: Models::Provider
+            )
         end
 
         
@@ -1218,7 +1244,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Provider            )
+                response_type: Models::Provider
+            )
         end
 
         
@@ -1261,7 +1288,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Provider            )
+                response_type: Models::Provider
+            )
         end
 
         
@@ -1300,7 +1328,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Provider            )
+                response_type: Models::Provider
+            )
         end
 
         
@@ -1343,7 +1372,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Provider            )
+                response_type: Models::Provider
+            )
         end
 
         
@@ -1382,7 +1412,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Provider            )
+                response_type: Models::Provider
+            )
         end
 
         
@@ -1412,7 +1443,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Provider            )
+                response_type: Models::Provider
+            )
         end
 
         
@@ -1441,7 +1473,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                            )
+            )
         end
 
         
@@ -1472,7 +1504,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::LogList            )
+                response_type: Models::LogList
+            )
         end
 
         
@@ -1503,7 +1536,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::LogList            )
+                response_type: Models::LogList
+            )
         end
 
         
@@ -1530,7 +1564,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::TopicList            )
+                response_type: Models::TopicList
+            )
         end
 
         
@@ -1567,7 +1602,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Topic            )
+                response_type: Models::Topic
+            )
         end
 
         
@@ -1597,7 +1633,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Topic            )
+                response_type: Models::Topic
+            )
         end
 
         
@@ -1631,7 +1668,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Topic            )
+                response_type: Models::Topic
+            )
         end
 
         
@@ -1660,7 +1698,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                            )
+            )
         end
 
         
@@ -1691,7 +1729,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::LogList            )
+                response_type: Models::LogList
+            )
         end
 
         
@@ -1724,7 +1763,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::SubscriberList            )
+                response_type: Models::SubscriberList
+            )
         end
 
         
@@ -1765,7 +1805,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Subscriber            )
+                response_type: Models::Subscriber
+            )
         end
 
         
@@ -1801,7 +1842,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Subscriber            )
+                response_type: Models::Subscriber
+            )
         end
 
         
@@ -1836,7 +1878,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                            )
+            )
         end
 
         

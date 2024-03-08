@@ -31,7 +31,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::DatabaseList            )
+                response_type: Models::DatabaseList
+            )
         end
 
         
@@ -69,7 +70,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Database            )
+                response_type: Models::Database
+            )
         end
 
         
@@ -99,7 +101,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Database            )
+                response_type: Models::Database
+            )
         end
 
         
@@ -136,7 +139,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Database            )
+                response_type: Models::Database
+            )
         end
 
         
@@ -166,7 +170,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                            )
+            )
         end
 
         
@@ -200,7 +204,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::CollectionList            )
+                response_type: Models::CollectionList
+            )
         end
 
         
@@ -250,7 +255,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Collection            )
+                response_type: Models::Collection
+            )
         end
 
         
@@ -286,7 +292,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Collection            )
+                response_type: Models::Collection
+            )
         end
 
         
@@ -333,7 +340,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Collection            )
+                response_type: Models::Collection
+            )
         end
 
         
@@ -369,7 +377,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                            )
+            )
         end
 
         
@@ -406,7 +414,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::AttributeList            )
+                response_type: Models::AttributeList
+            )
         end
 
         
@@ -458,7 +467,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::AttributeBoolean            )
+                response_type: Models::AttributeBoolean
+            )
         end
 
         
@@ -512,7 +522,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::AttributeBoolean            )
+                response_type: Models::AttributeBoolean
+            )
         end
 
         
@@ -563,7 +574,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::AttributeDatetime            )
+                response_type: Models::AttributeDatetime
+            )
         end
 
         
@@ -617,7 +629,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::AttributeDatetime            )
+                response_type: Models::AttributeDatetime
+            )
         end
 
         
@@ -669,7 +682,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::AttributeEmail            )
+                response_type: Models::AttributeEmail
+            )
         end
 
         
@@ -724,7 +738,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::AttributeEmail            )
+                response_type: Models::AttributeEmail
+            )
         end
 
         
@@ -783,7 +798,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::AttributeEnum            )
+                response_type: Models::AttributeEnum
+            )
         end
 
         
@@ -844,7 +860,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::AttributeEnum            )
+                response_type: Models::AttributeEnum
+            )
         end
 
         
@@ -901,7 +918,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::AttributeFloat            )
+                response_type: Models::AttributeFloat
+            )
         end
 
         
@@ -968,7 +986,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::AttributeFloat            )
+                response_type: Models::AttributeFloat
+            )
         end
 
         
@@ -1025,7 +1044,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::AttributeInteger            )
+                response_type: Models::AttributeInteger
+            )
         end
 
         
@@ -1092,7 +1112,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::AttributeInteger            )
+                response_type: Models::AttributeInteger
+            )
         end
 
         
@@ -1144,7 +1165,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::AttributeIp            )
+                response_type: Models::AttributeIp
+            )
         end
 
         
@@ -1199,7 +1221,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::AttributeIp            )
+                response_type: Models::AttributeIp
+            )
         end
 
         
@@ -1256,7 +1279,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::AttributeRelationship            )
+                response_type: Models::AttributeRelationship
+            )
         end
 
         
@@ -1316,7 +1340,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::AttributeString            )
+                response_type: Models::AttributeString
+            )
         end
 
         
@@ -1371,7 +1396,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::AttributeString            )
+                response_type: Models::AttributeString
+            )
         end
 
         
@@ -1423,7 +1449,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::AttributeUrl            )
+                response_type: Models::AttributeUrl
+            )
         end
 
         
@@ -1478,7 +1505,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::AttributeUrl            )
+                response_type: Models::AttributeUrl
+            )
         end
 
         
@@ -1519,7 +1547,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                            )
+            )
         end
 
         
@@ -1560,7 +1588,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                            )
+            )
         end
 
         
@@ -1605,7 +1633,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::AttributeRelationship            )
+                response_type: Models::AttributeRelationship
+            )
         end
 
         
@@ -1643,7 +1672,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::DocumentList            )
+                response_type: Models::DocumentList
+            )
         end
 
         
@@ -1695,7 +1725,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Document            )
+                response_type: Models::Document
+            )
         end
 
         
@@ -1739,7 +1770,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Document            )
+                response_type: Models::Document
+            )
         end
 
         
@@ -1785,7 +1817,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Document            )
+                response_type: Models::Document
+            )
         end
 
         
@@ -1826,7 +1859,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                            )
+            )
         end
 
         
@@ -1863,7 +1896,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::IndexList            )
+                response_type: Models::IndexList
+            )
         end
 
         
@@ -1920,7 +1954,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Index            )
+                response_type: Models::Index
+            )
         end
 
         
@@ -1961,7 +1996,8 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Index            )
+                response_type: Models::Index
+            )
         end
 
         
@@ -2002,7 +2038,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                            )
+            )
         end
 
         

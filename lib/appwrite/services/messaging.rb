@@ -789,13 +789,13 @@ module Appwrite
         #
         # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Provider name.
-        # @param [String] from Sender Phone number. Format this number with a leading '+' and a country code, e.g., +16175551212.
-        # @param [String] sender_id Msg91 Sender ID.
-        # @param [String] auth_key Msg91 Auth Key.
+        # @param [String] template_id Msg91 template ID
+        # @param [String] sender_id Msg91 sender ID.
+        # @param [String] auth_key Msg91 auth key.
         # @param [] enabled Set as enabled.
         #
         # @return [Provider]
-        def create_msg91_provider(provider_id:, name:, from: nil, sender_id: nil, auth_key: nil, enabled: nil)
+        def create_msg91_provider(provider_id:, name:, template_id: nil, sender_id: nil, auth_key: nil, enabled: nil)
             api_path = '/messaging/providers/msg91'
 
             if provider_id.nil?
@@ -809,7 +809,7 @@ module Appwrite
             api_params = {
                 providerId: provider_id,
                 name: name,
-                from: from,
+                templateId: template_id,
                 senderId: sender_id,
                 authKey: auth_key,
                 enabled: enabled,
@@ -834,12 +834,12 @@ module Appwrite
         # @param [String] provider_id Provider ID.
         # @param [String] name Provider name.
         # @param [] enabled Set as enabled.
-        # @param [String] sender_id Msg91 Sender ID.
-        # @param [String] auth_key Msg91 Auth Key.
-        # @param [String] from Sender number.
+        # @param [String] template_id Msg91 template ID.
+        # @param [String] sender_id Msg91 sender ID.
+        # @param [String] auth_key Msg91 auth key.
         #
         # @return [Provider]
-        def update_msg91_provider(provider_id:, name: nil, enabled: nil, sender_id: nil, auth_key: nil, from: nil)
+        def update_msg91_provider(provider_id:, name: nil, enabled: nil, template_id: nil, sender_id: nil, auth_key: nil)
             api_path = '/messaging/providers/msg91/{providerId}'
                 .gsub('{providerId}', provider_id)
 
@@ -850,9 +850,9 @@ module Appwrite
             api_params = {
                 name: name,
                 enabled: enabled,
+                templateId: template_id,
                 senderId: sender_id,
                 authKey: auth_key,
-                from: from,
             }
             
             api_headers = {

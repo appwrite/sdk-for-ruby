@@ -4,7 +4,7 @@ module Appwrite
             AMERICAN_EXPRESS = 'amex'
             ARGENCARD = 'argencard'
             CABAL = 'cabal'
-            CONSOSUD = 'censosud'
+            CENCOSUD = 'cencosud'
             DINERS_CLUB = 'diners'
             DISCOVER = 'discover'
             ELO = 'elo'

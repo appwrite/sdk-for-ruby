@@ -266,7 +266,7 @@ module Appwrite
         
         # Add an authenticator app to be used as an MFA factor. Verify the
         # authenticator using the [verify
-        # authenticator](/docs/references/cloud/client-web/account#verifyAuthenticator)
+        # authenticator](/docs/references/cloud/client-web/account#updateMfaAuthenticator)
         # method.
         #
         # @param [AuthenticatorType] type Type of authenticator. Must be `totp`
@@ -298,8 +298,8 @@ module Appwrite
 
         
         # Verify an authenticator app after adding it using the [add
-        # authenticator](/docs/references/cloud/client-web/account#addAuthenticator)
-        # method.
+        # authenticator](/docs/references/cloud/client-web/account#createMfaAuthenticator)
+        # method. add 
         #
         # @param [AuthenticatorType] type Type of authenticator.
         # @param [String] otp Valid verification token.
@@ -340,7 +340,7 @@ module Appwrite
         # @param [AuthenticatorType] type Type of authenticator.
         # @param [String] otp Valid verification token.
         #
-        # @return [User]
+        # @return []
         def delete_mfa_authenticator(type:, otp:)
             api_path = '/account/mfa/authenticators/{type}'
                 .gsub('{type}', type)
@@ -366,7 +366,6 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::User
             )
         end
 

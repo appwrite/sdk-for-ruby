@@ -45,7 +45,7 @@ module Appwrite
         # @param [Array] targets List of Targets IDs.
         # @param [Array] cc Array of target IDs to be added as CC.
         # @param [Array] bcc Array of target IDs to be added as BCC.
-        # @param [Array] attachments Array of compound bucket IDs to file IDs to be attached to the email.
+        # @param [Array] attachments Array of compound ID strings of bucket IDs and file IDs to be attached to the email. They should be formatted as <BUCKET_ID>:<FILE_ID>.
         # @param [] draft Is message a draft
         # @param [] html Is content of type HTML
         # @param [String] scheduled_at Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future.
@@ -109,9 +109,10 @@ module Appwrite
         # @param [Array] cc Array of target IDs to be added as CC.
         # @param [Array] bcc Array of target IDs to be added as BCC.
         # @param [String] scheduled_at Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future.
+        # @param [Array] attachments Array of compound ID strings of bucket IDs and file IDs to be attached to the email. They should be formatted as <BUCKET_ID>:<FILE_ID>.
         #
         # @return [Message]
-        def update_email(message_id:, topics: nil, users: nil, targets: nil, subject: nil, content: nil, draft: nil, html: nil, cc: nil, bcc: nil, scheduled_at: nil)
+        def update_email(message_id:, topics: nil, users: nil, targets: nil, subject: nil, content: nil, draft: nil, html: nil, cc: nil, bcc: nil, scheduled_at: nil, attachments: nil)
             api_path = '/messaging/messages/email/{messageId}'
                 .gsub('{messageId}', message_id)
 
@@ -130,6 +131,7 @@ module Appwrite
                 cc: cc,
                 bcc: bcc,
                 scheduledAt: scheduled_at,
+                attachments: attachments,
             }
             
             api_headers = {
@@ -156,7 +158,7 @@ module Appwrite
         # @param [Array] targets List of Targets IDs.
         # @param [Hash] data Additional Data for push notification.
         # @param [String] action Action for push notification.
-        # @param [String] image Image for push notification. Must be a compound bucket ID to file ID of a jpeg, png, or bmp image in Appwrite Storage.
+        # @param [String] image Image for push notification. Must be a compound bucket ID to file ID of a jpeg, png, or bmp image in Appwrite Storage. It should be formatted as <BUCKET_ID>:<FILE_ID>.
         # @param [String] icon Icon for push notification. Available only for Android and Web Platform.
         # @param [String] sound Sound for push notification. Available only for Android and IOS Platform.
         # @param [String] color Color for push notification. Available only for Android Platform.
@@ -225,7 +227,7 @@ module Appwrite
         # @param [String] body Body for push notification.
         # @param [Hash] data Additional Data for push notification.
         # @param [String] action Action for push notification.
-        # @param [String] image Image for push notification. Must be a compound bucket ID to file ID of a jpeg, png, or bmp image in Appwrite Storage.
+        # @param [String] image Image for push notification. Must be a compound bucket ID to file ID of a jpeg, png, or bmp image in Appwrite Storage. It should be formatted as <BUCKET_ID>:<FILE_ID>.
         # @param [String] icon Icon for push notification. Available only for Android and Web platforms.
         # @param [String] sound Sound for push notification. Available only for Android and iOS platforms.
         # @param [String] color Color for push notification. Available only for Android platforms.

@@ -13,7 +13,6 @@ module Appwrite
             V1_BUILDS = 'v1-builds'
             V1_MESSAGING = 'v1-messaging'
             V1_MIGRATIONS = 'v1-migrations'
-            HAMSTERV1 = 'hamsterv1'
         end
     end
 end

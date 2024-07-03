@@ -52,6 +52,7 @@ module Appwrite
         # @param [] logging Whether executions will be logged. When set to false, executions will not be logged, but will reduce resource used by your Appwrite project.
         # @param [String] entrypoint Entrypoint File. This path is relative to the "providerRootDirectory".
         # @param [String] commands Build Commands.
+        # @param [Array] scopes List of scopes allowed for API key auto-generated for every execution. Maximum of 100 scopes are allowed.
         # @param [String] installation_id Appwrite Installation ID for VCS (Version Control System) deployment.
         # @param [String] provider_repository_id Repository ID of the repo linked to the function.
         # @param [String] provider_branch Production branch for the repo linked to the function.
@@ -63,7 +64,7 @@ module Appwrite
         # @param [String] template_branch Production branch for the repo linked to the function template.
         #
         # @return [Function]
-        def create(function_id:, name:, runtime:, execute: nil, events: nil, schedule: nil, timeout: nil, enabled: nil, logging: nil, entrypoint: nil, commands: nil, installation_id: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil, template_repository: nil, template_owner: nil, template_root_directory: nil, template_branch: nil)
+        def create(function_id:, name:, runtime:, execute: nil, events: nil, schedule: nil, timeout: nil, enabled: nil, logging: nil, entrypoint: nil, commands: nil, scopes: nil, installation_id: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil, template_repository: nil, template_owner: nil, template_root_directory: nil, template_branch: nil)
             api_path = '/functions'
 
             if function_id.nil?
@@ -90,6 +91,7 @@ module Appwrite
                 logging: logging,
                 entrypoint: entrypoint,
                 commands: commands,
+                scopes: scopes,
                 installationId: installation_id,
                 providerRepositoryId: provider_repository_id,
                 providerBranch: provider_branch,
@@ -182,6 +184,7 @@ module Appwrite
         # @param [] logging Whether executions will be logged. When set to false, executions will not be logged, but will reduce resource used by your Appwrite project.
         # @param [String] entrypoint Entrypoint File. This path is relative to the "providerRootDirectory".
         # @param [String] commands Build Commands.
+        # @param [Array] scopes List of scopes allowed for API Key auto-generated for every execution. Maximum of 100 scopes are allowed.
         # @param [String] installation_id Appwrite Installation ID for VCS (Version Controle System) deployment.
         # @param [String] provider_repository_id Repository ID of the repo linked to the function
         # @param [String] provider_branch Production branch for the repo linked to the function
@@ -189,7 +192,7 @@ module Appwrite
         # @param [String] provider_root_directory Path to function code in the linked repo.
         #
         # @return [Function]
-        def update(function_id:, name:, runtime: nil, execute: nil, events: nil, schedule: nil, timeout: nil, enabled: nil, logging: nil, entrypoint: nil, commands: nil, installation_id: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil)
+        def update(function_id:, name:, runtime: nil, execute: nil, events: nil, schedule: nil, timeout: nil, enabled: nil, logging: nil, entrypoint: nil, commands: nil, scopes: nil, installation_id: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil)
             api_path = '/functions/{functionId}'
                 .gsub('{functionId}', function_id)
 
@@ -212,6 +215,7 @@ module Appwrite
                 logging: logging,
                 entrypoint: entrypoint,
                 commands: commands,
+                scopes: scopes,
                 installationId: installation_id,
                 providerRepositoryId: provider_repository_id,
                 providerBranch: provider_branch,
@@ -466,19 +470,17 @@ module Appwrite
         end
 
         
-        # Create a new build for an Appwrite Function deployment. This endpoint can
-        # be used to retry a failed build.
+        # 
         #
         # @param [String] function_id Function ID.
         # @param [String] deployment_id Deployment ID.
         # @param [String] build_id Build unique ID.
         #
         # @return []
-        def create_build(function_id:, deployment_id:, build_id:)
-            api_path = '/functions/{functionId}/deployments/{deploymentId}/builds/{buildId}'
+        def create_build(function_id:, deployment_id:, build_id: nil)
+            api_path = '/functions/{functionId}/deployments/{deploymentId}/build'
                 .gsub('{functionId}', function_id)
                 .gsub('{deploymentId}', deployment_id)
-                .gsub('{buildId}', build_id)
 
             if function_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "functionId"')
@@ -488,11 +490,8 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
             end
 
-            if build_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "buildId"')
-            end
-
             api_params = {
+                buildId: build_id,
             }
             
             api_headers = {
@@ -504,6 +503,42 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
+            )
+        end
+
+        
+        # 
+        #
+        # @param [String] function_id Function ID.
+        # @param [String] deployment_id Deployment ID.
+        #
+        # @return [Build]
+        def update_deployment_build(function_id:, deployment_id:)
+            api_path = '/functions/{functionId}/deployments/{deploymentId}/build'
+                .gsub('{functionId}', function_id)
+                .gsub('{deploymentId}', deployment_id)
+
+            if function_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+            end
+
+            if deployment_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Build
             )
         end
 
@@ -548,7 +583,7 @@ module Appwrite
         # query params to filter your results.
         #
         # @param [String] function_id Function ID.
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: trigger, status, responseStatusCode, duration
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: trigger, status, responseStatusCode, duration, requestMethod, requestPath, deploymentId
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [ExecutionList]
@@ -590,9 +625,10 @@ module Appwrite
         # @param [String] xpath HTTP path of execution. Path can include query params. Default value is /
         # @param [ExecutionMethod] method HTTP method of execution. Default value is GET.
         # @param [Hash] headers HTTP headers of execution. Defaults to empty.
+        # @param [String] scheduled_at Scheduled execution time in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future.
         #
         # @return [Execution]
-        def create_execution(function_id:, body: nil, async: nil, xpath: nil, method: nil, headers: nil)
+        def create_execution(function_id:, body: nil, async: nil, xpath: nil, method: nil, headers: nil, scheduled_at: nil)
             api_path = '/functions/{functionId}/executions'
                 .gsub('{functionId}', function_id)
 
@@ -606,6 +642,7 @@ module Appwrite
                 path: xpath,
                 method: method,
                 headers: headers,
+                scheduledAt: scheduled_at,
             }
             
             api_headers = {
@@ -654,6 +691,42 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::Execution
+            )
+        end
+
+        
+        # Delete a function execution by its unique ID.
+        # 
+        #
+        # @param [String] function_id Function ID.
+        # @param [String] execution_id Execution ID.
+        #
+        # @return []
+        def delete_execution(function_id:, execution_id:)
+            api_path = '/functions/{functionId}/executions/{executionId}'
+                .gsub('{functionId}', function_id)
+                .gsub('{executionId}', execution_id)
+
+            if function_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+            end
+
+            if execution_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "executionId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
             )
         end
 

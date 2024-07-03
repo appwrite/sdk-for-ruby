@@ -281,6 +281,13 @@ module Appwrite
                 raise Appwrite::Exception.new(error.message)
             end
 
+            warnings = response['x-appwrite-warning']
+            if warnings
+                warnings.split(';').each do |warning|
+                    warn "Warning: #{warning}"
+                end
+            end
+
             location = response['location']
             if response_type == "location"
                 return location

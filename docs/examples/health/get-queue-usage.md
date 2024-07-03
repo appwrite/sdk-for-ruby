@@ -4,8 +4,8 @@ include Appwrite
 
 client = Client.new
     .set_endpoint('https://cloud.appwrite.io/v1') # Your API Endpoint
-    .set_project('5df5acd0d48c2') # Your project ID
-    .set_key('919c2d18fb5d4...a2ae413da83346ad2') # Your secret API key
+    .set_project('&lt;YOUR_PROJECT_ID&gt;') # Your project ID
+    .set_key('&lt;YOUR_API_KEY&gt;') # Your secret API key
 
 health = Health.new(client)
 

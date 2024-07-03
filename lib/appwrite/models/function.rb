@@ -13,6 +13,7 @@ module Appwrite
             attr_reader :logging
             attr_reader :runtime
             attr_reader :deployment
+            attr_reader :scopes
             attr_reader :vars
             attr_reader :events
             attr_reader :schedule
@@ -37,6 +38,7 @@ module Appwrite
                 logging:,
                 runtime:,
                 deployment:,
+                scopes:,
                 vars:,
                 events:,
                 schedule:,
@@ -60,6 +62,7 @@ module Appwrite
                 @logging = logging
                 @runtime = runtime
                 @deployment = deployment
+                @scopes = scopes
                 @vars = vars
                 @events = events
                 @schedule = schedule
@@ -86,6 +89,7 @@ module Appwrite
                     logging: map["logging"],
                     runtime: map["runtime"],
                     deployment: map["deployment"],
+                    scopes: map["scopes"],
                     vars: map["vars"].map { |it| Variable.from(map: it) },
                     events: map["events"],
                     schedule: map["schedule"],
@@ -113,6 +117,7 @@ module Appwrite
                     "logging": @logging,
                     "runtime": @runtime,
                     "deployment": @deployment,
+                    "scopes": @scopes,
                     "vars": @vars.map { |it| it.to_map },
                     "events": @events,
                     "schedule": @schedule,

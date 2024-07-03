@@ -188,7 +188,7 @@ module Appwrite
         #
         # @return [Jwt]
         def create_jwt()
-            api_path = '/account/jwt'
+            api_path = '/account/jwts'
 
             api_params = {
             }
@@ -299,7 +299,7 @@ module Appwrite
         
         # Verify an authenticator app after adding it using the [add
         # authenticator](/docs/references/cloud/client-web/account#createMfaAuthenticator)
-        # method. add 
+        # method.
         #
         # @param [AuthenticatorType] type Type of authenticator.
         # @param [String] otp Valid verification token.

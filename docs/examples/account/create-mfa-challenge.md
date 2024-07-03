@@ -5,7 +5,7 @@ include Appwrite::Enums
 
 client = Client.new
     .set_endpoint('https://cloud.appwrite.io/v1') # Your API Endpoint
-    .set_project('5df5acd0d48c2') # Your project ID
+    .set_project('&lt;YOUR_PROJECT_ID&gt;') # Your project ID
 
 account = Account.new(client)
 

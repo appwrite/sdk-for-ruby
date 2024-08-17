@@ -19,6 +19,7 @@ module Appwrite
             attr_reader :logs
             attr_reader :errors
             attr_reader :duration
+            attr_reader :scheduled_at
 
             def initialize(
                 id:,
@@ -36,7 +37,8 @@ module Appwrite
                 response_headers:,
                 logs:,
                 errors:,
-                duration:
+                duration:,
+                scheduled_at: 
             )
                 @id = id
                 @created_at = created_at
@@ -54,6 +56,7 @@ module Appwrite
                 @logs = logs
                 @errors = errors
                 @duration = duration
+                @scheduled_at = scheduled_at
             end
 
             def self.from(map:)
@@ -73,7 +76,8 @@ module Appwrite
                     response_headers: map["responseHeaders"].map { |it| Headers.from(map: it) },
                     logs: map["logs"],
                     errors: map["errors"],
-                    duration: map["duration"]
+                    duration: map["duration"],
+                    scheduled_at: map["scheduledAt"]
                 )
             end
 
@@ -94,7 +98,8 @@ module Appwrite
                     "responseHeaders": @response_headers.map { |it| it.to_map },
                     "logs": @logs,
                     "errors": @errors,
-                    "duration": @duration
+                    "duration": @duration,
+                    "scheduledAt": @scheduled_at
                 }
             end
         end

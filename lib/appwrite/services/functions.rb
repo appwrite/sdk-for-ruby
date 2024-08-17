@@ -61,10 +61,10 @@ module Appwrite
         # @param [String] template_repository Repository name of the template.
         # @param [String] template_owner The name of the owner of the template.
         # @param [String] template_root_directory Path to function code in the template repo.
-        # @param [String] template_branch Production branch for the repo linked to the function template.
+        # @param [String] template_version Version (tag) for the repo linked to the function template.
         #
         # @return [Function]
-        def create(function_id:, name:, runtime:, execute: nil, events: nil, schedule: nil, timeout: nil, enabled: nil, logging: nil, entrypoint: nil, commands: nil, scopes: nil, installation_id: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil, template_repository: nil, template_owner: nil, template_root_directory: nil, template_branch: nil)
+        def create(function_id:, name:, runtime:, execute: nil, events: nil, schedule: nil, timeout: nil, enabled: nil, logging: nil, entrypoint: nil, commands: nil, scopes: nil, installation_id: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil, template_repository: nil, template_owner: nil, template_root_directory: nil, template_version: nil)
             api_path = '/functions'
 
             if function_id.nil?
@@ -100,7 +100,7 @@ module Appwrite
                 templateRepository: template_repository,
                 templateOwner: template_owner,
                 templateRootDirectory: template_root_directory,
-                templateBranch: template_branch,
+                templateVersion: template_version,
             }
             
             api_headers = {
@@ -137,6 +137,72 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::RuntimeList
+            )
+        end
+
+        
+        # List available function templates. You can use template details in
+        # [createFunction](/docs/references/cloud/server-nodejs/functions#create)
+        # method.
+        #
+        # @param [Array] runtimes List of runtimes allowed for filtering function templates. Maximum of 100 runtimes are allowed.
+        # @param [Array] use_cases List of use cases allowed for filtering function templates. Maximum of 100 use cases are allowed.
+        # @param [Integer] limit Limit the number of templates returned in the response. Default limit is 25, and maximum limit is 5000.
+        # @param [Integer] offset Offset the list of returned templates. Maximum offset is 5000.
+        #
+        # @return [TemplateFunctionList]
+        def list_templates(runtimes: nil, use_cases: nil, limit: nil, offset: nil)
+            api_path = '/functions/templates'
+
+            api_params = {
+                runtimes: runtimes,
+                useCases: use_cases,
+                limit: limit,
+                offset: offset,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::TemplateFunctionList
+            )
+        end
+
+        
+        # Get a function template using ID. You can use template details in
+        # [createFunction](/docs/references/cloud/server-nodejs/functions#create)
+        # method.
+        #
+        # @param [String] template_id Template ID.
+        #
+        # @return [TemplateFunction]
+        def get_template(template_id:)
+            api_path = '/functions/templates/{templateId}'
+                .gsub('{templateId}', template_id)
+
+            if template_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "templateId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::TemplateFunction
             )
         end
 
@@ -270,7 +336,7 @@ module Appwrite
         # params to filter your results.
         #
         # @param [String] function_id Function ID.
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: size, buildId, activate, entrypoint, commands
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: size, buildId, activate, entrypoint, commands, type, size
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [DeploymentList]
@@ -550,7 +616,7 @@ module Appwrite
         # @param [String] deployment_id Deployment ID.
         #
         # @return []
-        def download_deployment(function_id:, deployment_id:)
+        def get_deployment_download(function_id:, deployment_id:)
             api_path = '/functions/{functionId}/deployments/{deploymentId}/download'
                 .gsub('{functionId}', function_id)
                 .gsub('{deploymentId}', deployment_id)
@@ -625,10 +691,10 @@ module Appwrite
         # @param [String] xpath HTTP path of execution. Path can include query params. Default value is /
         # @param [ExecutionMethod] method HTTP method of execution. Default value is GET.
         # @param [Hash] headers HTTP headers of execution. Defaults to empty.
-        # @param [String] scheduled_at Scheduled execution time in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future.
+        # @param [String] scheduled_at Scheduled execution time in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future with precision in minutes.
         #
         # @return [Execution]
-        def create_execution(function_id:, body: nil, async: nil, xpath: nil, method: nil, headers: nil, scheduled_at: nil)
+        def create_execution(function_id:, body: nil, async: nil, xpath: nil, method: nil, headers: nil, scheduled_at: nil, on_progress: nil)
             api_path = '/functions/{functionId}/executions'
                 .gsub('{functionId}', function_id)
 
@@ -646,14 +712,17 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
+                "content-type": 'multipart/form-data',
             }
 
-            @client.call(
-                method: 'POST',
+            id_param_name = nil
+            @client.chunked_upload(
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
+                param_name: param_name,
+                id_param_name: id_param_name,
+                on_progress: on_progress,
                 response_type: Models::Execution
             )
         end

@@ -338,10 +338,9 @@ module Appwrite
         # Delete an authenticator for a user by ID.
         #
         # @param [AuthenticatorType] type Type of authenticator.
-        # @param [String] otp Valid verification token.
         #
         # @return []
-        def delete_mfa_authenticator(type:, otp:)
+        def delete_mfa_authenticator(type:)
             api_path = '/account/mfa/authenticators/{type}'
                 .gsub('{type}', type)
 
@@ -349,12 +348,7 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "type"')
             end
 
-            if otp.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "otp"')
-            end
-
             api_params = {
-                otp: otp,
             }
             
             api_headers = {

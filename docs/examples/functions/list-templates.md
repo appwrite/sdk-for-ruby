@@ -1,15 +1,16 @@
 require 'appwrite'
 
 include Appwrite
-include Appwrite::Enums
 
 client = Client.new
     .set_endpoint('https://cloud.appwrite.io/v1') # Your API Endpoint
     .set_project('&lt;YOUR_PROJECT_ID&gt;') # Your project ID
-    .set_session('') # The user session to authenticate with
 
-account = Account.new(client)
+functions = Functions.new(client)
 
-result = account.delete_mfa_authenticator(
-    type: AuthenticatorType::TOTP
+result = functions.list_templates(
+    runtimes: [], # optional
+    use_cases: [], # optional
+    limit: 1, # optional
+    offset: 0 # optional
 )

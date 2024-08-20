@@ -26,6 +26,7 @@ module Appwrite
             attr_reader :provider_branch
             attr_reader :provider_root_directory
             attr_reader :provider_silent_mode
+            attr_reader :specification
 
             def initialize(
                 id:,
@@ -50,7 +51,8 @@ module Appwrite
                 provider_repository_id:,
                 provider_branch:,
                 provider_root_directory:,
-                provider_silent_mode:
+                provider_silent_mode:,
+                specification:
             )
                 @id = id
                 @created_at = created_at
@@ -75,6 +77,7 @@ module Appwrite
                 @provider_branch = provider_branch
                 @provider_root_directory = provider_root_directory
                 @provider_silent_mode = provider_silent_mode
+                @specification = specification
             end
 
             def self.from(map:)
@@ -101,7 +104,8 @@ module Appwrite
                     provider_repository_id: map["providerRepositoryId"],
                     provider_branch: map["providerBranch"],
                     provider_root_directory: map["providerRootDirectory"],
-                    provider_silent_mode: map["providerSilentMode"]
+                    provider_silent_mode: map["providerSilentMode"],
+                    specification: map["specification"]
                 )
             end
 
@@ -129,7 +133,8 @@ module Appwrite
                     "providerRepositoryId": @provider_repository_id,
                     "providerBranch": @provider_branch,
                     "providerRootDirectory": @provider_root_directory,
-                    "providerSilentMode": @provider_silent_mode
+                    "providerSilentMode": @provider_silent_mode,
+                    "specification": @specification
                 }
             end
         end

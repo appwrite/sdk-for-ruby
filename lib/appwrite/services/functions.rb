@@ -62,9 +62,10 @@ module Appwrite
         # @param [String] template_owner The name of the owner of the template.
         # @param [String] template_root_directory Path to function code in the template repo.
         # @param [String] template_version Version (tag) for the repo linked to the function template.
+        # @param [String] specification Runtime specification for the function and builds.
         #
         # @return [Function]
-        def create(function_id:, name:, runtime:, execute: nil, events: nil, schedule: nil, timeout: nil, enabled: nil, logging: nil, entrypoint: nil, commands: nil, scopes: nil, installation_id: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil, template_repository: nil, template_owner: nil, template_root_directory: nil, template_version: nil)
+        def create(function_id:, name:, runtime:, execute: nil, events: nil, schedule: nil, timeout: nil, enabled: nil, logging: nil, entrypoint: nil, commands: nil, scopes: nil, installation_id: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil, template_repository: nil, template_owner: nil, template_root_directory: nil, template_version: nil, specification: nil)
             api_path = '/functions'
 
             if function_id.nil?
@@ -101,6 +102,7 @@ module Appwrite
                 templateOwner: template_owner,
                 templateRootDirectory: template_root_directory,
                 templateVersion: template_version,
+                specification: specification,
             }
             
             api_headers = {
@@ -137,6 +139,31 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::RuntimeList
+            )
+        end
+
+        
+        # List allowed function specifications for this instance.
+        # 
+        #
+        #
+        # @return [SpecificationList]
+        def list_specifications()
+            api_path = '/functions/specifications'
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::SpecificationList
             )
         end
 
@@ -256,9 +283,10 @@ module Appwrite
         # @param [String] provider_branch Production branch for the repo linked to the function
         # @param [] provider_silent_mode Is the VCS (Version Control System) connection in silent mode for the repo linked to the function? In silent mode, comments will not be made on commits and pull requests.
         # @param [String] provider_root_directory Path to function code in the linked repo.
+        # @param [String] specification Runtime specification for the function and builds.
         #
         # @return [Function]
-        def update(function_id:, name:, runtime: nil, execute: nil, events: nil, schedule: nil, timeout: nil, enabled: nil, logging: nil, entrypoint: nil, commands: nil, scopes: nil, installation_id: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil)
+        def update(function_id:, name:, runtime: nil, execute: nil, events: nil, schedule: nil, timeout: nil, enabled: nil, logging: nil, entrypoint: nil, commands: nil, scopes: nil, installation_id: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil, specification: nil)
             api_path = '/functions/{functionId}'
                 .gsub('{functionId}', function_id)
 
@@ -287,6 +315,7 @@ module Appwrite
                 providerBranch: provider_branch,
                 providerSilentMode: provider_silent_mode,
                 providerRootDirectory: provider_root_directory,
+                specification: specification,
             }
             
             api_headers = {
@@ -694,7 +723,7 @@ module Appwrite
         # @param [String] scheduled_at Scheduled execution time in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future with precision in minutes.
         #
         # @return [Execution]
-        def create_execution(function_id:, body: nil, async: nil, xpath: nil, method: nil, headers: nil, scheduled_at: nil, on_progress: nil)
+        def create_execution(function_id:, body: nil, async: nil, xpath: nil, method: nil, headers: nil, scheduled_at: nil)
             api_path = '/functions/{functionId}/executions'
                 .gsub('{functionId}', function_id)
 
@@ -712,17 +741,14 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'multipart/form-data',
+                "content-type": 'application/json',
             }
 
-            id_param_name = nil
-            @client.chunked_upload(
+            @client.call(
+                method: 'POST',
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                param_name: param_name,
-                id_param_name: id_param_name,
-                on_progress: on_progress,
                 response_type: Models::Execution
             )
         end

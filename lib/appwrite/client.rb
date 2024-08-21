@@ -15,7 +15,7 @@ module Appwrite
                 'x-sdk-name'=> 'Ruby',
                 'x-sdk-platform'=> 'server',
                 'x-sdk-language'=> 'ruby',
-                'x-sdk-version'=> '12.0.0-rc.2',                
+                'x-sdk-version'=> '12.0.0-rc.3',                
                 'X-Appwrite-Response-Format' => '1.6.0'
             }
             @endpoint = 'https://cloud.appwrite.io/v1'
@@ -268,7 +268,7 @@ module Appwrite
                     when 'application/json'
                         payload = params.to_json
                     when 'multipart/form-data'
-                        payload = "--#{@boundary}\r\n" + encode_form_data(params)
+                        payload = encode_form_data(params) + "--#{@boundary}--\r\n"
                         headers[:'content-type'] = "multipart/form-data; boundary=#{@boundary}"
                     else
                         payload = encode(params)
@@ -339,16 +339,18 @@ module Appwrite
             else
                 post_body = []
                 if value.instance_of? InputFile
-                    post_body << "Content-Disposition: form-data; name=\"#{key}\"; filename=\"#{value.filename}\"\r\n"
-                    post_body << "Content-Type: #{value.mime_type}\r\n\r\n"
+                    post_body << "--#{@boundary}"
+                    post_body << "Content-Disposition: form-data; name=\"#{key}\"; filename=\"#{value.filename}\""
+                    post_body << "Content-Type: #{value.mime_type}"
+                    post_body << ""
                     post_body << value.data
-                    post_body << "\r\n--#{@boundary}--\r\n"
-                else          
-                    post_body << "Content-Disposition: form-data; name=\"#{key}\"\r\n\r\n"
-                    post_body << "#{value.to_s}" 
-                    post_body << "\r\n--#{@boundary}\r\n"
+                else
+                    post_body << "--#{@boundary}"
+                    post_body << "Content-Disposition: form-data; name=\"#{key}\""
+                    post_body << ""
+                    post_body << value.to_s
                 end
-                post_body.join
+                post_body.join("\r\n") + "\r\n"
             end
         end
 

@@ -46,7 +46,7 @@ module Appwrite
             CPP_17 = 'cpp-17'
             CPP_20 = 'cpp-20'
             BUN_1_0 = 'bun-1.0'
-            GO_1_22 = 'go-1.22'
+            GO_1_23 = 'go-1.23'
         end
     end
 end

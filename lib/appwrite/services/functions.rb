@@ -168,38 +168,6 @@ module Appwrite
         end
 
         
-        # Get a function template using ID. You can use template details in
-        # [createFunction](/docs/references/cloud/server-nodejs/functions#create)
-        # method.
-        #
-        # @param [String] template_id Template ID.
-        #
-        # @return [TemplateFunction]
-        def get_template(template_id:)
-            api_path = '/functions/templates/{templateId}'
-                .gsub('{templateId}', template_id)
-
-            if template_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "templateId"')
-            end
-
-            api_params = {
-            }
-            
-            api_headers = {
-                "content-type": 'application/json',
-            }
-
-            @client.call(
-                method: 'GET',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                response_type: Models::TemplateFunction
-            )
-        end
-
-        
         # Get a function by its unique ID.
         #
         # @param [String] function_id Function ID.

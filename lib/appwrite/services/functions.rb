@@ -168,40 +168,6 @@ module Appwrite
         end
 
         
-        # List available function templates. You can use template details in
-        # [createFunction](/docs/references/cloud/server-nodejs/functions#create)
-        # method.
-        #
-        # @param [Array] runtimes List of runtimes allowed for filtering function templates. Maximum of 100 runtimes are allowed.
-        # @param [Array] use_cases List of use cases allowed for filtering function templates. Maximum of 100 use cases are allowed.
-        # @param [Integer] limit Limit the number of templates returned in the response. Default limit is 25, and maximum limit is 5000.
-        # @param [Integer] offset Offset the list of returned templates. Maximum offset is 5000.
-        #
-        # @return [TemplateFunctionList]
-        def list_templates(runtimes: nil, use_cases: nil, limit: nil, offset: nil)
-            api_path = '/functions/templates'
-
-            api_params = {
-                runtimes: runtimes,
-                useCases: use_cases,
-                limit: limit,
-                offset: offset,
-            }
-            
-            api_headers = {
-                "content-type": 'application/json',
-            }
-
-            @client.call(
-                method: 'GET',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                response_type: Models::TemplateFunctionList
-            )
-        end
-
-        
         # Get a function template using ID. You can use template details in
         # [createFunction](/docs/references/cloud/server-nodejs/functions#create)
         # method.

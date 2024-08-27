@@ -97,6 +97,7 @@ module Appwrite
         # Use this endpoint to fetch the favorite icon (AKA favicon) of any remote
         # website URL.
         # 
+        # This endpoint does not follow HTTP redirects.
         #
         # @param [String] url Website URL which you want to fetch the favicon from.
         #
@@ -179,6 +180,7 @@ module Appwrite
         # image at source quality. If dimensions are not specified, the default size
         # of image returned is 400x400px.
         # 
+        # This endpoint does not follow HTTP redirects.
         #
         # @param [String] url Image URL which you want to crop.
         # @param [Integer] width Resize preview image width, Pass an integer between 0 to 2000. Defaults to 400.

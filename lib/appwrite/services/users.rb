@@ -611,6 +611,42 @@ module Appwrite
         end
 
         
+        # Use this endpoint to create a JSON Web Token for user by its unique ID. You
+        # can use the resulting JWT to authenticate on behalf of the user. The JWT
+        # secret will become invalid if the session it uses gets deleted.
+        #
+        # @param [String] user_id User ID.
+        # @param [String] session_id Session ID. Use the string 'recent' to use the most recent session. Defaults to the most recent session.
+        # @param [Integer] duration Time in seconds before JWT expires. Default duration is 900 seconds, and maximum is 3600 seconds.
+        #
+        # @return [Jwt]
+        def create_jwt(user_id:, session_id: nil, duration: nil)
+            api_path = '/users/{userId}/jwts'
+                .gsub('{userId}', user_id)
+
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            api_params = {
+                sessionId: session_id,
+                duration: duration,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Jwt
+            )
+        end
+
+        
         # Update the user labels by its unique ID. 
         # 
         # Labels can be used to grant access to resources. While teams are a way for

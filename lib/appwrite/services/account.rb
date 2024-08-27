@@ -188,7 +188,7 @@ module Appwrite
         #
         # @return [Jwt]
         def create_jwt()
-            api_path = '/account/jwt'
+            api_path = '/account/jwts'
 
             api_params = {
             }
@@ -299,7 +299,7 @@ module Appwrite
         
         # Verify an authenticator app after adding it using the [add
         # authenticator](/docs/references/cloud/client-web/account#createMfaAuthenticator)
-        # method. add 
+        # method.
         #
         # @param [AuthenticatorType] type Type of authenticator.
         # @param [String] otp Valid verification token.
@@ -338,10 +338,9 @@ module Appwrite
         # Delete an authenticator for a user by ID.
         #
         # @param [AuthenticatorType] type Type of authenticator.
-        # @param [String] otp Valid verification token.
         #
         # @return []
-        def delete_mfa_authenticator(type:, otp:)
+        def delete_mfa_authenticator(type:)
             api_path = '/account/mfa/authenticators/{type}'
                 .gsub('{type}', type)
 
@@ -349,12 +348,7 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "type"')
             end
 
-            if otp.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "otp"')
-            end
-
             api_params = {
-                otp: otp,
             }
             
             api_headers = {

@@ -8,7 +8,7 @@
 
 **This SDK is compatible with Appwrite server version 1.6.x. For older versions, please check [previous releases](https://github.com/appwrite/sdk-for-ruby/releases).**
 
-Appwrite is an open-source backend as a service server that abstract and simplify complex and repetitive development tasks behind a very simple to use REST API. Appwrite aims to help you develop your apps faster and in a more secure way. Use the Ruby SDK to integrate your app with the Appwrite server to easily start interacting with all of Appwrite backend APIs and tools. For full API documentation and tutorials go to [https://appwrite.io/docs](https://appwrite.io/docs)
+Appwrite is an open-source backend as a service server that abstracts and simplifies complex and repetitive development tasks behind a very simple-to-use REST API. Appwrite aims to help you develop your apps faster and in a more secure way. Use the Ruby SDK to integrate your app with the Appwrite server to easily start interacting with all of the Appwrite backend APIs and tools. For full API documentation and tutorials go to [https://appwrite.io/docs](https://appwrite.io/docs)
 
 ![Appwrite](https://github.com/appwrite/appwrite/raw/main/public/images/github.png)
 
@@ -23,8 +23,8 @@ gem install appwrite
 
 ## Getting Started
 
-### Init your SDK
-Initialize your SDK with your Appwrite server API endpoint and project ID which can be found in your project settings page and your new API secret Key from project's API keys section.
+### Initialize your SDK
+Initialize your SDK with your Appwrite server API endpoint and project ID, which can be found on your project settings page, and your new API secret key from your project's API keys section.
 
 ```ruby
 require 'appwrite'
@@ -80,7 +80,7 @@ end
 ```
 
 ### Learn more
-You can use the following resources to learn more and get help
+You can use the following resources to learn more and get help:
 - 🚀 [Getting Started Tutorial](https://appwrite.io/docs/getting-started-for-server)
 - 📜 [Appwrite Docs](https://appwrite.io/docs)
 - 💬 [Discord Community](https://appwrite.io/discord)

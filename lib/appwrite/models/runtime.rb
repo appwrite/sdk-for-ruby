@@ -4,6 +4,7 @@ module Appwrite
     module Models
         class Runtime
             attr_reader :id
+            attr_reader :key
             attr_reader :name
             attr_reader :version
             attr_reader :base
@@ -13,6 +14,7 @@ module Appwrite
 
             def initialize(
                 id:,
+                key:,
                 name:,
                 version:,
                 base:,
@@ -21,6 +23,7 @@ module Appwrite
                 supports:
             )
                 @id = id
+                @key = key
                 @name = name
                 @version = version
                 @base = base
@@ -32,6 +35,7 @@ module Appwrite
             def self.from(map:)
                 Runtime.new(
                     id: map["$id"],
+                    key: map["key"],
                     name: map["name"],
                     version: map["version"],
                     base: map["base"],
@@ -44,6 +48,7 @@ module Appwrite
             def to_map
                 {
                     "$id": @id,
+                    "key": @key,
                     "name": @name,
                     "version": @version,
                     "base": @base,

@@ -13,6 +13,7 @@ module Appwrite
             attr_reader :logging
             attr_reader :runtime
             attr_reader :deployment
+            attr_reader :scopes
             attr_reader :vars
             attr_reader :events
             attr_reader :schedule
@@ -25,6 +26,7 @@ module Appwrite
             attr_reader :provider_branch
             attr_reader :provider_root_directory
             attr_reader :provider_silent_mode
+            attr_reader :specification
 
             def initialize(
                 id:,
@@ -37,6 +39,7 @@ module Appwrite
                 logging:,
                 runtime:,
                 deployment:,
+                scopes:,
                 vars:,
                 events:,
                 schedule:,
@@ -48,7 +51,8 @@ module Appwrite
                 provider_repository_id:,
                 provider_branch:,
                 provider_root_directory:,
-                provider_silent_mode:
+                provider_silent_mode:,
+                specification:
             )
                 @id = id
                 @created_at = created_at
@@ -60,6 +64,7 @@ module Appwrite
                 @logging = logging
                 @runtime = runtime
                 @deployment = deployment
+                @scopes = scopes
                 @vars = vars
                 @events = events
                 @schedule = schedule
@@ -72,6 +77,7 @@ module Appwrite
                 @provider_branch = provider_branch
                 @provider_root_directory = provider_root_directory
                 @provider_silent_mode = provider_silent_mode
+                @specification = specification
             end
 
             def self.from(map:)
@@ -86,6 +92,7 @@ module Appwrite
                     logging: map["logging"],
                     runtime: map["runtime"],
                     deployment: map["deployment"],
+                    scopes: map["scopes"],
                     vars: map["vars"].map { |it| Variable.from(map: it) },
                     events: map["events"],
                     schedule: map["schedule"],
@@ -97,7 +104,8 @@ module Appwrite
                     provider_repository_id: map["providerRepositoryId"],
                     provider_branch: map["providerBranch"],
                     provider_root_directory: map["providerRootDirectory"],
-                    provider_silent_mode: map["providerSilentMode"]
+                    provider_silent_mode: map["providerSilentMode"],
+                    specification: map["specification"]
                 )
             end
 
@@ -113,6 +121,7 @@ module Appwrite
                     "logging": @logging,
                     "runtime": @runtime,
                     "deployment": @deployment,
+                    "scopes": @scopes,
                     "vars": @vars.map { |it| it.to_map },
                     "events": @events,
                     "schedule": @schedule,
@@ -124,7 +133,8 @@ module Appwrite
                     "providerRepositoryId": @provider_repository_id,
                     "providerBranch": @provider_branch,
                     "providerRootDirectory": @provider_root_directory,
-                    "providerSilentMode": @provider_silent_mode
+                    "providerSilentMode": @provider_silent_mode,
+                    "specification": @specification
                 }
             end
         end

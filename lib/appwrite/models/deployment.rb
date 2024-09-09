@@ -11,6 +11,7 @@ module Appwrite
             attr_reader :resource_type
             attr_reader :entrypoint
             attr_reader :size
+            attr_reader :build_size
             attr_reader :build_id
             attr_reader :activate
             attr_reader :status
@@ -36,6 +37,7 @@ module Appwrite
                 resource_type:,
                 entrypoint:,
                 size:,
+                build_size:,
                 build_id:,
                 activate:,
                 status:,
@@ -60,6 +62,7 @@ module Appwrite
                 @resource_type = resource_type
                 @entrypoint = entrypoint
                 @size = size
+                @build_size = build_size
                 @build_id = build_id
                 @activate = activate
                 @status = status
@@ -87,6 +90,7 @@ module Appwrite
                     resource_type: map["resourceType"],
                     entrypoint: map["entrypoint"],
                     size: map["size"],
+                    build_size: map["buildSize"],
                     build_id: map["buildId"],
                     activate: map["activate"],
                     status: map["status"],
@@ -115,6 +119,7 @@ module Appwrite
                     "resourceType": @resource_type,
                     "entrypoint": @entrypoint,
                     "size": @size,
+                    "buildSize": @build_size,
                     "buildId": @build_id,
                     "activate": @activate,
                     "status": @status,

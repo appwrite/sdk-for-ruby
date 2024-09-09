@@ -480,9 +480,10 @@ module Appwrite
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
         # @param [] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        # @param [String] new_key New attribute key.
         #
         # @return [AttributeBoolean]
-        def update_boolean_attribute(database_id:, collection_id:, key:, required:, default:)
+        def update_boolean_attribute(database_id:, collection_id:, key:, required:, default:, new_key: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/boolean/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -511,6 +512,7 @@ module Appwrite
             api_params = {
                 required: required,
                 default: default,
+                newKey: new_key,
             }
             
             api_headers = {
@@ -587,9 +589,10 @@ module Appwrite
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
         # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        # @param [String] new_key New attribute key.
         #
         # @return [AttributeDatetime]
-        def update_datetime_attribute(database_id:, collection_id:, key:, required:, default:)
+        def update_datetime_attribute(database_id:, collection_id:, key:, required:, default:, new_key: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/datetime/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -618,6 +621,7 @@ module Appwrite
             api_params = {
                 required: required,
                 default: default,
+                newKey: new_key,
             }
             
             api_headers = {
@@ -696,9 +700,10 @@ module Appwrite
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
         # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        # @param [String] new_key New attribute key.
         #
         # @return [AttributeEmail]
-        def update_email_attribute(database_id:, collection_id:, key:, required:, default:)
+        def update_email_attribute(database_id:, collection_id:, key:, required:, default:, new_key: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/email/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -727,6 +732,7 @@ module Appwrite
             api_params = {
                 required: required,
                 default: default,
+                newKey: new_key,
             }
             
             api_headers = {
@@ -813,9 +819,10 @@ module Appwrite
         # @param [Array] elements Array of elements in enumerated type. Uses length of longest element to determine size. Maximum of 100 elements are allowed, each 255 characters long.
         # @param [] required Is attribute required?
         # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        # @param [String] new_key New attribute key.
         #
         # @return [AttributeEnum]
-        def update_enum_attribute(database_id:, collection_id:, key:, elements:, required:, default:)
+        def update_enum_attribute(database_id:, collection_id:, key:, elements:, required:, default:, new_key: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/enum/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -849,6 +856,7 @@ module Appwrite
                 elements: elements,
                 required: required,
                 default: default,
+                newKey: new_key,
             }
             
             api_headers = {
@@ -934,9 +942,10 @@ module Appwrite
         # @param [Float] min Minimum value to enforce on new documents
         # @param [Float] max Maximum value to enforce on new documents
         # @param [Float] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        # @param [String] new_key New attribute key.
         #
         # @return [AttributeFloat]
-        def update_float_attribute(database_id:, collection_id:, key:, required:, min:, max:, default:)
+        def update_float_attribute(database_id:, collection_id:, key:, required:, min:, max:, default:, new_key: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/float/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -975,6 +984,7 @@ module Appwrite
                 min: min,
                 max: max,
                 default: default,
+                newKey: new_key,
             }
             
             api_headers = {
@@ -1060,9 +1070,10 @@ module Appwrite
         # @param [Integer] min Minimum value to enforce on new documents
         # @param [Integer] max Maximum value to enforce on new documents
         # @param [Integer] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        # @param [String] new_key New attribute key.
         #
         # @return [AttributeInteger]
-        def update_integer_attribute(database_id:, collection_id:, key:, required:, min:, max:, default:)
+        def update_integer_attribute(database_id:, collection_id:, key:, required:, min:, max:, default:, new_key: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/integer/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -1101,6 +1112,7 @@ module Appwrite
                 min: min,
                 max: max,
                 default: default,
+                newKey: new_key,
             }
             
             api_headers = {
@@ -1179,9 +1191,10 @@ module Appwrite
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
         # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        # @param [String] new_key New attribute key.
         #
         # @return [AttributeIp]
-        def update_ip_attribute(database_id:, collection_id:, key:, required:, default:)
+        def update_ip_attribute(database_id:, collection_id:, key:, required:, default:, new_key: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/ip/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -1210,6 +1223,7 @@ module Appwrite
             api_params = {
                 required: required,
                 default: default,
+                newKey: new_key,
             }
             
             api_headers = {
@@ -1354,9 +1368,11 @@ module Appwrite
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
         # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        # @param [Integer] size Maximum size of the string attribute.
+        # @param [String] new_key New attribute key.
         #
         # @return [AttributeString]
-        def update_string_attribute(database_id:, collection_id:, key:, required:, default:)
+        def update_string_attribute(database_id:, collection_id:, key:, required:, default:, size: nil, new_key: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/string/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -1385,6 +1401,8 @@ module Appwrite
             api_params = {
                 required: required,
                 default: default,
+                size: size,
+                newKey: new_key,
             }
             
             api_headers = {
@@ -1463,9 +1481,10 @@ module Appwrite
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
         # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        # @param [String] new_key New attribute key.
         #
         # @return [AttributeUrl]
-        def update_url_attribute(database_id:, collection_id:, key:, required:, default:)
+        def update_url_attribute(database_id:, collection_id:, key:, required:, default:, new_key: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/url/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -1494,6 +1513,7 @@ module Appwrite
             api_params = {
                 required: required,
                 default: default,
+                newKey: new_key,
             }
             
             api_headers = {
@@ -1600,9 +1620,10 @@ module Appwrite
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
         # @param [String] key Attribute Key.
         # @param [RelationMutate] on_delete Constraints option
+        # @param [String] new_key New attribute key.
         #
         # @return [AttributeRelationship]
-        def update_relationship_attribute(database_id:, collection_id:, key:, on_delete: nil)
+        def update_relationship_attribute(database_id:, collection_id:, key:, on_delete: nil, new_key: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}/relationship'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -1622,6 +1643,7 @@ module Appwrite
 
             api_params = {
                 onDelete: on_delete,
+                newKey: new_key,
             }
             
             api_headers = {

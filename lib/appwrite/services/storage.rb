@@ -18,8 +18,8 @@ module Appwrite
             api_path = '/storage/buckets'
 
             api_params = {
-                queries: queries,
-                search: search,
+              queries: queries,
+              search: search,
             }
             
             api_headers = {
@@ -62,16 +62,16 @@ module Appwrite
             end
 
             api_params = {
-                bucketId: bucket_id,
-                name: name,
-                permissions: permissions,
-                fileSecurity: file_security,
-                enabled: enabled,
-                maximumFileSize: maximum_file_size,
-                allowedFileExtensions: allowed_file_extensions,
-                compression: compression,
-                encryption: encryption,
-                antivirus: antivirus,
+              bucketId: bucket_id,
+              name: name,
+              permissions: permissions,
+              fileSecurity: file_security,
+              enabled: enabled,
+              maximumFileSize: maximum_file_size,
+              allowedFileExtensions: allowed_file_extensions,
+              compression: compression,
+              encryption: encryption,
+              antivirus: antivirus,
             }
             
             api_headers = {
@@ -146,15 +146,15 @@ module Appwrite
             end
 
             api_params = {
-                name: name,
-                permissions: permissions,
-                fileSecurity: file_security,
-                enabled: enabled,
-                maximumFileSize: maximum_file_size,
-                allowedFileExtensions: allowed_file_extensions,
-                compression: compression,
-                encryption: encryption,
-                antivirus: antivirus,
+              name: name,
+              permissions: permissions,
+              fileSecurity: file_security,
+              enabled: enabled,
+              maximumFileSize: maximum_file_size,
+              allowedFileExtensions: allowed_file_extensions,
+              compression: compression,
+              encryption: encryption,
+              antivirus: antivirus,
             }
             
             api_headers = {
@@ -217,8 +217,8 @@ module Appwrite
             end
 
             api_params = {
-                queries: queries,
-                search: search,
+              queries: queries,
+              search: search,
             }
             
             api_headers = {
@@ -256,7 +256,7 @@ module Appwrite
         #
         # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket).
         # @param [String] file_id File ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
-        # @param [file] file Binary file. Appwrite SDKs provide helpers to handle file input. [Learn about file input](https://appwrite.io/docs/products/storage/upload-download#input-file).
+        # @param [Payload] file Binary file. Appwrite SDKs provide helpers to handle file input. [Learn about file input](https://appwrite.io/docs/products/storage/upload-download#input-file).
         # @param [Array] permissions An array of permission strings. By default, only the current user is granted all permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
         #
         # @return [File]
@@ -277,9 +277,9 @@ module Appwrite
             end
 
             api_params = {
-                fileId: file_id,
-                file: file,
-                permissions: permissions,
+              fileId: file_id,
+              file: file,
+              permissions: permissions,
             }
             
             api_headers = {
@@ -361,8 +361,8 @@ module Appwrite
             end
 
             api_params = {
-                name: name,
-                permissions: permissions,
+              name: name,
+              permissions: permissions,
             }
             
             api_headers = {
@@ -487,17 +487,17 @@ module Appwrite
             end
 
             api_params = {
-                width: width,
-                height: height,
-                gravity: gravity,
-                quality: quality,
-                borderWidth: border_width,
-                borderColor: border_color,
-                borderRadius: border_radius,
-                opacity: opacity,
-                rotation: rotation,
-                background: background,
-                output: output,
+              width: width,
+              height: height,
+              gravity: gravity,
+              quality: quality,
+              borderWidth: border_width,
+              borderColor: border_color,
+              borderRadius: border_radius,
+              opacity: opacity,
+              rotation: rotation,
+              background: background,
+              output: output,
             }
             
             api_headers = {

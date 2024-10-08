@@ -11,7 +11,7 @@ functions = Functions.new(client)
 
 result = functions.create_deployment(
     function_id: '<FUNCTION_ID>',
-    code: Payload.from_file('/path/to/file.png'),
+    code: InputFile.from_path('dir/file.png'),
     activate: false,
     entrypoint: '<ENTRYPOINT>', # optional
     commands: '<COMMANDS>' # optional

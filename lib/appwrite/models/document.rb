@@ -10,6 +10,7 @@ module Appwrite
             attr_reader :updated_at
             attr_reader :permissions
             attr_reader :data
+
             def initialize(
                 id:,
                 collection_id:,
@@ -17,14 +18,16 @@ module Appwrite
                 created_at:,
                 updated_at:,
                 permissions:,
-                data:            )
+                data:
+            )
                 @id = id
                 @collection_id = collection_id
                 @database_id = database_id
                 @created_at = created_at
                 @updated_at = updated_at
                 @permissions = permissions
-                @data = data            end
+                @data = data
+            end
 
             def self.from(map:)
                 Document.new(
@@ -34,7 +37,8 @@ module Appwrite
                     created_at: map["$createdAt"],
                     updated_at: map["$updatedAt"],
                     permissions: map["$permissions"],
-                    data: map                )
+                    data: map
+                )
             end
 
             def to_map
@@ -45,7 +49,8 @@ module Appwrite
                     "$createdAt": @created_at,
                     "$updatedAt": @updated_at,
                     "$permissions": @permissions,
-                    "data": @data                }
+                    "data": @data
+                }
             end
 
             def convert_to(from_json)

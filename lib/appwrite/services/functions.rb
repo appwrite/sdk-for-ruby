@@ -18,8 +18,8 @@ module Appwrite
             api_path = '/functions'
 
             api_params = {
-              queries: queries,
-              search: search,
+                queries: queries,
+                search: search,
             }
             
             api_headers = {
@@ -81,28 +81,28 @@ module Appwrite
             end
 
             api_params = {
-              functionId: function_id,
-              name: name,
-              runtime: runtime,
-              execute: execute,
-              events: events,
-              schedule: schedule,
-              timeout: timeout,
-              enabled: enabled,
-              logging: logging,
-              entrypoint: entrypoint,
-              commands: commands,
-              scopes: scopes,
-              installationId: installation_id,
-              providerRepositoryId: provider_repository_id,
-              providerBranch: provider_branch,
-              providerSilentMode: provider_silent_mode,
-              providerRootDirectory: provider_root_directory,
-              templateRepository: template_repository,
-              templateOwner: template_owner,
-              templateRootDirectory: template_root_directory,
-              templateVersion: template_version,
-              specification: specification,
+                functionId: function_id,
+                name: name,
+                runtime: runtime,
+                execute: execute,
+                events: events,
+                schedule: schedule,
+                timeout: timeout,
+                enabled: enabled,
+                logging: logging,
+                entrypoint: entrypoint,
+                commands: commands,
+                scopes: scopes,
+                installationId: installation_id,
+                providerRepositoryId: provider_repository_id,
+                providerBranch: provider_branch,
+                providerSilentMode: provider_silent_mode,
+                providerRootDirectory: provider_root_directory,
+                templateRepository: template_repository,
+                templateOwner: template_owner,
+                templateRootDirectory: template_root_directory,
+                templateVersion: template_version,
+                specification: specification,
             }
             
             api_headers = {
@@ -233,23 +233,23 @@ module Appwrite
             end
 
             api_params = {
-              name: name,
-              runtime: runtime,
-              execute: execute,
-              events: events,
-              schedule: schedule,
-              timeout: timeout,
-              enabled: enabled,
-              logging: logging,
-              entrypoint: entrypoint,
-              commands: commands,
-              scopes: scopes,
-              installationId: installation_id,
-              providerRepositoryId: provider_repository_id,
-              providerBranch: provider_branch,
-              providerSilentMode: provider_silent_mode,
-              providerRootDirectory: provider_root_directory,
-              specification: specification,
+                name: name,
+                runtime: runtime,
+                execute: execute,
+                events: events,
+                schedule: schedule,
+                timeout: timeout,
+                enabled: enabled,
+                logging: logging,
+                entrypoint: entrypoint,
+                commands: commands,
+                scopes: scopes,
+                installationId: installation_id,
+                providerRepositoryId: provider_repository_id,
+                providerBranch: provider_branch,
+                providerSilentMode: provider_silent_mode,
+                providerRootDirectory: provider_root_directory,
+                specification: specification,
             }
             
             api_headers = {
@@ -312,8 +312,8 @@ module Appwrite
             end
 
             api_params = {
-              queries: queries,
-              search: search,
+                queries: queries,
+                search: search,
             }
             
             api_headers = {
@@ -342,7 +342,7 @@ module Appwrite
         # Use the "command" param to set the entrypoint used to execute your code.
         #
         # @param [String] function_id Function ID.
-        # @param [Payload] code Gzip file with your code package. When used with the Appwrite CLI, pass the path to your code directory, and the CLI will automatically package your code. Use a path that is within the current directory.
+        # @param [file] code Gzip file with your code package. When used with the Appwrite CLI, pass the path to your code directory, and the CLI will automatically package your code. Use a path that is within the current directory.
         # @param [] activate Automatically activate the deployment when it is finished building.
         # @param [String] entrypoint Entrypoint File.
         # @param [String] commands Build Commands.
@@ -365,10 +365,10 @@ module Appwrite
             end
 
             api_params = {
-              entrypoint: entrypoint,
-              commands: commands,
-              code: code,
-              activate: activate,
+                entrypoint: entrypoint,
+                commands: commands,
+                code: code,
+                activate: activate,
             }
             
             api_headers = {
@@ -520,7 +520,7 @@ module Appwrite
             end
 
             api_params = {
-              buildId: build_id,
+                buildId: build_id,
             }
             
             api_headers = {
@@ -625,8 +625,8 @@ module Appwrite
             end
 
             api_params = {
-              queries: queries,
-              search: search,
+                queries: queries,
+                search: search,
             }
             
             api_headers = {
@@ -649,7 +649,7 @@ module Appwrite
         # function execution process will start asynchronously.
         #
         # @param [String] function_id Function ID.
-        # @param [Payload] body HTTP body of execution. Default value is empty string.
+        # @param [payload] body HTTP body of execution. Default value is empty string.
         # @param [] async Execute code in the background. Default value is false.
         # @param [String] xpath HTTP path of execution. Path can include query params. Default value is /
         # @param [ExecutionMethod] method HTTP method of execution. Default value is GET.
@@ -666,23 +666,26 @@ module Appwrite
             end
 
             api_params = {
-              body: body,
-              async: async,
-              path: xpath,
-              method: method,
-              headers: headers,
-              scheduledAt: scheduled_at,
+                body: body,
+                async: async,
+                path: xpath,
+                method: method,
+                headers: headers,
+                scheduledAt: scheduled_at,
             }
             
             api_headers = {
                 "content-type": 'multipart/form-data',
             }
 
-            @client.call(
-                method: 'POST',
+            id_param_name = nil
+            @client.chunked_upload(
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
+                param_name: param_name,
+                id_param_name: id_param_name,
+                on_progress: on_progress,
                 response_type: Models::Execution
             )
         end
@@ -815,8 +818,8 @@ module Appwrite
             end
 
             api_params = {
-              key: key,
-              value: value,
+                key: key,
+                value: value,
             }
             
             api_headers = {
@@ -895,8 +898,8 @@ module Appwrite
             end
 
             api_params = {
-              key: key,
-              value: value,
+                key: key,
+                value: value,
             }
             
             api_headers = {

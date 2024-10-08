@@ -89,7 +89,7 @@ module Appwrite
             api_path = '/health/certificate'
 
             api_params = {
-              domain: domain,
+                domain: domain,
             }
             
             api_headers = {
@@ -189,7 +189,7 @@ module Appwrite
             api_path = '/health/queue/builds'
 
             api_params = {
-              threshold: threshold,
+                threshold: threshold,
             }
             
             api_headers = {
@@ -217,7 +217,7 @@ module Appwrite
             api_path = '/health/queue/certificates'
 
             api_params = {
-              threshold: threshold,
+                threshold: threshold,
             }
             
             api_headers = {
@@ -245,8 +245,8 @@ module Appwrite
             api_path = '/health/queue/databases'
 
             api_params = {
-              name: name,
-              threshold: threshold,
+                name: name,
+                threshold: threshold,
             }
             
             api_headers = {
@@ -273,7 +273,7 @@ module Appwrite
             api_path = '/health/queue/deletes'
 
             api_params = {
-              threshold: threshold,
+                threshold: threshold,
             }
             
             api_headers = {
@@ -306,7 +306,7 @@ module Appwrite
             end
 
             api_params = {
-              threshold: threshold,
+                threshold: threshold,
             }
             
             api_headers = {
@@ -333,7 +333,7 @@ module Appwrite
             api_path = '/health/queue/functions'
 
             api_params = {
-              threshold: threshold,
+                threshold: threshold,
             }
             
             api_headers = {
@@ -360,7 +360,7 @@ module Appwrite
             api_path = '/health/queue/logs'
 
             api_params = {
-              threshold: threshold,
+                threshold: threshold,
             }
             
             api_headers = {
@@ -387,7 +387,7 @@ module Appwrite
             api_path = '/health/queue/mails'
 
             api_params = {
-              threshold: threshold,
+                threshold: threshold,
             }
             
             api_headers = {
@@ -414,7 +414,7 @@ module Appwrite
             api_path = '/health/queue/messaging'
 
             api_params = {
-              threshold: threshold,
+                threshold: threshold,
             }
             
             api_headers = {
@@ -441,7 +441,7 @@ module Appwrite
             api_path = '/health/queue/migrations'
 
             api_params = {
-              threshold: threshold,
+                threshold: threshold,
             }
             
             api_headers = {
@@ -468,7 +468,7 @@ module Appwrite
             api_path = '/health/queue/usage'
 
             api_params = {
-              threshold: threshold,
+                threshold: threshold,
             }
             
             api_headers = {
@@ -495,7 +495,7 @@ module Appwrite
             api_path = '/health/queue/usage-dump'
 
             api_params = {
-              threshold: threshold,
+                threshold: threshold,
             }
             
             api_headers = {
@@ -522,7 +522,7 @@ module Appwrite
             api_path = '/health/queue/webhooks'
 
             api_params = {
-              threshold: threshold,
+                threshold: threshold,
             }
             
             api_headers = {

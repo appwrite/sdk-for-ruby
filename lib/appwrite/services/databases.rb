@@ -18,8 +18,8 @@ module Appwrite
             api_path = '/databases'
 
             api_params = {
-                queries: queries,
-                search: search,
+              queries: queries,
+              search: search,
             }
             
             api_headers = {
@@ -56,9 +56,9 @@ module Appwrite
             end
 
             api_params = {
-                databaseId: database_id,
-                name: name,
-                enabled: enabled,
+              databaseId: database_id,
+              name: name,
+              enabled: enabled,
             }
             
             api_headers = {
@@ -126,8 +126,8 @@ module Appwrite
             end
 
             api_params = {
-                name: name,
-                enabled: enabled,
+              name: name,
+              enabled: enabled,
             }
             
             api_headers = {
@@ -191,8 +191,8 @@ module Appwrite
             end
 
             api_params = {
-                queries: queries,
-                search: search,
+              queries: queries,
+              search: search,
             }
             
             api_headers = {
@@ -239,11 +239,11 @@ module Appwrite
             end
 
             api_params = {
-                collectionId: collection_id,
-                name: name,
-                permissions: permissions,
-                documentSecurity: document_security,
-                enabled: enabled,
+              collectionId: collection_id,
+              name: name,
+              permissions: permissions,
+              documentSecurity: document_security,
+              enabled: enabled,
             }
             
             api_headers = {
@@ -325,10 +325,10 @@ module Appwrite
             end
 
             api_params = {
-                name: name,
-                permissions: permissions,
-                documentSecurity: document_security,
-                enabled: enabled,
+              name: name,
+              permissions: permissions,
+              documentSecurity: document_security,
+              enabled: enabled,
             }
             
             api_headers = {
@@ -402,7 +402,7 @@ module Appwrite
             end
 
             api_params = {
-                queries: queries,
+              queries: queries,
             }
             
             api_headers = {
@@ -452,10 +452,10 @@ module Appwrite
             end
 
             api_params = {
-                key: key,
-                required: required,
-                default: default,
-                array: array,
+              key: key,
+              required: required,
+              default: default,
+              array: array,
             }
             
             api_headers = {
@@ -510,9 +510,9 @@ module Appwrite
             end
 
             api_params = {
-                required: required,
-                default: default,
-                newKey: new_key,
+              required: required,
+              default: default,
+              newKey: new_key,
             }
             
             api_headers = {
@@ -561,10 +561,10 @@ module Appwrite
             end
 
             api_params = {
-                key: key,
-                required: required,
-                default: default,
-                array: array,
+              key: key,
+              required: required,
+              default: default,
+              array: array,
             }
             
             api_headers = {
@@ -619,9 +619,9 @@ module Appwrite
             end
 
             api_params = {
-                required: required,
-                default: default,
-                newKey: new_key,
+              required: required,
+              default: default,
+              newKey: new_key,
             }
             
             api_headers = {
@@ -671,10 +671,10 @@ module Appwrite
             end
 
             api_params = {
-                key: key,
-                required: required,
-                default: default,
-                array: array,
+              key: key,
+              required: required,
+              default: default,
+              array: array,
             }
             
             api_headers = {
@@ -730,9 +730,9 @@ module Appwrite
             end
 
             api_params = {
-                required: required,
-                default: default,
-                newKey: new_key,
+              required: required,
+              default: default,
+              newKey: new_key,
             }
             
             api_headers = {
@@ -788,11 +788,11 @@ module Appwrite
             end
 
             api_params = {
-                key: key,
-                elements: elements,
-                required: required,
-                default: default,
-                array: array,
+              key: key,
+              elements: elements,
+              required: required,
+              default: default,
+              array: array,
             }
             
             api_headers = {
@@ -853,10 +853,10 @@ module Appwrite
             end
 
             api_params = {
-                elements: elements,
-                required: required,
-                default: default,
-                newKey: new_key,
+              elements: elements,
+              required: required,
+              default: default,
+              newKey: new_key,
             }
             
             api_headers = {
@@ -909,12 +909,12 @@ module Appwrite
             end
 
             api_params = {
-                key: key,
-                required: required,
-                min: min,
-                max: max,
-                default: default,
-                array: array,
+              key: key,
+              required: required,
+              min: min,
+              max: max,
+              default: default,
+              array: array,
             }
             
             api_headers = {
@@ -980,11 +980,11 @@ module Appwrite
             end
 
             api_params = {
-                required: required,
-                min: min,
-                max: max,
-                default: default,
-                newKey: new_key,
+              required: required,
+              min: min,
+              max: max,
+              default: default,
+              newKey: new_key,
             }
             
             api_headers = {
@@ -1037,12 +1037,12 @@ module Appwrite
             end
 
             api_params = {
-                key: key,
-                required: required,
-                min: min,
-                max: max,
-                default: default,
-                array: array,
+              key: key,
+              required: required,
+              min: min,
+              max: max,
+              default: default,
+              array: array,
             }
             
             api_headers = {
@@ -1108,11 +1108,11 @@ module Appwrite
             end
 
             api_params = {
-                required: required,
-                min: min,
-                max: max,
-                default: default,
-                newKey: new_key,
+              required: required,
+              min: min,
+              max: max,
+              default: default,
+              newKey: new_key,
             }
             
             api_headers = {
@@ -1162,10 +1162,10 @@ module Appwrite
             end
 
             api_params = {
-                key: key,
-                required: required,
-                default: default,
-                array: array,
+              key: key,
+              required: required,
+              default: default,
+              array: array,
             }
             
             api_headers = {
@@ -1221,9 +1221,9 @@ module Appwrite
             end
 
             api_params = {
-                required: required,
-                default: default,
-                newKey: new_key,
+              required: required,
+              default: default,
+              newKey: new_key,
             }
             
             api_headers = {
@@ -1276,12 +1276,12 @@ module Appwrite
             end
 
             api_params = {
-                relatedCollectionId: related_collection_id,
-                type: type,
-                twoWay: two_way,
-                key: key,
-                twoWayKey: two_way_key,
-                onDelete: on_delete,
+              relatedCollectionId: related_collection_id,
+              type: type,
+              twoWay: two_way,
+              key: key,
+              twoWayKey: two_way_key,
+              onDelete: on_delete,
             }
             
             api_headers = {
@@ -1337,12 +1337,12 @@ module Appwrite
             end
 
             api_params = {
-                key: key,
-                size: size,
-                required: required,
-                default: default,
-                array: array,
-                encrypt: encrypt,
+              key: key,
+              size: size,
+              required: required,
+              default: default,
+              array: array,
+              encrypt: encrypt,
             }
             
             api_headers = {
@@ -1399,10 +1399,10 @@ module Appwrite
             end
 
             api_params = {
-                required: required,
-                default: default,
-                size: size,
-                newKey: new_key,
+              required: required,
+              default: default,
+              size: size,
+              newKey: new_key,
             }
             
             api_headers = {
@@ -1452,10 +1452,10 @@ module Appwrite
             end
 
             api_params = {
-                key: key,
-                required: required,
-                default: default,
-                array: array,
+              key: key,
+              required: required,
+              default: default,
+              array: array,
             }
             
             api_headers = {
@@ -1511,9 +1511,9 @@ module Appwrite
             end
 
             api_params = {
-                required: required,
-                default: default,
-                newKey: new_key,
+              required: required,
+              default: default,
+              newKey: new_key,
             }
             
             api_headers = {
@@ -1642,8 +1642,8 @@ module Appwrite
             end
 
             api_params = {
-                onDelete: on_delete,
-                newKey: new_key,
+              onDelete: on_delete,
+              newKey: new_key,
             }
             
             api_headers = {
@@ -1682,7 +1682,7 @@ module Appwrite
             end
 
             api_params = {
-                queries: queries,
+              queries: queries,
             }
             
             api_headers = {
@@ -1733,9 +1733,9 @@ module Appwrite
             end
 
             api_params = {
-                documentId: document_id,
-                data: data,
-                permissions: permissions,
+              documentId: document_id,
+              data: data,
+              permissions: permissions,
             }
             
             api_headers = {
@@ -1780,7 +1780,7 @@ module Appwrite
             end
 
             api_params = {
-                queries: queries,
+              queries: queries,
             }
             
             api_headers = {
@@ -1826,8 +1826,8 @@ module Appwrite
             end
 
             api_params = {
-                data: data,
-                permissions: permissions,
+              data: data,
+              permissions: permissions,
             }
             
             api_headers = {
@@ -1906,7 +1906,7 @@ module Appwrite
             end
 
             api_params = {
-                queries: queries,
+              queries: queries,
             }
             
             api_headers = {
@@ -1961,10 +1961,10 @@ module Appwrite
             end
 
             api_params = {
-                key: key,
-                type: type,
-                attributes: attributes,
-                orders: orders,
+              key: key,
+              type: type,
+              attributes: attributes,
+              orders: orders,
             }
             
             api_headers = {

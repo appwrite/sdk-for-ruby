@@ -18,8 +18,8 @@ module Appwrite
             api_path = '/teams'
 
             api_params = {
-                queries: queries,
-                search: search,
+              queries: queries,
+              search: search,
             }
             
             api_headers = {
@@ -57,9 +57,9 @@ module Appwrite
             end
 
             api_params = {
-                teamId: team_id,
-                name: name,
-                roles: roles,
+              teamId: team_id,
+              name: name,
+              roles: roles,
             }
             
             api_headers = {
@@ -125,7 +125,7 @@ module Appwrite
             end
 
             api_params = {
-                name: name,
+              name: name,
             }
             
             api_headers = {
@@ -189,8 +189,8 @@ module Appwrite
             end
 
             api_params = {
-                queries: queries,
-                search: search,
+              queries: queries,
+              search: search,
             }
             
             api_headers = {
@@ -251,12 +251,12 @@ module Appwrite
             end
 
             api_params = {
-                email: email,
-                userId: user_id,
-                phone: phone,
-                roles: roles,
-                url: url,
-                name: name,
+              email: email,
+              userId: user_id,
+              phone: phone,
+              roles: roles,
+              url: url,
+              name: name,
             }
             
             api_headers = {
@@ -338,7 +338,7 @@ module Appwrite
             end
 
             api_params = {
-                roles: roles,
+              roles: roles,
             }
             
             api_headers = {
@@ -428,8 +428,8 @@ module Appwrite
             end
 
             api_params = {
-                userId: user_id,
-                secret: secret,
+              userId: user_id,
+              secret: secret,
             }
             
             api_headers = {
@@ -499,7 +499,7 @@ module Appwrite
             end
 
             api_params = {
-                prefs: prefs,
+              prefs: prefs,
             }
             
             api_headers = {

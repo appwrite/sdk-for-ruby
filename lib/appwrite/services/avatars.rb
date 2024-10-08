@@ -33,9 +33,9 @@ module Appwrite
             end
 
             api_params = {
-                width: width,
-                height: height,
-                quality: quality,
+              width: width,
+              height: height,
+              quality: quality,
             }
             
             api_headers = {
@@ -76,9 +76,9 @@ module Appwrite
             end
 
             api_params = {
-                width: width,
-                height: height,
-                quality: quality,
+              width: width,
+              height: height,
+              quality: quality,
             }
             
             api_headers = {
@@ -110,7 +110,7 @@ module Appwrite
             end
 
             api_params = {
-                url: url,
+              url: url,
             }
             
             api_headers = {
@@ -152,9 +152,9 @@ module Appwrite
             end
 
             api_params = {
-                width: width,
-                height: height,
-                quality: quality,
+              width: width,
+              height: height,
+              quality: quality,
             }
             
             api_headers = {
@@ -195,9 +195,9 @@ module Appwrite
             end
 
             api_params = {
-                url: url,
-                width: width,
-                height: height,
+              url: url,
+              width: width,
+              height: height,
             }
             
             api_headers = {
@@ -240,10 +240,10 @@ module Appwrite
             api_path = '/avatars/initials'
 
             api_params = {
-                name: name,
-                width: width,
-                height: height,
-                background: background,
+              name: name,
+              width: width,
+              height: height,
+              background: background,
             }
             
             api_headers = {
@@ -277,10 +277,10 @@ module Appwrite
             end
 
             api_params = {
-                text: text,
-                size: size,
-                margin: margin,
-                download: download,
+              text: text,
+              size: size,
+              margin: margin,
+              download: download,
             }
             
             api_headers = {

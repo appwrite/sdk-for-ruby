@@ -11,7 +11,7 @@ functions = Functions.new(client)
 
 result = functions.create_execution(
     function_id: '<FUNCTION_ID>',
-    body: , # optional
+    body: Payload.from_json({ "x": "y" }), # optional
     async: false, # optional
     path: '<PATH>', # optional
     method: ExecutionMethod::GET, # optional

@@ -9,6 +9,8 @@ module Appwrite
             attr_reader :error
             attr_reader :required
             attr_reader :array
+            attr_reader :created_at
+            attr_reader :updated_at
             attr_reader :size
             attr_reader :default
 
@@ -19,6 +21,8 @@ module Appwrite
                 error:,
                 required:,
                 array: ,
+                created_at:,
+                updated_at:,
                 size:,
                 default: 
             )
@@ -28,6 +32,8 @@ module Appwrite
                 @error = error
                 @required = required
                 @array = array
+                @created_at = created_at
+                @updated_at = updated_at
                 @size = size
                 @default = default
             end
@@ -40,6 +46,8 @@ module Appwrite
                     error: map["error"],
                     required: map["required"],
                     array: map["array"],
+                    created_at: map["$createdAt"],
+                    updated_at: map["$updatedAt"],
                     size: map["size"],
                     default: map["default"]
                 )
@@ -53,6 +61,8 @@ module Appwrite
                     "error": @error,
                     "required": @required,
                     "array": @array,
+                    "$createdAt": @created_at,
+                    "$updatedAt": @updated_at,
                     "size": @size,
                     "default": @default
                 }

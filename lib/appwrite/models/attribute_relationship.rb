@@ -9,6 +9,8 @@ module Appwrite
             attr_reader :error
             attr_reader :required
             attr_reader :array
+            attr_reader :created_at
+            attr_reader :updated_at
             attr_reader :related_collection
             attr_reader :relation_type
             attr_reader :two_way
@@ -23,6 +25,8 @@ module Appwrite
                 error:,
                 required:,
                 array: ,
+                created_at:,
+                updated_at:,
                 related_collection:,
                 relation_type:,
                 two_way:,
@@ -36,6 +40,8 @@ module Appwrite
                 @error = error
                 @required = required
                 @array = array
+                @created_at = created_at
+                @updated_at = updated_at
                 @related_collection = related_collection
                 @relation_type = relation_type
                 @two_way = two_way
@@ -52,6 +58,8 @@ module Appwrite
                     error: map["error"],
                     required: map["required"],
                     array: map["array"],
+                    created_at: map["$createdAt"],
+                    updated_at: map["$updatedAt"],
                     related_collection: map["relatedCollection"],
                     relation_type: map["relationType"],
                     two_way: map["twoWay"],
@@ -69,6 +77,8 @@ module Appwrite
                     "error": @error,
                     "required": @required,
                     "array": @array,
+                    "$createdAt": @created_at,
+                    "$updatedAt": @updated_at,
                     "relatedCollection": @related_collection,
                     "relationType": @relation_type,
                     "twoWay": @two_way,

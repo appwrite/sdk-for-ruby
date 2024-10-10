@@ -15,17 +15,17 @@ module Appwrite
                 'x-sdk-name'=> 'Ruby',
                 'x-sdk-platform'=> 'server',
                 'x-sdk-language'=> 'ruby',
-                'x-sdk-version'=> '12.1.1',                
-                'X-Appwrite-Response-Format' => '1.6.0'
+                'x-sdk-version'=> '13.0.0',
+                'X-Appwrite-Response-Format' => '1.6.0'            
             }
+
             @endpoint = 'https://cloud.appwrite.io/v1'
         end
 
         # Set Project
         #
         # Your project ID
-        #
-        # @param [String] value The value to set for the Project header
+        #        # @param [String] value The value to set for the Project header
         #
         # @return [self]
         def set_project(value)
@@ -37,8 +37,7 @@ module Appwrite
         # Set Key
         #
         # Your secret API key
-        #
-        # @param [String] value The value to set for the Key header
+        #        # @param [String] value The value to set for the Key header
         #
         # @return [self]
         def set_key(value)
@@ -50,8 +49,7 @@ module Appwrite
         # Set JWT
         #
         # Your secret JSON Web Token
-        #
-        # @param [String] value The value to set for the JWT header
+        #        # @param [String] value The value to set for the JWT header
         #
         # @return [self]
         def set_jwt(value)
@@ -74,8 +72,7 @@ module Appwrite
         # Set Session
         #
         # The user session to authenticate with
-        #
-        # @param [String] value The value to set for the Session header
+        #        # @param [String] value The value to set for the Session header
         #
         # @return [self]
         def set_session(value)
@@ -87,8 +84,7 @@ module Appwrite
         # Set ForwardedUserAgent
         #
         # The user agent string of the client that made the request
-        #
-        # @param [String] value The value to set for the ForwardedUserAgent header
+        #        # @param [String] value The value to set for the ForwardedUserAgent header
         #
         # @return [self]
         def set_forwarded_user_agent(value)
@@ -118,7 +114,6 @@ module Appwrite
 
             self
         end
-
 
         # Add Header
         #
@@ -162,20 +157,9 @@ module Appwrite
             on_progress: nil,
             response_type: nil
         )
-            input_file = params[param_name.to_sym]
+            payload = params[param_name.to_sym]
 
-            case input_file.source_type
-            when 'path'
-                size = ::File.size(input_file.path)
-            when 'string'
-                size = input_file.data.bytesize
-            end
-
-            if size < @chunk_size
-                if input_file.source_type == 'path'
-                    input_file.data = IO.read(input_file.path)
-                end
-                params[param_name.to_sym] = input_file
+            if payload.size < @chunk_size
                 return call(
                     method: 'POST',
                     path: path,
@@ -199,21 +183,13 @@ module Appwrite
                 offset = chunks_uploaded * @chunk_size
             end
 
-            while offset < size
-                case input_file.source_type
-                when 'path'
-                    string = IO.read(input_file.path, @chunk_size, offset)
-                when 'string'
-                    string = input_file.data.byteslice(offset, [@chunk_size, size - offset].min)
-                end
-
-                params[param_name.to_sym] = InputFile::from_string(
-                    string,
-                    filename: input_file.filename,
-                    mime_type: input_file.mime_type
+            while offset < payload.size
+                params[param_name.to_sym] = Payload.from_binary(
+                    payload.to_binary(offset, [@chunk_size, payload.size - offset].min),
+                    filename: payload.filename
                 )
 
-                headers['content-range'] = "bytes #{offset}-#{[offset + @chunk_size - 1, size - 1].min}/#{size}"
+                headers['content-range'] = "bytes #{offset}-#{[offset + @chunk_size - 1, payload.size - 1].min}/#{payload.size}"
 
                 result = call(
                     method: 'POST',
@@ -230,8 +206,8 @@ module Appwrite
 
                 on_progress.call({
                     id: result['$id'],
-                    progress: ([offset, size].min).to_f/size.to_f * 100.0,
-                    size_uploaded: [offset, size].min,
+                    progress: ([offset, payload.size].min).to_f/payload.size.to_f * 100.0,
+                    size_uploaded: [offset, payload.size].min,
                     chunks_total: result['chunksTotal'],
                     chunks_uploaded: result['chunksUploaded']
                 }) unless on_progress.nil?
@@ -258,18 +234,27 @@ module Appwrite
             @http.use_ssl = !@self_signed
             payload = ''
             
-            headers = @headers.merge(headers)
+            headers = @headers.merge(headers.transform_keys(&:to_s))
 
             params.compact!
 
-            @boundary = "----A30#3ad1"
             if method != "GET"
-                case headers[:'content-type']
+                case headers['content-type']
                     when 'application/json'
                         payload = params.to_json
                     when 'multipart/form-data'
-                        payload = encode_form_data(params) + "--#{@boundary}--\r\n"
-                        headers[:'content-type'] = "multipart/form-data; boundary=#{@boundary}"
+                        multipart = MultipartBuilder.new()
+                        
+                        params.each do |name, value|
+                            if value.is_a?(Payload)
+                                multipart.add(name, value.to_s, filename: value.filename)
+                            else
+                                multipart.add(name, value)
+                            end
+                        end
+
+                        headers['content-type'] = multipart.content_type
+                        payload = multipart.body
                     else
                         payload = encode(params)
                 end
@@ -299,7 +284,7 @@ module Appwrite
                 return fetch(method, uri, headers, {}, response_type, limit - 1)
             end
 
-            if response.content_type == 'application/json'
+            if response.content_type.start_with?('application/json')
                 begin
                     result = JSON.parse(response.body)
                 rescue JSON::ParserError => e
@@ -310,48 +295,33 @@ module Appwrite
                     raise Appwrite::Exception.new(result['message'], result['status'], result['type'], result)
                 end
 
-                unless response_type.respond_to?("from")
-                    return result
+                if response_type.respond_to?("from")
+                    return response_type.from(map: result)
                 end
 
-                return response_type.from(map: result)
+                return result
             end
 
             if response.code.to_i >= 400
                 raise Appwrite::Exception.new(response.body, response.code, response)
             end
 
-            if response.respond_to?("body_permitted?")
-                return response.body if response.body_permitted?
+            if response.content_type.start_with?('multipart/form-data')
+                multipart = MultipartParser.new(response.body, response['content-type'])
+                result = multipart.to_hash
+
+                if response_type.respond_to?("from")
+                    return response_type.from(map: result)
+                end
+                
+                return result
+            end
+
+            if response.class.body_permitted?
+                return response.body
             end
 
             return response
-        end
-        
-        def encode_form_data(value, key=nil)
-            case value
-            when Hash
-                value.map { |k,v| encode_form_data(v,k) }.join
-            when Array
-                value.map { |v| encode_form_data(v, "#{key}[]") }.join
-            when nil
-                ''
-            else
-                post_body = []
-                if value.instance_of? InputFile
-                    post_body << "--#{@boundary}"
-                    post_body << "Content-Disposition: form-data; name=\"#{key}\"; filename=\"#{value.filename}\""
-                    post_body << "Content-Type: #{value.mime_type}"
-                    post_body << ""
-                    post_body << value.data
-                else
-                    post_body << "--#{@boundary}"
-                    post_body << "Content-Disposition: form-data; name=\"#{key}\""
-                    post_body << ""
-                    post_body << value.to_s
-                end
-                post_body.join("\r\n") + "\r\n"
-            end
         end
 
         def encode(value, key = nil)

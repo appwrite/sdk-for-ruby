@@ -20,7 +20,7 @@ module Appwrite
             end
 
             api_params = {
-              query: query,
+                query: query,
             }
             
             api_headers = {
@@ -50,7 +50,7 @@ module Appwrite
             end
 
             api_params = {
-              query: query,
+                query: query,
             }
             
             api_headers = {

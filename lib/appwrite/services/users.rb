@@ -18,8 +18,8 @@ module Appwrite
             api_path = '/users'
 
             api_params = {
-              queries: queries,
-              search: search,
+                queries: queries,
+                search: search,
             }
             
             api_headers = {
@@ -53,11 +53,11 @@ module Appwrite
             end
 
             api_params = {
-              userId: user_id,
-              email: email,
-              phone: phone,
-              password: password,
-              name: name,
+                userId: user_id,
+                email: email,
+                phone: phone,
+                password: password,
+                name: name,
             }
             
             api_headers = {
@@ -101,10 +101,10 @@ module Appwrite
             end
 
             api_params = {
-              userId: user_id,
-              email: email,
-              password: password,
-              name: name,
+                userId: user_id,
+                email: email,
+                password: password,
+                name: name,
             }
             
             api_headers = {
@@ -148,10 +148,10 @@ module Appwrite
             end
 
             api_params = {
-              userId: user_id,
-              email: email,
-              password: password,
-              name: name,
+                userId: user_id,
+                email: email,
+                password: password,
+                name: name,
             }
             
             api_headers = {
@@ -178,8 +178,8 @@ module Appwrite
             api_path = '/users/identities'
 
             api_params = {
-              queries: queries,
-              search: search,
+                queries: queries,
+                search: search,
             }
             
             api_headers = {
@@ -252,10 +252,10 @@ module Appwrite
             end
 
             api_params = {
-              userId: user_id,
-              email: email,
-              password: password,
-              name: name,
+                userId: user_id,
+                email: email,
+                password: password,
+                name: name,
             }
             
             api_headers = {
@@ -299,10 +299,10 @@ module Appwrite
             end
 
             api_params = {
-              userId: user_id,
-              email: email,
-              password: password,
-              name: name,
+                userId: user_id,
+                email: email,
+                password: password,
+                name: name,
             }
             
             api_headers = {
@@ -371,15 +371,15 @@ module Appwrite
             end
 
             api_params = {
-              userId: user_id,
-              email: email,
-              password: password,
-              passwordSalt: password_salt,
-              passwordCpu: password_cpu,
-              passwordMemory: password_memory,
-              passwordParallel: password_parallel,
-              passwordLength: password_length,
-              name: name,
+                userId: user_id,
+                email: email,
+                password: password,
+                passwordSalt: password_salt,
+                passwordCpu: password_cpu,
+                passwordMemory: password_memory,
+                passwordParallel: password_parallel,
+                passwordLength: password_length,
+                name: name,
             }
             
             api_headers = {
@@ -439,13 +439,13 @@ module Appwrite
             end
 
             api_params = {
-              userId: user_id,
-              email: email,
-              password: password,
-              passwordSalt: password_salt,
-              passwordSaltSeparator: password_salt_separator,
-              passwordSignerKey: password_signer_key,
-              name: name,
+                userId: user_id,
+                email: email,
+                password: password,
+                passwordSalt: password_salt,
+                passwordSaltSeparator: password_salt_separator,
+                passwordSignerKey: password_signer_key,
+                name: name,
             }
             
             api_headers = {
@@ -490,11 +490,11 @@ module Appwrite
             end
 
             api_params = {
-              userId: user_id,
-              email: email,
-              password: password,
-              passwordVersion: password_version,
-              name: name,
+                userId: user_id,
+                email: email,
+                password: password,
+                passwordVersion: password_version,
+                name: name,
             }
             
             api_headers = {
@@ -594,7 +594,7 @@ module Appwrite
             end
 
             api_params = {
-              email: email,
+                email: email,
             }
             
             api_headers = {
@@ -629,8 +629,8 @@ module Appwrite
             end
 
             api_params = {
-              sessionId: session_id,
-              duration: duration,
+                sessionId: session_id,
+                duration: duration,
             }
             
             api_headers = {
@@ -671,7 +671,7 @@ module Appwrite
             end
 
             api_params = {
-              labels: labels,
+                labels: labels,
             }
             
             api_headers = {
@@ -703,7 +703,7 @@ module Appwrite
             end
 
             api_params = {
-              queries: queries,
+                queries: queries,
             }
             
             api_headers = {
@@ -769,7 +769,7 @@ module Appwrite
             end
 
             api_params = {
-              mfa: mfa,
+                mfa: mfa,
             }
             
             api_headers = {
@@ -970,7 +970,7 @@ module Appwrite
             end
 
             api_params = {
-              name: name,
+                name: name,
             }
             
             api_headers = {
@@ -1006,7 +1006,7 @@ module Appwrite
             end
 
             api_params = {
-              password: password,
+                password: password,
             }
             
             api_headers = {
@@ -1042,7 +1042,7 @@ module Appwrite
             end
 
             api_params = {
-              number: number,
+                number: number,
             }
             
             api_headers = {
@@ -1110,7 +1110,7 @@ module Appwrite
             end
 
             api_params = {
-              prefs: prefs,
+                prefs: prefs,
             }
             
             api_headers = {
@@ -1276,7 +1276,7 @@ module Appwrite
             end
 
             api_params = {
-              status: status,
+                status: status,
             }
             
             api_headers = {
@@ -1308,7 +1308,7 @@ module Appwrite
             end
 
             api_params = {
-              queries: queries,
+                queries: queries,
             }
             
             api_headers = {
@@ -1356,11 +1356,11 @@ module Appwrite
             end
 
             api_params = {
-              targetId: target_id,
-              providerType: provider_type,
-              identifier: identifier,
-              providerId: provider_id,
-              name: name,
+                targetId: target_id,
+                providerType: provider_type,
+                identifier: identifier,
+                providerId: provider_id,
+                name: name,
             }
             
             api_headers = {
@@ -1436,9 +1436,9 @@ module Appwrite
             end
 
             api_params = {
-              identifier: identifier,
-              providerId: provider_id,
-              name: name,
+                identifier: identifier,
+                providerId: provider_id,
+                name: name,
             }
             
             api_headers = {
@@ -1510,8 +1510,8 @@ module Appwrite
             end
 
             api_params = {
-              length: length,
-              expire: expire,
+                length: length,
+                expire: expire,
             }
             
             api_headers = {
@@ -1547,7 +1547,7 @@ module Appwrite
             end
 
             api_params = {
-              emailVerification: email_verification,
+                emailVerification: email_verification,
             }
             
             api_headers = {
@@ -1583,7 +1583,7 @@ module Appwrite
             end
 
             api_params = {
-              phoneVerification: phone_verification,
+                phoneVerification: phone_verification,
             }
             
             api_headers = {

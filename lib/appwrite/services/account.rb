@@ -61,10 +61,10 @@ module Appwrite
             end
 
             api_params = {
-              userId: user_id,
-              email: email,
-              password: password,
-              name: name,
+                userId: user_id,
+                email: email,
+                password: password,
+                name: name,
             }
             
             api_headers = {
@@ -106,8 +106,8 @@ module Appwrite
             end
 
             api_params = {
-              email: email,
-              password: password,
+                email: email,
+                password: password,
             }
             
             api_headers = {
@@ -133,7 +133,7 @@ module Appwrite
             api_path = '/account/identities'
 
             api_params = {
-              queries: queries,
+                queries: queries,
             }
             
             api_headers = {
@@ -217,7 +217,7 @@ module Appwrite
             api_path = '/account/logs'
 
             api_params = {
-              queries: queries,
+                queries: queries,
             }
             
             api_headers = {
@@ -247,7 +247,7 @@ module Appwrite
             end
 
             api_params = {
-              mfa: mfa,
+                mfa: mfa,
             }
             
             api_headers = {
@@ -318,7 +318,7 @@ module Appwrite
             end
 
             api_params = {
-              otp: otp,
+                otp: otp,
             }
             
             api_headers = {
@@ -379,7 +379,7 @@ module Appwrite
             end
 
             api_params = {
-              factor: factor,
+                factor: factor,
             }
             
             api_headers = {
@@ -418,8 +418,8 @@ module Appwrite
             end
 
             api_params = {
-              challengeId: challenge_id,
-              otp: otp,
+                challengeId: challenge_id,
+                otp: otp,
             }
             
             api_headers = {
@@ -554,7 +554,7 @@ module Appwrite
             end
 
             api_params = {
-              name: name,
+                name: name,
             }
             
             api_headers = {
@@ -587,8 +587,8 @@ module Appwrite
             end
 
             api_params = {
-              password: password,
-              oldPassword: old_password,
+                password: password,
+                oldPassword: old_password,
             }
             
             api_headers = {
@@ -627,8 +627,8 @@ module Appwrite
             end
 
             api_params = {
-              phone: phone,
-              password: password,
+                phone: phone,
+                password: password,
             }
             
             api_headers = {
@@ -684,7 +684,7 @@ module Appwrite
             end
 
             api_params = {
-              prefs: prefs,
+                prefs: prefs,
             }
             
             api_headers = {
@@ -726,8 +726,8 @@ module Appwrite
             end
 
             api_params = {
-              email: email,
-              url: url,
+                email: email,
+                url: url,
             }
             
             api_headers = {
@@ -776,9 +776,9 @@ module Appwrite
             end
 
             api_params = {
-              userId: user_id,
-              secret: secret,
-              password: password,
+                userId: user_id,
+                secret: secret,
+                password: password,
             }
             
             api_headers = {
@@ -897,8 +897,8 @@ module Appwrite
             end
 
             api_params = {
-              email: email,
-              password: password,
+                email: email,
+                password: password,
             }
             
             api_headers = {
@@ -935,8 +935,8 @@ module Appwrite
             end
 
             api_params = {
-              userId: user_id,
-              secret: secret,
+                userId: user_id,
+                secret: secret,
             }
             
             api_headers = {
@@ -973,8 +973,8 @@ module Appwrite
             end
 
             api_params = {
-              userId: user_id,
-              secret: secret,
+                userId: user_id,
+                secret: secret,
             }
             
             api_headers = {
@@ -1011,8 +1011,8 @@ module Appwrite
             end
 
             api_params = {
-              userId: user_id,
-              secret: secret,
+                userId: user_id,
+                secret: secret,
             }
             
             api_headers = {
@@ -1179,9 +1179,9 @@ module Appwrite
             end
 
             api_params = {
-              userId: user_id,
-              email: email,
-              phrase: phrase,
+                userId: user_id,
+                email: email,
+                phrase: phrase,
             }
             
             api_headers = {
@@ -1233,10 +1233,10 @@ module Appwrite
             end
 
             api_params = {
-              userId: user_id,
-              email: email,
-              url: url,
-              phrase: phrase,
+                userId: user_id,
+                email: email,
+                url: url,
+                phrase: phrase,
             }
             
             api_headers = {
@@ -1283,9 +1283,9 @@ module Appwrite
             end
 
             api_params = {
-              success: success,
-              failure: failure,
-              scopes: scopes,
+                success: success,
+                failure: failure,
+                scopes: scopes,
             }
             
             api_headers = {
@@ -1329,8 +1329,8 @@ module Appwrite
             end
 
             api_params = {
-              userId: user_id,
-              phone: phone,
+                userId: user_id,
+                phone: phone,
             }
             
             api_headers = {
@@ -1374,7 +1374,7 @@ module Appwrite
             end
 
             api_params = {
-              url: url,
+                url: url,
             }
             
             api_headers = {
@@ -1412,8 +1412,8 @@ module Appwrite
             end
 
             api_params = {
-              userId: user_id,
-              secret: secret,
+                userId: user_id,
+                secret: secret,
             }
             
             api_headers = {
@@ -1482,8 +1482,8 @@ module Appwrite
             end
 
             api_params = {
-              userId: user_id,
-              secret: secret,
+                userId: user_id,
+                secret: secret,
             }
             
             api_headers = {

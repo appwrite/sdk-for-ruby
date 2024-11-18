@@ -30,6 +30,7 @@ module Appwrite
 
             def convert_to(from_json)
                 documents.map { |it| it.convert_to(from_json) }
-            end        end
+            end
+        end
     end
 end

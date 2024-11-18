@@ -17,8 +17,8 @@ module Appwrite
             api_path = '/messaging/messages'
 
             api_params = {
-              queries: queries,
-              search: search,
+                queries: queries,
+                search: search,
             }
             
             api_headers = {
@@ -67,18 +67,18 @@ module Appwrite
             end
 
             api_params = {
-              messageId: message_id,
-              subject: subject,
-              content: content,
-              topics: topics,
-              users: users,
-              targets: targets,
-              cc: cc,
-              bcc: bcc,
-              attachments: attachments,
-              draft: draft,
-              html: html,
-              scheduledAt: scheduled_at,
+                messageId: message_id,
+                subject: subject,
+                content: content,
+                topics: topics,
+                users: users,
+                targets: targets,
+                cc: cc,
+                bcc: bcc,
+                attachments: attachments,
+                draft: draft,
+                html: html,
+                scheduledAt: scheduled_at,
             }
             
             api_headers = {
@@ -121,17 +121,17 @@ module Appwrite
             end
 
             api_params = {
-              topics: topics,
-              users: users,
-              targets: targets,
-              subject: subject,
-              content: content,
-              draft: draft,
-              html: html,
-              cc: cc,
-              bcc: bcc,
-              scheduledAt: scheduled_at,
-              attachments: attachments,
+                topics: topics,
+                users: users,
+                targets: targets,
+                subject: subject,
+                content: content,
+                draft: draft,
+                html: html,
+                cc: cc,
+                bcc: bcc,
+                scheduledAt: scheduled_at,
+                attachments: attachments,
             }
             
             api_headers = {
@@ -184,22 +184,22 @@ module Appwrite
             end
 
             api_params = {
-              messageId: message_id,
-              title: title,
-              body: body,
-              topics: topics,
-              users: users,
-              targets: targets,
-              data: data,
-              action: action,
-              image: image,
-              icon: icon,
-              sound: sound,
-              color: color,
-              tag: tag,
-              badge: badge,
-              draft: draft,
-              scheduledAt: scheduled_at,
+                messageId: message_id,
+                title: title,
+                body: body,
+                topics: topics,
+                users: users,
+                targets: targets,
+                data: data,
+                action: action,
+                image: image,
+                icon: icon,
+                sound: sound,
+                color: color,
+                tag: tag,
+                badge: badge,
+                draft: draft,
+                scheduledAt: scheduled_at,
             }
             
             api_headers = {
@@ -246,21 +246,21 @@ module Appwrite
             end
 
             api_params = {
-              topics: topics,
-              users: users,
-              targets: targets,
-              title: title,
-              body: body,
-              data: data,
-              action: action,
-              image: image,
-              icon: icon,
-              sound: sound,
-              color: color,
-              tag: tag,
-              badge: badge,
-              draft: draft,
-              scheduledAt: scheduled_at,
+                topics: topics,
+                users: users,
+                targets: targets,
+                title: title,
+                body: body,
+                data: data,
+                action: action,
+                image: image,
+                icon: icon,
+                sound: sound,
+                color: color,
+                tag: tag,
+                badge: badge,
+                draft: draft,
+                scheduledAt: scheduled_at,
             }
             
             api_headers = {
@@ -300,13 +300,13 @@ module Appwrite
             end
 
             api_params = {
-              messageId: message_id,
-              content: content,
-              topics: topics,
-              users: users,
-              targets: targets,
-              draft: draft,
-              scheduledAt: scheduled_at,
+                messageId: message_id,
+                content: content,
+                topics: topics,
+                users: users,
+                targets: targets,
+                draft: draft,
+                scheduledAt: scheduled_at,
             }
             
             api_headers = {
@@ -344,12 +344,12 @@ module Appwrite
             end
 
             api_params = {
-              topics: topics,
-              users: users,
-              targets: targets,
-              content: content,
-              draft: draft,
-              scheduledAt: scheduled_at,
+                topics: topics,
+                users: users,
+                targets: targets,
+                content: content,
+                draft: draft,
+                scheduledAt: scheduled_at,
             }
             
             api_headers = {
@@ -442,7 +442,7 @@ module Appwrite
             end
 
             api_params = {
-              queries: queries,
+                queries: queries,
             }
             
             api_headers = {
@@ -474,7 +474,7 @@ module Appwrite
             end
 
             api_params = {
-              queries: queries,
+                queries: queries,
             }
             
             api_headers = {
@@ -501,8 +501,8 @@ module Appwrite
             api_path = '/messaging/providers'
 
             api_params = {
-              queries: queries,
-              search: search,
+                queries: queries,
+                search: search,
             }
             
             api_headers = {
@@ -543,14 +543,14 @@ module Appwrite
             end
 
             api_params = {
-              providerId: provider_id,
-              name: name,
-              authKey: auth_key,
-              authKeyId: auth_key_id,
-              teamId: team_id,
-              bundleId: bundle_id,
-              sandbox: sandbox,
-              enabled: enabled,
+                providerId: provider_id,
+                name: name,
+                authKey: auth_key,
+                authKeyId: auth_key_id,
+                teamId: team_id,
+                bundleId: bundle_id,
+                sandbox: sandbox,
+                enabled: enabled,
             }
             
             api_headers = {
@@ -588,13 +588,13 @@ module Appwrite
             end
 
             api_params = {
-              name: name,
-              enabled: enabled,
-              authKey: auth_key,
-              authKeyId: auth_key_id,
-              teamId: team_id,
-              bundleId: bundle_id,
-              sandbox: sandbox,
+                name: name,
+                enabled: enabled,
+                authKey: auth_key,
+                authKeyId: auth_key_id,
+                teamId: team_id,
+                bundleId: bundle_id,
+                sandbox: sandbox,
             }
             
             api_headers = {
@@ -631,10 +631,10 @@ module Appwrite
             end
 
             api_params = {
-              providerId: provider_id,
-              name: name,
-              serviceAccountJSON: service_account_json,
-              enabled: enabled,
+                providerId: provider_id,
+                name: name,
+                serviceAccountJSON: service_account_json,
+                enabled: enabled,
             }
             
             api_headers = {
@@ -668,9 +668,9 @@ module Appwrite
             end
 
             api_params = {
-              name: name,
-              enabled: enabled,
-              serviceAccountJSON: service_account_json,
+                name: name,
+                enabled: enabled,
+                serviceAccountJSON: service_account_json,
             }
             
             api_headers = {
@@ -713,16 +713,16 @@ module Appwrite
             end
 
             api_params = {
-              providerId: provider_id,
-              name: name,
-              apiKey: api_key,
-              domain: domain,
-              isEuRegion: is_eu_region,
-              fromName: from_name,
-              fromEmail: from_email,
-              replyToName: reply_to_name,
-              replyToEmail: reply_to_email,
-              enabled: enabled,
+                providerId: provider_id,
+                name: name,
+                apiKey: api_key,
+                domain: domain,
+                isEuRegion: is_eu_region,
+                fromName: from_name,
+                fromEmail: from_email,
+                replyToName: reply_to_name,
+                replyToEmail: reply_to_email,
+                enabled: enabled,
             }
             
             api_headers = {
@@ -762,15 +762,15 @@ module Appwrite
             end
 
             api_params = {
-              name: name,
-              apiKey: api_key,
-              domain: domain,
-              isEuRegion: is_eu_region,
-              enabled: enabled,
-              fromName: from_name,
-              fromEmail: from_email,
-              replyToName: reply_to_name,
-              replyToEmail: reply_to_email,
+                name: name,
+                apiKey: api_key,
+                domain: domain,
+                isEuRegion: is_eu_region,
+                enabled: enabled,
+                fromName: from_name,
+                fromEmail: from_email,
+                replyToName: reply_to_name,
+                replyToEmail: reply_to_email,
             }
             
             api_headers = {
@@ -809,12 +809,12 @@ module Appwrite
             end
 
             api_params = {
-              providerId: provider_id,
-              name: name,
-              templateId: template_id,
-              senderId: sender_id,
-              authKey: auth_key,
-              enabled: enabled,
+                providerId: provider_id,
+                name: name,
+                templateId: template_id,
+                senderId: sender_id,
+                authKey: auth_key,
+                enabled: enabled,
             }
             
             api_headers = {
@@ -850,11 +850,11 @@ module Appwrite
             end
 
             api_params = {
-              name: name,
-              enabled: enabled,
-              templateId: template_id,
-              senderId: sender_id,
-              authKey: auth_key,
+                name: name,
+                enabled: enabled,
+                templateId: template_id,
+                senderId: sender_id,
+                authKey: auth_key,
             }
             
             api_headers = {
@@ -895,14 +895,14 @@ module Appwrite
             end
 
             api_params = {
-              providerId: provider_id,
-              name: name,
-              apiKey: api_key,
-              fromName: from_name,
-              fromEmail: from_email,
-              replyToName: reply_to_name,
-              replyToEmail: reply_to_email,
-              enabled: enabled,
+                providerId: provider_id,
+                name: name,
+                apiKey: api_key,
+                fromName: from_name,
+                fromEmail: from_email,
+                replyToName: reply_to_name,
+                replyToEmail: reply_to_email,
+                enabled: enabled,
             }
             
             api_headers = {
@@ -940,13 +940,13 @@ module Appwrite
             end
 
             api_params = {
-              name: name,
-              enabled: enabled,
-              apiKey: api_key,
-              fromName: from_name,
-              fromEmail: from_email,
-              replyToName: reply_to_name,
-              replyToEmail: reply_to_email,
+                name: name,
+                enabled: enabled,
+                apiKey: api_key,
+                fromName: from_name,
+                fromEmail: from_email,
+                replyToName: reply_to_name,
+                replyToEmail: reply_to_email,
             }
             
             api_headers = {
@@ -997,20 +997,20 @@ module Appwrite
             end
 
             api_params = {
-              providerId: provider_id,
-              name: name,
-              host: host,
-              port: port,
-              username: username,
-              password: password,
-              encryption: encryption,
-              autoTLS: auto_tls,
-              mailer: mailer,
-              fromName: from_name,
-              fromEmail: from_email,
-              replyToName: reply_to_name,
-              replyToEmail: reply_to_email,
-              enabled: enabled,
+                providerId: provider_id,
+                name: name,
+                host: host,
+                port: port,
+                username: username,
+                password: password,
+                encryption: encryption,
+                autoTLS: auto_tls,
+                mailer: mailer,
+                fromName: from_name,
+                fromEmail: from_email,
+                replyToName: reply_to_name,
+                replyToEmail: reply_to_email,
+                enabled: enabled,
             }
             
             api_headers = {
@@ -1054,19 +1054,19 @@ module Appwrite
             end
 
             api_params = {
-              name: name,
-              host: host,
-              port: port,
-              username: username,
-              password: password,
-              encryption: encryption,
-              autoTLS: auto_tls,
-              mailer: mailer,
-              fromName: from_name,
-              fromEmail: from_email,
-              replyToName: reply_to_name,
-              replyToEmail: reply_to_email,
-              enabled: enabled,
+                name: name,
+                host: host,
+                port: port,
+                username: username,
+                password: password,
+                encryption: encryption,
+                autoTLS: auto_tls,
+                mailer: mailer,
+                fromName: from_name,
+                fromEmail: from_email,
+                replyToName: reply_to_name,
+                replyToEmail: reply_to_email,
+                enabled: enabled,
             }
             
             api_headers = {
@@ -1105,12 +1105,12 @@ module Appwrite
             end
 
             api_params = {
-              providerId: provider_id,
-              name: name,
-              from: from,
-              customerId: customer_id,
-              apiKey: api_key,
-              enabled: enabled,
+                providerId: provider_id,
+                name: name,
+                from: from,
+                customerId: customer_id,
+                apiKey: api_key,
+                enabled: enabled,
             }
             
             api_headers = {
@@ -1146,11 +1146,11 @@ module Appwrite
             end
 
             api_params = {
-              name: name,
-              enabled: enabled,
-              customerId: customer_id,
-              apiKey: api_key,
-              from: from,
+                name: name,
+                enabled: enabled,
+                customerId: customer_id,
+                apiKey: api_key,
+                from: from,
             }
             
             api_headers = {
@@ -1189,12 +1189,12 @@ module Appwrite
             end
 
             api_params = {
-              providerId: provider_id,
-              name: name,
-              from: from,
-              username: username,
-              apiKey: api_key,
-              enabled: enabled,
+                providerId: provider_id,
+                name: name,
+                from: from,
+                username: username,
+                apiKey: api_key,
+                enabled: enabled,
             }
             
             api_headers = {
@@ -1230,11 +1230,11 @@ module Appwrite
             end
 
             api_params = {
-              name: name,
-              enabled: enabled,
-              username: username,
-              apiKey: api_key,
-              from: from,
+                name: name,
+                enabled: enabled,
+                username: username,
+                apiKey: api_key,
+                from: from,
             }
             
             api_headers = {
@@ -1273,12 +1273,12 @@ module Appwrite
             end
 
             api_params = {
-              providerId: provider_id,
-              name: name,
-              from: from,
-              accountSid: account_sid,
-              authToken: auth_token,
-              enabled: enabled,
+                providerId: provider_id,
+                name: name,
+                from: from,
+                accountSid: account_sid,
+                authToken: auth_token,
+                enabled: enabled,
             }
             
             api_headers = {
@@ -1314,11 +1314,11 @@ module Appwrite
             end
 
             api_params = {
-              name: name,
-              enabled: enabled,
-              accountSid: account_sid,
-              authToken: auth_token,
-              from: from,
+                name: name,
+                enabled: enabled,
+                accountSid: account_sid,
+                authToken: auth_token,
+                from: from,
             }
             
             api_headers = {
@@ -1357,12 +1357,12 @@ module Appwrite
             end
 
             api_params = {
-              providerId: provider_id,
-              name: name,
-              from: from,
-              apiKey: api_key,
-              apiSecret: api_secret,
-              enabled: enabled,
+                providerId: provider_id,
+                name: name,
+                from: from,
+                apiKey: api_key,
+                apiSecret: api_secret,
+                enabled: enabled,
             }
             
             api_headers = {
@@ -1398,11 +1398,11 @@ module Appwrite
             end
 
             api_params = {
-              name: name,
-              enabled: enabled,
-              apiKey: api_key,
-              apiSecret: api_secret,
-              from: from,
+                name: name,
+                enabled: enabled,
+                apiKey: api_key,
+                apiSecret: api_secret,
+                from: from,
             }
             
             api_headers = {
@@ -1494,7 +1494,7 @@ module Appwrite
             end
 
             api_params = {
-              queries: queries,
+                queries: queries,
             }
             
             api_headers = {
@@ -1526,7 +1526,7 @@ module Appwrite
             end
 
             api_params = {
-              queries: queries,
+                queries: queries,
             }
             
             api_headers = {
@@ -1553,8 +1553,8 @@ module Appwrite
             api_path = '/messaging/topics'
 
             api_params = {
-              queries: queries,
-              search: search,
+                queries: queries,
+                search: search,
             }
             
             api_headers = {
@@ -1590,9 +1590,9 @@ module Appwrite
             end
 
             api_params = {
-              topicId: topic_id,
-              name: name,
-              subscribe: subscribe,
+                topicId: topic_id,
+                name: name,
+                subscribe: subscribe,
             }
             
             api_headers = {
@@ -1657,8 +1657,8 @@ module Appwrite
             end
 
             api_params = {
-              name: name,
-              subscribe: subscribe,
+                name: name,
+                subscribe: subscribe,
             }
             
             api_headers = {
@@ -1719,7 +1719,7 @@ module Appwrite
             end
 
             api_params = {
-              queries: queries,
+                queries: queries,
             }
             
             api_headers = {
@@ -1752,8 +1752,8 @@ module Appwrite
             end
 
             api_params = {
-              queries: queries,
-              search: search,
+                queries: queries,
+                search: search,
             }
             
             api_headers = {
@@ -1794,8 +1794,8 @@ module Appwrite
             end
 
             api_params = {
-              subscriberId: subscriber_id,
-              targetId: target_id,
+                subscriberId: subscriber_id,
+                targetId: target_id,
             }
             
             api_headers = {

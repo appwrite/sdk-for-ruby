@@ -18,8 +18,8 @@ module Appwrite
             api_path = '/teams'
 
             api_params = {
-              queries: queries,
-              search: search,
+                queries: queries,
+                search: search,
             }
             
             api_headers = {
@@ -57,9 +57,9 @@ module Appwrite
             end
 
             api_params = {
-              teamId: team_id,
-              name: name,
-              roles: roles,
+                teamId: team_id,
+                name: name,
+                roles: roles,
             }
             
             api_headers = {
@@ -125,7 +125,7 @@ module Appwrite
             end
 
             api_params = {
-              name: name,
+                name: name,
             }
             
             api_headers = {
@@ -173,7 +173,8 @@ module Appwrite
 
         
         # Use this endpoint to list a team's members using the team's ID. All team
-        # members have read access to this endpoint.
+        # members have read access to this endpoint. Hide sensitive attributes from
+        # the response by toggling membership privacy in the Console.
         #
         # @param [String] team_id Team ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, teamId, invited, joined, confirm
@@ -189,8 +190,8 @@ module Appwrite
             end
 
             api_params = {
-              queries: queries,
-              search: search,
+                queries: queries,
+                search: search,
             }
             
             api_headers = {
@@ -251,12 +252,12 @@ module Appwrite
             end
 
             api_params = {
-              email: email,
-              userId: user_id,
-              phone: phone,
-              roles: roles,
-              url: url,
-              name: name,
+                email: email,
+                userId: user_id,
+                phone: phone,
+                roles: roles,
+                url: url,
+                name: name,
             }
             
             api_headers = {
@@ -274,7 +275,8 @@ module Appwrite
 
         
         # Get a team member by the membership unique id. All team members have read
-        # access for this resource.
+        # access for this resource. Hide sensitive attributes from the response by
+        # toggling membership privacy in the Console.
         #
         # @param [String] team_id Team ID.
         # @param [String] membership_id Membership ID.
@@ -338,7 +340,7 @@ module Appwrite
             end
 
             api_params = {
-              roles: roles,
+                roles: roles,
             }
             
             api_headers = {
@@ -428,8 +430,8 @@ module Appwrite
             end
 
             api_params = {
-              userId: user_id,
-              secret: secret,
+                userId: user_id,
+                secret: secret,
             }
             
             api_headers = {
@@ -499,7 +501,7 @@ module Appwrite
             end
 
             api_params = {
-              prefs: prefs,
+                prefs: prefs,
             }
             
             api_headers = {

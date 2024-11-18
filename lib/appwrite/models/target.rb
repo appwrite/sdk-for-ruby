@@ -11,6 +11,7 @@ module Appwrite
             attr_reader :provider_id
             attr_reader :provider_type
             attr_reader :identifier
+            attr_reader :expired
 
             def initialize(
                 id:,
@@ -20,7 +21,8 @@ module Appwrite
                 user_id:,
                 provider_id: ,
                 provider_type:,
-                identifier:
+                identifier:,
+                expired:
             )
                 @id = id
                 @created_at = created_at
@@ -30,6 +32,7 @@ module Appwrite
                 @provider_id = provider_id
                 @provider_type = provider_type
                 @identifier = identifier
+                @expired = expired
             end
 
             def self.from(map:)
@@ -41,7 +44,8 @@ module Appwrite
                     user_id: map["userId"],
                     provider_id: map["providerId"],
                     provider_type: map["providerType"],
-                    identifier: map["identifier"]
+                    identifier: map["identifier"],
+                    expired: map["expired"]
                 )
             end
 
@@ -54,7 +58,8 @@ module Appwrite
                     "userId": @user_id,
                     "providerId": @provider_id,
                     "providerType": @provider_type,
-                    "identifier": @identifier
+                    "identifier": @identifier,
+                    "expired": @expired
                 }
             end
         end

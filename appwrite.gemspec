@@ -1,7 +1,7 @@
 Gem::Specification.new do |spec|
 
   spec.name = 'appwrite'
-  spec.version = '13.0.0'
+  spec.version = '13.0.1'
   spec.license = 'BSD-3-Clause'
   spec.summary = 'Appwrite is an open-source self-hosted backend server that abstract and simplify complex and repetitive development tasks behind a very simple REST API'
   spec.author = 'Appwrite Team'

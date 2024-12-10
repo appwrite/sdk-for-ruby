@@ -156,31 +156,26 @@ module Appwrite
         # @param [Array] topics List of Topic IDs.
         # @param [Array] users List of User IDs.
         # @param [Array] targets List of Targets IDs.
-        # @param [Hash] data Additional Data for push notification.
+        # @param [Hash] data Additional key-value pair data for push notification.
         # @param [String] action Action for push notification.
         # @param [String] image Image for push notification. Must be a compound bucket ID to file ID of a jpeg, png, or bmp image in Appwrite Storage. It should be formatted as <BUCKET_ID>:<FILE_ID>.
         # @param [String] icon Icon for push notification. Available only for Android and Web Platform.
-        # @param [String] sound Sound for push notification. Available only for Android and IOS Platform.
+        # @param [String] sound Sound for push notification. Available only for Android and iOS Platform.
         # @param [String] color Color for push notification. Available only for Android Platform.
         # @param [String] tag Tag for push notification. Available only for Android Platform.
-        # @param [String] badge Badge for push notification. Available only for IOS Platform.
+        # @param [Integer] badge Badge for push notification. Available only for iOS Platform.
         # @param [] draft Is message a draft
         # @param [String] scheduled_at Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future.
+        # @param [] content_available If set to true, the notification will be delivered in the background. Available only for iOS Platform.
+        # @param [] critical If set to true, the notification will be marked as critical. This requires the app to have the critical notification entitlement. Available only for iOS Platform.
+        # @param [MessagePriority] priority Set the notification priority. "normal" will consider device state and may not deliver notifications immediately. "high" will always attempt to immediately deliver the notification.
         #
         # @return [Message]
-        def create_push(message_id:, title:, body:, topics: nil, users: nil, targets: nil, data: nil, action: nil, image: nil, icon: nil, sound: nil, color: nil, tag: nil, badge: nil, draft: nil, scheduled_at: nil)
+        def create_push(message_id:, title: nil, body: nil, topics: nil, users: nil, targets: nil, data: nil, action: nil, image: nil, icon: nil, sound: nil, color: nil, tag: nil, badge: nil, draft: nil, scheduled_at: nil, content_available: nil, critical: nil, priority: nil)
             api_path = '/messaging/messages/push'
 
             if message_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "messageId"')
-            end
-
-            if title.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "title"')
-            end
-
-            if body.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "body"')
             end
 
             api_params = {
@@ -200,6 +195,9 @@ module Appwrite
                 badge: badge,
                 draft: draft,
                 scheduledAt: scheduled_at,
+                contentAvailable: content_available,
+                critical: critical,
+                priority: priority,
             }
             
             api_headers = {
@@ -235,9 +233,12 @@ module Appwrite
         # @param [Integer] badge Badge for push notification. Available only for iOS platforms.
         # @param [] draft Is message a draft
         # @param [String] scheduled_at Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future.
+        # @param [] content_available If set to true, the notification will be delivered in the background. Available only for iOS Platform.
+        # @param [] critical If set to true, the notification will be marked as critical. This requires the app to have the critical notification entitlement. Available only for iOS Platform.
+        # @param [MessagePriority] priority Set the notification priority. "normal" will consider device battery state and may send notifications later. "high" will always attempt to immediately deliver the notification.
         #
         # @return [Message]
-        def update_push(message_id:, topics: nil, users: nil, targets: nil, title: nil, body: nil, data: nil, action: nil, image: nil, icon: nil, sound: nil, color: nil, tag: nil, badge: nil, draft: nil, scheduled_at: nil)
+        def update_push(message_id:, topics: nil, users: nil, targets: nil, title: nil, body: nil, data: nil, action: nil, image: nil, icon: nil, sound: nil, color: nil, tag: nil, badge: nil, draft: nil, scheduled_at: nil, content_available: nil, critical: nil, priority: nil)
             api_path = '/messaging/messages/push/{messageId}'
                 .gsub('{messageId}', message_id)
 
@@ -261,6 +262,9 @@ module Appwrite
                 badge: badge,
                 draft: draft,
                 scheduledAt: scheduled_at,
+                contentAvailable: content_available,
+                critical: critical,
+                priority: priority,
             }
             
             api_headers = {

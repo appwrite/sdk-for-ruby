@@ -791,7 +791,7 @@ module Appwrite
         # @param [String] user_id User ID.
         # @param [AuthenticatorType] type Type of authenticator.
         #
-        # @return [User]
+        # @return []
         def delete_mfa_authenticator(user_id:, type:)
             api_path = '/users/{userId}/mfa/authenticators/{type}'
                 .gsub('{userId}', user_id)
@@ -817,7 +817,6 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::User
             )
         end
 

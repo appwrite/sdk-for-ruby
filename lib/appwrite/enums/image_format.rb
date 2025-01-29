@@ -6,6 +6,7 @@ module Appwrite
             GIF = 'gif'
             PNG = 'png'
             WEBP = 'webp'
+            HEIC = 'heic'
             AVIF = 'avif'
         end
     end

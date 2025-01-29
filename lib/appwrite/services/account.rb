@@ -405,7 +405,7 @@ module Appwrite
         # @param [String] challenge_id ID of the challenge.
         # @param [String] otp Valid verification token.
         #
-        # @return []
+        # @return [Session]
         def update_mfa_challenge(challenge_id:, otp:)
             api_path = '/account/mfa/challenge'
 
@@ -431,6 +431,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
+                response_type: Models::Session
             )
         end
 

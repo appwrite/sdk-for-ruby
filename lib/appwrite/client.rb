@@ -15,7 +15,7 @@ module Appwrite
                 'x-sdk-name'=> 'Ruby',
                 'x-sdk-platform'=> 'server',
                 'x-sdk-language'=> 'ruby',
-                'x-sdk-version'=> '13.1.0',                
+                'x-sdk-version'=> '14.0.0',
                 'X-Appwrite-Response-Format' => '1.6.0'
             }
             @endpoint = 'https://cloud.appwrite.io/v1'
@@ -104,7 +104,7 @@ module Appwrite
         # @return [self]
         def set_endpoint(endpoint)
             @endpoint = endpoint
-            
+
             self
         end
 
@@ -187,7 +187,7 @@ module Appwrite
 
             offset = 0
             id_param_name = id_param_name.to_sym if id_param_name
-            if id_param_name&.empty? == false && params[id_param_name] != "unique()"
+            if id_param_name&.empty? == false
                 # Make a request to check if a file already exists
                 current = call(
                     method: "GET",
@@ -257,7 +257,7 @@ module Appwrite
             @http = Net::HTTP.new(uri.host, uri.port) unless defined? @http
             @http.use_ssl = !@self_signed
             payload = ''
-            
+
             headers = @headers.merge(headers)
 
             params.compact!
@@ -292,7 +292,7 @@ module Appwrite
             if response_type == "location"
                 return location
             end
-            
+
             # Handle Redirects
             if (response.class == Net::HTTPRedirection || response.class == Net::HTTPMovedPermanently)
                 uri = URI.parse(uri.scheme + "://" + uri.host + "" + location)
@@ -327,7 +327,7 @@ module Appwrite
 
             return response
         end
-        
+
         def encode_form_data(value, key=nil)
             case value
             when Hash
@@ -359,13 +359,13 @@ module Appwrite
             when Hash  then value.map { |k,v| encode(v, append_key(key,k)) }.join('&')
             when Array then value.map { |v| encode(v, "#{key}[]") }.join('&')
             when nil   then ''
-            else            
-            "#{key}=#{CGI.escape(value.to_s)}" 
+            else
+            "#{key}=#{CGI.escape(value.to_s)}"
             end
         end
 
         def append_key(root_key, key)
             root_key.nil? ? key : "#{root_key}[#{key.to_s}]"
         end
-    end 
+    end
 end

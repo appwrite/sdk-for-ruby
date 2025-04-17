@@ -22,7 +22,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -95,7 +94,9 @@ module Appwrite
         end
 
         
-        # Update an email message by its unique ID.
+        # Update an email message by its unique ID. This endpoint only works on
+        # messages that are in draft status. Messages that are already processing,
+        # sent, or failed cannot be updated.
         # 
         #
         # @param [String] message_id Message ID.
@@ -214,7 +215,9 @@ module Appwrite
         end
 
         
-        # Update a push notification by its unique ID.
+        # Update a push notification by its unique ID. This endpoint only works on
+        # messages that are in draft status. Messages that are already processing,
+        # sent, or failed cannot be updated.
         # 
         #
         # @param [String] message_id Message ID.
@@ -327,7 +330,9 @@ module Appwrite
         end
 
         
-        # Update an SMS message by its unique ID.
+        # Update an SMS message by its unique ID. This endpoint only works on
+        # messages that are in draft status. Messages that are already processing,
+        # sent, or failed cannot be updated.
         # 
         #
         # @param [String] message_id Message ID.
@@ -388,7 +393,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -450,7 +454,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -482,7 +485,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -510,7 +512,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -1441,7 +1442,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -1502,7 +1502,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -1534,7 +1533,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -1562,7 +1560,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -1631,7 +1628,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -1727,7 +1723,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -1761,7 +1756,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -1840,7 +1834,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(

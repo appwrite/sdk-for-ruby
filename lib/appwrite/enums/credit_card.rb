@@ -17,6 +17,7 @@ module Appwrite
             VISA = 'visa'
             MIR = 'mir'
             MAESTRO = 'maestro'
+            RUPAY = 'rupay'
         end
     end
 end

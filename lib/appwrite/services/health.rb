@@ -18,7 +18,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -42,7 +41,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -67,7 +65,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -93,7 +90,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -117,7 +113,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -141,32 +136,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
-            }
-
-            @client.call(
-                method: 'GET',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                response_type: Models::HealthStatus
-            )
-        end
-
-        
-        # Check the Appwrite queue messaging servers are up and connection is
-        # successful.
-        #
-        #
-        # @return [HealthStatus]
-        def get_queue()
-            api_path = '/health/queue'
-
-            api_params = {
-            }
-            
-            api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -193,7 +162,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -221,7 +189,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -250,7 +217,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -277,7 +243,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -310,7 +275,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -337,7 +301,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -364,7 +327,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -391,7 +353,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -418,7 +379,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -445,7 +405,32 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::HealthQueue
+            )
+        end
+
+        
+        # Get the number of metrics that are waiting to be processed in the Appwrite
+        # stats resources queue.
+        #
+        # @param [Integer] threshold Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.
+        #
+        # @return [HealthQueue]
+        def get_queue_stats_resources(threshold: nil)
+            api_path = '/health/queue/stats-resources'
+
+            api_params = {
+                threshold: threshold,
+            }
+            
+            api_headers = {
             }
 
             @client.call(
@@ -465,41 +450,13 @@ module Appwrite
         #
         # @return [HealthQueue]
         def get_queue_usage(threshold: nil)
-            api_path = '/health/queue/usage'
+            api_path = '/health/queue/stats-usage'
 
             api_params = {
                 threshold: threshold,
             }
             
             api_headers = {
-                "content-type": 'application/json',
-            }
-
-            @client.call(
-                method: 'GET',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                response_type: Models::HealthQueue
-            )
-        end
-
-        
-        # Get the number of projects containing metrics that are waiting to be
-        # processed in the Appwrite internal queue server.
-        #
-        # @param [Integer] threshold Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.
-        #
-        # @return [HealthQueue]
-        def get_queue_usage_dump(threshold: nil)
-            api_path = '/health/queue/usage-dump'
-
-            api_params = {
-                threshold: threshold,
-            }
-            
-            api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -526,7 +483,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -550,7 +506,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -574,7 +529,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -604,7 +558,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(

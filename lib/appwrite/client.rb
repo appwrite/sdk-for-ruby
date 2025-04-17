@@ -15,7 +15,7 @@ module Appwrite
                 'x-sdk-name'=> 'Ruby',
                 'x-sdk-platform'=> 'server',
                 'x-sdk-language'=> 'ruby',
-                'x-sdk-version'=> '14.0.0',
+                'x-sdk-version'=> '14.0.1',
                 'X-Appwrite-Response-Format' => '1.6.0'
             }
             @endpoint = 'https://cloud.appwrite.io/v1'
@@ -103,6 +103,10 @@ module Appwrite
         #
         # @return [self]
         def set_endpoint(endpoint)
+            if not endpoint.start_with?('http://') and not endpoint.start_with?('https://')
+                raise Appwrite::Exception.new('Invalid endpoint URL: ' + endpoint)
+            end
+
             @endpoint = endpoint
 
             self
@@ -303,11 +307,11 @@ module Appwrite
                 begin
                     result = JSON.parse(response.body)
                 rescue JSON::ParserError => e
-                    raise Appwrite::Exception.new(response.body, response.code, nil, response)
+                    raise Appwrite::Exception.new(response.body, response.code, nil, response.body)
                 end
 
                 if response.code.to_i >= 400
-                    raise Appwrite::Exception.new(result['message'], result['status'], result['type'], result)
+                    raise Appwrite::Exception.new(result['message'], result['status'], result['type'], response.body)
                 end
 
                 unless response_type.respond_to?("from")
@@ -318,7 +322,7 @@ module Appwrite
             end
 
             if response.code.to_i >= 400
-                raise Appwrite::Exception.new(response.body, response.code, response)
+                raise Appwrite::Exception.new(response.body, response.code, response, response.body)
             end
 
             if response.respond_to?("body_permitted?")

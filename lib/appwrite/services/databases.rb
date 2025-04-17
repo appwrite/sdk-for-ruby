@@ -23,7 +23,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -93,7 +92,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -196,7 +194,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -284,7 +281,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -406,7 +402,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -939,13 +934,13 @@ module Appwrite
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
+        # @param [Float] default Default value for attribute when not provided. Cannot be set when attribute is required.
         # @param [Float] min Minimum value to enforce on new documents
         # @param [Float] max Maximum value to enforce on new documents
-        # @param [Float] default Default value for attribute when not provided. Cannot be set when attribute is required.
         # @param [String] new_key New attribute key.
         #
         # @return [AttributeFloat]
-        def update_float_attribute(database_id:, collection_id:, key:, required:, min:, max:, default:, new_key: nil)
+        def update_float_attribute(database_id:, collection_id:, key:, required:, default:, min: nil, max: nil, new_key: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/float/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -965,14 +960,6 @@ module Appwrite
 
             if required.nil?
               raise Appwrite::Exception.new('Missing required parameter: "required"')
-            end
-
-            if min.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "min"')
-            end
-
-            if max.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "max"')
             end
 
             if default.nil?
@@ -1067,13 +1054,13 @@ module Appwrite
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
+        # @param [Integer] default Default value for attribute when not provided. Cannot be set when attribute is required.
         # @param [Integer] min Minimum value to enforce on new documents
         # @param [Integer] max Maximum value to enforce on new documents
-        # @param [Integer] default Default value for attribute when not provided. Cannot be set when attribute is required.
         # @param [String] new_key New attribute key.
         #
         # @return [AttributeInteger]
-        def update_integer_attribute(database_id:, collection_id:, key:, required:, min:, max:, default:, new_key: nil)
+        def update_integer_attribute(database_id:, collection_id:, key:, required:, default:, min: nil, max: nil, new_key: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/integer/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -1093,14 +1080,6 @@ module Appwrite
 
             if required.nil?
               raise Appwrite::Exception.new('Missing required parameter: "required"')
-            end
-
-            if min.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "min"')
-            end
-
-            if max.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "max"')
             end
 
             if default.nil?
@@ -1559,7 +1538,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -1686,7 +1664,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -1703,6 +1680,7 @@ module Appwrite
         # collection resource using either a [server
         # integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
         # API or directly from your database console.
+        # 
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). Make sure to define attributes before creating documents.
@@ -1784,7 +1762,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -1910,7 +1887,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -2010,7 +1986,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(

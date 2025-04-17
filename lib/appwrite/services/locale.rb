@@ -23,7 +23,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -48,7 +47,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -73,7 +71,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -98,7 +95,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -123,7 +119,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -148,7 +143,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -174,7 +168,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
@@ -199,7 +192,6 @@ module Appwrite
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(

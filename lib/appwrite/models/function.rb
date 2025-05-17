@@ -12,7 +12,11 @@ module Appwrite
             attr_reader :live
             attr_reader :logging
             attr_reader :runtime
-            attr_reader :deployment
+            attr_reader :deployment_id
+            attr_reader :deployment_created_at
+            attr_reader :latest_deployment_id
+            attr_reader :latest_deployment_created_at
+            attr_reader :latest_deployment_status
             attr_reader :scopes
             attr_reader :vars
             attr_reader :events
@@ -38,7 +42,11 @@ module Appwrite
                 live:,
                 logging:,
                 runtime:,
-                deployment:,
+                deployment_id:,
+                deployment_created_at:,
+                latest_deployment_id:,
+                latest_deployment_created_at:,
+                latest_deployment_status:,
                 scopes:,
                 vars:,
                 events:,
@@ -63,7 +71,11 @@ module Appwrite
                 @live = live
                 @logging = logging
                 @runtime = runtime
-                @deployment = deployment
+                @deployment_id = deployment_id
+                @deployment_created_at = deployment_created_at
+                @latest_deployment_id = latest_deployment_id
+                @latest_deployment_created_at = latest_deployment_created_at
+                @latest_deployment_status = latest_deployment_status
                 @scopes = scopes
                 @vars = vars
                 @events = events
@@ -91,7 +103,11 @@ module Appwrite
                     live: map["live"],
                     logging: map["logging"],
                     runtime: map["runtime"],
-                    deployment: map["deployment"],
+                    deployment_id: map["deploymentId"],
+                    deployment_created_at: map["deploymentCreatedAt"],
+                    latest_deployment_id: map["latestDeploymentId"],
+                    latest_deployment_created_at: map["latestDeploymentCreatedAt"],
+                    latest_deployment_status: map["latestDeploymentStatus"],
                     scopes: map["scopes"],
                     vars: map["vars"].map { |it| Variable.from(map: it) },
                     events: map["events"],
@@ -120,7 +136,11 @@ module Appwrite
                     "live": @live,
                     "logging": @logging,
                     "runtime": @runtime,
-                    "deployment": @deployment,
+                    "deploymentId": @deployment_id,
+                    "deploymentCreatedAt": @deployment_created_at,
+                    "latestDeploymentId": @latest_deployment_id,
+                    "latestDeploymentCreatedAt": @latest_deployment_created_at,
+                    "latestDeploymentStatus": @latest_deployment_status,
                     "scopes": @scopes,
                     "vars": @vars.map { |it| it.to_map },
                     "events": @events,

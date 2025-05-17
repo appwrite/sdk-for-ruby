@@ -417,9 +417,10 @@ module Appwrite
         #
         # @param [String] bucket_id Storage bucket ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket).
         # @param [String] file_id File ID.
+        # @param [String] token File token for accessing this file.
         #
         # @return []
-        def get_file_download(bucket_id:, file_id:)
+        def get_file_download(bucket_id:, file_id:, token: nil)
             api_path = '/storage/buckets/{bucketId}/files/{fileId}/download'
                 .gsub('{bucketId}', bucket_id)
                 .gsub('{fileId}', file_id)
@@ -433,6 +434,7 @@ module Appwrite
             end
 
             api_params = {
+                token: token,
             }
             
             api_headers = {
@@ -458,7 +460,7 @@ module Appwrite
         # @param [Integer] width Resize preview image width, Pass an integer between 0 to 4000.
         # @param [Integer] height Resize preview image height, Pass an integer between 0 to 4000.
         # @param [ImageGravity] gravity Image crop gravity. Can be one of center,top-left,top,top-right,left,right,bottom-left,bottom,bottom-right
-        # @param [Integer] quality Preview image quality. Pass an integer between 0 to 100. Defaults to 100.
+        # @param [Integer] quality Preview image quality. Pass an integer between 0 to 100. Defaults to keep existing image quality.
         # @param [Integer] border_width Preview image border in pixels. Pass an integer between 0 to 100. Defaults to 0.
         # @param [String] border_color Preview image border color. Use a valid HEX color, no # is needed for prefix.
         # @param [Integer] border_radius Preview image border radius in pixels. Pass an integer between 0 to 4000.
@@ -466,9 +468,10 @@ module Appwrite
         # @param [Integer] rotation Preview image rotation in degrees. Pass an integer between -360 and 360.
         # @param [String] background Preview image background color. Only works with transparent images (png). Use a valid HEX color, no # is needed for prefix.
         # @param [ImageFormat] output Output format type (jpeg, jpg, png, gif and webp).
+        # @param [String] token File token for accessing this file.
         #
         # @return []
-        def get_file_preview(bucket_id:, file_id:, width: nil, height: nil, gravity: nil, quality: nil, border_width: nil, border_color: nil, border_radius: nil, opacity: nil, rotation: nil, background: nil, output: nil)
+        def get_file_preview(bucket_id:, file_id:, width: nil, height: nil, gravity: nil, quality: nil, border_width: nil, border_color: nil, border_radius: nil, opacity: nil, rotation: nil, background: nil, output: nil, token: nil)
             api_path = '/storage/buckets/{bucketId}/files/{fileId}/preview'
                 .gsub('{bucketId}', bucket_id)
                 .gsub('{fileId}', file_id)
@@ -493,6 +496,7 @@ module Appwrite
                 rotation: rotation,
                 background: background,
                 output: output,
+                token: token,
             }
             
             api_headers = {
@@ -513,9 +517,10 @@ module Appwrite
         #
         # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket).
         # @param [String] file_id File ID.
+        # @param [String] token File token for accessing this file.
         #
         # @return []
-        def get_file_view(bucket_id:, file_id:)
+        def get_file_view(bucket_id:, file_id:, token: nil)
             api_path = '/storage/buckets/{bucketId}/files/{fileId}/view'
                 .gsub('{bucketId}', bucket_id)
                 .gsub('{fileId}', file_id)
@@ -529,6 +534,7 @@ module Appwrite
             end
 
             api_params = {
+                token: token,
             }
             
             api_headers = {

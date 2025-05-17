@@ -7,10 +7,6 @@ client = Client.new
     .set_project('<YOUR_PROJECT_ID>') # Your project ID
     .set_key('<YOUR_API_KEY>') # Your secret API key
 
-functions = Functions.new(client)
+sites = Sites.new(client)
 
-result = functions.create_build(
-    function_id: '<FUNCTION_ID>',
-    deployment_id: '<DEPLOYMENT_ID>',
-    build_id: '<BUILD_ID>' # optional
-)
+result = sites.list_specifications()

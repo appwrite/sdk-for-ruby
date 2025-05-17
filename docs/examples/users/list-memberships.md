@@ -10,5 +10,7 @@ client = Client.new
 users = Users.new(client)
 
 result = users.list_memberships(
-    user_id: '<USER_ID>'
+    user_id: '<USER_ID>',
+    queries: [], # optional
+    search: '<SEARCH>' # optional
 )

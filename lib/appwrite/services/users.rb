@@ -719,9 +719,11 @@ module Appwrite
         # Get the user membership list by its unique ID.
         #
         # @param [String] user_id User ID.
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, teamId, invited, joined, confirm, roles
+        # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [MembershipList]
-        def list_memberships(user_id:)
+        def list_memberships(user_id:, queries: nil, search: nil)
             api_path = '/users/{userId}/memberships'
                 .gsub('{userId}', user_id)
 
@@ -730,6 +732,8 @@ module Appwrite
             end
 
             api_params = {
+                queries: queries,
+                search: search,
             }
             
             api_headers = {

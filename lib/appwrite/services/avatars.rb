@@ -21,7 +21,7 @@ module Appwrite
         # @param [Browser] code Browser Code.
         # @param [Integer] width Image width. Pass an integer between 0 to 2000. Defaults to 100.
         # @param [Integer] height Image height. Pass an integer between 0 to 2000. Defaults to 100.
-        # @param [Integer] quality Image quality. Pass an integer between 0 to 100. Defaults to 100.
+        # @param [Integer] quality Image quality. Pass an integer between 0 to 100. Defaults to keep existing image quality.
         #
         # @return []
         def get_browser(code:, width: nil, height: nil, quality: nil)
@@ -63,7 +63,7 @@ module Appwrite
         # @param [CreditCard] code Credit Card Code. Possible values: amex, argencard, cabal, cencosud, diners, discover, elo, hipercard, jcb, mastercard, naranja, targeta-shopping, union-china-pay, visa, mir, maestro, rupay.
         # @param [Integer] width Image width. Pass an integer between 0 to 2000. Defaults to 100.
         # @param [Integer] height Image height. Pass an integer between 0 to 2000. Defaults to 100.
-        # @param [Integer] quality Image quality. Pass an integer between 0 to 100. Defaults to 100.
+        # @param [Integer] quality Image quality. Pass an integer between 0 to 100. Defaults to keep existing image quality.
         #
         # @return []
         def get_credit_card(code:, width: nil, height: nil, quality: nil)
@@ -137,7 +137,7 @@ module Appwrite
         # @param [Flag] code Country Code. ISO Alpha-2 country code format.
         # @param [Integer] width Image width. Pass an integer between 0 to 2000. Defaults to 100.
         # @param [Integer] height Image height. Pass an integer between 0 to 2000. Defaults to 100.
-        # @param [Integer] quality Image quality. Pass an integer between 0 to 100. Defaults to 100.
+        # @param [Integer] quality Image quality. Pass an integer between 0 to 100. Defaults to keep existing image quality.
         #
         # @return []
         def get_flag(code:, width: nil, height: nil, quality: nil)

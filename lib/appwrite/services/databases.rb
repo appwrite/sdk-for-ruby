@@ -1733,7 +1733,6 @@ module Appwrite
         # collection resource using either a [server
         # integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
         # API or directly from your database console.
-        # 
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). Make sure to define attributes before creating documents.
@@ -2077,9 +2076,10 @@ module Appwrite
         # @param [IndexType] type Index type.
         # @param [Array] attributes Array of attributes to index. Maximum of 100 attributes are allowed, each 32 characters long.
         # @param [Array] orders Array of index orders. Maximum of 100 orders are allowed.
+        # @param [Array] lengths Length of index. Maximum of 100
         #
         # @return [Index]
-        def create_index(database_id:, collection_id:, key:, type:, attributes:, orders: nil)
+        def create_index(database_id:, collection_id:, key:, type:, attributes:, orders: nil, lengths: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/indexes'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -2109,6 +2109,7 @@ module Appwrite
                 type: type,
                 attributes: attributes,
                 orders: orders,
+                lengths: lengths,
             }
             
             api_headers = {

@@ -22,6 +22,7 @@ module Appwrite
             PYTHON_3_11 = 'python-3.11'
             PYTHON_3_12 = 'python-3.12'
             PYTHON_ML_3_11 = 'python-ml-3.11'
+            PYTHON_ML_3_12 = 'python-ml-3.12'
             DENO_1_21 = 'deno-1.21'
             DENO_1_24 = 'deno-1.24'
             DENO_1_35 = 'deno-1.35'
@@ -32,6 +33,7 @@ module Appwrite
             DART_2_16 = 'dart-2.16'
             DART_2_17 = 'dart-2.17'
             DART_2_18 = 'dart-2.18'
+            DART_2_19 = 'dart-2.19'
             DART_3_0 = 'dart-3.0'
             DART_3_1 = 'dart-3.1'
             DART_3_3 = 'dart-3.3'
@@ -60,6 +62,8 @@ module Appwrite
             GO_1_23 = 'go-1.23'
             STATIC_1 = 'static-1'
             FLUTTER_3_24 = 'flutter-3.24'
+            FLUTTER_3_27 = 'flutter-3.27'
+            FLUTTER_3_29 = 'flutter-3.29'
         end
     end
 end

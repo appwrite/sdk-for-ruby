@@ -1680,7 +1680,6 @@ module Appwrite
         # collection resource using either a [server
         # integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
         # API or directly from your database console.
-        # 
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). Make sure to define attributes before creating documents.
@@ -1726,6 +1725,174 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::Document
+            )
+        end
+
+        
+        # Create new Documents. Before using this route, you should create a new
+        # collection resource using either a [server
+        # integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
+        # API or directly from your database console.
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). Make sure to define attributes before creating documents.
+        # @param [Array] documents Array of documents data as JSON objects.
+        #
+        # @return [DocumentList]
+        def create_documents(database_id:, collection_id:, documents:)
+            api_path = '/databases/{databaseId}/collections/{collectionId}/documents'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if documents.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "documents"')
+            end
+
+            api_params = {
+                documents: documents,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::DocumentList
+            )
+        end
+
+        
+        # Create or update Documents. Before using this route, you should create a
+        # new collection resource using either a [server
+        # integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
+        # API or directly from your database console.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID.
+        # @param [Array] documents Array of document data as JSON objects. May contain partial documents.
+        #
+        # @return [DocumentList]
+        def upsert_documents(database_id:, collection_id:, documents: nil)
+            api_path = '/databases/{databaseId}/collections/{collectionId}/documents'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            api_params = {
+                documents: documents,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PUT',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::DocumentList
+            )
+        end
+
+        
+        # Update all documents that match your queries, if no queries are submitted
+        # then all documents are updated. You can pass only specific fields to be
+        # updated.
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID.
+        # @param [Hash] data Document data as JSON object. Include only attribute and value pairs to be updated.
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
+        #
+        # @return [DocumentList]
+        def update_documents(database_id:, collection_id:, data: nil, queries: nil)
+            api_path = '/databases/{databaseId}/collections/{collectionId}/documents'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            api_params = {
+                data: data,
+                queries: queries,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::DocumentList
+            )
+        end
+
+        
+        # Bulk delete documents using queries, if no queries are passed then all
+        # documents are deleted.
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
+        #
+        # @return [DocumentList]
+        def delete_documents(database_id:, collection_id:, queries: nil)
+            api_path = '/databases/{databaseId}/collections/{collectionId}/documents'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            api_params = {
+                queries: queries,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::DocumentList
             )
         end
 
@@ -1909,9 +2076,10 @@ module Appwrite
         # @param [IndexType] type Index type.
         # @param [Array] attributes Array of attributes to index. Maximum of 100 attributes are allowed, each 32 characters long.
         # @param [Array] orders Array of index orders. Maximum of 100 orders are allowed.
+        # @param [Array] lengths Length of index. Maximum of 100
         #
         # @return [Index]
-        def create_index(database_id:, collection_id:, key:, type:, attributes:, orders: nil)
+        def create_index(database_id:, collection_id:, key:, type:, attributes:, orders: nil, lengths: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/indexes'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -1941,6 +2109,7 @@ module Appwrite
                 type: type,
                 attributes: attributes,
                 orders: orders,
+                lengths: lengths,
             }
             
             api_headers = {

@@ -10,13 +10,16 @@ module Appwrite
             attr_reader :resource_id
             attr_reader :resource_type
             attr_reader :entrypoint
-            attr_reader :size
+            attr_reader :source_size
             attr_reader :build_size
+            attr_reader :total_size
             attr_reader :build_id
             attr_reader :activate
+            attr_reader :screenshot_light
+            attr_reader :screenshot_dark
             attr_reader :status
             attr_reader :build_logs
-            attr_reader :build_time
+            attr_reader :build_duration
             attr_reader :provider_repository_name
             attr_reader :provider_repository_owner
             attr_reader :provider_repository_url
@@ -36,13 +39,16 @@ module Appwrite
                 resource_id:,
                 resource_type:,
                 entrypoint:,
-                size:,
+                source_size:,
                 build_size:,
+                total_size:,
                 build_id:,
                 activate:,
+                screenshot_light:,
+                screenshot_dark:,
                 status:,
                 build_logs:,
-                build_time:,
+                build_duration:,
                 provider_repository_name:,
                 provider_repository_owner:,
                 provider_repository_url:,
@@ -61,13 +67,16 @@ module Appwrite
                 @resource_id = resource_id
                 @resource_type = resource_type
                 @entrypoint = entrypoint
-                @size = size
+                @source_size = source_size
                 @build_size = build_size
+                @total_size = total_size
                 @build_id = build_id
                 @activate = activate
+                @screenshot_light = screenshot_light
+                @screenshot_dark = screenshot_dark
                 @status = status
                 @build_logs = build_logs
-                @build_time = build_time
+                @build_duration = build_duration
                 @provider_repository_name = provider_repository_name
                 @provider_repository_owner = provider_repository_owner
                 @provider_repository_url = provider_repository_url
@@ -89,13 +98,16 @@ module Appwrite
                     resource_id: map["resourceId"],
                     resource_type: map["resourceType"],
                     entrypoint: map["entrypoint"],
-                    size: map["size"],
+                    source_size: map["sourceSize"],
                     build_size: map["buildSize"],
+                    total_size: map["totalSize"],
                     build_id: map["buildId"],
                     activate: map["activate"],
+                    screenshot_light: map["screenshotLight"],
+                    screenshot_dark: map["screenshotDark"],
                     status: map["status"],
                     build_logs: map["buildLogs"],
-                    build_time: map["buildTime"],
+                    build_duration: map["buildDuration"],
                     provider_repository_name: map["providerRepositoryName"],
                     provider_repository_owner: map["providerRepositoryOwner"],
                     provider_repository_url: map["providerRepositoryUrl"],
@@ -118,13 +130,16 @@ module Appwrite
                     "resourceId": @resource_id,
                     "resourceType": @resource_type,
                     "entrypoint": @entrypoint,
-                    "size": @size,
+                    "sourceSize": @source_size,
                     "buildSize": @build_size,
+                    "totalSize": @total_size,
                     "buildId": @build_id,
                     "activate": @activate,
+                    "screenshotLight": @screenshot_light,
+                    "screenshotDark": @screenshot_dark,
                     "status": @status,
                     "buildLogs": @build_logs,
-                    "buildTime": @build_time,
+                    "buildDuration": @build_duration,
                     "providerRepositoryName": @provider_repository_name,
                     "providerRepositoryOwner": @provider_repository_owner,
                     "providerRepositoryUrl": @provider_repository_url,

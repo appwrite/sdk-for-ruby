@@ -8,6 +8,7 @@ module Appwrite
             attr_reader :updated_at
             attr_reader :key
             attr_reader :value
+            attr_reader :secret
             attr_reader :resource_type
             attr_reader :resource_id
 
@@ -17,6 +18,7 @@ module Appwrite
                 updated_at:,
                 key:,
                 value:,
+                secret:,
                 resource_type:,
                 resource_id:
             )
@@ -25,6 +27,7 @@ module Appwrite
                 @updated_at = updated_at
                 @key = key
                 @value = value
+                @secret = secret
                 @resource_type = resource_type
                 @resource_id = resource_id
             end
@@ -36,6 +39,7 @@ module Appwrite
                     updated_at: map["$updatedAt"],
                     key: map["key"],
                     value: map["value"],
+                    secret: map["secret"],
                     resource_type: map["resourceType"],
                     resource_id: map["resourceId"]
                 )
@@ -48,6 +52,7 @@ module Appwrite
                     "$updatedAt": @updated_at,
                     "key": @key,
                     "value": @value,
+                    "secret": @secret,
                     "resourceType": @resource_type,
                     "resourceId": @resource_id
                 }

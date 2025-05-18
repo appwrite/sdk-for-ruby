@@ -8,6 +8,7 @@ module Appwrite
             attr_reader :status
             attr_reader :error
             attr_reader :attributes
+            attr_reader :lengths
             attr_reader :orders
             attr_reader :created_at
             attr_reader :updated_at
@@ -18,6 +19,7 @@ module Appwrite
                 status:,
                 error:,
                 attributes:,
+                lengths:,
                 orders: ,
                 created_at:,
                 updated_at:
@@ -27,6 +29,7 @@ module Appwrite
                 @status = status
                 @error = error
                 @attributes = attributes
+                @lengths = lengths
                 @orders = orders
                 @created_at = created_at
                 @updated_at = updated_at
@@ -39,6 +42,7 @@ module Appwrite
                     status: map["status"],
                     error: map["error"],
                     attributes: map["attributes"],
+                    lengths: map["lengths"],
                     orders: map["orders"],
                     created_at: map["$createdAt"],
                     updated_at: map["$updatedAt"]
@@ -52,6 +56,7 @@ module Appwrite
                     "status": @status,
                     "error": @error,
                     "attributes": @attributes,
+                    "lengths": @lengths,
                     "orders": @orders,
                     "$createdAt": @created_at,
                     "$updatedAt": @updated_at

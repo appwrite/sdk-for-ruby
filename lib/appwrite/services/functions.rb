@@ -10,7 +10,7 @@ module Appwrite
         # Get a list of all the project's functions. You can use the query params to
         # filter your results.
         #
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, enabled, runtime, deployment, schedule, scheduleNext, schedulePrevious, timeout, entrypoint, commands, installationId
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, enabled, runtime, deploymentId, schedule, scheduleNext, schedulePrevious, timeout, entrypoint, commands, installationId
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [FunctionList]
@@ -48,7 +48,7 @@ module Appwrite
         # @param [String] schedule Schedule CRON syntax.
         # @param [Integer] timeout Function maximum execution time in seconds.
         # @param [] enabled Is function enabled? When set to 'disabled', users cannot access the function but Server SDKs with and API key can still access the function. No data is lost when this is toggled.
-        # @param [] logging Whether executions will be logged. When set to false, executions will not be logged, but will reduce resource used by your Appwrite project.
+        # @param [] logging When disabled, executions will exclude logs and errors, and will be slightly faster.
         # @param [String] entrypoint Entrypoint File. This path is relative to the "providerRootDirectory".
         # @param [String] commands Build Commands.
         # @param [Array] scopes List of scopes allowed for API key auto-generated for every execution. Maximum of 100 scopes are allowed.
@@ -57,14 +57,10 @@ module Appwrite
         # @param [String] provider_branch Production branch for the repo linked to the function.
         # @param [] provider_silent_mode Is the VCS (Version Control System) connection in silent mode for the repo linked to the function? In silent mode, comments will not be made on commits and pull requests.
         # @param [String] provider_root_directory Path to function code in the linked repo.
-        # @param [String] template_repository Repository name of the template.
-        # @param [String] template_owner The name of the owner of the template.
-        # @param [String] template_root_directory Path to function code in the template repo.
-        # @param [String] template_version Version (tag) for the repo linked to the function template.
         # @param [String] specification Runtime specification for the function and builds.
         #
         # @return [Function]
-        def create(function_id:, name:, runtime:, execute: nil, events: nil, schedule: nil, timeout: nil, enabled: nil, logging: nil, entrypoint: nil, commands: nil, scopes: nil, installation_id: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil, template_repository: nil, template_owner: nil, template_root_directory: nil, template_version: nil, specification: nil)
+        def create(function_id:, name:, runtime:, execute: nil, events: nil, schedule: nil, timeout: nil, enabled: nil, logging: nil, entrypoint: nil, commands: nil, scopes: nil, installation_id: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil, specification: nil)
             api_path = '/functions'
 
             if function_id.nil?
@@ -97,10 +93,6 @@ module Appwrite
                 providerBranch: provider_branch,
                 providerSilentMode: provider_silent_mode,
                 providerRootDirectory: provider_root_directory,
-                templateRepository: template_repository,
-                templateOwner: template_owner,
-                templateRootDirectory: template_root_directory,
-                templateVersion: template_version,
                 specification: specification,
             }
             
@@ -142,7 +134,6 @@ module Appwrite
 
         
         # List allowed function specifications for this instance.
-        # 
         #
         #
         # @return [SpecificationList]
@@ -204,7 +195,7 @@ module Appwrite
         # @param [String] schedule Schedule CRON syntax.
         # @param [Integer] timeout Maximum execution time in seconds.
         # @param [] enabled Is function enabled? When set to 'disabled', users cannot access the function but Server SDKs with and API key can still access the function. No data is lost when this is toggled.
-        # @param [] logging Whether executions will be logged. When set to false, executions will not be logged, but will reduce resource used by your Appwrite project.
+        # @param [] logging When disabled, executions will exclude logs and errors, and will be slightly faster.
         # @param [String] entrypoint Entrypoint File. This path is relative to the "providerRootDirectory".
         # @param [String] commands Build Commands.
         # @param [Array] scopes List of scopes allowed for API Key auto-generated for every execution. Maximum of 100 scopes are allowed.
@@ -291,11 +282,48 @@ module Appwrite
         end
 
         
-        # Get a list of all the project's code deployments. You can use the query
+        # Update the function active deployment. Use this endpoint to switch the code
+        # deployment that should be used when visitor opens your function.
+        #
+        # @param [String] function_id Function ID.
+        # @param [String] deployment_id Deployment ID.
+        #
+        # @return [Function]
+        def update_function_deployment(function_id:, deployment_id:)
+            api_path = '/functions/{functionId}/deployment'
+                .gsub('{functionId}', function_id)
+
+            if function_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+            end
+
+            if deployment_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
+            end
+
+            api_params = {
+                deploymentId: deployment_id,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Function
+            )
+        end
+
+        
+        # Get a list of all the function's code deployments. You can use the query
         # params to filter your results.
         #
         # @param [String] function_id Function ID.
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: size, buildId, activate, entrypoint, commands, type, size
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: buildSize, sourceSize, totalSize, buildDuration, status, activate, type
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [DeploymentList]
@@ -385,7 +413,155 @@ module Appwrite
         end
 
         
-        # Get a code deployment by its unique ID.
+        # Create a new build for an existing function deployment. This endpoint
+        # allows you to rebuild a deployment with the updated function configuration,
+        # including its entrypoint and build commands if they have been modified. The
+        # build process will be queued and executed asynchronously. The original
+        # deployment's code will be preserved and used for the new build.
+        #
+        # @param [String] function_id Function ID.
+        # @param [String] deployment_id Deployment ID.
+        # @param [String] build_id Build unique ID.
+        #
+        # @return [Deployment]
+        def create_duplicate_deployment(function_id:, deployment_id:, build_id: nil)
+            api_path = '/functions/{functionId}/deployments/duplicate'
+                .gsub('{functionId}', function_id)
+
+            if function_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+            end
+
+            if deployment_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
+            end
+
+            api_params = {
+                deploymentId: deployment_id,
+                buildId: build_id,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Deployment
+            )
+        end
+
+        
+        # Create a deployment based on a template.
+        # 
+        # Use this endpoint with combination of
+        # [listTemplates](https://appwrite.io/docs/server/functions#listTemplates) to
+        # find the template details.
+        #
+        # @param [String] function_id Function ID.
+        # @param [String] repository Repository name of the template.
+        # @param [String] owner The name of the owner of the template.
+        # @param [String] root_directory Path to function code in the template repo.
+        # @param [String] version Version (tag) for the repo linked to the function template.
+        # @param [] activate Automatically activate the deployment when it is finished building.
+        #
+        # @return [Deployment]
+        def create_template_deployment(function_id:, repository:, owner:, root_directory:, version:, activate: nil)
+            api_path = '/functions/{functionId}/deployments/template'
+                .gsub('{functionId}', function_id)
+
+            if function_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+            end
+
+            if repository.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "repository"')
+            end
+
+            if owner.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "owner"')
+            end
+
+            if root_directory.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "rootDirectory"')
+            end
+
+            if version.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "version"')
+            end
+
+            api_params = {
+                repository: repository,
+                owner: owner,
+                rootDirectory: root_directory,
+                version: version,
+                activate: activate,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Deployment
+            )
+        end
+
+        
+        # Create a deployment when a function is connected to VCS.
+        # 
+        # This endpoint lets you create deployment from a branch, commit, or a tag.
+        #
+        # @param [String] function_id Function ID.
+        # @param [VCSDeploymentType] type Type of reference passed. Allowed values are: branch, commit
+        # @param [String] reference VCS reference to create deployment from. Depending on type this can be: branch name, commit hash
+        # @param [] activate Automatically activate the deployment when it is finished building.
+        #
+        # @return [Deployment]
+        def create_vcs_deployment(function_id:, type:, reference:, activate: nil)
+            api_path = '/functions/{functionId}/deployments/vcs'
+                .gsub('{functionId}', function_id)
+
+            if function_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+            end
+
+            if type.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "type"')
+            end
+
+            if reference.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "reference"')
+            end
+
+            api_params = {
+                type: type,
+                reference: reference,
+                activate: activate,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Deployment
+            )
+        end
+
+        
+        # Get a function deployment by its unique ID.
         #
         # @param [String] function_id Function ID.
         # @param [String] deployment_id Deployment ID.
@@ -416,44 +592,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::Deployment
-            )
-        end
-
-        
-        # Update the function code deployment ID using the unique function ID. Use
-        # this endpoint to switch the code deployment that should be executed by the
-        # execution endpoint.
-        #
-        # @param [String] function_id Function ID.
-        # @param [String] deployment_id Deployment ID.
-        #
-        # @return [Function]
-        def update_deployment(function_id:, deployment_id:)
-            api_path = '/functions/{functionId}/deployments/{deploymentId}'
-                .gsub('{functionId}', function_id)
-                .gsub('{deploymentId}', deployment_id)
-
-            if function_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
-            end
-
-            if deployment_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
-            end
-
-            api_params = {
-            }
-            
-            api_headers = {
-                "content-type": 'application/json',
-            }
-
-            @client.call(
-                method: 'PATCH',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                response_type: Models::Function
             )
         end
 
@@ -493,19 +631,17 @@ module Appwrite
         end
 
         
-        # Create a new build for an existing function deployment. This endpoint
-        # allows you to rebuild a deployment with the updated function configuration,
-        # including its entrypoint and build commands if they have been modified The
-        # build process will be queued and executed asynchronously. The original
-        # deployment's code will be preserved and used for the new build.
+        # Get a function deployment content by its unique ID. The endpoint response
+        # return with a 'Content-Disposition: attachment' header that tells the
+        # browser to start downloading the file to user downloads directory.
         #
         # @param [String] function_id Function ID.
         # @param [String] deployment_id Deployment ID.
-        # @param [String] build_id Build unique ID.
+        # @param [DeploymentDownloadType] type Deployment file to download. Can be: "source", "output".
         #
         # @return []
-        def create_build(function_id:, deployment_id:, build_id: nil)
-            api_path = '/functions/{functionId}/deployments/{deploymentId}/build'
+        def get_deployment_download(function_id:, deployment_id:, type: nil)
+            api_path = '/functions/{functionId}/deployments/{deploymentId}/download'
                 .gsub('{functionId}', function_id)
                 .gsub('{deploymentId}', deployment_id)
 
@@ -518,15 +654,14 @@ module Appwrite
             end
 
             api_params = {
-                buildId: build_id,
+                type: type,
             }
             
             api_headers = {
-                "content-type": 'application/json',
             }
 
             @client.call(
-                method: 'POST',
+                method: 'GET',
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
@@ -543,9 +678,9 @@ module Appwrite
         # @param [String] function_id Function ID.
         # @param [String] deployment_id Deployment ID.
         #
-        # @return [Build]
-        def update_deployment_build(function_id:, deployment_id:)
-            api_path = '/functions/{functionId}/deployments/{deploymentId}/build'
+        # @return [Deployment]
+        def update_deployment_status(function_id:, deployment_id:)
+            api_path = '/functions/{functionId}/deployments/{deploymentId}/status'
                 .gsub('{functionId}', function_id)
                 .gsub('{deploymentId}', deployment_id)
 
@@ -569,42 +704,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Build
-            )
-        end
-
-        
-        # Get a Deployment's contents by its unique ID. This endpoint supports range
-        # requests for partial or streaming file download.
-        #
-        # @param [String] function_id Function ID.
-        # @param [String] deployment_id Deployment ID.
-        #
-        # @return []
-        def get_deployment_download(function_id:, deployment_id:)
-            api_path = '/functions/{functionId}/deployments/{deploymentId}/download'
-                .gsub('{functionId}', function_id)
-                .gsub('{deploymentId}', deployment_id)
-
-            if function_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
-            end
-
-            if deployment_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
-            end
-
-            api_params = {
-            }
-            
-            api_headers = {
-            }
-
-            @client.call(
-                method: 'GET',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
+                response_type: Models::Deployment
             )
         end
 
@@ -614,10 +714,9 @@ module Appwrite
         #
         # @param [String] function_id Function ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: trigger, status, responseStatusCode, duration, requestMethod, requestPath, deploymentId
-        # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [ExecutionList]
-        def list_executions(function_id:, queries: nil, search: nil)
+        def list_executions(function_id:, queries: nil)
             api_path = '/functions/{functionId}/executions'
                 .gsub('{functionId}', function_id)
 
@@ -627,7 +726,6 @@ module Appwrite
 
             api_params = {
                 queries: queries,
-                search: search,
             }
             
             api_headers = {
@@ -724,7 +822,6 @@ module Appwrite
 
         
         # Delete a function execution by its unique ID.
-        # 
         #
         # @param [String] function_id Function ID.
         # @param [String] execution_id Execution ID.
@@ -794,9 +891,10 @@ module Appwrite
         # @param [String] function_id Function unique ID.
         # @param [String] key Variable key. Max length: 255 chars.
         # @param [String] value Variable value. Max length: 8192 chars.
+        # @param [] secret Secret variables can be updated or deleted, but only functions can read them during build and runtime.
         #
         # @return [Variable]
-        def create_variable(function_id:, key:, value:)
+        def create_variable(function_id:, key:, value:, secret: nil)
             api_path = '/functions/{functionId}/variables'
                 .gsub('{functionId}', function_id)
 
@@ -815,6 +913,7 @@ module Appwrite
             api_params = {
                 key: key,
                 value: value,
+                secret: secret,
             }
             
             api_headers = {
@@ -872,9 +971,10 @@ module Appwrite
         # @param [String] variable_id Variable unique ID.
         # @param [String] key Variable key. Max length: 255 chars.
         # @param [String] value Variable value. Max length: 8192 chars.
+        # @param [] secret Secret variables can be updated or deleted, but only functions can read them during build and runtime.
         #
         # @return [Variable]
-        def update_variable(function_id:, variable_id:, key:, value: nil)
+        def update_variable(function_id:, variable_id:, key:, value: nil, secret: nil)
             api_path = '/functions/{functionId}/variables/{variableId}'
                 .gsub('{functionId}', function_id)
                 .gsub('{variableId}', variable_id)
@@ -894,6 +994,7 @@ module Appwrite
             api_params = {
                 key: key,
                 value: value,
+                secret: secret,
             }
             
             api_headers = {

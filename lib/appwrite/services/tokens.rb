@@ -46,7 +46,7 @@ module Appwrite
 
         
         # Create a new token. A token is linked to a file. Token can be passed as a
-        # header or request get parameter.
+        # request URL search parameter.
         #
         # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket).
         # @param [String] file_id File unique ID.

@@ -8,12 +8,12 @@ client = Client.new
     .set_key('<YOUR_API_KEY>') # Your secret API key
     .set_jwt('<YOUR_JWT>') # Your secret JSON Web Token
 
-databases = Databases.new(client)
+tables = Tables.new(client)
 
-result = databases.create_document(
+result = tables.create_row(
     database_id: '<DATABASE_ID>',
-    collection_id: '<COLLECTION_ID>',
-    document_id: '<DOCUMENT_ID>',
+    table_id: '<TABLE_ID>',
+    row_id: '<ROW_ID>',
     data: {},
     permissions: ["read("any")"] # optional
 )

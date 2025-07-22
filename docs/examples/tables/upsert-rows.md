@@ -7,9 +7,9 @@ client = Client.new
     .set_admin('') # 
     .set_key('<YOUR_API_KEY>') # Your secret API key
 
-databases = Databases.new(client)
+tables = Tables.new(client)
 
-result = databases.upsert_documents(
+result = tables.upsert_rows(
     database_id: '<DATABASE_ID>',
-    collection_id: '<COLLECTION_ID>'
+    table_id: '<TABLE_ID>'
 )

@@ -1729,6 +1729,10 @@ module Appwrite
         end
 
         
+        # **WARNING: Experimental Feature** - This endpoint is experimental and not
+        # yet officially supported. It may be subject to breaking changes or removal
+        # in future versions.
+        # 
         # Create new Documents. Before using this route, you should create a new
         # collection resource using either a [server
         # integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
@@ -1774,6 +1778,10 @@ module Appwrite
         end
 
         
+        # **WARNING: Experimental Feature** - This endpoint is experimental and not
+        # yet officially supported. It may be subject to breaking changes or removal
+        # in future versions.
+        # 
         # Create or update Documents. Before using this route, you should create a
         # new collection resource using either a [server
         # integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
@@ -1785,7 +1793,7 @@ module Appwrite
         # @param [Array] documents Array of document data as JSON objects. May contain partial documents.
         #
         # @return [DocumentList]
-        def upsert_documents(database_id:, collection_id:, documents: nil)
+        def upsert_documents(database_id:, collection_id:, documents:)
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -1796,6 +1804,10 @@ module Appwrite
 
             if collection_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if documents.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "documents"')
             end
 
             api_params = {
@@ -1816,6 +1828,10 @@ module Appwrite
         end
 
         
+        # **WARNING: Experimental Feature** - This endpoint is experimental and not
+        # yet officially supported. It may be subject to breaking changes or removal
+        # in future versions.
+        # 
         # Update all documents that match your queries, if no queries are submitted
         # then all documents are updated. You can pass only specific fields to be
         # updated.
@@ -1858,6 +1874,10 @@ module Appwrite
         end
 
         
+        # **WARNING: Experimental Feature** - This endpoint is experimental and not
+        # yet officially supported. It may be subject to breaking changes or removal
+        # in future versions.
+        # 
         # Bulk delete documents using queries, if no queries are passed then all
         # documents are deleted.
         #
@@ -1933,6 +1953,63 @@ module Appwrite
 
             @client.call(
                 method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Document
+            )
+        end
+
+        
+        # **WARNING: Experimental Feature** - This endpoint is experimental and not
+        # yet officially supported. It may be subject to breaking changes or removal
+        # in future versions.
+        # 
+        # Create or update a Document. Before using this route, you should create a
+        # new collection resource using either a [server
+        # integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
+        # API or directly from your database console.
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID.
+        # @param [String] document_id Document ID.
+        # @param [Hash] data Document data as JSON object. Include all required attributes of the document to be created or updated.
+        # @param [Array] permissions An array of permissions strings. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions).
+        #
+        # @return [Document]
+        def upsert_document(database_id:, collection_id:, document_id:, data:, permissions: nil)
+            api_path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+                .gsub('{documentId}', document_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if document_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "documentId"')
+            end
+
+            if data.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "data"')
+            end
+
+            api_params = {
+                data: data,
+                permissions: permissions,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PUT',
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
@@ -2025,6 +2102,110 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
+            )
+        end
+
+        
+        # Decrement a specific attribute of a document by a given value.
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID.
+        # @param [String] document_id Document ID.
+        # @param [String] attribute Attribute key.
+        # @param [Float] value Value to decrement the attribute by. The value must be a number.
+        # @param [Float] min Minimum value for the attribute. If the current value is lesser than this value, an exception will be thrown.
+        #
+        # @return [Document]
+        def decrement_document_attribute(database_id:, collection_id:, document_id:, attribute:, value: nil, min: nil)
+            api_path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}/{attribute}/decrement'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+                .gsub('{documentId}', document_id)
+                .gsub('{attribute}', attribute)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if document_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "documentId"')
+            end
+
+            if attribute.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "attribute"')
+            end
+
+            api_params = {
+                value: value,
+                min: min,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Document
+            )
+        end
+
+        
+        # Increment a specific attribute of a document by a given value.
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID.
+        # @param [String] document_id Document ID.
+        # @param [String] attribute Attribute key.
+        # @param [Float] value Value to increment the attribute by. The value must be a number.
+        # @param [Float] max Maximum value for the attribute. If the current value is greater than this value, an error will be thrown.
+        #
+        # @return [Document]
+        def increment_document_attribute(database_id:, collection_id:, document_id:, attribute:, value: nil, max: nil)
+            api_path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}/{attribute}/increment'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+                .gsub('{documentId}', document_id)
+                .gsub('{attribute}', attribute)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if document_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "documentId"')
+            end
+
+            if attribute.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "attribute"')
+            end
+
+            api_params = {
+                value: value,
+                max: max,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Document
             )
         end
 

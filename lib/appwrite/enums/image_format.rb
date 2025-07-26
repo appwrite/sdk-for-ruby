@@ -7,6 +7,7 @@ module Appwrite
             WEBP = 'webp'
             HEIC = 'heic'
             AVIF = 'avif'
+            GIF = 'gif'
         end
     end
 end

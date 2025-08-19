@@ -1,17 +1,21 @@
 require 'appwrite'
 
 include Appwrite
+include Appwrite::Enums
 
 client = Client.new
     .set_endpoint('https://<REGION>.cloud.appwrite.io/v1') # Your API Endpoint
     .set_project('<YOUR_PROJECT_ID>') # Your project ID
     .set_key('<YOUR_API_KEY>') # Your secret API key
 
-databases = Databases.new(client)
+tables_db = TablesDb.new(client)
 
-result = databases.create(
+result = tables_db.create_index(
     database_id: '<DATABASE_ID>',
-    name: '<NAME>',
-    enabled: false, # optional
-    type: ::TABLESDB # optional
+    table_id: '<TABLE_ID>',
+    key: '',
+    type: IndexType::KEY,
+    columns: [],
+    orders: [], # optional
+    lengths: [] # optional
 )

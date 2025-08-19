@@ -7,6 +7,9 @@ module Appwrite
             @client = client
         end
 
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.list` instead.
+        #
         # Get a list of all databases from the current Appwrite project. You can use
         # the search parameter to filter your results.
         #
@@ -35,15 +38,19 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createDatabase` instead.
+        #
         # Create a new Database.
         # 
         #
         # @param [String] database_id Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Database name. Max length: 128 chars.
         # @param [] enabled Is the database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled.
+        # @param [Type] type Database type.
         #
         # @return [Database]
-        def create(database_id:, name:, enabled: nil)
+        def create(database_id:, name:, enabled: nil, type: nil)
             api_path = '/databases'
 
             if database_id.nil?
@@ -58,6 +65,7 @@ module Appwrite
                 databaseId: database_id,
                 name: name,
                 enabled: enabled,
+                type: type,
             }
             
             api_headers = {
@@ -74,6 +82,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.get` instead.
+        #
         # Get a database by its unique ID. This endpoint response returns a JSON
         # object with the database metadata.
         #
@@ -104,6 +115,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.update` instead.
+        #
         # Update a database by its unique ID.
         #
         # @param [String] database_id Database ID.
@@ -142,6 +156,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.delete` instead.
+        #
         # Delete a database by its unique ID. Only API keys with with databases.write
         # scope can delete a database.
         #
@@ -172,6 +189,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.listTables` instead.
+        #
         # Get a list of all collections that belong to the provided databaseId. You
         # can use the search parameter to filter your results.
         #
@@ -206,6 +226,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createTable` instead.
+        #
         # Create a new Collection. Before using this route, you should create a new
         # database resource using either a [server
         # integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
@@ -257,6 +280,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.getTable` instead.
+        #
         # Get a collection by its unique ID. This endpoint response returns a JSON
         # object with the collection metadata.
         #
@@ -293,6 +319,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.updateTable` instead.
+        #
         # Update a collection by its unique ID.
         #
         # @param [String] database_id Database ID.
@@ -341,6 +370,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.deleteTable` instead.
+        #
         # Delete a collection by its unique ID. Only users with write permissions
         # have access to delete this resource.
         #
@@ -377,10 +409,13 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.listColumns` instead.
+        #
         # List attributes in the collection.
         #
         # @param [String] database_id Database ID.
-        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] collection_id Collection ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: key, type, size, required, array, status, error
         #
         # @return [AttributeList]
@@ -414,11 +449,14 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createBooleanColumn` instead.
+        #
         # Create a boolean attribute.
         # 
         #
         # @param [String] database_id Database ID.
-        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] collection_id Collection ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
         # @param [] default Default value for attribute when not provided. Cannot be set when attribute is required.
@@ -467,11 +505,14 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.updateBooleanColumn` instead.
+        #
         # Update a boolean attribute. Changing the `default` value will not update
         # already existing documents.
         #
         # @param [String] database_id Database ID.
-        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#createCollection).
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
         # @param [] default Default value for attribute when not provided. Cannot be set when attribute is required.
@@ -524,10 +565,13 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createDatetimeColumn` instead.
+        #
         # Create a date time attribute according to the ISO 8601 standard.
         #
         # @param [String] database_id Database ID.
-        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#createCollection).
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
         # @param [String] default Default value for the attribute in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Cannot be set when attribute is required.
@@ -576,11 +620,14 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.updateDatetimeColumn` instead.
+        #
         # Update a date time attribute. Changing the `default` value will not update
         # already existing documents.
         #
         # @param [String] database_id Database ID.
-        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] collection_id Collection ID.
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
         # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
@@ -633,11 +680,14 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createEmailColumn` instead.
+        #
         # Create an email attribute.
         # 
         #
         # @param [String] database_id Database ID.
-        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] collection_id Collection ID.
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
         # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
@@ -686,16 +736,19 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.updateEmailColumn` instead.
+        #
         # Update an email attribute. Changing the `default` value will not update
         # already existing documents.
         # 
         #
         # @param [String] database_id Database ID.
-        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] collection_id Collection ID.
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
         # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
-        # @param [String] new_key New attribute key.
+        # @param [String] new_key New Attribute Key.
         #
         # @return [AttributeEmail]
         def update_email_attribute(database_id:, collection_id:, key:, required:, default:, new_key: nil)
@@ -744,14 +797,17 @@ module Appwrite
         end
 
         
-        # Create an enumeration attribute. The `elements` param acts as a white-list
-        # of accepted values for this attribute. 
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createEnumColumn` instead.
+        #
+        # Create an enum attribute. The `elements` param acts as a white-list of
+        # accepted values for this attribute. 
         # 
         #
         # @param [String] database_id Database ID.
-        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] collection_id Collection ID.
         # @param [String] key Attribute Key.
-        # @param [Array] elements Array of elements in enumerated type. Uses length of longest element to determine size. Maximum of 100 elements are allowed, each 255 characters long.
+        # @param [Array] elements Array of enum values.
         # @param [] required Is attribute required?
         # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
         # @param [] array Is attribute an array?
@@ -804,17 +860,20 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.updateEnumColumn` instead.
+        #
         # Update an enum attribute. Changing the `default` value will not update
         # already existing documents.
         # 
         #
         # @param [String] database_id Database ID.
-        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] collection_id Collection ID.
         # @param [String] key Attribute Key.
-        # @param [Array] elements Array of elements in enumerated type. Uses length of longest element to determine size. Maximum of 100 elements are allowed, each 255 characters long.
+        # @param [Array] elements Updated list of enum values.
         # @param [] required Is attribute required?
         # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
-        # @param [String] new_key New attribute key.
+        # @param [String] new_key New Attribute Key.
         #
         # @return [AttributeEnum]
         def update_enum_attribute(database_id:, collection_id:, key:, elements:, required:, default:, new_key: nil)
@@ -868,17 +927,20 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createFloatColumn` instead.
+        #
         # Create a float attribute. Optionally, minimum and maximum values can be
         # provided.
         # 
         #
         # @param [String] database_id Database ID.
-        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] collection_id Collection ID.
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
-        # @param [Float] min Minimum value to enforce on new documents
-        # @param [Float] max Maximum value to enforce on new documents
-        # @param [Float] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        # @param [Float] min Minimum value.
+        # @param [Float] max Maximum value.
+        # @param [Float] default Default value. Cannot be set when required.
         # @param [] array Is attribute an array?
         #
         # @return [AttributeFloat]
@@ -926,18 +988,21 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.updateFloatColumn` instead.
+        #
         # Update a float attribute. Changing the `default` value will not update
         # already existing documents.
         # 
         #
         # @param [String] database_id Database ID.
-        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] collection_id Collection ID.
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
-        # @param [Float] default Default value for attribute when not provided. Cannot be set when attribute is required.
-        # @param [Float] min Minimum value to enforce on new documents
-        # @param [Float] max Maximum value to enforce on new documents
-        # @param [String] new_key New attribute key.
+        # @param [Float] default Default value. Cannot be set when required.
+        # @param [Float] min Minimum value.
+        # @param [Float] max Maximum value.
+        # @param [String] new_key New Attribute Key.
         #
         # @return [AttributeFloat]
         def update_float_attribute(database_id:, collection_id:, key:, required:, default:, min: nil, max: nil, new_key: nil)
@@ -988,17 +1053,20 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createIntegerColumn` instead.
+        #
         # Create an integer attribute. Optionally, minimum and maximum values can be
         # provided.
         # 
         #
         # @param [String] database_id Database ID.
-        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] collection_id Collection ID.
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
-        # @param [Integer] min Minimum value to enforce on new documents
-        # @param [Integer] max Maximum value to enforce on new documents
-        # @param [Integer] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        # @param [Integer] min Minimum value
+        # @param [Integer] max Maximum value
+        # @param [Integer] default Default value. Cannot be set when attribute is required.
         # @param [] array Is attribute an array?
         #
         # @return [AttributeInteger]
@@ -1046,18 +1114,21 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.updateIntegerColumn` instead.
+        #
         # Update an integer attribute. Changing the `default` value will not update
         # already existing documents.
         # 
         #
         # @param [String] database_id Database ID.
-        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] collection_id Collection ID.
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
-        # @param [Integer] default Default value for attribute when not provided. Cannot be set when attribute is required.
-        # @param [Integer] min Minimum value to enforce on new documents
-        # @param [Integer] max Maximum value to enforce on new documents
-        # @param [String] new_key New attribute key.
+        # @param [Integer] default Default value. Cannot be set when attribute is required.
+        # @param [Integer] min Minimum value
+        # @param [Integer] max Maximum value
+        # @param [String] new_key New Attribute Key.
         #
         # @return [AttributeInteger]
         def update_integer_attribute(database_id:, collection_id:, key:, required:, default:, min: nil, max: nil, new_key: nil)
@@ -1108,14 +1179,17 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createIpColumn` instead.
+        #
         # Create IP address attribute.
         # 
         #
         # @param [String] database_id Database ID.
-        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] collection_id Collection ID.
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
-        # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        # @param [String] default Default value. Cannot be set when attribute is required.
         # @param [] array Is attribute an array?
         #
         # @return [AttributeIp]
@@ -1161,16 +1235,19 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.updateIpColumn` instead.
+        #
         # Update an ip attribute. Changing the `default` value will not update
         # already existing documents.
         # 
         #
         # @param [String] database_id Database ID.
-        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] collection_id Collection ID.
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
-        # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
-        # @param [String] new_key New attribute key.
+        # @param [String] default Default value. Cannot be set when attribute is required.
+        # @param [String] new_key New Attribute Key.
         #
         # @return [AttributeIp]
         def update_ip_attribute(database_id:, collection_id:, key:, required:, default:, new_key: nil)
@@ -1219,13 +1296,16 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createRelationshipColumn` instead.
+        #
         # Create relationship attribute. [Learn more about relationship
         # attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
         # 
         #
         # @param [String] database_id Database ID.
-        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
-        # @param [String] related_collection_id Related Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] collection_id Collection ID.
+        # @param [String] related_collection_id Related Collection ID.
         # @param [RelationshipType] type Relation type
         # @param [] two_way Is Two Way?
         # @param [String] key Attribute Key.
@@ -1277,11 +1357,14 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createStringColumn` instead.
+        #
         # Create a string attribute.
         # 
         #
         # @param [String] database_id Database ID.
-        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] collection_id Collection ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
         # @param [String] key Attribute Key.
         # @param [Integer] size Attribute size for text attributes, in number of characters.
         # @param [] required Is attribute required?
@@ -1338,17 +1421,20 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.updateStringColumn` instead.
+        #
         # Update a string attribute. Changing the `default` value will not update
         # already existing documents.
         # 
         #
         # @param [String] database_id Database ID.
-        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] collection_id Collection ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
         # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
         # @param [Integer] size Maximum size of the string attribute.
-        # @param [String] new_key New attribute key.
+        # @param [String] new_key New Attribute Key.
         #
         # @return [AttributeString]
         def update_string_attribute(database_id:, collection_id:, key:, required:, default:, size: nil, new_key: nil)
@@ -1398,11 +1484,14 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createUrlColumn` instead.
+        #
         # Create a URL attribute.
         # 
         #
         # @param [String] database_id Database ID.
-        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] collection_id Collection ID.
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
         # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
@@ -1451,16 +1540,19 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.updateUrlColumn` instead.
+        #
         # Update an url attribute. Changing the `default` value will not update
         # already existing documents.
         # 
         #
         # @param [String] database_id Database ID.
-        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] collection_id Collection ID.
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
         # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
-        # @param [String] new_key New attribute key.
+        # @param [String] new_key New Attribute Key.
         #
         # @return [AttributeUrl]
         def update_url_attribute(database_id:, collection_id:, key:, required:, default:, new_key: nil)
@@ -1509,10 +1601,13 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.getColumn` instead.
+        #
         # Get attribute by ID.
         #
         # @param [String] database_id Database ID.
-        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] collection_id Collection ID.
         # @param [String] key Attribute Key.
         #
         # @return []
@@ -1549,10 +1644,13 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.deleteColumn` instead.
+        #
         # Deletes an attribute.
         #
         # @param [String] database_id Database ID.
-        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] collection_id Collection ID.
         # @param [String] key Attribute Key.
         #
         # @return []
@@ -1590,15 +1688,18 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.updateRelationshipColumn` instead.
+        #
         # Update relationship attribute. [Learn more about relationship
         # attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
         # 
         #
         # @param [String] database_id Database ID.
-        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] collection_id Collection ID.
         # @param [String] key Attribute Key.
         # @param [RelationMutate] on_delete Constraints option
-        # @param [String] new_key New attribute key.
+        # @param [String] new_key New Attribute Key.
         #
         # @return [AttributeRelationship]
         def update_relationship_attribute(database_id:, collection_id:, key:, on_delete: nil, new_key: nil)
@@ -1638,6 +1739,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.listRows` instead.
+        #
         # Get a list of all the user's documents in a given collection. You can use
         # the query params to filter your results.
         #
@@ -1676,6 +1780,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createRow` instead.
+        #
         # Create a new Document. Before using this route, you should create a new
         # collection resource using either a [server
         # integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
@@ -1729,10 +1836,9 @@ module Appwrite
         end
 
         
-        # **WARNING: Experimental Feature** - This endpoint is experimental and not
-        # yet officially supported. It may be subject to breaking changes or removal
-        # in future versions.
-        # 
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createRows` instead.
+        #
         # Create new Documents. Before using this route, you should create a new
         # collection resource using either a [server
         # integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
@@ -1778,10 +1884,9 @@ module Appwrite
         end
 
         
-        # **WARNING: Experimental Feature** - This endpoint is experimental and not
-        # yet officially supported. It may be subject to breaking changes or removal
-        # in future versions.
-        # 
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.upsertRows` instead.
+        #
         # Create or update Documents. Before using this route, you should create a
         # new collection resource using either a [server
         # integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
@@ -1828,10 +1933,9 @@ module Appwrite
         end
 
         
-        # **WARNING: Experimental Feature** - This endpoint is experimental and not
-        # yet officially supported. It may be subject to breaking changes or removal
-        # in future versions.
-        # 
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.updateRows` instead.
+        #
         # Update all documents that match your queries, if no queries are submitted
         # then all documents are updated. You can pass only specific fields to be
         # updated.
@@ -1874,10 +1978,9 @@ module Appwrite
         end
 
         
-        # **WARNING: Experimental Feature** - This endpoint is experimental and not
-        # yet officially supported. It may be subject to breaking changes or removal
-        # in future versions.
-        # 
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.deleteRows` instead.
+        #
         # Bulk delete documents using queries, if no queries are passed then all
         # documents are deleted.
         #
@@ -1917,6 +2020,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.getRow` instead.
+        #
         # Get a document by its unique ID. This endpoint response returns a JSON
         # object with the document data.
         #
@@ -1961,10 +2067,9 @@ module Appwrite
         end
 
         
-        # **WARNING: Experimental Feature** - This endpoint is experimental and not
-        # yet officially supported. It may be subject to breaking changes or removal
-        # in future versions.
-        # 
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.upsertRow` instead.
+        #
         # Create or update a Document. Before using this route, you should create a
         # new collection resource using either a [server
         # integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
@@ -2018,6 +2123,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.updateRow` instead.
+        #
         # Update a document by its unique ID. Using the patch method you can pass
         # only specific fields that will get updated.
         #
@@ -2065,6 +2173,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.deleteRow` instead.
+        #
         # Delete a document by its unique ID.
         #
         # @param [String] database_id Database ID.
@@ -2106,13 +2217,16 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.decrementRowColumn` instead.
+        #
         # Decrement a specific attribute of a document by a given value.
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID.
         # @param [String] document_id Document ID.
         # @param [String] attribute Attribute key.
-        # @param [Float] value Value to decrement the attribute by. The value must be a number.
+        # @param [Float] value Value to increment the attribute by. The value must be a number.
         # @param [Float] min Minimum value for the attribute. If the current value is lesser than this value, an exception will be thrown.
         #
         # @return [Document]
@@ -2158,6 +2272,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.incrementRowColumn` instead.
+        #
         # Increment a specific attribute of a document by a given value.
         #
         # @param [String] database_id Database ID.
@@ -2210,6 +2327,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.listIndexes` instead.
+        #
         # List indexes in the collection.
         #
         # @param [String] database_id Database ID.
@@ -2247,6 +2367,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createIndex` instead.
+        #
         # Creates an index on the attributes listed. Your index should include all
         # the attributes you will query in a single request.
         # Attributes can be `key`, `fulltext`, and `unique`.
@@ -2307,6 +2430,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.getIndex` instead.
+        #
         # Get index by ID.
         #
         # @param [String] database_id Database ID.
@@ -2348,6 +2474,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.deleteIndex` instead.
+        #
         # Delete an index.
         #
         # @param [String] database_id Database ID.

@@ -7,11 +7,14 @@ client = Client.new
     .set_project('<YOUR_PROJECT_ID>') # Your project ID
     .set_key('<YOUR_API_KEY>') # Your secret API key
 
-databases = Databases.new(client)
+tables_db = TablesDb.new(client)
 
-result = databases.create(
+result = tables_db.update_string_column(
     database_id: '<DATABASE_ID>',
-    name: '<NAME>',
-    enabled: false, # optional
-    type: ::TABLESDB # optional
+    table_id: '<TABLE_ID>',
+    key: '',
+    required: false,
+    default: '<DEFAULT>',
+    size: 1, # optional
+    new_key: '' # optional
 )

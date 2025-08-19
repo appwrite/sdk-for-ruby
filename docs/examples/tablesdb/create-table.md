@@ -7,11 +7,13 @@ client = Client.new
     .set_project('<YOUR_PROJECT_ID>') # Your project ID
     .set_key('<YOUR_API_KEY>') # Your secret API key
 
-databases = Databases.new(client)
+tables_db = TablesDb.new(client)
 
-result = databases.create(
+result = tables_db.create_table(
     database_id: '<DATABASE_ID>',
+    table_id: '<TABLE_ID>',
     name: '<NAME>',
-    enabled: false, # optional
-    type: ::TABLESDB # optional
+    permissions: ["read("any")"], # optional
+    row_security: false, # optional
+    enabled: false # optional
 )

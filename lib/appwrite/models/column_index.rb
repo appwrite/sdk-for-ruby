@@ -2,7 +2,7 @@
 
 module Appwrite
     module Models
-        class Index
+        class ColumnIndex
             attr_reader :id
             attr_reader :created_at
             attr_reader :updated_at
@@ -10,7 +10,7 @@ module Appwrite
             attr_reader :type
             attr_reader :status
             attr_reader :error
-            attr_reader :attributes
+            attr_reader :columns
             attr_reader :lengths
             attr_reader :orders
 
@@ -22,7 +22,7 @@ module Appwrite
                 type:,
                 status:,
                 error:,
-                attributes:,
+                columns:,
                 lengths:,
                 orders: 
             )
@@ -33,13 +33,13 @@ module Appwrite
                 @type = type
                 @status = status
                 @error = error
-                @attributes = attributes
+                @columns = columns
                 @lengths = lengths
                 @orders = orders
             end
 
             def self.from(map:)
-                Index.new(
+                ColumnIndex.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],
                     updated_at: map["$updatedAt"],
@@ -47,7 +47,7 @@ module Appwrite
                     type: map["type"],
                     status: map["status"],
                     error: map["error"],
-                    attributes: map["attributes"],
+                    columns: map["columns"],
                     lengths: map["lengths"],
                     orders: map["orders"]
                 )
@@ -62,7 +62,7 @@ module Appwrite
                     "type": @type,
                     "status": @status,
                     "error": @error,
-                    "attributes": @attributes,
+                    "columns": @columns,
                     "lengths": @lengths,
                     "orders": @orders
                 }

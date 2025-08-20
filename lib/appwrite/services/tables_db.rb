@@ -41,10 +41,9 @@ module Appwrite
         # @param [String] database_id Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Database name. Max length: 128 chars.
         # @param [] enabled Is the database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled.
-        # @param [Type] type Database type.
         #
         # @return [Database]
-        def create(database_id:, name:, enabled: nil, type: nil)
+        def create(database_id:, name:, enabled: nil)
             api_path = '/tablesdb'
 
             if database_id.nil?
@@ -59,7 +58,6 @@ module Appwrite
                 databaseId: database_id,
                 name: name,
                 enabled: enabled,
-                type: type,
             }
             
             api_headers = {
@@ -1639,7 +1637,7 @@ module Appwrite
         end
 
         
-        # List indexes in the collection.
+        # List indexes on the table.
         #
         # @param [String] database_id Database ID.
         # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate).
@@ -1678,7 +1676,7 @@ module Appwrite
         
         # Creates an index on the columns listed. Your index should include all the
         # columns you will query in a single request.
-        # Attributes can be `key`, `fulltext`, and `unique`.
+        # Type can be `key`, `fulltext`, or `unique`.
         #
         # @param [String] database_id Database ID.
         # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate).

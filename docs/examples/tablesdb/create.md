@@ -12,6 +12,5 @@ tables_db = TablesDb.new(client)
 result = tables_db.create(
     database_id: '<DATABASE_ID>',
     name: '<NAME>',
-    enabled: false, # optional
-    type: ::TABLESDB # optional
+    enabled: false # optional
 )

@@ -47,10 +47,9 @@ module Appwrite
         # @param [String] database_id Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Database name. Max length: 128 chars.
         # @param [] enabled Is the database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled.
-        # @param [Type] type Database type.
         #
         # @return [Database]
-        def create(database_id:, name:, enabled: nil, type: nil)
+        def create(database_id:, name:, enabled: nil)
             api_path = '/databases'
 
             if database_id.nil?
@@ -65,7 +64,6 @@ module Appwrite
                 databaseId: database_id,
                 name: name,
                 enabled: enabled,
-                type: type,
             }
             
             api_headers = {

@@ -261,6 +261,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `CreateMFAAuthenticator` instead.
+        #
         # Add an authenticator app to be used as an MFA factor. Verify the
         # authenticator using the [verify
         # authenticator](/docs/references/cloud/client-web/account#updateMfaAuthenticator)
@@ -290,6 +293,80 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::MfaType
+            )
+        end
+
+        
+        # Add an authenticator app to be used as an MFA factor. Verify the
+        # authenticator using the [verify
+        # authenticator](/docs/references/cloud/client-web/account#updateMfaAuthenticator)
+        # method.
+        #
+        # @param [AuthenticatorType] type Type of authenticator. Must be `totp`
+        #
+        # @return [MfaType]
+        def create_mfa_authenticator(type:)
+            api_path = '/account/mfa/authenticators/{type}'
+                .gsub('{type}', type)
+
+            if type.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "type"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::MfaType
+            )
+        end
+
+        
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `UpdateMFAAuthenticator` instead.
+        #
+        # Verify an authenticator app after adding it using the [add
+        # authenticator](/docs/references/cloud/client-web/account#createMfaAuthenticator)
+        # method.
+        #
+        # @param [AuthenticatorType] type Type of authenticator.
+        # @param [String] otp Valid verification token.
+        #
+        # @return [User]
+        def update_mfa_authenticator(type:, otp:)
+            api_path = '/account/mfa/authenticators/{type}'
+                .gsub('{type}', type)
+
+            if type.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "type"')
+            end
+
+            if otp.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "otp"')
+            end
+
+            api_params = {
+                otp: otp,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PUT',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::User
             )
         end
 
@@ -332,6 +409,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `DeleteMFAAuthenticator` instead.
+        #
         # Delete an authenticator for a user by ID.
         #
         # @param [AuthenticatorType] type Type of authenticator.
@@ -357,6 +437,70 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
+            )
+        end
+
+        
+        # Delete an authenticator for a user by ID.
+        #
+        # @param [AuthenticatorType] type Type of authenticator.
+        #
+        # @return []
+        def delete_mfa_authenticator(type:)
+            api_path = '/account/mfa/authenticators/{type}'
+                .gsub('{type}', type)
+
+            if type.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "type"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+            )
+        end
+
+        
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `CreateMFAChallenge` instead.
+        #
+        # Begin the process of MFA verification after sign-in. Finish the flow with
+        # [updateMfaChallenge](/docs/references/cloud/client-web/account#updateMfaChallenge)
+        # method.
+        #
+        # @param [AuthenticationFactor] factor Factor used for verification. Must be one of following: `email`, `phone`, `totp`, `recoveryCode`.
+        #
+        # @return [MfaChallenge]
+        def create_mfa_challenge(factor:)
+            api_path = '/account/mfa/challenge'
+
+            if factor.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "factor"')
+            end
+
+            api_params = {
+                factor: factor,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::MfaChallenge
             )
         end
 
@@ -389,6 +533,49 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::MfaChallenge
+            )
+        end
+
+        
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `UpdateMFAChallenge` instead.
+        #
+        # Complete the MFA challenge by providing the one-time password. Finish the
+        # process of MFA verification by providing the one-time password. To begin
+        # the flow, use
+        # [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
+        # method.
+        #
+        # @param [String] challenge_id ID of the challenge.
+        # @param [String] otp Valid verification token.
+        #
+        # @return [Session]
+        def update_mfa_challenge(challenge_id:, otp:)
+            api_path = '/account/mfa/challenge'
+
+            if challenge_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "challengeId"')
+            end
+
+            if otp.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "otp"')
+            end
+
+            api_params = {
+                challengeId: challenge_id,
+                otp: otp,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PUT',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Session
             )
         end
 
@@ -433,6 +620,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `ListMFAFactors` instead.
+        #
         # List the factors available on the account to be used as a MFA challange.
         #
         #
@@ -452,6 +642,58 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::MfaFactors
+            )
+        end
+
+        
+        # List the factors available on the account to be used as a MFA challange.
+        #
+        #
+        # @return [MfaFactors]
+        def list_mfa_factors()
+            api_path = '/account/mfa/factors'
+
+            api_params = {
+            }
+            
+            api_headers = {
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::MfaFactors
+            )
+        end
+
+        
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `GetMFARecoveryCodes` instead.
+        #
+        # Get recovery codes that can be used as backup for MFA flow. Before getting
+        # codes, they must be generated using
+        # [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
+        # method. An OTP challenge is required to read recovery codes.
+        #
+        #
+        # @return [MfaRecoveryCodes]
+        def get_mfa_recovery_codes()
+            api_path = '/account/mfa/recovery-codes'
+
+            api_params = {
+            }
+            
+            api_headers = {
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::MfaRecoveryCodes
             )
         end
 
@@ -482,6 +724,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `CreateMFARecoveryCodes` instead.
+        #
         # Generate recovery codes as backup for MFA flow. It's recommended to
         # generate and show then immediately after user successfully adds their
         # authehticator. Recovery codes can be used as a MFA verification type in
@@ -502,6 +747,64 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::MfaRecoveryCodes
+            )
+        end
+
+        
+        # Generate recovery codes as backup for MFA flow. It's recommended to
+        # generate and show then immediately after user successfully adds their
+        # authehticator. Recovery codes can be used as a MFA verification type in
+        # [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
+        # method.
+        #
+        #
+        # @return [MfaRecoveryCodes]
+        def create_mfa_recovery_codes()
+            api_path = '/account/mfa/recovery-codes'
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::MfaRecoveryCodes
+            )
+        end
+
+        
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `UpdateMFARecoveryCodes` instead.
+        #
+        # Regenerate recovery codes that can be used as backup for MFA flow. Before
+        # regenerating codes, they must be first generated using
+        # [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
+        # method. An OTP challenge is required to regenreate recovery codes.
+        #
+        #
+        # @return [MfaRecoveryCodes]
+        def update_mfa_recovery_codes()
+            api_path = '/account/mfa/recovery-codes'
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
                 path: api_path,
                 headers: api_headers,
                 params: api_params,

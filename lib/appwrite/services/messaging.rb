@@ -284,6 +284,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `CreateSMS` instead.
+        #
         # Create a new SMS message.
         #
         # @param [String] message_id Message ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
@@ -322,6 +325,100 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Message
+            )
+        end
+
+        
+        # Create a new SMS message.
+        #
+        # @param [String] message_id Message ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] content SMS Content.
+        # @param [Array] topics List of Topic IDs.
+        # @param [Array] users List of User IDs.
+        # @param [Array] targets List of Targets IDs.
+        # @param [] draft Is message a draft
+        # @param [String] scheduled_at Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future.
+        #
+        # @return [Message]
+        def create_sms(message_id:, content:, topics: nil, users: nil, targets: nil, draft: nil, scheduled_at: nil)
+            api_path = '/messaging/messages/sms'
+
+            if message_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "messageId"')
+            end
+
+            if content.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "content"')
+            end
+
+            api_params = {
+                messageId: message_id,
+                content: content,
+                topics: topics,
+                users: users,
+                targets: targets,
+                draft: draft,
+                scheduledAt: scheduled_at,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Message
+            )
+        end
+
+        
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `UpdateSMS` instead.
+        #
+        # Update an SMS message by its unique ID. This endpoint only works on
+        # messages that are in draft status. Messages that are already processing,
+        # sent, or failed cannot be updated.
+        # 
+        #
+        # @param [String] message_id Message ID.
+        # @param [Array] topics List of Topic IDs.
+        # @param [Array] users List of User IDs.
+        # @param [Array] targets List of Targets IDs.
+        # @param [String] content Email Content.
+        # @param [] draft Is message a draft
+        # @param [String] scheduled_at Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future.
+        #
+        # @return [Message]
+        def update_sms(message_id:, topics: nil, users: nil, targets: nil, content: nil, draft: nil, scheduled_at: nil)
+            api_path = '/messaging/messages/sms/{messageId}'
+                .gsub('{messageId}', message_id)
+
+            if message_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "messageId"')
+            end
+
+            api_params = {
+                topics: topics,
+                users: users,
+                targets: targets,
+                content: content,
+                draft: draft,
+                scheduledAt: scheduled_at,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
@@ -524,6 +621,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `CreateAPNSProvider` instead.
+        #
         # Create a new Apple Push Notification service provider.
         #
         # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
@@ -564,6 +664,101 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Provider
+            )
+        end
+
+        
+        # Create a new Apple Push Notification service provider.
+        #
+        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] name Provider name.
+        # @param [String] auth_key APNS authentication key.
+        # @param [String] auth_key_id APNS authentication key ID.
+        # @param [String] team_id APNS team ID.
+        # @param [String] bundle_id APNS bundle ID.
+        # @param [] sandbox Use APNS sandbox environment.
+        # @param [] enabled Set as enabled.
+        #
+        # @return [Provider]
+        def create_apns_provider(provider_id:, name:, auth_key: nil, auth_key_id: nil, team_id: nil, bundle_id: nil, sandbox: nil, enabled: nil)
+            api_path = '/messaging/providers/apns'
+
+            if provider_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+            end
+
+            if name.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "name"')
+            end
+
+            api_params = {
+                providerId: provider_id,
+                name: name,
+                authKey: auth_key,
+                authKeyId: auth_key_id,
+                teamId: team_id,
+                bundleId: bundle_id,
+                sandbox: sandbox,
+                enabled: enabled,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Provider
+            )
+        end
+
+        
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `UpdateAPNSProvider` instead.
+        #
+        # Update a Apple Push Notification service provider by its unique ID.
+        #
+        # @param [String] provider_id Provider ID.
+        # @param [String] name Provider name.
+        # @param [] enabled Set as enabled.
+        # @param [String] auth_key APNS authentication key.
+        # @param [String] auth_key_id APNS authentication key ID.
+        # @param [String] team_id APNS team ID.
+        # @param [String] bundle_id APNS bundle ID.
+        # @param [] sandbox Use APNS sandbox environment.
+        #
+        # @return [Provider]
+        def update_apns_provider(provider_id:, name: nil, enabled: nil, auth_key: nil, auth_key_id: nil, team_id: nil, bundle_id: nil, sandbox: nil)
+            api_path = '/messaging/providers/apns/{providerId}'
+                .gsub('{providerId}', provider_id)
+
+            if provider_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+            end
+
+            api_params = {
+                name: name,
+                enabled: enabled,
+                authKey: auth_key,
+                authKeyId: auth_key_id,
+                teamId: team_id,
+                bundleId: bundle_id,
+                sandbox: sandbox,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
@@ -616,6 +811,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `CreateFCMProvider` instead.
+        #
         # Create a new Firebase Cloud Messaging provider.
         #
         # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
@@ -648,6 +846,85 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Provider
+            )
+        end
+
+        
+        # Create a new Firebase Cloud Messaging provider.
+        #
+        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] name Provider name.
+        # @param [Hash] service_account_json FCM service account JSON.
+        # @param [] enabled Set as enabled.
+        #
+        # @return [Provider]
+        def create_fcm_provider(provider_id:, name:, service_account_json: nil, enabled: nil)
+            api_path = '/messaging/providers/fcm'
+
+            if provider_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+            end
+
+            if name.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "name"')
+            end
+
+            api_params = {
+                providerId: provider_id,
+                name: name,
+                serviceAccountJSON: service_account_json,
+                enabled: enabled,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Provider
+            )
+        end
+
+        
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `UpdateFCMProvider` instead.
+        #
+        # Update a Firebase Cloud Messaging provider by its unique ID.
+        #
+        # @param [String] provider_id Provider ID.
+        # @param [String] name Provider name.
+        # @param [] enabled Set as enabled.
+        # @param [Hash] service_account_json FCM service account JSON.
+        #
+        # @return [Provider]
+        def update_fcm_provider(provider_id:, name: nil, enabled: nil, service_account_json: nil)
+            api_path = '/messaging/providers/fcm/{providerId}'
+                .gsub('{providerId}', provider_id)
+
+            if provider_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+            end
+
+            api_params = {
+                name: name,
+                enabled: enabled,
+                serviceAccountJSON: service_account_json,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
@@ -968,6 +1245,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `CreateSMTPProvider` instead.
+        #
         # Create a new SMTP provider.
         #
         # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
@@ -1024,6 +1304,129 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Provider
+            )
+        end
+
+        
+        # Create a new SMTP provider.
+        #
+        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] name Provider name.
+        # @param [String] host SMTP hosts. Either a single hostname or multiple semicolon-delimited hostnames. You can also specify a different port for each host such as `smtp1.example.com:25;smtp2.example.com`. You can also specify encryption type, for example: `tls://smtp1.example.com:587;ssl://smtp2.example.com:465"`. Hosts will be tried in order.
+        # @param [Integer] port The default SMTP server port.
+        # @param [String] username Authentication username.
+        # @param [String] password Authentication password.
+        # @param [SmtpEncryption] encryption Encryption type. Can be omitted, 'ssl', or 'tls'
+        # @param [] auto_tls Enable SMTP AutoTLS feature.
+        # @param [String] mailer The value to use for the X-Mailer header.
+        # @param [String] from_name Sender Name.
+        # @param [String] from_email Sender email address.
+        # @param [String] reply_to_name Name set in the reply to field for the mail. Default value is sender name.
+        # @param [String] reply_to_email Email set in the reply to field for the mail. Default value is sender email.
+        # @param [] enabled Set as enabled.
+        #
+        # @return [Provider]
+        def create_smtp_provider(provider_id:, name:, host:, port: nil, username: nil, password: nil, encryption: nil, auto_tls: nil, mailer: nil, from_name: nil, from_email: nil, reply_to_name: nil, reply_to_email: nil, enabled: nil)
+            api_path = '/messaging/providers/smtp'
+
+            if provider_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+            end
+
+            if name.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "name"')
+            end
+
+            if host.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "host"')
+            end
+
+            api_params = {
+                providerId: provider_id,
+                name: name,
+                host: host,
+                port: port,
+                username: username,
+                password: password,
+                encryption: encryption,
+                autoTLS: auto_tls,
+                mailer: mailer,
+                fromName: from_name,
+                fromEmail: from_email,
+                replyToName: reply_to_name,
+                replyToEmail: reply_to_email,
+                enabled: enabled,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Provider
+            )
+        end
+
+        
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `UpdateSMTPProvider` instead.
+        #
+        # Update a SMTP provider by its unique ID.
+        #
+        # @param [String] provider_id Provider ID.
+        # @param [String] name Provider name.
+        # @param [String] host SMTP hosts. Either a single hostname or multiple semicolon-delimited hostnames. You can also specify a different port for each host such as `smtp1.example.com:25;smtp2.example.com`. You can also specify encryption type, for example: `tls://smtp1.example.com:587;ssl://smtp2.example.com:465"`. Hosts will be tried in order.
+        # @param [Integer] port SMTP port.
+        # @param [String] username Authentication username.
+        # @param [String] password Authentication password.
+        # @param [SmtpEncryption] encryption Encryption type. Can be 'ssl' or 'tls'
+        # @param [] auto_tls Enable SMTP AutoTLS feature.
+        # @param [String] mailer The value to use for the X-Mailer header.
+        # @param [String] from_name Sender Name.
+        # @param [String] from_email Sender email address.
+        # @param [String] reply_to_name Name set in the Reply To field for the mail. Default value is Sender Name.
+        # @param [String] reply_to_email Email set in the Reply To field for the mail. Default value is Sender Email.
+        # @param [] enabled Set as enabled.
+        #
+        # @return [Provider]
+        def update_smtp_provider(provider_id:, name: nil, host: nil, port: nil, username: nil, password: nil, encryption: nil, auto_tls: nil, mailer: nil, from_name: nil, from_email: nil, reply_to_name: nil, reply_to_email: nil, enabled: nil)
+            api_path = '/messaging/providers/smtp/{providerId}'
+                .gsub('{providerId}', provider_id)
+
+            if provider_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+            end
+
+            api_params = {
+                name: name,
+                host: host,
+                port: port,
+                username: username,
+                password: password,
+                encryption: encryption,
+                autoTLS: auto_tls,
+                mailer: mailer,
+                fromName: from_name,
+                fromEmail: from_email,
+                replyToName: reply_to_name,
+                replyToEmail: reply_to_email,
+                enabled: enabled,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
                 path: api_path,
                 headers: api_headers,
                 params: api_params,

@@ -8,7 +8,7 @@ module Appwrite
         end
 
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.list` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.list` instead.
         #
         # Get a list of all databases from the current Appwrite project. You can use
         # the search parameter to filter your results.
@@ -39,7 +39,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createDatabase` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createDatabase` instead.
         #
         # Create a new Database.
         # 
@@ -81,7 +81,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.get` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.get` instead.
         #
         # Get a database by its unique ID. This endpoint response returns a JSON
         # object with the database metadata.
@@ -114,7 +114,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.update` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.update` instead.
         #
         # Update a database by its unique ID.
         #
@@ -155,7 +155,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.delete` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.delete` instead.
         #
         # Delete a database by its unique ID. Only API keys with with databases.write
         # scope can delete a database.
@@ -188,7 +188,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.listTables` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.listTables` instead.
         #
         # Get a list of all collections that belong to the provided databaseId. You
         # can use the search parameter to filter your results.
@@ -225,7 +225,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createTable` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createTable` instead.
         #
         # Create a new Collection. Before using this route, you should create a new
         # database resource using either a [server
@@ -279,7 +279,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.getTable` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.getTable` instead.
         #
         # Get a collection by its unique ID. This endpoint response returns a JSON
         # object with the collection metadata.
@@ -318,7 +318,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.updateTable` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateTable` instead.
         #
         # Update a collection by its unique ID.
         #
@@ -369,7 +369,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.deleteTable` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.deleteTable` instead.
         #
         # Delete a collection by its unique ID. Only users with write permissions
         # have access to delete this resource.
@@ -408,7 +408,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.listColumns` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.listColumns` instead.
         #
         # List attributes in the collection.
         #
@@ -448,7 +448,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createBooleanColumn` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createBooleanColumn` instead.
         #
         # Create a boolean attribute.
         # 
@@ -504,7 +504,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.updateBooleanColumn` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateBooleanColumn` instead.
         #
         # Update a boolean attribute. Changing the `default` value will not update
         # already existing documents.
@@ -564,7 +564,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createDatetimeColumn` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createDatetimeColumn` instead.
         #
         # Create a date time attribute according to the ISO 8601 standard.
         #
@@ -619,7 +619,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.updateDatetimeColumn` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateDatetimeColumn` instead.
         #
         # Update a date time attribute. Changing the `default` value will not update
         # already existing documents.
@@ -679,7 +679,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createEmailColumn` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createEmailColumn` instead.
         #
         # Create an email attribute.
         # 
@@ -735,7 +735,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.updateEmailColumn` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateEmailColumn` instead.
         #
         # Update an email attribute. Changing the `default` value will not update
         # already existing documents.
@@ -796,7 +796,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createEnumColumn` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createEnumColumn` instead.
         #
         # Create an enum attribute. The `elements` param acts as a white-list of
         # accepted values for this attribute. 
@@ -859,7 +859,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.updateEnumColumn` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateEnumColumn` instead.
         #
         # Update an enum attribute. Changing the `default` value will not update
         # already existing documents.
@@ -926,7 +926,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createFloatColumn` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createFloatColumn` instead.
         #
         # Create a float attribute. Optionally, minimum and maximum values can be
         # provided.
@@ -987,7 +987,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.updateFloatColumn` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateFloatColumn` instead.
         #
         # Update a float attribute. Changing the `default` value will not update
         # already existing documents.
@@ -1052,7 +1052,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createIntegerColumn` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createIntegerColumn` instead.
         #
         # Create an integer attribute. Optionally, minimum and maximum values can be
         # provided.
@@ -1113,7 +1113,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.updateIntegerColumn` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateIntegerColumn` instead.
         #
         # Update an integer attribute. Changing the `default` value will not update
         # already existing documents.
@@ -1178,7 +1178,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createIpColumn` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createIpColumn` instead.
         #
         # Create IP address attribute.
         # 
@@ -1234,7 +1234,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.updateIpColumn` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateIpColumn` instead.
         #
         # Update an ip attribute. Changing the `default` value will not update
         # already existing documents.
@@ -1295,7 +1295,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createRelationshipColumn` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createRelationshipColumn` instead.
         #
         # Create relationship attribute. [Learn more about relationship
         # attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
@@ -1356,7 +1356,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createStringColumn` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createStringColumn` instead.
         #
         # Create a string attribute.
         # 
@@ -1420,7 +1420,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.updateStringColumn` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateStringColumn` instead.
         #
         # Update a string attribute. Changing the `default` value will not update
         # already existing documents.
@@ -1483,7 +1483,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createUrlColumn` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createUrlColumn` instead.
         #
         # Create a URL attribute.
         # 
@@ -1539,7 +1539,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.updateUrlColumn` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateUrlColumn` instead.
         #
         # Update an url attribute. Changing the `default` value will not update
         # already existing documents.
@@ -1600,7 +1600,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.getColumn` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.getColumn` instead.
         #
         # Get attribute by ID.
         #
@@ -1643,7 +1643,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.deleteColumn` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.deleteColumn` instead.
         #
         # Deletes an attribute.
         #
@@ -1687,7 +1687,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.updateRelationshipColumn` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateRelationshipColumn` instead.
         #
         # Update relationship attribute. [Learn more about relationship
         # attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
@@ -1738,7 +1738,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.listRows` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.listRows` instead.
         #
         # Get a list of all the user's documents in a given collection. You can use
         # the query params to filter your results.
@@ -1779,7 +1779,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createRow` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createRow` instead.
         #
         # Create a new Document. Before using this route, you should create a new
         # collection resource using either a [server
@@ -1835,7 +1835,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createRows` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createRows` instead.
         #
         # Create new Documents. Before using this route, you should create a new
         # collection resource using either a [server
@@ -1883,7 +1883,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.upsertRows` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.upsertRows` instead.
         #
         # Create or update Documents. Before using this route, you should create a
         # new collection resource using either a [server
@@ -1932,7 +1932,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.updateRows` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateRows` instead.
         #
         # Update all documents that match your queries, if no queries are submitted
         # then all documents are updated. You can pass only specific fields to be
@@ -1977,7 +1977,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.deleteRows` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.deleteRows` instead.
         #
         # Bulk delete documents using queries, if no queries are passed then all
         # documents are deleted.
@@ -2019,7 +2019,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.getRow` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.getRow` instead.
         #
         # Get a document by its unique ID. This endpoint response returns a JSON
         # object with the document data.
@@ -2066,7 +2066,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.upsertRow` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.upsertRow` instead.
         #
         # Create or update a Document. Before using this route, you should create a
         # new collection resource using either a [server
@@ -2122,7 +2122,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.updateRow` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateRow` instead.
         #
         # Update a document by its unique ID. Using the patch method you can pass
         # only specific fields that will get updated.
@@ -2172,7 +2172,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.deleteRow` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.deleteRow` instead.
         #
         # Delete a document by its unique ID.
         #
@@ -2216,7 +2216,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.decrementRowColumn` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.decrementRowColumn` instead.
         #
         # Decrement a specific attribute of a document by a given value.
         #
@@ -2271,7 +2271,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.incrementRowColumn` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.incrementRowColumn` instead.
         #
         # Increment a specific attribute of a document by a given value.
         #
@@ -2326,7 +2326,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.listIndexes` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.listIndexes` instead.
         #
         # List indexes in the collection.
         #
@@ -2366,7 +2366,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.createIndex` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createIndex` instead.
         #
         # Creates an index on the attributes listed. Your index should include all
         # the attributes you will query in a single request.
@@ -2429,7 +2429,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.getIndex` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.getIndex` instead.
         #
         # Get index by ID.
         #
@@ -2473,7 +2473,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDb.deleteIndex` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.deleteIndex` instead.
         #
         # Delete an index.
         #

@@ -1,7 +1,7 @@
 #frozen_string_literal: true
 
 module Appwrite
-    class TablesDb < Service
+    class TablesDB < Service
 
         def initialize(client)
             @client = client
@@ -208,7 +208,7 @@ module Appwrite
         
         # Create a new Table. Before using this route, you should create a new
         # database resource using either a [server
-        # integration](https://appwrite.io/docs/server/databases#databasesCreateTable)
+        # integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreateTable)
         # API or directly from your database console.
         #
         # @param [String] database_id Database ID.
@@ -418,7 +418,7 @@ module Appwrite
         # 
         #
         # @param [String] database_id Database ID.
-        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate).
+        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
         # @param [String] key Column Key.
         # @param [] required Is column required?
         # @param [] default Default value for column when not provided. Cannot be set when column is required.
@@ -471,7 +471,7 @@ module Appwrite
         # already existing rows.
         #
         # @param [String] database_id Database ID.
-        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate).
+        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
         # @param [String] key Column Key.
         # @param [] required Is column required?
         # @param [] default Default value for column when not provided. Cannot be set when column is required.
@@ -1280,7 +1280,7 @@ module Appwrite
         # 
         #
         # @param [String] database_id Database ID.
-        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate).
+        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
         # @param [String] key Column Key.
         # @param [Integer] size Attribute size for text attributes, in number of characters.
         # @param [] required Is column required?
@@ -1342,7 +1342,7 @@ module Appwrite
         # 
         #
         # @param [String] database_id Database ID.
-        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate).
+        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
         # @param [String] key Column Key.
         # @param [] required Is column required?
         # @param [String] default Default value for column when not provided. Cannot be set when column is required.
@@ -1640,7 +1640,7 @@ module Appwrite
         # List indexes on the table.
         #
         # @param [String] database_id Database ID.
-        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate).
+        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: key, type, status, attributes, error
         #
         # @return [ColumnIndexList]
@@ -1679,7 +1679,7 @@ module Appwrite
         # Type can be `key`, `fulltext`, or `unique`.
         #
         # @param [String] database_id Database ID.
-        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate).
+        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
         # @param [String] key Index Key.
         # @param [IndexType] type Index type.
         # @param [Array] columns Array of columns to index. Maximum of 100 columns are allowed, each 32 characters long.
@@ -1737,7 +1737,7 @@ module Appwrite
         # Get index by ID.
         #
         # @param [String] database_id Database ID.
-        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate).
+        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
         # @param [String] key Index Key.
         #
         # @return [ColumnIndex]
@@ -1778,7 +1778,7 @@ module Appwrite
         # Delete an index.
         #
         # @param [String] database_id Database ID.
-        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate).
+        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
         # @param [String] key Index Key.
         #
         # @return []
@@ -1820,7 +1820,7 @@ module Appwrite
         # params to filter your results.
         #
         # @param [String] database_id Database ID.
-        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate).
+        # @param [String] table_id Table ID. You can create a new table using the TableDB service [server integration](https://appwrite.io/docs/server/tablesdbdb#tablesdbCreate).
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
         #
         # @return [RowList]
@@ -1856,11 +1856,11 @@ module Appwrite
         
         # Create a new Row. Before using this route, you should create a new table
         # resource using either a [server
-        # integration](https://appwrite.io/docs/server/databases#databasesCreateTable)
+        # integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreateTable)
         # API or directly from your database console.
         #
         # @param [String] database_id Database ID.
-        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate). Make sure to define columns before creating rows.
+        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). Make sure to define columns before creating rows.
         # @param [String] row_id Row ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [Hash] data Row data as JSON object.
         # @param [Array] permissions An array of permissions strings. By default, only the current user is granted all permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
@@ -1909,11 +1909,11 @@ module Appwrite
         
         # Create new Rows. Before using this route, you should create a new table
         # resource using either a [server
-        # integration](https://appwrite.io/docs/server/databases#databasesCreateTable)
+        # integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreateTable)
         # API or directly from your database console.
         #
         # @param [String] database_id Database ID.
-        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate). Make sure to define columns before creating rows.
+        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). Make sure to define columns before creating rows.
         # @param [Array] rows Array of documents data as JSON objects.
         #
         # @return [RowList]
@@ -1954,7 +1954,7 @@ module Appwrite
         
         # Create or update Rows. Before using this route, you should create a new
         # table resource using either a [server
-        # integration](https://appwrite.io/docs/server/databases#databasesCreateTable)
+        # integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreateTable)
         # API or directly from your database console.
         # 
         #
@@ -2043,7 +2043,7 @@ module Appwrite
         # deleted.
         #
         # @param [String] database_id Database ID.
-        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate).
+        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
         #
         # @return [RowList]
@@ -2082,7 +2082,7 @@ module Appwrite
         # with the row data.
         #
         # @param [String] database_id Database ID.
-        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate).
+        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
         # @param [String] row_id Row ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
         #
@@ -2124,7 +2124,7 @@ module Appwrite
         
         # Create or update a Row. Before using this route, you should create a new
         # table resource using either a [server
-        # integration](https://appwrite.io/docs/server/databases#databasesCreateTable)
+        # integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreateTable)
         # API or directly from your database console.
         #
         # @param [String] database_id Database ID.
@@ -2221,7 +2221,7 @@ module Appwrite
         # Delete a row by its unique ID.
         #
         # @param [String] database_id Database ID.
-        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tables#tablesCreate).
+        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
         # @param [String] row_id Row ID.
         #
         # @return []

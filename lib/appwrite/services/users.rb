@@ -749,6 +749,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `UpdateMFA` instead.
+        #
         # Enable or disable MFA on a user account.
         #
         # @param [String] user_id User ID.
@@ -781,6 +784,80 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::User
+            )
+        end
+
+        
+        # Enable or disable MFA on a user account.
+        #
+        # @param [String] user_id User ID.
+        # @param [] mfa Enable or disable MFA.
+        #
+        # @return [User]
+        def update_mfa(user_id:, mfa:)
+            api_path = '/users/{userId}/mfa'
+                .gsub('{userId}', user_id)
+
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            if mfa.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "mfa"')
+            end
+
+            api_params = {
+                mfa: mfa,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::User
+            )
+        end
+
+        
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `DeleteMFAAuthenticator` instead.
+        #
+        # Delete an authenticator app.
+        #
+        # @param [String] user_id User ID.
+        # @param [AuthenticatorType] type Type of authenticator.
+        #
+        # @return []
+        def delete_mfa_authenticator(user_id:, type:)
+            api_path = '/users/{userId}/mfa/authenticators/{type}'
+                .gsub('{userId}', user_id)
+                .gsub('{type}', type)
+
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            if type.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "type"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
             )
         end
 
@@ -820,6 +897,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `ListMFAFactors` instead.
+        #
         # List the factors available on the account to be used as a MFA challange.
         #
         # @param [String] user_id User ID.
@@ -845,6 +925,70 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::MfaFactors
+            )
+        end
+
+        
+        # List the factors available on the account to be used as a MFA challange.
+        #
+        # @param [String] user_id User ID.
+        #
+        # @return [MfaFactors]
+        def list_mfa_factors(user_id:)
+            api_path = '/users/{userId}/mfa/factors'
+                .gsub('{userId}', user_id)
+
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::MfaFactors
+            )
+        end
+
+        
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `GetMFARecoveryCodes` instead.
+        #
+        # Get recovery codes that can be used as backup for MFA flow by User ID.
+        # Before getting codes, they must be generated using
+        # [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
+        # method.
+        #
+        # @param [String] user_id User ID.
+        #
+        # @return [MfaRecoveryCodes]
+        def get_mfa_recovery_codes(user_id:)
+            api_path = '/users/{userId}/mfa/recovery-codes'
+                .gsub('{userId}', user_id)
+
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::MfaRecoveryCodes
             )
         end
 
@@ -881,6 +1025,9 @@ module Appwrite
         end
 
         
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `UpdateMFARecoveryCodes` instead.
+        #
         # Regenerate recovery codes that can be used as backup for MFA flow by User
         # ID. Before regenerating codes, they must be first generated using
         # [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
@@ -906,6 +1053,75 @@ module Appwrite
 
             @client.call(
                 method: 'PUT',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::MfaRecoveryCodes
+            )
+        end
+
+        
+        # Regenerate recovery codes that can be used as backup for MFA flow by User
+        # ID. Before regenerating codes, they must be first generated using
+        # [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
+        # method.
+        #
+        # @param [String] user_id User ID.
+        #
+        # @return [MfaRecoveryCodes]
+        def update_mfa_recovery_codes(user_id:)
+            api_path = '/users/{userId}/mfa/recovery-codes'
+                .gsub('{userId}', user_id)
+
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PUT',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::MfaRecoveryCodes
+            )
+        end
+
+        
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `CreateMFARecoveryCodes` instead.
+        #
+        # Generate recovery codes used as backup for MFA flow for User ID. Recovery
+        # codes can be used as a MFA verification type in
+        # [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
+        # method by client SDK.
+        #
+        # @param [String] user_id User ID.
+        #
+        # @return [MfaRecoveryCodes]
+        def create_mfa_recovery_codes(user_id:)
+            api_path = '/users/{userId}/mfa/recovery-codes'
+                .gsub('{userId}', user_id)
+
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
                 path: api_path,
                 headers: api_headers,
                 params: api_params,

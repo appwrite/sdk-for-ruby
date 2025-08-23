@@ -750,7 +750,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `UpdateMFA` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `Users.updateMFA` instead.
         #
         # Enable or disable MFA on a user account.
         #
@@ -825,7 +825,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `DeleteMFAAuthenticator` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `Users.deleteMFAAuthenticator` instead.
         #
         # Delete an authenticator app.
         #
@@ -898,7 +898,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `ListMFAFactors` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `Users.listMFAFactors` instead.
         #
         # List the factors available on the account to be used as a MFA challange.
         #
@@ -959,7 +959,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `GetMFARecoveryCodes` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `Users.getMFARecoveryCodes` instead.
         #
         # Get recovery codes that can be used as backup for MFA flow by User ID.
         # Before getting codes, they must be generated using
@@ -1026,7 +1026,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `UpdateMFARecoveryCodes` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `Users.updateMFARecoveryCodes` instead.
         #
         # Regenerate recovery codes that can be used as backup for MFA flow by User
         # ID. Before regenerating codes, they must be first generated using
@@ -1095,7 +1095,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `CreateMFARecoveryCodes` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `Users.createMFARecoveryCodes` instead.
         #
         # Generate recovery codes used as backup for MFA flow for User ID. Recovery
         # codes can be used as a MFA verification type in

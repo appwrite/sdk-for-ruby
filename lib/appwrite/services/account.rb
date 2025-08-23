@@ -262,7 +262,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `CreateMFAAuthenticator` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `Account.createMFAAuthenticator` instead.
         #
         # Add an authenticator app to be used as an MFA factor. Verify the
         # authenticator using the [verify
@@ -331,7 +331,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `UpdateMFAAuthenticator` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `Account.updateMFAAuthenticator` instead.
         #
         # Verify an authenticator app after adding it using the [add
         # authenticator](/docs/references/cloud/client-web/account#createMfaAuthenticator)
@@ -410,7 +410,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `DeleteMFAAuthenticator` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `Account.deleteMFAAuthenticator` instead.
         #
         # Delete an authenticator for a user by ID.
         #
@@ -471,7 +471,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `CreateMFAChallenge` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `Account.createMFAChallenge` instead.
         #
         # Begin the process of MFA verification after sign-in. Finish the flow with
         # [updateMfaChallenge](/docs/references/cloud/client-web/account#updateMfaChallenge)
@@ -538,7 +538,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `UpdateMFAChallenge` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `Account.updateMFAChallenge` instead.
         #
         # Complete the MFA challenge by providing the one-time password. Finish the
         # process of MFA verification by providing the one-time password. To begin
@@ -621,7 +621,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `ListMFAFactors` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `Account.listMFAFactors` instead.
         #
         # List the factors available on the account to be used as a MFA challange.
         #
@@ -670,7 +670,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `GetMFARecoveryCodes` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `Account.getMFARecoveryCodes` instead.
         #
         # Get recovery codes that can be used as backup for MFA flow. Before getting
         # codes, they must be generated using
@@ -725,7 +725,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `CreateMFARecoveryCodes` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `Account.createMFARecoveryCodes` instead.
         #
         # Generate recovery codes as backup for MFA flow. It's recommended to
         # generate and show then immediately after user successfully adds their
@@ -784,7 +784,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `UpdateMFARecoveryCodes` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `Account.updateMFARecoveryCodes` instead.
         #
         # Regenerate recovery codes that can be used as backup for MFA flow. Before
         # regenerating codes, they must be first generated using

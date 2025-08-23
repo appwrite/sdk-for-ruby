@@ -285,7 +285,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `CreateSMS` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `Messaging.createSMS` instead.
         #
         # Create a new SMS message.
         #
@@ -380,7 +380,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `UpdateSMS` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `Messaging.updateSMS` instead.
         #
         # Update an SMS message by its unique ID. This endpoint only works on
         # messages that are in draft status. Messages that are already processing,
@@ -622,7 +622,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `CreateAPNSProvider` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `Messaging.createAPNSProvider` instead.
         #
         # Create a new Apple Push Notification service provider.
         #
@@ -721,7 +721,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `UpdateAPNSProvider` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `Messaging.updateAPNSProvider` instead.
         #
         # Update a Apple Push Notification service provider by its unique ID.
         #
@@ -812,7 +812,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `CreateFCMProvider` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `Messaging.createFCMProvider` instead.
         #
         # Create a new Firebase Cloud Messaging provider.
         #
@@ -895,7 +895,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `UpdateFCMProvider` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `Messaging.updateFCMProvider` instead.
         #
         # Update a Firebase Cloud Messaging provider by its unique ID.
         #
@@ -1246,7 +1246,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `CreateSMTPProvider` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `Messaging.createSMTPProvider` instead.
         #
         # Create a new SMTP provider.
         #
@@ -1377,7 +1377,7 @@ module Appwrite
 
         
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `UpdateSMTPProvider` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `Messaging.updateSMTPProvider` instead.
         #
         # Update a SMTP provider by its unique ID.
         #

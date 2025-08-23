@@ -10,7 +10,7 @@ module Appwrite
         # Get a list of all databases from the current Appwrite project. You can use
         # the search parameter to filter your results.
         #
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following columns: name
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [DatabaseList]
@@ -176,7 +176,7 @@ module Appwrite
         # use the search parameter to filter your results.
         #
         # @param [String] database_id Database ID.
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, enabled, rowSecurity
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following columns: name, enabled, rowSecurity
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [TableList]
@@ -381,7 +381,7 @@ module Appwrite
         #
         # @param [String] database_id Database ID.
         # @param [String] table_id Table ID.
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: key, type, size, required, array, status, error
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following columns: key, type, size, required, array, status, error
         #
         # @return [ColumnList]
         def list_columns(database_id:, table_id:, queries: nil)
@@ -1282,7 +1282,7 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
         # @param [String] key Column Key.
-        # @param [Integer] size Attribute size for text attributes, in number of characters.
+        # @param [Integer] size Column size for text columns, in number of characters.
         # @param [] required Is column required?
         # @param [String] default Default value for column when not provided. Cannot be set when column is required.
         # @param [] array Is column an array?
@@ -1641,7 +1641,7 @@ module Appwrite
         #
         # @param [String] database_id Database ID.
         # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: key, type, status, attributes, error
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following columns: key, type, status, attributes, error
         #
         # @return [ColumnIndexList]
         def list_indexes(database_id:, table_id:, queries: nil)

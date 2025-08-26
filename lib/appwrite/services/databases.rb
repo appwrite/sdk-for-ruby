@@ -37,7 +37,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createDatabase` instead.
         #
@@ -79,7 +78,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.get` instead.
         #
@@ -112,7 +110,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.update` instead.
         #
@@ -153,7 +150,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.delete` instead.
         #
@@ -186,7 +182,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.listTables` instead.
         #
@@ -223,7 +218,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createTable` instead.
         #
@@ -277,7 +271,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.getTable` instead.
         #
@@ -316,7 +309,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateTable` instead.
         #
@@ -367,7 +359,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.deleteTable` instead.
         #
@@ -406,7 +397,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.listColumns` instead.
         #
@@ -446,7 +436,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createBooleanColumn` instead.
         #
@@ -502,7 +491,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateBooleanColumn` instead.
         #
@@ -562,7 +550,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createDatetimeColumn` instead.
         #
@@ -617,7 +604,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateDatetimeColumn` instead.
         #
@@ -677,7 +663,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createEmailColumn` instead.
         #
@@ -733,7 +718,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateEmailColumn` instead.
         #
@@ -794,7 +778,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createEnumColumn` instead.
         #
@@ -857,7 +840,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateEnumColumn` instead.
         #
@@ -924,7 +906,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createFloatColumn` instead.
         #
@@ -985,7 +966,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateFloatColumn` instead.
         #
@@ -1050,7 +1030,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createIntegerColumn` instead.
         #
@@ -1111,7 +1090,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateIntegerColumn` instead.
         #
@@ -1176,7 +1154,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createIpColumn` instead.
         #
@@ -1232,7 +1209,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateIpColumn` instead.
         #
@@ -1293,7 +1269,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createRelationshipColumn` instead.
         #
@@ -1354,7 +1329,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createStringColumn` instead.
         #
@@ -1418,7 +1392,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateStringColumn` instead.
         #
@@ -1481,7 +1454,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createUrlColumn` instead.
         #
@@ -1537,7 +1509,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateUrlColumn` instead.
         #
@@ -1598,7 +1569,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.getColumn` instead.
         #
@@ -1641,7 +1611,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.deleteColumn` instead.
         #
@@ -1685,7 +1654,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateRelationshipColumn` instead.
         #
@@ -1736,7 +1704,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.listRows` instead.
         #
@@ -1777,7 +1744,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createRow` instead.
         #
@@ -1833,7 +1799,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createRows` instead.
         #
@@ -1881,7 +1846,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.upsertRows` instead.
         #
@@ -1930,7 +1894,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateRows` instead.
         #
@@ -1975,7 +1938,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.deleteRows` instead.
         #
@@ -2017,7 +1979,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.getRow` instead.
         #
@@ -2064,7 +2025,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.upsertRow` instead.
         #
@@ -2120,7 +2080,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateRow` instead.
         #
@@ -2170,7 +2129,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.deleteRow` instead.
         #
@@ -2214,7 +2172,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.decrementRowColumn` instead.
         #
@@ -2269,7 +2226,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.incrementRowColumn` instead.
         #
@@ -2324,7 +2280,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.listIndexes` instead.
         #
@@ -2364,7 +2319,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createIndex` instead.
         #
@@ -2427,7 +2381,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.getIndex` instead.
         #
@@ -2471,7 +2424,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.deleteIndex` instead.
         #
@@ -2515,6 +2467,5 @@ module Appwrite
             )
         end
 
-        
     end 
 end

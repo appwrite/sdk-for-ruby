@@ -29,7 +29,6 @@ module Appwrite
             )
         end
 
-        
         # Use this endpoint to allow a new user to register a new account in your
         # project. After the user registration completes successfully, you can use
         # the
@@ -79,7 +78,6 @@ module Appwrite
             )
         end
 
-        
         # Update currently logged in user account email address. After changing user
         # address, the user confirmation status will get reset. A new confirmation
         # email is not sent automatically however you can use the send confirmation
@@ -122,7 +120,6 @@ module Appwrite
             )
         end
 
-        
         # Get the list of identities for the currently logged in user.
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, provider, providerUid, providerEmail, providerAccessTokenExpiry
@@ -147,7 +144,6 @@ module Appwrite
             )
         end
 
-        
         # Delete an identity by its unique ID.
         #
         # @param [String] identity_id Identity ID.
@@ -176,7 +172,6 @@ module Appwrite
             )
         end
 
-        
         # Use this endpoint to create a JSON Web Token. You can use the resulting JWT
         # to authenticate on behalf of the current user when working with the
         # Appwrite server-side API and SDKs. The JWT secret is valid for 15 minutes
@@ -204,7 +199,6 @@ module Appwrite
             )
         end
 
-        
         # Get the list of latest security activity logs for the currently logged in
         # user. Each log returns user IP address, location and date and time of log.
         #
@@ -230,7 +224,6 @@ module Appwrite
             )
         end
 
-        
         # Enable or disable MFA on an account.
         #
         # @param [] mfa Enable or disable MFA.
@@ -260,10 +253,6 @@ module Appwrite
             )
         end
 
-        
-        #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `Account.createMFAAuthenticator` instead.
-        #
         # Add an authenticator app to be used as an MFA factor. Verify the
         # authenticator using the [verify
         # authenticator](/docs/references/cloud/client-web/account#updateMfaAuthenticator)
@@ -296,43 +285,6 @@ module Appwrite
             )
         end
 
-        
-        # Add an authenticator app to be used as an MFA factor. Verify the
-        # authenticator using the [verify
-        # authenticator](/docs/references/cloud/client-web/account#updateMfaAuthenticator)
-        # method.
-        #
-        # @param [AuthenticatorType] type Type of authenticator. Must be `totp`
-        #
-        # @return [MfaType]
-        def create_mfa_authenticator(type:)
-            api_path = '/account/mfa/authenticators/{type}'
-                .gsub('{type}', type)
-
-            if type.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "type"')
-            end
-
-            api_params = {
-            }
-            
-            api_headers = {
-                "content-type": 'application/json',
-            }
-
-            @client.call(
-                method: 'POST',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                response_type: Models::MfaType
-            )
-        end
-
-        
-        #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `Account.updateMFAAuthenticator` instead.
-        #
         # Verify an authenticator app after adding it using the [add
         # authenticator](/docs/references/cloud/client-web/account#createMfaAuthenticator)
         # method.
@@ -370,48 +322,6 @@ module Appwrite
             )
         end
 
-        
-        # Verify an authenticator app after adding it using the [add
-        # authenticator](/docs/references/cloud/client-web/account#createMfaAuthenticator)
-        # method.
-        #
-        # @param [AuthenticatorType] type Type of authenticator.
-        # @param [String] otp Valid verification token.
-        #
-        # @return [User]
-        def update_mfa_authenticator(type:, otp:)
-            api_path = '/account/mfa/authenticators/{type}'
-                .gsub('{type}', type)
-
-            if type.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "type"')
-            end
-
-            if otp.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "otp"')
-            end
-
-            api_params = {
-                otp: otp,
-            }
-            
-            api_headers = {
-                "content-type": 'application/json',
-            }
-
-            @client.call(
-                method: 'PUT',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                response_type: Models::User
-            )
-        end
-
-        
-        #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `Account.deleteMFAAuthenticator` instead.
-        #
         # Delete an authenticator for a user by ID.
         #
         # @param [AuthenticatorType] type Type of authenticator.
@@ -440,39 +350,6 @@ module Appwrite
             )
         end
 
-        
-        # Delete an authenticator for a user by ID.
-        #
-        # @param [AuthenticatorType] type Type of authenticator.
-        #
-        # @return []
-        def delete_mfa_authenticator(type:)
-            api_path = '/account/mfa/authenticators/{type}'
-                .gsub('{type}', type)
-
-            if type.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "type"')
-            end
-
-            api_params = {
-            }
-            
-            api_headers = {
-                "content-type": 'application/json',
-            }
-
-            @client.call(
-                method: 'DELETE',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-            )
-        end
-
-        
-        #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `Account.createMFAChallenge` instead.
-        #
         # Begin the process of MFA verification after sign-in. Finish the flow with
         # [updateMfaChallenge](/docs/references/cloud/client-web/account#updateMfaChallenge)
         # method.
@@ -504,42 +381,6 @@ module Appwrite
             )
         end
 
-        
-        # Begin the process of MFA verification after sign-in. Finish the flow with
-        # [updateMfaChallenge](/docs/references/cloud/client-web/account#updateMfaChallenge)
-        # method.
-        #
-        # @param [AuthenticationFactor] factor Factor used for verification. Must be one of following: `email`, `phone`, `totp`, `recoveryCode`.
-        #
-        # @return [MfaChallenge]
-        def create_mfa_challenge(factor:)
-            api_path = '/account/mfa/challenge'
-
-            if factor.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "factor"')
-            end
-
-            api_params = {
-                factor: factor,
-            }
-            
-            api_headers = {
-                "content-type": 'application/json',
-            }
-
-            @client.call(
-                method: 'POST',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                response_type: Models::MfaChallenge
-            )
-        end
-
-        
-        #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `Account.updateMFAChallenge` instead.
-        #
         # Complete the MFA challenge by providing the one-time password. Finish the
         # process of MFA verification by providing the one-time password. To begin
         # the flow, use
@@ -579,50 +420,6 @@ module Appwrite
             )
         end
 
-        
-        # Complete the MFA challenge by providing the one-time password. Finish the
-        # process of MFA verification by providing the one-time password. To begin
-        # the flow, use
-        # [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
-        # method.
-        #
-        # @param [String] challenge_id ID of the challenge.
-        # @param [String] otp Valid verification token.
-        #
-        # @return [Session]
-        def update_mfa_challenge(challenge_id:, otp:)
-            api_path = '/account/mfa/challenge'
-
-            if challenge_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "challengeId"')
-            end
-
-            if otp.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "otp"')
-            end
-
-            api_params = {
-                challengeId: challenge_id,
-                otp: otp,
-            }
-            
-            api_headers = {
-                "content-type": 'application/json',
-            }
-
-            @client.call(
-                method: 'PUT',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                response_type: Models::Session
-            )
-        end
-
-        
-        #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `Account.listMFAFactors` instead.
-        #
         # List the factors available on the account to be used as a MFA challange.
         #
         #
@@ -645,33 +442,6 @@ module Appwrite
             )
         end
 
-        
-        # List the factors available on the account to be used as a MFA challange.
-        #
-        #
-        # @return [MfaFactors]
-        def list_mfa_factors()
-            api_path = '/account/mfa/factors'
-
-            api_params = {
-            }
-            
-            api_headers = {
-            }
-
-            @client.call(
-                method: 'GET',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                response_type: Models::MfaFactors
-            )
-        end
-
-        
-        #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `Account.getMFARecoveryCodes` instead.
-        #
         # Get recovery codes that can be used as backup for MFA flow. Before getting
         # codes, they must be generated using
         # [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
@@ -697,36 +467,6 @@ module Appwrite
             )
         end
 
-        
-        # Get recovery codes that can be used as backup for MFA flow. Before getting
-        # codes, they must be generated using
-        # [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
-        # method. An OTP challenge is required to read recovery codes.
-        #
-        #
-        # @return [MfaRecoveryCodes]
-        def get_mfa_recovery_codes()
-            api_path = '/account/mfa/recovery-codes'
-
-            api_params = {
-            }
-            
-            api_headers = {
-            }
-
-            @client.call(
-                method: 'GET',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                response_type: Models::MfaRecoveryCodes
-            )
-        end
-
-        
-        #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `Account.createMFARecoveryCodes` instead.
-        #
         # Generate recovery codes as backup for MFA flow. It's recommended to
         # generate and show then immediately after user successfully adds their
         # authehticator. Recovery codes can be used as a MFA verification type in
@@ -754,38 +494,6 @@ module Appwrite
             )
         end
 
-        
-        # Generate recovery codes as backup for MFA flow. It's recommended to
-        # generate and show then immediately after user successfully adds their
-        # authehticator. Recovery codes can be used as a MFA verification type in
-        # [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
-        # method.
-        #
-        #
-        # @return [MfaRecoveryCodes]
-        def create_mfa_recovery_codes()
-            api_path = '/account/mfa/recovery-codes'
-
-            api_params = {
-            }
-            
-            api_headers = {
-                "content-type": 'application/json',
-            }
-
-            @client.call(
-                method: 'POST',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                response_type: Models::MfaRecoveryCodes
-            )
-        end
-
-        
-        #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `Account.updateMFARecoveryCodes` instead.
-        #
         # Regenerate recovery codes that can be used as backup for MFA flow. Before
         # regenerating codes, they must be first generated using
         # [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
@@ -812,34 +520,6 @@ module Appwrite
             )
         end
 
-        
-        # Regenerate recovery codes that can be used as backup for MFA flow. Before
-        # regenerating codes, they must be first generated using
-        # [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
-        # method. An OTP challenge is required to regenreate recovery codes.
-        #
-        #
-        # @return [MfaRecoveryCodes]
-        def update_mfa_recovery_codes()
-            api_path = '/account/mfa/recovery-codes'
-
-            api_params = {
-            }
-            
-            api_headers = {
-                "content-type": 'application/json',
-            }
-
-            @client.call(
-                method: 'PATCH',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                response_type: Models::MfaRecoveryCodes
-            )
-        end
-
-        
         # Update currently logged in user account name.
         #
         # @param [String] name User name. Max length: 128 chars.
@@ -869,7 +549,6 @@ module Appwrite
             )
         end
 
-        
         # Update currently logged in user password. For validation, user is required
         # to pass in the new password, and the old password. For users created with
         # OAuth, Team Invites and Magic URL, oldPassword is optional.
@@ -903,7 +582,6 @@ module Appwrite
             )
         end
 
-        
         # Update the currently logged in user's phone number. After updating the
         # phone number, the phone verification status will be reset. A confirmation
         # SMS is not sent automatically, however you can use the [POST
@@ -943,7 +621,6 @@ module Appwrite
             )
         end
 
-        
         # Get the preferences as a key-value object for the currently logged in user.
         #
         #
@@ -966,7 +643,6 @@ module Appwrite
             )
         end
 
-        
         # Update currently logged in user account preferences. The object you pass is
         # stored as is, and replaces any previous value. The maximum allowed prefs
         # size is 64kB and throws error if exceeded.
@@ -998,7 +674,6 @@ module Appwrite
             )
         end
 
-        
         # Sends the user an email with a temporary secret key for password reset.
         # When the user clicks the confirmation link he is redirected back to your
         # app password reset URL with the secret key and email address values
@@ -1041,7 +716,6 @@ module Appwrite
             )
         end
 
-        
         # Use this endpoint to complete the user account password reset. Both the
         # **userId** and **secret** arguments will be passed as query parameters to
         # the redirect URL you have provided when sending your request to the [POST
@@ -1092,7 +766,6 @@ module Appwrite
             )
         end
 
-        
         # Get the list of active sessions across different devices for the currently
         # logged in user.
         #
@@ -1116,7 +789,6 @@ module Appwrite
             )
         end
 
-        
         # Delete all sessions from the user account and remove any sessions cookies
         # from the end client.
         #
@@ -1140,7 +812,6 @@ module Appwrite
             )
         end
 
-        
         # Use this endpoint to allow a new user to register an anonymous account in
         # your project. This route will also create a new session for the user. To
         # allow the new user to convert an anonymous account to a normal account, you
@@ -1170,7 +841,6 @@ module Appwrite
             )
         end
 
-        
         # Allow the user to login into their account by providing a valid email and
         # password combination. This route will create a new session for the user.
         # 
@@ -1211,7 +881,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated.
         #
@@ -1252,7 +921,6 @@ module Appwrite
             )
         end
 
-        
         #
         # @deprecated This API has been deprecated.
         #
@@ -1293,7 +961,6 @@ module Appwrite
             )
         end
 
-        
         # Use this endpoint to create a session from token. Provide the **userId**
         # and **secret** parameters from the successful response of authentication
         # flows initiated by token creation. For example, magic URL and phone login.
@@ -1331,7 +998,6 @@ module Appwrite
             )
         end
 
-        
         # Use this endpoint to get a logged in user's session using a Session ID.
         # Inputting 'current' will return the current session being used.
         #
@@ -1361,7 +1027,6 @@ module Appwrite
             )
         end
 
-        
         # Use this endpoint to extend a session's length. Extending a session is
         # useful when session expiry is short. If the session was created using an
         # OAuth provider, this endpoint refreshes the access token from the provider.
@@ -1393,7 +1058,6 @@ module Appwrite
             )
         end
 
-        
         # Logout the user. Use 'current' as the session ID to logout on this device,
         # use a session ID to logout on another device. If you're looking to logout
         # the user on all devices, use [Delete
@@ -1426,7 +1090,6 @@ module Appwrite
             )
         end
 
-        
         # Block the currently logged in user account. Behind the scene, the user
         # record is not deleted but permanently blocked from any access. To
         # completely delete a user, use the Users API instead.
@@ -1452,7 +1115,6 @@ module Appwrite
             )
         end
 
-        
         # Sends the user an email with a secret key for creating a session. If the
         # email address has never been used, a **new account is created** using the
         # provided `userId`. Otherwise, if the email address is already attached to
@@ -1503,7 +1165,6 @@ module Appwrite
             )
         end
 
-        
         # Sends the user an email with a secret key for creating a session. If the
         # provided user ID has not been registered, a new user will be created. When
         # the user clicks the link in the email, the user is redirected back to the
@@ -1556,7 +1217,6 @@ module Appwrite
             )
         end
 
-        
         # Allow the user to login to their account using the OAuth2 provider of their
         # choice. Each OAuth2 provider should be enabled from the Appwrite console
         # first. Use the success and failure arguments to provide a redirect URL's
@@ -1604,7 +1264,6 @@ module Appwrite
             )
         end
 
-        
         # Sends the user an SMS with a secret key for creating a session. If the
         # provided user ID has not be registered, a new user will be created. Use the
         # returned user ID and secret and submit a request to the [POST
@@ -1649,7 +1308,6 @@ module Appwrite
             )
         end
 
-        
         # Use this endpoint to send a verification message to your user email address
         # to confirm they are the valid owners of that address. Both the **userId**
         # and **secret** arguments will be passed as query parameters to the URL you
@@ -1693,7 +1351,6 @@ module Appwrite
             )
         end
 
-        
         # Use this endpoint to complete the user email verification process. Use both
         # the **userId** and **secret** parameters that were attached to your app URL
         # to verify the user email ownership. If confirmed this route will return a
@@ -1732,7 +1389,6 @@ module Appwrite
             )
         end
 
-        
         # Use this endpoint to send a verification SMS to the currently logged in
         # user. This endpoint is meant for use after updating a user's phone number
         # using the
@@ -1763,7 +1419,6 @@ module Appwrite
             )
         end
 
-        
         # Use this endpoint to complete the user phone verification process. Use the
         # **userId** and **secret** that were sent to your user's phone number to
         # verify the user email ownership. If confirmed this route will return a 200
@@ -1802,6 +1457,5 @@ module Appwrite
             )
         end
 
-        
     end 
 end

@@ -44,7 +44,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new token. A token is linked to a file. Token can be passed as a
         # request URL search parameter.
         #
@@ -83,7 +82,6 @@ module Appwrite
             )
         end
 
-        
         # Get a token by its unique ID.
         #
         # @param [String] token_id Token ID.
@@ -112,7 +110,6 @@ module Appwrite
             )
         end
 
-        
         # Update a token by its unique ID. Use this endpoint to update a token's
         # expiry date.
         #
@@ -145,7 +142,6 @@ module Appwrite
             )
         end
 
-        
         # Delete a token by its unique ID.
         #
         # @param [String] token_id Token ID.
@@ -174,6 +170,5 @@ module Appwrite
             )
         end
 
-        
     end 
 end

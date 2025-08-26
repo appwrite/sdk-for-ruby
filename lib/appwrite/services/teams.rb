@@ -34,7 +34,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new team. The user who creates the team will automatically be
         # assigned as the owner of the team. Only the users with the owner role can
         # invite new members, add new owners and delete or update the team.
@@ -74,7 +73,6 @@ module Appwrite
             )
         end
 
-        
         # Get a team by its ID. All team members have read access for this resource.
         #
         # @param [String] team_id Team ID.
@@ -103,7 +101,6 @@ module Appwrite
             )
         end
 
-        
         # Update the team's name by its unique ID.
         #
         # @param [String] team_id Team ID.
@@ -139,7 +136,6 @@ module Appwrite
             )
         end
 
-        
         # Delete a team using its ID. Only team members with the owner role can
         # delete the team.
         #
@@ -169,7 +165,6 @@ module Appwrite
             )
         end
 
-        
         # Use this endpoint to list a team's members using the team's ID. All team
         # members have read access to this endpoint. Hide sensitive attributes from
         # the response by toggling membership privacy in the Console.
@@ -204,7 +199,6 @@ module Appwrite
             )
         end
 
-        
         # Invite a new member to join your team. Provide an ID for existing users, or
         # invite unregistered users using an email or phone number. If initiated from
         # a Client SDK, Appwrite will send an email or sms with a link to join the
@@ -270,7 +264,6 @@ module Appwrite
             )
         end
 
-        
         # Get a team member by the membership unique id. All team members have read
         # access for this resource. Hide sensitive attributes from the response by
         # toggling membership privacy in the Console.
@@ -307,7 +300,6 @@ module Appwrite
             )
         end
 
-        
         # Modify the roles of a team member. Only team members with the owner role
         # have access to this endpoint. Learn more about [roles and
         # permissions](https://appwrite.io/docs/permissions).
@@ -352,7 +344,6 @@ module Appwrite
             )
         end
 
-        
         # This endpoint allows a user to leave a team or for a team owner to delete
         # the membership of any other team member. You can also use this endpoint to
         # delete a user membership even if it is not accepted.
@@ -389,7 +380,6 @@ module Appwrite
             )
         end
 
-        
         # Use this endpoint to allow a user to accept an invitation to join a team
         # after being redirected back to your app from the invitation email received
         # by the user.
@@ -443,7 +433,6 @@ module Appwrite
             )
         end
 
-        
         # Get the team's shared preferences by its unique ID. If a preference doesn't
         # need to be shared by all team members, prefer storing them in [user
         # preferences](https://appwrite.io/docs/references/cloud/client-web/account#getPrefs).
@@ -474,7 +463,6 @@ module Appwrite
             )
         end
 
-        
         # Update the team's preferences by its unique ID. The object you pass is
         # stored as is and replaces any previous value. The maximum allowed prefs
         # size is 64kB and throws an error if exceeded.
@@ -512,6 +500,5 @@ module Appwrite
             )
         end
 
-        
     end 
 end

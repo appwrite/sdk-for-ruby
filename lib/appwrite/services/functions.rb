@@ -34,7 +34,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new function. You can pass a list of
         # [permissions](https://appwrite.io/docs/permissions) to allow different
         # project users or team with access to execute the function using the client
@@ -109,7 +108,6 @@ module Appwrite
             )
         end
 
-        
         # Get a list of all runtimes that are currently active on your instance.
         #
         #
@@ -132,7 +130,6 @@ module Appwrite
             )
         end
 
-        
         # List allowed function specifications for this instance.
         #
         #
@@ -155,7 +152,6 @@ module Appwrite
             )
         end
 
-        
         # Get a function by its unique ID.
         #
         # @param [String] function_id Function ID.
@@ -184,7 +180,6 @@ module Appwrite
             )
         end
 
-        
         # Update function by its unique ID.
         #
         # @param [String] function_id Function ID.
@@ -252,7 +247,6 @@ module Appwrite
             )
         end
 
-        
         # Delete a function by its unique ID.
         #
         # @param [String] function_id Function ID.
@@ -281,7 +275,6 @@ module Appwrite
             )
         end
 
-        
         # Update the function active deployment. Use this endpoint to switch the code
         # deployment that should be used when visitor opens your function.
         #
@@ -318,7 +311,6 @@ module Appwrite
             )
         end
 
-        
         # Get a list of all the function's code deployments. You can use the query
         # params to filter your results.
         #
@@ -352,7 +344,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new function code deployment. Use this endpoint to upload a new
         # version of your code function. To execute your newly uploaded code, you'll
         # need to update the function's deployment to use your new deployment UID.
@@ -412,7 +403,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new build for an existing function deployment. This endpoint
         # allows you to rebuild a deployment with the updated function configuration,
         # including its entrypoint and build commands if they have been modified. The
@@ -454,7 +444,6 @@ module Appwrite
             )
         end
 
-        
         # Create a deployment based on a template.
         # 
         # Use this endpoint with combination of
@@ -514,7 +503,6 @@ module Appwrite
             )
         end
 
-        
         # Create a deployment when a function is connected to VCS.
         # 
         # This endpoint lets you create deployment from a branch, commit, or a tag.
@@ -560,7 +548,6 @@ module Appwrite
             )
         end
 
-        
         # Get a function deployment by its unique ID.
         #
         # @param [String] function_id Function ID.
@@ -595,7 +582,6 @@ module Appwrite
             )
         end
 
-        
         # Delete a code deployment by its unique ID.
         #
         # @param [String] function_id Function ID.
@@ -630,7 +616,6 @@ module Appwrite
             )
         end
 
-        
         # Get a function deployment content by its unique ID. The endpoint response
         # return with a 'Content-Disposition: attachment' header that tells the
         # browser to start downloading the file to user downloads directory.
@@ -668,7 +653,6 @@ module Appwrite
             )
         end
 
-        
         # Cancel an ongoing function deployment build. If the build is already in
         # progress, it will be stopped and marked as canceled. If the build hasn't
         # started yet, it will be marked as canceled without executing. You cannot
@@ -708,7 +692,6 @@ module Appwrite
             )
         end
 
-        
         # Get a list of all the current user function execution logs. You can use the
         # query params to filter your results.
         #
@@ -740,7 +723,6 @@ module Appwrite
             )
         end
 
-        
         # Trigger a function execution. The returned object will return you the
         # current execution status. You can ping the `Get Execution` endpoint to get
         # updates on the current execution status. Once this endpoint is called, your
@@ -785,7 +767,6 @@ module Appwrite
             )
         end
 
-        
         # Get a function execution log by its unique ID.
         #
         # @param [String] function_id Function ID.
@@ -820,7 +801,6 @@ module Appwrite
             )
         end
 
-        
         # Delete a function execution by its unique ID.
         #
         # @param [String] function_id Function ID.
@@ -855,7 +835,6 @@ module Appwrite
             )
         end
 
-        
         # Get a list of all variables of a specific function.
         #
         # @param [String] function_id Function unique ID.
@@ -884,7 +863,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new function environment variable. These variables can be accessed
         # in the function at runtime as environment variables.
         #
@@ -929,7 +907,6 @@ module Appwrite
             )
         end
 
-        
         # Get a variable by its unique ID.
         #
         # @param [String] function_id Function unique ID.
@@ -964,7 +941,6 @@ module Appwrite
             )
         end
 
-        
         # Update variable by its unique ID.
         #
         # @param [String] function_id Function unique ID.
@@ -1010,7 +986,6 @@ module Appwrite
             )
         end
 
-        
         # Delete a variable by its unique ID.
         #
         # @param [String] function_id Function unique ID.
@@ -1045,6 +1020,5 @@ module Appwrite
             )
         end
 
-        
     end 
 end

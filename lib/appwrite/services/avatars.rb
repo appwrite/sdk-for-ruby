@@ -49,7 +49,6 @@ module Appwrite
             )
         end
 
-        
         # The credit card endpoint will return you the icon of the credit card
         # provider you need. Use width, height and quality arguments to change the
         # output settings.
@@ -91,7 +90,6 @@ module Appwrite
             )
         end
 
-        
         # Use this endpoint to fetch the favorite icon (AKA favicon) of any remote
         # website URL.
         # 
@@ -122,7 +120,6 @@ module Appwrite
             )
         end
 
-        
         # You can use this endpoint to show different country flags icons to your
         # users. The code argument receives the 2 letter country code. Use width,
         # height and quality arguments to change the output settings. Country codes
@@ -165,7 +162,6 @@ module Appwrite
             )
         end
 
-        
         # Use this endpoint to fetch a remote image URL and crop it to any image size
         # you want. This endpoint is very useful if you need to crop and display
         # remote images in your app or in case you want to make sure a 3rd party
@@ -207,7 +203,6 @@ module Appwrite
             )
         end
 
-        
         # Use this endpoint to show your user initials avatar icon on your website or
         # app. By default, this route will try to print your logged-in user name or
         # email initials. You can also overwrite the user name if you pass the 'name'
@@ -252,7 +247,6 @@ module Appwrite
             )
         end
 
-        
         # Converts a given plain text to a QR code image. You can use the query
         # parameters to change the size and style of the resulting image.
         # 
@@ -288,6 +282,5 @@ module Appwrite
             )
         end
 
-        
     end 
 end

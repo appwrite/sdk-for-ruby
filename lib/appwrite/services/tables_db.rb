@@ -34,7 +34,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new Database.
         # 
         #
@@ -73,7 +72,6 @@ module Appwrite
             )
         end
 
-        
         # Get a database by its unique ID. This endpoint response returns a JSON
         # object with the database metadata.
         #
@@ -103,7 +101,6 @@ module Appwrite
             )
         end
 
-        
         # Update a database by its unique ID.
         #
         # @param [String] database_id Database ID.
@@ -141,7 +138,6 @@ module Appwrite
             )
         end
 
-        
         # Delete a database by its unique ID. Only API keys with with databases.write
         # scope can delete a database.
         #
@@ -171,7 +167,6 @@ module Appwrite
             )
         end
 
-        
         # Get a list of all tables that belong to the provided databaseId. You can
         # use the search parameter to filter your results.
         #
@@ -205,7 +200,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new Table. Before using this route, you should create a new
         # database resource using either a [server
         # integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreateTable)
@@ -256,7 +250,6 @@ module Appwrite
             )
         end
 
-        
         # Get a table by its unique ID. This endpoint response returns a JSON object
         # with the table metadata.
         #
@@ -292,7 +285,6 @@ module Appwrite
             )
         end
 
-        
         # Update a table by its unique ID.
         #
         # @param [String] database_id Database ID.
@@ -340,7 +332,6 @@ module Appwrite
             )
         end
 
-        
         # Delete a table by its unique ID. Only users with write permissions have
         # access to delete this resource.
         #
@@ -376,7 +367,6 @@ module Appwrite
             )
         end
 
-        
         # List columns in the table.
         #
         # @param [String] database_id Database ID.
@@ -413,7 +403,6 @@ module Appwrite
             )
         end
 
-        
         # Create a boolean column.
         # 
         #
@@ -466,7 +455,6 @@ module Appwrite
             )
         end
 
-        
         # Update a boolean column. Changing the `default` value will not update
         # already existing rows.
         #
@@ -523,7 +511,6 @@ module Appwrite
             )
         end
 
-        
         # Create a date time column according to the ISO 8601 standard.
         #
         # @param [String] database_id Database ID.
@@ -575,7 +562,6 @@ module Appwrite
             )
         end
 
-        
         # Update a date time column. Changing the `default` value will not update
         # already existing rows.
         #
@@ -632,7 +618,6 @@ module Appwrite
             )
         end
 
-        
         # Create an email column.
         # 
         #
@@ -685,7 +670,6 @@ module Appwrite
             )
         end
 
-        
         # Update an email column. Changing the `default` value will not update
         # already existing rows.
         # 
@@ -743,7 +727,6 @@ module Appwrite
             )
         end
 
-        
         # Create an enumeration column. The `elements` param acts as a white-list of
         # accepted values for this column.
         #
@@ -802,7 +785,6 @@ module Appwrite
             )
         end
 
-        
         # Update an enum column. Changing the `default` value will not update already
         # existing rows.
         # 
@@ -866,7 +848,6 @@ module Appwrite
             )
         end
 
-        
         # Create a float column. Optionally, minimum and maximum values can be
         # provided.
         # 
@@ -924,7 +905,6 @@ module Appwrite
             )
         end
 
-        
         # Update a float column. Changing the `default` value will not update already
         # existing rows.
         # 
@@ -986,7 +966,6 @@ module Appwrite
             )
         end
 
-        
         # Create an integer column. Optionally, minimum and maximum values can be
         # provided.
         # 
@@ -1044,7 +1023,6 @@ module Appwrite
             )
         end
 
-        
         # Update an integer column. Changing the `default` value will not update
         # already existing rows.
         # 
@@ -1106,7 +1084,6 @@ module Appwrite
             )
         end
 
-        
         # Create IP address column.
         # 
         #
@@ -1159,7 +1136,6 @@ module Appwrite
             )
         end
 
-        
         # Update an ip column. Changing the `default` value will not update already
         # existing rows.
         # 
@@ -1217,7 +1193,6 @@ module Appwrite
             )
         end
 
-        
         # Create relationship column. [Learn more about relationship
         # columns](https://appwrite.io/docs/databases-relationships#relationship-columns).
         # 
@@ -1275,7 +1250,6 @@ module Appwrite
             )
         end
 
-        
         # Create a string column.
         # 
         #
@@ -1336,7 +1310,6 @@ module Appwrite
             )
         end
 
-        
         # Update a string column. Changing the `default` value will not update
         # already existing rows.
         # 
@@ -1396,7 +1369,6 @@ module Appwrite
             )
         end
 
-        
         # Create a URL column.
         # 
         #
@@ -1449,7 +1421,6 @@ module Appwrite
             )
         end
 
-        
         # Update an url column. Changing the `default` value will not update already
         # existing rows.
         # 
@@ -1507,7 +1478,6 @@ module Appwrite
             )
         end
 
-        
         # Get column by ID.
         #
         # @param [String] database_id Database ID.
@@ -1547,7 +1517,6 @@ module Appwrite
             )
         end
 
-        
         # Deletes a column.
         #
         # @param [String] database_id Database ID.
@@ -1588,7 +1557,6 @@ module Appwrite
             )
         end
 
-        
         # Update relationship column. [Learn more about relationship
         # columns](https://appwrite.io/docs/databases-relationships#relationship-columns).
         # 
@@ -1636,7 +1604,6 @@ module Appwrite
             )
         end
 
-        
         # List indexes on the table.
         #
         # @param [String] database_id Database ID.
@@ -1673,7 +1640,6 @@ module Appwrite
             )
         end
 
-        
         # Creates an index on the columns listed. Your index should include all the
         # columns you will query in a single request.
         # Type can be `key`, `fulltext`, or `unique`.
@@ -1733,7 +1699,6 @@ module Appwrite
             )
         end
 
-        
         # Get index by ID.
         #
         # @param [String] database_id Database ID.
@@ -1774,7 +1739,6 @@ module Appwrite
             )
         end
 
-        
         # Delete an index.
         #
         # @param [String] database_id Database ID.
@@ -1815,7 +1779,6 @@ module Appwrite
             )
         end
 
-        
         # Get a list of all the user's rows in a given table. You can use the query
         # params to filter your results.
         #
@@ -1853,7 +1816,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new Row. Before using this route, you should create a new table
         # resource using either a [server
         # integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreateTable)
@@ -1906,7 +1868,6 @@ module Appwrite
             )
         end
 
-        
         # Create new Rows. Before using this route, you should create a new table
         # resource using either a [server
         # integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreateTable)
@@ -1951,7 +1912,6 @@ module Appwrite
             )
         end
 
-        
         # Create or update Rows. Before using this route, you should create a new
         # table resource using either a [server
         # integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreateTable)
@@ -1997,7 +1957,6 @@ module Appwrite
             )
         end
 
-        
         # Update all rows that match your queries, if no queries are submitted then
         # all rows are updated. You can pass only specific fields to be updated.
         #
@@ -2038,7 +1997,6 @@ module Appwrite
             )
         end
 
-        
         # Bulk delete rows using queries, if no queries are passed then all rows are
         # deleted.
         #
@@ -2077,7 +2035,6 @@ module Appwrite
             )
         end
 
-        
         # Get a row by its unique ID. This endpoint response returns a JSON object
         # with the row data.
         #
@@ -2121,7 +2078,6 @@ module Appwrite
             )
         end
 
-        
         # Create or update a Row. Before using this route, you should create a new
         # table resource using either a [server
         # integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreateTable)
@@ -2170,7 +2126,6 @@ module Appwrite
             )
         end
 
-        
         # Update a row by its unique ID. Using the patch method you can pass only
         # specific fields that will get updated.
         #
@@ -2217,7 +2172,6 @@ module Appwrite
             )
         end
 
-        
         # Delete a row by its unique ID.
         #
         # @param [String] database_id Database ID.
@@ -2258,7 +2212,6 @@ module Appwrite
             )
         end
 
-        
         # Decrement a specific column of a row by a given value.
         #
         # @param [String] database_id Database ID.
@@ -2310,7 +2263,6 @@ module Appwrite
             )
         end
 
-        
         # Increment a specific column of a row by a given value.
         #
         # @param [String] database_id Database ID.
@@ -2362,6 +2314,5 @@ module Appwrite
             )
         end
 
-        
     end 
 end

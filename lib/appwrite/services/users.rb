@@ -34,7 +34,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new user.
         #
         # @param [String] user_id User ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
@@ -72,7 +71,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new user. Password provided must be hashed with the
         # [Argon2](https://en.wikipedia.org/wiki/Argon2) algorithm. Use the [POST
         # /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
@@ -119,7 +117,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new user. Password provided must be hashed with the
         # [Bcrypt](https://en.wikipedia.org/wiki/Bcrypt) algorithm. Use the [POST
         # /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
@@ -166,7 +163,6 @@ module Appwrite
             )
         end
 
-        
         # Get identities for all users.
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, provider, providerUid, providerEmail, providerAccessTokenExpiry
@@ -193,7 +189,6 @@ module Appwrite
             )
         end
 
-        
         # Delete an identity by its unique ID.
         #
         # @param [String] identity_id Identity ID.
@@ -222,7 +217,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new user. Password provided must be hashed with the
         # [MD5](https://en.wikipedia.org/wiki/MD5) algorithm. Use the [POST
         # /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
@@ -269,7 +263,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new user. Password provided must be hashed with the
         # [PHPass](https://www.openwall.com/phpass/) algorithm. Use the [POST
         # /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
@@ -316,7 +309,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new user. Password provided must be hashed with the
         # [Scrypt](https://github.com/Tarsnap/scrypt) algorithm. Use the [POST
         # /users](https://appwrite.io/docs/server/users#usersCreate) endpoint to
@@ -393,7 +385,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new user. Password provided must be hashed with the [Scrypt
         # Modified](https://gist.github.com/Meldiron/eecf84a0225eccb5a378d45bb27462cc)
         # algorithm. Use the [POST
@@ -459,7 +450,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new user. Password provided must be hashed with the
         # [SHA](https://en.wikipedia.org/wiki/Secure_Hash_Algorithm) algorithm. Use
         # the [POST /users](https://appwrite.io/docs/server/users#usersCreate)
@@ -508,7 +498,6 @@ module Appwrite
             )
         end
 
-        
         # Get a user by its unique ID.
         #
         # @param [String] user_id User ID.
@@ -537,7 +526,6 @@ module Appwrite
             )
         end
 
-        
         # Delete a user by its unique ID, thereby releasing it's ID. Since ID is
         # released and can be reused, all user-related resources like documents or
         # storage files should be deleted before user deletion. If you want to keep
@@ -571,7 +559,6 @@ module Appwrite
             )
         end
 
-        
         # Update the user email by its unique ID.
         #
         # @param [String] user_id User ID.
@@ -607,7 +594,6 @@ module Appwrite
             )
         end
 
-        
         # Use this endpoint to create a JSON Web Token for user by its unique ID. You
         # can use the resulting JWT to authenticate on behalf of the user. The JWT
         # secret will become invalid if the session it uses gets deleted.
@@ -643,7 +629,6 @@ module Appwrite
             )
         end
 
-        
         # Update the user labels by its unique ID. 
         # 
         # Labels can be used to grant access to resources. While teams are a way for
@@ -684,7 +669,6 @@ module Appwrite
             )
         end
 
-        
         # Get the user activity logs list by its unique ID.
         #
         # @param [String] user_id User ID.
@@ -715,7 +699,6 @@ module Appwrite
             )
         end
 
-        
         # Get the user membership list by its unique ID.
         #
         # @param [String] user_id User ID.
@@ -748,7 +731,6 @@ module Appwrite
             )
         end
 
-        
         # Enable or disable MFA on a user account.
         #
         # @param [String] user_id User ID.
@@ -784,7 +766,6 @@ module Appwrite
             )
         end
 
-        
         # Delete an authenticator app.
         #
         # @param [String] user_id User ID.
@@ -819,7 +800,6 @@ module Appwrite
             )
         end
 
-        
         # List the factors available on the account to be used as a MFA challange.
         #
         # @param [String] user_id User ID.
@@ -848,7 +828,6 @@ module Appwrite
             )
         end
 
-        
         # Get recovery codes that can be used as backup for MFA flow by User ID.
         # Before getting codes, they must be generated using
         # [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
@@ -880,7 +859,6 @@ module Appwrite
             )
         end
 
-        
         # Regenerate recovery codes that can be used as backup for MFA flow by User
         # ID. Before regenerating codes, they must be first generated using
         # [createMfaRecoveryCodes](/docs/references/cloud/client-web/account#createMfaRecoveryCodes)
@@ -913,7 +891,6 @@ module Appwrite
             )
         end
 
-        
         # Generate recovery codes used as backup for MFA flow for User ID. Recovery
         # codes can be used as a MFA verification type in
         # [createMfaChallenge](/docs/references/cloud/client-web/account#createMfaChallenge)
@@ -946,7 +923,6 @@ module Appwrite
             )
         end
 
-        
         # Update the user name by its unique ID.
         #
         # @param [String] user_id User ID.
@@ -982,7 +958,6 @@ module Appwrite
             )
         end
 
-        
         # Update the user password by its unique ID.
         #
         # @param [String] user_id User ID.
@@ -1018,7 +993,6 @@ module Appwrite
             )
         end
 
-        
         # Update the user phone by its unique ID.
         #
         # @param [String] user_id User ID.
@@ -1054,7 +1028,6 @@ module Appwrite
             )
         end
 
-        
         # Get the user preferences by its unique ID.
         #
         # @param [String] user_id User ID.
@@ -1083,7 +1056,6 @@ module Appwrite
             )
         end
 
-        
         # Update the user preferences by its unique ID. The object you pass is stored
         # as is, and replaces any previous value. The maximum allowed prefs size is
         # 64kB and throws error if exceeded.
@@ -1121,7 +1093,6 @@ module Appwrite
             )
         end
 
-        
         # Get the user sessions list by its unique ID.
         #
         # @param [String] user_id User ID.
@@ -1150,7 +1121,6 @@ module Appwrite
             )
         end
 
-        
         # Creates a session for a user. Returns an immediately usable session object.
         # 
         # If you want to generate a token for a custom authentication flow, use the
@@ -1185,7 +1155,6 @@ module Appwrite
             )
         end
 
-        
         # Delete all user's sessions by using the user's unique ID.
         #
         # @param [String] user_id User ID.
@@ -1214,7 +1183,6 @@ module Appwrite
             )
         end
 
-        
         # Delete a user sessions by its unique ID.
         #
         # @param [String] user_id User ID.
@@ -1249,7 +1217,6 @@ module Appwrite
             )
         end
 
-        
         # Update the user status by its unique ID. Use this endpoint as an
         # alternative to deleting a user if you want to keep user's ID reserved.
         #
@@ -1286,7 +1253,6 @@ module Appwrite
             )
         end
 
-        
         # List the messaging targets that are associated with a user.
         #
         # @param [String] user_id User ID.
@@ -1317,7 +1283,6 @@ module Appwrite
             )
         end
 
-        
         # Create a messaging target.
         #
         # @param [String] user_id User ID.
@@ -1369,7 +1334,6 @@ module Appwrite
             )
         end
 
-        
         # Get a user's push notification target by ID.
         #
         # @param [String] user_id User ID.
@@ -1404,7 +1368,6 @@ module Appwrite
             )
         end
 
-        
         # Update a messaging target.
         #
         # @param [String] user_id User ID.
@@ -1446,7 +1409,6 @@ module Appwrite
             )
         end
 
-        
         # Delete a messaging target.
         #
         # @param [String] user_id User ID.
@@ -1481,7 +1443,6 @@ module Appwrite
             )
         end
 
-        
         # Returns a token with a secret key for creating a session. Use the user ID
         # and secret and submit a request to the [PUT
         # /account/sessions/token](https://appwrite.io/docs/references/cloud/client-web/account#createSession)
@@ -1519,7 +1480,6 @@ module Appwrite
             )
         end
 
-        
         # Update the user email verification status by its unique ID.
         #
         # @param [String] user_id User ID.
@@ -1555,7 +1515,6 @@ module Appwrite
             )
         end
 
-        
         # Update the user phone verification status by its unique ID.
         #
         # @param [String] user_id User ID.
@@ -1591,6 +1550,5 @@ module Appwrite
             )
         end
 
-        
     end 
 end

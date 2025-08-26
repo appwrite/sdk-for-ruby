@@ -33,7 +33,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new email message.
         #
         # @param [String] message_id Message ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
@@ -93,7 +92,6 @@ module Appwrite
             )
         end
 
-        
         # Update an email message by its unique ID. This endpoint only works on
         # messages that are in draft status. Messages that are already processing,
         # sent, or failed cannot be updated.
@@ -148,7 +146,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new push notification.
         #
         # @param [String] message_id Message ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
@@ -214,7 +211,6 @@ module Appwrite
             )
         end
 
-        
         # Update a push notification by its unique ID. This endpoint only works on
         # messages that are in draft status. Messages that are already processing,
         # sent, or failed cannot be updated.
@@ -283,7 +279,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new SMS message.
         #
         # @param [String] message_id Message ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
@@ -329,7 +324,6 @@ module Appwrite
             )
         end
 
-        
         # Update an SMS message by its unique ID. This endpoint only works on
         # messages that are in draft status. Messages that are already processing,
         # sent, or failed cannot be updated.
@@ -374,7 +368,6 @@ module Appwrite
             )
         end
 
-        
         # Get a message by its unique ID.
         # 
         #
@@ -404,7 +397,6 @@ module Appwrite
             )
         end
 
-        
         # Delete a message. If the message is not a draft or scheduled, but has been
         # sent, this will not recall the message.
         #
@@ -434,7 +426,6 @@ module Appwrite
             )
         end
 
-        
         # Get the message activity logs listed by its unique ID.
         #
         # @param [String] message_id Message ID.
@@ -465,7 +456,6 @@ module Appwrite
             )
         end
 
-        
         # Get a list of the targets associated with a message.
         #
         # @param [String] message_id Message ID.
@@ -496,7 +486,6 @@ module Appwrite
             )
         end
 
-        
         # Get a list of all providers from the current Appwrite project.
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, provider, type, enabled
@@ -523,7 +512,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new Apple Push Notification service provider.
         #
         # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
@@ -571,7 +559,6 @@ module Appwrite
             )
         end
 
-        
         # Update a Apple Push Notification service provider by its unique ID.
         #
         # @param [String] provider_id Provider ID.
@@ -615,7 +602,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new Firebase Cloud Messaging provider.
         #
         # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
@@ -655,7 +641,6 @@ module Appwrite
             )
         end
 
-        
         # Update a Firebase Cloud Messaging provider by its unique ID.
         #
         # @param [String] provider_id Provider ID.
@@ -691,7 +676,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new Mailgun provider.
         #
         # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
@@ -743,7 +727,6 @@ module Appwrite
             )
         end
 
-        
         # Update a Mailgun provider by its unique ID.
         #
         # @param [String] provider_id Provider ID.
@@ -791,7 +774,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new MSG91 provider.
         #
         # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
@@ -835,7 +817,6 @@ module Appwrite
             )
         end
 
-        
         # Update a MSG91 provider by its unique ID.
         #
         # @param [String] provider_id Provider ID.
@@ -875,7 +856,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new Sendgrid provider.
         #
         # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
@@ -923,7 +903,6 @@ module Appwrite
             )
         end
 
-        
         # Update a Sendgrid provider by its unique ID.
         #
         # @param [String] provider_id Provider ID.
@@ -967,7 +946,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new SMTP provider.
         #
         # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
@@ -1031,7 +1009,6 @@ module Appwrite
             )
         end
 
-        
         # Update a SMTP provider by its unique ID.
         #
         # @param [String] provider_id Provider ID.
@@ -1087,7 +1064,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new Telesign provider.
         #
         # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
@@ -1131,7 +1107,6 @@ module Appwrite
             )
         end
 
-        
         # Update a Telesign provider by its unique ID.
         #
         # @param [String] provider_id Provider ID.
@@ -1171,7 +1146,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new Textmagic provider.
         #
         # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
@@ -1215,7 +1189,6 @@ module Appwrite
             )
         end
 
-        
         # Update a Textmagic provider by its unique ID.
         #
         # @param [String] provider_id Provider ID.
@@ -1255,7 +1228,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new Twilio provider.
         #
         # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
@@ -1299,7 +1271,6 @@ module Appwrite
             )
         end
 
-        
         # Update a Twilio provider by its unique ID.
         #
         # @param [String] provider_id Provider ID.
@@ -1339,7 +1310,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new Vonage provider.
         #
         # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
@@ -1383,7 +1353,6 @@ module Appwrite
             )
         end
 
-        
         # Update a Vonage provider by its unique ID.
         #
         # @param [String] provider_id Provider ID.
@@ -1423,7 +1392,6 @@ module Appwrite
             )
         end
 
-        
         # Get a provider by its unique ID.
         # 
         #
@@ -1453,7 +1421,6 @@ module Appwrite
             )
         end
 
-        
         # Delete a provider by its unique ID.
         #
         # @param [String] provider_id Provider ID.
@@ -1482,7 +1449,6 @@ module Appwrite
             )
         end
 
-        
         # Get the provider activity logs listed by its unique ID.
         #
         # @param [String] provider_id Provider ID.
@@ -1513,7 +1479,6 @@ module Appwrite
             )
         end
 
-        
         # Get the subscriber activity logs listed by its unique ID.
         #
         # @param [String] subscriber_id Subscriber ID.
@@ -1544,7 +1509,6 @@ module Appwrite
             )
         end
 
-        
         # Get a list of all topics from the current Appwrite project.
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, description, emailTotal, smsTotal, pushTotal
@@ -1571,7 +1535,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new topic.
         #
         # @param [String] topic_id Topic ID. Choose a custom Topic ID or a new Topic ID.
@@ -1609,7 +1572,6 @@ module Appwrite
             )
         end
 
-        
         # Get a topic by its unique ID.
         # 
         #
@@ -1639,7 +1601,6 @@ module Appwrite
             )
         end
 
-        
         # Update a topic by its unique ID.
         # 
         #
@@ -1674,7 +1635,6 @@ module Appwrite
             )
         end
 
-        
         # Delete a topic by its unique ID.
         #
         # @param [String] topic_id Topic ID.
@@ -1703,7 +1663,6 @@ module Appwrite
             )
         end
 
-        
         # Get the topic activity logs listed by its unique ID.
         #
         # @param [String] topic_id Topic ID.
@@ -1734,7 +1693,6 @@ module Appwrite
             )
         end
 
-        
         # Get a list of all subscribers from the current Appwrite project.
         #
         # @param [String] topic_id Topic ID. The topic ID subscribed to.
@@ -1767,7 +1725,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new subscriber.
         #
         # @param [String] topic_id Topic ID. The topic ID to subscribe to.
@@ -1809,7 +1766,6 @@ module Appwrite
             )
         end
 
-        
         # Get a subscriber by its unique ID.
         # 
         #
@@ -1845,7 +1801,6 @@ module Appwrite
             )
         end
 
-        
         # Delete a subscriber by its unique ID.
         #
         # @param [String] topic_id Topic ID. The topic ID subscribed to.
@@ -1880,6 +1835,5 @@ module Appwrite
             )
         end
 
-        
     end 
 end

@@ -3,6 +3,9 @@
 module Appwrite
     module Models
         class Index
+            attr_reader :id
+            attr_reader :created_at
+            attr_reader :updated_at
             attr_reader :key
             attr_reader :type
             attr_reader :status
@@ -10,20 +13,22 @@ module Appwrite
             attr_reader :attributes
             attr_reader :lengths
             attr_reader :orders
-            attr_reader :created_at
-            attr_reader :updated_at
 
             def initialize(
+                id:,
+                created_at:,
+                updated_at:,
                 key:,
                 type:,
                 status:,
                 error:,
                 attributes:,
                 lengths:,
-                orders: ,
-                created_at:,
-                updated_at:
+                orders: 
             )
+                @id = id
+                @created_at = created_at
+                @updated_at = updated_at
                 @key = key
                 @type = type
                 @status = status
@@ -31,35 +36,35 @@ module Appwrite
                 @attributes = attributes
                 @lengths = lengths
                 @orders = orders
-                @created_at = created_at
-                @updated_at = updated_at
             end
 
             def self.from(map:)
                 Index.new(
+                    id: map["$id"],
+                    created_at: map["$createdAt"],
+                    updated_at: map["$updatedAt"],
                     key: map["key"],
                     type: map["type"],
                     status: map["status"],
                     error: map["error"],
                     attributes: map["attributes"],
                     lengths: map["lengths"],
-                    orders: map["orders"],
-                    created_at: map["$createdAt"],
-                    updated_at: map["$updatedAt"]
+                    orders: map["orders"]
                 )
             end
 
             def to_map
                 {
+                    "$id": @id,
+                    "$createdAt": @created_at,
+                    "$updatedAt": @updated_at,
                     "key": @key,
                     "type": @type,
                     "status": @status,
                     "error": @error,
                     "attributes": @attributes,
                     "lengths": @lengths,
-                    "orders": @orders,
-                    "$createdAt": @created_at,
-                    "$updatedAt": @updated_at
+                    "orders": @orders
                 }
             end
         end

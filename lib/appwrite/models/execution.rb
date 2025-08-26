@@ -8,6 +8,7 @@ module Appwrite
             attr_reader :updated_at
             attr_reader :permissions
             attr_reader :function_id
+            attr_reader :deployment_id
             attr_reader :trigger
             attr_reader :status
             attr_reader :request_method
@@ -27,6 +28,7 @@ module Appwrite
                 updated_at:,
                 permissions:,
                 function_id:,
+                deployment_id:,
                 trigger:,
                 status:,
                 request_method:,
@@ -45,6 +47,7 @@ module Appwrite
                 @updated_at = updated_at
                 @permissions = permissions
                 @function_id = function_id
+                @deployment_id = deployment_id
                 @trigger = trigger
                 @status = status
                 @request_method = request_method
@@ -66,6 +69,7 @@ module Appwrite
                     updated_at: map["$updatedAt"],
                     permissions: map["$permissions"],
                     function_id: map["functionId"],
+                    deployment_id: map["deploymentId"],
                     trigger: map["trigger"],
                     status: map["status"],
                     request_method: map["requestMethod"],
@@ -88,6 +92,7 @@ module Appwrite
                     "$updatedAt": @updated_at,
                     "$permissions": @permissions,
                     "functionId": @function_id,
+                    "deploymentId": @deployment_id,
                     "trigger": @trigger,
                     "status": @status,
                     "requestMethod": @request_method,

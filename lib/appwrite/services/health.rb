@@ -29,7 +29,6 @@ module Appwrite
             )
         end
 
-        
         # Check the Appwrite Antivirus server is up and connection is successful.
         #
         #
@@ -52,7 +51,6 @@ module Appwrite
             )
         end
 
-        
         # Check the Appwrite in-memory cache servers are up and connection is
         # successful.
         #
@@ -76,7 +74,6 @@ module Appwrite
             )
         end
 
-        
         # Get the SSL certificate for a domain
         #
         # @param [String] domain string
@@ -101,7 +98,6 @@ module Appwrite
             )
         end
 
-        
         # Check the Appwrite database servers are up and connection is successful.
         #
         #
@@ -124,7 +120,6 @@ module Appwrite
             )
         end
 
-        
         # Check the Appwrite pub-sub servers are up and connection is successful.
         #
         #
@@ -147,7 +142,6 @@ module Appwrite
             )
         end
 
-        
         # Get the number of builds that are waiting to be processed in the Appwrite
         # internal queue server.
         #
@@ -173,7 +167,6 @@ module Appwrite
             )
         end
 
-        
         # Get the number of certificates that are waiting to be issued against
         # [Letsencrypt](https://letsencrypt.org/) in the Appwrite internal queue
         # server.
@@ -200,7 +193,6 @@ module Appwrite
             )
         end
 
-        
         # Get the number of database changes that are waiting to be processed in the
         # Appwrite internal queue server.
         #
@@ -228,7 +220,6 @@ module Appwrite
             )
         end
 
-        
         # Get the number of background destructive changes that are waiting to be
         # processed in the Appwrite internal queue server.
         #
@@ -254,7 +245,6 @@ module Appwrite
             )
         end
 
-        
         # Returns the amount of failed jobs in a given queue.
         # 
         #
@@ -286,7 +276,6 @@ module Appwrite
             )
         end
 
-        
         # Get the number of function executions that are waiting to be processed in
         # the Appwrite internal queue server.
         #
@@ -312,7 +301,6 @@ module Appwrite
             )
         end
 
-        
         # Get the number of logs that are waiting to be processed in the Appwrite
         # internal queue server.
         #
@@ -338,7 +326,6 @@ module Appwrite
             )
         end
 
-        
         # Get the number of mails that are waiting to be processed in the Appwrite
         # internal queue server.
         #
@@ -364,7 +351,6 @@ module Appwrite
             )
         end
 
-        
         # Get the number of messages that are waiting to be processed in the Appwrite
         # internal queue server.
         #
@@ -390,7 +376,6 @@ module Appwrite
             )
         end
 
-        
         # Get the number of migrations that are waiting to be processed in the
         # Appwrite internal queue server.
         #
@@ -416,7 +401,6 @@ module Appwrite
             )
         end
 
-        
         # Get the number of metrics that are waiting to be processed in the Appwrite
         # stats resources queue.
         #
@@ -442,7 +426,6 @@ module Appwrite
             )
         end
 
-        
         # Get the number of metrics that are waiting to be processed in the Appwrite
         # internal queue server.
         #
@@ -468,7 +451,6 @@ module Appwrite
             )
         end
 
-        
         # Get the number of webhooks that are waiting to be processed in the Appwrite
         # internal queue server.
         #
@@ -494,7 +476,6 @@ module Appwrite
             )
         end
 
-        
         # Check the Appwrite storage device is up and connection is successful.
         #
         #
@@ -517,7 +498,6 @@ module Appwrite
             )
         end
 
-        
         # Check the Appwrite local storage device is up and connection is successful.
         #
         #
@@ -540,7 +520,6 @@ module Appwrite
             )
         end
 
-        
         # Check the Appwrite server time is synced with Google remote NTP server. We
         # use this technology to smoothly handle leap seconds with no disruptive
         # events. The [Network Time
@@ -569,6 +548,5 @@ module Appwrite
             )
         end
 
-        
     end 
 end

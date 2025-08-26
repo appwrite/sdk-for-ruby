@@ -34,7 +34,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new storage bucket.
         #
         # @param [String] bucket_id Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
@@ -86,7 +85,6 @@ module Appwrite
             )
         end
 
-        
         # Get a storage bucket by its unique ID. This endpoint response returns a
         # JSON object with the storage bucket metadata.
         #
@@ -116,7 +114,6 @@ module Appwrite
             )
         end
 
-        
         # Update a storage bucket by its unique ID.
         #
         # @param [String] bucket_id Bucket unique ID.
@@ -168,7 +165,6 @@ module Appwrite
             )
         end
 
-        
         # Delete a storage bucket by its unique ID.
         #
         # @param [String] bucket_id Bucket unique ID.
@@ -197,7 +193,6 @@ module Appwrite
             )
         end
 
-        
         # Get a list of all the user files. You can use the query params to filter
         # your results.
         #
@@ -231,7 +226,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new file. Before using this route, you should create a new bucket
         # resource using either a [server
         # integration](https://appwrite.io/docs/server/storage#storageCreateBucket)
@@ -297,7 +291,6 @@ module Appwrite
             )
         end
 
-        
         # Get a file by its unique ID. This endpoint response returns a JSON object
         # with the file metadata.
         #
@@ -333,7 +326,6 @@ module Appwrite
             )
         end
 
-        
         # Update a file by its unique ID. Only users with write permissions have
         # access to update this resource.
         #
@@ -374,7 +366,6 @@ module Appwrite
             )
         end
 
-        
         # Delete a file by its unique ID. Only users with write permissions have
         # access to delete this resource.
         #
@@ -410,7 +401,6 @@ module Appwrite
             )
         end
 
-        
         # Get a file content by its unique ID. The endpoint response return with a
         # 'Content-Disposition: attachment' header that tells the browser to start
         # downloading the file to user downloads directory.
@@ -448,7 +438,6 @@ module Appwrite
             )
         end
 
-        
         # Get a file preview image. Currently, this method supports preview for image
         # files (jpg, png, and gif), other supported formats, like pdf, docs, slides,
         # and spreadsheets, will return the file icon image. You can also pass query
@@ -510,7 +499,6 @@ module Appwrite
             )
         end
 
-        
         # Get a file content by its unique ID. This endpoint is similar to the
         # download method but returns with no  'Content-Disposition: attachment'
         # header.
@@ -548,6 +536,5 @@ module Appwrite
             )
         end
 
-        
     end 
 end

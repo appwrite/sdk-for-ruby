@@ -34,7 +34,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new site.
         #
         # @param [String] site_id Site ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
@@ -110,7 +109,6 @@ module Appwrite
             )
         end
 
-        
         # Get a list of all frameworks that are currently available on the server
         # instance.
         #
@@ -134,7 +132,6 @@ module Appwrite
             )
         end
 
-        
         # List allowed site specifications for this instance.
         #
         #
@@ -157,7 +154,6 @@ module Appwrite
             )
         end
 
-        
         # Get a site by its unique ID.
         #
         # @param [String] site_id Site ID.
@@ -186,7 +182,6 @@ module Appwrite
             )
         end
 
-        
         # Update site by its unique ID.
         #
         # @param [String] site_id Site ID.
@@ -258,7 +253,6 @@ module Appwrite
             )
         end
 
-        
         # Delete a site by its unique ID.
         #
         # @param [String] site_id Site ID.
@@ -287,7 +281,6 @@ module Appwrite
             )
         end
 
-        
         # Update the site active deployment. Use this endpoint to switch the code
         # deployment that should be used when visitor opens your site.
         #
@@ -324,7 +317,6 @@ module Appwrite
             )
         end
 
-        
         # Get a list of all the site's code deployments. You can use the query params
         # to filter your results.
         #
@@ -358,7 +350,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new site code deployment. Use this endpoint to upload a new
         # version of your site code. To activate your newly uploaded code, you'll
         # need to update the function's deployment to use your new deployment ID.
@@ -413,7 +404,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new build for an existing site deployment. This endpoint allows
         # you to rebuild a deployment with the updated site configuration, including
         # its commands and output directory if they have been modified. The build
@@ -453,7 +443,6 @@ module Appwrite
             )
         end
 
-        
         # Create a deployment based on a template.
         # 
         # Use this endpoint with combination of
@@ -513,7 +502,6 @@ module Appwrite
             )
         end
 
-        
         # Create a deployment when a site is connected to VCS.
         # 
         # This endpoint lets you create deployment from a branch, commit, or a tag.
@@ -559,7 +547,6 @@ module Appwrite
             )
         end
 
-        
         # Get a site deployment by its unique ID.
         #
         # @param [String] site_id Site ID.
@@ -594,7 +581,6 @@ module Appwrite
             )
         end
 
-        
         # Delete a site deployment by its unique ID.
         #
         # @param [String] site_id Site ID.
@@ -629,7 +615,6 @@ module Appwrite
             )
         end
 
-        
         # Get a site deployment content by its unique ID. The endpoint response
         # return with a 'Content-Disposition: attachment' header that tells the
         # browser to start downloading the file to user downloads directory.
@@ -667,7 +652,6 @@ module Appwrite
             )
         end
 
-        
         # Cancel an ongoing site deployment build. If the build is already in
         # progress, it will be stopped and marked as canceled. If the build hasn't
         # started yet, it will be marked as canceled without executing. You cannot
@@ -707,7 +691,6 @@ module Appwrite
             )
         end
 
-        
         # Get a list of all site logs. You can use the query params to filter your
         # results.
         #
@@ -739,7 +722,6 @@ module Appwrite
             )
         end
 
-        
         # Get a site request log by its unique ID.
         #
         # @param [String] site_id Site ID.
@@ -774,7 +756,6 @@ module Appwrite
             )
         end
 
-        
         # Delete a site log by its unique ID.
         #
         # @param [String] site_id Site ID.
@@ -809,7 +790,6 @@ module Appwrite
             )
         end
 
-        
         # Get a list of all variables of a specific site.
         #
         # @param [String] site_id Site unique ID.
@@ -838,7 +818,6 @@ module Appwrite
             )
         end
 
-        
         # Create a new site variable. These variables can be accessed during build
         # and runtime (server-side rendering) as environment variables.
         #
@@ -883,7 +862,6 @@ module Appwrite
             )
         end
 
-        
         # Get a variable by its unique ID.
         #
         # @param [String] site_id Site unique ID.
@@ -918,7 +896,6 @@ module Appwrite
             )
         end
 
-        
         # Update variable by its unique ID.
         #
         # @param [String] site_id Site unique ID.
@@ -964,7 +941,6 @@ module Appwrite
             )
         end
 
-        
         # Delete a variable by its unique ID.
         #
         # @param [String] site_id Site unique ID.
@@ -999,6 +975,5 @@ module Appwrite
             )
         end
 
-        
     end 
 end

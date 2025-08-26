@@ -8,19 +8,22 @@ module Appwrite
             attr_reader :created_at
             attr_reader :updated_at
             attr_reader :enabled
+            attr_reader :type
 
             def initialize(
                 id:,
                 name:,
                 created_at:,
                 updated_at:,
-                enabled:
+                enabled:,
+                type:
             )
                 @id = id
                 @name = name
                 @created_at = created_at
                 @updated_at = updated_at
                 @enabled = enabled
+                @type = type
             end
 
             def self.from(map:)
@@ -29,7 +32,8 @@ module Appwrite
                     name: map["name"],
                     created_at: map["$createdAt"],
                     updated_at: map["$updatedAt"],
-                    enabled: map["enabled"]
+                    enabled: map["enabled"],
+                    type: map["type"]
                 )
             end
 
@@ -39,7 +43,8 @@ module Appwrite
                     "name": @name,
                     "$createdAt": @created_at,
                     "$updatedAt": @updated_at,
-                    "enabled": @enabled
+                    "enabled": @enabled,
+                    "type": @type
                 }
             end
         end

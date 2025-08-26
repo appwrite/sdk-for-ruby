@@ -36,7 +36,6 @@ module Appwrite
             )
         end
 
-        
         # Execute a GraphQL mutation.
         #
         # @param [Hash] query The query or queries to execute.
@@ -66,6 +65,5 @@ module Appwrite
             )
         end
 
-        
     end 
 end

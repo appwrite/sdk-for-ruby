@@ -882,7 +882,7 @@ module Appwrite
         end
 
         #
-        # @deprecated This API has been deprecated.
+        # @deprecated This API has been deprecated since 1.6.0. Please use `Account.createSession` instead.
         #
         # Use this endpoint to create a session from token. Provide the **userId**
         # and **secret** parameters from the successful response of authentication
@@ -922,7 +922,7 @@ module Appwrite
         end
 
         #
-        # @deprecated This API has been deprecated.
+        # @deprecated This API has been deprecated since 1.6.0. Please use `Account.createSession` instead.
         #
         # Use this endpoint to create a session from token. Provide the **userId**
         # and **secret** parameters from the successful response of authentication

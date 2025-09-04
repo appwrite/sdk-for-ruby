@@ -4,6 +4,7 @@ module Appwrite
             KEY = 'key'
             FULLTEXT = 'fulltext'
             UNIQUE = 'unique'
+            SPATIAL = 'spatial'
         end
     end
 end

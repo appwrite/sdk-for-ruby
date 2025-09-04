@@ -38,7 +38,7 @@ module Appwrite
         end
 
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createDatabase` instead.
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.create` instead.
         #
         # Create a new Database.
         # 
@@ -1266,6 +1266,327 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::AttributeIp
+            )
+        end
+
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createLineColumn` instead.
+        #
+        # Create a geometric line attribute.
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] key Attribute Key.
+        # @param [] required Is attribute required?
+        # @param [String] default Default value for attribute when not provided, as JSON string. Cannot be set when attribute is required.
+        #
+        # @return [AttributeLine]
+        def create_line_attribute(database_id:, collection_id:, key:, required:, default: nil)
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/line'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            api_params = {
+                key: key,
+                required: required,
+                default: default,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::AttributeLine
+            )
+        end
+
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateLineColumn` instead.
+        #
+        # Update a line attribute. Changing the `default` value will not update
+        # already existing documents.
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#createCollection).
+        # @param [String] key Attribute Key.
+        # @param [] required Is attribute required?
+        # @param [String] default Default value for attribute when not provided, as JSON string. Cannot be set when attribute is required.
+        # @param [String] new_key New attribute key.
+        #
+        # @return [AttributeLine]
+        def update_line_attribute(database_id:, collection_id:, key:, required:, default: nil, new_key: nil)
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/line/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+                .gsub('{key}', key)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            api_params = {
+                required: required,
+                default: default,
+                newKey: new_key,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::AttributeLine
+            )
+        end
+
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createPointColumn` instead.
+        #
+        # Create a geometric 2d point attribute.
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] key Attribute Key.
+        # @param [] required Is attribute required?
+        # @param [String] default Default value for attribute when not provided, as JSON string. Cannot be set when attribute is required.
+        #
+        # @return [AttributePoint]
+        def create_point_attribute(database_id:, collection_id:, key:, required:, default: nil)
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/point'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            api_params = {
+                key: key,
+                required: required,
+                default: default,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::AttributePoint
+            )
+        end
+
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updatePointColumn` instead.
+        #
+        # Update a point attribute. Changing the `default` value will not update
+        # already existing documents.
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#createCollection).
+        # @param [String] key Attribute Key.
+        # @param [] required Is attribute required?
+        # @param [String] default Default value for attribute when not provided, as JSON string. Cannot be set when attribute is required.
+        # @param [String] new_key New attribute key.
+        #
+        # @return [AttributePoint]
+        def update_point_attribute(database_id:, collection_id:, key:, required:, default: nil, new_key: nil)
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/point/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+                .gsub('{key}', key)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            api_params = {
+                required: required,
+                default: default,
+                newKey: new_key,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::AttributePoint
+            )
+        end
+
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createPolygonColumn` instead.
+        #
+        # Create a geometric polygon attribute.
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] key Attribute Key.
+        # @param [] required Is attribute required?
+        # @param [String] default Default value for attribute when not provided, as JSON string. Cannot be set when attribute is required.
+        #
+        # @return [AttributePolygon]
+        def create_polygon_attribute(database_id:, collection_id:, key:, required:, default: nil)
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/polygon'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            api_params = {
+                key: key,
+                required: required,
+                default: default,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::AttributePolygon
+            )
+        end
+
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updatePolygonColumn` instead.
+        #
+        # Update a polygon attribute. Changing the `default` value will not update
+        # already existing documents.
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#createCollection).
+        # @param [String] key Attribute Key.
+        # @param [] required Is attribute required?
+        # @param [String] default Default value for attribute when not provided, as JSON string. Cannot be set when attribute is required.
+        # @param [String] new_key New attribute key.
+        #
+        # @return [AttributePolygon]
+        def update_polygon_attribute(database_id:, collection_id:, key:, required:, default: nil, new_key: nil)
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/polygon/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+                .gsub('{key}', key)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            api_params = {
+                required: required,
+                default: default,
+                newKey: new_key,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::AttributePolygon
             )
         end
 

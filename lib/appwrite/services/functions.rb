@@ -732,7 +732,7 @@ module Appwrite
         # @param [String] body HTTP body of execution. Default value is empty string.
         # @param [] async Execute code in the background. Default value is false.
         # @param [String] xpath HTTP path of execution. Path can include query params. Default value is /
-        # @param [ExecutionMethod] method HTTP method of execution. Default value is GET.
+        # @param [ExecutionMethod] method HTTP method of execution. Default value is POST.
         # @param [Hash] headers HTTP headers of execution. Defaults to empty.
         # @param [String] scheduled_at Scheduled execution time in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future with precision in minutes.
         #

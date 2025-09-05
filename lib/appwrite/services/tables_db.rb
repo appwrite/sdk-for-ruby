@@ -1199,7 +1199,7 @@ module Appwrite
         # @param [String] table_id Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
         # @param [String] key Column Key.
         # @param [] required Is column required?
-        # @param [String] default Default value for column when not provided, as JSON string. Cannot be set when column is required.
+        # @param [Array] default Default value for column when not provided, two-dimensional array of coordinate pairs, [[longitude, latitude], [longitude, latitude], …], listing the vertices of the line in order. Cannot be set when column is required.
         #
         # @return [ColumnLine]
         def create_line_column(database_id:, table_id:, key:, required:, default: nil)
@@ -1249,7 +1249,7 @@ module Appwrite
         # @param [String] table_id Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
         # @param [String] key Column Key.
         # @param [] required Is column required?
-        # @param [String] default Default value for column when not provided, as JSON string. Cannot be set when column is required.
+        # @param [Array] default Default value for column when not provided, two-dimensional array of coordinate pairs, [[longitude, latitude], [longitude, latitude], …], listing the vertices of the line in order. Cannot be set when column is required.
         # @param [String] new_key New Column Key.
         #
         # @return [ColumnLine]
@@ -1300,7 +1300,7 @@ module Appwrite
         # @param [String] table_id Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
         # @param [String] key Column Key.
         # @param [] required Is column required?
-        # @param [String] default Default value for column when not provided, as JSON string. Cannot be set when column is required.
+        # @param [Array] default Default value for column when not provided, array of two numbers [longitude, latitude], representing a single coordinate. Cannot be set when column is required.
         #
         # @return [ColumnPoint]
         def create_point_column(database_id:, table_id:, key:, required:, default: nil)
@@ -1350,7 +1350,7 @@ module Appwrite
         # @param [String] table_id Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
         # @param [String] key Column Key.
         # @param [] required Is column required?
-        # @param [String] default Default value for column when not provided, as JSON string. Cannot be set when column is required.
+        # @param [Array] default Default value for column when not provided, array of two numbers [longitude, latitude], representing a single coordinate. Cannot be set when column is required.
         # @param [String] new_key New Column Key.
         #
         # @return [ColumnPoint]
@@ -1401,7 +1401,7 @@ module Appwrite
         # @param [String] table_id Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
         # @param [String] key Column Key.
         # @param [] required Is column required?
-        # @param [String] default Default value for column when not provided, as JSON string. Cannot be set when column is required.
+        # @param [Array] default Default value for column when not provided, three-dimensional array where the outer array holds one or more linear rings, [[[longitude, latitude], …], …], the first ring is the exterior boundary, any additional rings are interior holes, and each ring must start and end with the same coordinate pair. Cannot be set when column is required.
         #
         # @return [ColumnPolygon]
         def create_polygon_column(database_id:, table_id:, key:, required:, default: nil)
@@ -1451,7 +1451,7 @@ module Appwrite
         # @param [String] table_id Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
         # @param [String] key Column Key.
         # @param [] required Is column required?
-        # @param [String] default Default value for column when not provided, as JSON string. Cannot be set when column is required.
+        # @param [Array] default Default value for column when not provided, three-dimensional array where the outer array holds one or more linear rings, [[[longitude, latitude], …], …], the first ring is the exterior boundary, any additional rings are interior holes, and each ring must start and end with the same coordinate pair. Cannot be set when column is required.
         # @param [String] new_key New Column Key.
         #
         # @return [ColumnPolygon]

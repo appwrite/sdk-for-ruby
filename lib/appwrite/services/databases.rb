@@ -1278,7 +1278,7 @@ module Appwrite
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
-        # @param [String] default Default value for attribute when not provided, as JSON string. Cannot be set when attribute is required.
+        # @param [Array] default Default value for attribute when not provided, two-dimensional array of coordinate pairs, [[longitude, latitude], [longitude, latitude], …], listing the vertices of the line in order. Cannot be set when attribute is required.
         #
         # @return [AttributeLine]
         def create_line_attribute(database_id:, collection_id:, key:, required:, default: nil)
@@ -1331,7 +1331,7 @@ module Appwrite
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#createCollection).
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
-        # @param [String] default Default value for attribute when not provided, as JSON string. Cannot be set when attribute is required.
+        # @param [Array] default Default value for attribute when not provided, two-dimensional array of coordinate pairs, [[longitude, latitude], [longitude, latitude], …], listing the vertices of the line in order. Cannot be set when attribute is required.
         # @param [String] new_key New attribute key.
         #
         # @return [AttributeLine]
@@ -1385,7 +1385,7 @@ module Appwrite
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
-        # @param [String] default Default value for attribute when not provided, as JSON string. Cannot be set when attribute is required.
+        # @param [Array] default Default value for attribute when not provided, array of two numbers [longitude, latitude], representing a single coordinate. Cannot be set when attribute is required.
         #
         # @return [AttributePoint]
         def create_point_attribute(database_id:, collection_id:, key:, required:, default: nil)
@@ -1438,7 +1438,7 @@ module Appwrite
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#createCollection).
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
-        # @param [String] default Default value for attribute when not provided, as JSON string. Cannot be set when attribute is required.
+        # @param [Array] default Default value for attribute when not provided, array of two numbers [longitude, latitude], representing a single coordinate. Cannot be set when attribute is required.
         # @param [String] new_key New attribute key.
         #
         # @return [AttributePoint]
@@ -1492,7 +1492,7 @@ module Appwrite
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
-        # @param [String] default Default value for attribute when not provided, as JSON string. Cannot be set when attribute is required.
+        # @param [Array] default Default value for attribute when not provided, three-dimensional array where the outer array holds one or more linear rings, [[[longitude, latitude], …], …], the first ring is the exterior boundary, any additional rings are interior holes, and each ring must start and end with the same coordinate pair. Cannot be set when attribute is required.
         #
         # @return [AttributePolygon]
         def create_polygon_attribute(database_id:, collection_id:, key:, required:, default: nil)
@@ -1545,7 +1545,7 @@ module Appwrite
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#createCollection).
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
-        # @param [String] default Default value for attribute when not provided, as JSON string. Cannot be set when attribute is required.
+        # @param [Array] default Default value for attribute when not provided, three-dimensional array where the outer array holds one or more linear rings, [[[longitude, latitude], …], …], the first ring is the exterior boundary, any additional rings are interior holes, and each ring must start and end with the same coordinate pair. Cannot be set when attribute is required.
         # @param [String] new_key New attribute key.
         #
         # @return [AttributePolygon]

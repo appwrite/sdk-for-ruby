@@ -1193,7 +1193,7 @@ module Appwrite
             )
         end
 
-        # Create a geometric line attribute.
+        # Create a geometric line column.
         #
         # @param [String] database_id Database ID.
         # @param [String] table_id Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
@@ -1243,7 +1243,7 @@ module Appwrite
         end
 
         # Update a line column. Changing the `default` value will not update already
-        # existing documents.
+        # existing rows.
         #
         # @param [String] database_id Database ID.
         # @param [String] table_id Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
@@ -1294,7 +1294,7 @@ module Appwrite
             )
         end
 
-        # Create a geometric point attribute.
+        # Create a geometric point column.
         #
         # @param [String] database_id Database ID.
         # @param [String] table_id Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
@@ -1344,7 +1344,7 @@ module Appwrite
         end
 
         # Update a point column. Changing the `default` value will not update already
-        # existing documents.
+        # existing rows.
         #
         # @param [String] database_id Database ID.
         # @param [String] table_id Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
@@ -1395,7 +1395,7 @@ module Appwrite
             )
         end
 
-        # Create a geometric polygon attribute.
+        # Create a geometric polygon column.
         #
         # @param [String] database_id Database ID.
         # @param [String] table_id Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
@@ -1445,7 +1445,7 @@ module Appwrite
         end
 
         # Update a polygon column. Changing the `default` value will not update
-        # already existing documents.
+        # already existing rows.
         #
         # @param [String] database_id Database ID.
         # @param [String] table_id Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).

@@ -1379,7 +1379,7 @@ module Appwrite
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createPointColumn` instead.
         #
-        # Create a geometric 2d point attribute.
+        # Create a geometric point attribute.
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).

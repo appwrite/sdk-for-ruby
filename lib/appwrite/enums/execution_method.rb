@@ -7,6 +7,7 @@ module Appwrite
             PATCH = 'PATCH'
             DELETE = 'DELETE'
             OPTIONS = 'OPTIONS'
+            HEAD = 'HEAD'
         end
     end
 end

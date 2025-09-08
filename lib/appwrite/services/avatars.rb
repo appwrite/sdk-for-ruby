@@ -59,7 +59,7 @@ module Appwrite
         # of image returned is 100x100px.
         # 
         #
-        # @param [CreditCard] code Credit Card Code. Possible values: amex, argencard, cabal, cencosud, diners, discover, elo, hipercard, jcb, mastercard, naranja, targeta-shopping, union-china-pay, visa, mir, maestro, rupay.
+        # @param [CreditCard] code Credit Card Code. Possible values: amex, argencard, cabal, cencosud, diners, discover, elo, hipercard, jcb, mastercard, naranja, targeta-shopping, unionpay, visa, mir, maestro, rupay.
         # @param [Integer] width Image width. Pass an integer between 0 to 2000. Defaults to 100.
         # @param [Integer] height Image height. Pass an integer between 0 to 2000. Defaults to 100.
         # @param [Integer] quality Image quality. Pass an integer between 0 to 100. Defaults to keep existing image quality.

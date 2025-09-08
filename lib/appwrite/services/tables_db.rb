@@ -1193,6 +1193,309 @@ module Appwrite
             )
         end
 
+        # Create a geometric line column.
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] table_id Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
+        # @param [String] key Column Key.
+        # @param [] required Is column required?
+        # @param [Array] default Default value for column when not provided, two-dimensional array of coordinate pairs, [[longitude, latitude], [longitude, latitude], …], listing the vertices of the line in order. Cannot be set when column is required.
+        #
+        # @return [ColumnLine]
+        def create_line_column(database_id:, table_id:, key:, required:, default: nil)
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/line'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            api_params = {
+                key: key,
+                required: required,
+                default: default,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::ColumnLine
+            )
+        end
+
+        # Update a line column. Changing the `default` value will not update already
+        # existing rows.
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] table_id Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
+        # @param [String] key Column Key.
+        # @param [] required Is column required?
+        # @param [Array] default Default value for column when not provided, two-dimensional array of coordinate pairs, [[longitude, latitude], [longitude, latitude], …], listing the vertices of the line in order. Cannot be set when column is required.
+        # @param [String] new_key New Column Key.
+        #
+        # @return [ColumnLine]
+        def update_line_column(database_id:, table_id:, key:, required:, default: nil, new_key: nil)
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/line/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+                .gsub('{key}', key)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            api_params = {
+                required: required,
+                default: default,
+                newKey: new_key,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::ColumnLine
+            )
+        end
+
+        # Create a geometric point column.
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] table_id Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
+        # @param [String] key Column Key.
+        # @param [] required Is column required?
+        # @param [Array] default Default value for column when not provided, array of two numbers [longitude, latitude], representing a single coordinate. Cannot be set when column is required.
+        #
+        # @return [ColumnPoint]
+        def create_point_column(database_id:, table_id:, key:, required:, default: nil)
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/point'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            api_params = {
+                key: key,
+                required: required,
+                default: default,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::ColumnPoint
+            )
+        end
+
+        # Update a point column. Changing the `default` value will not update already
+        # existing rows.
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] table_id Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
+        # @param [String] key Column Key.
+        # @param [] required Is column required?
+        # @param [Array] default Default value for column when not provided, array of two numbers [longitude, latitude], representing a single coordinate. Cannot be set when column is required.
+        # @param [String] new_key New Column Key.
+        #
+        # @return [ColumnPoint]
+        def update_point_column(database_id:, table_id:, key:, required:, default: nil, new_key: nil)
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/point/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+                .gsub('{key}', key)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            api_params = {
+                required: required,
+                default: default,
+                newKey: new_key,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::ColumnPoint
+            )
+        end
+
+        # Create a geometric polygon column.
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] table_id Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
+        # @param [String] key Column Key.
+        # @param [] required Is column required?
+        # @param [Array] default Default value for column when not provided, three-dimensional array where the outer array holds one or more linear rings, [[[longitude, latitude], …], …], the first ring is the exterior boundary, any additional rings are interior holes, and each ring must start and end with the same coordinate pair. Cannot be set when column is required.
+        #
+        # @return [ColumnPolygon]
+        def create_polygon_column(database_id:, table_id:, key:, required:, default: nil)
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/polygon'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            api_params = {
+                key: key,
+                required: required,
+                default: default,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::ColumnPolygon
+            )
+        end
+
+        # Update a polygon column. Changing the `default` value will not update
+        # already existing rows.
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] table_id Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate).
+        # @param [String] key Column Key.
+        # @param [] required Is column required?
+        # @param [Array] default Default value for column when not provided, three-dimensional array where the outer array holds one or more linear rings, [[[longitude, latitude], …], …], the first ring is the exterior boundary, any additional rings are interior holes, and each ring must start and end with the same coordinate pair. Cannot be set when column is required.
+        # @param [String] new_key New Column Key.
+        #
+        # @return [ColumnPolygon]
+        def update_polygon_column(database_id:, table_id:, key:, required:, default: nil, new_key: nil)
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/polygon/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+                .gsub('{key}', key)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            api_params = {
+                required: required,
+                default: default,
+                newKey: new_key,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::ColumnPolygon
+            )
+        end
+
         # Create relationship column. [Learn more about relationship
         # columns](https://appwrite.io/docs/databases-relationships#relationship-columns).
         # 

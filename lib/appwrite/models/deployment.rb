@@ -23,12 +23,12 @@ module Appwrite
             attr_reader :provider_repository_name
             attr_reader :provider_repository_owner
             attr_reader :provider_repository_url
-            attr_reader :provider_branch
             attr_reader :provider_commit_hash
             attr_reader :provider_commit_author_url
             attr_reader :provider_commit_author
             attr_reader :provider_commit_message
             attr_reader :provider_commit_url
+            attr_reader :provider_branch
             attr_reader :provider_branch_url
 
             def initialize(
@@ -52,12 +52,12 @@ module Appwrite
                 provider_repository_name:,
                 provider_repository_owner:,
                 provider_repository_url:,
-                provider_branch:,
                 provider_commit_hash:,
                 provider_commit_author_url:,
                 provider_commit_author:,
                 provider_commit_message:,
                 provider_commit_url:,
+                provider_branch:,
                 provider_branch_url:
             )
                 @id = id
@@ -80,12 +80,12 @@ module Appwrite
                 @provider_repository_name = provider_repository_name
                 @provider_repository_owner = provider_repository_owner
                 @provider_repository_url = provider_repository_url
-                @provider_branch = provider_branch
                 @provider_commit_hash = provider_commit_hash
                 @provider_commit_author_url = provider_commit_author_url
                 @provider_commit_author = provider_commit_author
                 @provider_commit_message = provider_commit_message
                 @provider_commit_url = provider_commit_url
+                @provider_branch = provider_branch
                 @provider_branch_url = provider_branch_url
             end
 
@@ -111,12 +111,12 @@ module Appwrite
                     provider_repository_name: map["providerRepositoryName"],
                     provider_repository_owner: map["providerRepositoryOwner"],
                     provider_repository_url: map["providerRepositoryUrl"],
-                    provider_branch: map["providerBranch"],
                     provider_commit_hash: map["providerCommitHash"],
                     provider_commit_author_url: map["providerCommitAuthorUrl"],
                     provider_commit_author: map["providerCommitAuthor"],
                     provider_commit_message: map["providerCommitMessage"],
                     provider_commit_url: map["providerCommitUrl"],
+                    provider_branch: map["providerBranch"],
                     provider_branch_url: map["providerBranchUrl"]
                 )
             end
@@ -143,12 +143,12 @@ module Appwrite
                     "providerRepositoryName": @provider_repository_name,
                     "providerRepositoryOwner": @provider_repository_owner,
                     "providerRepositoryUrl": @provider_repository_url,
-                    "providerBranch": @provider_branch,
                     "providerCommitHash": @provider_commit_hash,
                     "providerCommitAuthorUrl": @provider_commit_author_url,
                     "providerCommitAuthor": @provider_commit_author,
                     "providerCommitMessage": @provider_commit_message,
                     "providerCommitUrl": @provider_commit_url,
+                    "providerBranch": @provider_branch,
                     "providerBranchUrl": @provider_branch_url
                 }
             end

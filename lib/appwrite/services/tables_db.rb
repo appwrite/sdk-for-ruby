@@ -2178,7 +2178,7 @@ module Appwrite
         #
         # @param [String] database_id Database ID.
         # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/tablesdb#tablesDBCreate). Make sure to define columns before creating rows.
-        # @param [Array] rows Array of documents data as JSON objects.
+        # @param [Array] rows Array of rows data as JSON objects.
         #
         # @return [RowList]
         def create_rows(database_id:, table_id:, rows:)

@@ -88,10 +88,6 @@ module Appwrite
                 return Query.new("orderDesc", attribute, nil).to_s
             end
 
-            def order_random()
-                return Query.new("orderRandom", nil, nil).to_s
-            end
-
             def cursor_before(id)
                 return Query.new("cursorBefore", nil, id).to_s
             end

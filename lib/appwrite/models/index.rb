@@ -31,7 +31,7 @@ module Appwrite
                 @updated_at = updated_at
                 @key = key
                 @type = type
-                @status = status
+                @status = validate_status(status)
                 @error = error
                 @attributes = attributes
                 @lengths = lengths
@@ -67,6 +67,25 @@ module Appwrite
                     "orders": @orders
                 }
             end
+
+            private
+
+            def validate_status(status)
+                valid_status = [
+                    Appwrite::Enums::IndexStatus::AVAILABLE,
+                    Appwrite::Enums::IndexStatus::PROCESSING,
+                    Appwrite::Enums::IndexStatus::DELETING,
+                    Appwrite::Enums::IndexStatus::STUCK,
+                    Appwrite::Enums::IndexStatus::FAILED,
+                ]
+
+                unless valid_status.include?(status)
+                    raise ArgumentError, "Invalid " + status + ". Must be one of: " + valid_status.join(', ')
+                end
+
+                status
+            end
+
         end
     end
 end

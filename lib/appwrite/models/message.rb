@@ -44,7 +44,7 @@ module Appwrite
                 @delivery_errors = delivery_errors
                 @delivered_total = delivered_total
                 @data = data
-                @status = status
+                @status = validate_status(status)
             end
 
             def self.from(map:)
@@ -82,6 +82,25 @@ module Appwrite
                     "status": @status
                 }
             end
+
+            private
+
+            def validate_status(status)
+                valid_status = [
+                    Appwrite::Enums::MessageStatus::DRAFT,
+                    Appwrite::Enums::MessageStatus::PROCESSING,
+                    Appwrite::Enums::MessageStatus::SCHEDULED,
+                    Appwrite::Enums::MessageStatus::SENT,
+                    Appwrite::Enums::MessageStatus::FAILED,
+                ]
+
+                unless valid_status.include?(status)
+                    raise ArgumentError, "Invalid " + status + ". Must be one of: " + valid_status.join(', ')
+                end
+
+                status
+            end
+
         end
     end
 end

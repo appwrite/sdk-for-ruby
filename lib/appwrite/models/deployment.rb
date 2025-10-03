@@ -74,7 +74,7 @@ module Appwrite
                 @activate = activate
                 @screenshot_light = screenshot_light
                 @screenshot_dark = screenshot_dark
-                @status = status
+                @status = validate_status(status)
                 @build_logs = build_logs
                 @build_duration = build_duration
                 @provider_repository_name = provider_repository_name
@@ -152,6 +152,25 @@ module Appwrite
                     "providerBranchUrl": @provider_branch_url
                 }
             end
+
+            private
+
+            def validate_status(status)
+                valid_status = [
+                    Appwrite::Enums::DeploymentStatus::WAITING,
+                    Appwrite::Enums::DeploymentStatus::PROCESSING,
+                    Appwrite::Enums::DeploymentStatus::BUILDING,
+                    Appwrite::Enums::DeploymentStatus::READY,
+                    Appwrite::Enums::DeploymentStatus::FAILED,
+                ]
+
+                unless valid_status.include?(status)
+                    raise ArgumentError, "Invalid " + status + ". Must be one of: " + valid_status.join(', ')
+                end
+
+                status
+            end
+
         end
     end
 end

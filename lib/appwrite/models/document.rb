@@ -41,7 +41,7 @@ module Appwrite
                     created_at: map["$createdAt"],
                     updated_at: map["$updatedAt"],
                     permissions: map["$permissions"],
-                    data: map
+                    data: map["data"] || map
                 )
             end
 

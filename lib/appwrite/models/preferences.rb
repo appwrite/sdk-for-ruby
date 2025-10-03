@@ -13,7 +13,7 @@ module Appwrite
 
             def self.from(map:)
                 Preferences.new(
-                    data: map
+                    data: map["data"] || map
                 )
             end
 

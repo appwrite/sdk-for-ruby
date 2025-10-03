@@ -48,8 +48,8 @@ module Appwrite
                 @permissions = permissions
                 @function_id = function_id
                 @deployment_id = deployment_id
-                @trigger = trigger
-                @status = status
+                @trigger = validate_trigger(trigger)
+                @status = validate_status(status)
                 @request_method = request_method
                 @request_path = request_path
                 @request_headers = request_headers
@@ -107,6 +107,38 @@ module Appwrite
                     "scheduledAt": @scheduled_at
                 }
             end
+
+            private
+
+            def validate_trigger(trigger)
+                valid_trigger = [
+                    Appwrite::Enums::ExecutionTrigger::HTTP,
+                    Appwrite::Enums::ExecutionTrigger::SCHEDULE,
+                    Appwrite::Enums::ExecutionTrigger::EVENT,
+                ]
+
+                unless valid_trigger.include?(trigger)
+                    raise ArgumentError, "Invalid " + trigger + ". Must be one of: " + valid_trigger.join(', ')
+                end
+
+                trigger
+            end
+
+            def validate_status(status)
+                valid_status = [
+                    Appwrite::Enums::ExecutionStatus::WAITING,
+                    Appwrite::Enums::ExecutionStatus::PROCESSING,
+                    Appwrite::Enums::ExecutionStatus::COMPLETED,
+                    Appwrite::Enums::ExecutionStatus::FAILED,
+                ]
+
+                unless valid_status.include?(status)
+                    raise ArgumentError, "Invalid " + status + ". Must be one of: " + valid_status.join(', ')
+                end
+
+                status
+            end
+
         end
     end
 end

@@ -28,7 +28,7 @@ module Appwrite
             )
                 @key = key
                 @type = type
-                @status = status
+                @status = validate_status(status)
                 @error = error
                 @required = required
                 @array = array
@@ -67,6 +67,25 @@ module Appwrite
                     "default": @default
                 }
             end
+
+            private
+
+            def validate_status(status)
+                valid_status = [
+                    Appwrite::Enums::AttributeStatus::AVAILABLE,
+                    Appwrite::Enums::AttributeStatus::PROCESSING,
+                    Appwrite::Enums::AttributeStatus::DELETING,
+                    Appwrite::Enums::AttributeStatus::STUCK,
+                    Appwrite::Enums::AttributeStatus::FAILED,
+                ]
+
+                unless valid_status.include?(status)
+                    raise ArgumentError, "Invalid " + status + ". Must be one of: " + valid_status.join(', ')
+                end
+
+                status
+            end
+
         end
     end
 end

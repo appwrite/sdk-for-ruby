@@ -23,7 +23,7 @@ module Appwrite
                 @created_at = created_at
                 @updated_at = updated_at
                 @enabled = enabled
-                @type = type
+                @type = validate_type(type)
             end
 
             def self.from(map:)
@@ -47,6 +47,22 @@ module Appwrite
                     "type": @type
                 }
             end
+
+            private
+
+            def validate_type(type)
+                valid_type = [
+                    Appwrite::Enums::DatabaseType::LEGACY,
+                    Appwrite::Enums::DatabaseType::TABLESDB,
+                ]
+
+                unless valid_type.include?(type)
+                    raise ArgumentError, "Invalid " + type + ". Must be one of: " + valid_type.join(', ')
+                end
+
+                type
+            end
+
         end
     end
 end

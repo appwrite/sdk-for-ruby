@@ -9,9 +9,6 @@ client = Client.new
 
 tables_db = TablesDB.new(client)
 
-result = tables_db.create_rows(
-    database_id: '<DATABASE_ID>',
-    table_id: '<TABLE_ID>',
-    rows: [],
-    transaction_id: '<TRANSACTION_ID>' # optional
+result = tables_db.get_transaction(
+    transaction_id: '<TRANSACTION_ID>'
 )

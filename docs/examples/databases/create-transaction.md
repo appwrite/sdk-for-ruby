@@ -7,11 +7,8 @@ client = Client.new
     .set_project('<YOUR_PROJECT_ID>') # Your project ID
     .set_key('<YOUR_API_KEY>') # Your secret API key
 
-tables_db = TablesDB.new(client)
+databases = Databases.new(client)
 
-result = tables_db.create_rows(
-    database_id: '<DATABASE_ID>',
-    table_id: '<TABLE_ID>',
-    rows: [],
-    transaction_id: '<TRANSACTION_ID>' # optional
+result = databases.create_transaction(
+    ttl: 60 # optional
 )

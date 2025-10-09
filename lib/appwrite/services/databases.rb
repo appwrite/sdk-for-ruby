@@ -78,6 +78,175 @@ module Appwrite
             )
         end
 
+        # List transactions across all databases.
+        #
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries).
+        #
+        # @return [TransactionList]
+        def list_transactions(queries: nil)
+            api_path = '/databases/transactions'
+
+            api_params = {
+                queries: queries,
+            }
+            
+            api_headers = {
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::TransactionList
+            )
+        end
+
+        # Create a new transaction.
+        #
+        # @param [Integer] ttl Seconds before the transaction expires.
+        #
+        # @return [Transaction]
+        def create_transaction(ttl: nil)
+            api_path = '/databases/transactions'
+
+            api_params = {
+                ttl: ttl,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Transaction
+            )
+        end
+
+        # Get a transaction by its unique ID.
+        #
+        # @param [String] transaction_id Transaction ID.
+        #
+        # @return [Transaction]
+        def get_transaction(transaction_id:)
+            api_path = '/databases/transactions/{transactionId}'
+                .gsub('{transactionId}', transaction_id)
+
+            if transaction_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Transaction
+            )
+        end
+
+        # Update a transaction, to either commit or roll back its operations.
+        #
+        # @param [String] transaction_id Transaction ID.
+        # @param [] commit Commit transaction?
+        # @param [] rollback Rollback transaction?
+        #
+        # @return [Transaction]
+        def update_transaction(transaction_id:, commit: nil, rollback: nil)
+            api_path = '/databases/transactions/{transactionId}'
+                .gsub('{transactionId}', transaction_id)
+
+            if transaction_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
+            end
+
+            api_params = {
+                commit: commit,
+                rollback: rollback,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Transaction
+            )
+        end
+
+        # Delete a transaction by its unique ID.
+        #
+        # @param [String] transaction_id Transaction ID.
+        #
+        # @return []
+        def delete_transaction(transaction_id:)
+            api_path = '/databases/transactions/{transactionId}'
+                .gsub('{transactionId}', transaction_id)
+
+            if transaction_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+            )
+        end
+
+        # Create multiple operations in a single transaction.
+        #
+        # @param [String] transaction_id Transaction ID.
+        # @param [Array] operations Array of staged operations.
+        #
+        # @return [Transaction]
+        def create_operations(transaction_id:, operations: nil)
+            api_path = '/databases/transactions/{transactionId}/operations'
+                .gsub('{transactionId}', transaction_id)
+
+            if transaction_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
+            end
+
+            api_params = {
+                operations: operations,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Transaction
+            )
+        end
+
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.get` instead.
         #
@@ -2034,9 +2203,10 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
+        # @param [String] transaction_id Transaction ID to read uncommitted changes within the transaction.
         #
         # @return [DocumentList]
-        def list_documents(database_id:, collection_id:, queries: nil)
+        def list_documents(database_id:, collection_id:, queries: nil, transaction_id: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -2051,6 +2221,7 @@ module Appwrite
 
             api_params = {
                 queries: queries,
+                transactionId: transaction_id,
             }
             
             api_headers = {
@@ -2078,9 +2249,10 @@ module Appwrite
         # @param [String] document_id Document ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [Hash] data Document data as JSON object.
         # @param [Array] permissions An array of permissions strings. By default, only the current user is granted all permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
+        # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [Document]
-        def create_document(database_id:, collection_id:, document_id:, data:, permissions: nil)
+        def create_document(database_id:, collection_id:, document_id:, data:, permissions: nil, transaction_id: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -2105,6 +2277,7 @@ module Appwrite
                 documentId: document_id,
                 data: data,
                 permissions: permissions,
+                transactionId: transaction_id,
             }
             
             api_headers = {
@@ -2131,9 +2304,10 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). Make sure to define attributes before creating documents.
         # @param [Array] documents Array of documents data as JSON objects.
+        # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [DocumentList]
-        def create_documents(database_id:, collection_id:, documents:)
+        def create_documents(database_id:, collection_id:, documents:, transaction_id: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -2152,6 +2326,7 @@ module Appwrite
 
             api_params = {
                 documents: documents,
+                transactionId: transaction_id,
             }
             
             api_headers = {
@@ -2179,9 +2354,10 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID.
         # @param [Array] documents Array of document data as JSON objects. May contain partial documents.
+        # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [DocumentList]
-        def upsert_documents(database_id:, collection_id:, documents:)
+        def upsert_documents(database_id:, collection_id:, documents:, transaction_id: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -2200,6 +2376,7 @@ module Appwrite
 
             api_params = {
                 documents: documents,
+                transactionId: transaction_id,
             }
             
             api_headers = {
@@ -2226,9 +2403,10 @@ module Appwrite
         # @param [String] collection_id Collection ID.
         # @param [Hash] data Document data as JSON object. Include only attribute and value pairs to be updated.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
+        # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [DocumentList]
-        def update_documents(database_id:, collection_id:, data: nil, queries: nil)
+        def update_documents(database_id:, collection_id:, data: nil, queries: nil, transaction_id: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -2244,6 +2422,7 @@ module Appwrite
             api_params = {
                 data: data,
                 queries: queries,
+                transactionId: transaction_id,
             }
             
             api_headers = {
@@ -2268,9 +2447,10 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
+        # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [DocumentList]
-        def delete_documents(database_id:, collection_id:, queries: nil)
+        def delete_documents(database_id:, collection_id:, queries: nil, transaction_id: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -2285,6 +2465,7 @@ module Appwrite
 
             api_params = {
                 queries: queries,
+                transactionId: transaction_id,
             }
             
             api_headers = {
@@ -2310,9 +2491,10 @@ module Appwrite
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
         # @param [String] document_id Document ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
+        # @param [String] transaction_id Transaction ID to read uncommitted changes within the transaction.
         #
         # @return [Document]
-        def get_document(database_id:, collection_id:, document_id:, queries: nil)
+        def get_document(database_id:, collection_id:, document_id:, queries: nil, transaction_id: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -2332,6 +2514,7 @@ module Appwrite
 
             api_params = {
                 queries: queries,
+                transactionId: transaction_id,
             }
             
             api_headers = {
@@ -2359,9 +2542,10 @@ module Appwrite
         # @param [String] document_id Document ID.
         # @param [Hash] data Document data as JSON object. Include all required attributes of the document to be created or updated.
         # @param [Array] permissions An array of permissions strings. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions).
+        # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [Document]
-        def upsert_document(database_id:, collection_id:, document_id:, data:, permissions: nil)
+        def upsert_document(database_id:, collection_id:, document_id:, data:, permissions: nil, transaction_id: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -2386,6 +2570,7 @@ module Appwrite
             api_params = {
                 data: data,
                 permissions: permissions,
+                transactionId: transaction_id,
             }
             
             api_headers = {
@@ -2412,9 +2597,10 @@ module Appwrite
         # @param [String] document_id Document ID.
         # @param [Hash] data Document data as JSON object. Include only attribute and value pairs to be updated.
         # @param [Array] permissions An array of permissions strings. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions).
+        # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [Document]
-        def update_document(database_id:, collection_id:, document_id:, data: nil, permissions: nil)
+        def update_document(database_id:, collection_id:, document_id:, data: nil, permissions: nil, transaction_id: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -2435,6 +2621,7 @@ module Appwrite
             api_params = {
                 data: data,
                 permissions: permissions,
+                transactionId: transaction_id,
             }
             
             api_headers = {
@@ -2458,9 +2645,10 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
         # @param [String] document_id Document ID.
+        # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return []
-        def delete_document(database_id:, collection_id:, document_id:)
+        def delete_document(database_id:, collection_id:, document_id:, transaction_id: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -2479,6 +2667,7 @@ module Appwrite
             end
 
             api_params = {
+                transactionId: transaction_id,
             }
             
             api_headers = {
@@ -2504,9 +2693,10 @@ module Appwrite
         # @param [String] attribute Attribute key.
         # @param [Float] value Value to increment the attribute by. The value must be a number.
         # @param [Float] min Minimum value for the attribute. If the current value is lesser than this value, an exception will be thrown.
+        # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [Document]
-        def decrement_document_attribute(database_id:, collection_id:, document_id:, attribute:, value: nil, min: nil)
+        def decrement_document_attribute(database_id:, collection_id:, document_id:, attribute:, value: nil, min: nil, transaction_id: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}/{attribute}/decrement'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -2532,6 +2722,7 @@ module Appwrite
             api_params = {
                 value: value,
                 min: min,
+                transactionId: transaction_id,
             }
             
             api_headers = {
@@ -2558,9 +2749,10 @@ module Appwrite
         # @param [String] attribute Attribute key.
         # @param [Float] value Value to increment the attribute by. The value must be a number.
         # @param [Float] max Maximum value for the attribute. If the current value is greater than this value, an error will be thrown.
+        # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [Document]
-        def increment_document_attribute(database_id:, collection_id:, document_id:, attribute:, value: nil, max: nil)
+        def increment_document_attribute(database_id:, collection_id:, document_id:, attribute:, value: nil, max: nil, transaction_id: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}/{attribute}/increment'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -2586,6 +2778,7 @@ module Appwrite
             api_params = {
                 value: value,
                 max: max,
+                transactionId: transaction_id,
             }
             
             api_headers = {
@@ -2705,7 +2898,7 @@ module Appwrite
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.getIndex` instead.
         #
-        # Get index by ID.
+        # Get an index by its unique ID.
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).

@@ -72,6 +72,175 @@ module Appwrite
             )
         end
 
+        # List transactions across all databases.
+        #
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries).
+        #
+        # @return [TransactionList]
+        def list_transactions(queries: nil)
+            api_path = '/tablesdb/transactions'
+
+            api_params = {
+                queries: queries,
+            }
+            
+            api_headers = {
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::TransactionList
+            )
+        end
+
+        # Create a new transaction.
+        #
+        # @param [Integer] ttl Seconds before the transaction expires.
+        #
+        # @return [Transaction]
+        def create_transaction(ttl: nil)
+            api_path = '/tablesdb/transactions'
+
+            api_params = {
+                ttl: ttl,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Transaction
+            )
+        end
+
+        # Get a transaction by its unique ID.
+        #
+        # @param [String] transaction_id Transaction ID.
+        #
+        # @return [Transaction]
+        def get_transaction(transaction_id:)
+            api_path = '/tablesdb/transactions/{transactionId}'
+                .gsub('{transactionId}', transaction_id)
+
+            if transaction_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Transaction
+            )
+        end
+
+        # Update a transaction, to either commit or roll back its operations.
+        #
+        # @param [String] transaction_id Transaction ID.
+        # @param [] commit Commit transaction?
+        # @param [] rollback Rollback transaction?
+        #
+        # @return [Transaction]
+        def update_transaction(transaction_id:, commit: nil, rollback: nil)
+            api_path = '/tablesdb/transactions/{transactionId}'
+                .gsub('{transactionId}', transaction_id)
+
+            if transaction_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
+            end
+
+            api_params = {
+                commit: commit,
+                rollback: rollback,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Transaction
+            )
+        end
+
+        # Delete a transaction by its unique ID.
+        #
+        # @param [String] transaction_id Transaction ID.
+        #
+        # @return []
+        def delete_transaction(transaction_id:)
+            api_path = '/tablesdb/transactions/{transactionId}'
+                .gsub('{transactionId}', transaction_id)
+
+            if transaction_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+            )
+        end
+
+        # Create multiple operations in a single transaction.
+        #
+        # @param [String] transaction_id Transaction ID.
+        # @param [Array] operations Array of staged operations.
+        #
+        # @return [Transaction]
+        def create_operations(transaction_id:, operations: nil)
+            api_path = '/tablesdb/transactions/{transactionId}/operations'
+                .gsub('{transactionId}', transaction_id)
+
+            if transaction_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
+            end
+
+            api_params = {
+                operations: operations,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Transaction
+            )
+        end
+
         # Get a database by its unique ID. This endpoint response returns a JSON
         # object with the database metadata.
         #
@@ -2088,9 +2257,10 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] table_id Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/products/databases/tables#create-table).
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
+        # @param [String] transaction_id Transaction ID to read uncommitted changes within the transaction.
         #
         # @return [RowList]
-        def list_rows(database_id:, table_id:, queries: nil)
+        def list_rows(database_id:, table_id:, queries: nil, transaction_id: nil)
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
@@ -2105,6 +2275,7 @@ module Appwrite
 
             api_params = {
                 queries: queries,
+                transactionId: transaction_id,
             }
             
             api_headers = {
@@ -2129,9 +2300,10 @@ module Appwrite
         # @param [String] row_id Row ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [Hash] data Row data as JSON object.
         # @param [Array] permissions An array of permissions strings. By default, only the current user is granted all permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
+        # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [Row]
-        def create_row(database_id:, table_id:, row_id:, data:, permissions: nil)
+        def create_row(database_id:, table_id:, row_id:, data:, permissions: nil, transaction_id: nil)
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
@@ -2156,6 +2328,7 @@ module Appwrite
                 rowId: row_id,
                 data: data,
                 permissions: permissions,
+                transactionId: transaction_id,
             }
             
             api_headers = {
@@ -2179,9 +2352,10 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable). Make sure to define columns before creating rows.
         # @param [Array] rows Array of rows data as JSON objects.
+        # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [RowList]
-        def create_rows(database_id:, table_id:, rows:)
+        def create_rows(database_id:, table_id:, rows:, transaction_id: nil)
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
@@ -2200,6 +2374,7 @@ module Appwrite
 
             api_params = {
                 rows: rows,
+                transactionId: transaction_id,
             }
             
             api_headers = {
@@ -2224,9 +2399,10 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] table_id Table ID.
         # @param [Array] rows Array of row data as JSON objects. May contain partial rows.
+        # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [RowList]
-        def upsert_rows(database_id:, table_id:, rows:)
+        def upsert_rows(database_id:, table_id:, rows:, transaction_id: nil)
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
@@ -2245,6 +2421,7 @@ module Appwrite
 
             api_params = {
                 rows: rows,
+                transactionId: transaction_id,
             }
             
             api_headers = {
@@ -2267,9 +2444,10 @@ module Appwrite
         # @param [String] table_id Table ID.
         # @param [Hash] data Row data as JSON object. Include only column and value pairs to be updated.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
+        # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [RowList]
-        def update_rows(database_id:, table_id:, data: nil, queries: nil)
+        def update_rows(database_id:, table_id:, data: nil, queries: nil, transaction_id: nil)
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
@@ -2285,6 +2463,7 @@ module Appwrite
             api_params = {
                 data: data,
                 queries: queries,
+                transactionId: transaction_id,
             }
             
             api_headers = {
@@ -2306,9 +2485,10 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable).
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
+        # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [RowList]
-        def delete_rows(database_id:, table_id:, queries: nil)
+        def delete_rows(database_id:, table_id:, queries: nil, transaction_id: nil)
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
@@ -2323,6 +2503,7 @@ module Appwrite
 
             api_params = {
                 queries: queries,
+                transactionId: transaction_id,
             }
             
             api_headers = {
@@ -2345,9 +2526,10 @@ module Appwrite
         # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable).
         # @param [String] row_id Row ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
+        # @param [String] transaction_id Transaction ID to read uncommitted changes within the transaction.
         #
         # @return [Row]
-        def get_row(database_id:, table_id:, row_id:, queries: nil)
+        def get_row(database_id:, table_id:, row_id:, queries: nil, transaction_id: nil)
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
@@ -2367,6 +2549,7 @@ module Appwrite
 
             api_params = {
                 queries: queries,
+                transactionId: transaction_id,
             }
             
             api_headers = {
@@ -2391,9 +2574,10 @@ module Appwrite
         # @param [String] row_id Row ID.
         # @param [Hash] data Row data as JSON object. Include all required columns of the row to be created or updated.
         # @param [Array] permissions An array of permissions strings. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions).
+        # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [Row]
-        def upsert_row(database_id:, table_id:, row_id:, data: nil, permissions: nil)
+        def upsert_row(database_id:, table_id:, row_id:, data: nil, permissions: nil, transaction_id: nil)
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
@@ -2414,6 +2598,7 @@ module Appwrite
             api_params = {
                 data: data,
                 permissions: permissions,
+                transactionId: transaction_id,
             }
             
             api_headers = {
@@ -2437,9 +2622,10 @@ module Appwrite
         # @param [String] row_id Row ID.
         # @param [Hash] data Row data as JSON object. Include only columns and value pairs to be updated.
         # @param [Array] permissions An array of permissions strings. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions).
+        # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [Row]
-        def update_row(database_id:, table_id:, row_id:, data: nil, permissions: nil)
+        def update_row(database_id:, table_id:, row_id:, data: nil, permissions: nil, transaction_id: nil)
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
@@ -2460,6 +2646,7 @@ module Appwrite
             api_params = {
                 data: data,
                 permissions: permissions,
+                transactionId: transaction_id,
             }
             
             api_headers = {
@@ -2480,9 +2667,10 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable).
         # @param [String] row_id Row ID.
+        # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return []
-        def delete_row(database_id:, table_id:, row_id:)
+        def delete_row(database_id:, table_id:, row_id:, transaction_id: nil)
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
@@ -2501,6 +2689,7 @@ module Appwrite
             end
 
             api_params = {
+                transactionId: transaction_id,
             }
             
             api_headers = {
@@ -2523,9 +2712,10 @@ module Appwrite
         # @param [String] column Column key.
         # @param [Float] value Value to increment the column by. The value must be a number.
         # @param [Float] min Minimum value for the column. If the current value is lesser than this value, an exception will be thrown.
+        # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [Row]
-        def decrement_row_column(database_id:, table_id:, row_id:, column:, value: nil, min: nil)
+        def decrement_row_column(database_id:, table_id:, row_id:, column:, value: nil, min: nil, transaction_id: nil)
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}/{column}/decrement'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
@@ -2551,6 +2741,7 @@ module Appwrite
             api_params = {
                 value: value,
                 min: min,
+                transactionId: transaction_id,
             }
             
             api_headers = {
@@ -2574,9 +2765,10 @@ module Appwrite
         # @param [String] column Column key.
         # @param [Float] value Value to increment the column by. The value must be a number.
         # @param [Float] max Maximum value for the column. If the current value is greater than this value, an error will be thrown.
+        # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [Row]
-        def increment_row_column(database_id:, table_id:, row_id:, column:, value: nil, max: nil)
+        def increment_row_column(database_id:, table_id:, row_id:, column:, value: nil, max: nil, transaction_id: nil)
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}/{column}/increment'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
@@ -2602,6 +2794,7 @@ module Appwrite
             api_params = {
                 value: value,
                 max: max,
+                transactionId: transaction_id,
             }
             
             api_headers = {

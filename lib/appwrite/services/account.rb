@@ -123,13 +123,15 @@ module Appwrite
         # Get the list of identities for the currently logged in user.
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, provider, providerUid, providerEmail, providerAccessTokenExpiry
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [IdentityList]
-        def list_identities(queries: nil)
+        def list_identities(queries: nil, total: nil)
             api_path = '/account/identities'
 
             api_params = {
                 queries: queries,
+                total: total,
             }
             
             api_headers = {
@@ -203,13 +205,15 @@ module Appwrite
         # user. Each log returns user IP address, location and date and time of log.
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [LogList]
-        def list_logs(queries: nil)
+        def list_logs(queries: nil, total: nil)
             api_path = '/account/logs'
 
             api_params = {
                 queries: queries,
+                total: total,
             }
             
             api_headers = {

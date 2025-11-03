@@ -12,14 +12,16 @@ module Appwrite
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following columns: name
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [DatabaseList]
-        def list(queries: nil, search: nil)
+        def list(queries: nil, search: nil, total: nil)
             api_path = '/tablesdb'
 
             api_params = {
                 queries: queries,
                 search: search,
+                total: total,
             }
             
             api_headers = {
@@ -342,9 +344,10 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following columns: name, enabled, rowSecurity
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [TableList]
-        def list_tables(database_id:, queries: nil, search: nil)
+        def list_tables(database_id:, queries: nil, search: nil, total: nil)
             api_path = '/tablesdb/{databaseId}/tables'
                 .gsub('{databaseId}', database_id)
 
@@ -355,6 +358,7 @@ module Appwrite
             api_params = {
                 queries: queries,
                 search: search,
+                total: total,
             }
             
             api_headers = {
@@ -541,9 +545,10 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] table_id Table ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following columns: key, type, size, required, array, status, error
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [ColumnList]
-        def list_columns(database_id:, table_id:, queries: nil)
+        def list_columns(database_id:, table_id:, queries: nil, total: nil)
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
@@ -558,6 +563,7 @@ module Appwrite
 
             api_params = {
                 queries: queries,
+                total: total,
             }
             
             api_headers = {
@@ -2081,9 +2087,10 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable).
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following columns: key, type, status, attributes, error
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [ColumnIndexList]
-        def list_indexes(database_id:, table_id:, queries: nil)
+        def list_indexes(database_id:, table_id:, queries: nil, total: nil)
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/indexes'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
@@ -2098,6 +2105,7 @@ module Appwrite
 
             api_params = {
                 queries: queries,
+                total: total,
             }
             
             api_headers = {
@@ -2258,9 +2266,10 @@ module Appwrite
         # @param [String] table_id Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/products/databases/tables#create-table).
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
         # @param [String] transaction_id Transaction ID to read uncommitted changes within the transaction.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [RowList]
-        def list_rows(database_id:, table_id:, queries: nil, transaction_id: nil)
+        def list_rows(database_id:, table_id:, queries: nil, transaction_id: nil, total: nil)
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
@@ -2276,6 +2285,7 @@ module Appwrite
             api_params = {
                 queries: queries,
                 transactionId: transaction_id,
+                total: total,
             }
             
             api_headers = {

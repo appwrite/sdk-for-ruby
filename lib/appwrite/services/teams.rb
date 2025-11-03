@@ -12,14 +12,16 @@ module Appwrite
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, total, billingPlan
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [TeamList]
-        def list(queries: nil, search: nil)
+        def list(queries: nil, search: nil, total: nil)
             api_path = '/teams'
 
             api_params = {
                 queries: queries,
                 search: search,
+                total: total,
             }
             
             api_headers = {
@@ -172,9 +174,10 @@ module Appwrite
         # @param [String] team_id Team ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, teamId, invited, joined, confirm, roles
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [MembershipList]
-        def list_memberships(team_id:, queries: nil, search: nil)
+        def list_memberships(team_id:, queries: nil, search: nil, total: nil)
             api_path = '/teams/{teamId}/memberships'
                 .gsub('{teamId}', team_id)
 
@@ -185,6 +188,7 @@ module Appwrite
             api_params = {
                 queries: queries,
                 search: search,
+                total: total,
             }
             
             api_headers = {

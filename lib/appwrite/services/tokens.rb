@@ -13,9 +13,10 @@ module Appwrite
         # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket).
         # @param [String] file_id File unique ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: expire
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [ResourceTokenList]
-        def list(bucket_id:, file_id:, queries: nil)
+        def list(bucket_id:, file_id:, queries: nil, total: nil)
             api_path = '/tokens/buckets/{bucketId}/files/{fileId}'
                 .gsub('{bucketId}', bucket_id)
                 .gsub('{fileId}', file_id)
@@ -30,6 +31,7 @@ module Appwrite
 
             api_params = {
                 queries: queries,
+                total: total,
             }
             
             api_headers = {

@@ -12,14 +12,16 @@ module Appwrite
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, enabled, runtime, deploymentId, schedule, scheduleNext, schedulePrevious, timeout, entrypoint, commands, installationId
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [FunctionList]
-        def list(queries: nil, search: nil)
+        def list(queries: nil, search: nil, total: nil)
             api_path = '/functions'
 
             api_params = {
                 queries: queries,
                 search: search,
+                total: total,
             }
             
             api_headers = {
@@ -317,9 +319,10 @@ module Appwrite
         # @param [String] function_id Function ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: buildSize, sourceSize, totalSize, buildDuration, status, activate, type
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [DeploymentList]
-        def list_deployments(function_id:, queries: nil, search: nil)
+        def list_deployments(function_id:, queries: nil, search: nil, total: nil)
             api_path = '/functions/{functionId}/deployments'
                 .gsub('{functionId}', function_id)
 
@@ -330,6 +333,7 @@ module Appwrite
             api_params = {
                 queries: queries,
                 search: search,
+                total: total,
             }
             
             api_headers = {
@@ -697,9 +701,10 @@ module Appwrite
         #
         # @param [String] function_id Function ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: trigger, status, responseStatusCode, duration, requestMethod, requestPath, deploymentId
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [ExecutionList]
-        def list_executions(function_id:, queries: nil)
+        def list_executions(function_id:, queries: nil, total: nil)
             api_path = '/functions/{functionId}/executions'
                 .gsub('{functionId}', function_id)
 
@@ -709,6 +714,7 @@ module Appwrite
 
             api_params = {
                 queries: queries,
+                total: total,
             }
             
             api_headers = {

@@ -9,6 +9,7 @@ module Appwrite
             VUE = 'vue'
             SVELTEKIT = 'sveltekit'
             ASTRO = 'astro'
+            TANSTACK_START = 'tanstack-start'
             REMIX = 'remix'
             LYNX = 'lynx'
             FLUTTER = 'flutter'

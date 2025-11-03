@@ -130,6 +130,7 @@ module Appwrite
                     Appwrite::Enums::ExecutionStatus::PROCESSING,
                     Appwrite::Enums::ExecutionStatus::COMPLETED,
                     Appwrite::Enums::ExecutionStatus::FAILED,
+                    Appwrite::Enums::ExecutionStatus::SCHEDULED,
                 ]
 
                 unless valid_status.include?(status)

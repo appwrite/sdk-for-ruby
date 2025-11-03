@@ -15,14 +15,16 @@ module Appwrite
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [DatabaseList]
-        def list(queries: nil, search: nil)
+        def list(queries: nil, search: nil, total: nil)
             api_path = '/databases'
 
             api_params = {
                 queries: queries,
                 search: search,
+                total: total,
             }
             
             api_headers = {
@@ -360,9 +362,10 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, enabled, documentSecurity
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [CollectionList]
-        def list_collections(database_id:, queries: nil, search: nil)
+        def list_collections(database_id:, queries: nil, search: nil, total: nil)
             api_path = '/databases/{databaseId}/collections'
                 .gsub('{databaseId}', database_id)
 
@@ -373,6 +376,7 @@ module Appwrite
             api_params = {
                 queries: queries,
                 search: search,
+                total: total,
             }
             
             api_headers = {
@@ -574,9 +578,10 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: key, type, size, required, array, status, error
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [AttributeList]
-        def list_attributes(database_id:, collection_id:, queries: nil)
+        def list_attributes(database_id:, collection_id:, queries: nil, total: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -591,6 +596,7 @@ module Appwrite
 
             api_params = {
                 queries: queries,
+                total: total,
             }
             
             api_headers = {
@@ -2204,9 +2210,10 @@ module Appwrite
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
         # @param [String] transaction_id Transaction ID to read uncommitted changes within the transaction.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [DocumentList]
-        def list_documents(database_id:, collection_id:, queries: nil, transaction_id: nil)
+        def list_documents(database_id:, collection_id:, queries: nil, transaction_id: nil, total: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -2222,6 +2229,7 @@ module Appwrite
             api_params = {
                 queries: queries,
                 transactionId: transaction_id,
+                total: total,
             }
             
             api_headers = {
@@ -2802,9 +2810,10 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: key, type, status, attributes, error
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [IndexList]
-        def list_indexes(database_id:, collection_id:, queries: nil)
+        def list_indexes(database_id:, collection_id:, queries: nil, total: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/indexes'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -2819,6 +2828,7 @@ module Appwrite
 
             api_params = {
                 queries: queries,
+                total: total,
             }
             
             api_headers = {

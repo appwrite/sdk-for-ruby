@@ -11,14 +11,16 @@ module Appwrite
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: scheduledAt, deliveredAt, deliveredTotal, status, description, providerType
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [MessageList]
-        def list_messages(queries: nil, search: nil)
+        def list_messages(queries: nil, search: nil, total: nil)
             api_path = '/messaging/messages'
 
             api_params = {
                 queries: queries,
                 search: search,
+                total: total,
             }
             
             api_headers = {
@@ -430,9 +432,10 @@ module Appwrite
         #
         # @param [String] message_id Message ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [LogList]
-        def list_message_logs(message_id:, queries: nil)
+        def list_message_logs(message_id:, queries: nil, total: nil)
             api_path = '/messaging/messages/{messageId}/logs'
                 .gsub('{messageId}', message_id)
 
@@ -442,6 +445,7 @@ module Appwrite
 
             api_params = {
                 queries: queries,
+                total: total,
             }
             
             api_headers = {
@@ -460,9 +464,10 @@ module Appwrite
         #
         # @param [String] message_id Message ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, providerId, identifier, providerType
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [TargetList]
-        def list_targets(message_id:, queries: nil)
+        def list_targets(message_id:, queries: nil, total: nil)
             api_path = '/messaging/messages/{messageId}/targets'
                 .gsub('{messageId}', message_id)
 
@@ -472,6 +477,7 @@ module Appwrite
 
             api_params = {
                 queries: queries,
+                total: total,
             }
             
             api_headers = {
@@ -490,14 +496,16 @@ module Appwrite
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, provider, type, enabled
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [ProviderList]
-        def list_providers(queries: nil, search: nil)
+        def list_providers(queries: nil, search: nil, total: nil)
             api_path = '/messaging/providers'
 
             api_params = {
                 queries: queries,
                 search: search,
+                total: total,
             }
             
             api_headers = {
@@ -841,6 +849,96 @@ module Appwrite
                 templateId: template_id,
                 senderId: sender_id,
                 authKey: auth_key,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Provider
+            )
+        end
+
+        # Create a new Resend provider.
+        #
+        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] name Provider name.
+        # @param [String] api_key Resend API key.
+        # @param [String] from_name Sender Name.
+        # @param [String] from_email Sender email address.
+        # @param [String] reply_to_name Name set in the reply to field for the mail. Default value is sender name.
+        # @param [String] reply_to_email Email set in the reply to field for the mail. Default value is sender email.
+        # @param [] enabled Set as enabled.
+        #
+        # @return [Provider]
+        def create_resend_provider(provider_id:, name:, api_key: nil, from_name: nil, from_email: nil, reply_to_name: nil, reply_to_email: nil, enabled: nil)
+            api_path = '/messaging/providers/resend'
+
+            if provider_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+            end
+
+            if name.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "name"')
+            end
+
+            api_params = {
+                providerId: provider_id,
+                name: name,
+                apiKey: api_key,
+                fromName: from_name,
+                fromEmail: from_email,
+                replyToName: reply_to_name,
+                replyToEmail: reply_to_email,
+                enabled: enabled,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Provider
+            )
+        end
+
+        # Update a Resend provider by its unique ID.
+        #
+        # @param [String] provider_id Provider ID.
+        # @param [String] name Provider name.
+        # @param [] enabled Set as enabled.
+        # @param [String] api_key Resend API key.
+        # @param [String] from_name Sender Name.
+        # @param [String] from_email Sender email address.
+        # @param [String] reply_to_name Name set in the Reply To field for the mail. Default value is Sender Name.
+        # @param [String] reply_to_email Email set in the Reply To field for the mail. Default value is Sender Email.
+        #
+        # @return [Provider]
+        def update_resend_provider(provider_id:, name: nil, enabled: nil, api_key: nil, from_name: nil, from_email: nil, reply_to_name: nil, reply_to_email: nil)
+            api_path = '/messaging/providers/resend/{providerId}'
+                .gsub('{providerId}', provider_id)
+
+            if provider_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+            end
+
+            api_params = {
+                name: name,
+                enabled: enabled,
+                apiKey: api_key,
+                fromName: from_name,
+                fromEmail: from_email,
+                replyToName: reply_to_name,
+                replyToEmail: reply_to_email,
             }
             
             api_headers = {
@@ -1453,9 +1551,10 @@ module Appwrite
         #
         # @param [String] provider_id Provider ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [LogList]
-        def list_provider_logs(provider_id:, queries: nil)
+        def list_provider_logs(provider_id:, queries: nil, total: nil)
             api_path = '/messaging/providers/{providerId}/logs'
                 .gsub('{providerId}', provider_id)
 
@@ -1465,6 +1564,7 @@ module Appwrite
 
             api_params = {
                 queries: queries,
+                total: total,
             }
             
             api_headers = {
@@ -1483,9 +1583,10 @@ module Appwrite
         #
         # @param [String] subscriber_id Subscriber ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [LogList]
-        def list_subscriber_logs(subscriber_id:, queries: nil)
+        def list_subscriber_logs(subscriber_id:, queries: nil, total: nil)
             api_path = '/messaging/subscribers/{subscriberId}/logs'
                 .gsub('{subscriberId}', subscriber_id)
 
@@ -1495,6 +1596,7 @@ module Appwrite
 
             api_params = {
                 queries: queries,
+                total: total,
             }
             
             api_headers = {
@@ -1513,14 +1615,16 @@ module Appwrite
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, description, emailTotal, smsTotal, pushTotal
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [TopicList]
-        def list_topics(queries: nil, search: nil)
+        def list_topics(queries: nil, search: nil, total: nil)
             api_path = '/messaging/topics'
 
             api_params = {
                 queries: queries,
                 search: search,
+                total: total,
             }
             
             api_headers = {
@@ -1667,9 +1771,10 @@ module Appwrite
         #
         # @param [String] topic_id Topic ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [LogList]
-        def list_topic_logs(topic_id:, queries: nil)
+        def list_topic_logs(topic_id:, queries: nil, total: nil)
             api_path = '/messaging/topics/{topicId}/logs'
                 .gsub('{topicId}', topic_id)
 
@@ -1679,6 +1784,7 @@ module Appwrite
 
             api_params = {
                 queries: queries,
+                total: total,
             }
             
             api_headers = {
@@ -1698,9 +1804,10 @@ module Appwrite
         # @param [String] topic_id Topic ID. The topic ID subscribed to.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, provider, type, enabled
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [SubscriberList]
-        def list_subscribers(topic_id:, queries: nil, search: nil)
+        def list_subscribers(topic_id:, queries: nil, search: nil, total: nil)
             api_path = '/messaging/topics/{topicId}/subscribers'
                 .gsub('{topicId}', topic_id)
 
@@ -1711,6 +1818,7 @@ module Appwrite
             api_params = {
                 queries: queries,
                 search: search,
+                total: total,
             }
             
             api_headers = {

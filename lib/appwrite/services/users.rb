@@ -12,14 +12,16 @@ module Appwrite
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, email, phone, status, passwordUpdate, registration, emailVerification, phoneVerification, labels
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [UserList]
-        def list(queries: nil, search: nil)
+        def list(queries: nil, search: nil, total: nil)
             api_path = '/users'
 
             api_params = {
                 queries: queries,
                 search: search,
+                total: total,
             }
             
             api_headers = {
@@ -167,14 +169,16 @@ module Appwrite
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, provider, providerUid, providerEmail, providerAccessTokenExpiry
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [IdentityList]
-        def list_identities(queries: nil, search: nil)
+        def list_identities(queries: nil, search: nil, total: nil)
             api_path = '/users/identities'
 
             api_params = {
                 queries: queries,
                 search: search,
+                total: total,
             }
             
             api_headers = {
@@ -673,9 +677,10 @@ module Appwrite
         #
         # @param [String] user_id User ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [LogList]
-        def list_logs(user_id:, queries: nil)
+        def list_logs(user_id:, queries: nil, total: nil)
             api_path = '/users/{userId}/logs'
                 .gsub('{userId}', user_id)
 
@@ -685,6 +690,7 @@ module Appwrite
 
             api_params = {
                 queries: queries,
+                total: total,
             }
             
             api_headers = {
@@ -704,9 +710,10 @@ module Appwrite
         # @param [String] user_id User ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, teamId, invited, joined, confirm, roles
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [MembershipList]
-        def list_memberships(user_id:, queries: nil, search: nil)
+        def list_memberships(user_id:, queries: nil, search: nil, total: nil)
             api_path = '/users/{userId}/memberships'
                 .gsub('{userId}', user_id)
 
@@ -717,6 +724,7 @@ module Appwrite
             api_params = {
                 queries: queries,
                 search: search,
+                total: total,
             }
             
             api_headers = {
@@ -1096,9 +1104,10 @@ module Appwrite
         # Get the user sessions list by its unique ID.
         #
         # @param [String] user_id User ID.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [SessionList]
-        def list_sessions(user_id:)
+        def list_sessions(user_id:, total: nil)
             api_path = '/users/{userId}/sessions'
                 .gsub('{userId}', user_id)
 
@@ -1107,6 +1116,7 @@ module Appwrite
             end
 
             api_params = {
+                total: total,
             }
             
             api_headers = {
@@ -1257,9 +1267,10 @@ module Appwrite
         #
         # @param [String] user_id User ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, providerId, identifier, providerType
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [TargetList]
-        def list_targets(user_id:, queries: nil)
+        def list_targets(user_id:, queries: nil, total: nil)
             api_path = '/users/{userId}/targets'
                 .gsub('{userId}', user_id)
 
@@ -1269,6 +1280,7 @@ module Appwrite
 
             api_params = {
                 queries: queries,
+                total: total,
             }
             
             api_headers = {

@@ -282,5 +282,79 @@ module Appwrite
             )
         end
 
+        # Use this endpoint to capture a screenshot of any website URL. This endpoint
+        # uses a headless browser to render the webpage and capture it as an image.
+        # 
+        # You can configure the browser viewport size, theme, user agent,
+        # geolocation, permissions, and more. Capture either just the viewport or the
+        # full page scroll.
+        # 
+        # When width and height are specified, the image is resized accordingly. If
+        # both dimensions are 0, the API provides an image at original size. If
+        # dimensions are not specified, the default viewport size is 1280x720px.
+        #
+        # @param [String] url Website URL which you want to capture.
+        # @param [Hash] headers HTTP headers to send with the browser request. Defaults to empty.
+        # @param [Integer] viewport_width Browser viewport width. Pass an integer between 1 to 1920. Defaults to 1280.
+        # @param [Integer] viewport_height Browser viewport height. Pass an integer between 1 to 1080. Defaults to 720.
+        # @param [Float] scale Browser scale factor. Pass a number between 0.1 to 3. Defaults to 1.
+        # @param [Theme] theme Browser theme. Pass "light" or "dark". Defaults to "light".
+        # @param [String] user_agent Custom user agent string. Defaults to browser default.
+        # @param [] fullpage Capture full page scroll. Pass 0 for viewport only, or 1 for full page. Defaults to 0.
+        # @param [String] locale Browser locale (e.g., "en-US", "fr-FR"). Defaults to browser default.
+        # @param [Timezone] timezone IANA timezone identifier (e.g., "America/New_York", "Europe/London"). Defaults to browser default.
+        # @param [Float] latitude Geolocation latitude. Pass a number between -90 to 90. Defaults to 0.
+        # @param [Float] longitude Geolocation longitude. Pass a number between -180 to 180. Defaults to 0.
+        # @param [Float] accuracy Geolocation accuracy in meters. Pass a number between 0 to 100000. Defaults to 0.
+        # @param [] touch Enable touch support. Pass 0 for no touch, or 1 for touch enabled. Defaults to 0.
+        # @param [Array] permissions Browser permissions to grant. Pass an array of permission names like ["geolocation", "camera", "microphone"]. Defaults to empty.
+        # @param [Integer] sleep Wait time in seconds before taking the screenshot. Pass an integer between 0 to 10. Defaults to 0.
+        # @param [Integer] width Output image width. Pass 0 to use original width, or an integer between 1 to 2000. Defaults to 0 (original width).
+        # @param [Integer] height Output image height. Pass 0 to use original height, or an integer between 1 to 2000. Defaults to 0 (original height).
+        # @param [Integer] quality Screenshot quality. Pass an integer between 0 to 100. Defaults to keep existing image quality.
+        # @param [Output] output Output format type (jpeg, jpg, png, gif and webp).
+        #
+        # @return []
+        def get_screenshot(url:, headers: nil, viewport_width: nil, viewport_height: nil, scale: nil, theme: nil, user_agent: nil, fullpage: nil, locale: nil, timezone: nil, latitude: nil, longitude: nil, accuracy: nil, touch: nil, permissions: nil, sleep: nil, width: nil, height: nil, quality: nil, output: nil)
+            api_path = '/avatars/screenshots'
+
+            if url.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "url"')
+            end
+
+            api_params = {
+                url: url,
+                headers: headers,
+                viewportWidth: viewport_width,
+                viewportHeight: viewport_height,
+                scale: scale,
+                theme: theme,
+                userAgent: user_agent,
+                fullpage: fullpage,
+                locale: locale,
+                timezone: timezone,
+                latitude: latitude,
+                longitude: longitude,
+                accuracy: accuracy,
+                touch: touch,
+                permissions: permissions,
+                sleep: sleep,
+                width: width,
+                height: height,
+                quality: quality,
+                output: output,
+            }
+            
+            api_headers = {
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+            )
+        end
+
     end 
 end

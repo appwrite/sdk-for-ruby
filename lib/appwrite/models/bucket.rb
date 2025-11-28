@@ -15,6 +15,7 @@ module Appwrite
             attr_reader :compression
             attr_reader :encryption
             attr_reader :antivirus
+            attr_reader :transformations
 
             def initialize(
                 id:,
@@ -28,7 +29,8 @@ module Appwrite
                 allowed_file_extensions:,
                 compression:,
                 encryption:,
-                antivirus:
+                antivirus:,
+                transformations:
             )
                 @id = id
                 @created_at = created_at
@@ -42,6 +44,7 @@ module Appwrite
                 @compression = compression
                 @encryption = encryption
                 @antivirus = antivirus
+                @transformations = transformations
             end
 
             def self.from(map:)
@@ -57,7 +60,8 @@ module Appwrite
                     allowed_file_extensions: map["allowedFileExtensions"],
                     compression: map["compression"],
                     encryption: map["encryption"],
-                    antivirus: map["antivirus"]
+                    antivirus: map["antivirus"],
+                    transformations: map["transformations"]
                 )
             end
 
@@ -74,7 +78,8 @@ module Appwrite
                     "allowedFileExtensions": @allowed_file_extensions,
                     "compression": @compression,
                     "encryption": @encryption,
-                    "antivirus": @antivirus
+                    "antivirus": @antivirus,
+                    "transformations": @transformations
                 }
             end
         end

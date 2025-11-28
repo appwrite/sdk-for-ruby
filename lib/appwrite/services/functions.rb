@@ -458,11 +458,12 @@ module Appwrite
         # @param [String] repository Repository name of the template.
         # @param [String] owner The name of the owner of the template.
         # @param [String] root_directory Path to function code in the template repo.
-        # @param [String] version Version (tag) for the repo linked to the function template.
+        # @param [TemplateReferenceType] type Type for the reference provided. Can be commit, branch, or tag
+        # @param [String] reference Reference value, can be a commit hash, branch name, or release tag
         # @param [] activate Automatically activate the deployment when it is finished building.
         #
         # @return [Deployment]
-        def create_template_deployment(function_id:, repository:, owner:, root_directory:, version:, activate: nil)
+        def create_template_deployment(function_id:, repository:, owner:, root_directory:, type:, reference:, activate: nil)
             api_path = '/functions/{functionId}/deployments/template'
                 .gsub('{functionId}', function_id)
 
@@ -482,15 +483,20 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "rootDirectory"')
             end
 
-            if version.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "version"')
+            if type.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "type"')
+            end
+
+            if reference.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "reference"')
             end
 
             api_params = {
                 repository: repository,
                 owner: owner,
                 rootDirectory: root_directory,
-                version: version,
+                type: type,
+                reference: reference,
                 activate: activate,
             }
             
@@ -512,7 +518,7 @@ module Appwrite
         # This endpoint lets you create deployment from a branch, commit, or a tag.
         #
         # @param [String] function_id Function ID.
-        # @param [VCSDeploymentType] type Type of reference passed. Allowed values are: branch, commit
+        # @param [VCSReferenceType] type Type of reference passed. Allowed values are: branch, commit
         # @param [String] reference VCS reference to create deployment from. Depending on type this can be: branch name, commit hash
         # @param [] activate Automatically activate the deployment when it is finished building.
         #

@@ -356,7 +356,7 @@ module Appwrite
 
         # Create a new site code deployment. Use this endpoint to upload a new
         # version of your site code. To activate your newly uploaded code, you'll
-        # need to update the function's deployment to use your new deployment ID.
+        # need to update the site's deployment to use your new deployment ID.
         #
         # @param [String] site_id Site ID.
         # @param [file] code Gzip file with your code package. When used with the Appwrite CLI, pass the path to your code directory, and the CLI will automatically package your code. Use a path that is within the current directory.
@@ -457,11 +457,12 @@ module Appwrite
         # @param [String] repository Repository name of the template.
         # @param [String] owner The name of the owner of the template.
         # @param [String] root_directory Path to site code in the template repo.
-        # @param [String] version Version (tag) for the repo linked to the site template.
+        # @param [TemplateReferenceType] type Type for the reference provided. Can be commit, branch, or tag
+        # @param [String] reference Reference value, can be a commit hash, branch name, or release tag
         # @param [] activate Automatically activate the deployment when it is finished building.
         #
         # @return [Deployment]
-        def create_template_deployment(site_id:, repository:, owner:, root_directory:, version:, activate: nil)
+        def create_template_deployment(site_id:, repository:, owner:, root_directory:, type:, reference:, activate: nil)
             api_path = '/sites/{siteId}/deployments/template'
                 .gsub('{siteId}', site_id)
 
@@ -481,15 +482,20 @@ module Appwrite
               raise Appwrite::Exception.new('Missing required parameter: "rootDirectory"')
             end
 
-            if version.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "version"')
+            if type.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "type"')
+            end
+
+            if reference.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "reference"')
             end
 
             api_params = {
                 repository: repository,
                 owner: owner,
                 rootDirectory: root_directory,
-                version: version,
+                type: type,
+                reference: reference,
                 activate: activate,
             }
             
@@ -511,7 +517,7 @@ module Appwrite
         # This endpoint lets you create deployment from a branch, commit, or a tag.
         #
         # @param [String] site_id Site ID.
-        # @param [VCSDeploymentType] type Type of reference passed. Allowed values are: branch, commit
+        # @param [VCSReferenceType] type Type of reference passed. Allowed values are: branch, commit
         # @param [String] reference VCS reference to create deployment from. Depending on type this can be: branch name, commit hash
         # @param [] activate Automatically activate the deployment when it is finished building.
         #

@@ -1,5 +1,9 @@
 # Change Log
 
+## 19.4.0
+
+* Add `get_screenshot` method to `Avatars` service
+
 ## 19.3.0
 
 * Add `total` parameter to list queries allowing skipping counting rows in a table for improved performance

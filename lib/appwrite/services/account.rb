@@ -362,7 +362,7 @@ module Appwrite
         #
         # @return [MfaChallenge]
         def create_mfa_challenge(factor:)
-            api_path = '/account/mfa/challenge'
+            api_path = '/account/mfa/challenges'
 
             if factor.nil?
               raise Appwrite::Exception.new('Missing required parameter: "factor"')
@@ -396,7 +396,7 @@ module Appwrite
         #
         # @return [Session]
         def update_mfa_challenge(challenge_id:, otp:)
-            api_path = '/account/mfa/challenge'
+            api_path = '/account/mfa/challenges'
 
             if challenge_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "challengeId"')

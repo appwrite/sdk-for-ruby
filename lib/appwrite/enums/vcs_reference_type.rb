@@ -1,6 +1,6 @@
 module Appwrite
     module Enums
-        module VCSDeploymentType
+        module VCSReferenceType
             BRANCH = 'branch'
             COMMIT = 'commit'
             TAG = 'tag'

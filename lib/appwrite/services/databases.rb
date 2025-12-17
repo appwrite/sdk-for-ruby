@@ -405,9 +405,11 @@ module Appwrite
         # @param [Array] permissions An array of permissions strings. By default, no user is granted with any permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
         # @param [] document_security Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](https://appwrite.io/docs/permissions).
         # @param [] enabled Is collection enabled? When set to 'disabled', users cannot access the collection but Server SDKs with and API key can still read and write to the collection. No data is lost when this is toggled.
+        # @param [Array] attributes Array of attribute definitions to create. Each attribute should contain: key (string), type (string: string, integer, float, boolean, datetime, relationship), size (integer, required for string type), required (boolean, optional), default (mixed, optional), array (boolean, optional), and type-specific options.
+        # @param [Array] indexes Array of index definitions to create. Each index should contain: key (string), type (string: key, fulltext, unique, spatial), attributes (array of attribute keys), orders (array of ASC/DESC, optional), and lengths (array of integers, optional).
         #
         # @return [Collection]
-        def create_collection(database_id:, collection_id:, name:, permissions: nil, document_security: nil, enabled: nil)
+        def create_collection(database_id:, collection_id:, name:, permissions: nil, document_security: nil, enabled: nil, attributes: nil, indexes: nil)
             api_path = '/databases/{databaseId}/collections'
                 .gsub('{databaseId}', database_id)
 
@@ -429,6 +431,8 @@ module Appwrite
                 permissions: permissions,
                 documentSecurity: document_security,
                 enabled: enabled,
+                attributes: attributes,
+                indexes: indexes,
             }
             
             api_headers = {

@@ -384,9 +384,11 @@ module Appwrite
         # @param [Array] permissions An array of permissions strings. By default, no user is granted with any permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
         # @param [] row_security Enables configuring permissions for individual rows. A user needs one of row or table level permissions to access a row. [Learn more about permissions](https://appwrite.io/docs/permissions).
         # @param [] enabled Is table enabled? When set to 'disabled', users cannot access the table but Server SDKs with and API key can still read and write to the table. No data is lost when this is toggled.
+        # @param [Array] columns Array of column definitions to create. Each column should contain: key (string), type (string: string, integer, float, boolean, datetime, relationship), size (integer, required for string type), required (boolean, optional), default (mixed, optional), array (boolean, optional), and type-specific options.
+        # @param [Array] indexes Array of index definitions to create. Each index should contain: key (string), type (string: key, fulltext, unique, spatial), attributes (array of column keys), orders (array of ASC/DESC, optional), and lengths (array of integers, optional).
         #
         # @return [Table]
-        def create_table(database_id:, table_id:, name:, permissions: nil, row_security: nil, enabled: nil)
+        def create_table(database_id:, table_id:, name:, permissions: nil, row_security: nil, enabled: nil, columns: nil, indexes: nil)
             api_path = '/tablesdb/{databaseId}/tables'
                 .gsub('{databaseId}', database_id)
 
@@ -408,6 +410,8 @@ module Appwrite
                 permissions: permissions,
                 rowSecurity: row_security,
                 enabled: enabled,
+                columns: columns,
+                indexes: indexes,
             }
             
             api_headers = {

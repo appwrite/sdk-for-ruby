@@ -1,0 +1,17 @@
+require 'appwrite'
+
+include Appwrite
+
+client = Client.new
+    .set_endpoint('https://<REGION>.cloud.appwrite.io/v1') # Your API Endpoint
+    .set_project('<YOUR_PROJECT_ID>') # Your project ID
+    .set_key('<YOUR_API_KEY>') # Your secret API key
+
+backups = Backups.new(client)
+
+result = backups.create_restoration(
+    archive_id: '<ARCHIVE_ID>',
+    services: [],
+    new_resource_id: '<NEW_RESOURCE_ID>', # optional
+    new_resource_name: '<NEW_RESOURCE_NAME>' # optional
+)

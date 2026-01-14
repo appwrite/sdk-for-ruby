@@ -7,8 +7,8 @@ client = Client.new
     .set_project('<YOUR_PROJECT_ID>') # Your project ID
     .set_session('') # The user session to authenticate with
 
-account = Account.new(client)
+organizations = Organizations.new(client)
 
-result = account.create_jwt(
-    duration: 0 # optional
+result = organizations.estimation_delete_organization(
+    organization_id: '<ORGANIZATION_ID>'
 )

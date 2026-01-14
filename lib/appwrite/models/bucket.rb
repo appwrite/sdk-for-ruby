@@ -16,6 +16,7 @@ module Appwrite
             attr_reader :encryption
             attr_reader :antivirus
             attr_reader :transformations
+            attr_reader :total_size
 
             def initialize(
                 id:,
@@ -30,7 +31,8 @@ module Appwrite
                 compression:,
                 encryption:,
                 antivirus:,
-                transformations:
+                transformations:,
+                total_size:
             )
                 @id = id
                 @created_at = created_at
@@ -45,6 +47,7 @@ module Appwrite
                 @encryption = encryption
                 @antivirus = antivirus
                 @transformations = transformations
+                @total_size = total_size
             end
 
             def self.from(map:)
@@ -61,7 +64,8 @@ module Appwrite
                     compression: map["compression"],
                     encryption: map["encryption"],
                     antivirus: map["antivirus"],
-                    transformations: map["transformations"]
+                    transformations: map["transformations"],
+                    total_size: map["totalSize"]
                 )
             end
 
@@ -79,7 +83,8 @@ module Appwrite
                     "compression": @compression,
                     "encryption": @encryption,
                     "antivirus": @antivirus,
-                    "transformations": @transformations
+                    "transformations": @transformations,
+                    "totalSize": @total_size
                 }
             end
         end

@@ -2078,7 +2078,7 @@ module Appwrite
         # @param [String] collection_id Collection ID.
         # @param [String] key Attribute Key.
         #
-        # @return []
+        # @return [AttributeBoolean]
         def get_attribute(database_id:, collection_id:, key:)
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}'
                 .gsub('{databaseId}', database_id)
@@ -2108,6 +2108,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
+                response_type: Models::AttributeBoolean
             )
         end
 
@@ -2557,7 +2558,7 @@ module Appwrite
         # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [Document]
-        def upsert_document(database_id:, collection_id:, document_id:, data:, permissions: nil, transaction_id: nil)
+        def upsert_document(database_id:, collection_id:, document_id:, data: nil, permissions: nil, transaction_id: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -2573,10 +2574,6 @@ module Appwrite
 
             if document_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "documentId"')
-            end
-
-            if data.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "data"')
             end
 
             api_params = {

@@ -1966,7 +1966,7 @@ module Appwrite
         # @param [String] table_id Table ID.
         # @param [String] key Column Key.
         #
-        # @return []
+        # @return [ColumnBoolean]
         def get_column(database_id:, table_id:, key:)
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/{key}'
                 .gsub('{databaseId}', database_id)
@@ -1996,6 +1996,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
+                response_type: Models::ColumnBoolean
             )
         end
 

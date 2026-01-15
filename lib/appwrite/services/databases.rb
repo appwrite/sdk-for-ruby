@@ -2078,7 +2078,7 @@ module Appwrite
         # @param [String] collection_id Collection ID.
         # @param [String] key Attribute Key.
         #
-        # @return [AttributeBoolean]
+        # @return []
         def get_attribute(database_id:, collection_id:, key:)
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}'
                 .gsub('{databaseId}', database_id)

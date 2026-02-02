@@ -161,6 +161,7 @@ module Appwrite
                     Appwrite::Enums::DeploymentStatus::PROCESSING,
                     Appwrite::Enums::DeploymentStatus::BUILDING,
                     Appwrite::Enums::DeploymentStatus::READY,
+                    Appwrite::Enums::DeploymentStatus::CANCELED,
                     Appwrite::Enums::DeploymentStatus::FAILED,
                 ]
 

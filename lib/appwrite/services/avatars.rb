@@ -312,7 +312,7 @@ module Appwrite
         # @param [Integer] width Output image width. Pass 0 to use original width, or an integer between 1 to 2000. Defaults to 0 (original width).
         # @param [Integer] height Output image height. Pass 0 to use original height, or an integer between 1 to 2000. Defaults to 0 (original height).
         # @param [Integer] quality Screenshot quality. Pass an integer between 0 to 100. Defaults to keep existing image quality.
-        # @param [Output] output Output format type (jpeg, jpg, png, gif and webp).
+        # @param [ImageFormat] output Output format type (jpeg, jpg, png, gif and webp).
         #
         # @return []
         def get_screenshot(url:, headers: nil, viewport_width: nil, viewport_height: nil, scale: nil, theme: nil, user_agent: nil, fullpage: nil, locale: nil, timezone: nil, latitude: nil, longitude: nil, accuracy: nil, touch: nil, permissions: nil, sleep: nil, width: nil, height: nil, quality: nil, output: nil)

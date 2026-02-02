@@ -1,0 +1,26 @@
+module Appwrite
+    module Enums
+        module BrowserPermission
+            GEOLOCATION = 'geolocation'
+            CAMERA = 'camera'
+            MICROPHONE = 'microphone'
+            NOTIFICATIONS = 'notifications'
+            MIDI = 'midi'
+            PUSH = 'push'
+            CLIPBOARD_READ = 'clipboard-read'
+            CLIPBOARD_WRITE = 'clipboard-write'
+            PAYMENT_HANDLER = 'payment-handler'
+            USB = 'usb'
+            BLUETOOTH = 'bluetooth'
+            ACCELEROMETER = 'accelerometer'
+            GYROSCOPE = 'gyroscope'
+            MAGNETOMETER = 'magnetometer'
+            AMBIENT_LIGHT_SENSOR = 'ambient-light-sensor'
+            BACKGROUND_SYNC = 'background-sync'
+            PERSISTENT_STORAGE = 'persistent-storage'
+            SCREEN_WAKE_LOCK = 'screen-wake-lock'
+            WEB_SHARE = 'web-share'
+            XR_SPATIAL_TRACKING = 'xr-spatial-tracking'
+        end
+    end
+end

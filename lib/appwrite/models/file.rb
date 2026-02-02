@@ -14,6 +14,8 @@ module Appwrite
             attr_reader :size_original
             attr_reader :chunks_total
             attr_reader :chunks_uploaded
+            attr_reader :encryption
+            attr_reader :compression
 
             def initialize(
                 id:,
@@ -26,7 +28,9 @@ module Appwrite
                 mime_type:,
                 size_original:,
                 chunks_total:,
-                chunks_uploaded:
+                chunks_uploaded:,
+                encryption:,
+                compression:
             )
                 @id = id
                 @bucket_id = bucket_id
@@ -39,6 +43,8 @@ module Appwrite
                 @size_original = size_original
                 @chunks_total = chunks_total
                 @chunks_uploaded = chunks_uploaded
+                @encryption = encryption
+                @compression = compression
             end
 
             def self.from(map:)
@@ -53,7 +59,9 @@ module Appwrite
                     mime_type: map["mimeType"],
                     size_original: map["sizeOriginal"],
                     chunks_total: map["chunksTotal"],
-                    chunks_uploaded: map["chunksUploaded"]
+                    chunks_uploaded: map["chunksUploaded"],
+                    encryption: map["encryption"],
+                    compression: map["compression"]
                 )
             end
 
@@ -69,7 +77,9 @@ module Appwrite
                     "mimeType": @mime_type,
                     "sizeOriginal": @size_original,
                     "chunksTotal": @chunks_total,
-                    "chunksUploaded": @chunks_uploaded
+                    "chunksUploaded": @chunks_uploaded,
+                    "encryption": @encryption,
+                    "compression": @compression
                 }
             end
         end

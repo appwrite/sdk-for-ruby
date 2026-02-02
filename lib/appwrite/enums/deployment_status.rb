@@ -5,6 +5,7 @@ module Appwrite
             PROCESSING = 'processing'
             BUILDING = 'building'
             READY = 'ready'
+            CANCELED = 'canceled'
             FAILED = 'failed'
         end
     end

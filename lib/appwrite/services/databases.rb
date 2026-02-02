@@ -291,16 +291,12 @@ module Appwrite
         # @param [] enabled Is database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled.
         #
         # @return [Database]
-        def update(database_id:, name:, enabled: nil)
+        def update(database_id:, name: nil, enabled: nil)
             api_path = '/databases/{databaseId}'
                 .gsub('{databaseId}', database_id)
 
             if database_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
             api_params = {
@@ -499,7 +495,7 @@ module Appwrite
         # @param [] enabled Is collection enabled? When set to 'disabled', users cannot access the collection but Server SDKs with and API key can still read and write to the collection. No data is lost when this is toggled.
         #
         # @return [Collection]
-        def update_collection(database_id:, collection_id:, name:, permissions: nil, document_security: nil, enabled: nil)
+        def update_collection(database_id:, collection_id:, name: nil, permissions: nil, document_security: nil, enabled: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -510,10 +506,6 @@ module Appwrite
 
             if collection_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
-            end
-
-            if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
             api_params = {
@@ -2108,6 +2100,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
+                response_type: Models::AttributeBoolean
             )
         end
 
@@ -2557,7 +2550,7 @@ module Appwrite
         # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [Document]
-        def upsert_document(database_id:, collection_id:, document_id:, data:, permissions: nil, transaction_id: nil)
+        def upsert_document(database_id:, collection_id:, document_id:, data: nil, permissions: nil, transaction_id: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -2573,10 +2566,6 @@ module Appwrite
 
             if document_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "documentId"')
-            end
-
-            if data.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "data"')
             end
 
             api_params = {

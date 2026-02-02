@@ -279,16 +279,12 @@ module Appwrite
         # @param [] enabled Is database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled.
         #
         # @return [Database]
-        def update(database_id:, name:, enabled: nil)
+        def update(database_id:, name: nil, enabled: nil)
             api_path = '/tablesdb/{databaseId}'
                 .gsub('{databaseId}', database_id)
 
             if database_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
             api_params = {
@@ -472,7 +468,7 @@ module Appwrite
         # @param [] enabled Is table enabled? When set to 'disabled', users cannot access the table but Server SDKs with and API key can still read and write to the table. No data is lost when this is toggled.
         #
         # @return [Table]
-        def update_table(database_id:, table_id:, name:, permissions: nil, row_security: nil, enabled: nil)
+        def update_table(database_id:, table_id:, name: nil, permissions: nil, row_security: nil, enabled: nil)
             api_path = '/tablesdb/{databaseId}/tables/{tableId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
@@ -483,10 +479,6 @@ module Appwrite
 
             if table_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "tableId"')
-            end
-
-            if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
             api_params = {
@@ -1996,6 +1988,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
+                response_type: Models::ColumnBoolean
             )
         end
 

@@ -180,12 +180,14 @@ module Appwrite
         # from its creation and will be invalid if the user will logout in that time
         # frame.
         #
+        # @param [Integer] duration Time in seconds before JWT expires. Default duration is 900 seconds, and maximum is 3600 seconds.
         #
         # @return [Jwt]
-        def create_jwt()
+        def create_jwt(duration: nil)
             api_path = '/account/jwts'
 
             api_params = {
+                duration: duration,
             }
             
             api_headers = {

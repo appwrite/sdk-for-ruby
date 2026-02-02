@@ -55,7 +55,7 @@ module Appwrite
         # successful.
         #
         #
-        # @return [HealthStatus]
+        # @return [HealthStatusList]
         def get_cache()
             api_path = '/health/cache'
 
@@ -70,7 +70,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::HealthStatus
+                response_type: Models::HealthStatusList
             )
         end
 
@@ -101,7 +101,7 @@ module Appwrite
         # Check the Appwrite database servers are up and connection is successful.
         #
         #
-        # @return [HealthStatus]
+        # @return [HealthStatusList]
         def get_db()
             api_path = '/health/db'
 
@@ -116,14 +116,14 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::HealthStatus
+                response_type: Models::HealthStatusList
             )
         end
 
         # Check the Appwrite pub-sub servers are up and connection is successful.
         #
         #
-        # @return [HealthStatus]
+        # @return [HealthStatusList]
         def get_pub_sub()
             api_path = '/health/pubsub'
 
@@ -138,7 +138,32 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::HealthStatus
+                response_type: Models::HealthStatusList
+            )
+        end
+
+        # Get the number of audit logs that are waiting to be processed in the
+        # Appwrite internal queue server.
+        #
+        # @param [Integer] threshold Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.
+        #
+        # @return [HealthQueue]
+        def get_queue_audits(threshold: nil)
+            api_path = '/health/queue/audits'
+
+            api_params = {
+                threshold: threshold,
+            }
+            
+            api_headers = {
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::HealthQueue
             )
         end
 

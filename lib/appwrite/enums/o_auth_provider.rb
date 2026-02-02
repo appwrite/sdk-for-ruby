@@ -40,7 +40,6 @@ module Appwrite
             YANDEX = 'yandex'
             ZOHO = 'zoho'
             ZOOM = 'zoom'
-            MOCK = 'mock'
         end
     end
 end

@@ -1465,6 +1465,224 @@ module Appwrite
             )
         end
 
+        # Create a longtext column.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable).
+        # @param [String] key Column Key.
+        # @param [] required Is column required?
+        # @param [String] default Default value for column when not provided. Cannot be set when column is required.
+        # @param [] array Is column an array?
+        #
+        # @return [ColumnLongtext]
+        def create_longtext_column(database_id:, table_id:, key:, required:, default: nil, array: nil)
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/longtext'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            api_params = {
+                key: key,
+                required: required,
+                default: default,
+                array: array,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::ColumnLongtext
+            )
+        end
+
+        # Update a longtext column. Changing the `default` value will not update
+        # already existing rows.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable).
+        # @param [String] key Column Key.
+        # @param [] required Is column required?
+        # @param [String] default Default value for column when not provided. Cannot be set when column is required.
+        # @param [String] new_key New Column Key.
+        #
+        # @return [ColumnLongtext]
+        def update_longtext_column(database_id:, table_id:, key:, required:, default:, new_key: nil)
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/longtext/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+                .gsub('{key}', key)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            if default.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "default"')
+            end
+
+            api_params = {
+                required: required,
+                default: default,
+                newKey: new_key,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::ColumnLongtext
+            )
+        end
+
+        # Create a mediumtext column.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable).
+        # @param [String] key Column Key.
+        # @param [] required Is column required?
+        # @param [String] default Default value for column when not provided. Cannot be set when column is required.
+        # @param [] array Is column an array?
+        #
+        # @return [ColumnMediumtext]
+        def create_mediumtext_column(database_id:, table_id:, key:, required:, default: nil, array: nil)
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/mediumtext'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            api_params = {
+                key: key,
+                required: required,
+                default: default,
+                array: array,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::ColumnMediumtext
+            )
+        end
+
+        # Update a mediumtext column. Changing the `default` value will not update
+        # already existing rows.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable).
+        # @param [String] key Column Key.
+        # @param [] required Is column required?
+        # @param [String] default Default value for column when not provided. Cannot be set when column is required.
+        # @param [String] new_key New Column Key.
+        #
+        # @return [ColumnMediumtext]
+        def update_mediumtext_column(database_id:, table_id:, key:, required:, default:, new_key: nil)
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/mediumtext/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+                .gsub('{key}', key)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            if default.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "default"')
+            end
+
+            api_params = {
+                required: required,
+                default: default,
+                newKey: new_key,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::ColumnMediumtext
+            )
+        end
+
         # Create a geometric point column.
         #
         # @param [String] database_id Database ID.
@@ -1724,6 +1942,9 @@ module Appwrite
             )
         end
 
+        #
+        # @deprecated This API has been deprecated since 1.9.0. Please use `TablesDB.createTextColumn` instead.
+        #
         # Create a string column.
         # 
         #
@@ -1784,6 +2005,9 @@ module Appwrite
             )
         end
 
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateTextColumn` instead.
+        #
         # Update a string column. Changing the `default` value will not update
         # already existing rows.
         # 
@@ -1840,6 +2064,115 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::ColumnString
+            )
+        end
+
+        # Create a text column.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable).
+        # @param [String] key Column Key.
+        # @param [] required Is column required?
+        # @param [String] default Default value for column when not provided. Cannot be set when column is required.
+        # @param [] array Is column an array?
+        #
+        # @return [ColumnText]
+        def create_text_column(database_id:, table_id:, key:, required:, default: nil, array: nil)
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/text'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            api_params = {
+                key: key,
+                required: required,
+                default: default,
+                array: array,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::ColumnText
+            )
+        end
+
+        # Update a text column. Changing the `default` value will not update already
+        # existing rows.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable).
+        # @param [String] key Column Key.
+        # @param [] required Is column required?
+        # @param [String] default Default value for column when not provided. Cannot be set when column is required.
+        # @param [String] new_key New Column Key.
+        #
+        # @return [ColumnText]
+        def update_text_column(database_id:, table_id:, key:, required:, default:, new_key: nil)
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/text/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+                .gsub('{key}', key)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            if default.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "default"')
+            end
+
+            api_params = {
+                required: required,
+                default: default,
+                newKey: new_key,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::ColumnText
             )
         end
 
@@ -1949,6 +2282,123 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::ColumnUrl
+            )
+        end
+
+        # Create a varchar column.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable).
+        # @param [String] key Column Key.
+        # @param [Integer] size Column size for varchar columns, in number of characters. Maximum size is 16381.
+        # @param [] required Is column required?
+        # @param [String] default Default value for column when not provided. Cannot be set when column is required.
+        # @param [] array Is column an array?
+        #
+        # @return [ColumnVarchar]
+        def create_varchar_column(database_id:, table_id:, key:, size:, required:, default: nil, array: nil)
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/varchar'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if size.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "size"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            api_params = {
+                key: key,
+                size: size,
+                required: required,
+                default: default,
+                array: array,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::ColumnVarchar
+            )
+        end
+
+        # Update a varchar column. Changing the `default` value will not update
+        # already existing rows.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable).
+        # @param [String] key Column Key.
+        # @param [] required Is column required?
+        # @param [String] default Default value for column when not provided. Cannot be set when column is required.
+        # @param [Integer] size Maximum size of the varchar column.
+        # @param [String] new_key New Column Key.
+        #
+        # @return [ColumnVarchar]
+        def update_varchar_column(database_id:, table_id:, key:, required:, default:, size: nil, new_key: nil)
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/varchar/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+                .gsub('{key}', key)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            if default.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "default"')
+            end
+
+            api_params = {
+                required: required,
+                default: default,
+                size: size,
+                newKey: new_key,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::ColumnVarchar
             )
         end
 

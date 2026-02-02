@@ -1547,6 +1547,224 @@ module Appwrite
             )
         end
 
+        # Create a longtext attribute.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] key Attribute Key.
+        # @param [] required Is attribute required?
+        # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        # @param [] array Is attribute an array?
+        #
+        # @return [AttributeLongtext]
+        def create_longtext_attribute(database_id:, collection_id:, key:, required:, default: nil, array: nil)
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/longtext'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            api_params = {
+                key: key,
+                required: required,
+                default: default,
+                array: array,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::AttributeLongtext
+            )
+        end
+
+        # Update a longtext attribute. Changing the `default` value will not update
+        # already existing documents.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] key Attribute Key.
+        # @param [] required Is attribute required?
+        # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        # @param [String] new_key New Attribute Key.
+        #
+        # @return [AttributeLongtext]
+        def update_longtext_attribute(database_id:, collection_id:, key:, required:, default:, new_key: nil)
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/longtext/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+                .gsub('{key}', key)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            if default.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "default"')
+            end
+
+            api_params = {
+                required: required,
+                default: default,
+                newKey: new_key,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::AttributeLongtext
+            )
+        end
+
+        # Create a mediumtext attribute.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] key Attribute Key.
+        # @param [] required Is attribute required?
+        # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        # @param [] array Is attribute an array?
+        #
+        # @return [AttributeMediumtext]
+        def create_mediumtext_attribute(database_id:, collection_id:, key:, required:, default: nil, array: nil)
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/mediumtext'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            api_params = {
+                key: key,
+                required: required,
+                default: default,
+                array: array,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::AttributeMediumtext
+            )
+        end
+
+        # Update a mediumtext attribute. Changing the `default` value will not update
+        # already existing documents.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] key Attribute Key.
+        # @param [] required Is attribute required?
+        # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        # @param [String] new_key New Attribute Key.
+        #
+        # @return [AttributeMediumtext]
+        def update_mediumtext_attribute(database_id:, collection_id:, key:, required:, default:, new_key: nil)
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/mediumtext/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+                .gsub('{key}', key)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            if default.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "default"')
+            end
+
+            api_params = {
+                required: required,
+                default: default,
+                newKey: new_key,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::AttributeMediumtext
+            )
+        end
+
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createPointColumn` instead.
         #
@@ -1946,6 +2164,115 @@ module Appwrite
             )
         end
 
+        # Create a text attribute.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] key Attribute Key.
+        # @param [] required Is attribute required?
+        # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        # @param [] array Is attribute an array?
+        #
+        # @return [AttributeText]
+        def create_text_attribute(database_id:, collection_id:, key:, required:, default: nil, array: nil)
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/text'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            api_params = {
+                key: key,
+                required: required,
+                default: default,
+                array: array,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::AttributeText
+            )
+        end
+
+        # Update a text attribute. Changing the `default` value will not update
+        # already existing documents.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] key Attribute Key.
+        # @param [] required Is attribute required?
+        # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        # @param [String] new_key New Attribute Key.
+        #
+        # @return [AttributeText]
+        def update_text_attribute(database_id:, collection_id:, key:, required:, default:, new_key: nil)
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/text/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+                .gsub('{key}', key)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            if default.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "default"')
+            end
+
+            api_params = {
+                required: required,
+                default: default,
+                newKey: new_key,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::AttributeText
+            )
+        end
+
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createUrlColumn` instead.
         #
@@ -2058,6 +2385,123 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::AttributeUrl
+            )
+        end
+
+        # Create a varchar attribute.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] key Attribute Key.
+        # @param [Integer] size Attribute size for varchar attributes, in number of characters. Maximum size is 16381.
+        # @param [] required Is attribute required?
+        # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        # @param [] array Is attribute an array?
+        #
+        # @return [AttributeVarchar]
+        def create_varchar_attribute(database_id:, collection_id:, key:, size:, required:, default: nil, array: nil)
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/varchar'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if size.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "size"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            api_params = {
+                key: key,
+                size: size,
+                required: required,
+                default: default,
+                array: array,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::AttributeVarchar
+            )
+        end
+
+        # Update a varchar attribute. Changing the `default` value will not update
+        # already existing documents.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] key Attribute Key.
+        # @param [] required Is attribute required?
+        # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
+        # @param [Integer] size Maximum size of the varchar attribute.
+        # @param [String] new_key New Attribute Key.
+        #
+        # @return [AttributeVarchar]
+        def update_varchar_attribute(database_id:, collection_id:, key:, required:, default:, size: nil, new_key: nil)
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/varchar/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+                .gsub('{key}', key)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            if default.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "default"')
+            end
+
+            api_params = {
+                required: required,
+                default: default,
+                size: size,
+                newKey: new_key,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::AttributeVarchar
             )
         end
 

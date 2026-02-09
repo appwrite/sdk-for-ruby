@@ -13,6 +13,8 @@ module Appwrite
             attr_reader :document_security
             attr_reader :attributes
             attr_reader :indexes
+            attr_reader :bytes_max
+            attr_reader :bytes_used
 
             def initialize(
                 id:,
@@ -24,7 +26,9 @@ module Appwrite
                 enabled:,
                 document_security:,
                 attributes:,
-                indexes:
+                indexes:,
+                bytes_max:,
+                bytes_used:
             )
                 @id = id
                 @created_at = created_at
@@ -36,6 +40,8 @@ module Appwrite
                 @document_security = document_security
                 @attributes = attributes
                 @indexes = indexes
+                @bytes_max = bytes_max
+                @bytes_used = bytes_used
             end
 
             def self.from(map:)
@@ -49,7 +55,9 @@ module Appwrite
                     enabled: map["enabled"],
                     document_security: map["documentSecurity"],
                     attributes: map["attributes"],
-                    indexes: map["indexes"].map { |it| Index.from(map: it) }
+                    indexes: map["indexes"].map { |it| Index.from(map: it) },
+                    bytes_max: map["bytesMax"],
+                    bytes_used: map["bytesUsed"]
                 )
             end
 
@@ -64,7 +72,9 @@ module Appwrite
                     "enabled": @enabled,
                     "documentSecurity": @document_security,
                     "attributes": @attributes,
-                    "indexes": @indexes.map { |it| it.to_map }
+                    "indexes": @indexes.map { |it| it.to_map },
+                    "bytesMax": @bytes_max,
+                    "bytesUsed": @bytes_used
                 }
             end
         end

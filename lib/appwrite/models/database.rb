@@ -9,6 +9,8 @@ module Appwrite
             attr_reader :updated_at
             attr_reader :enabled
             attr_reader :type
+            attr_reader :policies
+            attr_reader :archives
 
             def initialize(
                 id:,
@@ -16,7 +18,9 @@ module Appwrite
                 created_at:,
                 updated_at:,
                 enabled:,
-                type:
+                type:,
+                policies:,
+                archives:
             )
                 @id = id
                 @name = name
@@ -24,6 +28,8 @@ module Appwrite
                 @updated_at = updated_at
                 @enabled = enabled
                 @type = validate_type(type)
+                @policies = policies
+                @archives = archives
             end
 
             def self.from(map:)
@@ -33,7 +39,9 @@ module Appwrite
                     created_at: map["$createdAt"],
                     updated_at: map["$updatedAt"],
                     enabled: map["enabled"],
-                    type: map["type"]
+                    type: map["type"],
+                    policies: map["policies"].map { |it| Index.from(map: it) },
+                    archives: map["archives"].map { |it| Collection.from(map: it) }
                 )
             end
 
@@ -44,7 +52,9 @@ module Appwrite
                     "$createdAt": @created_at,
                     "$updatedAt": @updated_at,
                     "enabled": @enabled,
-                    "type": @type
+                    "type": @type,
+                    "policies": @policies.map { |it| it.to_map },
+                    "archives": @archives.map { |it| it.to_map }
                 }
             end
 

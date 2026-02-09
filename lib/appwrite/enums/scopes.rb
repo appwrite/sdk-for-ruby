@@ -56,6 +56,14 @@ module Appwrite
             ASSISTANT_READ = 'assistant.read'
             TOKENS_READ = 'tokens.read'
             TOKENS_WRITE = 'tokens.write'
+            POLICIES_WRITE = 'policies.write'
+            POLICIES_READ = 'policies.read'
+            ARCHIVES_READ = 'archives.read'
+            ARCHIVES_WRITE = 'archives.write'
+            RESTORATIONS_READ = 'restorations.read'
+            RESTORATIONS_WRITE = 'restorations.write'
+            DOMAINS_READ = 'domains.read'
+            DOMAINS_WRITE = 'domains.write'
         end
     end
 end

@@ -1,7 +1,7 @@
+```ruby
 require 'appwrite'
 
 include Appwrite
-include Appwrite::Enums
 
 client = Client.new
     .set_endpoint('https://<REGION>.cloud.appwrite.io/v1') # Your API Endpoint
@@ -13,5 +13,6 @@ teams = Teams.new(client)
 result = teams.update_membership(
     team_id: '<TEAM_ID>',
     membership_id: '<MEMBERSHIP_ID>',
-    roles: [Roles::ADMIN]
+    roles: []
 )
+```

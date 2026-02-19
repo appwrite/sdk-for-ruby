@@ -8,9 +8,9 @@ client = Client.new
     .set_project('<YOUR_PROJECT_ID>') # Your project ID
     .set_key('<YOUR_API_KEY>') # Your secret API key
 
-health = Health.new(client)
+activities = Activities.new(client)
 
-result = health.get_queue_billing_team_aggregation(
-    threshold: null # optional
+result = activities.list_events(
+    queries: '' # optional
 )
 ```

@@ -1556,9 +1556,10 @@ module Appwrite
         # @param [] required Is attribute required?
         # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
         # @param [] array Is attribute an array?
+        # @param [] encrypt Toggle encryption for the attribute. Encryption enhances security by not storing any plain text values in the database. However, encrypted attributes cannot be queried.
         #
         # @return [AttributeLongtext]
-        def create_longtext_attribute(database_id:, collection_id:, key:, required:, default: nil, array: nil)
+        def create_longtext_attribute(database_id:, collection_id:, key:, required:, default: nil, array: nil, encrypt: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/longtext'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -1584,6 +1585,7 @@ module Appwrite
                 required: required,
                 default: default,
                 array: array,
+                encrypt: encrypt,
             }
             
             api_headers = {
@@ -1665,9 +1667,10 @@ module Appwrite
         # @param [] required Is attribute required?
         # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
         # @param [] array Is attribute an array?
+        # @param [] encrypt Toggle encryption for the attribute. Encryption enhances security by not storing any plain text values in the database. However, encrypted attributes cannot be queried.
         #
         # @return [AttributeMediumtext]
-        def create_mediumtext_attribute(database_id:, collection_id:, key:, required:, default: nil, array: nil)
+        def create_mediumtext_attribute(database_id:, collection_id:, key:, required:, default: nil, array: nil, encrypt: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/mediumtext'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -1693,6 +1696,7 @@ module Appwrite
                 required: required,
                 default: default,
                 array: array,
+                encrypt: encrypt,
             }
             
             api_headers = {
@@ -2173,9 +2177,10 @@ module Appwrite
         # @param [] required Is attribute required?
         # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
         # @param [] array Is attribute an array?
+        # @param [] encrypt Toggle encryption for the attribute. Encryption enhances security by not storing any plain text values in the database. However, encrypted attributes cannot be queried.
         #
         # @return [AttributeText]
-        def create_text_attribute(database_id:, collection_id:, key:, required:, default: nil, array: nil)
+        def create_text_attribute(database_id:, collection_id:, key:, required:, default: nil, array: nil, encrypt: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/text'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -2201,6 +2206,7 @@ module Appwrite
                 required: required,
                 default: default,
                 array: array,
+                encrypt: encrypt,
             }
             
             api_headers = {
@@ -2398,9 +2404,10 @@ module Appwrite
         # @param [] required Is attribute required?
         # @param [String] default Default value for attribute when not provided. Cannot be set when attribute is required.
         # @param [] array Is attribute an array?
+        # @param [] encrypt Toggle encryption for the attribute. Encryption enhances security by not storing any plain text values in the database. However, encrypted attributes cannot be queried.
         #
         # @return [AttributeVarchar]
-        def create_varchar_attribute(database_id:, collection_id:, key:, size:, required:, default: nil, array: nil)
+        def create_varchar_attribute(database_id:, collection_id:, key:, size:, required:, default: nil, array: nil, encrypt: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/varchar'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -2431,6 +2438,7 @@ module Appwrite
                 required: required,
                 default: default,
                 array: array,
+                encrypt: encrypt,
             }
             
             api_headers = {

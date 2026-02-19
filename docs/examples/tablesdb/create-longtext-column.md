@@ -16,6 +16,7 @@ result = tables_db.create_longtext_column(
     key: '',
     required: false,
     default: '<DEFAULT>', # optional
-    array: false # optional
+    array: false, # optional
+    encrypt: false # optional
 )
 ```

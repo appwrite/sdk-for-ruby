@@ -1474,9 +1474,10 @@ module Appwrite
         # @param [] required Is column required?
         # @param [String] default Default value for column when not provided. Cannot be set when column is required.
         # @param [] array Is column an array?
+        # @param [] encrypt Toggle encryption for the column. Encryption enhances security by not storing any plain text values in the database. However, encrypted columns cannot be queried.
         #
         # @return [ColumnLongtext]
-        def create_longtext_column(database_id:, table_id:, key:, required:, default: nil, array: nil)
+        def create_longtext_column(database_id:, table_id:, key:, required:, default: nil, array: nil, encrypt: nil)
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/longtext'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
@@ -1502,6 +1503,7 @@ module Appwrite
                 required: required,
                 default: default,
                 array: array,
+                encrypt: encrypt,
             }
             
             api_headers = {
@@ -1583,9 +1585,10 @@ module Appwrite
         # @param [] required Is column required?
         # @param [String] default Default value for column when not provided. Cannot be set when column is required.
         # @param [] array Is column an array?
+        # @param [] encrypt Toggle encryption for the column. Encryption enhances security by not storing any plain text values in the database. However, encrypted columns cannot be queried.
         #
         # @return [ColumnMediumtext]
-        def create_mediumtext_column(database_id:, table_id:, key:, required:, default: nil, array: nil)
+        def create_mediumtext_column(database_id:, table_id:, key:, required:, default: nil, array: nil, encrypt: nil)
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/mediumtext'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
@@ -1611,6 +1614,7 @@ module Appwrite
                 required: required,
                 default: default,
                 array: array,
+                encrypt: encrypt,
             }
             
             api_headers = {
@@ -2076,9 +2080,10 @@ module Appwrite
         # @param [] required Is column required?
         # @param [String] default Default value for column when not provided. Cannot be set when column is required.
         # @param [] array Is column an array?
+        # @param [] encrypt Toggle encryption for the column. Encryption enhances security by not storing any plain text values in the database. However, encrypted columns cannot be queried.
         #
         # @return [ColumnText]
-        def create_text_column(database_id:, table_id:, key:, required:, default: nil, array: nil)
+        def create_text_column(database_id:, table_id:, key:, required:, default: nil, array: nil, encrypt: nil)
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/text'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
@@ -2104,6 +2109,7 @@ module Appwrite
                 required: required,
                 default: default,
                 array: array,
+                encrypt: encrypt,
             }
             
             api_headers = {
@@ -2295,9 +2301,10 @@ module Appwrite
         # @param [] required Is column required?
         # @param [String] default Default value for column when not provided. Cannot be set when column is required.
         # @param [] array Is column an array?
+        # @param [] encrypt Toggle encryption for the column. Encryption enhances security by not storing any plain text values in the database. However, encrypted columns cannot be queried.
         #
         # @return [ColumnVarchar]
-        def create_varchar_column(database_id:, table_id:, key:, size:, required:, default: nil, array: nil)
+        def create_varchar_column(database_id:, table_id:, key:, size:, required:, default: nil, array: nil, encrypt: nil)
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/varchar'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
@@ -2328,6 +2335,7 @@ module Appwrite
                 required: required,
                 default: default,
                 array: array,
+                encrypt: encrypt,
             }
             
             api_headers = {

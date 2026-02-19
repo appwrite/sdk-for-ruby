@@ -12,6 +12,7 @@ module Appwrite
             attr_reader :created_at
             attr_reader :updated_at
             attr_reader :default
+            attr_reader :encrypt
 
             def initialize(
                 key:,
@@ -22,7 +23,8 @@ module Appwrite
                 array: ,
                 created_at:,
                 updated_at:,
-                default: 
+                default: ,
+                encrypt: 
             )
                 @key = key
                 @type = type
@@ -33,6 +35,7 @@ module Appwrite
                 @created_at = created_at
                 @updated_at = updated_at
                 @default = default
+                @encrypt = encrypt
             end
 
             def self.from(map:)
@@ -45,7 +48,8 @@ module Appwrite
                     array: map["array"],
                     created_at: map["$createdAt"],
                     updated_at: map["$updatedAt"],
-                    default: map["default"]
+                    default: map["default"],
+                    encrypt: map["encrypt"]
                 )
             end
 
@@ -59,7 +63,8 @@ module Appwrite
                     "array": @array,
                     "$createdAt": @created_at,
                     "$updatedAt": @updated_at,
-                    "default": @default
+                    "default": @default,
+                    "encrypt": @encrypt
                 }
             end
 

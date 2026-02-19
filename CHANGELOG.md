@@ -7,6 +7,7 @@
 * Cleanup of documentation examples: several outdated docs under docs/examples/health, docs/examples/tablesdb, and docs/examples/databases have been deleted.
 * Documentation improvements: updated several create_* attribute example blocks to include encrypt: false where applicable (e.g., longtext/mediumtext/text/varchar attribute examples and related columns).
 * Note: This release aligns the gemspec/versioning for a patch release (bump to 21.0.1 in a real patch) to reflect these internal maintenance changes.
+* Add support for the new `Backups` service
 
 ## 21.0.0
 

@@ -8,6 +8,24 @@
 * Documentation improvements: updated several create_* attribute example blocks to include encrypt: false where applicable (e.g., longtext/mediumtext/text/varchar attribute examples and related columns).
 * Note: This release aligns the gemspec/versioning for a patch release (bump to 21.0.1 in a real patch) to reflect these internal maintenance changes.
 
+## 21.0.0
+
+* Add array-based enum parameters (e.g., `permissions: Array<BrowserPermission>`).
+* Breaking change: `Output` enum has been removed; use `ImageFormat` instead.
+* Add `getQueueAudits` support to `Health` service.
+* Add longtext/mediumtext/text/varchar attribute and column helpers to `Databases` and `TablesDB` services.
+
+## 20.1.0
+
+* Added ability to create columns and indexes synchronously while creating a table
+
+## 20.0.0
+
+* Rename `VCSDeploymentType` enum to `VCSReferenceType`
+* Change `create_template_deployment` method signature: replace `version` parameter with `type` (TemplateReferenceType) and `reference` parameters
+* Add `get_screenshot` method to `Avatars` service
+* Add `Theme`, `Timezone` and `Output` enums
+
 ## 19.3.0
 
 * Add `total` parameter to list queries allowing skipping counting rows in a table for improved performance

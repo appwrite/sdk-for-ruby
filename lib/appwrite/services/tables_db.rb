@@ -2722,9 +2722,10 @@ module Appwrite
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
         # @param [String] transaction_id Transaction ID to read uncommitted changes within the transaction.
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
+        # @param [Integer] ttl TTL (seconds) for cached responses when caching is enabled for select queries. Must be between 0 and 86400 (24 hours).
         #
         # @return [RowList]
-        def list_rows(database_id:, table_id:, queries: nil, transaction_id: nil, total: nil)
+        def list_rows(database_id:, table_id:, queries: nil, transaction_id: nil, total: nil, ttl: nil)
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
@@ -2741,6 +2742,7 @@ module Appwrite
                 queries: queries,
                 transactionId: transaction_id,
                 total: total,
+                ttl: ttl,
             }
             
             api_headers = {

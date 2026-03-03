@@ -13,9 +13,9 @@ sites = Sites.new(client)
 result = sites.create_deployment(
     site_id: '<SITE_ID>',
     code: InputFile.from_path('dir/file.png'),
-    activate: false,
     install_command: '<INSTALL_COMMAND>', # optional
     build_command: '<BUILD_COMMAND>', # optional
-    output_directory: '<OUTPUT_DIRECTORY>' # optional
+    output_directory: '<OUTPUT_DIRECTORY>', # optional
+    activate: false # optional
 )
 ```

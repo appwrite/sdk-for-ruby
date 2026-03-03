@@ -167,54 +167,6 @@ module Appwrite
             )
         end
 
-        # Get billing project aggregation queue.
-        #
-        # @param [Integer] threshold Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.
-        #
-        # @return [HealthQueue]
-        def get_queue_billing_project_aggregation(threshold: nil)
-            api_path = '/health/queue/billing-project-aggregation'
-
-            api_params = {
-                threshold: threshold,
-            }
-            
-            api_headers = {
-            }
-
-            @client.call(
-                method: 'GET',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                response_type: Models::HealthQueue
-            )
-        end
-
-        # Get billing team aggregation queue.
-        #
-        # @param [Integer] threshold Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.
-        #
-        # @return [HealthQueue]
-        def get_queue_billing_team_aggregation(threshold: nil)
-            api_path = '/health/queue/billing-team-aggregation'
-
-            api_params = {
-                threshold: threshold,
-            }
-            
-            api_headers = {
-            }
-
-            @client.call(
-                method: 'GET',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                response_type: Models::HealthQueue
-            )
-        end
-
         # Get the number of builds that are waiting to be processed in the Appwrite
         # internal queue server.
         #
@@ -223,30 +175,6 @@ module Appwrite
         # @return [HealthQueue]
         def get_queue_builds(threshold: nil)
             api_path = '/health/queue/builds'
-
-            api_params = {
-                threshold: threshold,
-            }
-            
-            api_headers = {
-            }
-
-            @client.call(
-                method: 'GET',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                response_type: Models::HealthQueue
-            )
-        end
-
-        # Get the priority builds queue size.
-        #
-        # @param [Integer] threshold Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 500.
-        #
-        # @return [HealthQueue]
-        def get_queue_priority_builds(threshold: nil)
-            api_path = '/health/queue/builds-priority'
 
             api_params = {
                 threshold: threshold,
@@ -498,30 +426,6 @@ module Appwrite
             )
         end
 
-        # Get region manager queue.
-        #
-        # @param [Integer] threshold Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 100.
-        #
-        # @return [HealthQueue]
-        def get_queue_region_manager(threshold: nil)
-            api_path = '/health/queue/region-manager'
-
-            api_params = {
-                threshold: threshold,
-            }
-            
-            api_headers = {
-            }
-
-            @client.call(
-                method: 'GET',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                response_type: Models::HealthQueue
-            )
-        end
-
         # Get the number of metrics that are waiting to be processed in the Appwrite
         # stats resources queue.
         #
@@ -555,30 +459,6 @@ module Appwrite
         # @return [HealthQueue]
         def get_queue_usage(threshold: nil)
             api_path = '/health/queue/stats-usage'
-
-            api_params = {
-                threshold: threshold,
-            }
-            
-            api_headers = {
-            }
-
-            @client.call(
-                method: 'GET',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                response_type: Models::HealthQueue
-            )
-        end
-
-        # Get threats queue.
-        #
-        # @param [Integer] threshold Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 100.
-        #
-        # @return [HealthQueue]
-        def get_queue_threats(threshold: nil)
-            api_path = '/health/queue/threats'
 
             api_params = {
                 threshold: threshold,

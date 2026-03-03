@@ -614,7 +614,7 @@ module Appwrite
         # 
         #
         # @param [String] database_id Database ID.
-        # @param [String] collection_id Collection ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
+        # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
         # @param [String] key Attribute Key.
         # @param [] required Is attribute required?
         # @param [] default Default value for attribute when not provided. Cannot be set when attribute is required.
@@ -2044,6 +2044,56 @@ module Appwrite
         end
 
         #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateRelationshipColumn` instead.
+        #
+        # Update relationship attribute. [Learn more about relationship
+        # attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID.
+        # @param [String] key Attribute Key.
+        # @param [RelationMutate] on_delete Constraints option
+        # @param [String] new_key New Attribute Key.
+        #
+        # @return [AttributeRelationship]
+        def update_relationship_attribute(database_id:, collection_id:, key:, on_delete: nil, new_key: nil)
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/relationship/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+                .gsub('{key}', key)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            api_params = {
+                onDelete: on_delete,
+                newKey: new_key,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::AttributeRelationship
+            )
+        end
+
+        #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createStringColumn` instead.
         #
         # Create a string attribute.
@@ -2600,56 +2650,6 @@ module Appwrite
         end
 
         #
-        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateRelationshipColumn` instead.
-        #
-        # Update relationship attribute. [Learn more about relationship
-        # attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
-        # 
-        #
-        # @param [String] database_id Database ID.
-        # @param [String] collection_id Collection ID.
-        # @param [String] key Attribute Key.
-        # @param [RelationMutate] on_delete Constraints option
-        # @param [String] new_key New Attribute Key.
-        #
-        # @return [AttributeRelationship]
-        def update_relationship_attribute(database_id:, collection_id:, key:, on_delete: nil, new_key: nil)
-            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}/relationship'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{key}', key)
-
-            if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
-            end
-
-            if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
-            end
-
-            api_params = {
-                onDelete: on_delete,
-                newKey: new_key,
-            }
-            
-            api_headers = {
-                "content-type": 'application/json',
-            }
-
-            @client.call(
-                method: 'PATCH',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                response_type: Models::AttributeRelationship
-            )
-        end
-
-        #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.listRows` instead.
         #
         # Get a list of all the user's documents in a given collection. You can use
@@ -2660,9 +2660,10 @@ module Appwrite
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
         # @param [String] transaction_id Transaction ID to read uncommitted changes within the transaction.
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
+        # @param [Integer] ttl TTL (seconds) for cached responses when caching is enabled for select queries. Must be between 0 and 86400 (24 hours).
         #
         # @return [DocumentList]
-        def list_documents(database_id:, collection_id:, queries: nil, transaction_id: nil, total: nil)
+        def list_documents(database_id:, collection_id:, queries: nil, transaction_id: nil, total: nil, ttl: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -2679,6 +2680,7 @@ module Appwrite
                 queries: queries,
                 transactionId: transaction_id,
                 total: total,
+                ttl: ttl,
             }
             
             api_headers = {

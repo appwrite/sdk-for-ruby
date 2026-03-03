@@ -226,7 +226,7 @@ module Appwrite
         # 
         #
         # @param [String] team_id Team ID.
-        # @param [Array] roles Array of strings. Use this param to set the user roles in the team. A role can be any string. Learn more about [roles and permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long.
+        # @param [Array] roles Array of strings. Use this param to set the user roles in the team. A role can be any string. Learn more about [roles and permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 81 characters long.
         # @param [String] email Email of the new team member.
         # @param [String] user_id ID of the user to be added to a team.
         # @param [String] phone Phone number. Format this number with a leading '+' and a country code, e.g., +16175551212.
@@ -311,7 +311,7 @@ module Appwrite
         #
         # @param [String] team_id Team ID.
         # @param [String] membership_id Membership ID.
-        # @param [Array] roles An array of strings. Use this param to set the user's roles in the team. A role can be any string. Learn more about [roles and permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long.
+        # @param [Array] roles An array of strings. Use this param to set the user's roles in the team. A role can be any string. Learn more about [roles and permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 81 characters long.
         #
         # @return [Membership]
         def update_membership(team_id:, membership_id:, roles:)

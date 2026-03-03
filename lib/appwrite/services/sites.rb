@@ -360,13 +360,13 @@ module Appwrite
         #
         # @param [String] site_id Site ID.
         # @param [file] code Gzip file with your code package. When used with the Appwrite CLI, pass the path to your code directory, and the CLI will automatically package your code. Use a path that is within the current directory.
-        # @param [] activate Automatically activate the deployment when it is finished building.
         # @param [String] install_command Install Commands.
         # @param [String] build_command Build Commands.
         # @param [String] output_directory Output Directory.
+        # @param [] activate Automatically activate the deployment when it is finished building.
         #
         # @return [Deployment]
-        def create_deployment(site_id:, code:, activate:, install_command: nil, build_command: nil, output_directory: nil, on_progress: nil)
+        def create_deployment(site_id:, code:, install_command: nil, build_command: nil, output_directory: nil, activate: nil, on_progress: nil)
             api_path = '/sites/{siteId}/deployments'
                 .gsub('{siteId}', site_id)
 
@@ -376,10 +376,6 @@ module Appwrite
 
             if code.nil?
               raise Appwrite::Exception.new('Missing required parameter: "code"')
-            end
-
-            if activate.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "activate"')
             end
 
             api_params = {

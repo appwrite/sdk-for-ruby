@@ -1802,7 +1802,7 @@ module Appwrite
         # Get a list of all subscribers from the current Appwrite project.
         #
         # @param [String] topic_id Topic ID. The topic ID subscribed to.
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, provider, type, enabled
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: targetId, topicId, userId, providerType
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #

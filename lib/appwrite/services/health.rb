@@ -98,6 +98,34 @@ module Appwrite
             )
         end
 
+        # Get console pausing health status. Monitors projects approaching the pause
+        # threshold to detect potential issues with console access tracking.
+        # 
+        #
+        # @param [Integer] threshold Percentage threshold of projects approaching pause. When hit (equal or higher), endpoint returns server error. Default value is 10.
+        # @param [Integer] inactivity_days Number of days of inactivity before a project is paused. Should match the plan's projectInactivityDays setting. Default value is 7.
+        #
+        # @return [HealthStatus]
+        def get_console_pausing(threshold: nil, inactivity_days: nil)
+            api_path = '/health/console-pausing'
+
+            api_params = {
+                threshold: threshold,
+                inactivityDays: inactivity_days,
+            }
+            
+            api_headers = {
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::HealthStatus
+            )
+        end
+
         # Check the Appwrite database servers are up and connection is successful.
         #
         #

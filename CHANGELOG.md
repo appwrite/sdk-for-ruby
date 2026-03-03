@@ -1,5 +1,16 @@
 # Change Log
 
+## 21.1.0
+
+* Added get_console_pausing health endpoint to monitor console pausing.
+* Added ttl parameter for cached responses in list_documents and list_rows.
+* Made activate parameter optional in Sites.create_deployment.
+* Updated collection_id doc to reference collection instead of table.
+* Added update_relationship_attribute API to update relationship attributes.
+* Updated team roles length limit docstrings from 32 to 81 chars.
+* Updated subscriber list docs to reflect new query filters.
+* Added Ruby example for health get_console_pausing.
+
 ## 21.0.1
 
 * Remove obsolete GitHub issue templates (bug.yaml, documentation.yaml, feature.yaml) to simplify repository maintenance.

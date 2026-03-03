@@ -15,6 +15,7 @@ result = databases.list_documents(
     collection_id: '<COLLECTION_ID>',
     queries: [], # optional
     transaction_id: '<TRANSACTION_ID>', # optional
-    total: false # optional
+    total: false, # optional
+    ttl: 0 # optional
 )
 ```

@@ -10,7 +10,7 @@ module Appwrite
         # Get a list of all the project's users. You can use the query params to
         # filter your results.
         #
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, email, phone, status, passwordUpdate, registration, emailVerification, phoneVerification, labels
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, email, phone, status, passwordUpdate, registration, emailVerification, phoneVerification, labels, impersonator
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
@@ -583,6 +583,46 @@ module Appwrite
 
             api_params = {
                 email: email,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::User
+            )
+        end
+
+        # Enable or disable whether a user can impersonate other users. When
+        # impersonation headers are used, the request runs as the target user for API
+        # behavior, while internal audit logs still attribute the action to the
+        # original impersonator and store the impersonated target details only in
+        # internal audit payload data.
+        # 
+        #
+        # @param [String] user_id User ID.
+        # @param [] impersonator Whether the user can impersonate other users. When true, the user can browse project users to choose a target and can pass impersonation headers to act as that user. Internal audit logs still attribute impersonated actions to the original impersonator and store the target user details only in internal audit payload data.
+        #
+        # @return [User]
+        def update_impersonator(user_id:, impersonator:)
+            api_path = '/users/{userId}/impersonator'
+                .gsub('{userId}', user_id)
+
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            if impersonator.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "impersonator"')
+            end
+
+            api_params = {
+                impersonator: impersonator,
             }
             
             api_headers = {

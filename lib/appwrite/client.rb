@@ -16,7 +16,7 @@ module Appwrite
                 'x-sdk-platform'=> 'server',
                 'x-sdk-language'=> 'ruby',
                 'x-sdk-version'=> '21.1.0',
-                'X-Appwrite-Response-Format' => '1.8.0'
+                'X-Appwrite-Response-Format' => '1.9.0'
             }
             @endpoint = 'https://cloud.appwrite.io/v1'
         end
@@ -93,6 +93,45 @@ module Appwrite
         # @return [self]
         def set_forwarded_user_agent(value)
             add_header('x-forwarded-user-agent', value)
+
+            self
+        end
+
+        # Set ImpersonateUserId
+        #
+        # Impersonate a user by ID on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
+        #
+        # @param [String] value The value to set for the ImpersonateUserId header
+        #
+        # @return [self]
+        def set_impersonate_user_id(value)
+            add_header('x-appwrite-impersonate-user-id', value)
+
+            self
+        end
+
+        # Set ImpersonateUserEmail
+        #
+        # Impersonate a user by email on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
+        #
+        # @param [String] value The value to set for the ImpersonateUserEmail header
+        #
+        # @return [self]
+        def set_impersonate_user_email(value)
+            add_header('x-appwrite-impersonate-user-email', value)
+
+            self
+        end
+
+        # Set ImpersonateUserPhone
+        #
+        # Impersonate a user by phone on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
+        #
+        # @param [String] value The value to set for the ImpersonateUserPhone header
+        #
+        # @return [self]
+        def set_impersonate_user_phone(value)
+            add_header('x-appwrite-impersonate-user-phone', value)
 
             self
         end

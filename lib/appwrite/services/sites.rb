@@ -47,6 +47,7 @@ module Appwrite
         # @param [Integer] timeout Maximum request time in seconds.
         # @param [String] install_command Install Command.
         # @param [String] build_command Build Command.
+        # @param [String] start_command Custom start command. Leave empty to use default.
         # @param [String] output_directory Output Directory for site.
         # @param [Adapter] adapter Framework adapter defining rendering strategy. Allowed values are: static, ssr
         # @param [String] installation_id Appwrite Installation ID for VCS (Version Control System) deployment.
@@ -55,10 +56,12 @@ module Appwrite
         # @param [String] provider_branch Production branch for the repo linked to the site.
         # @param [] provider_silent_mode Is the VCS (Version Control System) connection in silent mode for the repo linked to the site? In silent mode, comments will not be made on commits and pull requests.
         # @param [String] provider_root_directory Path to site code in the linked repo.
-        # @param [String] specification Framework specification for the site and builds.
+        # @param [String] build_specification Build specification for the site deployments.
+        # @param [String] runtime_specification Runtime specification for the SSR executions.
+        # @param [Integer] deployment_retention Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept.
         #
         # @return [Site]
-        def create(site_id:, name:, framework:, build_runtime:, enabled: nil, logging: nil, timeout: nil, install_command: nil, build_command: nil, output_directory: nil, adapter: nil, installation_id: nil, fallback_file: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil, specification: nil)
+        def create(site_id:, name:, framework:, build_runtime:, enabled: nil, logging: nil, timeout: nil, install_command: nil, build_command: nil, start_command: nil, output_directory: nil, adapter: nil, installation_id: nil, fallback_file: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil, build_specification: nil, runtime_specification: nil, deployment_retention: nil)
             api_path = '/sites'
 
             if site_id.nil?
@@ -86,6 +89,7 @@ module Appwrite
                 timeout: timeout,
                 installCommand: install_command,
                 buildCommand: build_command,
+                startCommand: start_command,
                 outputDirectory: output_directory,
                 buildRuntime: build_runtime,
                 adapter: adapter,
@@ -95,7 +99,9 @@ module Appwrite
                 providerBranch: provider_branch,
                 providerSilentMode: provider_silent_mode,
                 providerRootDirectory: provider_root_directory,
-                specification: specification,
+                buildSpecification: build_specification,
+                runtimeSpecification: runtime_specification,
+                deploymentRetention: deployment_retention,
             }
             
             api_headers = {
@@ -194,6 +200,7 @@ module Appwrite
         # @param [Integer] timeout Maximum request time in seconds.
         # @param [String] install_command Install Command.
         # @param [String] build_command Build Command.
+        # @param [String] start_command Custom start command. Leave empty to use default.
         # @param [String] output_directory Output Directory for site.
         # @param [BuildRuntime] build_runtime Runtime to use during build step.
         # @param [Adapter] adapter Framework adapter defining rendering strategy. Allowed values are: static, ssr
@@ -203,10 +210,12 @@ module Appwrite
         # @param [String] provider_branch Production branch for the repo linked to the site.
         # @param [] provider_silent_mode Is the VCS (Version Control System) connection in silent mode for the repo linked to the site? In silent mode, comments will not be made on commits and pull requests.
         # @param [String] provider_root_directory Path to site code in the linked repo.
-        # @param [String] specification Framework specification for the site and builds.
+        # @param [String] build_specification Build specification for the site deployments.
+        # @param [String] runtime_specification Runtime specification for the SSR executions.
+        # @param [Integer] deployment_retention Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept.
         #
         # @return [Site]
-        def update(site_id:, name:, framework:, enabled: nil, logging: nil, timeout: nil, install_command: nil, build_command: nil, output_directory: nil, build_runtime: nil, adapter: nil, fallback_file: nil, installation_id: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil, specification: nil)
+        def update(site_id:, name:, framework:, enabled: nil, logging: nil, timeout: nil, install_command: nil, build_command: nil, start_command: nil, output_directory: nil, build_runtime: nil, adapter: nil, fallback_file: nil, installation_id: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil, build_specification: nil, runtime_specification: nil, deployment_retention: nil)
             api_path = '/sites/{siteId}'
                 .gsub('{siteId}', site_id)
 
@@ -230,6 +239,7 @@ module Appwrite
                 timeout: timeout,
                 installCommand: install_command,
                 buildCommand: build_command,
+                startCommand: start_command,
                 outputDirectory: output_directory,
                 buildRuntime: build_runtime,
                 adapter: adapter,
@@ -239,7 +249,9 @@ module Appwrite
                 providerBranch: provider_branch,
                 providerSilentMode: provider_silent_mode,
                 providerRootDirectory: provider_root_directory,
-                specification: specification,
+                buildSpecification: build_specification,
+                runtimeSpecification: runtime_specification,
+                deploymentRetention: deployment_retention,
             }
             
             api_headers = {

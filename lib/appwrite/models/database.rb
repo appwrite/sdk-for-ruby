@@ -64,6 +64,8 @@ module Appwrite
                 valid_type = [
                     Appwrite::Enums::DatabaseType::LEGACY,
                     Appwrite::Enums::DatabaseType::TABLESDB,
+                    Appwrite::Enums::DatabaseType::DOCUMENTSDB,
+                    Appwrite::Enums::DatabaseType::VECTORSDB,
                 ]
 
                 unless valid_type.include?(type)

@@ -15,7 +15,7 @@ result = databases.create_index(
     database_id: '<DATABASE_ID>',
     collection_id: '<COLLECTION_ID>',
     key: '',
-    type: IndexType::KEY,
+    type: DatabasesIndexType::KEY,
     attributes: [],
     orders: [OrderBy::ASC], # optional
     lengths: [] # optional

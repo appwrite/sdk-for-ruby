@@ -1,6 +1,6 @@
 module Appwrite
     module Enums
-        module IndexType
+        module DocumentsDBIndexType
             KEY = 'key'
             FULLTEXT = 'fulltext'
             UNIQUE = 'unique'

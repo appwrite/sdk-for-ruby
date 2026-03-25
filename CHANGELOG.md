@@ -1,8 +1,8 @@
 # Change Log
 
-## 21.1.0
+## 22.0.0
 
-* Added `DocumentsDB` API and examples.
+* [BREAKING] Changed `$sequence` type from `int` to `string` for rows and documents
 * Updated README badge to API version 1.9.0.
 
 ## 21.0.1

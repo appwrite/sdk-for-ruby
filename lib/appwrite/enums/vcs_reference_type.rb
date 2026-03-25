@@ -3,6 +3,7 @@ module Appwrite
         module VCSReferenceType
             BRANCH = 'branch'
             COMMIT = 'commit'
+            TAG = 'tag'
         end
     end
 end

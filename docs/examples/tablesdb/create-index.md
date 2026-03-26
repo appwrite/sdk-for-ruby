@@ -15,7 +15,7 @@ result = tables_db.create_index(
     database_id: '<DATABASE_ID>',
     table_id: '<TABLE_ID>',
     key: '',
-    type: IndexType::KEY,
+    type: TablesDBIndexType::KEY,
     columns: [],
     orders: [OrderBy::ASC], # optional
     lengths: [] # optional

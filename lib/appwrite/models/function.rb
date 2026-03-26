@@ -12,6 +12,7 @@ module Appwrite
             attr_reader :live
             attr_reader :logging
             attr_reader :runtime
+            attr_reader :deployment_retention
             attr_reader :deployment_id
             attr_reader :deployment_created_at
             attr_reader :latest_deployment_id
@@ -30,7 +31,8 @@ module Appwrite
             attr_reader :provider_branch
             attr_reader :provider_root_directory
             attr_reader :provider_silent_mode
-            attr_reader :specification
+            attr_reader :build_specification
+            attr_reader :runtime_specification
 
             def initialize(
                 id:,
@@ -42,6 +44,7 @@ module Appwrite
                 live:,
                 logging:,
                 runtime:,
+                deployment_retention:,
                 deployment_id:,
                 deployment_created_at:,
                 latest_deployment_id:,
@@ -60,7 +63,8 @@ module Appwrite
                 provider_branch:,
                 provider_root_directory:,
                 provider_silent_mode:,
-                specification:
+                build_specification:,
+                runtime_specification:
             )
                 @id = id
                 @created_at = created_at
@@ -71,6 +75,7 @@ module Appwrite
                 @live = live
                 @logging = logging
                 @runtime = runtime
+                @deployment_retention = deployment_retention
                 @deployment_id = deployment_id
                 @deployment_created_at = deployment_created_at
                 @latest_deployment_id = latest_deployment_id
@@ -89,7 +94,8 @@ module Appwrite
                 @provider_branch = provider_branch
                 @provider_root_directory = provider_root_directory
                 @provider_silent_mode = provider_silent_mode
-                @specification = specification
+                @build_specification = build_specification
+                @runtime_specification = runtime_specification
             end
 
             def self.from(map:)
@@ -103,6 +109,7 @@ module Appwrite
                     live: map["live"],
                     logging: map["logging"],
                     runtime: map["runtime"],
+                    deployment_retention: map["deploymentRetention"],
                     deployment_id: map["deploymentId"],
                     deployment_created_at: map["deploymentCreatedAt"],
                     latest_deployment_id: map["latestDeploymentId"],
@@ -121,7 +128,8 @@ module Appwrite
                     provider_branch: map["providerBranch"],
                     provider_root_directory: map["providerRootDirectory"],
                     provider_silent_mode: map["providerSilentMode"],
-                    specification: map["specification"]
+                    build_specification: map["buildSpecification"],
+                    runtime_specification: map["runtimeSpecification"]
                 )
             end
 
@@ -136,6 +144,7 @@ module Appwrite
                     "live": @live,
                     "logging": @logging,
                     "runtime": @runtime,
+                    "deploymentRetention": @deployment_retention,
                     "deploymentId": @deployment_id,
                     "deploymentCreatedAt": @deployment_created_at,
                     "latestDeploymentId": @latest_deployment_id,
@@ -154,7 +163,8 @@ module Appwrite
                     "providerBranch": @provider_branch,
                     "providerRootDirectory": @provider_root_directory,
                     "providerSilentMode": @provider_silent_mode,
-                    "specification": @specification
+                    "buildSpecification": @build_specification,
+                    "runtimeSpecification": @runtime_specification
                 }
             end
         end

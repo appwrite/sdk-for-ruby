@@ -58,10 +58,12 @@ module Appwrite
         # @param [String] provider_branch Production branch for the repo linked to the function.
         # @param [] provider_silent_mode Is the VCS (Version Control System) connection in silent mode for the repo linked to the function? In silent mode, comments will not be made on commits and pull requests.
         # @param [String] provider_root_directory Path to function code in the linked repo.
-        # @param [String] specification Runtime specification for the function and builds.
+        # @param [String] build_specification Build specification for the function deployments.
+        # @param [String] runtime_specification Runtime specification for the function executions.
+        # @param [Integer] deployment_retention Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept.
         #
         # @return [Function]
-        def create(function_id:, name:, runtime:, execute: nil, events: nil, schedule: nil, timeout: nil, enabled: nil, logging: nil, entrypoint: nil, commands: nil, scopes: nil, installation_id: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil, specification: nil)
+        def create(function_id:, name:, runtime:, execute: nil, events: nil, schedule: nil, timeout: nil, enabled: nil, logging: nil, entrypoint: nil, commands: nil, scopes: nil, installation_id: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil, build_specification: nil, runtime_specification: nil, deployment_retention: nil)
             api_path = '/functions'
 
             if function_id.nil?
@@ -94,7 +96,9 @@ module Appwrite
                 providerBranch: provider_branch,
                 providerSilentMode: provider_silent_mode,
                 providerRootDirectory: provider_root_directory,
-                specification: specification,
+                buildSpecification: build_specification,
+                runtimeSpecification: runtime_specification,
+                deploymentRetention: deployment_retention,
             }
             
             api_headers = {
@@ -201,10 +205,12 @@ module Appwrite
         # @param [String] provider_branch Production branch for the repo linked to the function
         # @param [] provider_silent_mode Is the VCS (Version Control System) connection in silent mode for the repo linked to the function? In silent mode, comments will not be made on commits and pull requests.
         # @param [String] provider_root_directory Path to function code in the linked repo.
-        # @param [String] specification Runtime specification for the function and builds.
+        # @param [String] build_specification Build specification for the function deployments.
+        # @param [String] runtime_specification Runtime specification for the function executions.
+        # @param [Integer] deployment_retention Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept.
         #
         # @return [Function]
-        def update(function_id:, name:, runtime: nil, execute: nil, events: nil, schedule: nil, timeout: nil, enabled: nil, logging: nil, entrypoint: nil, commands: nil, scopes: nil, installation_id: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil, specification: nil)
+        def update(function_id:, name:, runtime: nil, execute: nil, events: nil, schedule: nil, timeout: nil, enabled: nil, logging: nil, entrypoint: nil, commands: nil, scopes: nil, installation_id: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil, build_specification: nil, runtime_specification: nil, deployment_retention: nil)
             api_path = '/functions/{functionId}'
                 .gsub('{functionId}', function_id)
 
@@ -233,7 +239,9 @@ module Appwrite
                 providerBranch: provider_branch,
                 providerSilentMode: provider_silent_mode,
                 providerRootDirectory: provider_root_directory,
-                specification: specification,
+                buildSpecification: build_specification,
+                runtimeSpecification: runtime_specification,
+                deploymentRetention: deployment_retention,
             }
             
             api_headers = {

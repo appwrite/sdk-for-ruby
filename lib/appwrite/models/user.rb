@@ -22,6 +22,8 @@ module Appwrite
             attr_reader :prefs
             attr_reader :targets
             attr_reader :accessed_at
+            attr_reader :impersonator
+            attr_reader :impersonator_user_id
 
             def initialize(
                 id:,
@@ -42,7 +44,9 @@ module Appwrite
                 mfa:,
                 prefs:,
                 targets:,
-                accessed_at:
+                accessed_at:,
+                impersonator: ,
+                impersonator_user_id: 
             )
                 @id = id
                 @created_at = created_at
@@ -63,6 +67,8 @@ module Appwrite
                 @prefs = prefs
                 @targets = targets
                 @accessed_at = accessed_at
+                @impersonator = impersonator
+                @impersonator_user_id = impersonator_user_id
             end
 
             def self.from(map:)
@@ -85,7 +91,9 @@ module Appwrite
                     mfa: map["mfa"],
                     prefs: Preferences.from(map: map["prefs"]),
                     targets: map["targets"].map { |it| Target.from(map: it) },
-                    accessed_at: map["accessedAt"]
+                    accessed_at: map["accessedAt"],
+                    impersonator: map["impersonator"],
+                    impersonator_user_id: map["impersonatorUserId"]
                 )
             end
 
@@ -109,7 +117,9 @@ module Appwrite
                     "mfa": @mfa,
                     "prefs": @prefs.to_map,
                     "targets": @targets.map { |it| it.to_map },
-                    "accessedAt": @accessed_at
+                    "accessedAt": @accessed_at,
+                    "impersonator": @impersonator,
+                    "impersonatorUserId": @impersonator_user_id
                 }
             end
         end

@@ -1,8 +1,8 @@
 module Appwrite
     module Enums
         module TemplateReferenceType
-            BRANCH = 'branch'
             COMMIT = 'commit'
+            BRANCH = 'branch'
             TAG = 'tag'
         end
     end

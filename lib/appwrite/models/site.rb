@@ -11,6 +11,7 @@ module Appwrite
             attr_reader :live
             attr_reader :logging
             attr_reader :framework
+            attr_reader :deployment_retention
             attr_reader :deployment_id
             attr_reader :deployment_created_at
             attr_reader :deployment_screenshot_light
@@ -22,13 +23,15 @@ module Appwrite
             attr_reader :timeout
             attr_reader :install_command
             attr_reader :build_command
+            attr_reader :start_command
             attr_reader :output_directory
             attr_reader :installation_id
             attr_reader :provider_repository_id
             attr_reader :provider_branch
             attr_reader :provider_root_directory
             attr_reader :provider_silent_mode
-            attr_reader :specification
+            attr_reader :build_specification
+            attr_reader :runtime_specification
             attr_reader :build_runtime
             attr_reader :adapter
             attr_reader :fallback_file
@@ -42,6 +45,7 @@ module Appwrite
                 live:,
                 logging:,
                 framework:,
+                deployment_retention:,
                 deployment_id:,
                 deployment_created_at:,
                 deployment_screenshot_light:,
@@ -53,13 +57,15 @@ module Appwrite
                 timeout:,
                 install_command:,
                 build_command:,
+                start_command:,
                 output_directory:,
                 installation_id:,
                 provider_repository_id:,
                 provider_branch:,
                 provider_root_directory:,
                 provider_silent_mode:,
-                specification:,
+                build_specification:,
+                runtime_specification:,
                 build_runtime:,
                 adapter:,
                 fallback_file:
@@ -72,6 +78,7 @@ module Appwrite
                 @live = live
                 @logging = logging
                 @framework = framework
+                @deployment_retention = deployment_retention
                 @deployment_id = deployment_id
                 @deployment_created_at = deployment_created_at
                 @deployment_screenshot_light = deployment_screenshot_light
@@ -83,13 +90,15 @@ module Appwrite
                 @timeout = timeout
                 @install_command = install_command
                 @build_command = build_command
+                @start_command = start_command
                 @output_directory = output_directory
                 @installation_id = installation_id
                 @provider_repository_id = provider_repository_id
                 @provider_branch = provider_branch
                 @provider_root_directory = provider_root_directory
                 @provider_silent_mode = provider_silent_mode
-                @specification = specification
+                @build_specification = build_specification
+                @runtime_specification = runtime_specification
                 @build_runtime = build_runtime
                 @adapter = adapter
                 @fallback_file = fallback_file
@@ -105,6 +114,7 @@ module Appwrite
                     live: map["live"],
                     logging: map["logging"],
                     framework: map["framework"],
+                    deployment_retention: map["deploymentRetention"],
                     deployment_id: map["deploymentId"],
                     deployment_created_at: map["deploymentCreatedAt"],
                     deployment_screenshot_light: map["deploymentScreenshotLight"],
@@ -116,13 +126,15 @@ module Appwrite
                     timeout: map["timeout"],
                     install_command: map["installCommand"],
                     build_command: map["buildCommand"],
+                    start_command: map["startCommand"],
                     output_directory: map["outputDirectory"],
                     installation_id: map["installationId"],
                     provider_repository_id: map["providerRepositoryId"],
                     provider_branch: map["providerBranch"],
                     provider_root_directory: map["providerRootDirectory"],
                     provider_silent_mode: map["providerSilentMode"],
-                    specification: map["specification"],
+                    build_specification: map["buildSpecification"],
+                    runtime_specification: map["runtimeSpecification"],
                     build_runtime: map["buildRuntime"],
                     adapter: map["adapter"],
                     fallback_file: map["fallbackFile"]
@@ -139,6 +151,7 @@ module Appwrite
                     "live": @live,
                     "logging": @logging,
                     "framework": @framework,
+                    "deploymentRetention": @deployment_retention,
                     "deploymentId": @deployment_id,
                     "deploymentCreatedAt": @deployment_created_at,
                     "deploymentScreenshotLight": @deployment_screenshot_light,
@@ -150,13 +163,15 @@ module Appwrite
                     "timeout": @timeout,
                     "installCommand": @install_command,
                     "buildCommand": @build_command,
+                    "startCommand": @start_command,
                     "outputDirectory": @output_directory,
                     "installationId": @installation_id,
                     "providerRepositoryId": @provider_repository_id,
                     "providerBranch": @provider_branch,
                     "providerRootDirectory": @provider_root_directory,
                     "providerSilentMode": @provider_silent_mode,
-                    "specification": @specification,
+                    "buildSpecification": @build_specification,
+                    "runtimeSpecification": @runtime_specification,
                     "buildRuntime": @build_runtime,
                     "adapter": @adapter,
                     "fallbackFile": @fallback_file

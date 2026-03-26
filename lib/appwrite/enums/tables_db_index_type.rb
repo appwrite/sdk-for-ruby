@@ -1,6 +1,6 @@
 module Appwrite
     module Enums
-        module IndexType
+        module TablesDBIndexType
             KEY = 'key'
             FULLTEXT = 'fulltext'
             UNIQUE = 'unique'

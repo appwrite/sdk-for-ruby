@@ -3300,7 +3300,7 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
         # @param [String] key Index Key.
-        # @param [IndexType] type Index type.
+        # @param [DatabasesIndexType] type Index type.
         # @param [Array] attributes Array of attributes to index. Maximum of 100 attributes are allowed, each 32 characters long.
         # @param [Array] orders Array of index orders. Maximum of 100 orders are allowed.
         # @param [Array] lengths Length of index. Maximum of 100

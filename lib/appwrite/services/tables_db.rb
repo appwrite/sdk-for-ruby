@@ -2582,7 +2582,7 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable).
         # @param [String] key Index Key.
-        # @param [IndexType] type Index type.
+        # @param [TablesDBIndexType] type Index type.
         # @param [Array] columns Array of columns to index. Maximum of 100 columns are allowed, each 32 characters long.
         # @param [Array] orders Array of index orders. Maximum of 100 orders are allowed.
         # @param [Array] lengths Length of index. Maximum of 100

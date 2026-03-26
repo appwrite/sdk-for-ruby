@@ -3,7 +3,22 @@
 ## 22.0.0
 
 * [BREAKING] Changed `$sequence` type from `int` to `string` for rows and documents
-* Updated README badge to API version 1.9.0.
+* [BREAKING] Renamed `IndexType` enum: split into `DatabasesIndexType` (for Databases) and `TablesDBIndexType` (for TablesDB)
+* [BREAKING] Replaced `specification` parameter with `build_specification` and `runtime_specification` in `Functions#create`, `Functions#update`, `Sites#create`, `Sites#update`
+* Added new `Project` service with full CRUD for project-level environment variables
+* Added new `Webhooks` service with full CRUD for project webhooks (including `update_signature`)
+* Added `Webhook` and `WebhookList` models
+* Added `Users#update_impersonator` method for enabling/disabling user impersonation
+* Added impersonation support: `set_impersonate_user_id`, `set_impersonate_user_email`, `set_impersonate_user_phone` on `Client`
+* Added `impersonator` and `impersonator_user_id` fields to `User` model
+* Added `deployment_retention` parameter to Functions and Sites create/update
+* Added `start_command` parameter to Sites create/update
+* Added `Documentsdb`, `Vectorsdb` values to `BackupServices` and `DatabaseType` enums
+* Added `WebhooksRead`, `WebhooksWrite`, `ProjectRead`, `ProjectWrite` scopes
+* Removed `get_queue_billing_project_aggregation`, `get_queue_billing_team_aggregation`, `get_queue_priority_builds`, `get_queue_region_manager`, `get_queue_threats` from `Health` service
+* Updated `Log` model field descriptions to clarify impersonation behavior
+* Updated `X-Appwrite-Response-Format` header to `1.9.0`
+* Updated README badge to API version `1.9.0` and compatibility to server version `1.9.x`
 
 ## 21.0.1
 

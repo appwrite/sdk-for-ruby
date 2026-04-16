@@ -34,6 +34,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::DatabaseList
             )
+
         end
 
         # Create a new Database.
@@ -72,6 +73,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Database
             )
+
         end
 
         # List transactions across all databases.
@@ -96,6 +98,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::TransactionList
             )
+
         end
 
         # Create a new transaction.
@@ -121,6 +124,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Transaction
             )
+
         end
 
         # Get a transaction by its unique ID.
@@ -149,6 +153,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Transaction
             )
+
         end
 
         # Update a transaction, to either commit or roll back its operations.
@@ -182,6 +187,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Transaction
             )
+
         end
 
         # Delete a transaction by its unique ID.
@@ -210,6 +216,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Create multiple operations in a single transaction.
@@ -241,6 +248,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Transaction
             )
+
         end
 
         # Get a database by its unique ID. This endpoint response returns a JSON
@@ -270,6 +278,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Database
             )
+
         end
 
         # Update a database by its unique ID.
@@ -303,6 +312,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Database
             )
+
         end
 
         # Delete a database by its unique ID. Only API keys with with databases.write
@@ -332,6 +342,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Get a list of all tables that belong to the provided databaseId. You can
@@ -367,6 +378,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::TableList
             )
+
         end
 
         # Create a new Table. Before using this route, you should create a new
@@ -421,6 +433,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Table
             )
+
         end
 
         # Get a table by its unique ID. This endpoint response returns a JSON object
@@ -456,6 +469,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Table
             )
+
         end
 
         # Update a table by its unique ID.
@@ -466,9 +480,10 @@ module Appwrite
         # @param [Array] permissions An array of permission strings. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions).
         # @param [] row_security Enables configuring permissions for individual rows. A user needs one of row or table-level permissions to access a row. [Learn more about permissions](https://appwrite.io/docs/permissions).
         # @param [] enabled Is table enabled? When set to 'disabled', users cannot access the table but Server SDKs with and API key can still read and write to the table. No data is lost when this is toggled.
+        # @param [] purge When true, purge all cached list responses for this table as part of the update. Use this to force readers to see fresh data immediately instead of waiting for the cache TTL to expire.
         #
         # @return [Table]
-        def update_table(database_id:, table_id:, name: nil, permissions: nil, row_security: nil, enabled: nil)
+        def update_table(database_id:, table_id:, name: nil, permissions: nil, row_security: nil, enabled: nil, purge: nil)
             api_path = '/tablesdb/{databaseId}/tables/{tableId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
@@ -486,6 +501,7 @@ module Appwrite
                 permissions: permissions,
                 rowSecurity: row_security,
                 enabled: enabled,
+                purge: purge,
             }
             
             api_headers = {
@@ -499,6 +515,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Table
             )
+
         end
 
         # Delete a table by its unique ID. Only users with write permissions have
@@ -534,6 +551,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # List columns in the table.
@@ -572,6 +590,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnList
             )
+
         end
 
         # Create a boolean column.
@@ -624,6 +643,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnBoolean
             )
+
         end
 
         # Update a boolean column. Changing the `default` value will not update
@@ -680,6 +700,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnBoolean
             )
+
         end
 
         # Create a date time column according to the ISO 8601 standard.
@@ -731,6 +752,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnDatetime
             )
+
         end
 
         # Update a date time column. Changing the `default` value will not update
@@ -787,6 +809,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnDatetime
             )
+
         end
 
         # Create an email column.
@@ -839,6 +862,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnEmail
             )
+
         end
 
         # Update an email column. Changing the `default` value will not update
@@ -896,6 +920,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnEmail
             )
+
         end
 
         # Create an enumeration column. The `elements` param acts as a white-list of
@@ -954,6 +979,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnEnum
             )
+
         end
 
         # Update an enum column. Changing the `default` value will not update already
@@ -1017,6 +1043,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnEnum
             )
+
         end
 
         # Create a float column. Optionally, minimum and maximum values can be
@@ -1074,6 +1101,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnFloat
             )
+
         end
 
         # Update a float column. Changing the `default` value will not update already
@@ -1135,6 +1163,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnFloat
             )
+
         end
 
         # Create an integer column. Optionally, minimum and maximum values can be
@@ -1192,6 +1221,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnInteger
             )
+
         end
 
         # Update an integer column. Changing the `default` value will not update
@@ -1253,6 +1283,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnInteger
             )
+
         end
 
         # Create IP address column.
@@ -1305,6 +1336,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnIp
             )
+
         end
 
         # Update an ip column. Changing the `default` value will not update already
@@ -1362,6 +1394,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnIp
             )
+
         end
 
         # Create a geometric line column.
@@ -1411,6 +1444,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnLine
             )
+
         end
 
         # Update a line column. Changing the `default` value will not update already
@@ -1463,6 +1497,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnLine
             )
+
         end
 
         # Create a longtext column.
@@ -1517,6 +1552,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnLongtext
             )
+
         end
 
         # Update a longtext column. Changing the `default` value will not update
@@ -1574,6 +1610,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnLongtext
             )
+
         end
 
         # Create a mediumtext column.
@@ -1628,6 +1665,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnMediumtext
             )
+
         end
 
         # Update a mediumtext column. Changing the `default` value will not update
@@ -1685,6 +1723,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnMediumtext
             )
+
         end
 
         # Create a geometric point column.
@@ -1734,6 +1773,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnPoint
             )
+
         end
 
         # Update a point column. Changing the `default` value will not update already
@@ -1786,6 +1826,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnPoint
             )
+
         end
 
         # Create a geometric polygon column.
@@ -1835,6 +1876,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnPolygon
             )
+
         end
 
         # Update a polygon column. Changing the `default` value will not update
@@ -1887,6 +1929,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnPolygon
             )
+
         end
 
         # Create relationship column. [Learn more about relationship
@@ -1944,6 +1987,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnRelationship
             )
+
         end
 
         #
@@ -2007,6 +2051,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnString
             )
+
         end
 
         #
@@ -2069,6 +2114,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnString
             )
+
         end
 
         # Create a text column.
@@ -2123,6 +2169,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnText
             )
+
         end
 
         # Update a text column. Changing the `default` value will not update already
@@ -2180,6 +2227,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnText
             )
+
         end
 
         # Create a URL column.
@@ -2232,6 +2280,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnUrl
             )
+
         end
 
         # Update an url column. Changing the `default` value will not update already
@@ -2289,6 +2338,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnUrl
             )
+
         end
 
         # Create a varchar column.
@@ -2349,6 +2399,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnVarchar
             )
+
         end
 
         # Update a varchar column. Changing the `default` value will not update
@@ -2408,6 +2459,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnVarchar
             )
+
         end
 
         # Get column by ID.
@@ -2416,7 +2468,7 @@ module Appwrite
         # @param [String] table_id Table ID.
         # @param [String] key Column Key.
         #
-        # @return []
+        # @return [ColumnBoolean, ColumnInteger, ColumnFloat, ColumnEmail, ColumnEnum, ColumnUrl, ColumnIp, ColumnDatetime, ColumnRelationship, ColumnString]
         def get_column(database_id:, table_id:, key:)
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/{key}'
                 .gsub('{databaseId}', database_id)
@@ -2441,13 +2493,69 @@ module Appwrite
             api_headers = {
             }
 
-            @client.call(
+            response = @client.call(
                 method: 'GET',
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::ColumnBoolean
             )
+
+            unless response.is_a?(Hash)
+                raise Exception, "Expected object response when hydrating a response model"
+            end
+
+            if response['type'] == 'string' && response['format'] == 'email'
+
+                return Models::ColumnEmail.from(map: response)
+            end
+
+            if response['type'] == 'string' && response['format'] == 'enum'
+
+                return Models::ColumnEnum.from(map: response)
+            end
+
+            if response['type'] == 'string' && response['format'] == 'url'
+
+                return Models::ColumnUrl.from(map: response)
+            end
+
+            if response['type'] == 'string' && response['format'] == 'ip'
+
+                return Models::ColumnIp.from(map: response)
+            end
+
+            if response['type'] == 'boolean'
+
+                return Models::ColumnBoolean.from(map: response)
+            end
+
+            if response['type'] == 'integer'
+
+                return Models::ColumnInteger.from(map: response)
+            end
+
+            if response['type'] == 'double'
+
+                return Models::ColumnFloat.from(map: response)
+            end
+
+            if response['type'] == 'datetime'
+
+                return Models::ColumnDatetime.from(map: response)
+            end
+
+            if response['type'] == 'relationship'
+
+                return Models::ColumnRelationship.from(map: response)
+            end
+
+            if response['type'] == 'string'
+
+                return Models::ColumnString.from(map: response)
+            end
+
+            raise Exception, "Unable to match response to any expected response model"
+
         end
 
         # Deletes a column.
@@ -2488,6 +2596,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Update relationship column. [Learn more about relationship
@@ -2535,6 +2644,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnRelationship
             )
+
         end
 
         # List indexes on the table.
@@ -2573,6 +2683,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnIndexList
             )
+
         end
 
         # Creates an index on the columns listed. Your index should include all the
@@ -2632,6 +2743,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnIndex
             )
+
         end
 
         # Get index by ID.
@@ -2672,6 +2784,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ColumnIndex
             )
+
         end
 
         # Delete an index.
@@ -2712,6 +2825,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Get a list of all the user's rows in a given table. You can use the query
@@ -2722,7 +2836,7 @@ module Appwrite
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
         # @param [String] transaction_id Transaction ID to read uncommitted changes within the transaction.
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
-        # @param [Integer] ttl TTL (seconds) for cached responses when caching is enabled for select queries. Must be between 0 and 86400 (24 hours).
+        # @param [Integer] ttl TTL (seconds) for caching list responses. Responses are stored in an in-memory key-value cache, keyed per project, table, schema version (columns and indexes), caller authorization roles, and the exact query — so users with different permissions never share cached entries. Schema changes invalidate cached entries automatically; row writes do not, so choose a TTL you are comfortable serving as stale data. Set to 0 to disable caching. Must be between 0 and 86400 (24 hours).
         #
         # @return [RowList]
         def list_rows(database_id:, table_id:, queries: nil, transaction_id: nil, total: nil, ttl: nil)
@@ -2755,6 +2869,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::RowList
             )
+
         end
 
         # Create a new Row. Before using this route, you should create a new table
@@ -2809,6 +2924,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Row
             )
+
         end
 
         # Create new Rows. Before using this route, you should create a new table
@@ -2855,6 +2971,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::RowList
             )
+
         end
 
         # Create or update Rows. Before using this route, you should create a new
@@ -2902,6 +3019,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::RowList
             )
+
         end
 
         # Update all rows that match your queries, if no queries are submitted then
@@ -2944,6 +3062,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::RowList
             )
+
         end
 
         # Bulk delete rows using queries, if no queries are passed then all rows are
@@ -2984,6 +3103,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::RowList
             )
+
         end
 
         # Get a row by its unique ID. This endpoint response returns a JSON object
@@ -3029,6 +3149,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Row
             )
+
         end
 
         # Create or update a Row. Before using this route, you should create a new
@@ -3079,6 +3200,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Row
             )
+
         end
 
         # Update a row by its unique ID. Using the patch method you can pass only
@@ -3127,6 +3249,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Row
             )
+
         end
 
         # Delete a row by its unique ID.
@@ -3169,6 +3292,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Decrement a specific column of a row by a given value.
@@ -3222,6 +3346,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Row
             )
+
         end
 
         # Increment a specific column of a row by a given value.
@@ -3275,6 +3400,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Row
             )
+
         end
 
     end 

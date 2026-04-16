@@ -32,6 +32,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Locale
             )
+
         end
 
         # List of all locale codes in [ISO
@@ -55,6 +56,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::LocaleCodeList
             )
+
         end
 
         # List of all continents. You can use the locale header to get the data in a
@@ -78,6 +80,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ContinentList
             )
+
         end
 
         # List of all countries. You can use the locale header to get the data in a
@@ -101,6 +104,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::CountryList
             )
+
         end
 
         # List of all countries that are currently members of the EU. You can use the
@@ -124,6 +128,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::CountryList
             )
+
         end
 
         # List of all countries phone codes. You can use the locale header to get the
@@ -147,6 +152,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::PhoneList
             )
+
         end
 
         # List of all currencies, including currency symbol, name, plural, and
@@ -171,6 +177,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::CurrencyList
             )
+
         end
 
         # List of all languages classified by ISO 639-1 including 2-letter code, name
@@ -194,6 +201,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::LanguageList
             )
+
         end
 
     end 

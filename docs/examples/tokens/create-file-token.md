@@ -13,6 +13,6 @@ tokens = Tokens.new(client)
 result = tokens.create_file_token(
     bucket_id: '<BUCKET_ID>',
     file_id: '<FILE_ID>',
-    expire: '' # optional
+    expire: '2020-10-15T06:38:00.000+00:00' # optional
 )
 ```

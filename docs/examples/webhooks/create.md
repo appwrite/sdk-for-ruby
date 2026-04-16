@@ -16,8 +16,9 @@ result = webhooks.create(
     name: '<NAME>',
     events: [],
     enabled: false, # optional
-    security: false, # optional
-    http_user: '<HTTP_USER>', # optional
-    http_pass: '<HTTP_PASS>' # optional
+    tls: false, # optional
+    auth_username: '<AUTH_USERNAME>', # optional
+    auth_password: '<AUTH_PASSWORD>', # optional
+    secret: '<SECRET>' # optional
 )
 ```

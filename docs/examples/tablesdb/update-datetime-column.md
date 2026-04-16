@@ -15,7 +15,7 @@ result = tables_db.update_datetime_column(
     table_id: '<TABLE_ID>',
     key: '',
     required: false,
-    default: '',
+    default: '2020-10-15T06:38:00.000+00:00',
     new_key: '' # optional
 )
 ```

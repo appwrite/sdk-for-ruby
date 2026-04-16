@@ -27,6 +27,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::HealthStatus
             )
+
         end
 
         # Check the Appwrite Antivirus server is up and connection is successful.
@@ -49,6 +50,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::HealthAntivirus
             )
+
         end
 
         # Check the Appwrite in-memory cache servers are up and connection is
@@ -72,6 +74,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::HealthStatusList
             )
+
         end
 
         # Get the SSL certificate for a domain
@@ -96,6 +99,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::HealthCertificate
             )
+
         end
 
         # Get console pausing health status. Monitors projects approaching the pause
@@ -124,6 +128,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::HealthStatus
             )
+
         end
 
         # Check the Appwrite database servers are up and connection is successful.
@@ -146,6 +151,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::HealthStatusList
             )
+
         end
 
         # Check the Appwrite pub-sub servers are up and connection is successful.
@@ -168,10 +174,12 @@ module Appwrite
                 params: api_params,
                 response_type: Models::HealthStatusList
             )
+
         end
 
         # Get the number of audit logs that are waiting to be processed in the
         # Appwrite internal queue server.
+        # 
         #
         # @param [Integer] threshold Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.
         #
@@ -193,6 +201,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::HealthQueue
             )
+
         end
 
         # Get the number of builds that are waiting to be processed in the Appwrite
@@ -218,6 +227,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::HealthQueue
             )
+
         end
 
         # Get the number of certificates that are waiting to be issued against
@@ -244,6 +254,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::HealthQueue
             )
+
         end
 
         # Get the number of database changes that are waiting to be processed in the
@@ -271,6 +282,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::HealthQueue
             )
+
         end
 
         # Get the number of background destructive changes that are waiting to be
@@ -296,6 +308,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::HealthQueue
             )
+
         end
 
         # Returns the amount of failed jobs in a given queue.
@@ -327,6 +340,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::HealthQueue
             )
+
         end
 
         # Get the number of function executions that are waiting to be processed in
@@ -352,6 +366,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::HealthQueue
             )
+
         end
 
         # Get the number of logs that are waiting to be processed in the Appwrite
@@ -377,6 +392,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::HealthQueue
             )
+
         end
 
         # Get the number of mails that are waiting to be processed in the Appwrite
@@ -402,6 +418,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::HealthQueue
             )
+
         end
 
         # Get the number of messages that are waiting to be processed in the Appwrite
@@ -427,6 +444,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::HealthQueue
             )
+
         end
 
         # Get the number of migrations that are waiting to be processed in the
@@ -452,6 +470,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::HealthQueue
             )
+
         end
 
         # Get the number of metrics that are waiting to be processed in the Appwrite
@@ -477,6 +496,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::HealthQueue
             )
+
         end
 
         # Get the number of metrics that are waiting to be processed in the Appwrite
@@ -502,6 +522,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::HealthQueue
             )
+
         end
 
         # Get the number of webhooks that are waiting to be processed in the Appwrite
@@ -527,6 +548,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::HealthQueue
             )
+
         end
 
         # Check the Appwrite storage device is up and connection is successful.
@@ -549,6 +571,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::HealthStatus
             )
+
         end
 
         # Check the Appwrite local storage device is up and connection is successful.
@@ -571,6 +594,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::HealthStatus
             )
+
         end
 
         # Check the Appwrite server time is synced with Google remote NTP server. We
@@ -599,6 +623,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::HealthTime
             )
+
         end
 
     end 

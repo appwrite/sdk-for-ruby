@@ -44,6 +44,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ResourceTokenList
             )
+
         end
 
         # Create a new token. A token is linked to a file. Token can be passed as a
@@ -82,6 +83,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ResourceToken
             )
+
         end
 
         # Get a token by its unique ID.
@@ -110,6 +112,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ResourceToken
             )
+
         end
 
         # Update a token by its unique ID. Use this endpoint to update a token's
@@ -142,6 +145,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ResourceToken
             )
+
         end
 
         # Delete a token by its unique ID.
@@ -170,6 +174,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
     end 

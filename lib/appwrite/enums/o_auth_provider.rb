@@ -35,6 +35,7 @@ module Appwrite
             TRADESHIFTBOX = 'tradeshiftBox'
             TWITCH = 'twitch'
             WORDPRESS = 'wordpress'
+            X = 'x'
             YAHOO = 'yahoo'
             YAMMER = 'yammer'
             YANDEX = 'yandex'

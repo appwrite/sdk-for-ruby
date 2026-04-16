@@ -34,6 +34,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::UserList
             )
+
         end
 
         # Create a new user.
@@ -71,6 +72,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # Create a new user. Password provided must be hashed with the
@@ -117,6 +119,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # Create a new user. Password provided must be hashed with the
@@ -163,6 +166,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # Get identities for all users.
@@ -191,6 +195,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::IdentityList
             )
+
         end
 
         # Delete an identity by its unique ID.
@@ -219,6 +224,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Create a new user. Password provided must be hashed with the
@@ -265,6 +271,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # Create a new user. Password provided must be hashed with the
@@ -311,6 +318,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # Create a new user. Password provided must be hashed with the
@@ -387,6 +395,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # Create a new user. Password provided must be hashed with the [Scrypt
@@ -452,6 +461,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # Create a new user. Password provided must be hashed with the
@@ -500,6 +510,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # Get a user by its unique ID.
@@ -528,6 +539,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # Delete a user by its unique ID, thereby releasing it's ID. Since ID is
@@ -561,6 +573,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Update the user email by its unique ID.
@@ -596,6 +609,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # Enable or disable whether a user can impersonate other users. When
@@ -636,6 +650,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # Use this endpoint to create a JSON Web Token for user by its unique ID. You
@@ -671,6 +686,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Jwt
             )
+
         end
 
         # Update the user labels by its unique ID. 
@@ -711,6 +727,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # Get the user activity logs list by its unique ID.
@@ -743,6 +760,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::LogList
             )
+
         end
 
         # Get the user membership list by its unique ID.
@@ -777,6 +795,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::MembershipList
             )
+
         end
 
         # Enable or disable MFA on a user account.
@@ -812,6 +831,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # Delete an authenticator app.
@@ -846,6 +866,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # List the factors available on the account to be used as a MFA challange.
@@ -874,6 +895,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::MfaFactors
             )
+
         end
 
         # Get recovery codes that can be used as backup for MFA flow by User ID.
@@ -905,6 +927,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::MfaRecoveryCodes
             )
+
         end
 
         # Regenerate recovery codes that can be used as backup for MFA flow by User
@@ -937,6 +960,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::MfaRecoveryCodes
             )
+
         end
 
         # Generate recovery codes used as backup for MFA flow for User ID. Recovery
@@ -969,6 +993,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::MfaRecoveryCodes
             )
+
         end
 
         # Update the user name by its unique ID.
@@ -1004,6 +1029,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # Update the user password by its unique ID.
@@ -1039,6 +1065,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # Update the user phone by its unique ID.
@@ -1074,6 +1101,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # Get the user preferences by its unique ID.
@@ -1102,6 +1130,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Preferences
             )
+
         end
 
         # Update the user preferences by its unique ID. The object you pass is stored
@@ -1139,6 +1168,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Preferences
             )
+
         end
 
         # Get the user sessions list by its unique ID.
@@ -1169,6 +1199,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::SessionList
             )
+
         end
 
         # Creates a session for a user. Returns an immediately usable session object.
@@ -1203,6 +1234,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Session
             )
+
         end
 
         # Delete all user's sessions by using the user's unique ID.
@@ -1231,6 +1263,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Delete a user sessions by its unique ID.
@@ -1265,6 +1298,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Update the user status by its unique ID. Use this endpoint as an
@@ -1301,6 +1335,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # List the messaging targets that are associated with a user.
@@ -1333,6 +1368,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::TargetList
             )
+
         end
 
         # Create a messaging target.
@@ -1384,6 +1420,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Target
             )
+
         end
 
         # Get a user's push notification target by ID.
@@ -1418,6 +1455,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Target
             )
+
         end
 
         # Update a messaging target.
@@ -1459,6 +1497,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Target
             )
+
         end
 
         # Delete a messaging target.
@@ -1493,6 +1532,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Returns a token with a secret key for creating a session. Use the user ID
@@ -1530,6 +1570,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Token
             )
+
         end
 
         # Update the user email verification status by its unique ID.
@@ -1565,6 +1606,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # Update the user phone verification status by its unique ID.
@@ -1600,6 +1642,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
     end 

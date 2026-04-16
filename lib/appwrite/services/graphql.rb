@@ -11,7 +11,7 @@ module Appwrite
         #
         # @param [Hash] query The query or queries to execute.
         #
-        # @return [Any]
+        # @return []
         def query(query:)
             api_path = '/graphql'
 
@@ -34,13 +34,14 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Execute a GraphQL mutation.
         #
         # @param [Hash] query The query or queries to execute.
         #
-        # @return [Any]
+        # @return []
         def mutation(query:)
             api_path = '/graphql/mutation'
 
@@ -63,6 +64,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
     end 

@@ -34,6 +34,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::SiteList
             )
+
         end
 
         # Create a new site.
@@ -115,6 +116,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Site
             )
+
         end
 
         # Get a list of all frameworks that are currently available on the server
@@ -138,6 +140,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::FrameworkList
             )
+
         end
 
         # List allowed site specifications for this instance.
@@ -160,6 +163,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::SpecificationList
             )
+
         end
 
         # Get a site by its unique ID.
@@ -188,6 +192,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Site
             )
+
         end
 
         # Update site by its unique ID.
@@ -265,6 +270,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Site
             )
+
         end
 
         # Delete a site by its unique ID.
@@ -293,6 +299,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Update the site active deployment. Use this endpoint to switch the code
@@ -329,6 +336,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Site
             )
+
         end
 
         # Get a list of all the site's code deployments. You can use the query params
@@ -364,6 +372,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::DeploymentList
             )
+
         end
 
         # Create a new site code deployment. Use this endpoint to upload a new
@@ -414,6 +423,7 @@ module Appwrite
                 on_progress: on_progress,
                 response_type: Models::Deployment
             )
+
         end
 
         # Create a new build for an existing site deployment. This endpoint allows
@@ -453,6 +463,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Deployment
             )
+
         end
 
         # Create a deployment based on a template.
@@ -518,6 +529,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Deployment
             )
+
         end
 
         # Create a deployment when a site is connected to VCS.
@@ -563,6 +575,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Deployment
             )
+
         end
 
         # Get a site deployment by its unique ID.
@@ -597,6 +610,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Deployment
             )
+
         end
 
         # Delete a site deployment by its unique ID.
@@ -631,6 +645,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Get a site deployment content by its unique ID. The endpoint response
@@ -668,6 +683,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Cancel an ongoing site deployment build. If the build is already in
@@ -707,6 +723,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Deployment
             )
+
         end
 
         # Get a list of all site logs. You can use the query params to filter your
@@ -740,6 +757,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ExecutionList
             )
+
         end
 
         # Get a site request log by its unique ID.
@@ -774,6 +792,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Execution
             )
+
         end
 
         # Delete a site log by its unique ID.
@@ -808,6 +827,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Get a list of all variables of a specific site.
@@ -836,6 +856,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::VariableList
             )
+
         end
 
         # Create a new site variable. These variables can be accessed during build
@@ -880,6 +901,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Variable
             )
+
         end
 
         # Get a variable by its unique ID.
@@ -914,6 +936,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Variable
             )
+
         end
 
         # Update variable by its unique ID.
@@ -959,6 +982,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Variable
             )
+
         end
 
         # Delete a variable by its unique ID.
@@ -993,6 +1017,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
     end 

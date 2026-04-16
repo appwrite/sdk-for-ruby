@@ -697,13 +697,43 @@ module Appwrite
             api_headers = {
             }
 
-            @client.call(
+            response = @client.call(
                 method: 'GET',
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::PlatformWeb
             )
+
+            unless response.is_a?(Hash)
+                raise Exception, "Expected object response when hydrating a response model"
+            end
+
+            if response['type'] == 'web'
+
+                return Models::PlatformWeb.from(map: response)
+            end
+
+            if response['type'] == 'apple'
+
+                return Models::PlatformApple.from(map: response)
+            end
+
+            if response['type'] == 'android'
+
+                return Models::PlatformAndroid.from(map: response)
+            end
+
+            if response['type'] == 'windows'
+
+                return Models::PlatformWindows.from(map: response)
+            end
+
+            if response['type'] == 'linux'
+
+                return Models::PlatformLinux.from(map: response)
+            end
+
+            raise Exception, "Unable to match response to any expected response model"
 
         end
 

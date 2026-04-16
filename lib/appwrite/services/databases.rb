@@ -2650,13 +2650,68 @@ module Appwrite
             api_headers = {
             }
 
-            @client.call(
+            response = @client.call(
                 method: 'GET',
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::AttributeBoolean
             )
+
+            unless response.is_a?(Hash)
+                raise Exception, "Expected object response when hydrating a response model"
+            end
+
+            if response['type'] == 'string' && response['format'] == 'email'
+
+                return Models::AttributeEmail.from(map: response)
+            end
+
+            if response['type'] == 'string' && response['format'] == 'enum'
+
+                return Models::AttributeEnum.from(map: response)
+            end
+
+            if response['type'] == 'string' && response['format'] == 'url'
+
+                return Models::AttributeUrl.from(map: response)
+            end
+
+            if response['type'] == 'string' && response['format'] == 'ip'
+
+                return Models::AttributeIp.from(map: response)
+            end
+
+            if response['type'] == 'boolean'
+
+                return Models::AttributeBoolean.from(map: response)
+            end
+
+            if response['type'] == 'integer'
+
+                return Models::AttributeInteger.from(map: response)
+            end
+
+            if response['type'] == 'double'
+
+                return Models::AttributeFloat.from(map: response)
+            end
+
+            if response['type'] == 'datetime'
+
+                return Models::AttributeDatetime.from(map: response)
+            end
+
+            if response['type'] == 'relationship'
+
+                return Models::AttributeRelationship.from(map: response)
+            end
+
+            if response['type'] == 'string'
+
+                return Models::AttributeString.from(map: response)
+            end
+
+            raise Exception, "Unable to match response to any expected response model"
 
         end
 

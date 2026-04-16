@@ -34,6 +34,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::FunctionList
             )
+
         end
 
         # Create a new function. You can pass a list of
@@ -112,6 +113,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Function
             )
+
         end
 
         # Get a list of all runtimes that are currently active on your instance.
@@ -134,6 +136,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::RuntimeList
             )
+
         end
 
         # List allowed function specifications for this instance.
@@ -156,6 +159,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::SpecificationList
             )
+
         end
 
         # Get a function by its unique ID.
@@ -184,6 +188,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Function
             )
+
         end
 
         # Update function by its unique ID.
@@ -255,6 +260,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Function
             )
+
         end
 
         # Delete a function by its unique ID.
@@ -283,6 +289,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Update the function active deployment. Use this endpoint to switch the code
@@ -319,6 +326,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Function
             )
+
         end
 
         # Get a list of all the function's code deployments. You can use the query
@@ -354,6 +362,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::DeploymentList
             )
+
         end
 
         # Create a new function code deployment. Use this endpoint to upload a new
@@ -413,6 +422,7 @@ module Appwrite
                 on_progress: on_progress,
                 response_type: Models::Deployment
             )
+
         end
 
         # Create a new build for an existing function deployment. This endpoint
@@ -454,6 +464,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Deployment
             )
+
         end
 
         # Create a deployment based on a template.
@@ -519,6 +530,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Deployment
             )
+
         end
 
         # Create a deployment when a function is connected to VCS.
@@ -564,6 +576,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Deployment
             )
+
         end
 
         # Get a function deployment by its unique ID.
@@ -598,6 +611,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Deployment
             )
+
         end
 
         # Delete a code deployment by its unique ID.
@@ -632,6 +646,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Get a function deployment content by its unique ID. The endpoint response
@@ -669,6 +684,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Cancel an ongoing function deployment build. If the build is already in
@@ -708,6 +724,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Deployment
             )
+
         end
 
         # Get a list of all the current user function execution logs. You can use the
@@ -741,6 +758,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ExecutionList
             )
+
         end
 
         # Trigger a function execution. The returned object will return you the
@@ -785,6 +803,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Execution
             )
+
         end
 
         # Get a function execution log by its unique ID.
@@ -819,6 +838,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Execution
             )
+
         end
 
         # Delete a function execution by its unique ID.
@@ -853,6 +873,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Get a list of all variables of a specific function.
@@ -881,6 +902,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::VariableList
             )
+
         end
 
         # Create a new function environment variable. These variables can be accessed
@@ -925,6 +947,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Variable
             )
+
         end
 
         # Get a variable by its unique ID.
@@ -959,6 +982,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Variable
             )
+
         end
 
         # Update variable by its unique ID.
@@ -1004,6 +1028,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Variable
             )
+
         end
 
         # Delete a variable by its unique ID.
@@ -1038,6 +1063,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
     end 

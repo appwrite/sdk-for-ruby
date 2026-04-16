@@ -29,6 +29,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ActivityEventList
             )
+
         end
 
         # Get event by ID.
@@ -58,6 +59,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ActivityEvent
             )
+
         end
 
     end 

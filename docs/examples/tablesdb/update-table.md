@@ -18,6 +18,7 @@ result = tables_db.update_table(
     name: '<NAME>', # optional
     permissions: [Permission.read(Role.any())], # optional
     row_security: false, # optional
-    enabled: false # optional
+    enabled: false, # optional
+    purge: false # optional
 )
 ```

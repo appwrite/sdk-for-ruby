@@ -8,9 +8,11 @@ client = Client.new
     .set_project('<YOUR_PROJECT_ID>') # Your project ID
     .set_key('<YOUR_API_KEY>') # Your secret API key
 
-webhooks = Webhooks.new(client)
+project = Project.new(client)
 
-result = webhooks.update_signature(
-    webhook_id: '<WEBHOOK_ID>'
+result = project.update_android_platform(
+    platform_id: '<PLATFORM_ID>',
+    name: '<NAME>',
+    application_id: '<APPLICATION_ID>'
 )
 ```

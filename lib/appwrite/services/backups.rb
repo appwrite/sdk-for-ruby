@@ -29,6 +29,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::BackupArchiveList
             )
+
         end
 
         # Create a new archive asynchronously for a project.
@@ -60,6 +61,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::BackupArchive
             )
+
         end
 
         # Get a backup archive using it's ID.
@@ -88,6 +90,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::BackupArchive
             )
+
         end
 
         # Delete an existing archive for a project.
@@ -116,6 +119,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # List all policies for a project.
@@ -140,6 +144,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::BackupPolicyList
             )
+
         end
 
         # Create a new backup policy.
@@ -193,6 +198,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::BackupPolicy
             )
+
         end
 
         # Get a backup policy using it's ID.
@@ -221,6 +227,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::BackupPolicy
             )
+
         end
 
         # Update an existing policy using it's ID.
@@ -258,6 +265,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::BackupPolicy
             )
+
         end
 
         # Delete a policy using it's ID.
@@ -286,6 +294,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Create and trigger a new restoration for a backup on a project.
@@ -325,6 +334,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::BackupRestoration
             )
+
         end
 
         # List all backup restorations for a project.
@@ -349,6 +359,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::BackupRestorationList
             )
+
         end
 
         # Get the current status of a backup restoration.
@@ -377,6 +388,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::BackupRestoration
             )
+
         end
 
     end 

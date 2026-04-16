@@ -9,10 +9,10 @@ module Appwrite
             attr_reader :name
             attr_reader :url
             attr_reader :events
-            attr_reader :security
-            attr_reader :http_user
-            attr_reader :http_pass
-            attr_reader :signature_key
+            attr_reader :tls
+            attr_reader :auth_username
+            attr_reader :auth_password
+            attr_reader :secret
             attr_reader :enabled
             attr_reader :logs
             attr_reader :attempts
@@ -24,10 +24,10 @@ module Appwrite
                 name:,
                 url:,
                 events:,
-                security:,
-                http_user:,
-                http_pass:,
-                signature_key:,
+                tls:,
+                auth_username:,
+                auth_password:,
+                secret:,
                 enabled:,
                 logs:,
                 attempts:
@@ -38,10 +38,10 @@ module Appwrite
                 @name = name
                 @url = url
                 @events = events
-                @security = security
-                @http_user = http_user
-                @http_pass = http_pass
-                @signature_key = signature_key
+                @tls = tls
+                @auth_username = auth_username
+                @auth_password = auth_password
+                @secret = secret
                 @enabled = enabled
                 @logs = logs
                 @attempts = attempts
@@ -55,10 +55,10 @@ module Appwrite
                     name: map["name"],
                     url: map["url"],
                     events: map["events"],
-                    security: map["security"],
-                    http_user: map["httpUser"],
-                    http_pass: map["httpPass"],
-                    signature_key: map["signatureKey"],
+                    tls: map["tls"],
+                    auth_username: map["authUsername"],
+                    auth_password: map["authPassword"],
+                    secret: map["secret"],
                     enabled: map["enabled"],
                     logs: map["logs"],
                     attempts: map["attempts"]
@@ -73,10 +73,10 @@ module Appwrite
                     "name": @name,
                     "url": @url,
                     "events": @events,
-                    "security": @security,
-                    "httpUser": @http_user,
-                    "httpPass": @http_pass,
-                    "signatureKey": @signature_key,
+                    "tls": @tls,
+                    "authUsername": @auth_username,
+                    "authPassword": @auth_password,
+                    "secret": @secret,
                     "enabled": @enabled,
                     "logs": @logs,
                     "attempts": @attempts

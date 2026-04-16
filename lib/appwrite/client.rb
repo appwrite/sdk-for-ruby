@@ -15,8 +15,8 @@ module Appwrite
                 'x-sdk-name'=> 'Ruby',
                 'x-sdk-platform'=> 'server',
                 'x-sdk-language'=> 'ruby',
-                'x-sdk-version'=> '22.0.0',
-                'X-Appwrite-Response-Format' => '1.9.0'
+                'x-sdk-version'=> '23.0.0',
+                'X-Appwrite-Response-Format' => '1.9.1'
             }
             @endpoint = 'https://cloud.appwrite.io/v1'
         end
@@ -172,6 +172,13 @@ module Appwrite
             @headers[key.downcase] = value
 
             self
+        end
+
+        # Get request headers
+        #
+        # @return [Hash]
+        def get_headers
+            @headers.dup
         end
 
         # Send the HTTP request.

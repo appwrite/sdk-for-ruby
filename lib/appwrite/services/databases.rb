@@ -37,6 +37,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::DatabaseList
             )
+
         end
 
         #
@@ -78,6 +79,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Database
             )
+
         end
 
         # List transactions across all databases.
@@ -102,6 +104,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::TransactionList
             )
+
         end
 
         # Create a new transaction.
@@ -127,6 +130,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Transaction
             )
+
         end
 
         # Get a transaction by its unique ID.
@@ -155,6 +159,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Transaction
             )
+
         end
 
         # Update a transaction, to either commit or roll back its operations.
@@ -188,6 +193,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Transaction
             )
+
         end
 
         # Delete a transaction by its unique ID.
@@ -216,6 +222,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Create multiple operations in a single transaction.
@@ -247,6 +254,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Transaction
             )
+
         end
 
         #
@@ -279,6 +287,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Database
             )
+
         end
 
         #
@@ -315,6 +324,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Database
             )
+
         end
 
         #
@@ -347,6 +357,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         #
@@ -385,6 +396,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::CollectionList
             )
+
         end
 
         #
@@ -442,6 +454,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Collection
             )
+
         end
 
         #
@@ -480,6 +493,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Collection
             )
+
         end
 
         #
@@ -493,9 +507,10 @@ module Appwrite
         # @param [Array] permissions An array of permission strings. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions).
         # @param [] document_security Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](https://appwrite.io/docs/permissions).
         # @param [] enabled Is collection enabled? When set to 'disabled', users cannot access the collection but Server SDKs with and API key can still read and write to the collection. No data is lost when this is toggled.
+        # @param [] purge When true, purge all cached list responses for this collection as part of the update. Use this to force readers to see fresh data immediately instead of waiting for the cache TTL to expire.
         #
         # @return [Collection]
-        def update_collection(database_id:, collection_id:, name: nil, permissions: nil, document_security: nil, enabled: nil)
+        def update_collection(database_id:, collection_id:, name: nil, permissions: nil, document_security: nil, enabled: nil, purge: nil)
             api_path = '/databases/{databaseId}/collections/{collectionId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -513,6 +528,7 @@ module Appwrite
                 permissions: permissions,
                 documentSecurity: document_security,
                 enabled: enabled,
+                purge: purge,
             }
             
             api_headers = {
@@ -526,6 +542,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Collection
             )
+
         end
 
         #
@@ -564,6 +581,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         #
@@ -605,6 +623,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeList
             )
+
         end
 
         #
@@ -660,6 +679,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeBoolean
             )
+
         end
 
         #
@@ -719,6 +739,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeBoolean
             )
+
         end
 
         #
@@ -773,6 +794,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeDatetime
             )
+
         end
 
         #
@@ -832,6 +854,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeDatetime
             )
+
         end
 
         #
@@ -887,6 +910,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeEmail
             )
+
         end
 
         #
@@ -947,6 +971,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeEmail
             )
+
         end
 
         #
@@ -1009,6 +1034,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeEnum
             )
+
         end
 
         #
@@ -1075,6 +1101,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeEnum
             )
+
         end
 
         #
@@ -1135,6 +1162,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeFloat
             )
+
         end
 
         #
@@ -1199,6 +1227,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeFloat
             )
+
         end
 
         #
@@ -1259,6 +1288,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeInteger
             )
+
         end
 
         #
@@ -1323,6 +1353,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeInteger
             )
+
         end
 
         #
@@ -1378,6 +1409,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeIp
             )
+
         end
 
         #
@@ -1438,6 +1470,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeIp
             )
+
         end
 
         #
@@ -1490,6 +1523,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeLine
             )
+
         end
 
         #
@@ -1545,6 +1579,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeLine
             )
+
         end
 
         # Create a longtext attribute.
@@ -1599,6 +1634,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeLongtext
             )
+
         end
 
         # Update a longtext attribute. Changing the `default` value will not update
@@ -1656,6 +1692,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeLongtext
             )
+
         end
 
         # Create a mediumtext attribute.
@@ -1710,6 +1747,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeMediumtext
             )
+
         end
 
         # Update a mediumtext attribute. Changing the `default` value will not update
@@ -1767,6 +1805,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeMediumtext
             )
+
         end
 
         #
@@ -1819,6 +1858,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributePoint
             )
+
         end
 
         #
@@ -1874,6 +1914,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributePoint
             )
+
         end
 
         #
@@ -1926,6 +1967,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributePolygon
             )
+
         end
 
         #
@@ -1981,6 +2023,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributePolygon
             )
+
         end
 
         #
@@ -2041,6 +2084,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeRelationship
             )
+
         end
 
         #
@@ -2091,6 +2135,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeRelationship
             )
+
         end
 
         #
@@ -2154,6 +2199,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeString
             )
+
         end
 
         #
@@ -2216,6 +2262,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeString
             )
+
         end
 
         # Create a text attribute.
@@ -2270,6 +2317,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeText
             )
+
         end
 
         # Update a text attribute. Changing the `default` value will not update
@@ -2327,6 +2375,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeText
             )
+
         end
 
         #
@@ -2382,6 +2431,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeUrl
             )
+
         end
 
         #
@@ -2442,6 +2492,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeUrl
             )
+
         end
 
         # Create a varchar attribute.
@@ -2502,6 +2553,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeVarchar
             )
+
         end
 
         # Update a varchar attribute. Changing the `default` value will not update
@@ -2561,6 +2613,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeVarchar
             )
+
         end
 
         #
@@ -2572,7 +2625,7 @@ module Appwrite
         # @param [String] collection_id Collection ID.
         # @param [String] key Attribute Key.
         #
-        # @return []
+        # @return [AttributeBoolean, AttributeInteger, AttributeFloat, AttributeEmail, AttributeEnum, AttributeUrl, AttributeIp, AttributeDatetime, AttributeRelationship, AttributeString]
         def get_attribute(database_id:, collection_id:, key:)
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}'
                 .gsub('{databaseId}', database_id)
@@ -2604,6 +2657,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeBoolean
             )
+
         end
 
         #
@@ -2647,6 +2701,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         #
@@ -2660,7 +2715,7 @@ module Appwrite
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
         # @param [String] transaction_id Transaction ID to read uncommitted changes within the transaction.
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
-        # @param [Integer] ttl TTL (seconds) for cached responses when caching is enabled for select queries. Must be between 0 and 86400 (24 hours).
+        # @param [Integer] ttl TTL (seconds) for caching list responses. Responses are stored in an in-memory key-value cache, keyed per project, collection, schema version (attributes and indexes), caller authorization roles, and the exact query — so users with different permissions never share cached entries. Schema changes invalidate cached entries automatically; document writes do not, so choose a TTL you are comfortable serving as stale data. Set to 0 to disable caching. Must be between 0 and 86400 (24 hours).
         #
         # @return [DocumentList]
         def list_documents(database_id:, collection_id:, queries: nil, transaction_id: nil, total: nil, ttl: nil)
@@ -2693,6 +2748,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::DocumentList
             )
+
         end
 
         #
@@ -2750,6 +2806,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Document
             )
+
         end
 
         #
@@ -2799,6 +2856,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::DocumentList
             )
+
         end
 
         #
@@ -2849,6 +2907,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::DocumentList
             )
+
         end
 
         #
@@ -2895,6 +2954,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::DocumentList
             )
+
         end
 
         #
@@ -2938,6 +2998,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::DocumentList
             )
+
         end
 
         #
@@ -2986,6 +3047,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Document
             )
+
         end
 
         #
@@ -3039,6 +3101,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Document
             )
+
         end
 
         #
@@ -3090,6 +3153,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Document
             )
+
         end
 
         #
@@ -3135,6 +3199,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         #
@@ -3191,6 +3256,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Document
             )
+
         end
 
         #
@@ -3247,6 +3313,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Document
             )
+
         end
 
         #
@@ -3288,6 +3355,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::IndexList
             )
+
         end
 
         #
@@ -3350,6 +3418,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Index
             )
+
         end
 
         #
@@ -3393,6 +3462,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Index
             )
+
         end
 
         #
@@ -3436,6 +3506,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
     end 

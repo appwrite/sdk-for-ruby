@@ -34,6 +34,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::TeamList
             )
+
         end
 
         # Create a new team. The user who creates the team will automatically be
@@ -73,6 +74,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Team
             )
+
         end
 
         # Get a team by its ID. All team members have read access for this resource.
@@ -101,6 +103,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Team
             )
+
         end
 
         # Update the team's name by its unique ID.
@@ -136,6 +139,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Team
             )
+
         end
 
         # Delete a team using its ID. Only team members with the owner role can
@@ -165,6 +169,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Use this endpoint to list a team's members using the team's ID. All team
@@ -201,6 +206,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::MembershipList
             )
+
         end
 
         # Invite a new member to join your team. Provide an ID for existing users, or
@@ -266,6 +272,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Membership
             )
+
         end
 
         # Get a team member by the membership unique id. All team members have read
@@ -302,6 +309,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Membership
             )
+
         end
 
         # Modify the roles of a team member. Only team members with the owner role
@@ -346,6 +354,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Membership
             )
+
         end
 
         # This endpoint allows a user to leave a team or for a team owner to delete
@@ -382,6 +391,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Use this endpoint to allow a user to accept an invitation to join a team
@@ -435,6 +445,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Membership
             )
+
         end
 
         # Get the team's shared preferences by its unique ID. If a preference doesn't
@@ -465,6 +476,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Preferences
             )
+
         end
 
         # Update the team's preferences by its unique ID. The object you pass is
@@ -502,6 +514,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Preferences
             )
+
         end
 
     end 

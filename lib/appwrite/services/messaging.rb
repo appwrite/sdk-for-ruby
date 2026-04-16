@@ -33,6 +33,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::MessageList
             )
+
         end
 
         # Create a new email message.
@@ -92,6 +93,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Message
             )
+
         end
 
         # Update an email message by its unique ID. This endpoint only works on
@@ -146,6 +148,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Message
             )
+
         end
 
         # Create a new push notification.
@@ -211,6 +214,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Message
             )
+
         end
 
         # Update a push notification by its unique ID. This endpoint only works on
@@ -279,6 +283,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Message
             )
+
         end
 
         # Create a new SMS message.
@@ -324,6 +329,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Message
             )
+
         end
 
         # Update an SMS message by its unique ID. This endpoint only works on
@@ -368,6 +374,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Message
             )
+
         end
 
         # Get a message by its unique ID.
@@ -397,6 +404,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Message
             )
+
         end
 
         # Delete a message. If the message is not a draft or scheduled, but has been
@@ -426,6 +434,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Get the message activity logs listed by its unique ID.
@@ -458,6 +467,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::LogList
             )
+
         end
 
         # Get a list of the targets associated with a message.
@@ -490,6 +500,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::TargetList
             )
+
         end
 
         # Get a list of all providers from the current Appwrite project.
@@ -518,6 +529,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ProviderList
             )
+
         end
 
         # Create a new Apple Push Notification service provider.
@@ -565,6 +577,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
+
         end
 
         # Update a Apple Push Notification service provider by its unique ID.
@@ -608,6 +621,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
+
         end
 
         # Create a new Firebase Cloud Messaging provider.
@@ -647,6 +661,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
+
         end
 
         # Update a Firebase Cloud Messaging provider by its unique ID.
@@ -682,6 +697,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
+
         end
 
         # Create a new Mailgun provider.
@@ -733,6 +749,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
+
         end
 
         # Update a Mailgun provider by its unique ID.
@@ -780,6 +797,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
+
         end
 
         # Create a new MSG91 provider.
@@ -823,6 +841,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
+
         end
 
         # Update a MSG91 provider by its unique ID.
@@ -862,6 +881,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
+
         end
 
         # Create a new Resend provider.
@@ -909,6 +929,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
+
         end
 
         # Update a Resend provider by its unique ID.
@@ -952,6 +973,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
+
         end
 
         # Create a new Sendgrid provider.
@@ -999,6 +1021,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
+
         end
 
         # Update a Sendgrid provider by its unique ID.
@@ -1042,6 +1065,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
+
         end
 
         # Create a new SMTP provider.
@@ -1105,6 +1129,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
+
         end
 
         # Update a SMTP provider by its unique ID.
@@ -1160,6 +1185,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
+
         end
 
         # Create a new Telesign provider.
@@ -1203,6 +1229,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
+
         end
 
         # Update a Telesign provider by its unique ID.
@@ -1242,6 +1269,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
+
         end
 
         # Create a new Textmagic provider.
@@ -1285,6 +1313,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
+
         end
 
         # Update a Textmagic provider by its unique ID.
@@ -1324,6 +1353,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
+
         end
 
         # Create a new Twilio provider.
@@ -1367,6 +1397,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
+
         end
 
         # Update a Twilio provider by its unique ID.
@@ -1406,6 +1437,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
+
         end
 
         # Create a new Vonage provider.
@@ -1449,6 +1481,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
+
         end
 
         # Update a Vonage provider by its unique ID.
@@ -1488,6 +1521,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
+
         end
 
         # Get a provider by its unique ID.
@@ -1517,6 +1551,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
+
         end
 
         # Delete a provider by its unique ID.
@@ -1545,6 +1580,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Get the provider activity logs listed by its unique ID.
@@ -1577,6 +1613,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::LogList
             )
+
         end
 
         # Get the subscriber activity logs listed by its unique ID.
@@ -1609,6 +1646,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::LogList
             )
+
         end
 
         # Get a list of all topics from the current Appwrite project.
@@ -1637,6 +1675,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::TopicList
             )
+
         end
 
         # Create a new topic.
@@ -1674,6 +1713,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Topic
             )
+
         end
 
         # Get a topic by its unique ID.
@@ -1703,6 +1743,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Topic
             )
+
         end
 
         # Update a topic by its unique ID.
@@ -1737,6 +1778,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Topic
             )
+
         end
 
         # Delete a topic by its unique ID.
@@ -1765,6 +1807,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Get the topic activity logs listed by its unique ID.
@@ -1797,6 +1840,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::LogList
             )
+
         end
 
         # Get a list of all subscribers from the current Appwrite project.
@@ -1831,6 +1875,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::SubscriberList
             )
+
         end
 
         # Create a new subscriber.
@@ -1872,6 +1917,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Subscriber
             )
+
         end
 
         # Get a subscriber by its unique ID.
@@ -1907,6 +1953,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Subscriber
             )
+
         end
 
         # Delete a subscriber by its unique ID.
@@ -1941,6 +1988,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
     end 

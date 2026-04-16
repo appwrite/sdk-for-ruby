@@ -47,6 +47,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # The credit card endpoint will return you the icon of the credit card
@@ -88,6 +89,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Use this endpoint to fetch the favorite icon (AKA favicon) of any remote
@@ -118,6 +120,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # You can use this endpoint to show different country flags icons to your
@@ -160,6 +163,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Use this endpoint to fetch a remote image URL and crop it to any image size
@@ -201,6 +205,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Use this endpoint to show your user initials avatar icon on your website or
@@ -245,6 +250,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Converts a given plain text to a QR code image. You can use the query
@@ -280,6 +286,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Use this endpoint to capture a screenshot of any website URL. This endpoint
@@ -354,6 +361,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
     end 

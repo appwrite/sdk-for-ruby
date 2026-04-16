@@ -27,6 +27,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # Use this endpoint to allow a new user to register a new account in your
@@ -76,6 +77,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # Update currently logged in user account email address. After changing user
@@ -118,6 +120,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # Get the list of identities for the currently logged in user.
@@ -144,6 +147,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::IdentityList
             )
+
         end
 
         # Delete an identity by its unique ID.
@@ -172,6 +176,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Use this endpoint to create a JSON Web Token. You can use the resulting JWT
@@ -201,6 +206,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Jwt
             )
+
         end
 
         # Get the list of latest security activity logs for the currently logged in
@@ -228,6 +234,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::LogList
             )
+
         end
 
         # Enable or disable MFA on an account.
@@ -257,6 +264,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # Add an authenticator app to be used as an MFA factor. Verify the
@@ -289,6 +297,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::MfaType
             )
+
         end
 
         # Verify an authenticator app after adding it using the [add
@@ -326,6 +335,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # Delete an authenticator for a user by ID.
@@ -354,6 +364,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Begin the process of MFA verification after sign-in. Finish the flow with
@@ -385,6 +396,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::MfaChallenge
             )
+
         end
 
         # Complete the MFA challenge by providing the one-time password. Finish the
@@ -424,6 +436,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Session
             )
+
         end
 
         # List the factors available on the account to be used as a MFA challange.
@@ -446,6 +459,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::MfaFactors
             )
+
         end
 
         # Get recovery codes that can be used as backup for MFA flow. Before getting
@@ -471,6 +485,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::MfaRecoveryCodes
             )
+
         end
 
         # Generate recovery codes as backup for MFA flow. It's recommended to
@@ -498,6 +513,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::MfaRecoveryCodes
             )
+
         end
 
         # Regenerate recovery codes that can be used as backup for MFA flow. Before
@@ -524,6 +540,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::MfaRecoveryCodes
             )
+
         end
 
         # Update currently logged in user account name.
@@ -553,6 +570,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # Update currently logged in user password. For validation, user is required
@@ -586,6 +604,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # Update the currently logged in user's phone number. After updating the
@@ -625,6 +644,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # Get the preferences as a key-value object for the currently logged in user.
@@ -647,6 +667,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Preferences
             )
+
         end
 
         # Update currently logged in user account preferences. The object you pass is
@@ -678,6 +699,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # Sends the user an email with a temporary secret key for password reset.
@@ -720,6 +742,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Token
             )
+
         end
 
         # Use this endpoint to complete the user account password reset. Both the
@@ -770,6 +793,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Token
             )
+
         end
 
         # Get the list of active sessions across different devices for the currently
@@ -793,6 +817,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::SessionList
             )
+
         end
 
         # Delete all sessions from the user account and remove any sessions cookies
@@ -816,6 +841,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Use this endpoint to allow a new user to register an anonymous account in
@@ -845,6 +871,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Session
             )
+
         end
 
         # Allow the user to login into their account by providing a valid email and
@@ -885,6 +912,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Session
             )
+
         end
 
         #
@@ -925,6 +953,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Session
             )
+
         end
 
         #
@@ -965,6 +994,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Session
             )
+
         end
 
         # Use this endpoint to create a session from token. Provide the **userId**
@@ -1002,6 +1032,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Session
             )
+
         end
 
         # Use this endpoint to get a logged in user's session using a Session ID.
@@ -1031,6 +1062,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Session
             )
+
         end
 
         # Use this endpoint to extend a session's length. Extending a session is
@@ -1062,6 +1094,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Session
             )
+
         end
 
         # Logout the user. Use 'current' as the session ID to logout on this device,
@@ -1094,6 +1127,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Block the currently logged in user account. Behind the scene, the user
@@ -1119,6 +1153,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::User
             )
+
         end
 
         # Sends the user an email with a secret key for creating a session. If the
@@ -1169,6 +1204,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Token
             )
+
         end
 
         # Sends the user an email with a secret key for creating a session. If the
@@ -1221,6 +1257,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Token
             )
+
         end
 
         # Allow the user to login to their account using the OAuth2 provider of their
@@ -1238,7 +1275,7 @@ module Appwrite
         # about session
         # limits](https://appwrite.io/docs/authentication-security#limits).
         #
-        # @param [OAuthProvider] provider OAuth2 Provider. Currently, supported providers are: amazon, apple, auth0, authentik, autodesk, bitbucket, bitly, box, dailymotion, discord, disqus, dropbox, etsy, facebook, figma, github, gitlab, google, linkedin, microsoft, notion, oidc, okta, paypal, paypalSandbox, podio, salesforce, slack, spotify, stripe, tradeshift, tradeshiftBox, twitch, wordpress, yahoo, yammer, yandex, zoho, zoom.
+        # @param [OAuthProvider] provider OAuth2 Provider. Currently, supported providers are: amazon, apple, auth0, authentik, autodesk, bitbucket, bitly, box, dailymotion, discord, disqus, dropbox, etsy, facebook, figma, github, gitlab, google, linkedin, microsoft, notion, oidc, okta, paypal, paypalSandbox, podio, salesforce, slack, spotify, stripe, tradeshift, tradeshiftBox, twitch, wordpress, x, yahoo, yammer, yandex, zoho, zoom.
         # @param [String] success URL to redirect back to your app after a successful login attempt.  Only URLs from hostnames in your project's platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.
         # @param [String] failure URL to redirect back to your app after a failed login attempt.  Only URLs from hostnames in your project's platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.
         # @param [Array] scopes A list of custom OAuth2 scopes. Check each provider internal docs for a list of supported scopes. Maximum of 100 scopes are allowed, each 4096 characters long.
@@ -1268,6 +1305,7 @@ module Appwrite
                 params: api_params,
                 response_type: "location"
             )
+
         end
 
         # Sends the user an SMS with a secret key for creating a session. If the
@@ -1312,6 +1350,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Token
             )
+
         end
 
         # Use this endpoint to send a verification message to your user email address
@@ -1355,6 +1394,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Token
             )
+
         end
 
         #
@@ -1401,6 +1441,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Token
             )
+
         end
 
         # Use this endpoint to complete the user email verification process. Use both
@@ -1439,6 +1480,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Token
             )
+
         end
 
         #
@@ -1480,6 +1522,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Token
             )
+
         end
 
         # Use this endpoint to send a verification SMS to the currently logged in
@@ -1510,6 +1553,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Token
             )
+
         end
 
         # Use this endpoint to complete the user phone verification process. Use the
@@ -1548,6 +1592,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Token
             )
+
         end
 
     end 

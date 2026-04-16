@@ -34,6 +34,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::BucketList
             )
+
         end
 
         # Create a new storage bucket.
@@ -87,6 +88,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Bucket
             )
+
         end
 
         # Get a storage bucket by its unique ID. This endpoint response returns a
@@ -116,6 +118,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Bucket
             )
+
         end
 
         # Update a storage bucket by its unique ID.
@@ -169,6 +172,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Bucket
             )
+
         end
 
         # Delete a storage bucket by its unique ID.
@@ -197,6 +201,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Get a list of all the user files. You can use the query params to filter
@@ -232,6 +237,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::FileList
             )
+
         end
 
         # Create a new file. Before using this route, you should create a new bucket
@@ -297,6 +303,7 @@ module Appwrite
                 on_progress: on_progress,
                 response_type: Models::File
             )
+
         end
 
         # Get a file by its unique ID. This endpoint response returns a JSON object
@@ -332,6 +339,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::File
             )
+
         end
 
         # Update a file by its unique ID. Only users with write permissions have
@@ -372,6 +380,7 @@ module Appwrite
                 params: api_params,
                 response_type: Models::File
             )
+
         end
 
         # Delete a file by its unique ID. Only users with write permissions have
@@ -407,6 +416,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Get a file content by its unique ID. The endpoint response return with a
@@ -444,6 +454,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Get a file preview image. Currently, this method supports preview for image
@@ -505,6 +516,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
         # Get a file content by its unique ID. This endpoint is similar to the
@@ -542,6 +554,7 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
+
         end
 
     end 

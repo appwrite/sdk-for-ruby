@@ -2915,7 +2915,7 @@ module Appwrite
         # Get a policy by its unique ID. This endpoint returns the current
         # configuration for the requested project policy.
         #
-        # @param [ProjectPolicyId] policy_id Policy ID. Can be one of: password-dictionary, password-history, password-personal-data, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy.
+        # @param [ProjectPolicy] policy_id Policy ID. Can be one of: password-dictionary, password-history, password-personal-data, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy.
         #
         # @return [PolicyPasswordDictionary, PolicyPasswordHistory, PolicyPasswordPersonalData, PolicySessionAlert, PolicySessionDuration, PolicySessionInvalidation, PolicySessionLimit, PolicyUserLimit, PolicyMembershipPrivacy]
         def get_policy(policy_id:)

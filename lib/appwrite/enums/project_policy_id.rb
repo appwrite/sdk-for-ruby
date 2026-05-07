@@ -1,6 +1,6 @@
 module Appwrite
     module Enums
-        module PolicyId
+        module ProjectPolicyId
             PASSWORD_DICTIONARY = 'password-dictionary'
             PASSWORD_HISTORY = 'password-history'
             PASSWORD_PERSONAL_DATA = 'password-personal-data'

@@ -23,7 +23,7 @@ result = functions.update(
     logging: false, # optional
     entrypoint: '<ENTRYPOINT>', # optional
     commands: '<COMMANDS>', # optional
-    scopes: [Scopes::SESSIONS_WRITE], # optional
+    scopes: [Scopes::PROJECT_READ], # optional
     installation_id: '<INSTALLATION_ID>', # optional
     provider_repository_id: '<PROVIDER_REPOSITORY_ID>', # optional
     provider_branch: '<PROVIDER_BRANCH>', # optional

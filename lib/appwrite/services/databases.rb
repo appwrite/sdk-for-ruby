@@ -627,6 +627,132 @@ module Appwrite
         end
 
         #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createBigIntColumn` instead.
+        #
+        # Create a bigint attribute. Optionally, minimum and maximum values can be
+        # provided.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID.
+        # @param [String] key Attribute Key.
+        # @param [] required Is attribute required?
+        # @param [Integer] min Minimum value
+        # @param [Integer] max Maximum value
+        # @param [Integer] default Default value. Cannot be set when attribute is required.
+        # @param [] array Is attribute an array?
+        #
+        # @return [AttributeBigint]
+        def create_big_int_attribute(database_id:, collection_id:, key:, required:, min: nil, max: nil, default: nil, array: nil)
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/bigint'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            api_params = {
+                key: key,
+                required: required,
+                min: min,
+                max: max,
+                default: default,
+                array: array,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::AttributeBigint
+            )
+
+        end
+
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateBigIntColumn` instead.
+        #
+        # Update a bigint attribute. Changing the `default` value will not update
+        # already existing documents.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] collection_id Collection ID.
+        # @param [String] key Attribute Key.
+        # @param [] required Is attribute required?
+        # @param [Integer] default Default value. Cannot be set when attribute is required.
+        # @param [Integer] min Minimum value
+        # @param [Integer] max Maximum value
+        # @param [String] new_key New Attribute Key.
+        #
+        # @return [AttributeBigint]
+        def update_big_int_attribute(database_id:, collection_id:, key:, required:, default:, min: nil, max: nil, new_key: nil)
+            api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/bigint/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
+                .gsub('{key}', key)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            if default.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "default"')
+            end
+
+            api_params = {
+                required: required,
+                min: min,
+                max: max,
+                default: default,
+                newKey: new_key,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::AttributeBigint
+            )
+
+        end
+
+        #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createBooleanColumn` instead.
         #
         # Create a boolean attribute.

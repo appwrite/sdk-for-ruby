@@ -33,7 +33,7 @@ module Appwrite
         # Update properties of a specific auth method. Use this endpoint to enable or
         # disable a method in your project. 
         #
-        # @param [AuthMethod] method_id Auth Method ID. Possible values: email-password,magic-url,email-otp,anonymous,invites,jwt,phone
+        # @param [MethodId] method_id Auth Method ID. Possible values: email-password,magic-url,email-otp,anonymous,invites,jwt,phone
         # @param [] enabled Auth method status.
         #
         # @return [Project]
@@ -511,7 +511,7 @@ module Appwrite
         # Get a single OAuth2 provider configuration. Credential fields (client
         # secret, p8 file, key/team IDs) are write-only and always returned empty.
         #
-        # @param [OAuthProvider] provider_id OAuth2 provider key. For example: github, google, apple.
+        # @param [ProviderId] provider_id OAuth2 provider key. For example: github, google, apple.
         #
         # @return [OAuth2Github, OAuth2Discord, OAuth2Figma, OAuth2Dropbox, OAuth2Dailymotion, OAuth2Bitbucket, OAuth2Bitly, OAuth2Box, OAuth2Autodesk, OAuth2Google, OAuth2Zoom, OAuth2Zoho, OAuth2Yandex, OAuth2X, OAuth2WordPress, OAuth2Twitch, OAuth2Stripe, OAuth2Spotify, OAuth2Slack, OAuth2Podio, OAuth2Notion, OAuth2Salesforce, OAuth2Yahoo, OAuth2Linkedin, OAuth2Disqus, OAuth2Amazon, OAuth2Etsy, OAuth2Facebook, OAuth2Tradeshift, OAuth2Paypal, OAuth2Gitlab, OAuth2Authentik, OAuth2Auth0, OAuth2FusionAuth, OAuth2Keycloak, OAuth2Oidc, OAuth2Apple, OAuth2Okta, OAuth2Kick, OAuth2Microsoft]
         def get_o_auth2_provider(provider_id:)
@@ -2915,7 +2915,7 @@ module Appwrite
         # Get a policy by its unique ID. This endpoint returns the current
         # configuration for the requested project policy.
         #
-        # @param [ProjectPolicy] policy_id Policy ID. Can be one of: password-dictionary, password-history, password-personal-data, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy.
+        # @param [PolicyId] policy_id Policy ID. Can be one of: password-dictionary, password-history, password-personal-data, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy.
         #
         # @return [PolicyPasswordDictionary, PolicyPasswordHistory, PolicyPasswordPersonalData, PolicySessionAlert, PolicySessionDuration, PolicySessionInvalidation, PolicySessionLimit, PolicyUserLimit, PolicyMembershipPrivacy]
         def get_policy(policy_id:)

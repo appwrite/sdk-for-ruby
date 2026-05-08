@@ -12,7 +12,7 @@ client = Client.new
 project = Project.new(client)
 
 result = project.update_auth_method(
-    method_id: AuthMethod::EMAIL_PASSWORD,
+    method_id: MethodId::EMAIL_PASSWORD,
     enabled: false
 )
 ```

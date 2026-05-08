@@ -2,16 +2,17 @@
 require 'appwrite'
 
 include Appwrite
-include Appwrite::Enums
 
 client = Client.new
     .set_endpoint('https://<REGION>.cloud.appwrite.io/v1') # Your API Endpoint
     .set_project('<YOUR_PROJECT_ID>') # Your project ID
     .set_key('<YOUR_API_KEY>') # Your secret API key
 
-project = Project.new(client)
+presences = Presences.new(client)
 
-result = project.get_o_auth2_provider(
-    provider_id: ProviderId::AMAZON
+result = presences.list(
+    queries: [], # optional
+    total: false, # optional
+    ttl: 0 # optional
 )
 ```

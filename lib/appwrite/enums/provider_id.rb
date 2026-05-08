@@ -1,6 +1,6 @@
 module Appwrite
     module Enums
-        module OAuthProvider
+        module ProviderId
             AMAZON = 'amazon'
             APPLE = 'apple'
             AUTH0 = 'auth0'
@@ -44,6 +44,10 @@ module Appwrite
             YANDEX = 'yandex'
             ZOHO = 'zoho'
             ZOOM = 'zoom'
+            MOCK = 'mock'
+            MOCK_UNVERIFIED = 'mock-unverified'
+            GITHUBIMAGINE = 'githubImagine'
+            GOOGLEIMAGINE = 'googleImagine'
         end
     end
 end

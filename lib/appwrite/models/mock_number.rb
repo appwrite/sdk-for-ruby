@@ -3,28 +3,38 @@
 module Appwrite
     module Models
         class MockNumber
-            attr_reader :phone
+            attr_reader :number
             attr_reader :otp
+            attr_reader :created_at
+            attr_reader :updated_at
 
             def initialize(
-                phone:,
-                otp:
+                number:,
+                otp:,
+                created_at:,
+                updated_at:
             )
-                @phone = phone
+                @number = number
                 @otp = otp
+                @created_at = created_at
+                @updated_at = updated_at
             end
 
             def self.from(map:)
                 MockNumber.new(
-                    phone: map["phone"],
-                    otp: map["otp"]
+                    number: map["number"],
+                    otp: map["otp"],
+                    created_at: map["$createdAt"],
+                    updated_at: map["$updatedAt"]
                 )
             end
 
             def to_map
                 {
-                    "phone": @phone,
-                    "otp": @otp
+                    "number": @number,
+                    "otp": @otp,
+                    "$createdAt": @created_at,
+                    "$updatedAt": @updated_at
                 }
             end
         end

@@ -16,9 +16,12 @@ module Appwrite
             ETSY = 'etsy'
             FACEBOOK = 'facebook'
             FIGMA = 'figma'
+            FUSIONAUTH = 'fusionauth'
             GITHUB = 'github'
             GITLAB = 'gitlab'
             GOOGLE = 'google'
+            KEYCLOAK = 'keycloak'
+            KICK = 'kick'
             LINKEDIN = 'linkedin'
             MICROSOFT = 'microsoft'
             NOTION = 'notion'
@@ -41,6 +44,8 @@ module Appwrite
             YANDEX = 'yandex'
             ZOHO = 'zoho'
             ZOOM = 'zoom'
+            GITHUBIMAGINE = 'githubImagine'
+            GOOGLEIMAGINE = 'googleImagine'
         end
     end
 end

@@ -833,9 +833,11 @@ module Appwrite
         # Get a list of all variables of a specific site.
         #
         # @param [String] site_id Site unique ID.
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: key, resourceType, resourceId, secret
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [VariableList]
-        def list_variables(site_id:)
+        def list_variables(site_id:, queries: nil, total: nil)
             api_path = '/sites/{siteId}/variables'
                 .gsub('{siteId}', site_id)
 
@@ -844,6 +846,8 @@ module Appwrite
             end
 
             api_params = {
+                queries: queries,
+                total: total,
             }
             
             api_headers = {
@@ -863,17 +867,22 @@ module Appwrite
         # and runtime (server-side rendering) as environment variables.
         #
         # @param [String] site_id Site unique ID.
+        # @param [String] variable_id Variable ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] key Variable key. Max length: 255 chars.
         # @param [String] value Variable value. Max length: 8192 chars.
         # @param [] secret Secret variables can be updated or deleted, but only sites can read them during build and runtime.
         #
         # @return [Variable]
-        def create_variable(site_id:, key:, value:, secret: nil)
+        def create_variable(site_id:, variable_id:, key:, value:, secret: nil)
             api_path = '/sites/{siteId}/variables'
                 .gsub('{siteId}', site_id)
 
             if site_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "siteId"')
+            end
+
+            if variable_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "variableId"')
             end
 
             if key.nil?
@@ -885,6 +894,7 @@ module Appwrite
             end
 
             api_params = {
+                variableId: variable_id,
                 key: key,
                 value: value,
                 secret: secret,
@@ -948,7 +958,7 @@ module Appwrite
         # @param [] secret Secret variables can be updated or deleted, but only sites can read them during build and runtime.
         #
         # @return [Variable]
-        def update_variable(site_id:, variable_id:, key:, value: nil, secret: nil)
+        def update_variable(site_id:, variable_id:, key: nil, value: nil, secret: nil)
             api_path = '/sites/{siteId}/variables/{variableId}'
                 .gsub('{siteId}', site_id)
                 .gsub('{variableId}', variable_id)
@@ -959,10 +969,6 @@ module Appwrite
 
             if variable_id.nil?
               raise Appwrite::Exception.new('Missing required parameter: "variableId"')
-            end
-
-            if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             api_params = {

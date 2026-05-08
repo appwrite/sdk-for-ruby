@@ -2,7 +2,6 @@
 require 'appwrite'
 
 include Appwrite
-include Appwrite::Enums
 
 client = Client.new
     .set_endpoint('https://<REGION>.cloud.appwrite.io/v1') # Your API Endpoint
@@ -11,8 +10,9 @@ client = Client.new
 
 project = Project.new(client)
 
-result = project.update_protocol_status(
-    protocol_id: ProtocolId::REST,
-    enabled: false
+result = project.update_o_auth2_discord(
+    client_id: '<CLIENT_ID>', # optional
+    client_secret: '<CLIENT_SECRET>', # optional
+    enabled: false # optional
 )
 ```

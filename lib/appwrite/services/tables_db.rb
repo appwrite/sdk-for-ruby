@@ -593,6 +593,126 @@ module Appwrite
 
         end
 
+        # Create a bigint column. Optionally, minimum and maximum values can be
+        # provided.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] table_id Table ID.
+        # @param [String] key Column Key.
+        # @param [] required Is column required?
+        # @param [Integer] min Minimum value
+        # @param [Integer] max Maximum value
+        # @param [Integer] default Default value. Cannot be set when column is required.
+        # @param [] array Is column an array?
+        #
+        # @return [ColumnBigint]
+        def create_big_int_column(database_id:, table_id:, key:, required:, min: nil, max: nil, default: nil, array: nil)
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/bigint'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            api_params = {
+                key: key,
+                required: required,
+                min: min,
+                max: max,
+                default: default,
+                array: array,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::ColumnBigint
+            )
+
+        end
+
+        # Update a bigint column. Changing the `default` value will not update
+        # already existing rows.
+        # 
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] table_id Table ID.
+        # @param [String] key Column Key.
+        # @param [] required Is column required?
+        # @param [Integer] default Default value. Cannot be set when column is required.
+        # @param [Integer] min Minimum value
+        # @param [Integer] max Maximum value
+        # @param [String] new_key New Column Key.
+        #
+        # @return [ColumnBigint]
+        def update_big_int_column(database_id:, table_id:, key:, required:, default:, min: nil, max: nil, new_key: nil)
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/bigint/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+                .gsub('{key}', key)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            if key.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            if required.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "required"')
+            end
+
+            if default.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "default"')
+            end
+
+            api_params = {
+                required: required,
+                min: min,
+                max: max,
+                default: default,
+                newKey: new_key,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::ColumnBigint
+            )
+
+        end
+
         # Create a boolean column.
         # 
         #

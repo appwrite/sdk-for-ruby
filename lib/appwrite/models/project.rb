@@ -31,6 +31,8 @@ module Appwrite
             attr_reader :auth_memberships_user_name
             attr_reader :auth_memberships_user_email
             attr_reader :auth_memberships_mfa
+            attr_reader :auth_memberships_user_id
+            attr_reader :auth_memberships_user_phone
             attr_reader :auth_invalidate_sessions
             attr_reader :o_auth_providers
             attr_reader :platforms
@@ -40,7 +42,8 @@ module Appwrite
             attr_reader :smtp_enabled
             attr_reader :smtp_sender_name
             attr_reader :smtp_sender_email
-            attr_reader :smtp_reply_to
+            attr_reader :smtp_reply_to_name
+            attr_reader :smtp_reply_to_email
             attr_reader :smtp_host
             attr_reader :smtp_port
             attr_reader :smtp_username
@@ -111,6 +114,8 @@ module Appwrite
                 auth_memberships_user_name:,
                 auth_memberships_user_email:,
                 auth_memberships_mfa:,
+                auth_memberships_user_id:,
+                auth_memberships_user_phone:,
                 auth_invalidate_sessions:,
                 o_auth_providers:,
                 platforms:,
@@ -120,7 +125,8 @@ module Appwrite
                 smtp_enabled:,
                 smtp_sender_name:,
                 smtp_sender_email:,
-                smtp_reply_to:,
+                smtp_reply_to_name:,
+                smtp_reply_to_email:,
                 smtp_host:,
                 smtp_port:,
                 smtp_username:,
@@ -190,6 +196,8 @@ module Appwrite
                 @auth_memberships_user_name = auth_memberships_user_name
                 @auth_memberships_user_email = auth_memberships_user_email
                 @auth_memberships_mfa = auth_memberships_mfa
+                @auth_memberships_user_id = auth_memberships_user_id
+                @auth_memberships_user_phone = auth_memberships_user_phone
                 @auth_invalidate_sessions = auth_invalidate_sessions
                 @o_auth_providers = o_auth_providers
                 @platforms = platforms
@@ -199,7 +207,8 @@ module Appwrite
                 @smtp_enabled = smtp_enabled
                 @smtp_sender_name = smtp_sender_name
                 @smtp_sender_email = smtp_sender_email
-                @smtp_reply_to = smtp_reply_to
+                @smtp_reply_to_name = smtp_reply_to_name
+                @smtp_reply_to_email = smtp_reply_to_email
                 @smtp_host = smtp_host
                 @smtp_port = smtp_port
                 @smtp_username = smtp_username
@@ -272,6 +281,8 @@ module Appwrite
                     auth_memberships_user_name: map["authMembershipsUserName"],
                     auth_memberships_user_email: map["authMembershipsUserEmail"],
                     auth_memberships_mfa: map["authMembershipsMfa"],
+                    auth_memberships_user_id: map["authMembershipsUserId"],
+                    auth_memberships_user_phone: map["authMembershipsUserPhone"],
                     auth_invalidate_sessions: map["authInvalidateSessions"],
                     o_auth_providers: map["oAuthProviders"].map { |it| AuthProvider.from(map: it) },
                     platforms: map["platforms"],
@@ -281,7 +292,8 @@ module Appwrite
                     smtp_enabled: map["smtpEnabled"],
                     smtp_sender_name: map["smtpSenderName"],
                     smtp_sender_email: map["smtpSenderEmail"],
-                    smtp_reply_to: map["smtpReplyTo"],
+                    smtp_reply_to_name: map["smtpReplyToName"],
+                    smtp_reply_to_email: map["smtpReplyToEmail"],
                     smtp_host: map["smtpHost"],
                     smtp_port: map["smtpPort"],
                     smtp_username: map["smtpUsername"],
@@ -355,6 +367,8 @@ module Appwrite
                     "authMembershipsUserName": @auth_memberships_user_name,
                     "authMembershipsUserEmail": @auth_memberships_user_email,
                     "authMembershipsMfa": @auth_memberships_mfa,
+                    "authMembershipsUserId": @auth_memberships_user_id,
+                    "authMembershipsUserPhone": @auth_memberships_user_phone,
                     "authInvalidateSessions": @auth_invalidate_sessions,
                     "oAuthProviders": @o_auth_providers.map { |it| it.to_map },
                     "platforms": @platforms,
@@ -364,7 +378,8 @@ module Appwrite
                     "smtpEnabled": @smtp_enabled,
                     "smtpSenderName": @smtp_sender_name,
                     "smtpSenderEmail": @smtp_sender_email,
-                    "smtpReplyTo": @smtp_reply_to,
+                    "smtpReplyToName": @smtp_reply_to_name,
+                    "smtpReplyToEmail": @smtp_reply_to_email,
                     "smtpHost": @smtp_host,
                     "smtpPort": @smtp_port,
                     "smtpUsername": @smtp_username,

@@ -1,0 +1,19 @@
+```ruby
+require 'appwrite'
+
+include Appwrite
+
+client = Client.new
+    .set_endpoint('https://<REGION>.cloud.appwrite.io/v1') # Your API Endpoint
+    .set_project('<YOUR_PROJECT_ID>') # Your project ID
+    .set_key('<YOUR_API_KEY>') # Your secret API key
+
+project = Project.new(client)
+
+result = project.update_o_auth2_gitlab(
+    application_id: '<APPLICATION_ID>', # optional
+    secret: '<SECRET>', # optional
+    endpoint: 'https://example.com', # optional
+    enabled: false # optional
+)
+```

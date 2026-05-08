@@ -12,6 +12,6 @@ client = Client.new
 project = Project.new(client)
 
 result = project.get_o_auth2_provider(
-    provider_id: ProviderId::AMAZON
+    provider_id: OAuthProvider::AMAZON
 )
 ```

@@ -12,6 +12,7 @@ sites = Sites.new(client)
 
 result = sites.create_variable(
     site_id: '<SITE_ID>',
+    variable_id: '<VARIABLE_ID>',
     key: '<KEY>',
     value: '<VALUE>',
     secret: false # optional

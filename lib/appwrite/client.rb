@@ -15,8 +15,8 @@ module Appwrite
                 'x-sdk-name'=> 'Ruby',
                 'x-sdk-platform'=> 'server',
                 'x-sdk-language'=> 'ruby',
-                'x-sdk-version'=> '23.0.0',
-                'X-Appwrite-Response-Format' => '1.9.1'
+                'x-sdk-version'=> '23.1.0',
+                'X-Appwrite-Response-Format' => '1.9.4'
             }
             @endpoint = 'https://cloud.appwrite.io/v1'
         end
@@ -93,6 +93,32 @@ module Appwrite
         # @return [self]
         def set_forwarded_user_agent(value)
             add_header('x-forwarded-user-agent', value)
+
+            self
+        end
+
+        # Set DevKey
+        #
+        # Your secret dev API key
+        #
+        # @param [String] value The value to set for the DevKey header
+        #
+        # @return [self]
+        def set_dev_key(value)
+            add_header('x-appwrite-dev-key', value)
+
+            self
+        end
+
+        # Set Cookie
+        #
+        # The user cookie to authenticate with. Used by SDKs that forward an incoming Cookie header in server-side runtimes.
+        #
+        # @param [String] value The value to set for the Cookie header
+        #
+        # @return [self]
+        def set_cookie(value)
+            add_header('cookie', value)
 
             self
         end

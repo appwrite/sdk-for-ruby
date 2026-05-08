@@ -9,6 +9,7 @@ module Appwrite
             attr_reader :user_id
             attr_reader :user_name
             attr_reader :user_email
+            attr_reader :user_phone
             attr_reader :team_id
             attr_reader :team_name
             attr_reader :invited
@@ -24,6 +25,7 @@ module Appwrite
                 user_id:,
                 user_name:,
                 user_email:,
+                user_phone:,
                 team_id:,
                 team_name:,
                 invited:,
@@ -38,6 +40,7 @@ module Appwrite
                 @user_id = user_id
                 @user_name = user_name
                 @user_email = user_email
+                @user_phone = user_phone
                 @team_id = team_id
                 @team_name = team_name
                 @invited = invited
@@ -55,6 +58,7 @@ module Appwrite
                     user_id: map["userId"],
                     user_name: map["userName"],
                     user_email: map["userEmail"],
+                    user_phone: map["userPhone"],
                     team_id: map["teamId"],
                     team_name: map["teamName"],
                     invited: map["invited"],
@@ -73,6 +77,7 @@ module Appwrite
                     "userId": @user_id,
                     "userName": @user_name,
                     "userEmail": @user_email,
+                    "userPhone": @user_phone,
                     "teamId": @team_id,
                     "teamName": @team_name,
                     "invited": @invited,

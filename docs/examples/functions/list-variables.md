@@ -11,6 +11,8 @@ client = Client.new
 functions = Functions.new(client)
 
 result = functions.list_variables(
-    function_id: '<FUNCTION_ID>'
+    function_id: '<FUNCTION_ID>',
+    queries: [], # optional
+    total: false # optional
 )
 ```

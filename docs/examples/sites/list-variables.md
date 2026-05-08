@@ -11,6 +11,8 @@ client = Client.new
 sites = Sites.new(client)
 
 result = sites.list_variables(
-    site_id: '<SITE_ID>'
+    site_id: '<SITE_ID>',
+    queries: [], # optional
+    total: false # optional
 )
 ```

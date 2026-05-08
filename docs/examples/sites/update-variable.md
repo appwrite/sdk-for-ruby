@@ -13,7 +13,7 @@ sites = Sites.new(client)
 result = sites.update_variable(
     site_id: '<SITE_ID>',
     variable_id: '<VARIABLE_ID>',
-    key: '<KEY>',
+    key: '<KEY>', # optional
     value: '<VALUE>', # optional
     secret: false # optional
 )

@@ -2,7 +2,6 @@
 require 'appwrite'
 
 include Appwrite
-include Appwrite::Enums
 
 client = Client.new
     .set_endpoint('https://<REGION>.cloud.appwrite.io/v1') # Your API Endpoint
@@ -11,8 +10,8 @@ client = Client.new
 
 project = Project.new(client)
 
-result = project.update_service_status(
-    service_id: ServiceId::ACCOUNT,
-    enabled: false
+result = project.update_mock_phone(
+    number: '+12065550100',
+    otp: '<OTP>'
 )
 ```

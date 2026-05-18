@@ -40,8 +40,8 @@ module Appwrite
                     updated_at: map["$updatedAt"],
                     enabled: map["enabled"],
                     type: map["type"],
-                    policies: map["policies"].map { |it| Index.from(map: it) },
-                    archives: map["archives"].map { |it| Collection.from(map: it) }
+                    policies: map["policies"].map { |it| BackupPolicy.from(map: it) },
+                    archives: map["archives"].map { |it| BackupArchive.from(map: it) }
                 )
             end
 

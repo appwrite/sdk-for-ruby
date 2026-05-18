@@ -12,7 +12,7 @@ client = Client.new
 project = Project.new(client)
 
 result = project.create_ephemeral_key(
-    scopes: [Scopes::PROJECT_READ],
+    scopes: [ProjectKeyScopes::PROJECT_READ],
     duration: 600
 )
 ```

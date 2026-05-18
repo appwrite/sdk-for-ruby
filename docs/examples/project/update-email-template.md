@@ -12,8 +12,8 @@ client = Client.new
 project = Project.new(client)
 
 result = project.update_email_template(
-    template_id: EmailTemplateType::VERIFICATION,
-    locale: EmailTemplateLocale::AF, # optional
+    template_id: ProjectEmailTemplateId::VERIFICATION,
+    locale: ProjectEmailTemplateLocale::AF, # optional
     subject: '<SUBJECT>', # optional
     message: '<MESSAGE>', # optional
     sender_name: '<SENDER_NAME>', # optional

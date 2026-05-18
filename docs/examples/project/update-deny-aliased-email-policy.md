@@ -2,7 +2,6 @@
 require 'appwrite'
 
 include Appwrite
-include Appwrite::Enums
 
 client = Client.new
     .set_endpoint('https://<REGION>.cloud.appwrite.io/v1') # Your API Endpoint
@@ -11,10 +10,7 @@ client = Client.new
 
 project = Project.new(client)
 
-result = project.create_key(
-    key_id: '<KEY_ID>',
-    name: '<NAME>',
-    scopes: [ProjectKeyScopes::PROJECT_READ],
-    expire: '2020-10-15T06:38:00.000+00:00' # optional
+result = project.update_deny_aliased_email_policy(
+    enabled: false
 )
 ```

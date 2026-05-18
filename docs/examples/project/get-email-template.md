@@ -12,7 +12,7 @@ client = Client.new
 project = Project.new(client)
 
 result = project.get_email_template(
-    template_id: EmailTemplateType::VERIFICATION,
-    locale: EmailTemplateLocale::AF # optional
+    template_id: ProjectEmailTemplateId::VERIFICATION,
+    locale: ProjectEmailTemplateLocale::AF # optional
 )
 ```

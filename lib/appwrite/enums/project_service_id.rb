@@ -1,6 +1,6 @@
 module Appwrite
     module Enums
-        module ServiceId
+        module ProjectServiceId
             ACCOUNT = 'account'
             AVATARS = 'avatars'
             DATABASES = 'databases'
@@ -18,6 +18,7 @@ module Appwrite
             GRAPHQL = 'graphql'
             MIGRATIONS = 'migrations'
             MESSAGING = 'messaging'
+            ADVISOR = 'advisor'
         end
     end
 end

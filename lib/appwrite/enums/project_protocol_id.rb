@@ -1,6 +1,6 @@
 module Appwrite
     module Enums
-        module ProtocolId
+        module ProjectProtocolId
             REST = 'rest'
             GRAPHQL = 'graphql'
             WEBSOCKET = 'websocket'

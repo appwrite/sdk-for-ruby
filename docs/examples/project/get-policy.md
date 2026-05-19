@@ -12,6 +12,6 @@ client = Client.new
 project = Project.new(client)
 
 result = project.get_policy(
-    policy_id: ProjectPolicy::PASSWORD_DICTIONARY
+    policy_id: ProjectPolicyId::PASSWORD_DICTIONARY
 )
 ```

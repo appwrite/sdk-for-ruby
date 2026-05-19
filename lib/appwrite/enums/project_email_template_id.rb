@@ -1,6 +1,6 @@
 module Appwrite
     module Enums
-        module EmailTemplateType
+        module ProjectEmailTemplateId
             VERIFICATION = 'verification'
             MAGICSESSION = 'magicSession'
             RECOVERY = 'recovery'

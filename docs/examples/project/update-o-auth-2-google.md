@@ -2,6 +2,7 @@
 require 'appwrite'
 
 include Appwrite
+include Appwrite::Enums
 
 client = Client.new
     .set_endpoint('https://<REGION>.cloud.appwrite.io/v1') # Your API Endpoint
@@ -13,6 +14,7 @@ project = Project.new(client)
 result = project.update_o_auth2_google(
     client_id: '<CLIENT_ID>', # optional
     client_secret: '<CLIENT_SECRET>', # optional
+    prompt: [ProjectOAuth2GooglePrompt::NONE], # optional
     enabled: false # optional
 )
 ```

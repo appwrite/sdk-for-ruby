@@ -1,6 +1,6 @@
 module Appwrite
     module Enums
-        module Secure
+        module ProjectSMTPSecure
             TLS = 'tls'
             SSL = 'ssl'
         end

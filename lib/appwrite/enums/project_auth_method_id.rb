@@ -1,6 +1,6 @@
 module Appwrite
     module Enums
-        module AuthMethod
+        module ProjectAuthMethodId
             EMAIL_PASSWORD = 'email-password'
             MAGIC_URL = 'magic-url'
             EMAIL_OTP = 'email-otp'

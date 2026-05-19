@@ -1,6 +1,6 @@
 module Appwrite
     module Enums
-        module Scopes
+        module ProjectKeyScopes
             PROJECT_READ = 'project.read'
             PROJECT_WRITE = 'project.write'
             KEYS_READ = 'keys.read'

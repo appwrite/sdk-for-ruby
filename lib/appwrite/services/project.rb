@@ -7,6 +7,29 @@ module Appwrite
             @client = client
         end
 
+        # Get a project.
+        #
+        #
+        # @return [Project]
+        def get()
+            api_path = '/project'
+
+            api_params = {
+            }
+            
+            api_headers = {
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Project
+            )
+
+        end
+
         # Delete a project.
         #
         #
@@ -33,7 +56,7 @@ module Appwrite
         # Update properties of a specific auth method. Use this endpoint to enable or
         # disable a method in your project. 
         #
-        # @param [AuthMethod] method_id Auth Method ID. Possible values: email-password,magic-url,email-otp,anonymous,invites,jwt,phone
+        # @param [ProjectAuthMethodId] method_id Auth Method ID. Possible values: email-password,magic-url,email-otp,anonymous,invites,jwt,phone
         # @param [] enabled Auth method status.
         #
         # @return [Project]
@@ -511,7 +534,7 @@ module Appwrite
         # Update the project OAuth2 Amazon configuration.
         #
         # @param [String] client_id 'Client ID' of Amazon OAuth2 app. For example: amzn1.application-oa2-client.87400c00000000000000000000063d5b2
-        # @param [String] client_secret 'Client Secret' of Amazon OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] client_secret 'Client Secret' of Amazon OAuth2 app. For example: 79ffe4000000000000000000000000000000000000000000000000000002de55
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Amazon]
@@ -575,7 +598,7 @@ module Appwrite
         # Update the project OAuth2 Auth0 configuration.
         #
         # @param [String] client_id 'Client ID' of Auth0 OAuth2 app. For example: OaOkIA000000000000000000005KLSYq
-        # @param [String] client_secret 'Client Secret' of Auth0 OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] client_secret 'Client Secret' of Auth0 OAuth2 app. For example: zXz0000-00000000000000000000000000000-00000000000000000000PJafnF
         # @param [String] endpoint Domain of Auth0 instance. For example: example.us.auth0.com
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
@@ -607,7 +630,7 @@ module Appwrite
         # Update the project OAuth2 Authentik configuration.
         #
         # @param [String] client_id 'Client ID' of Authentik OAuth2 app. For example: dTKOPa0000000000000000000000000000e7G8hv
-        # @param [String] client_secret 'Client Secret' of Authentik OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] client_secret 'Client Secret' of Authentik OAuth2 app. For example: ntQadq000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000Hp5WK
         # @param [String] endpoint Domain of Authentik instance. For example: example.authentik.com
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
@@ -639,7 +662,7 @@ module Appwrite
         # Update the project OAuth2 Autodesk configuration.
         #
         # @param [String] client_id 'Client ID' of Autodesk OAuth2 app. For example: 5zw90v00000000000000000000kVYXN7
-        # @param [String] client_secret 'Client Secret' of Autodesk OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] client_secret 'Client Secret' of Autodesk OAuth2 app. For example: 7I000000000000MW
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Autodesk]
@@ -669,7 +692,7 @@ module Appwrite
         # Update the project OAuth2 Bitbucket configuration.
         #
         # @param [String] key 'Key' of Bitbucket OAuth2 app. For example: Knt70000000000ByRc
-        # @param [String] secret 'Secret' of Bitbucket OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] secret 'Secret' of Bitbucket OAuth2 app. For example: NMfLZJ00000000000000000000TLQdDx
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Bitbucket]
@@ -699,7 +722,7 @@ module Appwrite
         # Update the project OAuth2 Bitly configuration.
         #
         # @param [String] client_id 'Client ID' of Bitly OAuth2 app. For example: d95151000000000000000000000000000067af9b
-        # @param [String] client_secret 'Client Secret' of Bitly OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] client_secret 'Client Secret' of Bitly OAuth2 app. For example: a13e250000000000000000000000000000d73095
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Bitly]
@@ -729,7 +752,7 @@ module Appwrite
         # Update the project OAuth2 Box configuration.
         #
         # @param [String] client_id 'Client ID' of Box OAuth2 app. For example: deglcs00000000000000000000x2og6y
-        # @param [String] client_secret 'Client Secret' of Box OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] client_secret 'Client Secret' of Box OAuth2 app. For example: OKM1f100000000000000000000eshEif
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Box]
@@ -759,7 +782,7 @@ module Appwrite
         # Update the project OAuth2 Dailymotion configuration.
         #
         # @param [String] api_key 'API Key' of Dailymotion OAuth2 app. For example: 07a9000000000000067f
-        # @param [String] api_secret 'API Secret' of Dailymotion OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] api_secret 'API Secret' of Dailymotion OAuth2 app. For example: a399a90000000000000000000000000000d90639
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Dailymotion]
@@ -789,7 +812,7 @@ module Appwrite
         # Update the project OAuth2 Discord configuration.
         #
         # @param [String] client_id 'Client ID' of Discord OAuth2 app. For example: 950722000000343754
-        # @param [String] client_secret 'Client Secret' of Discord OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] client_secret 'Client Secret' of Discord OAuth2 app. For example: YmPXnM000000000000000000002zFg5D
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Discord]
@@ -819,7 +842,7 @@ module Appwrite
         # Update the project OAuth2 Disqus configuration.
         #
         # @param [String] public_key 'Public Key, also known as API Key' of Disqus OAuth2 app. For example: cgegH70000000000000000000000000000000000000000000000000000Hr1nYX
-        # @param [String] secret_key 'Secret Key, also known as API Secret' of Disqus OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] secret_key 'Secret Key, also known as API Secret' of Disqus OAuth2 app. For example: W7Bykj00000000000000000000000000000000000000000000000000003o43w9
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Disqus]
@@ -849,7 +872,7 @@ module Appwrite
         # Update the project OAuth2 Dropbox configuration.
         #
         # @param [String] app_key 'App Key' of Dropbox OAuth2 app. For example: jl000000000009t
-        # @param [String] app_secret 'App Secret' of Dropbox OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] app_secret 'App Secret' of Dropbox OAuth2 app. For example: g200000000000vw
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Dropbox]
@@ -879,7 +902,7 @@ module Appwrite
         # Update the project OAuth2 Etsy configuration.
         #
         # @param [String] key_string 'Keystring' of Etsy OAuth2 app. For example: nsgzxh0000000000008j85a2
-        # @param [String] shared_secret 'Shared Secret' of Etsy OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] shared_secret 'Shared Secret' of Etsy OAuth2 app. For example: tp000000ru
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Etsy]
@@ -909,7 +932,7 @@ module Appwrite
         # Update the project OAuth2 Facebook configuration.
         #
         # @param [String] app_id 'App ID' of Facebook OAuth2 app. For example: 260600000007694
-        # @param [String] app_secret 'App Secret' of Facebook OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] app_secret 'App Secret' of Facebook OAuth2 app. For example: 2d0b2800000000000000000000d38af4
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Facebook]
@@ -939,7 +962,7 @@ module Appwrite
         # Update the project OAuth2 Figma configuration.
         #
         # @param [String] client_id 'Client ID' of Figma OAuth2 app. For example: byay5H0000000000VtiI40
-        # @param [String] client_secret 'Client Secret' of Figma OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] client_secret 'Client Secret' of Figma OAuth2 app. For example: yEpOYn0000000000000000004iIsU5
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Figma]
@@ -969,7 +992,7 @@ module Appwrite
         # Update the project OAuth2 FusionAuth configuration.
         #
         # @param [String] client_id 'Client ID' of FusionAuth OAuth2 app. For example: b2222c00-0000-0000-0000-000000862097
-        # @param [String] client_secret 'Client Secret' of FusionAuth OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] client_secret 'Client Secret' of FusionAuth OAuth2 app. For example: Jx4s0C0000000000000000000000000000000wGqLsc
         # @param [String] endpoint Domain of FusionAuth instance. For example: example.fusionauth.io
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
@@ -1001,7 +1024,7 @@ module Appwrite
         # Update the project OAuth2 GitHub configuration.
         #
         # @param [String] client_id 'OAuth2 app Client ID, or App ID' of GitHub OAuth2 app. For example: e4d87900000000540733. Example of wrong value: 370006
-        # @param [String] client_secret 'Client Secret' of GitHub OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] client_secret 'Client Secret' of GitHub OAuth2 app. For example: 5e07c00000000000000000000000000000198bcc
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Github]
@@ -1031,7 +1054,7 @@ module Appwrite
         # Update the project OAuth2 Gitlab configuration.
         #
         # @param [String] application_id 'Application ID' of Gitlab OAuth2 app. For example: d41ffe0000000000000000000000000000000000000000000000000000d5e252
-        # @param [String] secret 'Secret' of Gitlab OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] secret 'Secret' of Gitlab OAuth2 app. For example: gloas-838cfa0000000000000000000000000000000000000000000000000000ecbb38
         # @param [String] endpoint Endpoint URL of self-hosted GitLab instance. For example: https://gitlab.com
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
@@ -1063,16 +1086,18 @@ module Appwrite
         # Update the project OAuth2 Google configuration.
         #
         # @param [String] client_id 'Client ID' of Google OAuth2 app. For example: 120000000095-92ifjb00000000000000000000g7ijfb.apps.googleusercontent.com
-        # @param [String] client_secret 'Client Secret' of Google OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] client_secret 'Client Secret' of Google OAuth2 app. For example: example-google-client-secret
+        # @param [Array] prompt Array of Google OAuth2 prompt values. If "none" is included, it must be the only element. "none" means: don't display any authentication or consent screens. Must not be specified with other values. "consent" means: prompt the user for consent. "select_account" means: prompt the user to select an account.
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Google]
-        def update_o_auth2_google(client_id: nil, client_secret: nil, enabled: nil)
+        def update_o_auth2_google(client_id: nil, client_secret: nil, prompt: nil, enabled: nil)
             api_path = '/project/oauth2/google'
 
             api_params = {
                 clientId: client_id,
                 clientSecret: client_secret,
+                prompt: prompt,
                 enabled: enabled,
             }
             
@@ -1093,7 +1118,7 @@ module Appwrite
         # Update the project OAuth2 Keycloak configuration.
         #
         # @param [String] client_id 'Client ID' of Keycloak OAuth2 app. For example: appwrite-o0000000st-app
-        # @param [String] client_secret 'Client Secret' of Keycloak OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] client_secret 'Client Secret' of Keycloak OAuth2 app. For example: jdjrJd00000000000000000000HUsaZO
         # @param [String] endpoint Domain of Keycloak instance. For example: keycloak.example.com
         # @param [String] realm_name Keycloak realm name. For example: appwrite-realm
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
@@ -1127,7 +1152,7 @@ module Appwrite
         # Update the project OAuth2 Kick configuration.
         #
         # @param [String] client_id 'Client ID' of Kick OAuth2 app. For example: 01KQ7C00000000000001MFHS32
-        # @param [String] client_secret 'Client Secret' of Kick OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] client_secret 'Client Secret' of Kick OAuth2 app. For example: 34ac5600000000000000000000000000000000000000000000000000e830c8b
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Kick]
@@ -1157,7 +1182,7 @@ module Appwrite
         # Update the project OAuth2 Linkedin configuration.
         #
         # @param [String] client_id 'Client ID' of Linkedin OAuth2 app. For example: 770000000000dv
-        # @param [String] primary_client_secret 'Primary Client Secret or Secondary Client Secret' of Linkedin OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] primary_client_secret 'Primary Client Secret or Secondary Client Secret' of Linkedin OAuth2 app. For example: example-linkedin-client-secret
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Linkedin]
@@ -1187,7 +1212,7 @@ module Appwrite
         # Update the project OAuth2 Microsoft configuration.
         #
         # @param [String] application_id 'Entra ID Application ID, also known as Client ID' of Microsoft OAuth2 app. For example: 00001111-aaaa-2222-bbbb-3333cccc4444
-        # @param [String] application_secret 'Entra ID Application Secret, also known as Client Secret' of Microsoft OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] application_secret 'Entra ID Application Secret, also known as Client Secret' of Microsoft OAuth2 app. For example: A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u
         # @param [String] tenant Microsoft Entra ID tenant identifier. Use 'common', 'organizations', 'consumers' or a specific tenant ID. For example: common
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
@@ -1219,7 +1244,7 @@ module Appwrite
         # Update the project OAuth2 Notion configuration.
         #
         # @param [String] oauth_client_id 'OAuth Client ID' of Notion OAuth2 app. For example: 341d8700-0000-0000-0000-000000446ee3
-        # @param [String] oauth_client_secret 'OAuth Client Secret' of Notion OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] oauth_client_secret 'OAuth Client Secret' of Notion OAuth2 app. For example: secret_dLUr4b000000000000000000000000000000lFHAa9
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Notion]
@@ -1249,7 +1274,7 @@ module Appwrite
         # Update the project OAuth2 Oidc configuration.
         #
         # @param [String] client_id 'Client ID' of Oidc OAuth2 app. For example: qibI2x0000000000000000000000000006L2YFoG
-        # @param [String] client_secret 'Client Secret' of Oidc OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] client_secret 'Client Secret' of Oidc OAuth2 app. For example: Ah68ed000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003qpcHV
         # @param [String] well_known_url OpenID Connect well-known configuration URL. When provided, authorization, token, and user info endpoints can be discovered automatically. For example: https://myoauth.com/.well-known/openid-configuration
         # @param [String] authorization_url OpenID Connect authorization endpoint URL. Required when wellKnownURL is not provided. For example: https://myoauth.com/oauth2/authorize
         # @param [String] token_url OpenID Connect token endpoint URL. Required when wellKnownURL is not provided. For example: https://myoauth.com/oauth2/token
@@ -1287,7 +1312,7 @@ module Appwrite
         # Update the project OAuth2 Okta configuration.
         #
         # @param [String] client_id 'Client ID' of Okta OAuth2 app. For example: 0oa00000000000000698
-        # @param [String] client_secret 'Client Secret' of Okta OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] client_secret 'Client Secret' of Okta OAuth2 app. For example: Kiq0000000000000000000000000000000000000-00000000000H2L5-3SJ-vRV
         # @param [String] domain Okta company domain. Required when enabling the provider. For example: trial-6400025.okta.com. Example of wrong value: trial-6400025-admin.okta.com, or https://trial-6400025.okta.com/
         # @param [String] authorization_server_id Custom Authorization Servers. Optional, can be left empty or unconfigured. For example: aus000000000000000h7z
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
@@ -1321,7 +1346,7 @@ module Appwrite
         # Update the project OAuth2 Paypal configuration.
         #
         # @param [String] client_id 'Client ID' of Paypal OAuth2 app. For example: AdhIEG7-000000000000-0000000000000000000000000000000-0000000000000000000000-2pyB
-        # @param [String] secret_key 'Secret Key 1 or Secret Key 2' of Paypal OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] secret_key 'Secret Key 1 or Secret Key 2' of Paypal OAuth2 app. For example: EH8KCXtew--000000000000000000000000000000000000000_C-1_5UP_000000000000000CB7KDp
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Paypal]
@@ -1351,7 +1376,7 @@ module Appwrite
         # Update the project OAuth2 PaypalSandbox configuration.
         #
         # @param [String] client_id 'Client ID' of PaypalSandbox OAuth2 app. For example: AdhIEG7-000000000000-0000000000000000000000000000000-0000000000000000000000-2pyB
-        # @param [String] secret_key 'Secret Key 1 or Secret Key 2' of PaypalSandbox OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] secret_key 'Secret Key 1 or Secret Key 2' of PaypalSandbox OAuth2 app. For example: EH8KCXtew--000000000000000000000000000000000000000_C-1_5UP_000000000000000CB7KDp
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Paypal]
@@ -1381,7 +1406,7 @@ module Appwrite
         # Update the project OAuth2 Podio configuration.
         #
         # @param [String] client_id 'Client ID' of Podio OAuth2 app. For example: appwrite-o0000000st-app
-        # @param [String] client_secret 'Client Secret' of Podio OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] client_secret 'Client Secret' of Podio OAuth2 app. For example: Rn247T0000000000000000000000000000000000000000000000000000W2zWTN
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Podio]
@@ -1411,7 +1436,7 @@ module Appwrite
         # Update the project OAuth2 Salesforce configuration.
         #
         # @param [String] customer_key 'Consumer Key' of Salesforce OAuth2 app. For example: 3MVG9I0000000000000000000000000000000000000000000000000000000000000000000000000C5Aejq
-        # @param [String] customer_secret 'Consumer Secret' of Salesforce OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] customer_secret 'Consumer Secret' of Salesforce OAuth2 app. For example: 3w000000000000e2
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Salesforce]
@@ -1441,7 +1466,7 @@ module Appwrite
         # Update the project OAuth2 Slack configuration.
         #
         # @param [String] client_id 'Client ID' of Slack OAuth2 app. For example: 23000000089.15000000000023
-        # @param [String] client_secret 'Client Secret' of Slack OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] client_secret 'Client Secret' of Slack OAuth2 app. For example: 81656000000000000000000000f3d2fd
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Slack]
@@ -1471,7 +1496,7 @@ module Appwrite
         # Update the project OAuth2 Spotify configuration.
         #
         # @param [String] client_id 'Client ID' of Spotify OAuth2 app. For example: 6ec271000000000000000000009beace
-        # @param [String] client_secret 'Client Secret' of Spotify OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] client_secret 'Client Secret' of Spotify OAuth2 app. For example: db068a000000000000000000008b5b9f
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Spotify]
@@ -1501,7 +1526,7 @@ module Appwrite
         # Update the project OAuth2 Stripe configuration.
         #
         # @param [String] client_id 'Client ID' of Stripe OAuth2 app. For example: ca_UKibXX0000000000000000000006byvR
-        # @param [String] api_secret_key 'API Secret Key' of Stripe OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] api_secret_key 'API Secret Key' of Stripe OAuth2 app. For example: sk_51SfOd000000000000000000000000000000000000000000000000000000000000000000000000000000000000000QGWYfp
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Stripe]
@@ -1531,7 +1556,7 @@ module Appwrite
         # Update the project OAuth2 Tradeshift configuration.
         #
         # @param [String] oauth2_client_id 'OAuth2 Client ID' of Tradeshift OAuth2 app. For example: appwrite-tes00000.0000000000est-app
-        # @param [String] oauth2_client_secret 'OAuth2 Client Secret' of Tradeshift OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] oauth2_client_secret 'OAuth2 Client Secret' of Tradeshift OAuth2 app. For example: 7cb52700-0000-0000-0000-000000ca5b83
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Tradeshift]
@@ -1561,7 +1586,7 @@ module Appwrite
         # Update the project OAuth2 Tradeshift Sandbox configuration.
         #
         # @param [String] oauth2_client_id 'OAuth2 Client ID' of Tradeshift Sandbox OAuth2 app. For example: appwrite-tes00000.0000000000est-app
-        # @param [String] oauth2_client_secret 'OAuth2 Client Secret' of Tradeshift Sandbox OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] oauth2_client_secret 'OAuth2 Client Secret' of Tradeshift Sandbox OAuth2 app. For example: 7cb52700-0000-0000-0000-000000ca5b83
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Tradeshift]
@@ -1591,7 +1616,7 @@ module Appwrite
         # Update the project OAuth2 Twitch configuration.
         #
         # @param [String] client_id 'Client ID' of Twitch OAuth2 app. For example: vvi0in000000000000000000ikmt9p
-        # @param [String] client_secret 'Client Secret' of Twitch OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] client_secret 'Client Secret' of Twitch OAuth2 app. For example: pmapue000000000000000000zylw3v
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Twitch]
@@ -1621,7 +1646,7 @@ module Appwrite
         # Update the project OAuth2 WordPress configuration.
         #
         # @param [String] client_id 'Client ID' of WordPress OAuth2 app. For example: 130005
-        # @param [String] client_secret 'Client Secret' of WordPress OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] client_secret 'Client Secret' of WordPress OAuth2 app. For example: PlBfJS0000000000000000000000000000000000000000000000000000EdUZJk
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2WordPress]
@@ -1651,7 +1676,7 @@ module Appwrite
         # Update the project OAuth2 X configuration.
         #
         # @param [String] customer_key 'Customer Key' of X OAuth2 app. For example: slzZV0000000000000NFLaWT
-        # @param [String] secret_key 'Secret Key' of X OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] secret_key 'Secret Key' of X OAuth2 app. For example: tkEPkp00000000000000000000000000000000000000FTxbI9
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2X]
@@ -1681,7 +1706,7 @@ module Appwrite
         # Update the project OAuth2 Yahoo configuration.
         #
         # @param [String] client_id 'Client ID, also known as Customer Key' of Yahoo OAuth2 app. For example: dj0yJm000000000000000000000000000000000000000000000000000000000000000000000000000000000000Z4PWRm
-        # @param [String] client_secret 'Client Secret, also known as Customer Secret' of Yahoo OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] client_secret 'Client Secret, also known as Customer Secret' of Yahoo OAuth2 app. For example: cf978f0000000000000000000000000000c5e2e9
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Yahoo]
@@ -1711,7 +1736,7 @@ module Appwrite
         # Update the project OAuth2 Yandex configuration.
         #
         # @param [String] client_id 'Client ID' of Yandex OAuth2 app. For example: 6a8a6a0000000000000000000091483c
-        # @param [String] client_secret 'Client Secret' of Yandex OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] client_secret 'Client Secret' of Yandex OAuth2 app. For example: bbf98500000000000000000000c75a63
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Yandex]
@@ -1741,7 +1766,7 @@ module Appwrite
         # Update the project OAuth2 Zoho configuration.
         #
         # @param [String] client_id 'Client ID' of Zoho OAuth2 app. For example: 1000.83C178000000000000000000RPNX0B
-        # @param [String] client_secret 'Client Secret' of Zoho OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] client_secret 'Client Secret' of Zoho OAuth2 app. For example: fb5cac000000000000000000000000000000a68f6e
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Zoho]
@@ -1771,7 +1796,7 @@ module Appwrite
         # Update the project OAuth2 Zoom configuration.
         #
         # @param [String] client_id 'Client ID' of Zoom OAuth2 app. For example: QMAC00000000000000w0AQ
-        # @param [String] client_secret 'Client Secret' of Zoom OAuth2 app. For example: <CLIENT_SECRET>
+        # @param [String] client_secret 'Client Secret' of Zoom OAuth2 app. For example: GAWsG4000000000000000000007U01ON
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Zoom]
@@ -1801,7 +1826,7 @@ module Appwrite
         # Get a single OAuth2 provider configuration. Credential fields (client
         # secret, p8 file, key/team IDs) are write-only and always returned empty.
         #
-        # @param [OAuthProvider] provider_id OAuth2 provider key. For example: github, google, apple.
+        # @param [ProjectOAuthProviderId] provider_id OAuth2 provider key. For example: github, google, apple.
         #
         # @return [OAuth2Github, OAuth2Discord, OAuth2Figma, OAuth2Dropbox, OAuth2Dailymotion, OAuth2Bitbucket, OAuth2Bitly, OAuth2Box, OAuth2Autodesk, OAuth2Google, OAuth2Zoom, OAuth2Zoho, OAuth2Yandex, OAuth2X, OAuth2WordPress, OAuth2Twitch, OAuth2Stripe, OAuth2Spotify, OAuth2Slack, OAuth2Podio, OAuth2Notion, OAuth2Salesforce, OAuth2Yahoo, OAuth2Linkedin, OAuth2Disqus, OAuth2Amazon, OAuth2Etsy, OAuth2Facebook, OAuth2Tradeshift, OAuth2Paypal, OAuth2Gitlab, OAuth2Authentik, OAuth2Auth0, OAuth2FusionAuth, OAuth2Keycloak, OAuth2Oidc, OAuth2Apple, OAuth2Okta, OAuth2Kick, OAuth2Microsoft]
         def get_o_auth2_provider(provider_id:)
@@ -2613,6 +2638,99 @@ module Appwrite
 
         end
 
+        # Configures if aliased emails such as subaddresses and emails with suffixes
+        # are denied during new users sign-ups and email updates.
+        #
+        # @param [] enabled Set whether or not to block aliased emails during signup and email updates.
+        #
+        # @return [Project]
+        def update_deny_aliased_email_policy(enabled:)
+            api_path = '/project/policies/deny-aliased-email'
+
+            if enabled.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "enabled"')
+            end
+
+            api_params = {
+                enabled: enabled,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Project
+            )
+
+        end
+
+        # Configures if disposable emails from known temporary domains are denied
+        # during new users sign-ups and email updates.
+        #
+        # @param [] enabled Set whether or not to block disposable email addresses during signup and email updates.
+        #
+        # @return [Project]
+        def update_deny_disposable_email_policy(enabled:)
+            api_path = '/project/policies/deny-disposable-email'
+
+            if enabled.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "enabled"')
+            end
+
+            api_params = {
+                enabled: enabled,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Project
+            )
+
+        end
+
+        # Configures if emails from free providers such as Gmail or Yahoo are denied
+        # during new users sign-ups and email updates.
+        #
+        # @param [] enabled Set whether or not to block free email addresses during signup and email updates.
+        #
+        # @return [Project]
+        def update_deny_free_email_policy(enabled:)
+            api_path = '/project/policies/deny-free-email'
+
+            if enabled.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "enabled"')
+            end
+
+            api_params = {
+                enabled: enabled,
+            }
+            
+            api_headers = {
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Project
+            )
+
+        end
+
         # Updating this policy allows you to control if team members can see other
         # members information. When enabled, all team members can see ID, name,
         # email, phone number, and MFA status of other members..
@@ -2915,7 +3033,7 @@ module Appwrite
         # Get a policy by its unique ID. This endpoint returns the current
         # configuration for the requested project policy.
         #
-        # @param [ProjectPolicy] policy_id Policy ID. Can be one of: password-dictionary, password-history, password-personal-data, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy.
+        # @param [ProjectPolicyId] policy_id Policy ID. Can be one of: password-dictionary, password-history, password-personal-data, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy.
         #
         # @return [PolicyPasswordDictionary, PolicyPasswordHistory, PolicyPasswordPersonalData, PolicySessionAlert, PolicySessionDuration, PolicySessionInvalidation, PolicySessionLimit, PolicyUserLimit, PolicyMembershipPrivacy]
         def get_policy(policy_id:)
@@ -2995,7 +3113,7 @@ module Appwrite
         # Update properties of a specific protocol. Use this endpoint to enable or
         # disable a protocol in your project. 
         #
-        # @param [ProtocolId] protocol_id Protocol name. Can be one of: rest, graphql, websocket
+        # @param [ProjectProtocolId] protocol_id Protocol name. Can be one of: rest, graphql, websocket
         # @param [] enabled Protocol status.
         #
         # @return [Project]
@@ -3032,7 +3150,7 @@ module Appwrite
         # Update properties of a specific service. Use this endpoint to enable or
         # disable a service in your project. 
         #
-        # @param [ServiceId] service_id Service name. Can be one of: account, avatars, databases, tablesdb, locale, health, project, storage, teams, users, vcs, sites, functions, proxy, graphql, migrations, messaging
+        # @param [ProjectServiceId] service_id Service name. Can be one of: account, avatars, databases, tablesdb, locale, health, project, storage, teams, users, vcs, sites, functions, proxy, graphql, migrations, messaging, advisor
         # @param [] enabled Service status.
         #
         # @return [Project]
@@ -3078,7 +3196,7 @@ module Appwrite
         # @param [String] sender_name Name shown in inbox as the sender of the email.
         # @param [String] reply_to_email Email used when user replies to the email.
         # @param [String] reply_to_name Name used when user replies to the email.
-        # @param [Secure] secure Configures if communication with SMTP server is encrypted. Allowed values are: tls, ssl. Leave empty for no encryption.
+        # @param [ProjectSMTPSecure] secure Configures if communication with SMTP server is encrypted. Allowed values are: tls, ssl. Leave empty for no encryption.
         # @param [] enabled Enable or disable custom SMTP. Custom SMTP is useful for branding purposes, but also allows use of custom email templates.
         #
         # @return [Project]
@@ -3173,8 +3291,8 @@ module Appwrite
         # Update a custom email template for the specified locale and type. Use this
         # endpoint to modify the content of your email templates.
         #
-        # @param [EmailTemplateType] template_id Custom email template type. Can be one of: verification, magicSession, recovery, invitation, mfaChallenge, sessionAlert, otpSession
-        # @param [EmailTemplateLocale] locale Custom email template locale. If left empty, the fallback locale (en) will be used.
+        # @param [ProjectEmailTemplateId] template_id Custom email template type. Can be one of: verification, magicSession, recovery, invitation, mfaChallenge, sessionAlert, otpSession
+        # @param [ProjectEmailTemplateLocale] locale Custom email template locale. If left empty, the fallback locale (en) will be used.
         # @param [String] subject Subject of the email template. Can be up to 255 characters.
         # @param [String] message Plain or HTML body of the email template message. Can be up to 10MB of content.
         # @param [String] sender_name Name of the email sender.
@@ -3219,8 +3337,8 @@ module Appwrite
         # endpoint returns the template content, subject, and other configuration
         # details.
         #
-        # @param [EmailTemplateType] template_id Custom email template type. Can be one of: verification, magicSession, recovery, invitation, mfaChallenge, sessionAlert, otpSession
-        # @param [EmailTemplateLocale] locale Custom email template locale. If left empty, the fallback locale (en) will be used.
+        # @param [ProjectEmailTemplateId] template_id Custom email template type. Can be one of: verification, magicSession, recovery, invitation, mfaChallenge, sessionAlert, otpSession
+        # @param [ProjectEmailTemplateLocale] locale Custom email template locale. If left empty, the fallback locale (en) will be used.
         #
         # @return [EmailTemplate]
         def get_email_template(template_id:, locale: nil)

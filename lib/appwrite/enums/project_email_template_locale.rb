@@ -1,6 +1,6 @@
 module Appwrite
     module Enums
-        module EmailTemplateLocale
+        module ProjectEmailTemplateLocale
             AF = 'af'
             AR_AE = 'ar-ae'
             AR_BH = 'ar-bh'

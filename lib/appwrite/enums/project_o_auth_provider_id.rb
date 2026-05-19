@@ -1,6 +1,6 @@
 module Appwrite
     module Enums
-        module OAuthProvider
+        module ProjectOAuthProviderId
             AMAZON = 'amazon'
             APPLE = 'apple'
             AUTH0 = 'auth0'
@@ -44,6 +44,8 @@ module Appwrite
             YANDEX = 'yandex'
             ZOHO = 'zoho'
             ZOOM = 'zoom'
+            GITHUBIMAGINE = 'githubImagine'
+            GOOGLEIMAGINE = 'googleImagine'
         end
     end
 end

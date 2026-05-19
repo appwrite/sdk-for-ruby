@@ -12,7 +12,7 @@ client = Client.new
 project = Project.new(client)
 
 result = project.update_protocol(
-    protocol_id: ProtocolId::REST,
+    protocol_id: ProjectProtocolId::REST,
     enabled: false
 )
 ```

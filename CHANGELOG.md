@@ -1,5 +1,11 @@
 # Change Log
 
+## 24.1.0
+
+* Added `size_actual` attribute to `File` model
+* Added `DENO_1_21`, `DENO_1_24`, and `DENO_1_35` runtime constants
+* Updated advisor examples to use API key authentication
+
 ## 24.0.0
 
 * Breaking: Renamed `AuthMethod` enum to `ProjectAuthMethodId`

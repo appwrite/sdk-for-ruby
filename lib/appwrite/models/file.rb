@@ -12,6 +12,7 @@ module Appwrite
             attr_reader :signature
             attr_reader :mime_type
             attr_reader :size_original
+            attr_reader :size_actual
             attr_reader :chunks_total
             attr_reader :chunks_uploaded
             attr_reader :encryption
@@ -27,6 +28,7 @@ module Appwrite
                 signature:,
                 mime_type:,
                 size_original:,
+                size_actual:,
                 chunks_total:,
                 chunks_uploaded:,
                 encryption:,
@@ -41,6 +43,7 @@ module Appwrite
                 @signature = signature
                 @mime_type = mime_type
                 @size_original = size_original
+                @size_actual = size_actual
                 @chunks_total = chunks_total
                 @chunks_uploaded = chunks_uploaded
                 @encryption = encryption
@@ -58,6 +61,7 @@ module Appwrite
                     signature: map["signature"],
                     mime_type: map["mimeType"],
                     size_original: map["sizeOriginal"],
+                    size_actual: map["sizeActual"],
                     chunks_total: map["chunksTotal"],
                     chunks_uploaded: map["chunksUploaded"],
                     encryption: map["encryption"],
@@ -76,6 +80,7 @@ module Appwrite
                     "signature": @signature,
                     "mimeType": @mime_type,
                     "sizeOriginal": @size_original,
+                    "sizeActual": @size_actual,
                     "chunksTotal": @chunks_total,
                     "chunksUploaded": @chunks_uploaded,
                     "encryption": @encryption,

@@ -56,7 +56,7 @@ module Appwrite
                 services:,
                 protocols:,
                 region:,
-                billing_limits:,
+                billing_limits: ,
                 blocks:,
                 console_accessed_at:
             )

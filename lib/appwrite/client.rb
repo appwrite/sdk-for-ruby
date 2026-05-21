@@ -15,7 +15,7 @@ module Appwrite
                 'x-sdk-name'=> 'Ruby',
                 'x-sdk-platform'=> 'server',
                 'x-sdk-language'=> 'ruby',
-                'x-sdk-version'=> '24.1.0',
+                'x-sdk-version'=> '24.2.0',
                 'X-Appwrite-Response-Format' => '1.9.5'
             }
             @endpoint = 'https://cloud.appwrite.io/v1'

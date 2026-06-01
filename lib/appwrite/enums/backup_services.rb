@@ -5,6 +5,7 @@ module Appwrite
             TABLESDB = 'tablesdb'
             DOCUMENTSDB = 'documentsdb'
             VECTORSDB = 'vectorsdb'
+            DEDICATEDDATABASES = 'dedicatedDatabases'
             FUNCTIONS = 'functions'
             STORAGE = 'storage'
         end

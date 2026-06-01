@@ -12,7 +12,7 @@ client = Client.new
 
 presences = Presences.new(client)
 
-result = presences.update_presence(
+result = presences.update(
     presence_id: '<PRESENCE_ID>',
     user_id: '<USER_ID>',
     status: '<STATUS>', # optional

@@ -9,10 +9,12 @@ client = Client.new
     .set_project('<YOUR_PROJECT_ID>') # Your project ID
     .set_key('<YOUR_API_KEY>') # Your secret API key
 
-health = Health.new(client)
+organization = Organization.new(client)
 
-result = health.get_failed_jobs(
-    name: HealthQueueName::V1_DATABASE,
-    threshold: null # optional
+result = organization.update_key(
+    key_id: '<KEY_ID>',
+    name: '<NAME>',
+    scopes: [OrganizationKeyScopes::PROJECTS_READ],
+    expire: '2020-10-15T06:38:00.000+00:00' # optional
 )
 ```

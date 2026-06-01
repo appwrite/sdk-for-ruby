@@ -1,6 +1,6 @@
 module Appwrite
     module Enums
-        module Theme
+        module BrowserTheme
             LIGHT = 'light'
             DARK = 'dark'
         end

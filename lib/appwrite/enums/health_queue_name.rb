@@ -1,6 +1,6 @@
 module Appwrite
     module Enums
-        module Name
+        module HealthQueueName
             V1_DATABASE = 'v1-database'
             V1_DELETES = 'v1-deletes'
             V1_AUDITS = 'v1-audits'

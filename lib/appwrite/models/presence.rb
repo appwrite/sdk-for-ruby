@@ -22,7 +22,7 @@ module Appwrite
                 status: ,
                 source:,
                 expires_at: ,
-                metadata:
+                metadata: 
             )
                 @id = id
                 @created_at = created_at
@@ -45,7 +45,7 @@ module Appwrite
                     status: map["status"],
                     source: map["source"],
                     expires_at: map["expiresAt"],
-                    metadata: map["metadata"] || map
+                    metadata: map["metadata"]
                 )
             end
 
@@ -61,10 +61,6 @@ module Appwrite
                     "expiresAt": @expires_at,
                     "metadata": @metadata
                 }
-            end
-
-            def convert_to(from_json)
-                from_json.call(metadata)
             end
         end
     end

@@ -4,10 +4,10 @@ module Appwrite
     module Models
         class ActivityEvent
             attr_reader :id
-            attr_reader :user_type
-            attr_reader :user_id
-            attr_reader :user_email
-            attr_reader :user_name
+            attr_reader :actor_type
+            attr_reader :actor_id
+            attr_reader :actor_email
+            attr_reader :actor_name
             attr_reader :resource_parent
             attr_reader :resource_type
             attr_reader :resource_id
@@ -38,10 +38,10 @@ module Appwrite
 
             def initialize(
                 id:,
-                user_type:,
-                user_id:,
-                user_email:,
-                user_name:,
+                actor_type:,
+                actor_id:,
+                actor_email:,
+                actor_name:,
                 resource_parent:,
                 resource_type:,
                 resource_id:,
@@ -71,10 +71,10 @@ module Appwrite
                 country_name:
             )
                 @id = id
-                @user_type = user_type
-                @user_id = user_id
-                @user_email = user_email
-                @user_name = user_name
+                @actor_type = actor_type
+                @actor_id = actor_id
+                @actor_email = actor_email
+                @actor_name = actor_name
                 @resource_parent = resource_parent
                 @resource_type = resource_type
                 @resource_id = resource_id
@@ -107,10 +107,10 @@ module Appwrite
             def self.from(map:)
                 ActivityEvent.new(
                     id: map["$id"],
-                    user_type: map["userType"],
-                    user_id: map["userId"],
-                    user_email: map["userEmail"],
-                    user_name: map["userName"],
+                    actor_type: map["actorType"],
+                    actor_id: map["actorId"],
+                    actor_email: map["actorEmail"],
+                    actor_name: map["actorName"],
                     resource_parent: map["resourceParent"],
                     resource_type: map["resourceType"],
                     resource_id: map["resourceId"],
@@ -144,10 +144,10 @@ module Appwrite
             def to_map
                 {
                     "$id": @id,
-                    "userType": @user_type,
-                    "userId": @user_id,
-                    "userEmail": @user_email,
-                    "userName": @user_name,
+                    "actorType": @actor_type,
+                    "actorId": @actor_id,
+                    "actorEmail": @actor_email,
+                    "actorName": @actor_name,
                     "resourceParent": @resource_parent,
                     "resourceType": @resource_type,
                     "resourceId": @resource_id,

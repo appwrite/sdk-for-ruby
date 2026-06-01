@@ -14,7 +14,7 @@ proxy = Proxy.new(client)
 result = proxy.create_redirect_rule(
     domain: '',
     url: 'https://example.com',
-    status_code: StatusCode::MOVED_PERMANENTLY_301,
+    status_code: StatusCode::MOVEDPERMANENTLY,
     resource_id: '<RESOURCE_ID>',
     resource_type: ProxyResourceType::SITE
 )

@@ -44,8 +44,6 @@ module Appwrite
             YANDEX = 'yandex'
             ZOHO = 'zoho'
             ZOOM = 'zoom'
-            GITHUBIMAGINE = 'githubImagine'
-            GOOGLEIMAGINE = 'googleImagine'
         end
     end
 end

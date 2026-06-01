@@ -30,6 +30,8 @@ module Appwrite
             attr_reader :provider_branch
             attr_reader :provider_root_directory
             attr_reader :provider_silent_mode
+            attr_reader :provider_branches
+            attr_reader :provider_paths
             attr_reader :build_specification
             attr_reader :runtime_specification
             attr_reader :build_runtime
@@ -64,6 +66,8 @@ module Appwrite
                 provider_branch:,
                 provider_root_directory:,
                 provider_silent_mode:,
+                provider_branches:,
+                provider_paths:,
                 build_specification:,
                 runtime_specification:,
                 build_runtime:,
@@ -97,6 +101,8 @@ module Appwrite
                 @provider_branch = provider_branch
                 @provider_root_directory = provider_root_directory
                 @provider_silent_mode = provider_silent_mode
+                @provider_branches = provider_branches
+                @provider_paths = provider_paths
                 @build_specification = build_specification
                 @runtime_specification = runtime_specification
                 @build_runtime = build_runtime
@@ -133,6 +139,8 @@ module Appwrite
                     provider_branch: map["providerBranch"],
                     provider_root_directory: map["providerRootDirectory"],
                     provider_silent_mode: map["providerSilentMode"],
+                    provider_branches: map["providerBranches"],
+                    provider_paths: map["providerPaths"],
                     build_specification: map["buildSpecification"],
                     runtime_specification: map["runtimeSpecification"],
                     build_runtime: map["buildRuntime"],
@@ -170,6 +178,8 @@ module Appwrite
                     "providerBranch": @provider_branch,
                     "providerRootDirectory": @provider_root_directory,
                     "providerSilentMode": @provider_silent_mode,
+                    "providerBranches": @provider_branches,
+                    "providerPaths": @provider_paths,
                     "buildSpecification": @build_specification,
                     "runtimeSpecification": @runtime_specification,
                     "buildRuntime": @build_runtime,

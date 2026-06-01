@@ -2,29 +2,29 @@
 
 module Appwrite
     module Models
-        class PresenceList
+        class ProjectList
             attr_reader :total
-            attr_reader :presences
+            attr_reader :projects
 
             def initialize(
                 total:,
-                presences:
+                projects:
             )
                 @total = total
-                @presences = presences
+                @projects = projects
             end
 
             def self.from(map:)
-                PresenceList.new(
+                ProjectList.new(
                     total: map["total"],
-                    presences: map["presences"].map { |it| Presence.from(map: it) }
+                    projects: map["projects"].map { |it| Project.from(map: it) }
                 )
             end
 
             def to_map
                 {
                     "total": @total,
-                    "presences": @presences.map { |it| it.to_map }
+                    "projects": @projects.map { |it| it.to_map }
                 }
             end
         end

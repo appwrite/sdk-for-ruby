@@ -46,16 +46,16 @@ module Appwrite
         end
 
         # Query usage gauge metrics (point-in-time resource snapshots) from the usage
-        # database. Returns individual gauge snapshots with metric, value, and
-        # timestamp. Pass Query objects as JSON strings to filter, paginate, and
-        # order results. Supported query methods: equal, greaterThanEqual,
-        # lessThanEqual, orderAsc, orderDesc, limit, offset. Supported filter
-        # attributes: metric, time. Use `orderDesc("time"), limit(1)` to fetch the
-        # most recent snapshot. When no time filter is supplied the endpoint defaults
-        # to the last 7 days. Default `limit(100)` is applied if none is given;
-        # user-supplied limits are capped at 500. The `total` field is capped at 5000
-        # to keep counts predictable — pass `total=false` to skip the count
-        # entirely.
+        # database. Returns individual gauge snapshots with metric, value, timestamp,
+        # resourceType, and resourceId. Pass Query objects as JSON strings to filter,
+        # paginate, and order results. Supported query methods: equal,
+        # greaterThanEqual, lessThanEqual, orderAsc, orderDesc, limit, offset.
+        # Supported filter attributes: metric, time. Use `orderDesc("time"),
+        # limit(1)` to fetch the most recent snapshot. When no time filter is
+        # supplied the endpoint defaults to the last 7 days. Default `limit(100)` is
+        # applied if none is given; user-supplied limits are capped at 500. The
+        # `total` field is capped at 5000 to keep counts predictable — pass
+        # `total=false` to skip the count entirely.
         #
         # @param [Array] queries Array of query strings as JSON. Supported: equal("metric", [...]), greaterThanEqual("time", "..."), lessThanEqual("time", "..."), orderAsc("time"), orderDesc("time"), limit(N), offset(N).
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.

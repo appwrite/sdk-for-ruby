@@ -130,7 +130,7 @@ module Appwrite
         # @param [] purge When true, purge cached responses used by list presences endpoint.
         #
         # @return [Presence]
-        def update_presence(presence_id:, user_id:, status: nil, expires_at: nil, metadata: nil, permissions: nil, purge: nil)
+        def update(presence_id:, user_id:, status: nil, expires_at: nil, metadata: nil, permissions: nil, purge: nil)
             api_path = '/presences/{presenceId}'
                 .gsub('{presenceId}', presence_id)
 

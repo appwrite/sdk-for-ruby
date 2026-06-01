@@ -305,7 +305,7 @@ module Appwrite
         # @param [Integer] viewport_width Browser viewport width. Pass an integer between 1 to 1920. Defaults to 1280.
         # @param [Integer] viewport_height Browser viewport height. Pass an integer between 1 to 1080. Defaults to 720.
         # @param [Float] scale Browser scale factor. Pass a number between 0.1 to 3. Defaults to 1.
-        # @param [Theme] theme Browser theme. Pass "light" or "dark". Defaults to "light".
+        # @param [BrowserTheme] theme Browser theme. Pass "light" or "dark". Defaults to "light".
         # @param [String] user_agent Custom user agent string. Defaults to browser default.
         # @param [] fullpage Capture full page scroll. Pass 0 for viewport only, or 1 for full page. Defaults to 0.
         # @param [String] locale Browser locale (e.g., "en-US", "fr-FR"). Defaults to browser default.

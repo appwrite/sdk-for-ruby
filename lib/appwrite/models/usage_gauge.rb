@@ -6,22 +6,30 @@ module Appwrite
             attr_reader :metric
             attr_reader :value
             attr_reader :time
+            attr_reader :resource_type
+            attr_reader :resource_id
 
             def initialize(
                 metric:,
                 value:,
-                time:
+                time:,
+                resource_type:,
+                resource_id:
             )
                 @metric = metric
                 @value = value
                 @time = time
+                @resource_type = resource_type
+                @resource_id = resource_id
             end
 
             def self.from(map:)
                 UsageGauge.new(
                     metric: map["metric"],
                     value: map["value"],
-                    time: map["time"]
+                    time: map["time"],
+                    resource_type: map["resourceType"],
+                    resource_id: map["resourceId"]
                 )
             end
 
@@ -29,7 +37,9 @@ module Appwrite
                 {
                     "metric": @metric,
                     "value": @value,
-                    "time": @time
+                    "time": @time,
+                    "resourceType": @resource_type,
+                    "resourceId": @resource_id
                 }
             end
         end

@@ -9,10 +9,11 @@ client = Client.new
     .set_project('<YOUR_PROJECT_ID>') # Your project ID
     .set_key('<YOUR_API_KEY>') # Your secret API key
 
-health = Health.new(client)
+organization = Organization.new(client)
 
-result = health.get_failed_jobs(
-    name: HealthQueueName::V1_DATABASE,
-    threshold: null # optional
+result = organization.create_project(
+    project_id: '',
+    name: '<NAME>',
+    region: Region::FRA # optional
 )
 ```

@@ -57,12 +57,14 @@ module Appwrite
         # @param [String] provider_branch Production branch for the repo linked to the site.
         # @param [] provider_silent_mode Is the VCS (Version Control System) connection in silent mode for the repo linked to the site? In silent mode, comments will not be made on commits and pull requests.
         # @param [String] provider_root_directory Path to site code in the linked repo.
+        # @param [Array] provider_branches List of branch name patterns to trigger automatic deployments. Supports wildcards. Leave empty to deploy on all branches.
+        # @param [Array] provider_paths List of file path patterns to trigger automatic deployments. Supports wildcards. Leave empty to deploy on all file changes.
         # @param [String] build_specification Build specification for the site deployments.
         # @param [String] runtime_specification Runtime specification for the SSR executions.
         # @param [Integer] deployment_retention Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept.
         #
         # @return [Site]
-        def create(site_id:, name:, framework:, build_runtime:, enabled: nil, logging: nil, timeout: nil, install_command: nil, build_command: nil, start_command: nil, output_directory: nil, adapter: nil, installation_id: nil, fallback_file: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil, build_specification: nil, runtime_specification: nil, deployment_retention: nil)
+        def create(site_id:, name:, framework:, build_runtime:, enabled: nil, logging: nil, timeout: nil, install_command: nil, build_command: nil, start_command: nil, output_directory: nil, adapter: nil, installation_id: nil, fallback_file: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil, provider_branches: nil, provider_paths: nil, build_specification: nil, runtime_specification: nil, deployment_retention: nil)
             api_path = '/sites'
 
             if site_id.nil?
@@ -100,6 +102,8 @@ module Appwrite
                 providerBranch: provider_branch,
                 providerSilentMode: provider_silent_mode,
                 providerRootDirectory: provider_root_directory,
+                providerBranches: provider_branches,
+                providerPaths: provider_paths,
                 buildSpecification: build_specification,
                 runtimeSpecification: runtime_specification,
                 deploymentRetention: deployment_retention,
@@ -215,12 +219,14 @@ module Appwrite
         # @param [String] provider_branch Production branch for the repo linked to the site.
         # @param [] provider_silent_mode Is the VCS (Version Control System) connection in silent mode for the repo linked to the site? In silent mode, comments will not be made on commits and pull requests.
         # @param [String] provider_root_directory Path to site code in the linked repo.
+        # @param [Array] provider_branches List of branch name patterns to trigger automatic deployments. Supports wildcards. Leave empty to deploy on all branches.
+        # @param [Array] provider_paths List of file path patterns to trigger automatic deployments. Supports wildcards. Leave empty to deploy on all file changes.
         # @param [String] build_specification Build specification for the site deployments.
         # @param [String] runtime_specification Runtime specification for the SSR executions.
         # @param [Integer] deployment_retention Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept.
         #
         # @return [Site]
-        def update(site_id:, name:, framework:, enabled: nil, logging: nil, timeout: nil, install_command: nil, build_command: nil, start_command: nil, output_directory: nil, build_runtime: nil, adapter: nil, fallback_file: nil, installation_id: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil, build_specification: nil, runtime_specification: nil, deployment_retention: nil)
+        def update(site_id:, name:, framework:, enabled: nil, logging: nil, timeout: nil, install_command: nil, build_command: nil, start_command: nil, output_directory: nil, build_runtime: nil, adapter: nil, fallback_file: nil, installation_id: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil, provider_branches: nil, provider_paths: nil, build_specification: nil, runtime_specification: nil, deployment_retention: nil)
             api_path = '/sites/{siteId}'
                 .gsub('{siteId}', site_id)
 
@@ -254,6 +260,8 @@ module Appwrite
                 providerBranch: provider_branch,
                 providerSilentMode: provider_silent_mode,
                 providerRootDirectory: provider_root_directory,
+                providerBranches: provider_branches,
+                providerPaths: provider_paths,
                 buildSpecification: build_specification,
                 runtimeSpecification: runtime_specification,
                 deploymentRetention: deployment_retention,

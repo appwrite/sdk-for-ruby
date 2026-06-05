@@ -24,6 +24,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -83,6 +84,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -138,6 +140,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -204,6 +207,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -273,6 +277,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -319,6 +324,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -364,6 +370,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -395,6 +402,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -425,6 +433,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -458,6 +467,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -491,6 +501,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -520,6 +531,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -567,6 +579,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -611,6 +624,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -651,6 +665,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -687,6 +702,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -739,6 +755,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -787,6 +804,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -831,6 +849,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -871,6 +890,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -919,6 +939,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -963,6 +984,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -1011,6 +1033,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -1055,6 +1078,109 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Provider
+            )
+
+        end
+
+        # Create a new Amazon SES provider.
+        #
+        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] name Provider name.
+        # @param [String] access_key AWS access key ID.
+        # @param [String] secret_key AWS secret access key.
+        # @param [String] region AWS region, for example us-east-1.
+        # @param [String] from_name Sender Name.
+        # @param [String] from_email Sender email address.
+        # @param [String] reply_to_name Name set in the reply to field for the mail. Default value is sender name.
+        # @param [String] reply_to_email Email set in the reply to field for the mail. Default value is sender email.
+        # @param [] enabled Set as enabled.
+        #
+        # @return [Provider]
+        def create_ses_provider(provider_id:, name:, access_key: nil, secret_key: nil, region: nil, from_name: nil, from_email: nil, reply_to_name: nil, reply_to_email: nil, enabled: nil)
+            api_path = '/messaging/providers/ses'
+
+            if provider_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+            end
+
+            if name.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "name"')
+            end
+
+            api_params = {
+                providerId: provider_id,
+                name: name,
+                accessKey: access_key,
+                secretKey: secret_key,
+                region: region,
+                fromName: from_name,
+                fromEmail: from_email,
+                replyToName: reply_to_name,
+                replyToEmail: reply_to_email,
+                enabled: enabled,
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Provider
+            )
+
+        end
+
+        # Update an Amazon SES provider by its unique ID.
+        #
+        # @param [String] provider_id Provider ID.
+        # @param [String] name Provider name.
+        # @param [] enabled Set as enabled.
+        # @param [String] access_key AWS access key ID.
+        # @param [String] secret_key AWS secret access key.
+        # @param [String] region AWS region, for example us-east-1.
+        # @param [String] from_name Sender Name.
+        # @param [String] from_email Sender email address.
+        # @param [String] reply_to_name Name set in the Reply To field for the mail. Default value is Sender Name.
+        # @param [String] reply_to_email Email set in the Reply To field for the mail. Default value is Sender Email.
+        #
+        # @return [Provider]
+        def update_ses_provider(provider_id:, name: nil, enabled: nil, access_key: nil, secret_key: nil, region: nil, from_name: nil, from_email: nil, reply_to_name: nil, reply_to_email: nil)
+            api_path = '/messaging/providers/ses/{providerId}'
+                .gsub('{providerId}', provider_id)
+
+            if provider_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+            end
+
+            api_params = {
+                name: name,
+                enabled: enabled,
+                accessKey: access_key,
+                secretKey: secret_key,
+                region: region,
+                fromName: from_name,
+                fromEmail: from_email,
+                replyToName: reply_to_name,
+                replyToEmail: reply_to_email,
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -1119,6 +1245,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -1175,6 +1302,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -1219,6 +1347,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -1259,6 +1388,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -1303,6 +1433,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -1343,6 +1474,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -1387,6 +1519,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -1427,6 +1560,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -1471,6 +1605,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -1511,6 +1646,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -1542,6 +1678,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -1571,6 +1708,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -1604,6 +1742,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -1637,6 +1776,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -1666,6 +1806,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -1703,6 +1844,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -1734,6 +1876,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -1768,6 +1911,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -1798,6 +1942,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -1831,6 +1976,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -1866,6 +2012,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -1907,6 +2054,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -1944,6 +2092,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -1979,6 +2128,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 

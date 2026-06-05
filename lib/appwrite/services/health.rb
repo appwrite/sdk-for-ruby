@@ -18,6 +18,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -41,6 +42,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -49,6 +51,33 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::HealthAntivirus
+            )
+
+        end
+
+        # Check the database that backs the audit and activity store. When the
+        # connection is reachable the endpoint returns a passing status with its
+        # response time.
+        # 
+        #
+        #
+        # @return [HealthStatusList]
+        def get_audits_db()
+            api_path = '/health/audits-db'
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::HealthStatusList
             )
 
         end
@@ -65,6 +94,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -90,6 +120,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -119,6 +150,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -142,6 +174,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -165,6 +198,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -192,6 +226,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -218,6 +253,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -245,6 +281,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -273,6 +310,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -299,6 +337,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -331,6 +370,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -357,6 +397,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -383,6 +424,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -409,6 +451,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -435,6 +478,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -461,6 +505,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -487,6 +532,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -513,6 +559,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -539,6 +586,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -562,6 +610,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -585,6 +634,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -614,6 +664,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(

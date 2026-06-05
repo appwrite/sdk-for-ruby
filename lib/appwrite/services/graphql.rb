@@ -24,6 +24,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "x-sdk-graphql": 'true',
                 "content-type": 'application/json',
             }
@@ -54,6 +55,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "x-sdk-graphql": 'true',
                 "content-type": 'application/json',
             }

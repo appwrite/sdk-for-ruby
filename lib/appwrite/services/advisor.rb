@@ -24,6 +24,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -55,6 +56,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -86,6 +88,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
             }
 
@@ -121,6 +124,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -157,6 +161,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(

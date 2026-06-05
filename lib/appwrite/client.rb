@@ -15,10 +15,11 @@ module Appwrite
                 'x-sdk-name'=> 'Ruby',
                 'x-sdk-platform'=> 'server',
                 'x-sdk-language'=> 'ruby',
-                'x-sdk-version'=> '25.0.0',
+                'x-sdk-version'=> '25.1.0',
                 'X-Appwrite-Response-Format' => '1.9.5'
             }
             @endpoint = 'https://cloud.appwrite.io/v1'
+            @config = {}
         end
 
         # Set Project
@@ -29,7 +30,7 @@ module Appwrite
         #
         # @return [self]
         def set_project(value)
-            add_header('x-appwrite-project', value)
+            @config['project'] = value
 
             self
         end
@@ -43,6 +44,7 @@ module Appwrite
         # @return [self]
         def set_key(value)
             add_header('x-appwrite-key', value)
+            @config['key'] = value
 
             self
         end
@@ -56,6 +58,7 @@ module Appwrite
         # @return [self]
         def set_jwt(value)
             add_header('x-appwrite-jwt', value)
+            @config['jwt'] = value
 
             self
         end
@@ -67,6 +70,7 @@ module Appwrite
         # @return [self]
         def set_locale(value)
             add_header('x-appwrite-locale', value)
+            @config['locale'] = value
 
             self
         end
@@ -80,6 +84,7 @@ module Appwrite
         # @return [self]
         def set_session(value)
             add_header('x-appwrite-session', value)
+            @config['session'] = value
 
             self
         end
@@ -93,6 +98,7 @@ module Appwrite
         # @return [self]
         def set_forwarded_user_agent(value)
             add_header('x-forwarded-user-agent', value)
+            @config['forwardeduseragent'] = value
 
             self
         end
@@ -106,6 +112,7 @@ module Appwrite
         # @return [self]
         def set_dev_key(value)
             add_header('x-appwrite-dev-key', value)
+            @config['devkey'] = value
 
             self
         end
@@ -119,6 +126,7 @@ module Appwrite
         # @return [self]
         def set_cookie(value)
             add_header('cookie', value)
+            @config['cookie'] = value
 
             self
         end
@@ -132,6 +140,7 @@ module Appwrite
         # @return [self]
         def set_impersonate_user_id(value)
             add_header('x-appwrite-impersonate-user-id', value)
+            @config['impersonateuserid'] = value
 
             self
         end
@@ -145,6 +154,7 @@ module Appwrite
         # @return [self]
         def set_impersonate_user_email(value)
             add_header('x-appwrite-impersonate-user-email', value)
+            @config['impersonateuseremail'] = value
 
             self
         end
@@ -158,8 +168,13 @@ module Appwrite
         # @return [self]
         def set_impersonate_user_phone(value)
             add_header('x-appwrite-impersonate-user-phone', value)
+            @config['impersonateuserphone'] = value
 
             self
+        end
+
+        def get_config(key)
+            @config[key] || ''
         end
 
         # Set endpoint.
@@ -223,7 +238,8 @@ module Appwrite
             params: {},
             response_type: nil
         )
-            uri = URI.parse(@endpoint + path + ((method == "GET" && params.length) ? '?' + encode(params) : ''))
+            separator = path.include?('?') ? '&' : '?'
+            uri = URI.parse(@endpoint + path + ((method == "GET" && params.length) ? separator + encode(params) : ''))
 
             fetch(method, uri, headers, params, response_type)
         end

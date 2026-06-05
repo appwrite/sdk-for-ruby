@@ -8,6 +8,7 @@ module Appwrite
             attr_reader :updated_at
             attr_reader :name
             attr_reader :team_id
+            attr_reader :region
             attr_reader :dev_keys
             attr_reader :smtp_enabled
             attr_reader :smtp_sender_name
@@ -26,10 +27,18 @@ module Appwrite
             attr_reader :auth_methods
             attr_reader :services
             attr_reader :protocols
-            attr_reader :region
-            attr_reader :billing_limits
             attr_reader :blocks
             attr_reader :console_accessed_at
+            attr_reader :billing_limits
+            attr_reader :o_auth2_server_enabled
+            attr_reader :o_auth2_server_authorization_url
+            attr_reader :o_auth2_server_scopes
+            attr_reader :o_auth2_server_access_token_duration
+            attr_reader :o_auth2_server_refresh_token_duration
+            attr_reader :o_auth2_server_public_access_token_duration
+            attr_reader :o_auth2_server_public_refresh_token_duration
+            attr_reader :o_auth2_server_confidential_pkce
+            attr_reader :o_auth2_server_discovery_url
 
             def initialize(
                 id:,
@@ -37,6 +46,7 @@ module Appwrite
                 updated_at:,
                 name:,
                 team_id:,
+                region:,
                 dev_keys:,
                 smtp_enabled:,
                 smtp_sender_name:,
@@ -55,16 +65,25 @@ module Appwrite
                 auth_methods:,
                 services:,
                 protocols:,
-                region:,
-                billing_limits: ,
                 blocks:,
-                console_accessed_at:
+                console_accessed_at:,
+                billing_limits: ,
+                o_auth2_server_enabled:,
+                o_auth2_server_authorization_url:,
+                o_auth2_server_scopes:,
+                o_auth2_server_access_token_duration:,
+                o_auth2_server_refresh_token_duration:,
+                o_auth2_server_public_access_token_duration:,
+                o_auth2_server_public_refresh_token_duration:,
+                o_auth2_server_confidential_pkce:,
+                o_auth2_server_discovery_url:
             )
                 @id = id
                 @created_at = created_at
                 @updated_at = updated_at
                 @name = name
                 @team_id = team_id
+                @region = region
                 @dev_keys = dev_keys
                 @smtp_enabled = smtp_enabled
                 @smtp_sender_name = smtp_sender_name
@@ -83,10 +102,18 @@ module Appwrite
                 @auth_methods = auth_methods
                 @services = services
                 @protocols = protocols
-                @region = region
-                @billing_limits = billing_limits
                 @blocks = blocks
                 @console_accessed_at = console_accessed_at
+                @billing_limits = billing_limits
+                @o_auth2_server_enabled = o_auth2_server_enabled
+                @o_auth2_server_authorization_url = o_auth2_server_authorization_url
+                @o_auth2_server_scopes = o_auth2_server_scopes
+                @o_auth2_server_access_token_duration = o_auth2_server_access_token_duration
+                @o_auth2_server_refresh_token_duration = o_auth2_server_refresh_token_duration
+                @o_auth2_server_public_access_token_duration = o_auth2_server_public_access_token_duration
+                @o_auth2_server_public_refresh_token_duration = o_auth2_server_public_refresh_token_duration
+                @o_auth2_server_confidential_pkce = o_auth2_server_confidential_pkce
+                @o_auth2_server_discovery_url = o_auth2_server_discovery_url
             end
 
             def self.from(map:)
@@ -96,6 +123,7 @@ module Appwrite
                     updated_at: map["$updatedAt"],
                     name: map["name"],
                     team_id: map["teamId"],
+                    region: map["region"],
                     dev_keys: map["devKeys"].map { |it| DevKey.from(map: it) },
                     smtp_enabled: map["smtpEnabled"],
                     smtp_sender_name: map["smtpSenderName"],
@@ -114,10 +142,18 @@ module Appwrite
                     auth_methods: map["authMethods"].map { |it| ProjectAuthMethod.from(map: it) },
                     services: map["services"].map { |it| ProjectService.from(map: it) },
                     protocols: map["protocols"].map { |it| ProjectProtocol.from(map: it) },
-                    region: map["region"],
-                    billing_limits: BillingLimits.from(map: map["billingLimits"]),
                     blocks: map["blocks"].map { |it| Block.from(map: it) },
-                    console_accessed_at: map["consoleAccessedAt"]
+                    console_accessed_at: map["consoleAccessedAt"],
+                    billing_limits: BillingLimits.from(map: map["billingLimits"]),
+                    o_auth2_server_enabled: map["oAuth2ServerEnabled"],
+                    o_auth2_server_authorization_url: map["oAuth2ServerAuthorizationUrl"],
+                    o_auth2_server_scopes: map["oAuth2ServerScopes"],
+                    o_auth2_server_access_token_duration: map["oAuth2ServerAccessTokenDuration"],
+                    o_auth2_server_refresh_token_duration: map["oAuth2ServerRefreshTokenDuration"],
+                    o_auth2_server_public_access_token_duration: map["oAuth2ServerPublicAccessTokenDuration"],
+                    o_auth2_server_public_refresh_token_duration: map["oAuth2ServerPublicRefreshTokenDuration"],
+                    o_auth2_server_confidential_pkce: map["oAuth2ServerConfidentialPkce"],
+                    o_auth2_server_discovery_url: map["oAuth2ServerDiscoveryUrl"]
                 )
             end
 
@@ -128,6 +164,7 @@ module Appwrite
                     "$updatedAt": @updated_at,
                     "name": @name,
                     "teamId": @team_id,
+                    "region": @region,
                     "devKeys": @dev_keys.map { |it| it.to_map },
                     "smtpEnabled": @smtp_enabled,
                     "smtpSenderName": @smtp_sender_name,
@@ -146,10 +183,18 @@ module Appwrite
                     "authMethods": @auth_methods.map { |it| it.to_map },
                     "services": @services.map { |it| it.to_map },
                     "protocols": @protocols.map { |it| it.to_map },
-                    "region": @region,
-                    "billingLimits": @billing_limits.to_map,
                     "blocks": @blocks.map { |it| it.to_map },
-                    "consoleAccessedAt": @console_accessed_at
+                    "consoleAccessedAt": @console_accessed_at,
+                    "billingLimits": @billing_limits.to_map,
+                    "oAuth2ServerEnabled": @o_auth2_server_enabled,
+                    "oAuth2ServerAuthorizationUrl": @o_auth2_server_authorization_url,
+                    "oAuth2ServerScopes": @o_auth2_server_scopes,
+                    "oAuth2ServerAccessTokenDuration": @o_auth2_server_access_token_duration,
+                    "oAuth2ServerRefreshTokenDuration": @o_auth2_server_refresh_token_duration,
+                    "oAuth2ServerPublicAccessTokenDuration": @o_auth2_server_public_access_token_duration,
+                    "oAuth2ServerPublicRefreshTokenDuration": @o_auth2_server_public_refresh_token_duration,
+                    "oAuth2ServerConfidentialPkce": @o_auth2_server_confidential_pkce,
+                    "oAuth2ServerDiscoveryUrl": @o_auth2_server_discovery_url
                 }
             end
         end

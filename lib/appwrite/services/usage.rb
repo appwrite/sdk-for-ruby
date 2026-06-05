@@ -33,6 +33,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(
@@ -70,6 +71,7 @@ module Appwrite
             }
             
             api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
             }
 
             @client.call(

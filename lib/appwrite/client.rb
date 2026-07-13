@@ -71,7 +71,7 @@ module Appwrite
         #
         # @return [self]
         def set_bearer(value)
-            add_header('authorization', value)
+            add_header('authorization', "Bearer #{value}")
             @config['bearer'] = value
 
             self

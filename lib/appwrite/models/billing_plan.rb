@@ -278,10 +278,10 @@ module Appwrite
                     deployment_size: map["deploymentSize"],
                     build_size: map["buildSize"],
                     databases_allow_encrypt: map["databasesAllowEncrypt"],
-                    limits: BillingPlanLimits.from(map: map["limits"]),
+                    limits: map["limits"].nil? ? nil : BillingPlanLimits.from(map: map["limits"]),
                     group: map["group"],
-                    program: Program.from(map: map["program"]),
-                    dedicated_databases: BillingPlanDedicatedDatabaseLimits.from(map: map["dedicatedDatabases"])
+                    program: map["program"].nil? ? nil : Program.from(map: map["program"]),
+                    dedicated_databases: map["dedicatedDatabases"].nil? ? nil : BillingPlanDedicatedDatabaseLimits.from(map: map["dedicatedDatabases"])
                 )
             end
 
@@ -351,10 +351,10 @@ module Appwrite
                     "deploymentSize": @deployment_size,
                     "buildSize": @build_size,
                     "databasesAllowEncrypt": @databases_allow_encrypt,
-                    "limits": @limits.to_map,
+                    "limits": @limits&.to_map,
                     "group": @group,
-                    "program": @program.to_map,
-                    "dedicatedDatabases": @dedicated_databases.to_map
+                    "program": @program&.to_map,
+                    "dedicatedDatabases": @dedicated_databases&.to_map
                 }
             end
 

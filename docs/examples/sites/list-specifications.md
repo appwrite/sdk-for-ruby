@@ -10,5 +10,7 @@ client = Client.new
 
 sites = Sites.new(client)
 
-result = sites.list_specifications()
+result = sites.list_specifications(
+    type: 'runtimes' # optional
+)
 ```

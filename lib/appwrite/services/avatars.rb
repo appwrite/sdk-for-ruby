@@ -40,6 +40,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'image/png',
             }
 
             @client.call(
@@ -83,6 +84,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'image/png',
             }
 
             @client.call(
@@ -115,6 +117,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'image/*',
             }
 
             @client.call(
@@ -159,6 +162,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'image/png',
             }
 
             @client.call(
@@ -202,6 +206,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'image/*',
             }
 
             @client.call(
@@ -248,6 +253,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'image/png',
             }
 
             @client.call(
@@ -285,6 +291,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'image/png',
             }
 
             @client.call(
@@ -361,6 +368,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'image/png',
             }
 
             @client.call(

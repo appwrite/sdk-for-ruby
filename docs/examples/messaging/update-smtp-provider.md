@@ -17,7 +17,7 @@ result = messaging.update_smtp_provider(
     host: '<HOST>', # optional
     port: 1, # optional
     username: '<USERNAME>', # optional
-    password: '<PASSWORD>', # optional
+    password: 'password', # optional
     encryption: SmtpEncryption::NONE, # optional
     auto_tls: false, # optional
     mailer: '<MAILER>', # optional

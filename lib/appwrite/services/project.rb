@@ -81,6 +81,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -109,6 +110,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -129,7 +131,7 @@ module Appwrite
         #
         # @param [String] key_id Key ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] name Key name. Max length: 128 chars.
-        # @param [Array] scopes Key scopes list. Maximum of 100 scopes are allowed.
+        # @param [Array] scopes Key scopes list. Maximum of 200 scopes are allowed.
         # @param [String] expire Expiration time in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Use null for unlimited expiration.
         #
         # @return [Key]
@@ -158,6 +160,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -176,7 +179,7 @@ module Appwrite
         # You can also create a standard API key if you need a longer-lived key
         # instead.
         #
-        # @param [Array] scopes Key scopes list. Maximum of 100 scopes are allowed.
+        # @param [Array] scopes Key scopes list. Maximum of 200 scopes are allowed.
         # @param [Integer] duration Time in seconds before ephemeral key expires. Maximum duration is 3600 seconds.
         #
         # @return [EphemeralKey]
@@ -199,6 +202,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -229,6 +233,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -246,7 +251,7 @@ module Appwrite
         #
         # @param [String] key_id Key ID.
         # @param [String] name Key name. Max length: 128 chars.
-        # @param [Array] scopes Key scopes list. Maximum of 100 scopes are allowed.
+        # @param [Array] scopes Key scopes list. Maximum of 200 scopes are allowed.
         # @param [String] expire Expiration time in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Use null for unlimited expiration.
         #
         # @return [Key]
@@ -275,6 +280,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -338,6 +344,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -367,6 +374,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -405,6 +413,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -436,6 +445,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -474,6 +484,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -535,6 +546,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -552,14 +564,20 @@ module Appwrite
         # @param [] enabled Enable or disable the OAuth2 server.
         # @param [String] authorization_url URL to your application with consent screen.
         # @param [Array] scopes List of allowed OAuth2 scopes. Maximum of 100 scopes are allowed, each up to 128 characters long.
+        # @param [Array] authorization_details_types List of accepted `authorization_details` types. Maximum of 100 types are allowed, each up to 128 characters long.
         # @param [Integer] access_token_duration Access token duration in seconds for confidential clients (server-side apps that authenticate with a client secret). Leave empty to use default 8 hours.
         # @param [Integer] refresh_token_duration Refresh token duration in seconds for confidential clients (server-side apps that authenticate with a client secret). Leave empty to use default 1 year.
         # @param [Integer] public_access_token_duration Access token duration in seconds for public clients (SPAs, mobile, and native apps that cannot keep a client secret). Leave empty to use default 1 hour.
         # @param [Integer] public_refresh_token_duration Refresh token duration in seconds for public clients (SPAs, mobile, and native apps that cannot keep a client secret). Leave empty to use default 30 days.
         # @param [] confidential_pkce When enabled, PKCE is required for confidential clients (server-side flows using client_secret). PKCE is always required for public clients regardless of this setting.
+        # @param [String] verification_url URL to your application page where users enter the device flow user code. Required to enable the Device Authorization Grant.
+        # @param [Integer] user_code_length Number of characters in the device flow user code, excluding the formatting separator. Shorter codes are easier to type but weaker; pair short codes with short expiry. Leave empty to use default 8.
+        # @param [String] user_code_format Character set for device flow user codes: `numeric` (digits only — best for numeric keypads and TV remotes), `alphabetic` (letters only), or `alphanumeric` (letters and digits — highest entropy per character). Defaults to `alphanumeric`.
+        # @param [Integer] device_code_duration Lifetime in seconds of device flow device codes and user codes. Device codes are intentionally short-lived. Leave empty to use default 600.
+        # @param [Array] default_scopes List of OAuth2 scopes used when an authorization request omits the scope parameter. Every default scope must also be allowed by the OAuth2 server. Maximum of 100 scopes are allowed, each up to 128 characters long.
         #
         # @return [Project]
-        def update_o_auth2_server(enabled:, authorization_url:, scopes: nil, access_token_duration: nil, refresh_token_duration: nil, public_access_token_duration: nil, public_refresh_token_duration: nil, confidential_pkce: nil)
+        def update_o_auth2_server(enabled:, authorization_url:, scopes: nil, authorization_details_types: nil, access_token_duration: nil, refresh_token_duration: nil, public_access_token_duration: nil, public_refresh_token_duration: nil, confidential_pkce: nil, verification_url: nil, user_code_length: nil, user_code_format: nil, device_code_duration: nil, default_scopes: nil)
             api_path = '/project/oauth2-server'
 
             if enabled.nil?
@@ -574,16 +592,23 @@ module Appwrite
                 enabled: enabled,
                 authorizationUrl: authorization_url,
                 scopes: scopes,
+                authorizationDetailsTypes: authorization_details_types,
                 accessTokenDuration: access_token_duration,
                 refreshTokenDuration: refresh_token_duration,
                 publicAccessTokenDuration: public_access_token_duration,
                 publicRefreshTokenDuration: public_refresh_token_duration,
                 confidentialPkce: confidential_pkce,
+                verificationUrl: verification_url,
+                userCodeLength: user_code_length,
+                userCodeFormat: user_code_format,
+                deviceCodeDuration: device_code_duration,
+                defaultScopes: default_scopes,
             }
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -615,6 +640,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -650,6 +676,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -658,6 +685,38 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::OAuth2Apple
+            )
+
+        end
+
+        # Update the project OAuth2 Appwrite configuration.
+        #
+        # @param [String] client_id 'Client ID' of Appwrite OAuth2 app. For example: 6a42000000000000b5a0
+        # @param [String] client_secret 'Client Secret' of Appwrite OAuth2 app. For example: b86afd000000000000000000000000000000000000000000000000000ced5f93
+        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        #
+        # @return [OAuth2Appwrite]
+        def update_o_auth2_appwrite(client_id: nil, client_secret: nil, enabled: nil)
+            api_path = '/project/oauth2/appwrite'
+
+            api_params = {
+                clientId: client_id,
+                clientSecret: client_secret,
+                enabled: enabled,
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::OAuth2Appwrite
             )
 
         end
@@ -683,6 +742,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -716,6 +776,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -747,6 +808,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -778,6 +840,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -809,6 +872,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -840,6 +904,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -871,6 +936,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -902,6 +968,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -933,6 +1000,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -964,6 +1032,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -995,6 +1064,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1026,6 +1096,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1057,6 +1128,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1090,6 +1162,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1121,6 +1194,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1154,6 +1228,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1187,6 +1262,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1222,6 +1298,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1253,6 +1330,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1284,6 +1362,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1317,6 +1396,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1348,6 +1428,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1368,10 +1449,12 @@ module Appwrite
         # @param [String] authorization_url OpenID Connect authorization endpoint URL. Required when wellKnownURL is not provided. For example: https://myoauth.com/oauth2/authorize
         # @param [String] token_url OpenID Connect token endpoint URL. Required when wellKnownURL is not provided. For example: https://myoauth.com/oauth2/token
         # @param [String] user_info_url OpenID Connect user info endpoint URL. Required when wellKnownURL is not provided. For example: https://myoauth.com/oauth2/userinfo
+        # @param [Array] prompt Array of OpenID Connect prompt values controlling the authentication and consent screens. If "none" is included, it must be the only element. "none" means: don't display any authentication or consent screens. "login" means: prompt the user to re-authenticate. "consent" means: prompt the user for consent. "select_account" means: prompt the user to select an account.
+        # @param [Integer] max_age Maximum authentication age in seconds. When set, the user must have authenticated within this many seconds, otherwise they are prompted to re-authenticate.
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Oidc]
-        def update_o_auth2_oidc(client_id: nil, client_secret: nil, well_known_url: nil, authorization_url: nil, token_url: nil, user_info_url: nil, enabled: nil)
+        def update_o_auth2_oidc(client_id: nil, client_secret: nil, well_known_url: nil, authorization_url: nil, token_url: nil, user_info_url: nil, prompt: nil, max_age: nil, enabled: nil)
             api_path = '/project/oauth2/oidc'
 
             api_params = {
@@ -1381,12 +1464,15 @@ module Appwrite
                 authorizationURL: authorization_url,
                 tokenURL: token_url,
                 userInfoURL: user_info_url,
+                prompt: prompt,
+                maxAge: max_age,
                 enabled: enabled,
             }
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1422,6 +1508,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1453,6 +1540,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1484,6 +1572,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1515,6 +1604,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1546,6 +1636,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1577,6 +1668,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1608,6 +1700,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1639,6 +1732,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1670,6 +1764,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1701,6 +1796,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1732,6 +1828,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1763,6 +1860,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1794,6 +1892,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1825,6 +1924,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1856,6 +1956,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1887,6 +1988,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1918,6 +2020,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1949,6 +2052,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             response = @client.call(
@@ -2183,6 +2287,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2228,6 +2333,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2272,6 +2378,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2317,6 +2424,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2361,6 +2469,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2406,6 +2515,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2450,6 +2560,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2495,6 +2606,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2539,6 +2651,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2584,6 +2697,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2628,6 +2742,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2659,6 +2774,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             response = @client.call(
@@ -2748,6 +2864,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2780,6 +2897,40 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Project
+            )
+
+        end
+
+        # Configures if only corporate email addresses (non-free and non-disposable
+        # domains) are allowed during new user sign-ups and email updates.
+        #
+        # @param [] enabled Set whether or not to restrict sign-ups and email updates to corporate email addresses only.
+        #
+        # @return [Project]
+        def update_deny_corporate_email_policy(enabled:)
+            api_path = '/project/policies/deny-corporate-email'
+
+            if enabled.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "enabled"')
+            end
+
+            api_params = {
+                enabled: enabled,
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2812,6 +2963,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2844,6 +2996,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2865,9 +3018,10 @@ module Appwrite
         # @param [] user_phone Set to true if you want make user phone number visible to all team members, or false to hide it.
         # @param [] user_name Set to true if you want make user name visible to all team members, or false to hide it.
         # @param [] user_mfa Set to true if you want make user MFA status visible to all team members, or false to hide it.
+        # @param [] user_accessed_at Set to true if you want make user last access time visible to all team members, or false to hide it.
         #
         # @return [Project]
-        def update_membership_privacy_policy(user_id: nil, user_email: nil, user_phone: nil, user_name: nil, user_mfa: nil)
+        def update_membership_privacy_policy(user_id: nil, user_email: nil, user_phone: nil, user_name: nil, user_mfa: nil, user_accessed_at: nil)
             api_path = '/project/policies/membership-privacy'
 
             api_params = {
@@ -2876,11 +3030,13 @@ module Appwrite
                 userPhone: user_phone,
                 userName: user_name,
                 userMFA: user_mfa,
+                userAccessedAt: user_accessed_at,
             }
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2914,6 +3070,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2953,6 +3110,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2987,6 +3145,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3022,6 +3181,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3057,6 +3217,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3089,6 +3250,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3122,6 +3284,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3154,6 +3317,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3187,6 +3351,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3202,9 +3367,9 @@ module Appwrite
         # Get a policy by its unique ID. This endpoint returns the current
         # configuration for the requested project policy.
         #
-        # @param [ProjectPolicyId] policy_id Policy ID. Can be one of: password-dictionary, password-history, password-strength, password-personal-data, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, deny-aliased-email, deny-disposable-email, deny-free-email.
+        # @param [ProjectPolicyId] policy_id Policy ID. Can be one of: password-dictionary, password-history, password-strength, password-personal-data, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, deny-aliased-email, deny-disposable-email, deny-free-email, deny-corporate-email.
         #
-        # @return [PolicyPasswordDictionary, PolicyPasswordHistory, PolicyPasswordStrength, PolicyPasswordPersonalData, PolicySessionAlert, PolicySessionDuration, PolicySessionInvalidation, PolicySessionLimit, PolicyUserLimit, PolicyMembershipPrivacy, PolicyDenyAliasedEmail, PolicyDenyDisposableEmail, PolicyDenyFreeEmail]
+        # @return [PolicyPasswordDictionary, PolicyPasswordHistory, PolicyPasswordStrength, PolicyPasswordPersonalData, PolicySessionAlert, PolicySessionDuration, PolicySessionInvalidation, PolicySessionLimit, PolicyUserLimit, PolicyMembershipPrivacy, PolicyDenyAliasedEmail, PolicyDenyDisposableEmail, PolicyDenyFreeEmail, PolicyDenyCorporateEmail]
         def get_policy(policy_id:)
             api_path = '/project/policies/{policyId}'
                 .gsub('{policyId}', policy_id)
@@ -3218,6 +3383,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             response = @client.call(
@@ -3296,6 +3462,11 @@ module Appwrite
                 return Models::PolicyDenyFreeEmail.from(map: response)
             end
 
+            if response['$id'] == 'deny-corporate-email'
+
+                return Models::PolicyDenyCorporateEmail.from(map: response)
+            end
+
             raise Exception, "Unable to match response to any expected response model"
 
         end
@@ -3326,6 +3497,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3341,7 +3513,7 @@ module Appwrite
         # Update properties of a specific service. Use this endpoint to enable or
         # disable a service in your project. 
         #
-        # @param [ProjectServiceId] service_id Service name. Can be one of: account, avatars, databases, tablesdb, locale, health, project, storage, teams, users, vcs, sites, functions, proxy, graphql, migrations, messaging, advisor
+        # @param [ProjectServiceId] service_id Service name. Can be one of: account, avatars, databases, tablesdb, locale, health, project, storage, teams, users, vcs, sites, functions, proxy, graphql, migrations, messaging, advisor, oauth2
         # @param [] enabled Service status.
         #
         # @return [Project]
@@ -3364,6 +3536,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3411,6 +3584,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3471,6 +3645,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3517,6 +3692,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3551,6 +3727,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3579,6 +3756,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3625,6 +3803,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3655,6 +3834,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3692,6 +3872,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(

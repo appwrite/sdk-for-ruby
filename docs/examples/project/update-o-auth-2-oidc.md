@@ -2,6 +2,7 @@
 require 'appwrite'
 
 include Appwrite
+include Appwrite::Enums
 
 client = Client.new
     .set_endpoint('https://<REGION>.cloud.appwrite.io/v1') # Your API Endpoint
@@ -17,6 +18,8 @@ result = project.update_o_auth2_oidc(
     authorization_url: 'https://example.com', # optional
     token_url: 'https://example.com', # optional
     user_info_url: 'https://example.com', # optional
+    prompt: [ProjectOAuth2OidcPrompt::NONE], # optional
+    max_age: 0, # optional
     enabled: false # optional
 )
 ```

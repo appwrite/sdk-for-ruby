@@ -12,6 +12,6 @@ users = Users.new(client)
 
 result = users.update_password(
     user_id: '<USER_ID>',
-    password: ''
+    password: 'password'
 )
 ```

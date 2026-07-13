@@ -19,6 +19,7 @@ module Appwrite
             MIGRATIONS = 'migrations'
             MESSAGING = 'messaging'
             ADVISOR = 'advisor'
+            OAUTH2 = 'oauth2'
         end
     end
 end

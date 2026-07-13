@@ -29,6 +29,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -72,6 +73,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -84,6 +86,9 @@ module Appwrite
 
         end
 
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.listTransactions` instead.
+        #
         # List transactions across all databases.
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries).
@@ -98,6 +103,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -110,6 +116,9 @@ module Appwrite
 
         end
 
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createTransaction` instead.
+        #
         # Create a new transaction.
         #
         # @param [Integer] ttl Seconds before the transaction expires.
@@ -125,6 +134,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -137,6 +147,9 @@ module Appwrite
 
         end
 
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.getTransaction` instead.
+        #
         # Get a transaction by its unique ID.
         #
         # @param [String] transaction_id Transaction ID.
@@ -155,6 +168,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -167,6 +181,9 @@ module Appwrite
 
         end
 
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateTransaction` instead.
+        #
         # Update a transaction, to either commit or roll back its operations.
         #
         # @param [String] transaction_id Transaction ID.
@@ -190,6 +207,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -202,6 +220,9 @@ module Appwrite
 
         end
 
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.deleteTransaction` instead.
+        #
         # Delete a transaction by its unique ID.
         #
         # @param [String] transaction_id Transaction ID.
@@ -232,6 +253,9 @@ module Appwrite
 
         end
 
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createOperations` instead.
+        #
         # Create multiple operations in a single transaction.
         #
         # @param [String] transaction_id Transaction ID.
@@ -253,6 +277,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -287,6 +312,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -325,6 +351,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -399,6 +426,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -458,6 +486,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -498,6 +527,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -548,6 +578,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -631,6 +662,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -693,6 +725,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -759,6 +792,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -816,6 +850,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -877,6 +912,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -933,6 +969,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -994,6 +1031,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1051,6 +1089,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1113,6 +1152,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1177,6 +1217,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1245,6 +1286,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1307,6 +1349,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1373,6 +1416,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1435,6 +1479,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1501,6 +1546,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1558,6 +1604,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1620,6 +1667,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1674,6 +1722,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1731,6 +1780,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1743,6 +1793,9 @@ module Appwrite
 
         end
 
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createLongtextColumn` instead.
+        #
         # Create a longtext attribute.
         # 
         #
@@ -1787,6 +1840,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1799,6 +1853,9 @@ module Appwrite
 
         end
 
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateLongtextColumn` instead.
+        #
         # Update a longtext attribute. Changing the `default` value will not update
         # already existing documents.
         # 
@@ -1846,6 +1903,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1858,6 +1916,9 @@ module Appwrite
 
         end
 
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createMediumtextColumn` instead.
+        #
         # Create a mediumtext attribute.
         # 
         #
@@ -1902,6 +1963,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1914,6 +1976,9 @@ module Appwrite
 
         end
 
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateMediumtextColumn` instead.
+        #
         # Update a mediumtext attribute. Changing the `default` value will not update
         # already existing documents.
         # 
@@ -1961,6 +2026,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2015,6 +2081,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2072,6 +2139,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2126,6 +2194,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2183,6 +2252,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2245,6 +2315,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2297,6 +2368,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2362,6 +2434,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2426,6 +2499,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2438,6 +2512,9 @@ module Appwrite
 
         end
 
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createTextColumn` instead.
+        #
         # Create a text attribute.
         # 
         #
@@ -2482,6 +2559,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2494,6 +2572,9 @@ module Appwrite
 
         end
 
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateTextColumn` instead.
+        #
         # Update a text attribute. Changing the `default` value will not update
         # already existing documents.
         # 
@@ -2541,6 +2622,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2598,6 +2680,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2660,6 +2743,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2672,6 +2756,9 @@ module Appwrite
 
         end
 
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createVarcharColumn` instead.
+        #
         # Create a varchar attribute.
         # 
         #
@@ -2722,6 +2809,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2734,6 +2822,9 @@ module Appwrite
 
         end
 
+        #
+        # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.updateVarcharColumn` instead.
+        #
         # Update a varchar attribute. Changing the `default` value will not update
         # already existing documents.
         # 
@@ -2783,6 +2874,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -2828,6 +2920,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             response = @client.call(
@@ -2976,6 +3069,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3035,6 +3129,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3086,6 +3181,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3138,6 +3234,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3186,6 +3283,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3231,6 +3329,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3281,6 +3380,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3336,6 +3436,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3389,6 +3490,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3494,6 +3596,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3552,6 +3655,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3595,6 +3699,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3659,6 +3764,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3704,6 +3810,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(

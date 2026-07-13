@@ -26,6 +26,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -54,7 +55,7 @@ module Appwrite
         # @param [] logging When disabled, executions will exclude logs and errors, and will be slightly faster.
         # @param [String] entrypoint Entrypoint File. This path is relative to the "providerRootDirectory".
         # @param [String] commands Build Commands.
-        # @param [Array] scopes List of scopes allowed for API key auto-generated for every execution. Maximum of 100 scopes are allowed.
+        # @param [Array] scopes List of scopes allowed for API key auto-generated for every execution. Maximum of 200 scopes are allowed.
         # @param [String] installation_id Appwrite Installation ID for VCS (Version Control System) deployment.
         # @param [String] provider_repository_id Repository ID of the repo linked to the function.
         # @param [String] provider_branch Production branch for the repo linked to the function.
@@ -110,6 +111,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -134,6 +136,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -148,16 +151,19 @@ module Appwrite
 
         # List allowed function specifications for this instance.
         #
+        # @param [String] type Specification type to list. Can be one of: runtimes, builds.
         #
         # @return [SpecificationList]
-        def list_specifications()
+        def list_specifications(type: nil)
             api_path = '/functions/specifications'
 
             api_params = {
+                type: type,
             }
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -188,6 +194,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -213,7 +220,7 @@ module Appwrite
         # @param [] logging When disabled, executions will exclude logs and errors, and will be slightly faster.
         # @param [String] entrypoint Entrypoint File. This path is relative to the "providerRootDirectory".
         # @param [String] commands Build Commands.
-        # @param [Array] scopes List of scopes allowed for API Key auto-generated for every execution. Maximum of 100 scopes are allowed.
+        # @param [Array] scopes List of scopes allowed for API Key auto-generated for every execution. Maximum of 200 scopes are allowed.
         # @param [String] installation_id Appwrite Installation ID for VCS (Version Controle System) deployment.
         # @param [String] provider_repository_id Repository ID of the repo linked to the function
         # @param [String] provider_branch Production branch for the repo linked to the function
@@ -265,6 +272,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -333,6 +341,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -370,6 +379,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -426,6 +436,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'multipart/form-data',
+                "accept": 'application/json',
             }
 
             id_param_name = nil
@@ -474,6 +485,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -541,6 +553,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -588,6 +601,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -624,6 +638,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -679,9 +694,10 @@ module Appwrite
         # @param [String] function_id Function ID.
         # @param [String] deployment_id Deployment ID.
         # @param [DeploymentDownloadType] type Deployment file to download. Can be: "source", "output".
+        # @param [String] token Presigned source-download token for accessing this deployment without a session (jobs-service).
         #
         # @return []
-        def get_deployment_download(function_id:, deployment_id:, type: nil)
+        def get_deployment_download(function_id:, deployment_id:, type: nil, token: nil)
             api_path = '/functions/{functionId}/deployments/{deploymentId}/download'
                 .gsub('{functionId}', function_id)
                 .gsub('{deploymentId}', deployment_id)
@@ -696,10 +712,12 @@ module Appwrite
 
             api_params = {
                 type: type,
+                token: token,
             }
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": '*/*',
             }
 
             @client.call(
@@ -740,6 +758,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -775,6 +794,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -821,6 +841,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -857,6 +878,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -927,6 +949,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -979,6 +1002,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1015,6 +1039,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1058,6 +1083,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(

@@ -15,7 +15,7 @@ module Appwrite
                 'x-sdk-name'=> 'Ruby',
                 'x-sdk-platform'=> 'server',
                 'x-sdk-language'=> 'ruby',
-                'x-sdk-version'=> '25.1.0',
+                'x-sdk-version'=> '26.0.0',
                 'X-Appwrite-Response-Format' => '1.9.5'
             }
             @endpoint = 'https://cloud.appwrite.io/v1'
@@ -59,6 +59,20 @@ module Appwrite
         def set_jwt(value)
             add_header('x-appwrite-jwt', value)
             @config['jwt'] = value
+
+            self
+        end
+
+        # Set Bearer
+        #
+        # The OAuth access token to authenticate with
+        #
+        # @param [String] value The value to set for the Bearer header
+        #
+        # @return [self]
+        def set_bearer(value)
+            add_header('authorization', value)
+            @config['bearer'] = value
 
             self
         end
@@ -133,7 +147,7 @@ module Appwrite
 
         # Set ImpersonateUserId
         #
-        # Impersonate a user by ID on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
+        # Impersonate a user by ID
         #
         # @param [String] value The value to set for the ImpersonateUserId header
         #
@@ -147,7 +161,7 @@ module Appwrite
 
         # Set ImpersonateUserEmail
         #
-        # Impersonate a user by email on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
+        # Impersonate a user by email
         #
         # @param [String] value The value to set for the ImpersonateUserEmail header
         #
@@ -161,7 +175,7 @@ module Appwrite
 
         # Set ImpersonateUserPhone
         #
-        # Impersonate a user by phone on an already user-authenticated request. Requires the current request to be authenticated as a user with impersonator capability; X-Appwrite-Key alone is not sufficient. Impersonator users are intentionally granted users.read so they can discover a target before impersonation begins. Internal audit logs still attribute actions to the original impersonator and record the impersonated target only in internal audit payload data.
+        # Impersonate a user by phone
         #
         # @param [String] value The value to set for the ImpersonateUserPhone header
         #

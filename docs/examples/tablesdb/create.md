@@ -13,6 +13,7 @@ tables_db = TablesDB.new(client)
 result = tables_db.create(
     database_id: '<DATABASE_ID>',
     name: '<NAME>',
-    enabled: false # optional
+    enabled: false, # optional
+    specification: 'serverless' # optional
 )
 ```

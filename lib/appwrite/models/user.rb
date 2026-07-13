@@ -17,6 +17,11 @@ module Appwrite
             attr_reader :email
             attr_reader :phone
             attr_reader :email_verification
+            attr_reader :email_canonical
+            attr_reader :email_is_free
+            attr_reader :email_is_disposable
+            attr_reader :email_is_corporate
+            attr_reader :email_is_canonical
             attr_reader :phone_verification
             attr_reader :mfa
             attr_reader :prefs
@@ -40,6 +45,11 @@ module Appwrite
                 email:,
                 phone:,
                 email_verification:,
+                email_canonical: ,
+                email_is_free: ,
+                email_is_disposable: ,
+                email_is_corporate: ,
+                email_is_canonical: ,
                 phone_verification:,
                 mfa:,
                 prefs:,
@@ -62,6 +72,11 @@ module Appwrite
                 @email = email
                 @phone = phone
                 @email_verification = email_verification
+                @email_canonical = email_canonical
+                @email_is_free = email_is_free
+                @email_is_disposable = email_is_disposable
+                @email_is_corporate = email_is_corporate
+                @email_is_canonical = email_is_canonical
                 @phone_verification = phone_verification
                 @mfa = mfa
                 @prefs = prefs
@@ -87,6 +102,11 @@ module Appwrite
                     email: map["email"],
                     phone: map["phone"],
                     email_verification: map["emailVerification"],
+                    email_canonical: map["emailCanonical"],
+                    email_is_free: map["emailIsFree"],
+                    email_is_disposable: map["emailIsDisposable"],
+                    email_is_corporate: map["emailIsCorporate"],
+                    email_is_canonical: map["emailIsCanonical"],
                     phone_verification: map["phoneVerification"],
                     mfa: map["mfa"],
                     prefs: Preferences.from(map: map["prefs"]),
@@ -113,6 +133,11 @@ module Appwrite
                     "email": @email,
                     "phone": @phone,
                     "emailVerification": @email_verification,
+                    "emailCanonical": @email_canonical,
+                    "emailIsFree": @email_is_free,
+                    "emailIsDisposable": @email_is_disposable,
+                    "emailIsCorporate": @email_is_corporate,
+                    "emailIsCanonical": @email_is_canonical,
                     "phoneVerification": @phone_verification,
                     "mfa": @mfa,
                     "prefs": @prefs.to_map,

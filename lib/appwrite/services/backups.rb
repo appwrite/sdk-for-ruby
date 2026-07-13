@@ -21,6 +21,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -54,6 +55,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -84,6 +86,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -115,6 +118,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -140,6 +144,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -195,6 +200,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -225,6 +231,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -264,6 +271,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -295,6 +303,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -307,14 +316,25 @@ module Appwrite
         end
 
         # Create and trigger a new restoration for a backup on a project.
+        # 
+        # When restoring a DocumentsDB or VectorsDB database to a new resource, pass
+        # `newSpecification` to provision the restored database on a different
+        # specification than the archived one (for example, restoring onto a larger
+        # or smaller dedicated database). Use `serverless` to restore onto the shared
+        # pool, or a dedicated specification slug to restore onto a dedicated
+        # database of that size. The specification must be permitted by the
+        # organization's plan. `newSpecification` is not supported for
+        # legacy/TablesDB databases or for bucket restores.
+        # 
         #
         # @param [String] archive_id Backup archive ID to restore
         # @param [Array] services Array of services to restore
         # @param [String] new_resource_id Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [String] new_resource_name Database name. Max length: 128 chars.
+        # @param [String] new_specification Specification to provision the restored database on, when restoring a DocumentsDB or VectorsDB database to a new resource. Defaults to the archived database's specification. Use `serverless` for the shared pool or a dedicated specification slug.
         #
         # @return [BackupRestoration]
-        def create_restoration(archive_id:, services:, new_resource_id: nil, new_resource_name: nil)
+        def create_restoration(archive_id:, services:, new_resource_id: nil, new_resource_name: nil, new_specification: nil)
             api_path = '/backups/restoration'
 
             if archive_id.nil?
@@ -330,11 +350,13 @@ module Appwrite
                 services: services,
                 newResourceId: new_resource_id,
                 newResourceName: new_resource_name,
+                newSpecification: new_specification,
             }
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -361,6 +383,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -391,6 +414,7 @@ module Appwrite
             
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(

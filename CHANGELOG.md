@@ -5,7 +5,7 @@
 * Breaking: Removed `Health` service and all health models and enums
 * Breaking: Removed `Usage` service and `UsageEvent`/`UsageGauge` models
 * Breaking: Removed `Messaging` log methods `list_message_logs`, `list_provider_logs`, `list_subscriber_logs`, `list_topic_logs`
-* Breaking: Removed OS, client, device, and country fields from `ActivityEvent` model
+* Breaking: Removed OS, client, and device fields plus `countryCode`/`countryName` from `ActivityEvent` (`country` remains)
 * Added: `Client#set_bearer` for OAuth access token authentication
 * Added: `Organization` `get`, `update`, `delete`, and membership CRUD methods
 * Added: `Query.vector_dot`, `Query.vector_cosine`, `Query.vector_euclidean` query helpers

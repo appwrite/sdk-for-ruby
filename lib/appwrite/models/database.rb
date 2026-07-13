@@ -9,6 +9,7 @@ module Appwrite
             attr_reader :updated_at
             attr_reader :enabled
             attr_reader :type
+            attr_reader :status
             attr_reader :policies
             attr_reader :archives
 
@@ -19,6 +20,7 @@ module Appwrite
                 updated_at:,
                 enabled:,
                 type:,
+                status: ,
                 policies:,
                 archives:
             )
@@ -28,6 +30,7 @@ module Appwrite
                 @updated_at = updated_at
                 @enabled = enabled
                 @type = validate_type(type)
+                @status = status.nil? ? status : validate_status(status)
                 @policies = policies
                 @archives = archives
             end
@@ -40,6 +43,7 @@ module Appwrite
                     updated_at: map["$updatedAt"],
                     enabled: map["enabled"],
                     type: map["type"],
+                    status: map["status"],
                     policies: map["policies"].map { |it| BackupPolicy.from(map: it) },
                     archives: map["archives"].map { |it| BackupArchive.from(map: it) }
                 )
@@ -53,6 +57,7 @@ module Appwrite
                     "$updatedAt": @updated_at,
                     "enabled": @enabled,
                     "type": @type,
+                    "status": @status,
                     "policies": @policies.map { |it| it.to_map },
                     "archives": @archives.map { |it| it.to_map }
                 }
@@ -73,6 +78,20 @@ module Appwrite
                 end
 
                 type
+            end
+
+            def validate_status(status)
+                valid_status = [
+                    Appwrite::Enums::DatabaseStatus::PROVISIONING,
+                    Appwrite::Enums::DatabaseStatus::READY,
+                    Appwrite::Enums::DatabaseStatus::FAILED,
+                ]
+
+                unless valid_status.include?(status)
+                    raise ArgumentError, "Invalid " + status + ". Must be one of: " + valid_status.join(', ')
+                end
+
+                status
             end
 
         end

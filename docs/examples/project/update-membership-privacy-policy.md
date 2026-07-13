@@ -15,6 +15,7 @@ result = project.update_membership_privacy_policy(
     user_email: false, # optional
     user_phone: false, # optional
     user_name: false, # optional
-    user_mfa: false # optional
+    user_mfa: false, # optional
+    user_accessed_at: false # optional
 )
 ```

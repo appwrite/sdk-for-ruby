@@ -24,6 +24,7 @@ module Appwrite
             attr_reader :pinged_at
             attr_reader :labels
             attr_reader :status
+            attr_reader :onboarding
             attr_reader :auth_methods
             attr_reader :services
             attr_reader :protocols
@@ -33,11 +34,17 @@ module Appwrite
             attr_reader :o_auth2_server_enabled
             attr_reader :o_auth2_server_authorization_url
             attr_reader :o_auth2_server_scopes
+            attr_reader :o_auth2_server_default_scopes
+            attr_reader :o_auth2_server_authorization_details_types
             attr_reader :o_auth2_server_access_token_duration
             attr_reader :o_auth2_server_refresh_token_duration
             attr_reader :o_auth2_server_public_access_token_duration
             attr_reader :o_auth2_server_public_refresh_token_duration
             attr_reader :o_auth2_server_confidential_pkce
+            attr_reader :o_auth2_server_verification_url
+            attr_reader :o_auth2_server_user_code_length
+            attr_reader :o_auth2_server_user_code_format
+            attr_reader :o_auth2_server_device_code_duration
             attr_reader :o_auth2_server_discovery_url
 
             def initialize(
@@ -62,21 +69,28 @@ module Appwrite
                 pinged_at:,
                 labels:,
                 status:,
+                onboarding:,
                 auth_methods:,
                 services:,
                 protocols:,
                 blocks:,
                 console_accessed_at:,
                 billing_limits: ,
-                o_auth2_server_enabled:,
-                o_auth2_server_authorization_url:,
-                o_auth2_server_scopes:,
-                o_auth2_server_access_token_duration:,
-                o_auth2_server_refresh_token_duration:,
-                o_auth2_server_public_access_token_duration:,
-                o_auth2_server_public_refresh_token_duration:,
-                o_auth2_server_confidential_pkce:,
-                o_auth2_server_discovery_url:
+                o_auth2_server_enabled: ,
+                o_auth2_server_authorization_url: ,
+                o_auth2_server_scopes: ,
+                o_auth2_server_default_scopes: ,
+                o_auth2_server_authorization_details_types: ,
+                o_auth2_server_access_token_duration: ,
+                o_auth2_server_refresh_token_duration: ,
+                o_auth2_server_public_access_token_duration: ,
+                o_auth2_server_public_refresh_token_duration: ,
+                o_auth2_server_confidential_pkce: ,
+                o_auth2_server_verification_url: ,
+                o_auth2_server_user_code_length: ,
+                o_auth2_server_user_code_format: ,
+                o_auth2_server_device_code_duration: ,
+                o_auth2_server_discovery_url: 
             )
                 @id = id
                 @created_at = created_at
@@ -99,6 +113,7 @@ module Appwrite
                 @pinged_at = pinged_at
                 @labels = labels
                 @status = status
+                @onboarding = onboarding
                 @auth_methods = auth_methods
                 @services = services
                 @protocols = protocols
@@ -108,11 +123,17 @@ module Appwrite
                 @o_auth2_server_enabled = o_auth2_server_enabled
                 @o_auth2_server_authorization_url = o_auth2_server_authorization_url
                 @o_auth2_server_scopes = o_auth2_server_scopes
+                @o_auth2_server_default_scopes = o_auth2_server_default_scopes
+                @o_auth2_server_authorization_details_types = o_auth2_server_authorization_details_types
                 @o_auth2_server_access_token_duration = o_auth2_server_access_token_duration
                 @o_auth2_server_refresh_token_duration = o_auth2_server_refresh_token_duration
                 @o_auth2_server_public_access_token_duration = o_auth2_server_public_access_token_duration
                 @o_auth2_server_public_refresh_token_duration = o_auth2_server_public_refresh_token_duration
                 @o_auth2_server_confidential_pkce = o_auth2_server_confidential_pkce
+                @o_auth2_server_verification_url = o_auth2_server_verification_url
+                @o_auth2_server_user_code_length = o_auth2_server_user_code_length
+                @o_auth2_server_user_code_format = o_auth2_server_user_code_format
+                @o_auth2_server_device_code_duration = o_auth2_server_device_code_duration
                 @o_auth2_server_discovery_url = o_auth2_server_discovery_url
             end
 
@@ -139,20 +160,27 @@ module Appwrite
                     pinged_at: map["pingedAt"],
                     labels: map["labels"],
                     status: map["status"],
+                    onboarding: map["onboarding"],
                     auth_methods: map["authMethods"].map { |it| ProjectAuthMethod.from(map: it) },
                     services: map["services"].map { |it| ProjectService.from(map: it) },
                     protocols: map["protocols"].map { |it| ProjectProtocol.from(map: it) },
                     blocks: map["blocks"].map { |it| Block.from(map: it) },
                     console_accessed_at: map["consoleAccessedAt"],
-                    billing_limits: BillingLimits.from(map: map["billingLimits"]),
+                    billing_limits: map["billingLimits"].nil? ? nil : BillingLimits.from(map: map["billingLimits"]),
                     o_auth2_server_enabled: map["oAuth2ServerEnabled"],
                     o_auth2_server_authorization_url: map["oAuth2ServerAuthorizationUrl"],
                     o_auth2_server_scopes: map["oAuth2ServerScopes"],
+                    o_auth2_server_default_scopes: map["oAuth2ServerDefaultScopes"],
+                    o_auth2_server_authorization_details_types: map["oAuth2ServerAuthorizationDetailsTypes"],
                     o_auth2_server_access_token_duration: map["oAuth2ServerAccessTokenDuration"],
                     o_auth2_server_refresh_token_duration: map["oAuth2ServerRefreshTokenDuration"],
                     o_auth2_server_public_access_token_duration: map["oAuth2ServerPublicAccessTokenDuration"],
                     o_auth2_server_public_refresh_token_duration: map["oAuth2ServerPublicRefreshTokenDuration"],
                     o_auth2_server_confidential_pkce: map["oAuth2ServerConfidentialPkce"],
+                    o_auth2_server_verification_url: map["oAuth2ServerVerificationUrl"],
+                    o_auth2_server_user_code_length: map["oAuth2ServerUserCodeLength"],
+                    o_auth2_server_user_code_format: map["oAuth2ServerUserCodeFormat"],
+                    o_auth2_server_device_code_duration: map["oAuth2ServerDeviceCodeDuration"],
                     o_auth2_server_discovery_url: map["oAuth2ServerDiscoveryUrl"]
                 )
             end
@@ -180,20 +208,27 @@ module Appwrite
                     "pingedAt": @pinged_at,
                     "labels": @labels,
                     "status": @status,
+                    "onboarding": @onboarding,
                     "authMethods": @auth_methods.map { |it| it.to_map },
                     "services": @services.map { |it| it.to_map },
                     "protocols": @protocols.map { |it| it.to_map },
                     "blocks": @blocks.map { |it| it.to_map },
                     "consoleAccessedAt": @console_accessed_at,
-                    "billingLimits": @billing_limits.to_map,
+                    "billingLimits": @billing_limits&.to_map,
                     "oAuth2ServerEnabled": @o_auth2_server_enabled,
                     "oAuth2ServerAuthorizationUrl": @o_auth2_server_authorization_url,
                     "oAuth2ServerScopes": @o_auth2_server_scopes,
+                    "oAuth2ServerDefaultScopes": @o_auth2_server_default_scopes,
+                    "oAuth2ServerAuthorizationDetailsTypes": @o_auth2_server_authorization_details_types,
                     "oAuth2ServerAccessTokenDuration": @o_auth2_server_access_token_duration,
                     "oAuth2ServerRefreshTokenDuration": @o_auth2_server_refresh_token_duration,
                     "oAuth2ServerPublicAccessTokenDuration": @o_auth2_server_public_access_token_duration,
                     "oAuth2ServerPublicRefreshTokenDuration": @o_auth2_server_public_refresh_token_duration,
                     "oAuth2ServerConfidentialPkce": @o_auth2_server_confidential_pkce,
+                    "oAuth2ServerVerificationUrl": @o_auth2_server_verification_url,
+                    "oAuth2ServerUserCodeLength": @o_auth2_server_user_code_length,
+                    "oAuth2ServerUserCodeFormat": @o_auth2_server_user_code_format,
+                    "oAuth2ServerDeviceCodeDuration": @o_auth2_server_device_code_duration,
                     "oAuth2ServerDiscoveryUrl": @o_auth2_server_discovery_url
                 }
             end

@@ -15,7 +15,7 @@ result = project.update_smtp(
     host: '', # optional
     port: null, # optional
     username: '<USERNAME>', # optional
-    password: '<PASSWORD>', # optional
+    password: 'password', # optional
     sender_email: 'email@example.com', # optional
     sender_name: '<SENDER_NAME>', # optional
     reply_to_email: 'email@example.com', # optional

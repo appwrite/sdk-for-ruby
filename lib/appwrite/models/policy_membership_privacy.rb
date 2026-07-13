@@ -9,6 +9,7 @@ module Appwrite
             attr_reader :user_phone
             attr_reader :user_name
             attr_reader :user_mfa
+            attr_reader :user_accessed_at
 
             def initialize(
                 id:,
@@ -16,7 +17,8 @@ module Appwrite
                 user_email:,
                 user_phone:,
                 user_name:,
-                user_mfa:
+                user_mfa:,
+                user_accessed_at:
             )
                 @id = id
                 @user_id = user_id
@@ -24,6 +26,7 @@ module Appwrite
                 @user_phone = user_phone
                 @user_name = user_name
                 @user_mfa = user_mfa
+                @user_accessed_at = user_accessed_at
             end
 
             def self.from(map:)
@@ -33,7 +36,8 @@ module Appwrite
                     user_email: map["userEmail"],
                     user_phone: map["userPhone"],
                     user_name: map["userName"],
-                    user_mfa: map["userMFA"]
+                    user_mfa: map["userMFA"],
+                    user_accessed_at: map["userAccessedAt"]
                 )
             end
 
@@ -44,7 +48,8 @@ module Appwrite
                     "userEmail": @user_email,
                     "userPhone": @user_phone,
                     "userName": @user_name,
-                    "userMFA": @user_mfa
+                    "userMFA": @user_mfa,
+                    "userAccessedAt": @user_accessed_at
                 }
             end
         end

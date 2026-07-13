@@ -16,6 +16,7 @@ module Appwrite
             attr_reader :joined
             attr_reader :confirm
             attr_reader :mfa
+            attr_reader :user_accessed_at
             attr_reader :roles
 
             def initialize(
@@ -32,6 +33,7 @@ module Appwrite
                 joined:,
                 confirm:,
                 mfa:,
+                user_accessed_at:,
                 roles:
             )
                 @id = id
@@ -47,6 +49,7 @@ module Appwrite
                 @joined = joined
                 @confirm = confirm
                 @mfa = mfa
+                @user_accessed_at = user_accessed_at
                 @roles = roles
             end
 
@@ -65,6 +68,7 @@ module Appwrite
                     joined: map["joined"],
                     confirm: map["confirm"],
                     mfa: map["mfa"],
+                    user_accessed_at: map["userAccessedAt"],
                     roles: map["roles"]
                 )
             end
@@ -84,6 +88,7 @@ module Appwrite
                     "joined": @joined,
                     "confirm": @confirm,
                     "mfa": @mfa,
+                    "userAccessedAt": @user_accessed_at,
                     "roles": @roles
                 }
             end

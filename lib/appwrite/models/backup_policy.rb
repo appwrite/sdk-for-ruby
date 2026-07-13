@@ -13,6 +13,7 @@ module Appwrite
             attr_reader :resource_type
             attr_reader :retention
             attr_reader :schedule
+            attr_reader :type
             attr_reader :enabled
 
             def initialize(
@@ -26,6 +27,7 @@ module Appwrite
                 resource_type: ,
                 retention:,
                 schedule:,
+                type:,
                 enabled:
             )
                 @id = id
@@ -38,6 +40,7 @@ module Appwrite
                 @resource_type = resource_type
                 @retention = retention
                 @schedule = schedule
+                @type = type
                 @enabled = enabled
             end
 
@@ -53,6 +56,7 @@ module Appwrite
                     resource_type: map["resourceType"],
                     retention: map["retention"],
                     schedule: map["schedule"],
+                    type: map["type"],
                     enabled: map["enabled"]
                 )
             end
@@ -69,6 +73,7 @@ module Appwrite
                     "resourceType": @resource_type,
                     "retention": @retention,
                     "schedule": @schedule,
+                    "type": @type,
                     "enabled": @enabled
                 }
             end

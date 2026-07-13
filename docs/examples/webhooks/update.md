@@ -18,6 +18,6 @@ result = webhooks.update(
     enabled: false, # optional
     tls: false, # optional
     auth_username: '<AUTH_USERNAME>', # optional
-    auth_password: '<AUTH_PASSWORD>' # optional
+    auth_password: 'password' # optional
 )
 ```

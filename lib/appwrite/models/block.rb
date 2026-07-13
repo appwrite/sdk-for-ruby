@@ -6,6 +6,7 @@ module Appwrite
             attr_reader :created_at
             attr_reader :resource_type
             attr_reader :resource_id
+            attr_reader :mode
             attr_reader :reason
             attr_reader :expired_at
             attr_reader :project_name
@@ -18,6 +19,7 @@ module Appwrite
                 created_at:,
                 resource_type:,
                 resource_id:,
+                mode:,
                 reason: ,
                 expired_at: ,
                 project_name:,
@@ -29,6 +31,7 @@ module Appwrite
                 @created_at = created_at
                 @resource_type = resource_type
                 @resource_id = resource_id
+                @mode = mode
                 @reason = reason
                 @expired_at = expired_at
                 @project_name = project_name
@@ -43,6 +46,7 @@ module Appwrite
                     created_at: map["$createdAt"],
                     resource_type: map["resourceType"],
                     resource_id: map["resourceId"],
+                    mode: map["mode"],
                     reason: map["reason"],
                     expired_at: map["expiredAt"],
                     project_name: map["projectName"],
@@ -58,6 +62,7 @@ module Appwrite
                     "$createdAt": @created_at,
                     "resourceType": @resource_type,
                     "resourceId": @resource_id,
+                    "mode": @mode,
                     "reason": @reason,
                     "expiredAt": @expired_at,
                     "projectName": @project_name,

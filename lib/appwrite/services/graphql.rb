@@ -27,6 +27,7 @@ module Appwrite
                 "X-Appwrite-Project": @client.get_config('project'),
                 "x-sdk-graphql": 'true',
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -58,6 +59,7 @@ module Appwrite
                 "X-Appwrite-Project": @client.get_config('project'),
                 "x-sdk-graphql": 'true',
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(

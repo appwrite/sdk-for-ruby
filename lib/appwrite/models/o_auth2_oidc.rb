@@ -11,6 +11,8 @@ module Appwrite
             attr_reader :authorization_url
             attr_reader :token_url
             attr_reader :user_info_url
+            attr_reader :prompt
+            attr_reader :max_age
 
             def initialize(
                 id:,
@@ -20,7 +22,9 @@ module Appwrite
                 well_known_url:,
                 authorization_url:,
                 token_url:,
-                user_info_url:
+                user_info_url:,
+                prompt:,
+                max_age: 
             )
                 @id = id
                 @enabled = enabled
@@ -30,6 +34,8 @@ module Appwrite
                 @authorization_url = authorization_url
                 @token_url = token_url
                 @user_info_url = user_info_url
+                @prompt = prompt
+                @max_age = max_age
             end
 
             def self.from(map:)
@@ -41,7 +47,9 @@ module Appwrite
                     well_known_url: map["wellKnownURL"],
                     authorization_url: map["authorizationURL"],
                     token_url: map["tokenURL"],
-                    user_info_url: map["userInfoURL"]
+                    user_info_url: map["userInfoURL"],
+                    prompt: map["prompt"],
+                    max_age: map["maxAge"]
                 )
             end
 
@@ -54,7 +62,9 @@ module Appwrite
                     "wellKnownURL": @well_known_url,
                     "authorizationURL": @authorization_url,
                     "tokenURL": @token_url,
-                    "userInfoURL": @user_info_url
+                    "userInfoURL": @user_info_url,
+                    "prompt": @prompt,
+                    "maxAge": @max_age
                 }
             end
         end

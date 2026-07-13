@@ -13,7 +13,7 @@ account = Account.new(client)
 result = account.create(
     user_id: '<USER_ID>',
     email: 'email@example.com',
-    password: '',
+    password: 'password',
     name: '<NAME>' # optional
 )
 ```

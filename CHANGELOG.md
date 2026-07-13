@@ -1,5 +1,23 @@
 # Change Log
 
+## 26.0.0
+
+* Breaking: Removed `Health` service and all health models and enums
+* Breaking: Removed `Usage` service and `UsageEvent`/`UsageGauge` models
+* Breaking: Removed `Messaging` log methods `list_message_logs`, `list_provider_logs`, `list_subscriber_logs`, `list_topic_logs`
+* Breaking: Removed OS, client, and device fields plus `countryCode`/`countryName` from `ActivityEvent` (`country` remains)
+* Added: `Client#set_bearer` for OAuth access token authentication
+* Added: `Organization` `get`, `update`, `delete`, and membership CRUD methods
+* Added: `Query.vector_dot`, `Query.vector_cosine`, `Query.vector_euclidean` query helpers
+* Added: `Project#update_o_auth2_appwrite` and `Project#update_deny_corporate_email_policy` methods
+* Added: OAuth2 server device-flow params (`verification_url`, `user_code_length`, `device_code_duration`, `default_scopes`)
+* Added: optional params `new_specification` (restorations), `token` (deployment download), `type` (list specifications), `specification` (TablesDB create)
+* Added: `Organization`, `BillingPlan`, `AdditionalResource`, `Program`, `OAuth2Appwrite`, `PolicyDenyCorporateEmail` models
+* Added: `DatabaseStatus`, `BillingPlanGroup`, `ProjectOAuth2OidcPrompt` enums and `APPWRITE` OAuth provider
+* Added: `Locale` geolocation/ISP fields, `Membership#user_accessed_at`, `Block#mode`, `BackupPolicy#type`, `Database#status`
+* Added: `User` email classification fields (`email_is_free`, `email_is_disposable`, `email_is_corporate`)
+* Added: new key scopes (`stages.*`, `project.oauth2.*`, `organization.*`, `dedicatedDatabases.execute`)
+
 ## 25.1.0
 
 * Added: `createSesProvider` and `updateSesProvider` to `messaging`

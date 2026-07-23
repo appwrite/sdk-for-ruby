@@ -569,6 +569,7 @@ module Appwrite
         # @param [Integer] refresh_token_duration Refresh token duration in seconds for confidential clients (server-side apps that authenticate with a client secret). Leave empty to use default 1 year.
         # @param [Integer] public_access_token_duration Access token duration in seconds for public clients (SPAs, mobile, and native apps that cannot keep a client secret). Leave empty to use default 1 hour.
         # @param [Integer] public_refresh_token_duration Refresh token duration in seconds for public clients (SPAs, mobile, and native apps that cannot keep a client secret). Leave empty to use default 30 days.
+        # @param [Integer] installation_access_token_duration Access token duration in seconds for app installation access tokens. Leave empty to use default 1 hour.
         # @param [] confidential_pkce When enabled, PKCE is required for confidential clients (server-side flows using client_secret). PKCE is always required for public clients regardless of this setting.
         # @param [String] verification_url URL to your application page where users enter the device flow user code. Required to enable the Device Authorization Grant.
         # @param [Integer] user_code_length Number of characters in the device flow user code, excluding the formatting separator. Shorter codes are easier to type but weaker; pair short codes with short expiry. Leave empty to use default 8.
@@ -577,7 +578,7 @@ module Appwrite
         # @param [Array] default_scopes List of OAuth2 scopes used when an authorization request omits the scope parameter. Every default scope must also be allowed by the OAuth2 server. Maximum of 100 scopes are allowed, each up to 128 characters long.
         #
         # @return [Project]
-        def update_o_auth2_server(enabled:, authorization_url:, scopes: nil, authorization_details_types: nil, access_token_duration: nil, refresh_token_duration: nil, public_access_token_duration: nil, public_refresh_token_duration: nil, confidential_pkce: nil, verification_url: nil, user_code_length: nil, user_code_format: nil, device_code_duration: nil, default_scopes: nil)
+        def update_o_auth2_server(enabled:, authorization_url:, scopes: nil, authorization_details_types: nil, access_token_duration: nil, refresh_token_duration: nil, public_access_token_duration: nil, public_refresh_token_duration: nil, installation_access_token_duration: nil, confidential_pkce: nil, verification_url: nil, user_code_length: nil, user_code_format: nil, device_code_duration: nil, default_scopes: nil)
             api_path = '/project/oauth2-server'
 
             if enabled.nil?
@@ -597,6 +598,7 @@ module Appwrite
                 refreshTokenDuration: refresh_token_duration,
                 publicAccessTokenDuration: public_access_token_duration,
                 publicRefreshTokenDuration: public_refresh_token_duration,
+                installationAccessTokenDuration: installation_access_token_duration,
                 confidentialPkce: confidential_pkce,
                 verificationUrl: verification_url,
                 userCodeLength: user_code_length,

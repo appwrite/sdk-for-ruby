@@ -17,10 +17,21 @@ module Appwrite
             attr_reader :ip
             attr_reader :mode
             attr_reader :country
+            attr_reader :continent_code
+            attr_reader :city
+            attr_reader :subdivisions
+            attr_reader :isp
+            attr_reader :autonomous_system_number
+            attr_reader :autonomous_system_organization
+            attr_reader :connection_type
+            attr_reader :connection_usage_type
+            attr_reader :connection_organization
             attr_reader :time
             attr_reader :project_id
             attr_reader :team_id
             attr_reader :hostname
+            attr_reader :sdk
+            attr_reader :sdk_version
 
             def initialize(
                 id:,
@@ -37,10 +48,21 @@ module Appwrite
                 ip:,
                 mode:,
                 country:,
+                continent_code:,
+                city:,
+                subdivisions:,
+                isp:,
+                autonomous_system_number:,
+                autonomous_system_organization:,
+                connection_type:,
+                connection_usage_type:,
+                connection_organization:,
                 time:,
                 project_id:,
                 team_id:,
-                hostname:
+                hostname:,
+                sdk:,
+                sdk_version:
             )
                 @id = id
                 @actor_type = actor_type
@@ -56,10 +78,21 @@ module Appwrite
                 @ip = ip
                 @mode = mode
                 @country = country
+                @continent_code = continent_code
+                @city = city
+                @subdivisions = subdivisions
+                @isp = isp
+                @autonomous_system_number = autonomous_system_number
+                @autonomous_system_organization = autonomous_system_organization
+                @connection_type = connection_type
+                @connection_usage_type = connection_usage_type
+                @connection_organization = connection_organization
                 @time = time
                 @project_id = project_id
                 @team_id = team_id
                 @hostname = hostname
+                @sdk = sdk
+                @sdk_version = sdk_version
             end
 
             def self.from(map:)
@@ -78,10 +111,21 @@ module Appwrite
                     ip: map["ip"],
                     mode: map["mode"],
                     country: map["country"],
+                    continent_code: map["continentCode"],
+                    city: map["city"],
+                    subdivisions: map["subdivisions"],
+                    isp: map["isp"],
+                    autonomous_system_number: map["autonomousSystemNumber"],
+                    autonomous_system_organization: map["autonomousSystemOrganization"],
+                    connection_type: map["connectionType"],
+                    connection_usage_type: map["connectionUsageType"],
+                    connection_organization: map["connectionOrganization"],
                     time: map["time"],
                     project_id: map["projectId"],
                     team_id: map["teamId"],
-                    hostname: map["hostname"]
+                    hostname: map["hostname"],
+                    sdk: map["sdk"],
+                    sdk_version: map["sdkVersion"]
                 )
             end
 
@@ -101,10 +145,21 @@ module Appwrite
                     "ip": @ip,
                     "mode": @mode,
                     "country": @country,
+                    "continentCode": @continent_code,
+                    "city": @city,
+                    "subdivisions": @subdivisions,
+                    "isp": @isp,
+                    "autonomousSystemNumber": @autonomous_system_number,
+                    "autonomousSystemOrganization": @autonomous_system_organization,
+                    "connectionType": @connection_type,
+                    "connectionUsageType": @connection_usage_type,
+                    "connectionOrganization": @connection_organization,
                     "time": @time,
                     "projectId": @project_id,
                     "teamId": @team_id,
-                    "hostname": @hostname
+                    "hostname": @hostname,
+                    "sdk": @sdk,
+                    "sdkVersion": @sdk_version
                 }
             end
         end

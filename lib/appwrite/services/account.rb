@@ -84,6 +84,215 @@ module Appwrite
 
         end
 
+        # Get a list of the OAuth2 consents the current user has given to third-party
+        # apps.
+        #
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
+        #
+        # @return [Oauth2ConsentList]
+        def list_consents(queries: nil, total: nil)
+            api_path = '/account/consents'
+
+            api_params = {
+                queries: queries,
+                total: total,
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Oauth2ConsentList
+            )
+
+        end
+
+        # Get an OAuth2 consent the current user has given to a third-party app by
+        # its unique ID.
+        #
+        # @param [String] consent_id Consent unique ID.
+        #
+        # @return [Oauth2Consent]
+        def get_consent(consent_id:)
+            api_path = '/account/consents/{consentId}'
+                .gsub('{consentId}', consent_id)
+
+            if consent_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "consentId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Oauth2Consent
+            )
+
+        end
+
+        # Delete an OAuth2 consent by its unique ID. All token families issued under
+        # the consent are revoked, and the app must ask for consent again to regain
+        # access.
+        #
+        # @param [String] consent_id Consent unique ID.
+        #
+        # @return []
+        def delete_consent(consent_id:)
+            api_path = '/account/consents/{consentId}'
+                .gsub('{consentId}', consent_id)
+
+            if consent_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "consentId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+            )
+
+        end
+
+        # Get a list of the token families issued under an OAuth2 consent. Each entry
+        # represents one authorized device or session; the token secrets themselves
+        # are never returned.
+        #
+        # @param [String] consent_id Consent unique ID.
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
+        #
+        # @return [Oauth2ConsentTokenList]
+        def list_consent_tokens(consent_id:, queries: nil, total: nil)
+            api_path = '/account/consents/{consentId}/tokens'
+                .gsub('{consentId}', consent_id)
+
+            if consent_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "consentId"')
+            end
+
+            api_params = {
+                queries: queries,
+                total: total,
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Oauth2ConsentTokenList
+            )
+
+        end
+
+        # Get a token family issued under an OAuth2 consent by its unique ID. The
+        # token secrets themselves are never returned.
+        #
+        # @param [String] consent_id Consent unique ID.
+        # @param [String] token_id Token unique ID.
+        #
+        # @return [Oauth2ConsentToken]
+        def get_consent_token(consent_id:, token_id:)
+            api_path = '/account/consents/{consentId}/tokens/{tokenId}'
+                .gsub('{consentId}', consent_id)
+                .gsub('{tokenId}', token_id)
+
+            if consent_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "consentId"')
+            end
+
+            if token_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "tokenId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Oauth2ConsentToken
+            )
+
+        end
+
+        # Delete a token family issued under an OAuth2 consent by its unique ID. The
+        # access and refresh tokens of the family stop working immediately; other
+        # token families and the consent itself are unaffected.
+        #
+        # @param [String] consent_id Consent unique ID.
+        # @param [String] token_id Token unique ID.
+        #
+        # @return []
+        def delete_consent_token(consent_id:, token_id:)
+            api_path = '/account/consents/{consentId}/tokens/{tokenId}'
+                .gsub('{consentId}', consent_id)
+                .gsub('{tokenId}', token_id)
+
+            if consent_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "consentId"')
+            end
+
+            if token_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "tokenId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+            )
+
+        end
+
         # Update currently logged in user account email address. After changing user
         # address, the user confirmation status will get reset. A new confirmation
         # email is not sent automatically however you can use the send confirmation

@@ -15,6 +15,7 @@ module Appwrite
             attr_reader :screenshots_generated
             attr_reader :members
             attr_reader :webhooks
+            attr_reader :waf_rules
             attr_reader :projects
             attr_reader :platforms
             attr_reader :users
@@ -85,6 +86,7 @@ module Appwrite
                 screenshots_generated:,
                 members:,
                 webhooks:,
+                waf_rules:,
                 projects:,
                 platforms:,
                 users:,
@@ -154,6 +156,7 @@ module Appwrite
                 @screenshots_generated = screenshots_generated
                 @members = members
                 @webhooks = webhooks
+                @waf_rules = waf_rules
                 @projects = projects
                 @platforms = platforms
                 @users = users
@@ -226,6 +229,7 @@ module Appwrite
                     screenshots_generated: map["screenshotsGenerated"],
                     members: map["members"],
                     webhooks: map["webhooks"],
+                    waf_rules: map["wafRules"],
                     projects: map["projects"],
                     platforms: map["platforms"],
                     users: map["users"],
@@ -299,6 +303,7 @@ module Appwrite
                     "screenshotsGenerated": @screenshots_generated,
                     "members": @members,
                     "webhooks": @webhooks,
+                    "wafRules": @waf_rules,
                     "projects": @projects,
                     "platforms": @platforms,
                     "users": @users,

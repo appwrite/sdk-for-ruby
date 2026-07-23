@@ -30,6 +30,7 @@ module Appwrite
             attr_reader :protocols
             attr_reader :blocks
             attr_reader :console_accessed_at
+            attr_reader :waf_enabled
             attr_reader :billing_limits
             attr_reader :o_auth2_server_enabled
             attr_reader :o_auth2_server_authorization_url
@@ -40,6 +41,7 @@ module Appwrite
             attr_reader :o_auth2_server_refresh_token_duration
             attr_reader :o_auth2_server_public_access_token_duration
             attr_reader :o_auth2_server_public_refresh_token_duration
+            attr_reader :o_auth2_server_installation_access_token_duration
             attr_reader :o_auth2_server_confidential_pkce
             attr_reader :o_auth2_server_verification_url
             attr_reader :o_auth2_server_user_code_length
@@ -75,6 +77,7 @@ module Appwrite
                 protocols:,
                 blocks:,
                 console_accessed_at:,
+                waf_enabled:,
                 billing_limits: ,
                 o_auth2_server_enabled: ,
                 o_auth2_server_authorization_url: ,
@@ -85,6 +88,7 @@ module Appwrite
                 o_auth2_server_refresh_token_duration: ,
                 o_auth2_server_public_access_token_duration: ,
                 o_auth2_server_public_refresh_token_duration: ,
+                o_auth2_server_installation_access_token_duration: ,
                 o_auth2_server_confidential_pkce: ,
                 o_auth2_server_verification_url: ,
                 o_auth2_server_user_code_length: ,
@@ -119,6 +123,7 @@ module Appwrite
                 @protocols = protocols
                 @blocks = blocks
                 @console_accessed_at = console_accessed_at
+                @waf_enabled = waf_enabled
                 @billing_limits = billing_limits
                 @o_auth2_server_enabled = o_auth2_server_enabled
                 @o_auth2_server_authorization_url = o_auth2_server_authorization_url
@@ -129,6 +134,7 @@ module Appwrite
                 @o_auth2_server_refresh_token_duration = o_auth2_server_refresh_token_duration
                 @o_auth2_server_public_access_token_duration = o_auth2_server_public_access_token_duration
                 @o_auth2_server_public_refresh_token_duration = o_auth2_server_public_refresh_token_duration
+                @o_auth2_server_installation_access_token_duration = o_auth2_server_installation_access_token_duration
                 @o_auth2_server_confidential_pkce = o_auth2_server_confidential_pkce
                 @o_auth2_server_verification_url = o_auth2_server_verification_url
                 @o_auth2_server_user_code_length = o_auth2_server_user_code_length
@@ -166,6 +172,7 @@ module Appwrite
                     protocols: map["protocols"].map { |it| ProjectProtocol.from(map: it) },
                     blocks: map["blocks"].map { |it| Block.from(map: it) },
                     console_accessed_at: map["consoleAccessedAt"],
+                    waf_enabled: map["wafEnabled"],
                     billing_limits: map["billingLimits"].nil? ? nil : BillingLimits.from(map: map["billingLimits"]),
                     o_auth2_server_enabled: map["oAuth2ServerEnabled"],
                     o_auth2_server_authorization_url: map["oAuth2ServerAuthorizationUrl"],
@@ -176,6 +183,7 @@ module Appwrite
                     o_auth2_server_refresh_token_duration: map["oAuth2ServerRefreshTokenDuration"],
                     o_auth2_server_public_access_token_duration: map["oAuth2ServerPublicAccessTokenDuration"],
                     o_auth2_server_public_refresh_token_duration: map["oAuth2ServerPublicRefreshTokenDuration"],
+                    o_auth2_server_installation_access_token_duration: map["oAuth2ServerInstallationAccessTokenDuration"],
                     o_auth2_server_confidential_pkce: map["oAuth2ServerConfidentialPkce"],
                     o_auth2_server_verification_url: map["oAuth2ServerVerificationUrl"],
                     o_auth2_server_user_code_length: map["oAuth2ServerUserCodeLength"],
@@ -214,6 +222,7 @@ module Appwrite
                     "protocols": @protocols.map { |it| it.to_map },
                     "blocks": @blocks.map { |it| it.to_map },
                     "consoleAccessedAt": @console_accessed_at,
+                    "wafEnabled": @waf_enabled,
                     "billingLimits": @billing_limits&.to_map,
                     "oAuth2ServerEnabled": @o_auth2_server_enabled,
                     "oAuth2ServerAuthorizationUrl": @o_auth2_server_authorization_url,
@@ -224,6 +233,7 @@ module Appwrite
                     "oAuth2ServerRefreshTokenDuration": @o_auth2_server_refresh_token_duration,
                     "oAuth2ServerPublicAccessTokenDuration": @o_auth2_server_public_access_token_duration,
                     "oAuth2ServerPublicRefreshTokenDuration": @o_auth2_server_public_refresh_token_duration,
+                    "oAuth2ServerInstallationAccessTokenDuration": @o_auth2_server_installation_access_token_duration,
                     "oAuth2ServerConfidentialPkce": @o_auth2_server_confidential_pkce,
                     "oAuth2ServerVerificationUrl": @o_auth2_server_verification_url,
                     "oAuth2ServerUserCodeLength": @o_auth2_server_user_code_length,

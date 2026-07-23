@@ -113,7 +113,7 @@ module Appwrite
                     Appwrite::Enums::DatabaseStatus::MIGRATING,
                     Appwrite::Enums::DatabaseStatus::PAUSING,
                     Appwrite::Enums::DatabaseStatus::RESUMING,
-                    Appwrite::Enums::DatabaseStatus::FAILING-OVER,
+                    Appwrite::Enums::DatabaseStatus::FAILING_OVER,
                 ]
 
                 unless valid_status.include?(status)

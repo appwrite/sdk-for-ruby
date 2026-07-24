@@ -5,6 +5,9 @@ module Appwrite
             TABLESDB = 'tablesdb'
             DOCUMENTSDB = 'documentsdb'
             VECTORSDB = 'vectorsdb'
+            MYSQL = 'mysql'
+            POSTGRESQL = 'postgresql'
+            MONGODB = 'mongodb'
         end
     end
 end

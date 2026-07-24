@@ -32,9 +32,9 @@ module Appwrite
 
             def validate_id(id)
                 valid_id = [
-                    Appwrite::Enums::ProjectAuthMethodId::EMAIL-PASSWORD,
-                    Appwrite::Enums::ProjectAuthMethodId::MAGIC-URL,
-                    Appwrite::Enums::ProjectAuthMethodId::EMAIL-OTP,
+                    Appwrite::Enums::ProjectAuthMethodId::EMAIL_PASSWORD,
+                    Appwrite::Enums::ProjectAuthMethodId::MAGIC_URL,
+                    Appwrite::Enums::ProjectAuthMethodId::EMAIL_OTP,
                     Appwrite::Enums::ProjectAuthMethodId::ANONYMOUS,
                     Appwrite::Enums::ProjectAuthMethodId::INVITES,
                     Appwrite::Enums::ProjectAuthMethodId::JWT,

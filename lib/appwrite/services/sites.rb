@@ -693,9 +693,10 @@ module Appwrite
         # @param [String] site_id Site ID.
         # @param [String] deployment_id Deployment ID.
         # @param [DeploymentDownloadType] type Deployment file to download. Can be: "source", "output".
+        # @param [String] token Presigned source-download token for accessing this deployment without a session (jobs-service).
         #
         # @return []
-        def get_deployment_download(site_id:, deployment_id:, type: nil)
+        def get_deployment_download(site_id:, deployment_id:, type: nil, token: nil)
             api_path = '/sites/{siteId}/deployments/{deploymentId}/download'
                 .gsub('{siteId}', site_id)
                 .gsub('{deploymentId}', deployment_id)
@@ -710,6 +711,7 @@ module Appwrite
 
             api_params = {
                 type: type,
+                token: token,
             }
             
             api_headers = {

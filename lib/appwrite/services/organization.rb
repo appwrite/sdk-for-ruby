@@ -89,6 +89,174 @@ module Appwrite
 
         end
 
+        # List app installations on the organization. Any organization member can
+        # read installations.
+        #
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
+        #
+        # @return [AppInstallationList]
+        def list_installations(queries: nil, total: nil)
+            api_path = '/organization/installations'
+
+            api_params = {
+                queries: queries,
+                total: total,
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::AppInstallationList
+            )
+
+        end
+
+        # Install an app on the organization. Only organization members with the
+        # owner role can install apps. The installation is granted the scopes the app
+        # currently requests.
+        #
+        # @param [String] app_id Application unique ID.
+        # @param [String] authorization_details Authorization details granted to the installation as a JSON array of objects, each with a `type` and app-defined fields. The Appwrite Console stores authorized project IDs here.
+        #
+        # @return [AppInstallation]
+        def create_installation(app_id:, authorization_details: nil)
+            api_path = '/organization/installations'
+
+            if app_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "appId"')
+            end
+
+            api_params = {
+                appId: app_id,
+                authorizationDetails: authorization_details,
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::AppInstallation
+            )
+
+        end
+
+        # Get an app installation on the organization by its unique ID. Any
+        # organization member can read installations.
+        #
+        # @param [String] installation_id Installation unique ID.
+        #
+        # @return [AppInstallation]
+        def get_installation(installation_id:)
+            api_path = '/organization/installations/{installationId}'
+                .gsub('{installationId}', installation_id)
+
+            if installation_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "installationId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::AppInstallation
+            )
+
+        end
+
+        # Update an app installation on the organization. Only organization members
+        # with the owner role can update installations. The installation's granted
+        # scopes are refreshed to the scopes the app currently requests; previously
+        # issued installation access tokens are revoked.
+        #
+        # @param [String] installation_id Installation unique ID.
+        # @param [String] authorization_details Authorization details granted to the installation as a JSON array of objects, each with a `type` and app-defined fields. Omit to keep the current value.
+        #
+        # @return [AppInstallation]
+        def update_installation(installation_id:, authorization_details: nil)
+            api_path = '/organization/installations/{installationId}'
+                .gsub('{installationId}', installation_id)
+
+            if installation_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "installationId"')
+            end
+
+            api_params = {
+                authorizationDetails: authorization_details,
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PUT',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::AppInstallation
+            )
+
+        end
+
+        # Uninstall an app from the organization by its installation ID. Only
+        # organization members with the owner role can remove installations.
+        # Previously issued installation access tokens are revoked.
+        #
+        # @param [String] installation_id Installation unique ID.
+        #
+        # @return []
+        def delete_installation(installation_id:)
+            api_path = '/organization/installations/{installationId}'
+                .gsub('{installationId}', installation_id)
+
+            if installation_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "installationId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+            )
+
+        end
+
         # Get a list of all API keys from the current organization.
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: expire, accessedAt, name, scopes

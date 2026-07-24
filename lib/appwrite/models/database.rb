@@ -10,6 +10,9 @@ module Appwrite
             attr_reader :enabled
             attr_reader :type
             attr_reader :status
+            attr_reader :engine
+            attr_reader :specification
+            attr_reader :replicas
             attr_reader :policies
             attr_reader :archives
 
@@ -21,8 +24,11 @@ module Appwrite
                 enabled:,
                 type:,
                 status: ,
-                policies:,
-                archives:
+                engine: ,
+                specification: ,
+                replicas: ,
+                policies: ,
+                archives: 
             )
                 @id = id
                 @name = name
@@ -31,6 +37,9 @@ module Appwrite
                 @enabled = enabled
                 @type = validate_type(type)
                 @status = status.nil? ? status : validate_status(status)
+                @engine = engine
+                @specification = specification
+                @replicas = replicas
                 @policies = policies
                 @archives = archives
             end
@@ -44,8 +53,11 @@ module Appwrite
                     enabled: map["enabled"],
                     type: map["type"],
                     status: map["status"],
-                    policies: map["policies"].map { |it| BackupPolicy.from(map: it) },
-                    archives: map["archives"].map { |it| BackupArchive.from(map: it) }
+                    engine: map["engine"],
+                    specification: map["specification"],
+                    replicas: map["replicas"],
+                    policies: map["policies"]&.map { |it| BackupPolicy.from(map: it) },
+                    archives: map["archives"]&.map { |it| BackupArchive.from(map: it) }
                 )
             end
 
@@ -58,8 +70,11 @@ module Appwrite
                     "enabled": @enabled,
                     "type": @type,
                     "status": @status,
-                    "policies": @policies.map { |it| it.to_map },
-                    "archives": @archives.map { |it| it.to_map }
+                    "engine": @engine,
+                    "specification": @specification,
+                    "replicas": @replicas,
+                    "policies": @policies&.map { |it| it.to_map },
+                    "archives": @archives&.map { |it| it.to_map }
                 }
             end
 
@@ -71,6 +86,9 @@ module Appwrite
                     Appwrite::Enums::DatabaseType::TABLESDB,
                     Appwrite::Enums::DatabaseType::DOCUMENTSDB,
                     Appwrite::Enums::DatabaseType::VECTORSDB,
+                    Appwrite::Enums::DatabaseType::MYSQL,
+                    Appwrite::Enums::DatabaseType::POSTGRESQL,
+                    Appwrite::Enums::DatabaseType::MONGODB,
                 ]
 
                 unless valid_type.include?(type)
@@ -84,7 +102,18 @@ module Appwrite
                 valid_status = [
                     Appwrite::Enums::DatabaseStatus::PROVISIONING,
                     Appwrite::Enums::DatabaseStatus::READY,
+                    Appwrite::Enums::DatabaseStatus::INACTIVE,
+                    Appwrite::Enums::DatabaseStatus::PAUSED,
                     Appwrite::Enums::DatabaseStatus::FAILED,
+                    Appwrite::Enums::DatabaseStatus::DELETING,
+                    Appwrite::Enums::DatabaseStatus::DELETED,
+                    Appwrite::Enums::DatabaseStatus::RESTORING,
+                    Appwrite::Enums::DatabaseStatus::SCALING,
+                    Appwrite::Enums::DatabaseStatus::UPGRADING,
+                    Appwrite::Enums::DatabaseStatus::MIGRATING,
+                    Appwrite::Enums::DatabaseStatus::PAUSING,
+                    Appwrite::Enums::DatabaseStatus::RESUMING,
+                    Appwrite::Enums::DatabaseStatus::FAILING_OVER,
                 ]
 
                 unless valid_status.include?(status)

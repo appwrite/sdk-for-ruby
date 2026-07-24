@@ -46,9 +46,10 @@ module Appwrite
         # @param [String] name Database name. Max length: 128 chars.
         # @param [] enabled Is the database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled.
         # @param [String] specification Database specification. Defaults to `serverless`, which creates the database on the shared pool. Any other value provisions a dedicated database on that specification.
+        # @param [Integer] replicas Number of high availability replicas (0-5) for the dedicated database backing this database. Requires a dedicated `specification`; must be 0 for a serverless database. High availability is enabled when greater than 0.
         #
         # @return [Database]
-        def create(database_id:, name:, enabled: nil, specification: nil)
+        def create(database_id:, name:, enabled: nil, specification: nil, replicas: nil)
             api_path = '/tablesdb'
 
             if database_id.nil?
@@ -64,6 +65,7 @@ module Appwrite
                 name: name,
                 enabled: enabled,
                 specification: specification,
+                replicas: replicas,
             }
             
             api_headers = {
@@ -78,6 +80,33 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::Database
+            )
+
+        end
+
+        # List the dedicated database specifications available on the current plan.
+        # Each specification reports its resource limits, pricing, and whether it is
+        # enabled for the organization.
+        #
+        #
+        # @return [DedicatedDatabaseSpecificationList]
+        def list_specifications()
+            api_path = '/tablesdb/specifications'
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::DedicatedDatabaseSpecificationList
             )
 
         end
@@ -305,9 +334,10 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] name Database name. Max length: 128 chars.
         # @param [] enabled Is database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled.
+        # @param [Integer] replicas Number of high availability replicas (0-5) for the dedicated database backing this database. Only valid when the database is backed by a dedicated specification. High availability is enabled when greater than 0.
         #
         # @return [Database]
-        def update(database_id:, name: nil, enabled: nil)
+        def update(database_id:, name: nil, enabled: nil, replicas: nil)
             api_path = '/tablesdb/{databaseId}'
                 .gsub('{databaseId}', database_id)
 
@@ -318,6 +348,7 @@ module Appwrite
             api_params = {
                 name: name,
                 enabled: enabled,
+                replicas: replicas,
             }
             
             api_headers = {
@@ -363,6 +394,107 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
+            )
+
+        end
+
+        # Trigger a manual failover for a dedicated database with high availability
+        # enabled. Promotes a replica to primary. The failover runs asynchronously;
+        # poll the database document for status updates.
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] target_replica_id Target replica ID to promote. If not specified, the healthiest replica is selected.
+        #
+        # @return [DedicatedDatabase]
+        def create_failover(database_id:, target_replica_id: nil)
+            api_path = '/tablesdb/{databaseId}/failovers'
+                .gsub('{databaseId}', database_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            api_params = {
+                targetReplicaId: target_replica_id,
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::DedicatedDatabase
+            )
+
+        end
+
+        # Get high availability status for a dedicated database. Returns replica
+        # statuses, replication lag, and sync mode.
+        #
+        # @param [String] database_id Database ID.
+        #
+        # @return [DedicatedDatabaseReplicas]
+        def get_replicas(database_id:)
+            api_path = '/tablesdb/{databaseId}/replicas'
+                .gsub('{databaseId}', database_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::DedicatedDatabaseReplicas
+            )
+
+        end
+
+        # Get real-time health and status information for a dedicated database.
+        # Returns health status, readiness, uptime, connection info, replica status,
+        # and volume information.
+        #
+        # @param [String] database_id Database ID.
+        #
+        # @return [DatabaseStatus]
+        def get_status(database_id:)
+            api_path = '/tablesdb/{databaseId}/status'
+                .gsub('{databaseId}', database_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::DatabaseStatus
             )
 
         end

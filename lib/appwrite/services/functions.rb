@@ -151,7 +151,7 @@ module Appwrite
 
         # List allowed function specifications for this instance.
         #
-        # @param [String] type Specification type to list. Can be one of: runtimes, builds.
+        # @param [String] type Specification type to list. Can be one of: runtimes, builds. Defaults to runtimes.
         #
         # @return [SpecificationList]
         def list_specifications(type: nil)

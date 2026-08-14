@@ -16,6 +16,7 @@ result = storage.create_file(
     bucket_id: '<BUCKET_ID>',
     file_id: '<FILE_ID>',
     file: InputFile.from_path('dir/file.png'),
-    permissions: [Permission.read(Role.any())] # optional
+    permissions: [Permission.read(Role.any())], # optional
+    folder: '' # optional
 )
 ```

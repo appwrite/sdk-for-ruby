@@ -217,7 +217,7 @@ module Appwrite
         # your results.
         #
         # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket).
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, signature, mimeType, sizeOriginal, chunksTotal, chunksUploaded
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, folder, signature, mimeType, sizeOriginal, chunksTotal, chunksUploaded
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
@@ -274,9 +274,10 @@ module Appwrite
         # @param [String] file_id File ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
         # @param [file] file Binary file. Appwrite SDKs provide helpers to handle file input. [Learn about file input](https://appwrite.io/docs/products/storage/upload-download#input-file).
         # @param [Array] permissions An array of permission strings. By default, only the current user is granted all permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
+        # @param [String] folder Virtual folder to place the file in, for example "photos/2026". Nest folders with `/`. Defaults to the bucket root.
         #
         # @return [File]
-        def create_file(bucket_id:, file_id:, file:, permissions: nil, on_progress: nil)
+        def create_file(bucket_id:, file_id:, file:, permissions: nil, folder: nil, on_progress: nil)
             api_path = '/storage/buckets/{bucketId}/files'
                 .gsub('{bucketId}', bucket_id)
 
@@ -296,6 +297,7 @@ module Appwrite
                 fileId: file_id,
                 file: file,
                 permissions: permissions,
+                folder: folder,
             }
             
             api_headers = {

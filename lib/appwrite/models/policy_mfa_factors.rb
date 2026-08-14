@@ -2,43 +2,43 @@
 
 module Appwrite
     module Models
-        class MfaFactors
+        class PolicyMfaFactors
+            attr_reader :id
             attr_reader :totp
-            attr_reader :phone
             attr_reader :email
-            attr_reader :recovery_code
+            attr_reader :phone
             attr_reader :custom
 
             def initialize(
+                id:,
                 totp:,
-                phone:,
                 email:,
-                recovery_code:,
+                phone:,
                 custom:
             )
+                @id = id
                 @totp = totp
-                @phone = phone
                 @email = email
-                @recovery_code = recovery_code
+                @phone = phone
                 @custom = custom
             end
 
             def self.from(map:)
-                MfaFactors.new(
+                PolicyMfaFactors.new(
+                    id: map["$id"],
                     totp: map["totp"],
-                    phone: map["phone"],
                     email: map["email"],
-                    recovery_code: map["recoveryCode"],
+                    phone: map["phone"],
                     custom: map["custom"]
                 )
             end
 
             def to_map
                 {
+                    "$id": @id,
                     "totp": @totp,
-                    "phone": @phone,
                     "email": @email,
-                    "recoveryCode": @recovery_code,
+                    "phone": @phone,
                     "custom": @custom
                 }
             end

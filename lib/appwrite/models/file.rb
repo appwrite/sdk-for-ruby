@@ -9,6 +9,8 @@ module Appwrite
             attr_reader :updated_at
             attr_reader :permissions
             attr_reader :name
+            attr_reader :folder
+            attr_reader :key
             attr_reader :signature
             attr_reader :mime_type
             attr_reader :size_original
@@ -25,6 +27,8 @@ module Appwrite
                 updated_at:,
                 permissions:,
                 name:,
+                folder:,
+                key:,
                 signature:,
                 mime_type:,
                 size_original:,
@@ -40,6 +44,8 @@ module Appwrite
                 @updated_at = updated_at
                 @permissions = permissions
                 @name = name
+                @folder = folder
+                @key = key
                 @signature = signature
                 @mime_type = mime_type
                 @size_original = size_original
@@ -58,6 +64,8 @@ module Appwrite
                     updated_at: map["$updatedAt"],
                     permissions: map["$permissions"],
                     name: map["name"],
+                    folder: map["folder"],
+                    key: map["key"],
                     signature: map["signature"],
                     mime_type: map["mimeType"],
                     size_original: map["sizeOriginal"],
@@ -77,6 +85,8 @@ module Appwrite
                     "$updatedAt": @updated_at,
                     "$permissions": @permissions,
                     "name": @name,
+                    "folder": @folder,
+                    "key": @key,
                     "signature": @signature,
                     "mimeType": @mime_type,
                     "sizeOriginal": @size_original,

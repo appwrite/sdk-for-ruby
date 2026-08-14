@@ -10,7 +10,7 @@ client = Client.new
 
 apps = Apps.new(client)
 
-result = apps.get_installation(
+result = apps.delete_installation(
     app_id: '<APP_ID>',
     installation_id: '<INSTALLATION_ID>'
 )

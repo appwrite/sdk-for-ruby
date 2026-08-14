@@ -123,56 +123,6 @@ module Appwrite
 
         end
 
-        # Create a new API key. It's recommended to have multiple API keys with
-        # strict scopes for separate functions within your project.
-        # 
-        # You can also create an ephemeral API key if you need a short-lived key
-        # instead.
-        #
-        # @param [String] key_id Key ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
-        # @param [String] name Key name. Max length: 128 chars.
-        # @param [Array] scopes Key scopes list. Maximum of 200 scopes are allowed.
-        # @param [String] expire Expiration time in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Use null for unlimited expiration.
-        #
-        # @return [Key]
-        def create_key(key_id:, name:, scopes:, expire: nil)
-            api_path = '/project/keys'
-
-            if key_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "keyId"')
-            end
-
-            if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
-            end
-
-            if scopes.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "scopes"')
-            end
-
-            api_params = {
-                keyId: key_id,
-                name: name,
-                scopes: scopes,
-                expire: expire,
-            }
-            
-            api_headers = {
-                "X-Appwrite-Project": @client.get_config('project'),
-                "content-type": 'application/json',
-                "accept": 'application/json',
-            }
-
-            @client.call(
-                method: 'POST',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                response_type: Models::Key
-            )
-
-        end
-
         # Create a new ephemeral API key. It's recommended to have multiple API keys
         # with strict scopes for separate functions within your project.
         # 
@@ -576,9 +526,10 @@ module Appwrite
         # @param [String] user_code_format Character set for device flow user codes: `numeric` (digits only — best for numeric keypads and TV remotes), `alphabetic` (letters only), or `alphanumeric` (letters and digits — highest entropy per character). Defaults to `alphanumeric`.
         # @param [Integer] device_code_duration Lifetime in seconds of device flow device codes and user codes. Device codes are intentionally short-lived. Leave empty to use default 600.
         # @param [Array] default_scopes List of OAuth2 scopes used when an authorization request omits the scope parameter. Every default scope must also be allowed by the OAuth2 server. Maximum of 100 scopes are allowed, each up to 128 characters long.
+        # @param [Array] installation_scopes List of scopes an application may request when installed on a team. Omitting the parameter clears the list, so no installation scopes can be granted. Maximum of 100 scopes are allowed, each up to 128 characters long.
         #
         # @return [Project]
-        def update_o_auth2_server(enabled:, authorization_url:, scopes: nil, authorization_details_types: nil, access_token_duration: nil, refresh_token_duration: nil, public_access_token_duration: nil, public_refresh_token_duration: nil, installation_access_token_duration: nil, confidential_pkce: nil, verification_url: nil, user_code_length: nil, user_code_format: nil, device_code_duration: nil, default_scopes: nil)
+        def update_o_auth2_server(enabled:, authorization_url:, scopes: nil, authorization_details_types: nil, access_token_duration: nil, refresh_token_duration: nil, public_access_token_duration: nil, public_refresh_token_duration: nil, installation_access_token_duration: nil, confidential_pkce: nil, verification_url: nil, user_code_length: nil, user_code_format: nil, device_code_duration: nil, default_scopes: nil, installation_scopes: nil)
             api_path = '/project/oauth2-server'
 
             if enabled.nil?
@@ -605,6 +556,7 @@ module Appwrite
                 userCodeFormat: user_code_format,
                 deviceCodeDuration: device_code_duration,
                 defaultScopes: default_scopes,
+                installationScopes: installation_scopes,
             }
             
             api_headers = {
@@ -3051,6 +3003,44 @@ module Appwrite
 
         end
 
+        # Updating this policy allows you to control which factors users can use to
+        # complete an MFA challenge. Disabled factors cannot be used to create a
+        # challenge and are reported as unavailable when listing factors. The custom
+        # factor is disabled by default; enable it to deliver challenge codes through
+        # your own channel. Recovery codes always remain available as a fallback.
+        #
+        # @param [] totp Set to true to allow TOTP to complete an MFA challenge, or false to disable it.
+        # @param [] email Set to true to allow email to complete an MFA challenge, or false to disable it.
+        # @param [] phone Set to true to allow phone (SMS) to complete an MFA challenge, or false to disable it.
+        # @param [] custom Set to true to allow the custom factor to complete an MFA challenge, or false to disable it.
+        #
+        # @return [Project]
+        def update_mfa_factors_policy(totp: nil, email: nil, phone: nil, custom: nil)
+            api_path = '/project/policies/mfa-factors'
+
+            api_params = {
+                totp: totp,
+                email: email,
+                phone: phone,
+                custom: custom,
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Project
+            )
+
+        end
+
         # Updating this policy allows you to control if new passwords are checked
         # against most common passwords dictionary. When enabled, and user changes
         # their password, password must not be contained in the dictionary.
@@ -3095,7 +3085,7 @@ module Appwrite
         # users, and it will only start to collect and enforce the policy on password
         # changes since the policy is enabled.
         #
-        # @param [Integer] total Set the password history length per user. Value can be between 1 and 5000, or null to disable the limit.
+        # @param [Integer] total Set the password history length per user. Value can be between 1 and 20, or null to disable the limit.
         #
         # @return [Project]
         def update_password_history_policy(total:)
@@ -3235,7 +3225,7 @@ module Appwrite
         # Update maximum duration how long sessions created within a project should
         # stay active for.
         #
-        # @param [Integer] duration Maximum session length in seconds. Minium allowed value is 5 second, and maximum is 1 year, which is 31536000 seconds.
+        # @param [Integer] duration Maximum session length in seconds. Minium allowed value is 60 seconds, and maximum is 1 year, which is 31536000 seconds.
         #
         # @return [Project]
         def update_session_duration_policy(duration:)
@@ -3302,7 +3292,7 @@ module Appwrite
         # Update the maximum number of sessions allowed per user. When the limit is
         # hit, the oldest session will be deleted to make room for new one.
         #
-        # @param [Integer] total Set the maximum number of sessions allowed per user. Value can be between 1 and 5000, or null to disable the limit.
+        # @param [Integer] total Set the maximum number of sessions allowed per user. Value can be between 1 and 100.
         #
         # @return [Project]
         def update_session_limit_policy(total:)
@@ -3336,7 +3326,7 @@ module Appwrite
         # amount of existing users already exceeded the limit, all users remain
         # active, but new user sign up will be prohibited.
         #
-        # @param [Integer] total Set the maximum number of users allowed in the project. Value can be between 1 and 5000, or null to disable the limit.
+        # @param [Integer] total Set the maximum number of users allowed in the project. Value can be between 0 and 10000. Use 0 or null to disable the limit.
         #
         # @return [Project]
         def update_user_limit_policy(total:)
@@ -3369,9 +3359,9 @@ module Appwrite
         # Get a policy by its unique ID. This endpoint returns the current
         # configuration for the requested project policy.
         #
-        # @param [ProjectPolicyId] policy_id Policy ID. Can be one of: password-dictionary, password-history, password-strength, password-personal-data, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, deny-aliased-email, deny-disposable-email, deny-free-email, deny-corporate-email.
+        # @param [ProjectPolicyId] policy_id Policy ID. Can be one of: password-dictionary, password-history, password-strength, password-personal-data, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, mfa-factors, deny-aliased-email, deny-disposable-email, deny-free-email, deny-corporate-email.
         #
-        # @return [PolicyPasswordDictionary, PolicyPasswordHistory, PolicyPasswordStrength, PolicyPasswordPersonalData, PolicySessionAlert, PolicySessionDuration, PolicySessionInvalidation, PolicySessionLimit, PolicyUserLimit, PolicyMembershipPrivacy, PolicyDenyAliasedEmail, PolicyDenyDisposableEmail, PolicyDenyFreeEmail, PolicyDenyCorporateEmail]
+        # @return [PolicyPasswordDictionary, PolicyPasswordHistory, PolicyPasswordStrength, PolicyPasswordPersonalData, PolicySessionAlert, PolicySessionDuration, PolicySessionInvalidation, PolicySessionLimit, PolicyUserLimit, PolicyMembershipPrivacy, PolicyMfaFactors, PolicyDenyAliasedEmail, PolicyDenyDisposableEmail, PolicyDenyFreeEmail, PolicyDenyCorporateEmail]
         def get_policy(policy_id:)
             api_path = '/project/policies/{policyId}'
                 .gsub('{policyId}', policy_id)
@@ -3447,6 +3437,11 @@ module Appwrite
             if response['$id'] == 'membership-privacy'
 
                 return Models::PolicyMembershipPrivacy.from(map: response)
+            end
+
+            if response['$id'] == 'mfa-factors'
+
+                return Models::PolicyMfaFactors.from(map: response)
             end
 
             if response['$id'] == 'deny-aliased-email'

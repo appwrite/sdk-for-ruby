@@ -5,6 +5,7 @@ module Appwrite
             PHONE = 'phone'
             TOTP = 'totp'
             RECOVERYCODE = 'recoverycode'
+            CUSTOM = 'custom'
         end
     end
 end

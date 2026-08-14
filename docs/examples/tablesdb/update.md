@@ -14,6 +14,8 @@ result = tables_db.update(
     database_id: '<DATABASE_ID>',
     name: '<NAME>', # optional
     enabled: false, # optional
-    replicas: 0 # optional
+    specification: 'serverless', # optional
+    replicas: 0, # optional
+    sync_mode: 'async' # optional
 )
 ```

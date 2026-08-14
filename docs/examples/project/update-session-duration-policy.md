@@ -11,6 +11,6 @@ client = Client.new
 project = Project.new(client)
 
 result = project.update_session_duration_policy(
-    duration: 5
+    duration: 60
 )
 ```

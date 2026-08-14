@@ -15,6 +15,7 @@ result = tables_db.create(
     name: '<NAME>',
     enabled: false, # optional
     specification: 'serverless', # optional
-    replicas: 0 # optional
+    replicas: 0, # optional
+    sync_mode: 'async' # optional
 )
 ```

@@ -17,7 +17,7 @@ module Appwrite
                 plan_included:,
                 limit:,
                 type:,
-                currency:,
+                currency: ,
                 price:,
                 value:,
                 invoice_desc:

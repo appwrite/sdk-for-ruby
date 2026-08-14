@@ -11,6 +11,6 @@ client = Client.new
 activities = Activities.new(client)
 
 result = activities.list_events(
-    queries: '' # optional
+    queries: [] # optional
 )
 ```

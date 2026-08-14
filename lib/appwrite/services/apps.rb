@@ -164,7 +164,7 @@ module Appwrite
 
         # Get an application by its unique ID.
         #
-        # @param [String] app_id Application unique ID or HTTPS client ID metadata document URL.
+        # @param [String] app_id Application unique ID.
         #
         # @return [App]
         def get(app_id:)
@@ -213,7 +213,7 @@ module Appwrite
         # @param [Array] post_logout_redirect_uris Post-logout redirect URIs for OpenID Connect RP-Initiated Logout. Each must be an https URL, an http loopback URL, or a private-use scheme URI, and must not contain a fragment. After ending the user session, the logout endpoint only redirects to URIs in this list.
         # @param [String] type OAuth2 client type. Use `public` for SPAs, mobile, and native apps that cannot keep a `client_secret` — PKCE is then required at the token endpoint. Use `confidential` for server-side clients that present a `client_secret`. Defaults to `confidential`.
         # @param [] device_flow Allow this client to use the OAuth2 Device Authorization Grant (RFC 8628) for input-constrained devices such as TVs and CLIs. Defaults to false.
-        # @param [Array] installation_scopes Scopes the application requests when installed on a team. Organization-level and project-level scopes only; use the list scopes endpoint with `type=installation` to discover available values. Maximum of 100 scopes are allowed.
+        # @param [Array] installation_scopes Scopes the application requests when installed on a team. Only scopes allowed by the project's OAuth2 server installation scopes configuration are accepted; use the list installation scopes endpoint to discover available values. Maximum of 100 scopes are allowed.
         # @param [String] installation_redirect_url URL users are redirected to after creating or updating an installation of this application. Must be an https URL, an http loopback URL (localhost, 127.0.0.1, [::1]), or a private-use scheme URI, and must not contain a fragment. Leave empty for no redirect.
         #
         # @return [App]
@@ -299,7 +299,8 @@ module Appwrite
         end
 
         # List installations of an application. Requires an app key sent in the
-        # `X-Appwrite-Key` header alongside the `X-Appwrite-App` header.
+        # `X-Appwrite-Key` header alongside the `X-Appwrite-App` header, or a caller
+        # with update access to the app.
         #
         # @param [String] app_id Application unique ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
@@ -335,7 +336,8 @@ module Appwrite
         end
 
         # Get an installation of an application by its unique ID. Requires an app key
-        # sent in the `X-Appwrite-Key` header alongside the `X-Appwrite-App` header.
+        # sent in the `X-Appwrite-Key` header alongside the `X-Appwrite-App` header,
+        # or a caller with update access to the app.
         #
         # @param [String] app_id Application unique ID.
         # @param [String] installation_id Installation unique ID.
@@ -372,13 +374,53 @@ module Appwrite
 
         end
 
+        # Delete an installation of an application by its unique ID. Requires a
+        # caller with update access to the app. Previously issued installation access
+        # tokens are revoked.
+        #
+        # @param [String] app_id Application unique ID.
+        # @param [String] installation_id Installation unique ID.
+        #
+        # @return []
+        def delete_installation(app_id:, installation_id:)
+            api_path = '/apps/{appId}/installations/{installationId}'
+                .gsub('{appId}', app_id)
+                .gsub('{installationId}', installation_id)
+
+            if app_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "appId"')
+            end
+
+            if installation_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "installationId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+            )
+
+        end
+
         # Create a token for an installation of an application. Requires an app key
-        # sent in the `X-Appwrite-Key` header alongside the `X-Appwrite-App` header.
-        # The returned token carries the scopes and authorization details granted to
-        # the installation, and can be used as an `Authorization: Bearer` header
-        # everywhere OAuth2 access tokens are accepted. Multiple tokens can be active
-        # for the same installation at once; each token stays valid until it expires
-        # or the installation is updated or deleted.
+        # sent in the `X-Appwrite-Key` header alongside the `X-Appwrite-App` header,
+        # or a caller with update access to the app. The returned token carries the
+        # scopes and authorization details granted to the installation, and can be
+        # used as an `Authorization: Bearer` header everywhere OAuth2 access tokens
+        # are accepted. Multiple tokens can be active for the same installation at
+        # once; each token stays valid until it expires or the installation is
+        # updated or deleted.
         #
         # @param [String] app_id Application unique ID.
         # @param [String] installation_id Installation unique ID.

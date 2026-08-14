@@ -908,6 +908,44 @@ module Appwrite
 
         end
 
+        # Get a custom MFA challenge for a user, including the code to be delivered
+        # through your own channel.
+        #
+        # @param [String] user_id User ID.
+        # @param [String] challenge_id ID of the challenge.
+        #
+        # @return [MfaChallengeSecret]
+        def get_mfa_challenge(user_id:, challenge_id:)
+            api_path = '/users/{userId}/mfa/challenges/{challengeId}'
+                .gsub('{userId}', user_id)
+                .gsub('{challengeId}', challenge_id)
+
+            if user_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            if challenge_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "challengeId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::MfaChallengeSecret
+            )
+
+        end
+
         # List the factors available on the account to be used as a MFA challange.
         #
         # @param [String] user_id User ID.

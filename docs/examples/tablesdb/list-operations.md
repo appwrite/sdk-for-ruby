@@ -8,9 +8,12 @@ client = Client.new
     .set_project('<YOUR_PROJECT_ID>') # Your project ID
     .set_key('<YOUR_API_KEY>') # Your secret API key
 
-project = Project.new(client)
+tables_db = TablesDB.new(client)
 
-result = project.update_user_limit_policy(
-    total: 0
+result = tables_db.list_operations(
+    database_id: '<DATABASE_ID>',
+    status: 'running', # optional
+    limit: 1, # optional
+    offset: 0 # optional
 )
 ```

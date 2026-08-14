@@ -453,7 +453,7 @@ module Appwrite
         # @param [Array] permissions An array of permissions strings. By default, no user is granted with any permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
         # @param [] document_security Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](https://appwrite.io/docs/permissions).
         # @param [] enabled Is collection enabled? When set to 'disabled', users cannot access the collection but Server SDKs with and API key can still read and write to the collection. No data is lost when this is toggled.
-        # @param [Array] attributes Array of attribute definitions to create. Each attribute should contain: key (string), type (string: string, integer, float, boolean, datetime), size (integer, required for string type), required (boolean, optional), default (mixed, optional), array (boolean, optional), and type-specific options.
+        # @param [Array] attributes Array of attribute definitions to create. Each attribute should contain: key (string), type (string: string, varchar, text, mediumtext, longtext, integer, bigint, double, boolean, datetime, point, linestring, polygon, email, url, ip, enum), size (integer, required for string and varchar types), required (boolean, optional), default (mixed, optional), array (boolean, optional), and type-specific options.
         # @param [Array] indexes Array of index definitions to create. Each index should contain: key (string), type (string: key, fulltext, unique, spatial), attributes (array of attribute keys), orders (array of ASC/DESC, optional), and lengths (array of integers, optional).
         #
         # @return [Collection]
@@ -2275,11 +2275,11 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID.
         # @param [String] related_collection_id Related Collection ID.
-        # @param [RelationshipType] type Relation type
+        # @param [RelationshipType] type Relationship type. Possible values are: oneToOne, oneToMany, manyToOne, manyToMany.
         # @param [] two_way Is Two Way?
         # @param [String] key Attribute Key.
         # @param [String] two_way_key Two Way Attribute Key.
-        # @param [RelationMutate] on_delete Constraints option
+        # @param [RelationMutate] on_delete Delete constraint. Possible values are: cascade, restrict, setNull.
         #
         # @return [AttributeRelationship]
         def create_relationship_attribute(database_id:, collection_id:, related_collection_id:, type:, two_way: nil, key: nil, two_way_key: nil, on_delete: nil)
@@ -2338,7 +2338,7 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID.
         # @param [String] key Attribute Key.
-        # @param [RelationMutate] on_delete Constraints option
+        # @param [RelationMutate] on_delete Delete constraint. Possible values are: cascade, restrict, setNull.
         # @param [String] new_key New Attribute Key.
         #
         # @return [AttributeRelationship]

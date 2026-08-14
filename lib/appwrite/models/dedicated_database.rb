@@ -33,7 +33,6 @@ module Appwrite
             attr_reader :node_pool
             attr_reader :replicas
             attr_reader :sync_mode
-            attr_reader :cross_region_replicas
             attr_reader :network_max_connections
             attr_reader :network_idle_timeout_seconds
             attr_reader :network_ip_allowlist
@@ -84,7 +83,6 @@ module Appwrite
                 node_pool:,
                 replicas:,
                 sync_mode:,
-                cross_region_replicas:,
                 network_max_connections:,
                 network_idle_timeout_seconds:,
                 network_ip_allowlist:,
@@ -134,7 +132,6 @@ module Appwrite
                 @node_pool = node_pool
                 @replicas = replicas
                 @sync_mode = sync_mode
-                @cross_region_replicas = cross_region_replicas
                 @network_max_connections = network_max_connections
                 @network_idle_timeout_seconds = network_idle_timeout_seconds
                 @network_ip_allowlist = network_ip_allowlist
@@ -187,7 +184,6 @@ module Appwrite
                     node_pool: map["nodePool"],
                     replicas: map["replicas"],
                     sync_mode: map["syncMode"],
-                    cross_region_replicas: map["crossRegionReplicas"],
                     network_max_connections: map["networkMaxConnections"],
                     network_idle_timeout_seconds: map["networkIdleTimeoutSeconds"],
                     network_ip_allowlist: map["networkIPAllowlist"],
@@ -241,7 +237,6 @@ module Appwrite
                     "nodePool": @node_pool,
                     "replicas": @replicas,
                     "syncMode": @sync_mode,
-                    "crossRegionReplicas": @cross_region_replicas,
                     "networkMaxConnections": @network_max_connections,
                     "networkIdleTimeoutSeconds": @network_idle_timeout_seconds,
                     "networkIPAllowlist": @network_ip_allowlist,

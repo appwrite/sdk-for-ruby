@@ -18,15 +18,15 @@ module Appwrite
             def initialize(
                 bandwidth:,
                 executions:,
-                member:,
+                member: ,
                 realtime:,
                 realtime_messages:,
-                realtime_bandwidth:,
+                realtime_bandwidth: ,
                 storage:,
                 users:,
                 gb_hours:,
                 image_transformations:,
-                credits:
+                credits: 
             )
                 @bandwidth = bandwidth
                 @executions = executions
@@ -45,15 +45,15 @@ module Appwrite
                 UsageBillingPlan.new(
                     bandwidth: AdditionalResource.from(map: map["bandwidth"]),
                     executions: AdditionalResource.from(map: map["executions"]),
-                    member: AdditionalResource.from(map: map["member"]),
+                    member: map["member"].nil? ? nil : AdditionalResource.from(map: map["member"]),
                     realtime: AdditionalResource.from(map: map["realtime"]),
                     realtime_messages: AdditionalResource.from(map: map["realtimeMessages"]),
-                    realtime_bandwidth: AdditionalResource.from(map: map["realtimeBandwidth"]),
+                    realtime_bandwidth: map["realtimeBandwidth"].nil? ? nil : AdditionalResource.from(map: map["realtimeBandwidth"]),
                     storage: AdditionalResource.from(map: map["storage"]),
                     users: AdditionalResource.from(map: map["users"]),
                     gb_hours: AdditionalResource.from(map: map["GBHours"]),
                     image_transformations: AdditionalResource.from(map: map["imageTransformations"]),
-                    credits: AdditionalResource.from(map: map["credits"])
+                    credits: map["credits"].nil? ? nil : AdditionalResource.from(map: map["credits"])
                 )
             end
 
@@ -61,15 +61,15 @@ module Appwrite
                 {
                     "bandwidth": @bandwidth.to_map,
                     "executions": @executions.to_map,
-                    "member": @member.to_map,
+                    "member": @member&.to_map,
                     "realtime": @realtime.to_map,
                     "realtimeMessages": @realtime_messages.to_map,
-                    "realtimeBandwidth": @realtime_bandwidth.to_map,
+                    "realtimeBandwidth": @realtime_bandwidth&.to_map,
                     "storage": @storage.to_map,
                     "users": @users.to_map,
                     "GBHours": @gb_hours.to_map,
                     "imageTransformations": @image_transformations.to_map,
-                    "credits": @credits.to_map
+                    "credits": @credits&.to_map
                 }
             end
         end

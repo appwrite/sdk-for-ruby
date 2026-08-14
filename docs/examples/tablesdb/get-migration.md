@@ -6,12 +6,12 @@ include Appwrite
 client = Client.new
     .set_endpoint('https://<REGION>.cloud.appwrite.io/v1') # Your API Endpoint
     .set_project('<YOUR_PROJECT_ID>') # Your project ID
-    .set_session('') # The user session to authenticate with
+    .set_key('<YOUR_API_KEY>') # Your secret API key
 
-apps = Apps.new(client)
+tables_db = TablesDB.new(client)
 
-result = apps.get_installation(
-    app_id: '<APP_ID>',
-    installation_id: '<INSTALLATION_ID>'
+result = tables_db.get_migration(
+    database_id: '<DATABASE_ID>',
+    migration_id: '<MIGRATION_ID>'
 )
 ```

@@ -36,6 +36,7 @@ module Appwrite
             attr_reader :o_auth2_server_authorization_url
             attr_reader :o_auth2_server_scopes
             attr_reader :o_auth2_server_default_scopes
+            attr_reader :o_auth2_server_installation_scopes
             attr_reader :o_auth2_server_authorization_details_types
             attr_reader :o_auth2_server_access_token_duration
             attr_reader :o_auth2_server_refresh_token_duration
@@ -83,6 +84,7 @@ module Appwrite
                 o_auth2_server_authorization_url: ,
                 o_auth2_server_scopes: ,
                 o_auth2_server_default_scopes: ,
+                o_auth2_server_installation_scopes: ,
                 o_auth2_server_authorization_details_types: ,
                 o_auth2_server_access_token_duration: ,
                 o_auth2_server_refresh_token_duration: ,
@@ -129,6 +131,7 @@ module Appwrite
                 @o_auth2_server_authorization_url = o_auth2_server_authorization_url
                 @o_auth2_server_scopes = o_auth2_server_scopes
                 @o_auth2_server_default_scopes = o_auth2_server_default_scopes
+                @o_auth2_server_installation_scopes = o_auth2_server_installation_scopes
                 @o_auth2_server_authorization_details_types = o_auth2_server_authorization_details_types
                 @o_auth2_server_access_token_duration = o_auth2_server_access_token_duration
                 @o_auth2_server_refresh_token_duration = o_auth2_server_refresh_token_duration
@@ -178,6 +181,7 @@ module Appwrite
                     o_auth2_server_authorization_url: map["oAuth2ServerAuthorizationUrl"],
                     o_auth2_server_scopes: map["oAuth2ServerScopes"],
                     o_auth2_server_default_scopes: map["oAuth2ServerDefaultScopes"],
+                    o_auth2_server_installation_scopes: map["oAuth2ServerInstallationScopes"],
                     o_auth2_server_authorization_details_types: map["oAuth2ServerAuthorizationDetailsTypes"],
                     o_auth2_server_access_token_duration: map["oAuth2ServerAccessTokenDuration"],
                     o_auth2_server_refresh_token_duration: map["oAuth2ServerRefreshTokenDuration"],
@@ -228,6 +232,7 @@ module Appwrite
                     "oAuth2ServerAuthorizationUrl": @o_auth2_server_authorization_url,
                     "oAuth2ServerScopes": @o_auth2_server_scopes,
                     "oAuth2ServerDefaultScopes": @o_auth2_server_default_scopes,
+                    "oAuth2ServerInstallationScopes": @o_auth2_server_installation_scopes,
                     "oAuth2ServerAuthorizationDetailsTypes": @o_auth2_server_authorization_details_types,
                     "oAuth2ServerAccessTokenDuration": @o_auth2_server_access_token_duration,
                     "oAuth2ServerRefreshTokenDuration": @o_auth2_server_refresh_token_duration,

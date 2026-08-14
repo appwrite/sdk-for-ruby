@@ -7,6 +7,50 @@ module Appwrite
             @client = client
         end
 
+        # Create a new CDN cache invalidation for a domain. Executes a hard purge of
+        # cached content.
+        # 
+        # Depending on type, the invalidation purges a single cache tag, a single URL
+        # path, or all cached content for the domain.
+        #
+        # @param [String] domain Domain name.
+        # @param [InvalidationType] type Type of reference passed. Allowed values are: tag, path, all
+        # @param [String] reference Reference to invalidate. Depending on type this can be: cache tag name (up to 128 characters), URL path (up to 2048 characters). Not required when type is all.
+        #
+        # @return [ProxyInvalidation]
+        def create_invalidation(domain:, type:, reference: nil)
+            api_path = '/proxy/invalidations'
+
+            if domain.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "domain"')
+            end
+
+            if type.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "type"')
+            end
+
+            api_params = {
+                domain: domain,
+                type: type,
+                reference: reference,
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::ProxyInvalidation
+            )
+
+        end
+
         # Get a list of all the proxy rules. You can use the query params to filter
         # your results.
         #

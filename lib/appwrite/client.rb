@@ -15,8 +15,8 @@ module Appwrite
                 'x-sdk-name'=> 'Ruby',
                 'x-sdk-platform'=> 'server',
                 'x-sdk-language'=> 'ruby',
-                'x-sdk-version'=> '26.1.0',
-                'X-Appwrite-Response-Format' => '1.9.5'
+                'x-sdk-version'=> '27.0.0',
+                'X-Appwrite-Response-Format' => '1.9.6'
             }
             @endpoint = 'https://cloud.appwrite.io/v1'
             @config = {}
@@ -45,6 +45,20 @@ module Appwrite
         def set_key(value)
             add_header('x-appwrite-key', value)
             @config['key'] = value
+
+            self
+        end
+
+        # Set Organization
+        #
+        # Your organization ID
+        #
+        # @param [String] value The value to set for the Organization header
+        #
+        # @return [self]
+        def set_organization(value)
+            add_header('x-appwrite-organization', value)
+            @config['organization'] = value
 
             self
         end

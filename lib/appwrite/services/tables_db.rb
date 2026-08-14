@@ -47,9 +47,10 @@ module Appwrite
         # @param [] enabled Is the database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled.
         # @param [String] specification Database specification. Defaults to `serverless`, which creates the database on the shared pool. Any other value provisions a dedicated database on that specification.
         # @param [Integer] replicas Number of high availability replicas (0-5) for the dedicated database backing this database. Requires a dedicated `specification`; must be 0 for a serverless database. High availability is enabled when greater than 0.
+        # @param [String] sync_mode Replication sync mode for the dedicated database backing this database. Requires a dedicated `specification`; the mode is only in force once there is at least one replica. Allowed values: async, sync, quorum.
         #
         # @return [Database]
-        def create(database_id:, name:, enabled: nil, specification: nil, replicas: nil)
+        def create(database_id:, name:, enabled: nil, specification: nil, replicas: nil, sync_mode: nil)
             api_path = '/tablesdb'
 
             if database_id.nil?
@@ -66,6 +67,7 @@ module Appwrite
                 enabled: enabled,
                 specification: specification,
                 replicas: replicas,
+                syncMode: sync_mode,
             }
             
             api_headers = {
@@ -334,10 +336,12 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] name Database name. Max length: 128 chars.
         # @param [] enabled Is database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled.
+        # @param [String] specification Database specification. Resizing between dedicated specifications changes cpu, memory, storage and the connection ceiling via a rolling cutover with zero downtime. Moving a `serverless` database onto a dedicated specification is a data migration, not a resize.
         # @param [Integer] replicas Number of high availability replicas (0-5) for the dedicated database backing this database. Only valid when the database is backed by a dedicated specification. High availability is enabled when greater than 0.
+        # @param [String] sync_mode Replication sync mode for the dedicated database backing this database. Only valid when the database is backed by a dedicated specification; the mode is only in force once there is at least one replica. Allowed values: async, sync, quorum.
         #
         # @return [Database]
-        def update(database_id:, name: nil, enabled: nil, replicas: nil)
+        def update(database_id:, name: nil, enabled: nil, specification: nil, replicas: nil, sync_mode: nil)
             api_path = '/tablesdb/{databaseId}'
                 .gsub('{databaseId}', database_id)
 
@@ -348,7 +352,9 @@ module Appwrite
             api_params = {
                 name: name,
                 enabled: enabled,
+                specification: specification,
                 replicas: replicas,
+                syncMode: sync_mode,
             }
             
             api_headers = {
@@ -400,7 +406,9 @@ module Appwrite
 
         # Trigger a manual failover for a dedicated database with high availability
         # enabled. Promotes a replica to primary. The failover runs asynchronously;
-        # poll the database document for status updates.
+        # poll the database document for status updates. A database left
+        # mid-operation by a failover that did not finish also accepts this call as a
+        # repair, provided `targetReplicaId` names the member to promote.
         #
         # @param [String] database_id Database ID.
         # @param [String] target_replica_id Target replica ID to promote. If not specified, the healthiest replica is selected.
@@ -430,6 +438,238 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::DedicatedDatabase
+            )
+
+        end
+
+        # List the dedicated migrations for a TablesDB database. A database has at
+        # most one in-flight migration.
+        #
+        # @param [String] database_id Database ID.
+        #
+        # @return [DatabaseMigrationList]
+        def list_migrations(database_id:)
+            api_path = '/tablesdb/{databaseId}/migrations'
+                .gsub('{databaseId}', database_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::DatabaseMigrationList
+            )
+
+        end
+
+        # Start migrating a serverless TablesDB database onto a dedicated MySQL
+        # compute. Data is copied to the target while the source stays live, with a
+        # brief read-only window during cutover.
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] specification Dedicated compute specification to provision as the migration target (e.g. s-2vcpu-4gb). The migration always targets a dedicated compute, so `serverless` is not accepted.
+        # @param [] auto_cutover Whether to cut over automatically once the copy is verified. When disabled the migration parks at ready_to_cutover and holds there until the cutover is performed manually.
+        #
+        # @return [DatabaseMigration]
+        def create_migration(database_id:, specification:, auto_cutover: nil)
+            api_path = '/tablesdb/{databaseId}/migrations'
+                .gsub('{databaseId}', database_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if specification.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "specification"')
+            end
+
+            api_params = {
+                specification: specification,
+                autoCutover: auto_cutover,
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::DatabaseMigration
+            )
+
+        end
+
+        # Get a single dedicated migration for a TablesDB database by its ID.
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] migration_id Migration ID.
+        #
+        # @return [DatabaseMigration]
+        def get_migration(database_id:, migration_id:)
+            api_path = '/tablesdb/{databaseId}/migrations/{migrationId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{migrationId}', migration_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if migration_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "migrationId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::DatabaseMigration
+            )
+
+        end
+
+        # Abort an in-flight TablesDB dedicated migration. Only allowed before
+        # cutover; once the migration has cut over it cannot be aborted.
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] migration_id Migration ID.
+        #
+        # @return []
+        def delete_migration(database_id:, migration_id:)
+            api_path = '/tablesdb/{databaseId}/migrations/{migrationId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{migrationId}', migration_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if migration_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "migrationId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+            )
+
+        end
+
+        # Cut a verified TablesDB migration over to its dedicated compute. Only
+        # applies to a migration created with `autoCutover` disabled, which waits at
+        # `ready_to_cutover` until this is called. The routing flip happens shortly
+        # after this returns, with a brief read-only window. One call buys one
+        # attempt: a cutover that fails a check returns the migration to `verifying`
+        # and parks it again, so call this once more to retry.
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] migration_id Migration ID.
+        #
+        # @return [DatabaseMigration]
+        def cutover_migration(database_id:, migration_id:)
+            api_path = '/tablesdb/{databaseId}/migrations/{migrationId}/cutover'
+                .gsub('{databaseId}', database_id)
+                .gsub('{migrationId}', migration_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if migration_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "migrationId"')
+            end
+
+            api_params = {
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::DatabaseMigration
+            )
+
+        end
+
+        # List the lifecycle operations recorded for a dedicated database, newest
+        # first. Every provision, update, restore, backup and replication action is
+        # recorded here with its outcome, including an attempt that was abandoned
+        # because another worker took over the database.
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] status Filter by operation status.
+        # @param [Integer] limit Maximum number of operations to return.
+        # @param [Integer] offset Number of operations to skip.
+        #
+        # @return [DedicatedDatabaseOperationList]
+        def list_operations(database_id:, status: nil, limit: nil, offset: nil)
+            api_path = '/tablesdb/{databaseId}/operations'
+                .gsub('{databaseId}', database_id)
+
+            if database_id.nil?
+              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            api_params = {
+                status: status,
+                limit: limit,
+                offset: offset,
+            }
+            
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::DedicatedDatabaseOperationList
             )
 
         end
@@ -548,7 +788,7 @@ module Appwrite
         # @param [Array] permissions An array of permissions strings. By default, no user is granted with any permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
         # @param [] row_security Enables configuring permissions for individual rows. A user needs one of row or table level permissions to access a row. [Learn more about permissions](https://appwrite.io/docs/permissions).
         # @param [] enabled Is table enabled? When set to 'disabled', users cannot access the table but Server SDKs with and API key can still read and write to the table. No data is lost when this is toggled.
-        # @param [Array] columns Array of column definitions to create. Each column should contain: key (string), type (string: string, integer, float, boolean, datetime, relationship), size (integer, required for string type), required (boolean, optional), default (mixed, optional), array (boolean, optional), and type-specific options.
+        # @param [Array] columns Array of column definitions to create. Each column should contain: key (string), type (string: string, varchar, text, mediumtext, longtext, integer, bigint, double, boolean, datetime, point, linestring, polygon, email, url, ip, enum), size (integer, required for string and varchar types), required (boolean, optional), default (mixed, optional), array (boolean, optional), and type-specific options.
         # @param [Array] indexes Array of index definitions to create. Each index should contain: key (string), type (string: key, fulltext, unique, spatial), attributes (array of column keys), orders (array of ASC/DESC, optional), and lengths (array of integers, optional).
         #
         # @return [Table]
@@ -2276,11 +2516,11 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] table_id Table ID.
         # @param [String] related_table_id Related Table ID.
-        # @param [RelationshipType] type Relation type
+        # @param [RelationshipType] type Relationship type. Possible values are: oneToOne, oneToMany, manyToOne, manyToMany.
         # @param [] two_way Is Two Way?
         # @param [String] key Column Key.
         # @param [String] two_way_key Two Way Column Key.
-        # @param [RelationMutate] on_delete Constraints option
+        # @param [RelationMutate] on_delete Delete constraint. Possible values are: cascade, restrict, setNull.
         #
         # @return [ColumnRelationship]
         def create_relationship_column(database_id:, table_id:, related_table_id:, type:, two_way: nil, key: nil, two_way_key: nil, on_delete: nil)
@@ -2964,7 +3204,7 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] table_id Table ID.
         # @param [String] key Column Key.
-        # @param [RelationMutate] on_delete Constraints option
+        # @param [RelationMutate] on_delete Delete constraint. Possible values are: cascade, restrict, setNull.
         # @param [String] new_key New Column Key.
         #
         # @return [ColumnRelationship]

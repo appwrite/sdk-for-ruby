@@ -12,7 +12,7 @@ module Appwrite
                 id:,
                 role:,
                 status:,
-                lag_seconds:
+                lag_seconds: 
             )
                 @id = id
                 @role = role

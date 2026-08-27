@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -6,17 +6,20 @@ module Appwrite
             attr_reader :index
             attr_reader :role
             attr_reader :healthy
+            attr_reader :replicating
             attr_reader :lag_seconds
 
             def initialize(
                 index:,
                 role:,
                 healthy:,
-                lag_seconds: 
+                replicating:,
+                lag_seconds:
             )
                 @index = index
                 @role = role
                 @healthy = healthy
+                @replicating = replicating
                 @lag_seconds = lag_seconds
             end
 
@@ -25,6 +28,7 @@ module Appwrite
                     index: map["index"],
                     role: map["role"],
                     healthy: map["healthy"],
+                    replicating: map["replicating"],
                     lag_seconds: map["lagSeconds"]
                 )
             end
@@ -34,6 +38,7 @@ module Appwrite
                     "index": @index,
                     "role": @role,
                     "healthy": @healthy,
+                    "replicating": @replicating,
                     "lagSeconds": @lag_seconds
                 }
             end

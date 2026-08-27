@@ -13,11 +13,11 @@ databases = Databases.new(client)
 result = databases.update_float_attribute(
     database_id: '<DATABASE_ID>',
     collection_id: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     required: false,
-    default: null,
-    min: null, # optional
-    max: null, # optional
-    new_key: '' # optional
+    default: 10.5,
+    min: 0, # optional
+    max: 100, # optional
+    new_key: '<NEW_KEY>' # optional
 )
 ```

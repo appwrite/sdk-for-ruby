@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -19,6 +19,7 @@ module Appwrite
             attr_reader :latest_deployment_id
             attr_reader :latest_deployment_created_at
             attr_reader :latest_deployment_status
+            attr_reader :scopes
             attr_reader :vars
             attr_reader :timeout
             attr_reader :install_command
@@ -55,6 +56,7 @@ module Appwrite
                 latest_deployment_id:,
                 latest_deployment_created_at:,
                 latest_deployment_status:,
+                scopes:,
                 vars:,
                 timeout:,
                 install_command:,
@@ -90,6 +92,7 @@ module Appwrite
                 @latest_deployment_id = latest_deployment_id
                 @latest_deployment_created_at = latest_deployment_created_at
                 @latest_deployment_status = latest_deployment_status
+                @scopes = scopes
                 @vars = vars
                 @timeout = timeout
                 @install_command = install_command
@@ -128,6 +131,7 @@ module Appwrite
                     latest_deployment_id: map["latestDeploymentId"],
                     latest_deployment_created_at: map["latestDeploymentCreatedAt"],
                     latest_deployment_status: map["latestDeploymentStatus"],
+                    scopes: map["scopes"],
                     vars: map["vars"].map { |it| Variable.from(map: it) },
                     timeout: map["timeout"],
                     install_command: map["installCommand"],
@@ -167,6 +171,7 @@ module Appwrite
                     "latestDeploymentId": @latest_deployment_id,
                     "latestDeploymentCreatedAt": @latest_deployment_created_at,
                     "latestDeploymentStatus": @latest_deployment_status,
+                    "scopes": @scopes,
                     "vars": @vars.map { |it| it.to_map },
                     "timeout": @timeout,
                     "installCommand": @install_command,

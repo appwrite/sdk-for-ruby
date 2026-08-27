@@ -13,9 +13,9 @@ tables_db = TablesDB.new(client)
 result = tables_db.update_longtext_column(
     database_id: '<DATABASE_ID>',
     table_id: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     required: false,
-    default: '<DEFAULT>',
-    new_key: '' # optional
+    default: 'Hello World',
+    new_key: '<NEW_KEY>' # optional
 )
 ```

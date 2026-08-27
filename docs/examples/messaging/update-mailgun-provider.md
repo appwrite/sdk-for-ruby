@@ -14,7 +14,7 @@ result = messaging.update_mailgun_provider(
     provider_id: '<PROVIDER_ID>',
     name: '<NAME>', # optional
     api_key: '<API_KEY>', # optional
-    domain: '<DOMAIN>', # optional
+    domain: 'example.com', # optional
     is_eu_region: false, # optional
     enabled: false, # optional
     from_name: '<FROM_NAME>', # optional

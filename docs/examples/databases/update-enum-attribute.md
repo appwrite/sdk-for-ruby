@@ -13,10 +13,10 @@ databases = Databases.new(client)
 result = databases.update_enum_attribute(
     database_id: '<DATABASE_ID>',
     collection_id: '<COLLECTION_ID>',
-    key: '',
-    elements: [],
+    key: '<KEY>',
+    elements: ["active", "inactive"],
     required: false,
-    default: '<DEFAULT>',
-    new_key: '' # optional
+    default: 'active',
+    new_key: '<NEW_KEY>' # optional
 )
 ```

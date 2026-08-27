@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -24,7 +24,7 @@ module Appwrite
                 error:,
                 attributes:,
                 lengths:,
-                orders: 
+                orders:
             )
                 @id = id
                 @created_at = created_at
@@ -85,7 +85,6 @@ module Appwrite
 
                 status
             end
-
         end
     end
 end

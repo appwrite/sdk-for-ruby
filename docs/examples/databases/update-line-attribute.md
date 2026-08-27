@@ -13,9 +13,9 @@ databases = Databases.new(client)
 result = databases.update_line_attribute(
     database_id: '<DATABASE_ID>',
     collection_id: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     required: false,
     default: [[1, 2], [3, 4], [5, 6]], # optional
-    new_key: '' # optional
+    new_key: '<NEW_KEY>' # optional
 )
 ```

@@ -15,10 +15,10 @@ result = users.create_scrypt_user(
     email: 'email@example.com',
     password: 'password',
     password_salt: '<PASSWORD_SALT>',
-    password_cpu: null,
-    password_memory: null,
-    password_parallel: null,
-    password_length: null,
+    password_cpu: 8,
+    password_memory: 65536,
+    password_parallel: 1,
+    password_length: 64,
     name: '<NAME>' # optional
 )
 ```

@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -20,7 +20,7 @@ module Appwrite
                 @enabled = enabled
                 @client_id = client_id
                 @client_secret = client_secret
-                @prompt = prompt
+                @prompt = validate_prompt(prompt)
             end
 
             def self.from(map:)
@@ -41,6 +41,22 @@ module Appwrite
                     "clientSecret": @client_secret,
                     "prompt": @prompt
                 }
+            end
+
+            private
+
+            def validate_prompt(prompt)
+                valid_prompt = [
+                    Appwrite::Enums::OAuth2GooglePrompt::NONE,
+                    Appwrite::Enums::OAuth2GooglePrompt::CONSENT,
+                    Appwrite::Enums::OAuth2GooglePrompt::SELECT_ACCOUNT,
+                ]
+
+                unless valid_prompt.include?(prompt)
+                    raise ArgumentError, "Invalid " + prompt + ". Must be one of: " + valid_prompt.join(', ')
+                end
+
+                prompt
             end
         end
     end

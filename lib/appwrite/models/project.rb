@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -79,24 +79,24 @@ module Appwrite
                 blocks:,
                 console_accessed_at:,
                 waf_enabled:,
-                billing_limits: ,
-                o_auth2_server_enabled: ,
-                o_auth2_server_authorization_url: ,
-                o_auth2_server_scopes: ,
-                o_auth2_server_default_scopes: ,
-                o_auth2_server_installation_scopes: ,
-                o_auth2_server_authorization_details_types: ,
-                o_auth2_server_access_token_duration: ,
-                o_auth2_server_refresh_token_duration: ,
-                o_auth2_server_public_access_token_duration: ,
-                o_auth2_server_public_refresh_token_duration: ,
-                o_auth2_server_installation_access_token_duration: ,
-                o_auth2_server_confidential_pkce: ,
-                o_auth2_server_verification_url: ,
-                o_auth2_server_user_code_length: ,
-                o_auth2_server_user_code_format: ,
-                o_auth2_server_device_code_duration: ,
-                o_auth2_server_discovery_url: 
+                billing_limits:,
+                o_auth2_server_enabled:,
+                o_auth2_server_authorization_url:,
+                o_auth2_server_scopes:,
+                o_auth2_server_default_scopes:,
+                o_auth2_server_installation_scopes:,
+                o_auth2_server_authorization_details_types:,
+                o_auth2_server_access_token_duration:,
+                o_auth2_server_refresh_token_duration:,
+                o_auth2_server_public_access_token_duration:,
+                o_auth2_server_public_refresh_token_duration:,
+                o_auth2_server_installation_access_token_duration:,
+                o_auth2_server_confidential_pkce:,
+                o_auth2_server_verification_url:,
+                o_auth2_server_user_code_length:,
+                o_auth2_server_user_code_format:,
+                o_auth2_server_device_code_duration:,
+                o_auth2_server_discovery_url:
             )
                 @id = id
                 @created_at = created_at

@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -13,6 +13,7 @@ module Appwrite
             attr_reader :attempt
             attr_reader :last_error
             attr_reader :lag_documents
+            attr_reader :changelog_watermark
             attr_reader :verified_at
             attr_reader :cutover_at
             attr_reader :soak_until
@@ -31,6 +32,7 @@ module Appwrite
                 attempt:,
                 last_error:,
                 lag_documents:,
+                changelog_watermark:,
                 verified_at:,
                 cutover_at:,
                 soak_until:,
@@ -48,6 +50,7 @@ module Appwrite
                 @attempt = attempt
                 @last_error = last_error
                 @lag_documents = lag_documents
+                @changelog_watermark = changelog_watermark
                 @verified_at = verified_at
                 @cutover_at = cutover_at
                 @soak_until = soak_until
@@ -68,6 +71,7 @@ module Appwrite
                     attempt: map["attempt"],
                     last_error: map["lastError"],
                     lag_documents: map["lagDocuments"],
+                    changelog_watermark: map["changelogWatermark"],
                     verified_at: map["verifiedAt"],
                     cutover_at: map["cutoverAt"],
                     soak_until: map["soakUntil"],
@@ -89,6 +93,7 @@ module Appwrite
                     "attempt": @attempt,
                     "lastError": @last_error,
                     "lagDocuments": @lag_documents,
+                    "changelogWatermark": @changelog_watermark,
                     "verifiedAt": @verified_at,
                     "cutoverAt": @cutover_at,
                     "soakUntil": @soak_until,

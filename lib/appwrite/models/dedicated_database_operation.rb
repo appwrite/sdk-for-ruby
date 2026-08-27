@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -22,9 +22,9 @@ module Appwrite
                 type:,
                 status:,
                 attempts:,
-                requested_at: ,
-                started_at: ,
-                completed_at: ,
+                requested_at:,
+                started_at:,
+                completed_at:,
                 error_code:,
                 error_message:
             )

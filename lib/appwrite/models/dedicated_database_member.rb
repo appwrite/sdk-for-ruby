@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -6,17 +6,20 @@ module Appwrite
             attr_reader :id
             attr_reader :role
             attr_reader :status
+            attr_reader :replicating
             attr_reader :lag_seconds
 
             def initialize(
                 id:,
                 role:,
                 status:,
-                lag_seconds: 
+                replicating:,
+                lag_seconds:
             )
                 @id = id
                 @role = role
                 @status = status
+                @replicating = replicating
                 @lag_seconds = lag_seconds
             end
 
@@ -25,6 +28,7 @@ module Appwrite
                     id: map["$id"],
                     role: map["role"],
                     status: map["status"],
+                    replicating: map["replicating"],
                     lag_seconds: map["lagSeconds"]
                 )
             end
@@ -34,6 +38,7 @@ module Appwrite
                     "$id": @id,
                     "role": @role,
                     "status": @status,
+                    "replicating": @replicating,
                     "lagSeconds": @lag_seconds
                 }
             end

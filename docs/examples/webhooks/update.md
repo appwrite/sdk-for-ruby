@@ -13,7 +13,7 @@ webhooks = Webhooks.new(client)
 result = webhooks.update(
     webhook_id: '<WEBHOOK_ID>',
     name: '<NAME>',
-    url: '',
+    url: 'https://example.com/webhook',
     events: [],
     enabled: false, # optional
     tls: false, # optional

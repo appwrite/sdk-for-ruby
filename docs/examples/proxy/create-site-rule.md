@@ -11,7 +11,7 @@ client = Client.new
 proxy = Proxy.new(client)
 
 result = proxy.create_site_rule(
-    domain: '',
+    domain: 'example.com',
     site_id: '<SITE_ID>',
     branch: '<BRANCH>' # optional
 )

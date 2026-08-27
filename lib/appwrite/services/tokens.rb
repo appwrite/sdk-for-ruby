@@ -1,8 +1,7 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     class Tokens < Service
-
         def initialize(client)
             @client = client
         end
@@ -16,24 +15,29 @@ module Appwrite
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [ResourceTokenList]
-        def list(bucket_id:, file_id:, queries: nil, total: nil)
+        def list(
+            bucket_id:,
+            file_id:,
+            queries: nil,
+            total: nil
+        )
             api_path = '/tokens/buckets/{bucketId}/files/{fileId}'
                 .gsub('{bucketId}', bucket_id)
                 .gsub('{fileId}', file_id)
 
             if bucket_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
+                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
             if file_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "fileId"')
+                raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
 
             api_params = {
                 queries: queries,
                 total: total,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -46,7 +50,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ResourceTokenList
             )
-
         end
 
         # Create a new token. A token is linked to a file. Token can be passed as a
@@ -57,23 +60,27 @@ module Appwrite
         # @param [String] expire Token expiry date
         #
         # @return [ResourceToken]
-        def create_file_token(bucket_id:, file_id:, expire: nil)
+        def create_file_token(
+            bucket_id:,
+            file_id:,
+            expire: nil
+        )
             api_path = '/tokens/buckets/{bucketId}/files/{fileId}'
                 .gsub('{bucketId}', bucket_id)
                 .gsub('{fileId}', file_id)
 
             if bucket_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
+                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
             if file_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "fileId"')
+                raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
 
             api_params = {
                 expire: expire,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -87,7 +94,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ResourceToken
             )
-
         end
 
         # Get a token by its unique ID.
@@ -95,17 +101,18 @@ module Appwrite
         # @param [String] token_id Token ID.
         #
         # @return [ResourceToken]
-        def get(token_id:)
+        def get(
+            token_id:
+        )
             api_path = '/tokens/{tokenId}'
                 .gsub('{tokenId}', token_id)
 
             if token_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "tokenId"')
+                raise Appwrite::Exception.new('Missing required parameter: "tokenId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -118,28 +125,30 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ResourceToken
             )
-
         end
 
-        # Update a token by its unique ID. Use this endpoint to update a token's
+        # Update a token by its unique ID. Use this endpoint to update a token&#039;s
         # expiry date.
         #
         # @param [String] token_id Token unique ID.
         # @param [String] expire File token expiry date
         #
         # @return [ResourceToken]
-        def update(token_id:, expire: nil)
+        def update(
+            token_id:,
+            expire: nil
+        )
             api_path = '/tokens/{tokenId}'
                 .gsub('{tokenId}', token_id)
 
             if token_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "tokenId"')
+                raise Appwrite::Exception.new('Missing required parameter: "tokenId"')
             end
 
             api_params = {
                 expire: expire,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -153,7 +162,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ResourceToken
             )
-
         end
 
         # Delete a token by its unique ID.
@@ -161,17 +169,18 @@ module Appwrite
         # @param [String] token_id Token ID.
         #
         # @return []
-        def delete(token_id:)
+        def delete(
+            token_id:
+        )
             api_path = '/tokens/{tokenId}'
                 .gsub('{tokenId}', token_id)
 
             if token_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "tokenId"')
+                raise Appwrite::Exception.new('Missing required parameter: "tokenId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -183,8 +192,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
-
-    end 
+    end
 end

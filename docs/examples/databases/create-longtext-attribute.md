@@ -13,9 +13,9 @@ databases = Databases.new(client)
 result = databases.create_longtext_attribute(
     database_id: '<DATABASE_ID>',
     collection_id: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     required: false,
-    default: '<DEFAULT>', # optional
+    default: 'Hello World', # optional
     array: false, # optional
     encrypt: false # optional
 )

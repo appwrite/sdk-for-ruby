@@ -17,8 +17,8 @@ result = tables_db.create_relationship_column(
     related_table_id: '<RELATED_TABLE_ID>',
     type: RelationshipType::ONETOONE,
     two_way: false, # optional
-    key: '', # optional
-    two_way_key: '', # optional
+    key: '<KEY>', # optional
+    two_way_key: '<TWO_WAY_KEY>', # optional
     on_delete: RelationMutate::CASCADE # optional
 )
 ```

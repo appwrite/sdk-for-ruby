@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -71,8 +71,8 @@ module Appwrite
                 ssl:,
                 status:,
                 container_status:,
-                last_accessed_at: ,
-                idle_until: ,
+                last_accessed_at:,
+                idle_until:,
                 lifecycle_state:,
                 idle_timeout_minutes:,
                 cpu:,

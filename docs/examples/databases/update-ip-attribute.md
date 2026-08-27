@@ -13,9 +13,9 @@ databases = Databases.new(client)
 result = databases.update_ip_attribute(
     database_id: '<DATABASE_ID>',
     collection_id: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     required: false,
-    default: '',
-    new_key: '' # optional
+    default: '192.0.2.0',
+    new_key: '<NEW_KEY>' # optional
 )
 ```

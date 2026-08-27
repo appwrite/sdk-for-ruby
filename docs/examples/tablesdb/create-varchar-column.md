@@ -13,10 +13,10 @@ tables_db = TablesDB.new(client)
 result = tables_db.create_varchar_column(
     database_id: '<DATABASE_ID>',
     table_id: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     size: 1,
     required: false,
-    default: '<DEFAULT>', # optional
+    default: 'Hello World', # optional
     array: false, # optional
     encrypt: false # optional
 )

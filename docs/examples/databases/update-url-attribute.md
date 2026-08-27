@@ -13,9 +13,9 @@ databases = Databases.new(client)
 result = databases.update_url_attribute(
     database_id: '<DATABASE_ID>',
     collection_id: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     required: false,
     default: 'https://example.com',
-    new_key: '' # optional
+    new_key: '<NEW_KEY>' # optional
 )
 ```

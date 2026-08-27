@@ -14,8 +14,8 @@ tables_db = TablesDB.new(client)
 result = tables_db.update_relationship_column(
     database_id: '<DATABASE_ID>',
     table_id: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     on_delete: RelationMutate::CASCADE, # optional
-    new_key: '' # optional
+    new_key: '<NEW_KEY>' # optional
 )
 ```

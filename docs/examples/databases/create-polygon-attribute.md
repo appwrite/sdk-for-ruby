@@ -13,7 +13,7 @@ databases = Databases.new(client)
 result = databases.create_polygon_attribute(
     database_id: '<DATABASE_ID>',
     collection_id: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     required: false,
     default: [[[1, 2], [3, 4], [5, 6], [1, 2]]] # optional
 )

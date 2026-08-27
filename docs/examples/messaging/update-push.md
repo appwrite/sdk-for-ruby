@@ -25,7 +25,7 @@ result = messaging.update_push(
     sound: '<SOUND>', # optional
     color: '<COLOR>', # optional
     tag: '<TAG>', # optional
-    badge: null, # optional
+    badge: 1, # optional
     draft: false, # optional
     scheduled_at: '2020-10-15T06:38:00.000+00:00', # optional
     content_available: false, # optional

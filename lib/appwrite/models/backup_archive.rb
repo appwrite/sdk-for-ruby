@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -27,8 +27,8 @@ module Appwrite
                 migration_id:,
                 services:,
                 resources:,
-                resource_id: ,
-                resource_type: 
+                resource_id:,
+                resource_type:
             )
                 @id = id
                 @created_at = created_at

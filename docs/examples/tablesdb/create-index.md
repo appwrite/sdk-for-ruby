@@ -14,7 +14,7 @@ tables_db = TablesDB.new(client)
 result = tables_db.create_index(
     database_id: '<DATABASE_ID>',
     table_id: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     type: TablesDBIndexType::KEY,
     columns: [],
     orders: [OrderBy::ASC], # optional

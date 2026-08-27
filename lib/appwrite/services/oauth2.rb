@@ -1,8 +1,7 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     class Oauth2 < Service
-
         def initialize(client)
             @client = client
         end
@@ -18,12 +17,16 @@ module Appwrite
         # @param [String] scope Space-separated scopes the user consented to. Must be a subset of the scopes originally requested; identity scopes such as `openid` are always retained. Optional; omit to keep the originally requested scopes.
         #
         # @return [Oauth2Approve]
-        def approve(grant_id:, authorization_details: nil, scope: nil)
+        def approve(
+            grant_id:,
+            authorization_details: nil,
+            scope: nil
+        )
             api_path = '/oauth2/{project_id}/approve'
                 .gsub('{project_id}', @client.get_config('project'))
 
             if grant_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "grantId"')
+                raise Appwrite::Exception.new('Missing required parameter: "grantId"')
             end
 
             api_params = {
@@ -31,7 +34,7 @@ module Appwrite
                 authorization_details: authorization_details,
                 scope: scope,
             }
-            
+
             api_headers = {
                 "content-type": 'application/json',
                 "accept": 'application/json',
@@ -44,7 +47,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Oauth2Approve
             )
-
         end
 
         # Begin the OAuth2 authorization flow. When called without a session, the
@@ -69,7 +71,22 @@ module Appwrite
         # @param [String] request_uri OAuth2 authorization request handle returned by the pushed authorization request endpoint.
         #
         # @return [Oauth2Authorize]
-        def authorize(client_id: nil, redirect_uri: nil, response_type: nil, scope: nil, state: nil, nonce: nil, code_challenge: nil, code_challenge_method: nil, prompt: nil, max_age: nil, authorization_details: nil, resource: nil, audience: nil, request_uri: nil)
+        def authorize(
+            client_id: nil,
+            redirect_uri: nil,
+            response_type: nil,
+            scope: nil,
+            state: nil,
+            nonce: nil,
+            code_challenge: nil,
+            code_challenge_method: nil,
+            prompt: nil,
+            max_age: nil,
+            authorization_details: nil,
+            resource: nil,
+            audience: nil,
+            request_uri: nil
+        )
             api_path = '/oauth2/{project_id}/authorize'
                 .gsub('{project_id}', @client.get_config('project'))
 
@@ -89,7 +106,7 @@ module Appwrite
                 audience: audience,
                 request_uri: request_uri,
             }
-            
+
             api_headers = {
                 "accept": 'application/json',
             }
@@ -101,7 +118,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Oauth2Authorize
             )
-
         end
 
         # Begin the OAuth2 authorization flow. When called without a session, the
@@ -126,7 +142,22 @@ module Appwrite
         # @param [String] request_uri OAuth2 authorization request handle returned by the pushed authorization request endpoint.
         #
         # @return [Oauth2Authorize]
-        def authorize_post(client_id: nil, redirect_uri: nil, response_type: nil, scope: nil, state: nil, nonce: nil, code_challenge: nil, code_challenge_method: nil, prompt: nil, max_age: nil, authorization_details: nil, resource: nil, audience: nil, request_uri: nil)
+        def authorize_post(
+            client_id: nil,
+            redirect_uri: nil,
+            response_type: nil,
+            scope: nil,
+            state: nil,
+            nonce: nil,
+            code_challenge: nil,
+            code_challenge_method: nil,
+            prompt: nil,
+            max_age: nil,
+            authorization_details: nil,
+            resource: nil,
+            audience: nil,
+            request_uri: nil
+        )
             api_path = '/oauth2/{project_id}/authorize'
                 .gsub('{project_id}', @client.get_config('project'))
 
@@ -146,7 +177,7 @@ module Appwrite
                 audience: audience,
                 request_uri: request_uri,
             }
-            
+
             api_headers = {
                 "content-type": 'application/json',
                 "accept": 'application/json',
@@ -159,7 +190,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Oauth2Authorize
             )
-
         end
 
         # Start the OAuth2 Device Authorization Grant. Returns the device code, user
@@ -172,7 +202,13 @@ module Appwrite
         # @param [String] audience Compatibility alias for a single OAuth2 resource indicator URI.
         #
         # @return [Oauth2DeviceAuthorization]
-        def create_device_authorization(client_id: nil, scope: nil, authorization_details: nil, resource: nil, audience: nil)
+        def create_device_authorization(
+            client_id: nil,
+            scope: nil,
+            authorization_details: nil,
+            resource: nil,
+            audience: nil
+        )
             api_path = '/oauth2/{project_id}/device_authorization'
                 .gsub('{project_id}', @client.get_config('project'))
 
@@ -183,7 +219,7 @@ module Appwrite
                 resource: resource,
                 audience: audience,
             }
-            
+
             api_headers = {
                 "content-type": 'application/json',
                 "accept": 'application/json',
@@ -196,7 +232,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Oauth2DeviceAuthorization
             )
-
         end
 
         # Exchange a device flow user code for an OAuth2 grant. The authenticated
@@ -207,18 +242,20 @@ module Appwrite
         # @param [String] user_code User code displayed on the device.
         #
         # @return [Oauth2Grant]
-        def create_grant(user_code:)
+        def create_grant(
+            user_code:
+        )
             api_path = '/oauth2/{project_id}/grants'
                 .gsub('{project_id}', @client.get_config('project'))
 
             if user_code.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "userCode"')
+                raise Appwrite::Exception.new('Missing required parameter: "userCode"')
             end
 
             api_params = {
                 user_code: user_code,
             }
-            
+
             api_headers = {
                 "content-type": 'application/json',
                 "accept": 'application/json',
@@ -231,7 +268,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Oauth2Grant
             )
-
         end
 
         # Get an OAuth2 grant by its ID. Used by the consent screen to display the
@@ -241,18 +277,19 @@ module Appwrite
         # @param [String] grant_id Grant ID made during authorization, provided to consent screen in URL search params.
         #
         # @return [Oauth2Grant]
-        def get_grant(grant_id:)
+        def get_grant(
+            grant_id:
+        )
             api_path = '/oauth2/{project_id}/grants/{grant_id}'
                 .gsub('{project_id}', @client.get_config('project'))
                 .gsub('{grant_id}', grant_id)
 
             if grant_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "grantId"')
+                raise Appwrite::Exception.new('Missing required parameter: "grantId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "accept": 'application/json',
             }
@@ -264,11 +301,10 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Oauth2Grant
             )
-
         end
 
         # List the organizations the OAuth2 access token can access. Resolves the
-        # token's `organization` authorization details, expanding the `*` wildcard
+        # token&#039;s `organization` authorization details, expanding the `*` wildcard
         # into the concrete set of organizations the user can see.
         #
         # @param [Integer] limit Maximum number of organizations to return. Between 1 and 5000.
@@ -276,7 +312,11 @@ module Appwrite
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [Oauth2OrganizationList]
-        def list_organizations(limit: nil, offset: nil, search: nil)
+        def list_organizations(
+            limit: nil,
+            offset: nil,
+            search: nil
+        )
             api_path = '/oauth2/{project_id}/organizations'
                 .gsub('{project_id}', @client.get_config('project'))
 
@@ -285,7 +325,7 @@ module Appwrite
                 offset: offset,
                 search: search,
             }
-            
+
             api_headers = {
                 "accept": 'application/json',
             }
@@ -297,7 +337,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Oauth2OrganizationList
             )
-
         end
 
         # Store an OAuth2 authorization request server-side and receive a short-lived
@@ -318,20 +357,34 @@ module Appwrite
         # @param [String] audience Compatibility alias for a single OAuth2 resource indicator URI.
         #
         # @return [Oauth2PAR]
-        def create_par(client_id:, redirect_uri:, response_type:, scope: nil, state: nil, nonce: nil, code_challenge: nil, code_challenge_method: nil, prompt: nil, max_age: nil, authorization_details: nil, resource: nil, audience: nil)
+        def create_par(
+            client_id:,
+            redirect_uri:,
+            response_type:,
+            scope: nil,
+            state: nil,
+            nonce: nil,
+            code_challenge: nil,
+            code_challenge_method: nil,
+            prompt: nil,
+            max_age: nil,
+            authorization_details: nil,
+            resource: nil,
+            audience: nil
+        )
             api_path = '/oauth2/{project_id}/par'
                 .gsub('{project_id}', @client.get_config('project'))
 
             if client_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "clientId"')
+                raise Appwrite::Exception.new('Missing required parameter: "clientId"')
             end
 
             if redirect_uri.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "redirectUri"')
+                raise Appwrite::Exception.new('Missing required parameter: "redirectUri"')
             end
 
             if response_type.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "responseType"')
+                raise Appwrite::Exception.new('Missing required parameter: "responseType"')
             end
 
             api_params = {
@@ -349,7 +402,7 @@ module Appwrite
                 resource: resource,
                 audience: audience,
             }
-            
+
             api_headers = {
                 "content-type": 'application/json',
                 "accept": 'application/json',
@@ -362,10 +415,9 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Oauth2PAR
             )
-
         end
 
-        # List the projects the OAuth2 access token can access. Resolves the token's
+        # List the projects the OAuth2 access token can access. Resolves the token&#039;s
         # `project` authorization details, expanding the `*` wildcard into the
         # concrete set of projects the user can see.
         #
@@ -374,7 +426,11 @@ module Appwrite
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         #
         # @return [Oauth2ProjectList]
-        def list_projects(limit: nil, offset: nil, search: nil)
+        def list_projects(
+            limit: nil,
+            offset: nil,
+            search: nil
+        )
             api_path = '/oauth2/{project_id}/projects'
                 .gsub('{project_id}', @client.get_config('project'))
 
@@ -383,7 +439,7 @@ module Appwrite
                 offset: offset,
                 search: search,
             }
-            
+
             api_headers = {
                 "accept": 'application/json',
             }
@@ -395,7 +451,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Oauth2ProjectList
             )
-
         end
 
         # Reject an OAuth2 grant when the user denies consent. Returns the
@@ -406,18 +461,20 @@ module Appwrite
         # @param [String] grant_id Grant ID made during authorization, provided to consent screen in URL search params.
         #
         # @return [Oauth2Reject]
-        def reject(grant_id:)
+        def reject(
+            grant_id:
+        )
             api_path = '/oauth2/{project_id}/reject'
                 .gsub('{project_id}', @client.get_config('project'))
 
             if grant_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "grantId"')
+                raise Appwrite::Exception.new('Missing required parameter: "grantId"')
             end
 
             api_params = {
                 grant_id: grant_id,
             }
-            
+
             api_headers = {
                 "content-type": 'application/json',
                 "accept": 'application/json',
@@ -430,7 +487,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Oauth2Reject
             )
-
         end
 
         # Revoke an OAuth2 access token or refresh token.
@@ -441,12 +497,17 @@ module Appwrite
         # @param [String] client_secret OAuth2 client secret. Required for confidential apps; omitted for public apps.
         #
         # @return []
-        def revoke(token:, token_type_hint: nil, client_id: nil, client_secret: nil)
+        def revoke(
+            token:,
+            token_type_hint: nil,
+            client_id: nil,
+            client_secret: nil
+        )
             api_path = '/oauth2/{project_id}/revoke'
                 .gsub('{project_id}', @client.get_config('project'))
 
             if token.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "token"')
+                raise Appwrite::Exception.new('Missing required parameter: "token"')
             end
 
             api_params = {
@@ -455,7 +516,7 @@ module Appwrite
                 client_id: client_id,
                 client_secret: client_secret,
             }
-            
+
             api_headers = {
                 "content-type": 'application/json',
                 "accept": 'application/json',
@@ -467,7 +528,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
 
         # Exchange an OAuth2 authorization code, refresh token, or device code for
@@ -485,12 +545,23 @@ module Appwrite
         # @param [String] audience Compatibility alias for a single OAuth2 resource indicator URI.
         #
         # @return [Oauth2Token]
-        def create_token(grant_type:, code: nil, refresh_token: nil, device_code: nil, client_id: nil, client_secret: nil, code_verifier: nil, redirect_uri: nil, resource: nil, audience: nil)
+        def create_token(
+            grant_type:,
+            code: nil,
+            refresh_token: nil,
+            device_code: nil,
+            client_id: nil,
+            client_secret: nil,
+            code_verifier: nil,
+            redirect_uri: nil,
+            resource: nil,
+            audience: nil
+        )
             api_path = '/oauth2/{project_id}/token'
                 .gsub('{project_id}', @client.get_config('project'))
 
             if grant_type.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "grantType"')
+                raise Appwrite::Exception.new('Missing required parameter: "grantType"')
             end
 
             api_params = {
@@ -505,7 +576,7 @@ module Appwrite
                 resource: resource,
                 audience: audience,
             }
-            
+
             api_headers = {
                 "content-type": 'application/json',
                 "accept": 'application/json',
@@ -518,8 +589,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Oauth2Token
             )
-
         end
-
-    end 
+    end
 end

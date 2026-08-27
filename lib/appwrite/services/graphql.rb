@@ -1,8 +1,7 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     class Graphql < Service
-
         def initialize(client)
             @client = client
         end
@@ -12,17 +11,19 @@ module Appwrite
         # @param [Hash] query The query or queries to execute.
         #
         # @return []
-        def query(query:)
+        def query(
+            query:
+        )
             api_path = '/graphql'
 
             if query.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "query"')
+                raise Appwrite::Exception.new('Missing required parameter: "query"')
             end
 
             api_params = {
                 query: query,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "x-sdk-graphql": 'true',
@@ -36,7 +37,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
 
         # Execute a GraphQL mutation.
@@ -44,17 +44,19 @@ module Appwrite
         # @param [Hash] query The query or queries to execute.
         #
         # @return []
-        def mutation(query:)
+        def mutation(
+            query:
+        )
             api_path = '/graphql/mutation'
 
             if query.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "query"')
+                raise Appwrite::Exception.new('Missing required parameter: "query"')
             end
 
             api_params = {
                 query: query,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "x-sdk-graphql": 'true',
@@ -68,8 +70,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
-
-    end 
+    end
 end

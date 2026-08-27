@@ -1,8 +1,7 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     class Storage < Service
-
         def initialize(client)
             @client = client
         end
@@ -15,7 +14,11 @@ module Appwrite
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [BucketList]
-        def list_buckets(queries: nil, search: nil, total: nil)
+        def list_buckets(
+            queries: nil,
+            search: nil,
+            total: nil
+        )
             api_path = '/storage/buckets'
 
             api_params = {
@@ -23,7 +26,7 @@ module Appwrite
                 search: search,
                 total: total,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -36,33 +39,44 @@ module Appwrite
                 params: api_params,
                 response_type: Models::BucketList
             )
-
         end
 
         # Create a new storage bucket.
         #
-        # @param [String] bucket_id Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] bucket_id Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] name Bucket name
         # @param [Array] permissions An array of permission strings. By default, no user is granted with any permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
         # @param [] file_security Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](https://appwrite.io/docs/permissions).
-        # @param [] enabled Is bucket enabled? When set to 'disabled', users cannot access the files in this bucket but Server SDKs with and API key can still access the bucket. No files are lost when this is toggled.
+        # @param [] enabled Is bucket enabled? When set to &#039;disabled&#039;, users cannot access the files in this bucket but Server SDKs with and API key can still access the bucket. No files are lost when this is toggled.
         # @param [Integer] maximum_file_size Maximum file size allowed in bytes. Maximum allowed value is 5GB.
         # @param [Array] allowed_file_extensions Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long.
-        # @param [Compression] compression Compression algorithm chosen for compression. Can be one of none,  [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd), For file size above 20MB compression is skipped even if it's enabled
-        # @param [] encryption Is encryption enabled? For file size above 20MB encryption is skipped even if it's enabled
-        # @param [] antivirus Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it's enabled
+        # @param [Compression] compression Compression algorithm chosen for compression. Can be one of none,  [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd), For file size above 20MB compression is skipped even if it&#039;s enabled
+        # @param [] encryption Is encryption enabled? For file size above 20MB encryption is skipped even if it&#039;s enabled
+        # @param [] antivirus Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it&#039;s enabled
         # @param [] transformations Are image transformations enabled?
         #
         # @return [Bucket]
-        def create_bucket(bucket_id:, name:, permissions: nil, file_security: nil, enabled: nil, maximum_file_size: nil, allowed_file_extensions: nil, compression: nil, encryption: nil, antivirus: nil, transformations: nil)
+        def create_bucket(
+            bucket_id:,
+            name:,
+            permissions: nil,
+            file_security: nil,
+            enabled: nil,
+            maximum_file_size: nil,
+            allowed_file_extensions: nil,
+            compression: nil,
+            encryption: nil,
+            antivirus: nil,
+            transformations: nil
+        )
             api_path = '/storage/buckets'
 
             if bucket_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
+                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
             if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
             api_params = {
@@ -78,7 +92,7 @@ module Appwrite
                 antivirus: antivirus,
                 transformations: transformations,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -92,7 +106,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Bucket
             )
-
         end
 
         # Get a storage bucket by its unique ID. This endpoint response returns a
@@ -101,17 +114,18 @@ module Appwrite
         # @param [String] bucket_id Bucket unique ID.
         #
         # @return [Bucket]
-        def get_bucket(bucket_id:)
+        def get_bucket(
+            bucket_id:
+        )
             api_path = '/storage/buckets/{bucketId}'
                 .gsub('{bucketId}', bucket_id)
 
             if bucket_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
+                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -124,7 +138,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Bucket
             )
-
         end
 
         # Update a storage bucket by its unique ID.
@@ -133,25 +146,37 @@ module Appwrite
         # @param [String] name Bucket name
         # @param [Array] permissions An array of permission strings. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions).
         # @param [] file_security Enables configuring permissions for individual file. A user needs one of file or bucket level permissions to access a file. [Learn more about permissions](https://appwrite.io/docs/permissions).
-        # @param [] enabled Is bucket enabled? When set to 'disabled', users cannot access the files in this bucket but Server SDKs with and API key can still access the bucket. No files are lost when this is toggled.
+        # @param [] enabled Is bucket enabled? When set to &#039;disabled&#039;, users cannot access the files in this bucket but Server SDKs with and API key can still access the bucket. No files are lost when this is toggled.
         # @param [Integer] maximum_file_size Maximum file size allowed in bytes. Maximum allowed value is 5GB.
         # @param [Array] allowed_file_extensions Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long.
-        # @param [Compression] compression Compression algorithm chosen for compression. Can be one of none, [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd), For file size above 20MB compression is skipped even if it's enabled
-        # @param [] encryption Is encryption enabled? For file size above 20MB encryption is skipped even if it's enabled
-        # @param [] antivirus Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it's enabled
+        # @param [Compression] compression Compression algorithm chosen for compression. Can be one of none, [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd), For file size above 20MB compression is skipped even if it&#039;s enabled
+        # @param [] encryption Is encryption enabled? For file size above 20MB encryption is skipped even if it&#039;s enabled
+        # @param [] antivirus Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it&#039;s enabled
         # @param [] transformations Are image transformations enabled?
         #
         # @return [Bucket]
-        def update_bucket(bucket_id:, name:, permissions: nil, file_security: nil, enabled: nil, maximum_file_size: nil, allowed_file_extensions: nil, compression: nil, encryption: nil, antivirus: nil, transformations: nil)
+        def update_bucket(
+            bucket_id:,
+            name:,
+            permissions: nil,
+            file_security: nil,
+            enabled: nil,
+            maximum_file_size: nil,
+            allowed_file_extensions: nil,
+            compression: nil,
+            encryption: nil,
+            antivirus: nil,
+            transformations: nil
+        )
             api_path = '/storage/buckets/{bucketId}'
                 .gsub('{bucketId}', bucket_id)
 
             if bucket_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
+                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
             if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
             api_params = {
@@ -166,7 +191,7 @@ module Appwrite
                 antivirus: antivirus,
                 transformations: transformations,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -180,7 +205,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Bucket
             )
-
         end
 
         # Delete a storage bucket by its unique ID.
@@ -188,17 +212,18 @@ module Appwrite
         # @param [String] bucket_id Bucket unique ID.
         #
         # @return []
-        def delete_bucket(bucket_id:)
+        def delete_bucket(
+            bucket_id:
+        )
             api_path = '/storage/buckets/{bucketId}'
                 .gsub('{bucketId}', bucket_id)
 
             if bucket_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
+                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -210,7 +235,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
 
         # Get a list of all the user files. You can use the query params to filter
@@ -222,12 +246,17 @@ module Appwrite
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [FileList]
-        def list_files(bucket_id:, queries: nil, search: nil, total: nil)
+        def list_files(
+            bucket_id:,
+            queries: nil,
+            search: nil,
+            total: nil
+        )
             api_path = '/storage/buckets/{bucketId}/files'
                 .gsub('{bucketId}', bucket_id)
 
             if bucket_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
+                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
             api_params = {
@@ -235,7 +264,7 @@ module Appwrite
                 search: search,
                 total: total,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -248,49 +277,55 @@ module Appwrite
                 params: api_params,
                 response_type: Models::FileList
             )
-
         end
 
         # Create a new file. Before using this route, you should create a new bucket
         # resource using either a [server
         # integration](https://appwrite.io/docs/server/storage#storageCreateBucket)
         # API or directly from your Appwrite console.
-        # 
+        #
         # Larger files should be uploaded using multiple requests with the
         # [content-range](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Range)
         # header to send a partial request with a maximum supported chunk of `5MB`.
         # The `content-range` header values should always be in bytes.
-        # 
+        #
         # When the first request is sent, the server will return the **File** object,
-        # and the subsequent part request must include the file's **id** in
+        # and the subsequent part request must include the file&#039;s **id** in
         # `x-appwrite-id` header to allow the server to know that the partial upload
         # is for the existing file and not for a new one.
-        # 
-        # If you're creating a new file using one of the Appwrite SDKs, all the
+        #
+        # If you&#039;re creating a new file using one of the Appwrite SDKs, all the
         # chunking logic will be managed by the SDK internally.
-        # 
+        #
         #
         # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket).
-        # @param [String] file_id File ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] file_id File ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [file] file Binary file. Appwrite SDKs provide helpers to handle file input. [Learn about file input](https://appwrite.io/docs/products/storage/upload-download#input-file).
         # @param [Array] permissions An array of permission strings. By default, only the current user is granted all permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
-        # @param [String] folder Virtual folder to place the file in, for example "photos/2026". Nest folders with `/`. Defaults to the bucket root.
+        # @param [String] folder Virtual folder to place the file in, for example &quot;photos/2026&quot;. Nest folders with `/`. Defaults to the bucket root.
         #
         # @return [File]
-        def create_file(bucket_id:, file_id:, file:, permissions: nil, folder: nil, on_progress: nil)
+        def create_file(
+            bucket_id:,
+            file_id:,
+            file:,
+            permissions: nil,
+            folder: nil,
+            on_progress: nil
+        )
             api_path = '/storage/buckets/{bucketId}/files'
                 .gsub('{bucketId}', bucket_id)
 
             if bucket_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
+                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
             if file_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "fileId"')
+                raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
 
             if file.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "file"')
+                raise Appwrite::Exception.new('Missing required parameter: "file"')
             end
 
             api_params = {
@@ -299,7 +334,7 @@ module Appwrite
                 permissions: permissions,
                 folder: folder,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'multipart/form-data',
@@ -318,7 +353,6 @@ module Appwrite
                 on_progress: on_progress,
                 response_type: Models::File
             )
-
         end
 
         # Get a file by its unique ID. This endpoint response returns a JSON object
@@ -328,22 +362,24 @@ module Appwrite
         # @param [String] file_id File ID.
         #
         # @return [File]
-        def get_file(bucket_id:, file_id:)
+        def get_file(
+            bucket_id:,
+            file_id:
+        )
             api_path = '/storage/buckets/{bucketId}/files/{fileId}'
                 .gsub('{bucketId}', bucket_id)
                 .gsub('{fileId}', file_id)
 
             if bucket_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
+                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
             if file_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "fileId"')
+                raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -356,7 +392,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::File
             )
-
         end
 
         # Update a file by its unique ID. Only users with write permissions have
@@ -368,24 +403,29 @@ module Appwrite
         # @param [Array] permissions An array of permission strings. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions).
         #
         # @return [File]
-        def update_file(bucket_id:, file_id:, name: nil, permissions: nil)
+        def update_file(
+            bucket_id:,
+            file_id:,
+            name: nil,
+            permissions: nil
+        )
             api_path = '/storage/buckets/{bucketId}/files/{fileId}'
                 .gsub('{bucketId}', bucket_id)
                 .gsub('{fileId}', file_id)
 
             if bucket_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
+                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
             if file_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "fileId"')
+                raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
 
             api_params = {
                 name: name,
                 permissions: permissions,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -399,7 +439,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::File
             )
-
         end
 
         # Delete a file by its unique ID. Only users with write permissions have
@@ -409,22 +448,24 @@ module Appwrite
         # @param [String] file_id File ID.
         #
         # @return []
-        def delete_file(bucket_id:, file_id:)
+        def delete_file(
+            bucket_id:,
+            file_id:
+        )
             api_path = '/storage/buckets/{bucketId}/files/{fileId}'
                 .gsub('{bucketId}', bucket_id)
                 .gsub('{fileId}', file_id)
 
             if bucket_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
+                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
             if file_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "fileId"')
+                raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -436,11 +477,10 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
 
         # Get a file content by its unique ID. The endpoint response return with a
-        # 'Content-Disposition: attachment' header that tells the browser to start
+        # &#039;Content-Disposition: attachment&#039; header that tells the browser to start
         # downloading the file to user downloads directory.
         #
         # @param [String] bucket_id Storage bucket ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket).
@@ -448,23 +488,27 @@ module Appwrite
         # @param [String] token File token for accessing this file.
         #
         # @return []
-        def get_file_download(bucket_id:, file_id:, token: nil)
+        def get_file_download(
+            bucket_id:,
+            file_id:,
+            token: nil
+        )
             api_path = '/storage/buckets/{bucketId}/files/{fileId}/download'
                 .gsub('{bucketId}', bucket_id)
                 .gsub('{fileId}', file_id)
 
             if bucket_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
+                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
             if file_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "fileId"')
+                raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
 
             api_params = {
                 token: token,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": '*/*',
@@ -476,7 +520,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
 
         # Get a file preview image. Currently, this method supports preview for image
@@ -501,17 +544,32 @@ module Appwrite
         # @param [String] token File token for accessing this file.
         #
         # @return []
-        def get_file_preview(bucket_id:, file_id:, width: nil, height: nil, gravity: nil, quality: nil, border_width: nil, border_color: nil, border_radius: nil, opacity: nil, rotation: nil, background: nil, output: nil, token: nil)
+        def get_file_preview(
+            bucket_id:,
+            file_id:,
+            width: nil,
+            height: nil,
+            gravity: nil,
+            quality: nil,
+            border_width: nil,
+            border_color: nil,
+            border_radius: nil,
+            opacity: nil,
+            rotation: nil,
+            background: nil,
+            output: nil,
+            token: nil
+        )
             api_path = '/storage/buckets/{bucketId}/files/{fileId}/preview'
                 .gsub('{bucketId}', bucket_id)
                 .gsub('{fileId}', file_id)
 
             if bucket_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
+                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
             if file_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "fileId"')
+                raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
 
             api_params = {
@@ -528,7 +586,7 @@ module Appwrite
                 output: output,
                 token: token,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'image/*',
@@ -540,11 +598,10 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
 
         # Get a file content by its unique ID. This endpoint is similar to the
-        # download method but returns with no  'Content-Disposition: attachment'
+        # download method but returns with no  &#039;Content-Disposition: attachment&#039;
         # header.
         #
         # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket).
@@ -552,23 +609,27 @@ module Appwrite
         # @param [String] token File token for accessing this file.
         #
         # @return []
-        def get_file_view(bucket_id:, file_id:, token: nil)
+        def get_file_view(
+            bucket_id:,
+            file_id:,
+            token: nil
+        )
             api_path = '/storage/buckets/{bucketId}/files/{fileId}/view'
                 .gsub('{bucketId}', bucket_id)
                 .gsub('{fileId}', file_id)
 
             if bucket_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
+                raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
             if file_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "fileId"')
+                raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
 
             api_params = {
                 token: token,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": '*/*',
@@ -580,8 +641,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
-
-    end 
+    end
 end

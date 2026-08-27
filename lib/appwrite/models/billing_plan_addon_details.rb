@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -17,7 +17,7 @@ module Appwrite
                 plan_included:,
                 limit:,
                 type:,
-                currency: ,
+                currency:,
                 price:,
                 value:,
                 invoice_desc:

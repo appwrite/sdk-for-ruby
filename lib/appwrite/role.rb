@@ -1,10 +1,8 @@
 module Appwrite
-
     # Helper class to generate role strings for `Permission`.
     class Role
-
         # Grants access to anyone.
-        # 
+        #
         # This includes authenticated and unauthenticated users.
         #
         # @return [String]
@@ -13,24 +11,24 @@ module Appwrite
         end
 
         # Grants access to a specific user by user ID.
-        # 
+        #
         # You can optionally pass verified or unverified for
         # `status` to target specific types of users.
         #
         # @param [String] id
         # @param [String] status
-        # 
+        #
         # @return [String]
         def self.user(id, status = "")
-            if(status.empty?)
+            if (status.empty?)
                 "user:#{id}"
             else
                 "user:#{id}/#{status}"
             end
         end
-        
+
         # Grants access to any authenticated or anonymous user.
-        # 
+        #
         # You can optionally pass verified or unverified for
         # `status` to target specific types of users.
         #
@@ -38,13 +36,13 @@ module Appwrite
         #
         # @return [String]
         def self.users(status = "")
-            if(status.empty?)
+            if (status.empty?)
                 'users'
             else
                 "users/#{status}"
             end
         end
-        
+
         # Grants access to any guest user without a session.
         #
         # Authenticated users don't have access to this role.
@@ -53,7 +51,7 @@ module Appwrite
         def self.guests
             'guests'
         end
-        
+
         # Grants access to a team by team ID.
         #
         # You can optionally pass a role for `role` to target
@@ -64,7 +62,7 @@ module Appwrite
         #
         # @return [String]
         def self.team(id, role = "")
-            if(role.empty?)
+            if (role.empty?)
                 "team:#{id}"
             else
                 "team:#{id}/#{role}"
@@ -72,7 +70,7 @@ module Appwrite
         end
 
         # Grants access to a specific member of a team.
-        # 
+        #
         # When the member is removed from the team, they will
         # no longer have access.
         #

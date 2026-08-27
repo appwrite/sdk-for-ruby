@@ -13,10 +13,10 @@ databases = Databases.new(client)
 result = databases.update_varchar_attribute(
     database_id: '<DATABASE_ID>',
     collection_id: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     required: false,
-    default: '<DEFAULT>',
+    default: 'Hello World',
     size: 1, # optional
-    new_key: '' # optional
+    new_key: '<NEW_KEY>' # optional
 )
 ```

@@ -32,8 +32,9 @@ result = sites.create(
     provider_root_directory: '<PROVIDER_ROOT_DIRECTORY>', # optional
     provider_branches: [], # optional
     provider_paths: [], # optional
-    build_specification: '', # optional
-    runtime_specification: '', # optional
-    deployment_retention: 0 # optional
+    build_specification: 's-1vcpu-512mb', # optional
+    runtime_specification: 's-1vcpu-512mb', # optional
+    deployment_retention: 0, # optional
+    scopes: [ProjectKeyScopes::PROJECT_READ] # optional
 )
 ```

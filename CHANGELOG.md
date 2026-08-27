@@ -1,7 +1,10 @@
 # Change Log
 
-## 27.1.0.rc1
+## 28.0.0.rc1
 
+* Breaking: `Execution.functionId` is replaced by `resourceId` and `resourceType`, now that executions cover both functions and sites
+* Breaking: removed `dedicatedDatabases.execute` from `ProjectKeyScopes`
+* Breaking: `EmbeddingModel` no longer offers `embedding-gemma` or `bge-small`
 * Added: `documentsDB`, `vectorsDB`, `mysql`, `postgresql`, and `mongo` services, no longer hidden from server SDKs
 * Added: `DocumentsDBIndexType` and `VectorsDBIndexType` enums
 * Added: dedicated database models for branches, backups, restorations, poolers, PITR windows, extensions, and executions

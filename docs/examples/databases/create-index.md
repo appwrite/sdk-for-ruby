@@ -14,7 +14,7 @@ databases = Databases.new(client)
 result = databases.create_index(
     database_id: '<DATABASE_ID>',
     collection_id: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     type: DatabasesIndexType::KEY,
     attributes: [],
     orders: [OrderBy::ASC], # optional

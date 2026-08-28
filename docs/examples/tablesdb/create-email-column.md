@@ -13,7 +13,7 @@ tables_db = TablesDB.new(client)
 result = tables_db.create_email_column(
     database_id: '<DATABASE_ID>',
     table_id: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     required: false,
     default: 'email@example.com', # optional
     array: false # optional

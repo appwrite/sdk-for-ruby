@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -24,7 +24,7 @@ module Appwrite
                 token_url:,
                 user_info_url:,
                 prompt:,
-                max_age: 
+                max_age:
             )
                 @id = id
                 @enabled = enabled
@@ -34,7 +34,7 @@ module Appwrite
                 @authorization_url = authorization_url
                 @token_url = token_url
                 @user_info_url = user_info_url
-                @prompt = prompt
+                @prompt = validate_prompt(prompt)
                 @max_age = max_age
             end
 
@@ -66,6 +66,23 @@ module Appwrite
                     "prompt": @prompt,
                     "maxAge": @max_age
                 }
+            end
+
+            private
+
+            def validate_prompt(prompt)
+                valid_prompt = [
+                    Appwrite::Enums::OAuth2OidcPrompt::NONE,
+                    Appwrite::Enums::OAuth2OidcPrompt::LOGIN,
+                    Appwrite::Enums::OAuth2OidcPrompt::CONSENT,
+                    Appwrite::Enums::OAuth2OidcPrompt::SELECT_ACCOUNT,
+                ]
+
+                unless valid_prompt.include?(prompt)
+                    raise ArgumentError, "Invalid " + prompt + ". Must be one of: " + valid_prompt.join(', ')
+                end
+
+                prompt
             end
         end
     end

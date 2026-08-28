@@ -13,6 +13,6 @@ tables_db = TablesDB.new(client)
 result = tables_db.get_column(
     database_id: '<DATABASE_ID>',
     table_id: '<TABLE_ID>',
-    key: ''
+    key: '<KEY>'
 )
 ```

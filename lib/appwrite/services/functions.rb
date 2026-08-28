@@ -1,13 +1,12 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     class Functions < Service
-
         def initialize(client)
             @client = client
         end
 
-        # Get a list of all the project's functions. You can use the query params to
+        # Get a list of all the project&#039;s functions. You can use the query params to
         # filter your results.
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, enabled, runtime, deploymentId, schedule, scheduleNext, schedulePrevious, timeout, entrypoint, commands, installationId
@@ -15,7 +14,11 @@ module Appwrite
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [FunctionList]
-        def list(queries: nil, search: nil, total: nil)
+        def list(
+            queries: nil,
+            search: nil,
+            total: nil
+        )
             api_path = '/functions'
 
             api_params = {
@@ -23,7 +26,7 @@ module Appwrite
                 search: search,
                 total: total,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -36,7 +39,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::FunctionList
             )
-
         end
 
         # Create a new function. You can pass a list of
@@ -44,16 +46,16 @@ module Appwrite
         # project users or team with access to execute the function using the client
         # API.
         #
-        # @param [String] function_id Function ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] function_id Function ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] name Function name. Max length: 128 chars.
         # @param [Runtime] runtime Execution runtime.
         # @param [Array] execute An array of role strings with execution permissions. By default no user is granted with any execute permissions. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long.
         # @param [Array] events Events list. Maximum of 100 events are allowed.
         # @param [String] schedule Schedule CRON syntax.
         # @param [Integer] timeout Function maximum execution time in seconds.
-        # @param [] enabled Is function enabled? When set to 'disabled', users cannot access the function but Server SDKs with and API key can still access the function. No data is lost when this is toggled.
+        # @param [] enabled Is function enabled? When set to &#039;disabled&#039;, users cannot access the function but Server SDKs with and API key can still access the function. No data is lost when this is toggled.
         # @param [] logging When disabled, executions will exclude logs and errors, and will be slightly faster.
-        # @param [String] entrypoint Entrypoint File. This path is relative to the "providerRootDirectory".
+        # @param [String] entrypoint Entrypoint File. This path is relative to the &quot;providerRootDirectory&quot;.
         # @param [String] commands Build Commands.
         # @param [Array] scopes List of scopes allowed for API key auto-generated for every execution. Maximum of 200 scopes are allowed.
         # @param [String] installation_id Appwrite Installation ID for VCS (Version Control System) deployment.
@@ -68,19 +70,42 @@ module Appwrite
         # @param [Integer] deployment_retention Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept.
         #
         # @return [Function]
-        def create(function_id:, name:, runtime:, execute: nil, events: nil, schedule: nil, timeout: nil, enabled: nil, logging: nil, entrypoint: nil, commands: nil, scopes: nil, installation_id: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil, provider_branches: nil, provider_paths: nil, build_specification: nil, runtime_specification: nil, deployment_retention: nil)
+        def create(
+            function_id:,
+            name:,
+            runtime:,
+            execute: nil,
+            events: nil,
+            schedule: nil,
+            timeout: nil,
+            enabled: nil,
+            logging: nil,
+            entrypoint: nil,
+            commands: nil,
+            scopes: nil,
+            installation_id: nil,
+            provider_repository_id: nil,
+            provider_branch: nil,
+            provider_silent_mode: nil,
+            provider_root_directory: nil,
+            provider_branches: nil,
+            provider_paths: nil,
+            build_specification: nil,
+            runtime_specification: nil,
+            deployment_retention: nil
+        )
             api_path = '/functions'
 
             if function_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
             if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
             if runtime.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "runtime"')
+                raise Appwrite::Exception.new('Missing required parameter: "runtime"')
             end
 
             api_params = {
@@ -107,7 +132,7 @@ module Appwrite
                 runtimeSpecification: runtime_specification,
                 deploymentRetention: deployment_retention,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -121,7 +146,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Function
             )
-
         end
 
         # Get a list of all runtimes that are currently active on your instance.
@@ -131,9 +155,8 @@ module Appwrite
         def list_runtimes()
             api_path = '/functions/runtimes'
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -146,7 +169,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::RuntimeList
             )
-
         end
 
         # List allowed function specifications for this instance.
@@ -154,13 +176,15 @@ module Appwrite
         # @param [String] type Specification type to list. Can be one of: runtimes, builds. Defaults to runtimes.
         #
         # @return [SpecificationList]
-        def list_specifications(type: nil)
+        def list_specifications(
+            type: nil
+        )
             api_path = '/functions/specifications'
 
             api_params = {
                 type: type,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -173,7 +197,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::SpecificationList
             )
-
         end
 
         # Get a function by its unique ID.
@@ -181,17 +204,18 @@ module Appwrite
         # @param [String] function_id Function ID.
         #
         # @return [Function]
-        def get(function_id:)
+        def get(
+            function_id:
+        )
             api_path = '/functions/{functionId}'
                 .gsub('{functionId}', function_id)
 
             if function_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -204,7 +228,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Function
             )
-
         end
 
         # Update function by its unique ID.
@@ -216,9 +239,9 @@ module Appwrite
         # @param [Array] events Events list. Maximum of 100 events are allowed.
         # @param [String] schedule Schedule CRON syntax.
         # @param [Integer] timeout Maximum execution time in seconds.
-        # @param [] enabled Is function enabled? When set to 'disabled', users cannot access the function but Server SDKs with and API key can still access the function. No data is lost when this is toggled.
+        # @param [] enabled Is function enabled? When set to &#039;disabled&#039;, users cannot access the function but Server SDKs with and API key can still access the function. No data is lost when this is toggled.
         # @param [] logging When disabled, executions will exclude logs and errors, and will be slightly faster.
-        # @param [String] entrypoint Entrypoint File. This path is relative to the "providerRootDirectory".
+        # @param [String] entrypoint Entrypoint File. This path is relative to the &quot;providerRootDirectory&quot;.
         # @param [String] commands Build Commands.
         # @param [Array] scopes List of scopes allowed for API Key auto-generated for every execution. Maximum of 200 scopes are allowed.
         # @param [String] installation_id Appwrite Installation ID for VCS (Version Controle System) deployment.
@@ -233,16 +256,39 @@ module Appwrite
         # @param [Integer] deployment_retention Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept.
         #
         # @return [Function]
-        def update(function_id:, name:, runtime: nil, execute: nil, events: nil, schedule: nil, timeout: nil, enabled: nil, logging: nil, entrypoint: nil, commands: nil, scopes: nil, installation_id: nil, provider_repository_id: nil, provider_branch: nil, provider_silent_mode: nil, provider_root_directory: nil, provider_branches: nil, provider_paths: nil, build_specification: nil, runtime_specification: nil, deployment_retention: nil)
+        def update(
+            function_id:,
+            name:,
+            runtime: nil,
+            execute: nil,
+            events: nil,
+            schedule: nil,
+            timeout: nil,
+            enabled: nil,
+            logging: nil,
+            entrypoint: nil,
+            commands: nil,
+            scopes: nil,
+            installation_id: nil,
+            provider_repository_id: nil,
+            provider_branch: nil,
+            provider_silent_mode: nil,
+            provider_root_directory: nil,
+            provider_branches: nil,
+            provider_paths: nil,
+            build_specification: nil,
+            runtime_specification: nil,
+            deployment_retention: nil
+        )
             api_path = '/functions/{functionId}'
                 .gsub('{functionId}', function_id)
 
             if function_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
             if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
             api_params = {
@@ -268,7 +314,7 @@ module Appwrite
                 runtimeSpecification: runtime_specification,
                 deploymentRetention: deployment_retention,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -282,7 +328,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Function
             )
-
         end
 
         # Delete a function by its unique ID.
@@ -290,17 +335,18 @@ module Appwrite
         # @param [String] function_id Function ID.
         #
         # @return []
-        def delete(function_id:)
+        def delete(
+            function_id:
+        )
             api_path = '/functions/{functionId}'
                 .gsub('{functionId}', function_id)
 
             if function_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -312,7 +358,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
 
         # Update the function active deployment. Use this endpoint to switch the code
@@ -322,22 +367,25 @@ module Appwrite
         # @param [String] deployment_id Deployment ID.
         #
         # @return [Function]
-        def update_function_deployment(function_id:, deployment_id:)
+        def update_function_deployment(
+            function_id:,
+            deployment_id:
+        )
             api_path = '/functions/{functionId}/deployment'
                 .gsub('{functionId}', function_id)
 
             if function_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
             if deployment_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
+                raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
             end
 
             api_params = {
                 deploymentId: deployment_id,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -351,10 +399,9 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Function
             )
-
         end
 
-        # Get a list of all the function's code deployments. You can use the query
+        # Get a list of all the function&#039;s code deployments. You can use the query
         # params to filter your results.
         #
         # @param [String] function_id Function ID.
@@ -363,12 +410,17 @@ module Appwrite
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [DeploymentList]
-        def list_deployments(function_id:, queries: nil, search: nil, total: nil)
+        def list_deployments(
+            function_id:,
+            queries: nil,
+            search: nil,
+            total: nil
+        )
             api_path = '/functions/{functionId}/deployments'
                 .gsub('{functionId}', function_id)
 
             if function_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
             api_params = {
@@ -376,7 +428,7 @@ module Appwrite
                 search: search,
                 total: total,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -389,19 +441,18 @@ module Appwrite
                 params: api_params,
                 response_type: Models::DeploymentList
             )
-
         end
 
         # Create a new function code deployment. Use this endpoint to upload a new
-        # version of your code function. To execute your newly uploaded code, you'll
-        # need to update the function's deployment to use your new deployment UID.
-        # 
+        # version of your code function. To execute your newly uploaded code, you&#039;ll
+        # need to update the function&#039;s deployment to use your new deployment UID.
+        #
         # This endpoint accepts a tar.gz file compressed with your code. Make sure to
         # include any dependencies your code has within the compressed file. You can
         # learn more about code packaging in the [Appwrite Cloud Functions
         # tutorial](https://appwrite.io/docs/functions).
-        # 
-        # Use the "command" param to set the entrypoint used to execute your code.
+        #
+        # Use the &quot;command&quot; param to set the entrypoint used to execute your code.
         #
         # @param [String] function_id Function ID.
         # @param [file] code Gzip file with your code package. When used with the Appwrite CLI, pass the path to your code directory, and the CLI will automatically package your code. Use a path that is within the current directory.
@@ -410,20 +461,27 @@ module Appwrite
         # @param [String] commands Build Commands.
         #
         # @return [Deployment]
-        def create_deployment(function_id:, code:, activate:, entrypoint: nil, commands: nil, on_progress: nil)
+        def create_deployment(
+            function_id:,
+            code:,
+            activate:,
+            entrypoint: nil,
+            commands: nil,
+            on_progress: nil
+        )
             api_path = '/functions/{functionId}/deployments'
                 .gsub('{functionId}', function_id)
 
             if function_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
             if code.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "code"')
+                raise Appwrite::Exception.new('Missing required parameter: "code"')
             end
 
             if activate.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "activate"')
+                raise Appwrite::Exception.new('Missing required parameter: "activate"')
             end
 
             api_params = {
@@ -432,7 +490,7 @@ module Appwrite
                 code: code,
                 activate: activate,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'multipart/form-data',
@@ -451,37 +509,40 @@ module Appwrite
                 on_progress: on_progress,
                 response_type: Models::Deployment
             )
-
         end
 
         # Create a new build for an existing function deployment. This endpoint
         # allows you to rebuild a deployment with the updated function configuration,
         # including its entrypoint and build commands if they have been modified. The
         # build process will be queued and executed asynchronously. The original
-        # deployment's code will be preserved and used for the new build.
+        # deployment&#039;s code will be preserved and used for the new build.
         #
         # @param [String] function_id Function ID.
         # @param [String] deployment_id Deployment ID.
         # @param [String] build_id Build unique ID.
         #
         # @return [Deployment]
-        def create_duplicate_deployment(function_id:, deployment_id:, build_id: nil)
+        def create_duplicate_deployment(
+            function_id:,
+            deployment_id:,
+            build_id: nil
+        )
             api_path = '/functions/{functionId}/deployments/duplicate'
                 .gsub('{functionId}', function_id)
 
             if function_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
             if deployment_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
+                raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
             end
 
             api_params = {
                 deploymentId: deployment_id,
                 buildId: build_id,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -495,11 +556,10 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Deployment
             )
-
         end
 
         # Create a deployment based on a template.
-        # 
+        #
         # Use this endpoint with combination of
         # [listTemplates](https://appwrite.io/docs/products/functions/templates) to
         # find the template details.
@@ -513,32 +573,40 @@ module Appwrite
         # @param [] activate Automatically activate the deployment when it is finished building.
         #
         # @return [Deployment]
-        def create_template_deployment(function_id:, repository:, owner:, root_directory:, type:, reference:, activate: nil)
+        def create_template_deployment(
+            function_id:,
+            repository:,
+            owner:,
+            root_directory:,
+            type:,
+            reference:,
+            activate: nil
+        )
             api_path = '/functions/{functionId}/deployments/template'
                 .gsub('{functionId}', function_id)
 
             if function_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
             if repository.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "repository"')
+                raise Appwrite::Exception.new('Missing required parameter: "repository"')
             end
 
             if owner.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "owner"')
+                raise Appwrite::Exception.new('Missing required parameter: "owner"')
             end
 
             if root_directory.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "rootDirectory"')
+                raise Appwrite::Exception.new('Missing required parameter: "rootDirectory"')
             end
 
             if type.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "type"')
+                raise Appwrite::Exception.new('Missing required parameter: "type"')
             end
 
             if reference.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "reference"')
+                raise Appwrite::Exception.new('Missing required parameter: "reference"')
             end
 
             api_params = {
@@ -549,7 +617,7 @@ module Appwrite
                 reference: reference,
                 activate: activate,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -563,11 +631,10 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Deployment
             )
-
         end
 
         # Create a deployment when a function is connected to VCS.
-        # 
+        #
         # This endpoint lets you create deployment from a branch, commit, or a tag.
         #
         # @param [String] function_id Function ID.
@@ -576,20 +643,25 @@ module Appwrite
         # @param [] activate Automatically activate the deployment when it is finished building.
         #
         # @return [Deployment]
-        def create_vcs_deployment(function_id:, type:, reference:, activate: nil)
+        def create_vcs_deployment(
+            function_id:,
+            type:,
+            reference:,
+            activate: nil
+        )
             api_path = '/functions/{functionId}/deployments/vcs'
                 .gsub('{functionId}', function_id)
 
             if function_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
             if type.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "type"')
+                raise Appwrite::Exception.new('Missing required parameter: "type"')
             end
 
             if reference.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "reference"')
+                raise Appwrite::Exception.new('Missing required parameter: "reference"')
             end
 
             api_params = {
@@ -597,7 +669,7 @@ module Appwrite
                 reference: reference,
                 activate: activate,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -611,7 +683,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Deployment
             )
-
         end
 
         # Get a function deployment by its unique ID.
@@ -620,22 +691,24 @@ module Appwrite
         # @param [String] deployment_id Deployment ID.
         #
         # @return [Deployment]
-        def get_deployment(function_id:, deployment_id:)
+        def get_deployment(
+            function_id:,
+            deployment_id:
+        )
             api_path = '/functions/{functionId}/deployments/{deploymentId}'
                 .gsub('{functionId}', function_id)
                 .gsub('{deploymentId}', deployment_id)
 
             if function_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
             if deployment_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
+                raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -648,7 +721,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Deployment
             )
-
         end
 
         # Delete a code deployment by its unique ID.
@@ -657,22 +729,24 @@ module Appwrite
         # @param [String] deployment_id Deployment ID.
         #
         # @return []
-        def delete_deployment(function_id:, deployment_id:)
+        def delete_deployment(
+            function_id:,
+            deployment_id:
+        )
             api_path = '/functions/{functionId}/deployments/{deploymentId}'
                 .gsub('{functionId}', function_id)
                 .gsub('{deploymentId}', deployment_id)
 
             if function_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
             if deployment_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
+                raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -684,37 +758,41 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
 
         # Get a function deployment content by its unique ID. The endpoint response
-        # return with a 'Content-Disposition: attachment' header that tells the
+        # return with a &#039;Content-Disposition: attachment&#039; header that tells the
         # browser to start downloading the file to user downloads directory.
         #
         # @param [String] function_id Function ID.
         # @param [String] deployment_id Deployment ID.
-        # @param [DeploymentDownloadType] type Deployment file to download. Can be: "source", "output".
+        # @param [DeploymentDownloadType] type Deployment file to download. Can be: &quot;source&quot;, &quot;output&quot;.
         # @param [String] token Presigned source-download token for accessing this deployment without a session (jobs-service).
         #
         # @return []
-        def get_deployment_download(function_id:, deployment_id:, type: nil, token: nil)
+        def get_deployment_download(
+            function_id:,
+            deployment_id:,
+            type: nil,
+            token: nil
+        )
             api_path = '/functions/{functionId}/deployments/{deploymentId}/download'
                 .gsub('{functionId}', function_id)
                 .gsub('{deploymentId}', deployment_id)
 
             if function_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
             if deployment_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
+                raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
             end
 
             api_params = {
                 type: type,
                 token: token,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": '*/*',
@@ -726,35 +804,36 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
 
         # Cancel an ongoing function deployment build. If the build is already in
-        # progress, it will be stopped and marked as canceled. If the build hasn't
+        # progress, it will be stopped and marked as canceled. If the build hasn&#039;t
         # started yet, it will be marked as canceled without executing. You cannot
-        # cancel builds that have already completed (status 'ready') or failed. The
+        # cancel builds that have already completed (status &#039;ready&#039;) or failed. The
         # response includes the final build status and details.
         #
         # @param [String] function_id Function ID.
         # @param [String] deployment_id Deployment ID.
         #
         # @return [Deployment]
-        def update_deployment_status(function_id:, deployment_id:)
+        def update_deployment_status(
+            function_id:,
+            deployment_id:
+        )
             api_path = '/functions/{functionId}/deployments/{deploymentId}/status'
                 .gsub('{functionId}', function_id)
                 .gsub('{deploymentId}', deployment_id)
 
             if function_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
             if deployment_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
+                raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -768,7 +847,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Deployment
             )
-
         end
 
         # Get a list of all the current user function execution logs. You can use the
@@ -779,19 +857,23 @@ module Appwrite
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [ExecutionList]
-        def list_executions(function_id:, queries: nil, total: nil)
+        def list_executions(
+            function_id:,
+            queries: nil,
+            total: nil
+        )
             api_path = '/functions/{functionId}/executions'
                 .gsub('{functionId}', function_id)
 
             if function_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
             api_params = {
                 queries: queries,
                 total: total,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -804,7 +886,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ExecutionList
             )
-
         end
 
         # Trigger a function execution. The returned object will return you the
@@ -821,12 +902,20 @@ module Appwrite
         # @param [String] scheduled_at Scheduled execution time in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future with precision in minutes.
         #
         # @return [Execution]
-        def create_execution(function_id:, body: nil, async: nil, xpath: nil, method: nil, headers: nil, scheduled_at: nil)
+        def create_execution(
+            function_id:,
+            body: nil,
+            async: nil,
+            xpath: nil,
+            method: nil,
+            headers: nil,
+            scheduled_at: nil
+        )
             api_path = '/functions/{functionId}/executions'
                 .gsub('{functionId}', function_id)
 
             if function_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
             api_params = {
@@ -837,7 +926,7 @@ module Appwrite
                 headers: headers,
                 scheduledAt: scheduled_at,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -851,7 +940,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Execution
             )
-
         end
 
         # Get a function execution log by its unique ID.
@@ -860,22 +948,24 @@ module Appwrite
         # @param [String] execution_id Execution ID.
         #
         # @return [Execution]
-        def get_execution(function_id:, execution_id:)
+        def get_execution(
+            function_id:,
+            execution_id:
+        )
             api_path = '/functions/{functionId}/executions/{executionId}'
                 .gsub('{functionId}', function_id)
                 .gsub('{executionId}', execution_id)
 
             if function_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
             if execution_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "executionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "executionId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -888,7 +978,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Execution
             )
-
         end
 
         # Delete a function execution by its unique ID.
@@ -897,22 +986,24 @@ module Appwrite
         # @param [String] execution_id Execution ID.
         #
         # @return []
-        def delete_execution(function_id:, execution_id:)
+        def delete_execution(
+            function_id:,
+            execution_id:
+        )
             api_path = '/functions/{functionId}/executions/{executionId}'
                 .gsub('{functionId}', function_id)
                 .gsub('{executionId}', execution_id)
 
             if function_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
             if execution_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "executionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "executionId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -924,7 +1015,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
 
         # Get a list of all variables of a specific function.
@@ -934,19 +1024,23 @@ module Appwrite
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [VariableList]
-        def list_variables(function_id:, queries: nil, total: nil)
+        def list_variables(
+            function_id:,
+            queries: nil,
+            total: nil
+        )
             api_path = '/functions/{functionId}/variables'
                 .gsub('{functionId}', function_id)
 
             if function_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
             api_params = {
                 queries: queries,
                 total: total,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -959,37 +1053,42 @@ module Appwrite
                 params: api_params,
                 response_type: Models::VariableList
             )
-
         end
 
         # Create a new function environment variable. These variables can be accessed
         # in the function at runtime as environment variables.
         #
         # @param [String] function_id Function unique ID.
-        # @param [String] variable_id Variable ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
-        # @param [String] key Variable key. Max length: 255 chars.
+        # @param [String] variable_id Variable ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
+        # @param [String] key Variable key. Letters, digits and underscores only, must not start with a digit. Max length: 255 chars.
         # @param [String] value Variable value. Max length: 8192 chars.
         # @param [] secret Secret variables can be updated or deleted, but only functions can read them during build and runtime.
         #
         # @return [Variable]
-        def create_variable(function_id:, variable_id:, key:, value:, secret: nil)
+        def create_variable(
+            function_id:,
+            variable_id:,
+            key:,
+            value:,
+            secret: nil
+        )
             api_path = '/functions/{functionId}/variables'
                 .gsub('{functionId}', function_id)
 
             if function_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
             if variable_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "variableId"')
+                raise Appwrite::Exception.new('Missing required parameter: "variableId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if value.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "value"')
+                raise Appwrite::Exception.new('Missing required parameter: "value"')
             end
 
             api_params = {
@@ -998,7 +1097,7 @@ module Appwrite
                 value: value,
                 secret: secret,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1012,7 +1111,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Variable
             )
-
         end
 
         # Get a variable by its unique ID.
@@ -1021,22 +1119,24 @@ module Appwrite
         # @param [String] variable_id Variable unique ID.
         #
         # @return [Variable]
-        def get_variable(function_id:, variable_id:)
+        def get_variable(
+            function_id:,
+            variable_id:
+        )
             api_path = '/functions/{functionId}/variables/{variableId}'
                 .gsub('{functionId}', function_id)
                 .gsub('{variableId}', variable_id)
 
             if function_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
             if variable_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "variableId"')
+                raise Appwrite::Exception.new('Missing required parameter: "variableId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -1049,29 +1149,34 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Variable
             )
-
         end
 
         # Update variable by its unique ID.
         #
         # @param [String] function_id Function unique ID.
         # @param [String] variable_id Variable unique ID.
-        # @param [String] key Variable key. Max length: 255 chars.
+        # @param [String] key Variable key. Letters, digits and underscores only, must not start with a digit. Max length: 255 chars.
         # @param [String] value Variable value. Max length: 8192 chars.
         # @param [] secret Secret variables can be updated or deleted, but only functions can read them during build and runtime.
         #
         # @return [Variable]
-        def update_variable(function_id:, variable_id:, key: nil, value: nil, secret: nil)
+        def update_variable(
+            function_id:,
+            variable_id:,
+            key: nil,
+            value: nil,
+            secret: nil
+        )
             api_path = '/functions/{functionId}/variables/{variableId}'
                 .gsub('{functionId}', function_id)
                 .gsub('{variableId}', variable_id)
 
             if function_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
             if variable_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "variableId"')
+                raise Appwrite::Exception.new('Missing required parameter: "variableId"')
             end
 
             api_params = {
@@ -1079,7 +1184,7 @@ module Appwrite
                 value: value,
                 secret: secret,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1093,7 +1198,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Variable
             )
-
         end
 
         # Delete a variable by its unique ID.
@@ -1102,22 +1206,24 @@ module Appwrite
         # @param [String] variable_id Variable unique ID.
         #
         # @return []
-        def delete_variable(function_id:, variable_id:)
+        def delete_variable(
+            function_id:,
+            variable_id:
+        )
             api_path = '/functions/{functionId}/variables/{variableId}'
                 .gsub('{functionId}', function_id)
                 .gsub('{variableId}', variable_id)
 
             if function_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
             if variable_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "variableId"')
+                raise Appwrite::Exception.new('Missing required parameter: "variableId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1129,8 +1235,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
-
-    end 
+    end
 end

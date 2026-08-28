@@ -13,10 +13,10 @@ databases = Databases.new(client)
 result = databases.create_varchar_attribute(
     database_id: '<DATABASE_ID>',
     collection_id: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     size: 1,
     required: false,
-    default: '<DEFAULT>', # optional
+    default: 'Hello World', # optional
     array: false, # optional
     encrypt: false # optional
 )

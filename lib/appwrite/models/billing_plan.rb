@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -56,6 +56,7 @@ module Appwrite
             attr_reader :supports_mock_numbers
             attr_reader :supports_organization_roles
             attr_reader :supports_credits
+            attr_reader :supports_dedicated_databases
             attr_reader :supports_disposable_email_validation
             attr_reader :supports_canonical_email_validation
             attr_reader :supports_free_email_validation
@@ -71,6 +72,7 @@ module Appwrite
             attr_reader :limits
             attr_reader :group
             attr_reader :program
+            attr_reader :database_compute_credit
             attr_reader :dedicated_databases
 
             def initialize(
@@ -84,7 +86,7 @@ module Appwrite
                 storage:,
                 image_transformations:,
                 screenshots_generated:,
-                members: ,
+                members:,
                 webhooks:,
                 waf_rules:,
                 projects:,
@@ -108,9 +110,9 @@ module Appwrite
                 topics:,
                 auth_phone:,
                 domains:,
-                activity_logs: ,
+                activity_logs:,
                 usage_logs:,
-                usage_logs_intervals: ,
+                usage_logs_intervals:,
                 project_inactivity_days:,
                 alert_limit:,
                 usage:,
@@ -127,22 +129,24 @@ module Appwrite
                 supports_mock_numbers:,
                 supports_organization_roles:,
                 supports_credits:,
+                supports_dedicated_databases:,
                 supports_disposable_email_validation:,
                 supports_canonical_email_validation:,
                 supports_free_email_validation:,
                 supports_corporate_email_validation:,
                 supports_project_specific_roles:,
-                backups_enabled: ,
+                backups_enabled:,
                 usage_per_project:,
                 supported_addons:,
-                backup_policies: ,
+                backup_policies:,
                 deployment_size:,
                 build_size:,
                 databases_allow_encrypt:,
-                limits: ,
+                limits:,
                 group:,
-                program: ,
-                dedicated_databases: 
+                program:,
+                database_compute_credit:,
+                dedicated_databases:
             )
                 @id = id
                 @name = name
@@ -197,6 +201,7 @@ module Appwrite
                 @supports_mock_numbers = supports_mock_numbers
                 @supports_organization_roles = supports_organization_roles
                 @supports_credits = supports_credits
+                @supports_dedicated_databases = supports_dedicated_databases
                 @supports_disposable_email_validation = supports_disposable_email_validation
                 @supports_canonical_email_validation = supports_canonical_email_validation
                 @supports_free_email_validation = supports_free_email_validation
@@ -212,6 +217,7 @@ module Appwrite
                 @limits = limits
                 @group = validate_group(group)
                 @program = program
+                @database_compute_credit = database_compute_credit
                 @dedicated_databases = dedicated_databases
             end
 
@@ -270,6 +276,7 @@ module Appwrite
                     supports_mock_numbers: map["supportsMockNumbers"],
                     supports_organization_roles: map["supportsOrganizationRoles"],
                     supports_credits: map["supportsCredits"],
+                    supports_dedicated_databases: map["supportsDedicatedDatabases"],
                     supports_disposable_email_validation: map["supportsDisposableEmailValidation"],
                     supports_canonical_email_validation: map["supportsCanonicalEmailValidation"],
                     supports_free_email_validation: map["supportsFreeEmailValidation"],
@@ -285,6 +292,7 @@ module Appwrite
                     limits: map["limits"].nil? ? nil : BillingPlanLimits.from(map: map["limits"]),
                     group: map["group"],
                     program: map["program"].nil? ? nil : Program.from(map: map["program"]),
+                    database_compute_credit: map["databaseComputeCredit"],
                     dedicated_databases: map["dedicatedDatabases"].nil? ? nil : BillingPlanDedicatedDatabaseLimits.from(map: map["dedicatedDatabases"])
                 )
             end
@@ -344,6 +352,7 @@ module Appwrite
                     "supportsMockNumbers": @supports_mock_numbers,
                     "supportsOrganizationRoles": @supports_organization_roles,
                     "supportsCredits": @supports_credits,
+                    "supportsDedicatedDatabases": @supports_dedicated_databases,
                     "supportsDisposableEmailValidation": @supports_disposable_email_validation,
                     "supportsCanonicalEmailValidation": @supports_canonical_email_validation,
                     "supportsFreeEmailValidation": @supports_free_email_validation,
@@ -359,6 +368,7 @@ module Appwrite
                     "limits": @limits&.to_map,
                     "group": @group,
                     "program": @program&.to_map,
+                    "databaseComputeCredit": @database_compute_credit,
                     "dedicatedDatabases": @dedicated_databases&.to_map
                 }
             end
@@ -378,7 +388,6 @@ module Appwrite
 
                 group
             end
-
         end
     end
 end

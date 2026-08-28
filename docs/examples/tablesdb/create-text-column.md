@@ -13,9 +13,9 @@ tables_db = TablesDB.new(client)
 result = tables_db.create_text_column(
     database_id: '<DATABASE_ID>',
     table_id: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     required: false,
-    default: '<DEFAULT>', # optional
+    default: 'Hello World', # optional
     array: false, # optional
     encrypt: false # optional
 )

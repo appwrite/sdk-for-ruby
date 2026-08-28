@@ -11,7 +11,7 @@ client = Client.new
 proxy = Proxy.new(client)
 
 result = proxy.create_function_rule(
-    domain: '',
+    domain: 'example.com',
     function_id: '<FUNCTION_ID>',
     branch: '<BRANCH>' # optional
 )

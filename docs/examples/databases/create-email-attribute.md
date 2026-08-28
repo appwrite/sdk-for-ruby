@@ -13,7 +13,7 @@ databases = Databases.new(client)
 result = databases.create_email_attribute(
     database_id: '<DATABASE_ID>',
     collection_id: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     required: false,
     default: 'email@example.com', # optional
     array: false # optional

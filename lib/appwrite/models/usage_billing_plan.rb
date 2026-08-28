@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -18,15 +18,15 @@ module Appwrite
             def initialize(
                 bandwidth:,
                 executions:,
-                member: ,
+                member:,
                 realtime:,
                 realtime_messages:,
-                realtime_bandwidth: ,
+                realtime_bandwidth:,
                 storage:,
                 users:,
                 gb_hours:,
                 image_transformations:,
-                credits: 
+                credits:
             )
                 @bandwidth = bandwidth
                 @executions = executions

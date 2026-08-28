@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -26,11 +26,11 @@ module Appwrite
                 uptime:,
                 connections:,
                 sync_mode:,
-                effective_sync_mode: ,
+                effective_sync_mode:,
                 sync_degraded:,
                 sync_acknowledgements:,
                 sync_standby_count:,
-                sync_state_confirmed: ,
+                sync_state_confirmed:,
                 replicas:,
                 volumes:
             )

@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -20,8 +20,8 @@ module Appwrite
                 resource_type:,
                 resource_id:,
                 mode:,
-                reason: ,
-                expired_at: ,
+                reason:,
+                expired_at:,
                 project_name:,
                 region:,
                 organization_name:,

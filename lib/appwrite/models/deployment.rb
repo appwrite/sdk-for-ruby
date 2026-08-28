@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -171,7 +171,6 @@ module Appwrite
 
                 status
             end
-
         end
     end
 end

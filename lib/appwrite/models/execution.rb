@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -7,7 +7,8 @@ module Appwrite
             attr_reader :created_at
             attr_reader :updated_at
             attr_reader :permissions
-            attr_reader :function_id
+            attr_reader :resource_id
+            attr_reader :resource_type
             attr_reader :deployment_id
             attr_reader :trigger
             attr_reader :status
@@ -27,7 +28,8 @@ module Appwrite
                 created_at:,
                 updated_at:,
                 permissions:,
-                function_id:,
+                resource_id:,
+                resource_type:,
                 deployment_id:,
                 trigger:,
                 status:,
@@ -40,13 +42,14 @@ module Appwrite
                 logs:,
                 errors:,
                 duration:,
-                scheduled_at: 
+                scheduled_at:
             )
                 @id = id
                 @created_at = created_at
                 @updated_at = updated_at
                 @permissions = permissions
-                @function_id = function_id
+                @resource_id = resource_id
+                @resource_type = validate_resource_type(resource_type)
                 @deployment_id = deployment_id
                 @trigger = validate_trigger(trigger)
                 @status = validate_status(status)
@@ -68,7 +71,8 @@ module Appwrite
                     created_at: map["$createdAt"],
                     updated_at: map["$updatedAt"],
                     permissions: map["$permissions"],
-                    function_id: map["functionId"],
+                    resource_id: map["resourceId"],
+                    resource_type: map["resourceType"],
                     deployment_id: map["deploymentId"],
                     trigger: map["trigger"],
                     status: map["status"],
@@ -91,7 +95,8 @@ module Appwrite
                     "$createdAt": @created_at,
                     "$updatedAt": @updated_at,
                     "$permissions": @permissions,
-                    "functionId": @function_id,
+                    "resourceId": @resource_id,
+                    "resourceType": @resource_type,
                     "deploymentId": @deployment_id,
                     "trigger": @trigger,
                     "status": @status,
@@ -109,6 +114,19 @@ module Appwrite
             end
 
             private
+
+            def validate_resource_type(resource_type)
+                valid_resource_type = [
+                    Appwrite::Enums::ExecutionResourceType::FUNCTIONS,
+                    Appwrite::Enums::ExecutionResourceType::SITES,
+                ]
+
+                unless valid_resource_type.include?(resource_type)
+                    raise ArgumentError, "Invalid " + resource_type + ". Must be one of: " + valid_resource_type.join(', ')
+                end
+
+                resource_type
+            end
 
             def validate_trigger(trigger)
                 valid_trigger = [
@@ -139,7 +157,6 @@ module Appwrite
 
                 status
             end
-
         end
     end
 end

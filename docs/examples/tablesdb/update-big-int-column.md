@@ -13,11 +13,11 @@ tables_db = TablesDB.new(client)
 result = tables_db.update_big_int_column(
     database_id: '<DATABASE_ID>',
     table_id: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     required: false,
-    default: null,
-    min: null, # optional
-    max: null, # optional
-    new_key: '' # optional
+    default: 0,
+    min: 0, # optional
+    max: 1000000, # optional
+    new_key: '<NEW_KEY>' # optional
 )
 ```

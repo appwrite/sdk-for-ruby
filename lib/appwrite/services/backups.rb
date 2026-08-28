@@ -1,8 +1,7 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     class Backups < Service
-
         def initialize(client)
             @client = client
         end
@@ -12,13 +11,15 @@ module Appwrite
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
         #
         # @return [BackupArchiveList]
-        def list_archives(queries: nil)
+        def list_archives(
+            queries: nil
+        )
             api_path = '/backups/archives'
 
             api_params = {
                 queries: queries,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -31,7 +32,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::BackupArchiveList
             )
-
         end
 
         # Create a new archive asynchronously for a project.
@@ -40,18 +40,21 @@ module Appwrite
         # @param [String] resource_id Resource ID. When set, only this single resource will be backed up.
         #
         # @return [BackupArchive]
-        def create_archive(services:, resource_id: nil)
+        def create_archive(
+            services:,
+            resource_id: nil
+        )
             api_path = '/backups/archives'
 
             if services.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "services"')
+                raise Appwrite::Exception.new('Missing required parameter: "services"')
             end
 
             api_params = {
                 services: services,
                 resourceId: resource_id,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -65,25 +68,25 @@ module Appwrite
                 params: api_params,
                 response_type: Models::BackupArchive
             )
-
         end
 
-        # Get a backup archive using it's ID.
+        # Get a backup archive using it&#039;s ID.
         #
-        # @param [String] archive_id Archive ID. Choose a custom ID`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] archive_id Archive ID. Choose a custom ID`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         #
         # @return [BackupArchive]
-        def get_archive(archive_id:)
+        def get_archive(
+            archive_id:
+        )
             api_path = '/backups/archives/{archiveId}'
                 .gsub('{archiveId}', archive_id)
 
             if archive_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "archiveId"')
+                raise Appwrite::Exception.new('Missing required parameter: "archiveId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -96,25 +99,25 @@ module Appwrite
                 params: api_params,
                 response_type: Models::BackupArchive
             )
-
         end
 
         # Delete an existing archive for a project.
         #
-        # @param [String] archive_id Policy ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] archive_id Policy ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         #
         # @return []
-        def delete_archive(archive_id:)
+        def delete_archive(
+            archive_id:
+        )
             api_path = '/backups/archives/{archiveId}'
                 .gsub('{archiveId}', archive_id)
 
             if archive_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "archiveId"')
+                raise Appwrite::Exception.new('Missing required parameter: "archiveId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -127,7 +130,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
 
         # List all policies for a project.
@@ -135,13 +137,15 @@ module Appwrite
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
         #
         # @return [BackupPolicyList]
-        def list_policies(queries: nil)
+        def list_policies(
+            queries: nil
+        )
             api_path = '/backups/policies'
 
             api_params = {
                 queries: queries,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -154,37 +158,44 @@ module Appwrite
                 params: api_params,
                 response_type: Models::BackupPolicyList
             )
-
         end
 
         # Create a new backup policy.
         #
-        # @param [String] policy_id Policy ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] policy_id Policy ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [Array] services Array of services to backup
         # @param [Integer] retention Days to keep backups before deletion
         # @param [String] schedule Schedule CRON syntax.
         # @param [String] name Policy name. Max length: 128 chars.
         # @param [String] resource_id Resource ID. When set, only this single resource will be backed up.
-        # @param [] enabled Is policy enabled? When set to 'disabled', no backups will be taken
+        # @param [] enabled Is policy enabled? When set to &#039;disabled&#039;, no backups will be taken
         #
         # @return [BackupPolicy]
-        def create_policy(policy_id:, services:, retention:, schedule:, name: nil, resource_id: nil, enabled: nil)
+        def create_policy(
+            policy_id:,
+            services:,
+            retention:,
+            schedule:,
+            name: nil,
+            resource_id: nil,
+            enabled: nil
+        )
             api_path = '/backups/policies'
 
             if policy_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "policyId"')
+                raise Appwrite::Exception.new('Missing required parameter: "policyId"')
             end
 
             if services.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "services"')
+                raise Appwrite::Exception.new('Missing required parameter: "services"')
             end
 
             if retention.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "retention"')
+                raise Appwrite::Exception.new('Missing required parameter: "retention"')
             end
 
             if schedule.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "schedule"')
+                raise Appwrite::Exception.new('Missing required parameter: "schedule"')
             end
 
             api_params = {
@@ -196,7 +207,7 @@ module Appwrite
                 retention: retention,
                 schedule: schedule,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -210,25 +221,25 @@ module Appwrite
                 params: api_params,
                 response_type: Models::BackupPolicy
             )
-
         end
 
-        # Get a backup policy using it's ID.
+        # Get a backup policy using it&#039;s ID.
         #
-        # @param [String] policy_id Policy ID. Choose a custom ID`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] policy_id Policy ID. Choose a custom ID`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         #
         # @return [BackupPolicy]
-        def get_policy(policy_id:)
+        def get_policy(
+            policy_id:
+        )
             api_path = '/backups/policies/{policyId}'
                 .gsub('{policyId}', policy_id)
 
             if policy_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "policyId"')
+                raise Appwrite::Exception.new('Missing required parameter: "policyId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -241,24 +252,29 @@ module Appwrite
                 params: api_params,
                 response_type: Models::BackupPolicy
             )
-
         end
 
-        # Update an existing policy using it's ID.
+        # Update an existing policy using it&#039;s ID.
         #
-        # @param [String] policy_id Policy ID. Choose a custom ID`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] policy_id Policy ID. Choose a custom ID`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] name Policy name. Max length: 128 chars.
         # @param [Integer] retention Days to keep backups before deletion
         # @param [String] schedule Cron expression
-        # @param [] enabled Is Backup enabled? When set to 'disabled', No backup will be taken
+        # @param [] enabled Is Backup enabled? When set to &#039;disabled&#039;, No backup will be taken
         #
         # @return [BackupPolicy]
-        def update_policy(policy_id:, name: nil, retention: nil, schedule: nil, enabled: nil)
+        def update_policy(
+            policy_id:,
+            name: nil,
+            retention: nil,
+            schedule: nil,
+            enabled: nil
+        )
             api_path = '/backups/policies/{policyId}'
                 .gsub('{policyId}', policy_id)
 
             if policy_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "policyId"')
+                raise Appwrite::Exception.new('Missing required parameter: "policyId"')
             end
 
             api_params = {
@@ -267,7 +283,7 @@ module Appwrite
                 schedule: schedule,
                 enabled: enabled,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -281,25 +297,25 @@ module Appwrite
                 params: api_params,
                 response_type: Models::BackupPolicy
             )
-
         end
 
-        # Delete a policy using it's ID.
+        # Delete a policy using it&#039;s ID.
         #
-        # @param [String] policy_id Policy ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] policy_id Policy ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         #
         # @return []
-        def delete_policy(policy_id:)
+        def delete_policy(
+            policy_id:
+        )
             api_path = '/backups/policies/{policyId}'
                 .gsub('{policyId}', policy_id)
 
             if policy_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "policyId"')
+                raise Appwrite::Exception.new('Missing required parameter: "policyId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -312,24 +328,23 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
 
         # Create and trigger a new restoration for a backup on a project.
-        # 
+        #
         # For a backup of one database, the restoration resolves its destination
         # before it is queued. When `newResourceId` is omitted, the archived database
         # is restored in place and its own ID is returned in `options`. Pass a
         # different `newResourceId` to restore alongside it as a new database
         # instead.
-        # 
+        #
         # The restoration migration records the archived database in `resourceId` and
         # `resourceType`, and the resolved database in `destinationResourceId` and
         # `destinationResourceType`. Database types are stored canonically as
         # `database`, `documentsdb`, or `vectorsdb`. Project-wide restorations leave
         # these fields empty because they do not have a single source or destination
         # database.
-        # 
+        #
         # To list every migration related to one database, use its canonical type in
         # a nested `OR(AND(...), AND(...), AND(...))` across the root, parent, and
         # destination relation pairs: `(resourceType, resourceId)`,
@@ -337,32 +352,37 @@ module Appwrite
         # destinationResourceId)`. Legacy and TablesDB databases use `database`; the
         # operational `resourceType` of a table migration is not rewritten to
         # `tablesdb`.
-        # 
+        #
         # When restoring a DocumentsDB or VectorsDB database from a dedicated source,
         # the restore provisions a fresh dedicated backing database at the source
-        # database's own specification and lands the data there. An in-place restore
+        # database&#039;s own specification and lands the data there. An in-place restore
         # swaps the database onto that backing only once the restore has succeeded,
         # and retires the backing it displaced only once that swap is confirmed, so
         # the source keeps serving its own data until the restored data is in place
         # and any failure leaves it untouched. A serverless source has no dedicated
         # backing to clone and restores onto the archived database instead.
-        # 
+        #
         #
         # @param [String] archive_id Backup archive ID to restore
         # @param [Array] services Array of services to restore
-        # @param [String] new_resource_id Destination resource ID. Omit to restore the archived resource in place, or pass a different ID to restore alongside it as a new resource. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] new_resource_id Destination resource ID. Omit to restore the archived resource in place, or pass a different ID to restore alongside it as a new resource. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] new_resource_name Database name. Max length: 128 chars.
         #
         # @return [BackupRestoration]
-        def create_restoration(archive_id:, services:, new_resource_id: nil, new_resource_name: nil)
+        def create_restoration(
+            archive_id:,
+            services:,
+            new_resource_id: nil,
+            new_resource_name: nil
+        )
             api_path = '/backups/restoration'
 
             if archive_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "archiveId"')
+                raise Appwrite::Exception.new('Missing required parameter: "archiveId"')
             end
 
             if services.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "services"')
+                raise Appwrite::Exception.new('Missing required parameter: "services"')
             end
 
             api_params = {
@@ -371,7 +391,7 @@ module Appwrite
                 newResourceId: new_resource_id,
                 newResourceName: new_resource_name,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -385,7 +405,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::BackupRestoration
             )
-
         end
 
         # List all backup restorations for a project.
@@ -393,13 +412,15 @@ module Appwrite
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
         #
         # @return [BackupRestorationList]
-        def list_restorations(queries: nil)
+        def list_restorations(
+            queries: nil
+        )
             api_path = '/backups/restorations'
 
             api_params = {
                 queries: queries,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -412,25 +433,25 @@ module Appwrite
                 params: api_params,
                 response_type: Models::BackupRestorationList
             )
-
         end
 
         # Get the current status of a backup restoration.
         #
-        # @param [String] restoration_id Restoration ID. Choose a custom ID`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] restoration_id Restoration ID. Choose a custom ID`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         #
         # @return [BackupRestoration]
-        def get_restoration(restoration_id:)
+        def get_restoration(
+            restoration_id:
+        )
             api_path = '/backups/restorations/{restorationId}'
                 .gsub('{restorationId}', restoration_id)
 
             if restoration_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "restorationId"')
+                raise Appwrite::Exception.new('Missing required parameter: "restorationId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -443,8 +464,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::BackupRestoration
             )
-
         end
-
-    end 
+    end
 end

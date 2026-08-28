@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -29,7 +29,7 @@ module Appwrite
                 redirect_url:,
                 redirect_status_code:,
                 deployment_id:,
-                deployment_resource_type: ,
+                deployment_resource_type:,
                 deployment_resource_id:,
                 deployment_vcs_provider_branch:,
                 status:,
@@ -121,7 +121,6 @@ module Appwrite
 
                 status
             end
-
         end
     end
 end

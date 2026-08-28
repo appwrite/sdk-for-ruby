@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -7,8 +7,8 @@ module Appwrite
             attr_reader :projects
 
             def initialize(
-                seats: ,
-                projects: 
+                seats:,
+                projects:
             )
                 @seats = seats
                 @projects = projects

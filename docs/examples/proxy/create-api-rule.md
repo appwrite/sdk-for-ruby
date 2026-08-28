@@ -11,6 +11,6 @@ client = Client.new
 proxy = Proxy.new(client)
 
 result = proxy.create_api_rule(
-    domain: ''
+    domain: 'example.com'
 )
 ```

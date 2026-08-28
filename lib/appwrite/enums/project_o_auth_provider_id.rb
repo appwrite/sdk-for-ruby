@@ -21,6 +21,7 @@ module Appwrite
             GITHUB = 'github'
             GITLAB = 'gitlab'
             GOOGLE = 'google'
+            HUGGINGFACE = 'huggingface'
             KEYCLOAK = 'keycloak'
             KICK = 'kick'
             LINKEDIN = 'linkedin'

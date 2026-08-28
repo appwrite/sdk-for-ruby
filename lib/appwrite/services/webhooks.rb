@@ -1,8 +1,7 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     class Webhooks < Service
-
         def initialize(client)
             @client = client
         end
@@ -14,14 +13,17 @@ module Appwrite
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [WebhookList]
-        def list(queries: nil, total: nil)
+        def list(
+            queries: nil,
+            total: nil
+        )
             api_path = '/webhooks'
 
             api_params = {
                 queries: queries,
                 total: total,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -34,13 +36,12 @@ module Appwrite
                 params: api_params,
                 response_type: Models::WebhookList
             )
-
         end
 
         # Create a new webhook. Use this endpoint to configure a URL that will
         # receive events from Appwrite when specific events occur.
         #
-        # @param [String] webhook_id Webhook ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] webhook_id Webhook ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] url Webhook URL.
         # @param [String] name Webhook name. Max length: 128 chars.
         # @param [Array] events Events list. Maximum of 100 events are allowed.
@@ -51,23 +52,33 @@ module Appwrite
         # @param [String] secret Webhook secret key. If not provided, a new key will be generated automatically. Key must be at least 8 characters long, and at max 256 characters.
         #
         # @return [Webhook]
-        def create(webhook_id:, url:, name:, events:, enabled: nil, tls: nil, auth_username: nil, auth_password: nil, secret: nil)
+        def create(
+            webhook_id:,
+            url:,
+            name:,
+            events:,
+            enabled: nil,
+            tls: nil,
+            auth_username: nil,
+            auth_password: nil,
+            secret: nil
+        )
             api_path = '/webhooks'
 
             if webhook_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "webhookId"')
+                raise Appwrite::Exception.new('Missing required parameter: "webhookId"')
             end
 
             if url.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "url"')
+                raise Appwrite::Exception.new('Missing required parameter: "url"')
             end
 
             if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
             if events.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "events"')
+                raise Appwrite::Exception.new('Missing required parameter: "events"')
             end
 
             api_params = {
@@ -81,7 +92,7 @@ module Appwrite
                 authPassword: auth_password,
                 secret: secret,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -95,26 +106,26 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Webhook
             )
-
         end
 
         # Get a webhook by its unique ID. This endpoint returns details about a
-        # specific webhook configured for a project. 
+        # specific webhook configured for a project.
         #
         # @param [String] webhook_id Webhook ID.
         #
         # @return [Webhook]
-        def get(webhook_id:)
+        def get(
+            webhook_id:
+        )
             api_path = '/webhooks/{webhookId}'
                 .gsub('{webhookId}', webhook_id)
 
             if webhook_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "webhookId"')
+                raise Appwrite::Exception.new('Missing required parameter: "webhookId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -127,7 +138,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Webhook
             )
-
         end
 
         # Update a webhook by its unique ID. Use this endpoint to update the URL,
@@ -143,24 +153,33 @@ module Appwrite
         # @param [String] auth_password Webhook HTTP password. Max length: 256 chars.
         #
         # @return [Webhook]
-        def update(webhook_id:, name:, url:, events:, enabled: nil, tls: nil, auth_username: nil, auth_password: nil)
+        def update(
+            webhook_id:,
+            name:,
+            url:,
+            events:,
+            enabled: nil,
+            tls: nil,
+            auth_username: nil,
+            auth_password: nil
+        )
             api_path = '/webhooks/{webhookId}'
                 .gsub('{webhookId}', webhook_id)
 
             if webhook_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "webhookId"')
+                raise Appwrite::Exception.new('Missing required parameter: "webhookId"')
             end
 
             if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
             if url.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "url"')
+                raise Appwrite::Exception.new('Missing required parameter: "url"')
             end
 
             if events.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "events"')
+                raise Appwrite::Exception.new('Missing required parameter: "events"')
             end
 
             api_params = {
@@ -172,7 +191,7 @@ module Appwrite
                 authUsername: auth_username,
                 authPassword: auth_password,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -186,26 +205,26 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Webhook
             )
-
         end
 
         # Delete a webhook by its unique ID. Once deleted, the webhook will no longer
-        # receive project events. 
+        # receive project events.
         #
         # @param [String] webhook_id Webhook ID.
         #
         # @return []
-        def delete(webhook_id:)
+        def delete(
+            webhook_id:
+        )
             api_path = '/webhooks/{webhookId}'
                 .gsub('{webhookId}', webhook_id)
 
             if webhook_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "webhookId"')
+                raise Appwrite::Exception.new('Missing required parameter: "webhookId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -217,7 +236,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
 
         # Update the webhook signing key. This endpoint can be used to regenerate the
@@ -228,18 +246,21 @@ module Appwrite
         # @param [String] secret Webhook secret key. If not provided, a new key will be generated automatically. Key must be at least 8 characters long, and at max 256 characters.
         #
         # @return [Webhook]
-        def update_secret(webhook_id:, secret: nil)
+        def update_secret(
+            webhook_id:,
+            secret: nil
+        )
             api_path = '/webhooks/{webhookId}/secret'
                 .gsub('{webhookId}', webhook_id)
 
             if webhook_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "webhookId"')
+                raise Appwrite::Exception.new('Missing required parameter: "webhookId"')
             end
 
             api_params = {
                 secret: secret,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -253,8 +274,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Webhook
             )
-
         end
-
-    end 
+    end
 end

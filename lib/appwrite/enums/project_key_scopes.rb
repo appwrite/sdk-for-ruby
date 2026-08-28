@@ -3,6 +3,7 @@ module Appwrite
         module ProjectKeyScopes
             PROJECT_READ = 'project.read'
             PROJECT_WRITE = 'project.write'
+            USAGE_READ = 'usage.read'
             KEYS_READ = 'keys.read'
             KEYS_WRITE = 'keys.write'
             PLATFORMS_READ = 'platforms.read'
@@ -42,6 +43,18 @@ module Appwrite
             ATTRIBUTES_WRITE = 'attributes.write'
             DOCUMENTS_READ = 'documents.read'
             DOCUMENTS_WRITE = 'documents.write'
+            DOCUMENTSDB_READ = 'documentsdb.read'
+            DOCUMENTSDB_WRITE = 'documentsdb.write'
+            DOCUMENTSDB_COLLECTIONS_READ = 'documentsdb.collections.read'
+            DOCUMENTSDB_COLLECTIONS_WRITE = 'documentsdb.collections.write'
+            DOCUMENTSDB_DOCUMENTS_READ = 'documentsdb.documents.read'
+            DOCUMENTSDB_DOCUMENTS_WRITE = 'documentsdb.documents.write'
+            VECTORSDB_READ = 'vectorsdb.read'
+            VECTORSDB_WRITE = 'vectorsdb.write'
+            VECTORSDB_COLLECTIONS_READ = 'vectorsdb.collections.read'
+            VECTORSDB_COLLECTIONS_WRITE = 'vectorsdb.collections.write'
+            VECTORSDB_DOCUMENTS_READ = 'vectorsdb.documents.read'
+            VECTORSDB_DOCUMENTS_WRITE = 'vectorsdb.documents.write'
             BUCKETS_READ = 'buckets.read'
             BUCKETS_WRITE = 'buckets.write'
             FILES_READ = 'files.read'
@@ -94,7 +107,6 @@ module Appwrite
             ARCHIVES_WRITE = 'archives.write'
             RESTORATIONS_READ = 'restorations.read'
             RESTORATIONS_WRITE = 'restorations.write'
-            DEDICATEDDATABASES_EXECUTE = 'dedicatedDatabases.execute'
             DOMAINS_READ = 'domains.read'
             DOMAINS_WRITE = 'domains.write'
             WAFRULES_READ = 'wafRules.read'
@@ -106,7 +118,6 @@ module Appwrite
             OAUTH2_READ = 'oauth2.read'
             OAUTH2_WRITE = 'oauth2.write'
             OAUTH2_INTROSPECT = 'oauth2.introspect'
-            USAGE_READ = 'usage.read'
         end
     end
 end

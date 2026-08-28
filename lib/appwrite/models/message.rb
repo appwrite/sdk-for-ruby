@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -25,9 +25,9 @@ module Appwrite
                 topics:,
                 users:,
                 targets:,
-                scheduled_at: ,
-                delivered_at: ,
-                delivery_errors: ,
+                scheduled_at:,
+                delivered_at:,
+                delivery_errors:,
                 delivered_total:,
                 data:,
                 status:
@@ -100,7 +100,6 @@ module Appwrite
 
                 status
             end
-
         end
     end
 end

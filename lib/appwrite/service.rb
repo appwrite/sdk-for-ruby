@@ -3,5 +3,5 @@ module Appwrite
         def initialize(client)
             @client = client
         end
-    end 
+    end
 end

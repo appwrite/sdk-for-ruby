@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -23,8 +23,8 @@ module Appwrite
                 updated_at:,
                 services:,
                 resources:,
-                resource_id: ,
-                resource_type: ,
+                resource_id:,
+                resource_type:,
                 retention:,
                 schedule:,
                 type:,

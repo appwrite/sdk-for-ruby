@@ -14,8 +14,8 @@ databases = Databases.new(client)
 result = databases.update_relationship_attribute(
     database_id: '<DATABASE_ID>',
     collection_id: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     on_delete: RelationMutate::CASCADE, # optional
-    new_key: '' # optional
+    new_key: '<NEW_KEY>' # optional
 )
 ```

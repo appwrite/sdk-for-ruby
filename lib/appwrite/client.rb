@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 require 'net/http'
 require 'uri'
@@ -7,15 +7,14 @@ require 'cgi'
 
 module Appwrite
     class Client
-
         def initialize
-            @chunk_size = 5*1024*1024
+            @chunk_size = 5 * 1024 * 1024
             @headers = {
                 'user-agent' => RUBY_PLATFORM + ':ruby-' + RUBY_VERSION,
-                'x-sdk-name'=> 'Ruby',
-                'x-sdk-platform'=> 'server',
-                'x-sdk-language'=> 'ruby',
-                'x-sdk-version'=> '27.0.0',
+                'x-sdk-name' => 'Ruby',
+                'x-sdk-platform' => 'server',
+                'x-sdk-language' => 'ruby',
+                'x-sdk-version' => '28.0.0.rc1',
                 'X-Appwrite-Response-Format' => '1.9.6'
             }
             @endpoint = 'https://cloud.appwrite.io/v1'
@@ -310,6 +309,8 @@ module Appwrite
             chunks_uploaded = 0
             if id_param_name&.empty? == false
                 upload_id = params[id_param_name]
+            end
+            if upload_id && !upload_id.empty?
                 # Make a request to check if a file already exists
                 begin
                     current = call(
@@ -378,13 +379,14 @@ module Appwrite
                 chunks_uploaded.to_i >= chunks_total.to_i
             end
 
-            on_progress.call({
+            progress = {
                 id: result['$id'],
-                progress: uploaded_size.to_f/size.to_f * 100.0,
+                progress: uploaded_size.to_f / size.to_f * 100.0,
                 size_uploaded: uploaded_size,
                 chunks_total: result['chunksTotal'] || total_chunks,
                 chunks_uploaded: result['chunksUploaded'] || completed_count
-            }) unless on_progress.nil?
+            }
+            on_progress.call(progress) unless on_progress.nil?
 
             mutex = Mutex.new
             queue = Queue.new
@@ -416,13 +418,14 @@ module Appwrite
                             uploaded_size += chunk[:ending] - chunk[:start]
                             last_result = chunk_result
                             completed_result = chunk_result if upload_complete.call(chunk_result)
-                            on_progress.call({
+                            progress = {
                                 id: upload_id,
-                                progress: uploaded_size.to_f/size.to_f * 100.0,
+                                progress: uploaded_size.to_f / size.to_f * 100.0,
                                 size_uploaded: uploaded_size,
                                 chunks_total: chunk_result['chunksTotal'] || total_chunks,
                                 chunks_uploaded: chunk_result['chunksUploaded'] || completed_count
-                            }) unless on_progress.nil?
+                            }
+                            on_progress.call(progress) unless on_progress.nil?
                         end
                     end
                 end
@@ -461,13 +464,13 @@ module Appwrite
             @boundary = "----A30#3ad1"
             if method != "GET"
                 case headers[:'content-type']
-                    when 'application/json'
-                        payload = params.to_json
-                    when 'multipart/form-data'
-                        payload = encode_form_data(params) + "--#{@boundary}--\r\n"
-                        headers[:'content-type'] = "multipart/form-data; boundary=#{@boundary}"
-                    else
-                        payload = encode(params)
+                when 'application/json'
+                    payload = params.to_json
+                when 'multipart/form-data'
+                    payload = encode_form_data(params) + "--#{@boundary}--\r\n"
+                    headers[:'content-type'] = "multipart/form-data; boundary=#{@boundary}"
+                else
+                    payload = encode(params)
                 end
             end
 
@@ -524,10 +527,10 @@ module Appwrite
             return response
         end
 
-        def encode_form_data(value, key=nil)
+        def encode_form_data(value, key = nil)
             case value
             when Hash
-                value.map { |k,v| encode_form_data(v,k) }.join
+                value.map { |k, v| encode_form_data(v, k) }.join
             when Array
                 value.map { |v| encode_form_data(v, "#{key}[]") }.join
             when nil
@@ -552,11 +555,11 @@ module Appwrite
 
         def encode(value, key = nil)
             case value
-            when Hash  then value.map { |k,v| encode(v, append_key(key,k)) }.join('&')
+            when Hash  then value.map { |k, v| encode(v, append_key(key, k)) }.join('&')
             when Array then value.map { |v| encode(v, "#{key}[]") }.join('&')
             when nil   then ''
             else
-            "#{key}=#{CGI.escape(value.to_s)}"
+                "#{key}=#{CGI.escape(value.to_s)}"
             end
         end
 

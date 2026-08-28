@@ -1,15 +1,14 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     class Proxy < Service
-
         def initialize(client)
             @client = client
         end
 
         # Create a new CDN cache invalidation for a domain. Executes a hard purge of
         # cached content.
-        # 
+        #
         # Depending on type, the invalidation purges a single cache tag, a single URL
         # path, or all cached content for the domain.
         #
@@ -18,15 +17,19 @@ module Appwrite
         # @param [String] reference Reference to invalidate. Depending on type this can be: cache tag name (up to 128 characters), URL path (up to 2048 characters). Not required when type is all.
         #
         # @return [ProxyInvalidation]
-        def create_invalidation(domain:, type:, reference: nil)
+        def create_invalidation(
+            domain:,
+            type:,
+            reference: nil
+        )
             api_path = '/proxy/invalidations'
 
             if domain.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "domain"')
+                raise Appwrite::Exception.new('Missing required parameter: "domain"')
             end
 
             if type.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "type"')
+                raise Appwrite::Exception.new('Missing required parameter: "type"')
             end
 
             api_params = {
@@ -34,7 +37,7 @@ module Appwrite
                 type: type,
                 reference: reference,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -48,7 +51,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ProxyInvalidation
             )
-
         end
 
         # Get a list of all the proxy rules. You can use the query params to filter
@@ -58,14 +60,17 @@ module Appwrite
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [ProxyRuleList]
-        def list_rules(queries: nil, total: nil)
+        def list_rules(
+            queries: nil,
+            total: nil
+        )
             api_path = '/proxy/rules'
 
             api_params = {
                 queries: queries,
                 total: total,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -78,28 +83,29 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ProxyRuleList
             )
-
         end
 
-        # Create a new proxy rule for serving Appwrite's API on custom domain.
-        # 
+        # Create a new proxy rule for serving Appwrite&#039;s API on custom domain.
+        #
         # Rule ID is automatically generated as MD5 hash of a rule domain for
         # performance purposes.
         #
         # @param [String] domain Domain name.
         #
         # @return [ProxyRule]
-        def create_api_rule(domain:)
+        def create_api_rule(
+            domain:
+        )
             api_path = '/proxy/rules/api'
 
             if domain.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "domain"')
+                raise Appwrite::Exception.new('Missing required parameter: "domain"')
             end
 
             api_params = {
                 domain: domain,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -113,11 +119,10 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ProxyRule
             )
-
         end
 
         # Create a new proxy rule for executing Appwrite Function on custom domain.
-        # 
+        #
         # Rule ID is automatically generated as MD5 hash of a rule domain for
         # performance purposes.
         #
@@ -126,15 +131,19 @@ module Appwrite
         # @param [String] branch Name of VCS branch to deploy changes automatically
         #
         # @return [ProxyRule]
-        def create_function_rule(domain:, function_id:, branch: nil)
+        def create_function_rule(
+            domain:,
+            function_id:,
+            branch: nil
+        )
             api_path = '/proxy/rules/function'
 
             if domain.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "domain"')
+                raise Appwrite::Exception.new('Missing required parameter: "domain"')
             end
 
             if function_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
             api_params = {
@@ -142,7 +151,7 @@ module Appwrite
                 functionId: function_id,
                 branch: branch,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -156,12 +165,11 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ProxyRule
             )
-
         end
 
         # Create a new proxy rule for to redirect from custom domain to another
         # domain.
-        # 
+        #
         # Rule ID is automatically generated as MD5 hash of a rule domain for
         # performance purposes.
         #
@@ -172,27 +180,33 @@ module Appwrite
         # @param [ProxyResourceType] resource_type Type of parent resource.
         #
         # @return [ProxyRule]
-        def create_redirect_rule(domain:, url:, status_code:, resource_id:, resource_type:)
+        def create_redirect_rule(
+            domain:,
+            url:,
+            status_code:,
+            resource_id:,
+            resource_type:
+        )
             api_path = '/proxy/rules/redirect'
 
             if domain.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "domain"')
+                raise Appwrite::Exception.new('Missing required parameter: "domain"')
             end
 
             if url.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "url"')
+                raise Appwrite::Exception.new('Missing required parameter: "url"')
             end
 
             if status_code.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "statusCode"')
+                raise Appwrite::Exception.new('Missing required parameter: "statusCode"')
             end
 
             if resource_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "resourceId"')
+                raise Appwrite::Exception.new('Missing required parameter: "resourceId"')
             end
 
             if resource_type.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "resourceType"')
+                raise Appwrite::Exception.new('Missing required parameter: "resourceType"')
             end
 
             api_params = {
@@ -202,7 +216,7 @@ module Appwrite
                 resourceId: resource_id,
                 resourceType: resource_type,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -216,11 +230,10 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ProxyRule
             )
-
         end
 
         # Create a new proxy rule for serving Appwrite Site on custom domain.
-        # 
+        #
         # Rule ID is automatically generated as MD5 hash of a rule domain for
         # performance purposes.
         #
@@ -229,15 +242,19 @@ module Appwrite
         # @param [String] branch Name of VCS branch to deploy changes automatically
         #
         # @return [ProxyRule]
-        def create_site_rule(domain:, site_id:, branch: nil)
+        def create_site_rule(
+            domain:,
+            site_id:,
+            branch: nil
+        )
             api_path = '/proxy/rules/site'
 
             if domain.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "domain"')
+                raise Appwrite::Exception.new('Missing required parameter: "domain"')
             end
 
             if site_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "siteId"')
+                raise Appwrite::Exception.new('Missing required parameter: "siteId"')
             end
 
             api_params = {
@@ -245,7 +262,7 @@ module Appwrite
                 siteId: site_id,
                 branch: branch,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -259,7 +276,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ProxyRule
             )
-
         end
 
         # Get a proxy rule by its unique ID.
@@ -267,17 +283,18 @@ module Appwrite
         # @param [String] rule_id Rule ID.
         #
         # @return [ProxyRule]
-        def get_rule(rule_id:)
+        def get_rule(
+            rule_id:
+        )
             api_path = '/proxy/rules/{ruleId}'
                 .gsub('{ruleId}', rule_id)
 
             if rule_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
+                raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -290,7 +307,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ProxyRule
             )
-
         end
 
         # Delete a proxy rule by its unique ID.
@@ -298,17 +314,18 @@ module Appwrite
         # @param [String] rule_id Rule ID.
         #
         # @return []
-        def delete_rule(rule_id:)
+        def delete_rule(
+            rule_id:
+        )
             api_path = '/proxy/rules/{ruleId}'
                 .gsub('{ruleId}', rule_id)
 
             if rule_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
+                raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -320,7 +337,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
 
         # If not succeeded yet, retry verification process of a proxy rule domain.
@@ -331,17 +347,18 @@ module Appwrite
         # @param [String] rule_id Rule ID.
         #
         # @return [ProxyRule]
-        def update_rule_status(rule_id:)
+        def update_rule_status(
+            rule_id:
+        )
             api_path = '/proxy/rules/{ruleId}/status'
                 .gsub('{ruleId}', rule_id)
 
             if rule_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
+                raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -355,8 +372,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ProxyRule
             )
-
         end
-
-    end 
+    end
 end

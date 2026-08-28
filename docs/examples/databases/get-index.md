@@ -13,6 +13,6 @@ databases = Databases.new(client)
 result = databases.get_index(
     database_id: '<DATABASE_ID>',
     collection_id: '<COLLECTION_ID>',
-    key: ''
+    key: '<KEY>'
 )
 ```

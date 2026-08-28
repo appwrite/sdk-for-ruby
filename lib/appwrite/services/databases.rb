@@ -1,8 +1,7 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     class Databases < Service
-
         def initialize(client)
             @client = client
         end
@@ -18,7 +17,11 @@ module Appwrite
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [DatabaseList]
-        def list(queries: nil, search: nil, total: nil)
+        def list(
+            queries: nil,
+            search: nil,
+            total: nil
+        )
             api_path = '/databases'
 
             api_params = {
@@ -26,7 +29,7 @@ module Appwrite
                 search: search,
                 total: total,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -39,29 +42,32 @@ module Appwrite
                 params: api_params,
                 response_type: Models::DatabaseList
             )
-
         end
 
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.create` instead.
         #
         # Create a new Database.
-        # 
         #
-        # @param [String] database_id Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        #
+        # @param [String] database_id Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] name Database name. Max length: 128 chars.
-        # @param [] enabled Is the database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled.
+        # @param [] enabled Is the database enabled? When set to &#039;disabled&#039;, users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled.
         #
         # @return [Database]
-        def create(database_id:, name:, enabled: nil)
+        def create(
+            database_id:,
+            name:,
+            enabled: nil
+        )
             api_path = '/databases'
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
             api_params = {
@@ -69,7 +75,7 @@ module Appwrite
                 name: name,
                 enabled: enabled,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -83,7 +89,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Database
             )
-
         end
 
         #
@@ -94,13 +99,15 @@ module Appwrite
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries).
         #
         # @return [TransactionList]
-        def list_transactions(queries: nil)
+        def list_transactions(
+            queries: nil
+        )
             api_path = '/databases/transactions'
 
             api_params = {
                 queries: queries,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -113,7 +120,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::TransactionList
             )
-
         end
 
         #
@@ -124,13 +130,15 @@ module Appwrite
         # @param [Integer] ttl Seconds before the transaction expires.
         #
         # @return [Transaction]
-        def create_transaction(ttl: nil)
+        def create_transaction(
+            ttl: nil
+        )
             api_path = '/databases/transactions'
 
             api_params = {
                 ttl: ttl,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -144,7 +152,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Transaction
             )
-
         end
 
         #
@@ -155,17 +162,18 @@ module Appwrite
         # @param [String] transaction_id Transaction ID.
         #
         # @return [Transaction]
-        def get_transaction(transaction_id:)
+        def get_transaction(
+            transaction_id:
+        )
             api_path = '/databases/transactions/{transactionId}'
                 .gsub('{transactionId}', transaction_id)
 
             if transaction_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -178,7 +186,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Transaction
             )
-
         end
 
         #
@@ -191,19 +198,23 @@ module Appwrite
         # @param [] rollback Rollback transaction?
         #
         # @return [Transaction]
-        def update_transaction(transaction_id:, commit: nil, rollback: nil)
+        def update_transaction(
+            transaction_id:,
+            commit: nil,
+            rollback: nil
+        )
             api_path = '/databases/transactions/{transactionId}'
                 .gsub('{transactionId}', transaction_id)
 
             if transaction_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
             end
 
             api_params = {
                 commit: commit,
                 rollback: rollback,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -217,7 +228,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Transaction
             )
-
         end
 
         #
@@ -228,17 +238,18 @@ module Appwrite
         # @param [String] transaction_id Transaction ID.
         #
         # @return []
-        def delete_transaction(transaction_id:)
+        def delete_transaction(
+            transaction_id:
+        )
             api_path = '/databases/transactions/{transactionId}'
                 .gsub('{transactionId}', transaction_id)
 
             if transaction_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -250,7 +261,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
 
         #
@@ -262,18 +272,21 @@ module Appwrite
         # @param [Array] operations Array of staged operations.
         #
         # @return [Transaction]
-        def create_operations(transaction_id:, operations: nil)
+        def create_operations(
+            transaction_id:,
+            operations: nil
+        )
             api_path = '/databases/transactions/{transactionId}/operations'
                 .gsub('{transactionId}', transaction_id)
 
             if transaction_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
             end
 
             api_params = {
                 operations: operations,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -287,7 +300,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Transaction
             )
-
         end
 
         #
@@ -299,17 +311,18 @@ module Appwrite
         # @param [String] database_id Database ID.
         #
         # @return [Database]
-        def get(database_id:)
+        def get(
+            database_id:
+        )
             api_path = '/databases/{databaseId}'
                 .gsub('{databaseId}', database_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -322,7 +335,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Database
             )
-
         end
 
         #
@@ -332,22 +344,26 @@ module Appwrite
         #
         # @param [String] database_id Database ID.
         # @param [String] name Database name. Max length: 128 chars.
-        # @param [] enabled Is database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled.
+        # @param [] enabled Is database enabled? When set to &#039;disabled&#039;, users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled.
         #
         # @return [Database]
-        def update(database_id:, name: nil, enabled: nil)
+        def update(
+            database_id:,
+            name: nil,
+            enabled: nil
+        )
             api_path = '/databases/{databaseId}'
                 .gsub('{databaseId}', database_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             api_params = {
                 name: name,
                 enabled: enabled,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -361,7 +377,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Database
             )
-
         end
 
         #
@@ -373,17 +388,18 @@ module Appwrite
         # @param [String] database_id Database ID.
         #
         # @return []
-        def delete(database_id:)
+        def delete(
+            database_id:
+        )
             api_path = '/databases/{databaseId}'
                 .gsub('{databaseId}', database_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -395,7 +411,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
 
         #
@@ -410,12 +425,17 @@ module Appwrite
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [CollectionList]
-        def list_collections(database_id:, queries: nil, search: nil, total: nil)
+        def list_collections(
+            database_id:,
+            queries: nil,
+            search: nil,
+            total: nil
+        )
             api_path = '/databases/{databaseId}/collections'
                 .gsub('{databaseId}', database_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             api_params = {
@@ -423,7 +443,7 @@ module Appwrite
                 search: search,
                 total: total,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -436,7 +456,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::CollectionList
             )
-
         end
 
         #
@@ -448,29 +467,38 @@ module Appwrite
         # API or directly from your database console.
         #
         # @param [String] database_id Database ID.
-        # @param [String] collection_id Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] collection_id Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] name Collection name. Max length: 128 chars.
         # @param [Array] permissions An array of permissions strings. By default, no user is granted with any permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
         # @param [] document_security Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](https://appwrite.io/docs/permissions).
-        # @param [] enabled Is collection enabled? When set to 'disabled', users cannot access the collection but Server SDKs with and API key can still read and write to the collection. No data is lost when this is toggled.
+        # @param [] enabled Is collection enabled? When set to &#039;disabled&#039;, users cannot access the collection but Server SDKs with and API key can still read and write to the collection. No data is lost when this is toggled.
         # @param [Array] attributes Array of attribute definitions to create. Each attribute should contain: key (string), type (string: string, varchar, text, mediumtext, longtext, integer, bigint, double, boolean, datetime, point, linestring, polygon, email, url, ip, enum), size (integer, required for string and varchar types), required (boolean, optional), default (mixed, optional), array (boolean, optional), and type-specific options.
         # @param [Array] indexes Array of index definitions to create. Each index should contain: key (string), type (string: key, fulltext, unique, spatial), attributes (array of attribute keys), orders (array of ASC/DESC, optional), and lengths (array of integers, optional).
         #
         # @return [Collection]
-        def create_collection(database_id:, collection_id:, name:, permissions: nil, document_security: nil, enabled: nil, attributes: nil, indexes: nil)
+        def create_collection(
+            database_id:,
+            collection_id:,
+            name:,
+            permissions: nil,
+            document_security: nil,
+            enabled: nil,
+            attributes: nil,
+            indexes: nil
+        )
             api_path = '/databases/{databaseId}/collections'
                 .gsub('{databaseId}', database_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
             api_params = {
@@ -482,7 +510,7 @@ module Appwrite
                 attributes: attributes,
                 indexes: indexes,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -496,7 +524,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Collection
             )
-
         end
 
         #
@@ -509,22 +536,24 @@ module Appwrite
         # @param [String] collection_id Collection ID.
         #
         # @return [Collection]
-        def get_collection(database_id:, collection_id:)
+        def get_collection(
+            database_id:,
+            collection_id:
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -537,7 +566,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Collection
             )
-
         end
 
         #
@@ -550,21 +578,29 @@ module Appwrite
         # @param [String] name Collection name. Max length: 128 chars.
         # @param [Array] permissions An array of permission strings. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions).
         # @param [] document_security Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](https://appwrite.io/docs/permissions).
-        # @param [] enabled Is collection enabled? When set to 'disabled', users cannot access the collection but Server SDKs with and API key can still read and write to the collection. No data is lost when this is toggled.
+        # @param [] enabled Is collection enabled? When set to &#039;disabled&#039;, users cannot access the collection but Server SDKs with and API key can still read and write to the collection. No data is lost when this is toggled.
         # @param [] purge When true, purge all cached list responses for this collection as part of the update. Use this to force readers to see fresh data immediately instead of waiting for the cache TTL to expire.
         #
         # @return [Collection]
-        def update_collection(database_id:, collection_id:, name: nil, permissions: nil, document_security: nil, enabled: nil, purge: nil)
+        def update_collection(
+            database_id:,
+            collection_id:,
+            name: nil,
+            permissions: nil,
+            document_security: nil,
+            enabled: nil,
+            purge: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             api_params = {
@@ -574,7 +610,7 @@ module Appwrite
                 enabled: enabled,
                 purge: purge,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -588,7 +624,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Collection
             )
-
         end
 
         #
@@ -601,22 +636,24 @@ module Appwrite
         # @param [String] collection_id Collection ID.
         #
         # @return []
-        def delete_collection(database_id:, collection_id:)
+        def delete_collection(
+            database_id:,
+            collection_id:
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -628,7 +665,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
 
         #
@@ -642,24 +678,29 @@ module Appwrite
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [AttributeList]
-        def list_attributes(database_id:, collection_id:, queries: nil, total: nil)
+        def list_attributes(
+            database_id:,
+            collection_id:,
+            queries: nil,
+            total: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             api_params = {
                 queries: queries,
                 total: total,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -672,7 +713,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeList
             )
-
         end
 
         #
@@ -680,7 +720,7 @@ module Appwrite
         #
         # Create a bigint attribute. Optionally, minimum and maximum values can be
         # provided.
-        # 
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID.
@@ -692,25 +732,34 @@ module Appwrite
         # @param [] array Is attribute an array?
         #
         # @return [AttributeBigint]
-        def create_big_int_attribute(database_id:, collection_id:, key:, required:, min: nil, max: nil, default: nil, array: nil)
+        def create_big_int_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            min: nil,
+            max: nil,
+            default: nil,
+            array: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/bigint'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             api_params = {
@@ -721,7 +770,7 @@ module Appwrite
                 default: default,
                 array: array,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -735,7 +784,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeBigint
             )
-
         end
 
         #
@@ -743,7 +791,7 @@ module Appwrite
         #
         # Update a bigint attribute. Changing the `default` value will not update
         # already existing documents.
-        # 
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID.
@@ -755,30 +803,39 @@ module Appwrite
         # @param [String] new_key New Attribute Key.
         #
         # @return [AttributeBigint]
-        def update_big_int_attribute(database_id:, collection_id:, key:, required:, default:, min: nil, max: nil, new_key: nil)
+        def update_big_int_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            default:,
+            min: nil,
+            max: nil,
+            new_key: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/bigint/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             if default.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "default"')
+                raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
 
             api_params = {
@@ -788,7 +845,7 @@ module Appwrite
                 default: default,
                 newKey: new_key,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -802,14 +859,13 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeBigint
             )
-
         end
 
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createBooleanColumn` instead.
         #
         # Create a boolean attribute.
-        # 
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -819,25 +875,32 @@ module Appwrite
         # @param [] array Is attribute an array?
         #
         # @return [AttributeBoolean]
-        def create_boolean_attribute(database_id:, collection_id:, key:, required:, default: nil, array: nil)
+        def create_boolean_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            default: nil,
+            array: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/boolean'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             api_params = {
@@ -846,7 +909,7 @@ module Appwrite
                 default: default,
                 array: array,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -860,7 +923,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeBoolean
             )
-
         end
 
         #
@@ -877,30 +939,37 @@ module Appwrite
         # @param [String] new_key New attribute key.
         #
         # @return [AttributeBoolean]
-        def update_boolean_attribute(database_id:, collection_id:, key:, required:, default:, new_key: nil)
+        def update_boolean_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            default:,
+            new_key: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/boolean/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             if default.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "default"')
+                raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
 
             api_params = {
@@ -908,7 +977,7 @@ module Appwrite
                 default: default,
                 newKey: new_key,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -922,7 +991,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeBoolean
             )
-
         end
 
         #
@@ -938,25 +1006,32 @@ module Appwrite
         # @param [] array Is attribute an array?
         #
         # @return [AttributeDatetime]
-        def create_datetime_attribute(database_id:, collection_id:, key:, required:, default: nil, array: nil)
+        def create_datetime_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            default: nil,
+            array: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/datetime'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             api_params = {
@@ -965,7 +1040,7 @@ module Appwrite
                 default: default,
                 array: array,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -979,7 +1054,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeDatetime
             )
-
         end
 
         #
@@ -996,30 +1070,37 @@ module Appwrite
         # @param [String] new_key New attribute key.
         #
         # @return [AttributeDatetime]
-        def update_datetime_attribute(database_id:, collection_id:, key:, required:, default:, new_key: nil)
+        def update_datetime_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            default:,
+            new_key: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/datetime/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             if default.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "default"')
+                raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
 
             api_params = {
@@ -1027,7 +1108,7 @@ module Appwrite
                 default: default,
                 newKey: new_key,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1041,14 +1122,13 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeDatetime
             )
-
         end
 
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createEmailColumn` instead.
         #
         # Create an email attribute.
-        # 
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID.
@@ -1058,25 +1138,32 @@ module Appwrite
         # @param [] array Is attribute an array?
         #
         # @return [AttributeEmail]
-        def create_email_attribute(database_id:, collection_id:, key:, required:, default: nil, array: nil)
+        def create_email_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            default: nil,
+            array: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/email'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             api_params = {
@@ -1085,7 +1172,7 @@ module Appwrite
                 default: default,
                 array: array,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1099,7 +1186,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeEmail
             )
-
         end
 
         #
@@ -1107,7 +1193,7 @@ module Appwrite
         #
         # Update an email attribute. Changing the `default` value will not update
         # already existing documents.
-        # 
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID.
@@ -1117,30 +1203,37 @@ module Appwrite
         # @param [String] new_key New Attribute Key.
         #
         # @return [AttributeEmail]
-        def update_email_attribute(database_id:, collection_id:, key:, required:, default:, new_key: nil)
+        def update_email_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            default:,
+            new_key: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/email/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             if default.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "default"')
+                raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
 
             api_params = {
@@ -1148,7 +1241,7 @@ module Appwrite
                 default: default,
                 newKey: new_key,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1162,15 +1255,14 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeEmail
             )
-
         end
 
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createEnumColumn` instead.
         #
         # Create an enum attribute. The `elements` param acts as a white-list of
-        # accepted values for this attribute. 
-        # 
+        # accepted values for this attribute.
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID.
@@ -1181,29 +1273,37 @@ module Appwrite
         # @param [] array Is attribute an array?
         #
         # @return [AttributeEnum]
-        def create_enum_attribute(database_id:, collection_id:, key:, elements:, required:, default: nil, array: nil)
+        def create_enum_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            elements:,
+            required:,
+            default: nil,
+            array: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/enum'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if elements.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "elements"')
+                raise Appwrite::Exception.new('Missing required parameter: "elements"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             api_params = {
@@ -1213,7 +1313,7 @@ module Appwrite
                 default: default,
                 array: array,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1227,7 +1327,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeEnum
             )
-
         end
 
         #
@@ -1235,7 +1334,7 @@ module Appwrite
         #
         # Update an enum attribute. Changing the `default` value will not update
         # already existing documents.
-        # 
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID.
@@ -1246,34 +1345,42 @@ module Appwrite
         # @param [String] new_key New Attribute Key.
         #
         # @return [AttributeEnum]
-        def update_enum_attribute(database_id:, collection_id:, key:, elements:, required:, default:, new_key: nil)
+        def update_enum_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            elements:,
+            required:,
+            default:,
+            new_key: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/enum/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if elements.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "elements"')
+                raise Appwrite::Exception.new('Missing required parameter: "elements"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             if default.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "default"')
+                raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
 
             api_params = {
@@ -1282,7 +1389,7 @@ module Appwrite
                 default: default,
                 newKey: new_key,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1296,7 +1403,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeEnum
             )
-
         end
 
         #
@@ -1304,7 +1410,7 @@ module Appwrite
         #
         # Create a float attribute. Optionally, minimum and maximum values can be
         # provided.
-        # 
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID.
@@ -1316,25 +1422,34 @@ module Appwrite
         # @param [] array Is attribute an array?
         #
         # @return [AttributeFloat]
-        def create_float_attribute(database_id:, collection_id:, key:, required:, min: nil, max: nil, default: nil, array: nil)
+        def create_float_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            min: nil,
+            max: nil,
+            default: nil,
+            array: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/float'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             api_params = {
@@ -1345,7 +1460,7 @@ module Appwrite
                 default: default,
                 array: array,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1359,7 +1474,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeFloat
             )
-
         end
 
         #
@@ -1367,7 +1481,7 @@ module Appwrite
         #
         # Update a float attribute. Changing the `default` value will not update
         # already existing documents.
-        # 
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID.
@@ -1379,30 +1493,39 @@ module Appwrite
         # @param [String] new_key New Attribute Key.
         #
         # @return [AttributeFloat]
-        def update_float_attribute(database_id:, collection_id:, key:, required:, default:, min: nil, max: nil, new_key: nil)
+        def update_float_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            default:,
+            min: nil,
+            max: nil,
+            new_key: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/float/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             if default.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "default"')
+                raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
 
             api_params = {
@@ -1412,7 +1535,7 @@ module Appwrite
                 default: default,
                 newKey: new_key,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1426,7 +1549,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeFloat
             )
-
         end
 
         #
@@ -1434,7 +1556,7 @@ module Appwrite
         #
         # Create an integer attribute. Optionally, minimum and maximum values can be
         # provided.
-        # 
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID.
@@ -1446,25 +1568,34 @@ module Appwrite
         # @param [] array Is attribute an array?
         #
         # @return [AttributeInteger]
-        def create_integer_attribute(database_id:, collection_id:, key:, required:, min: nil, max: nil, default: nil, array: nil)
+        def create_integer_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            min: nil,
+            max: nil,
+            default: nil,
+            array: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/integer'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             api_params = {
@@ -1475,7 +1606,7 @@ module Appwrite
                 default: default,
                 array: array,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1489,7 +1620,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeInteger
             )
-
         end
 
         #
@@ -1497,7 +1627,7 @@ module Appwrite
         #
         # Update an integer attribute. Changing the `default` value will not update
         # already existing documents.
-        # 
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID.
@@ -1509,30 +1639,39 @@ module Appwrite
         # @param [String] new_key New Attribute Key.
         #
         # @return [AttributeInteger]
-        def update_integer_attribute(database_id:, collection_id:, key:, required:, default:, min: nil, max: nil, new_key: nil)
+        def update_integer_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            default:,
+            min: nil,
+            max: nil,
+            new_key: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/integer/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             if default.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "default"')
+                raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
 
             api_params = {
@@ -1542,7 +1681,7 @@ module Appwrite
                 default: default,
                 newKey: new_key,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1556,14 +1695,13 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeInteger
             )
-
         end
 
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createIpColumn` instead.
         #
         # Create IP address attribute.
-        # 
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID.
@@ -1573,25 +1711,32 @@ module Appwrite
         # @param [] array Is attribute an array?
         #
         # @return [AttributeIp]
-        def create_ip_attribute(database_id:, collection_id:, key:, required:, default: nil, array: nil)
+        def create_ip_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            default: nil,
+            array: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/ip'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             api_params = {
@@ -1600,7 +1745,7 @@ module Appwrite
                 default: default,
                 array: array,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1614,7 +1759,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeIp
             )
-
         end
 
         #
@@ -1622,7 +1766,7 @@ module Appwrite
         #
         # Update an ip attribute. Changing the `default` value will not update
         # already existing documents.
-        # 
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID.
@@ -1632,30 +1776,37 @@ module Appwrite
         # @param [String] new_key New Attribute Key.
         #
         # @return [AttributeIp]
-        def update_ip_attribute(database_id:, collection_id:, key:, required:, default:, new_key: nil)
+        def update_ip_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            default:,
+            new_key: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/ip/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             if default.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "default"')
+                raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
 
             api_params = {
@@ -1663,7 +1814,7 @@ module Appwrite
                 default: default,
                 newKey: new_key,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1677,7 +1828,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeIp
             )
-
         end
 
         #
@@ -1692,25 +1842,31 @@ module Appwrite
         # @param [Array] default Default value for attribute when not provided, two-dimensional array of coordinate pairs, [[longitude, latitude], [longitude, latitude], …], listing the vertices of the line in order. Cannot be set when attribute is required.
         #
         # @return [AttributeLine]
-        def create_line_attribute(database_id:, collection_id:, key:, required:, default: nil)
+        def create_line_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            default: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/line'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             api_params = {
@@ -1718,7 +1874,7 @@ module Appwrite
                 required: required,
                 default: default,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1732,7 +1888,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeLine
             )
-
         end
 
         #
@@ -1749,26 +1904,33 @@ module Appwrite
         # @param [String] new_key New attribute key.
         #
         # @return [AttributeLine]
-        def update_line_attribute(database_id:, collection_id:, key:, required:, default: nil, new_key: nil)
+        def update_line_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            default: nil,
+            new_key: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/line/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             api_params = {
@@ -1776,7 +1938,7 @@ module Appwrite
                 default: default,
                 newKey: new_key,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1790,14 +1952,13 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeLine
             )
-
         end
 
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createLongtextColumn` instead.
         #
         # Create a longtext attribute.
-        # 
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -1808,25 +1969,33 @@ module Appwrite
         # @param [] encrypt Toggle encryption for the attribute. Encryption enhances security by not storing any plain text values in the database. However, encrypted attributes cannot be queried.
         #
         # @return [AttributeLongtext]
-        def create_longtext_attribute(database_id:, collection_id:, key:, required:, default: nil, array: nil, encrypt: nil)
+        def create_longtext_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            default: nil,
+            array: nil,
+            encrypt: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/longtext'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             api_params = {
@@ -1836,7 +2005,7 @@ module Appwrite
                 array: array,
                 encrypt: encrypt,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1850,7 +2019,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeLongtext
             )
-
         end
 
         #
@@ -1858,7 +2026,7 @@ module Appwrite
         #
         # Update a longtext attribute. Changing the `default` value will not update
         # already existing documents.
-        # 
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -1868,30 +2036,37 @@ module Appwrite
         # @param [String] new_key New Attribute Key.
         #
         # @return [AttributeLongtext]
-        def update_longtext_attribute(database_id:, collection_id:, key:, required:, default:, new_key: nil)
+        def update_longtext_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            default:,
+            new_key: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/longtext/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             if default.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "default"')
+                raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
 
             api_params = {
@@ -1899,7 +2074,7 @@ module Appwrite
                 default: default,
                 newKey: new_key,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1913,14 +2088,13 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeLongtext
             )
-
         end
 
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createMediumtextColumn` instead.
         #
         # Create a mediumtext attribute.
-        # 
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -1931,25 +2105,33 @@ module Appwrite
         # @param [] encrypt Toggle encryption for the attribute. Encryption enhances security by not storing any plain text values in the database. However, encrypted attributes cannot be queried.
         #
         # @return [AttributeMediumtext]
-        def create_mediumtext_attribute(database_id:, collection_id:, key:, required:, default: nil, array: nil, encrypt: nil)
+        def create_mediumtext_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            default: nil,
+            array: nil,
+            encrypt: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/mediumtext'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             api_params = {
@@ -1959,7 +2141,7 @@ module Appwrite
                 array: array,
                 encrypt: encrypt,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1973,7 +2155,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeMediumtext
             )
-
         end
 
         #
@@ -1981,7 +2162,7 @@ module Appwrite
         #
         # Update a mediumtext attribute. Changing the `default` value will not update
         # already existing documents.
-        # 
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -1991,30 +2172,37 @@ module Appwrite
         # @param [String] new_key New Attribute Key.
         #
         # @return [AttributeMediumtext]
-        def update_mediumtext_attribute(database_id:, collection_id:, key:, required:, default:, new_key: nil)
+        def update_mediumtext_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            default:,
+            new_key: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/mediumtext/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             if default.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "default"')
+                raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
 
             api_params = {
@@ -2022,7 +2210,7 @@ module Appwrite
                 default: default,
                 newKey: new_key,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -2036,7 +2224,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeMediumtext
             )
-
         end
 
         #
@@ -2051,25 +2238,31 @@ module Appwrite
         # @param [Array] default Default value for attribute when not provided, array of two numbers [longitude, latitude], representing a single coordinate. Cannot be set when attribute is required.
         #
         # @return [AttributePoint]
-        def create_point_attribute(database_id:, collection_id:, key:, required:, default: nil)
+        def create_point_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            default: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/point'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             api_params = {
@@ -2077,7 +2270,7 @@ module Appwrite
                 required: required,
                 default: default,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -2091,7 +2284,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributePoint
             )
-
         end
 
         #
@@ -2108,26 +2300,33 @@ module Appwrite
         # @param [String] new_key New attribute key.
         #
         # @return [AttributePoint]
-        def update_point_attribute(database_id:, collection_id:, key:, required:, default: nil, new_key: nil)
+        def update_point_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            default: nil,
+            new_key: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/point/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             api_params = {
@@ -2135,7 +2334,7 @@ module Appwrite
                 default: default,
                 newKey: new_key,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -2149,7 +2348,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributePoint
             )
-
         end
 
         #
@@ -2164,25 +2362,31 @@ module Appwrite
         # @param [Array] default Default value for attribute when not provided, three-dimensional array where the outer array holds one or more linear rings, [[[longitude, latitude], …], …], the first ring is the exterior boundary, any additional rings are interior holes, and each ring must start and end with the same coordinate pair. Cannot be set when attribute is required.
         #
         # @return [AttributePolygon]
-        def create_polygon_attribute(database_id:, collection_id:, key:, required:, default: nil)
+        def create_polygon_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            default: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/polygon'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             api_params = {
@@ -2190,7 +2394,7 @@ module Appwrite
                 required: required,
                 default: default,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -2204,7 +2408,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributePolygon
             )
-
         end
 
         #
@@ -2221,26 +2424,33 @@ module Appwrite
         # @param [String] new_key New attribute key.
         #
         # @return [AttributePolygon]
-        def update_polygon_attribute(database_id:, collection_id:, key:, required:, default: nil, new_key: nil)
+        def update_polygon_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            default: nil,
+            new_key: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/polygon/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             api_params = {
@@ -2248,7 +2458,7 @@ module Appwrite
                 default: default,
                 newKey: new_key,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -2262,7 +2472,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributePolygon
             )
-
         end
 
         #
@@ -2270,7 +2479,7 @@ module Appwrite
         #
         # Create relationship attribute. [Learn more about relationship
         # attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
-        # 
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID.
@@ -2282,25 +2491,34 @@ module Appwrite
         # @param [RelationMutate] on_delete Delete constraint. Possible values are: cascade, restrict, setNull.
         #
         # @return [AttributeRelationship]
-        def create_relationship_attribute(database_id:, collection_id:, related_collection_id:, type:, two_way: nil, key: nil, two_way_key: nil, on_delete: nil)
+        def create_relationship_attribute(
+            database_id:,
+            collection_id:,
+            related_collection_id:,
+            type:,
+            two_way: nil,
+            key: nil,
+            two_way_key: nil,
+            on_delete: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/relationship'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if related_collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "relatedCollectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "relatedCollectionId"')
             end
 
             if type.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "type"')
+                raise Appwrite::Exception.new('Missing required parameter: "type"')
             end
 
             api_params = {
@@ -2311,7 +2529,7 @@ module Appwrite
                 twoWayKey: two_way_key,
                 onDelete: on_delete,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -2325,7 +2543,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeRelationship
             )
-
         end
 
         #
@@ -2333,7 +2550,7 @@ module Appwrite
         #
         # Update relationship attribute. [Learn more about relationship
         # attributes](https://appwrite.io/docs/databases-relationships#relationship-attributes).
-        # 
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID.
@@ -2342,29 +2559,35 @@ module Appwrite
         # @param [String] new_key New Attribute Key.
         #
         # @return [AttributeRelationship]
-        def update_relationship_attribute(database_id:, collection_id:, key:, on_delete: nil, new_key: nil)
+        def update_relationship_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            on_delete: nil,
+            new_key: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/relationship/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             api_params = {
                 onDelete: on_delete,
                 newKey: new_key,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -2378,14 +2601,13 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeRelationship
             )
-
         end
 
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createStringColumn` instead.
         #
         # Create a string attribute.
-        # 
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -2397,29 +2619,38 @@ module Appwrite
         # @param [] encrypt Toggle encryption for the attribute. Encryption enhances security by not storing any plain text values in the database. However, encrypted attributes cannot be queried.
         #
         # @return [AttributeString]
-        def create_string_attribute(database_id:, collection_id:, key:, size:, required:, default: nil, array: nil, encrypt: nil)
+        def create_string_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            size:,
+            required:,
+            default: nil,
+            array: nil,
+            encrypt: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/string'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if size.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "size"')
+                raise Appwrite::Exception.new('Missing required parameter: "size"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             api_params = {
@@ -2430,7 +2661,7 @@ module Appwrite
                 array: array,
                 encrypt: encrypt,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -2444,7 +2675,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeString
             )
-
         end
 
         #
@@ -2452,7 +2682,7 @@ module Appwrite
         #
         # Update a string attribute. Changing the `default` value will not update
         # already existing documents.
-        # 
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -2463,30 +2693,38 @@ module Appwrite
         # @param [String] new_key New Attribute Key.
         #
         # @return [AttributeString]
-        def update_string_attribute(database_id:, collection_id:, key:, required:, default:, size: nil, new_key: nil)
+        def update_string_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            default:,
+            size: nil,
+            new_key: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/string/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             if default.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "default"')
+                raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
 
             api_params = {
@@ -2495,7 +2733,7 @@ module Appwrite
                 size: size,
                 newKey: new_key,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -2509,14 +2747,13 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeString
             )
-
         end
 
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createTextColumn` instead.
         #
         # Create a text attribute.
-        # 
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -2527,25 +2764,33 @@ module Appwrite
         # @param [] encrypt Toggle encryption for the attribute. Encryption enhances security by not storing any plain text values in the database. However, encrypted attributes cannot be queried.
         #
         # @return [AttributeText]
-        def create_text_attribute(database_id:, collection_id:, key:, required:, default: nil, array: nil, encrypt: nil)
+        def create_text_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            default: nil,
+            array: nil,
+            encrypt: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/text'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             api_params = {
@@ -2555,7 +2800,7 @@ module Appwrite
                 array: array,
                 encrypt: encrypt,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -2569,7 +2814,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeText
             )
-
         end
 
         #
@@ -2577,7 +2821,7 @@ module Appwrite
         #
         # Update a text attribute. Changing the `default` value will not update
         # already existing documents.
-        # 
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -2587,30 +2831,37 @@ module Appwrite
         # @param [String] new_key New Attribute Key.
         #
         # @return [AttributeText]
-        def update_text_attribute(database_id:, collection_id:, key:, required:, default:, new_key: nil)
+        def update_text_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            default:,
+            new_key: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/text/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             if default.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "default"')
+                raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
 
             api_params = {
@@ -2618,7 +2869,7 @@ module Appwrite
                 default: default,
                 newKey: new_key,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -2632,14 +2883,13 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeText
             )
-
         end
 
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createUrlColumn` instead.
         #
         # Create a URL attribute.
-        # 
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID.
@@ -2649,25 +2899,32 @@ module Appwrite
         # @param [] array Is attribute an array?
         #
         # @return [AttributeUrl]
-        def create_url_attribute(database_id:, collection_id:, key:, required:, default: nil, array: nil)
+        def create_url_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            default: nil,
+            array: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/url'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             api_params = {
@@ -2676,7 +2933,7 @@ module Appwrite
                 default: default,
                 array: array,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -2690,7 +2947,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeUrl
             )
-
         end
 
         #
@@ -2698,7 +2954,7 @@ module Appwrite
         #
         # Update an url attribute. Changing the `default` value will not update
         # already existing documents.
-        # 
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID.
@@ -2708,30 +2964,37 @@ module Appwrite
         # @param [String] new_key New Attribute Key.
         #
         # @return [AttributeUrl]
-        def update_url_attribute(database_id:, collection_id:, key:, required:, default:, new_key: nil)
+        def update_url_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            default:,
+            new_key: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/url/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             if default.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "default"')
+                raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
 
             api_params = {
@@ -2739,7 +3002,7 @@ module Appwrite
                 default: default,
                 newKey: new_key,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -2753,14 +3016,13 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeUrl
             )
-
         end
 
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.createVarcharColumn` instead.
         #
         # Create a varchar attribute.
-        # 
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -2772,29 +3034,38 @@ module Appwrite
         # @param [] encrypt Toggle encryption for the attribute. Encryption enhances security by not storing any plain text values in the database. However, encrypted attributes cannot be queried.
         #
         # @return [AttributeVarchar]
-        def create_varchar_attribute(database_id:, collection_id:, key:, size:, required:, default: nil, array: nil, encrypt: nil)
+        def create_varchar_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            size:,
+            required:,
+            default: nil,
+            array: nil,
+            encrypt: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/varchar'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if size.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "size"')
+                raise Appwrite::Exception.new('Missing required parameter: "size"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             api_params = {
@@ -2805,7 +3076,7 @@ module Appwrite
                 array: array,
                 encrypt: encrypt,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -2819,7 +3090,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeVarchar
             )
-
         end
 
         #
@@ -2827,7 +3097,7 @@ module Appwrite
         #
         # Update a varchar attribute. Changing the `default` value will not update
         # already existing documents.
-        # 
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -2838,30 +3108,38 @@ module Appwrite
         # @param [String] new_key New Attribute Key.
         #
         # @return [AttributeVarchar]
-        def update_varchar_attribute(database_id:, collection_id:, key:, required:, default:, size: nil, new_key: nil)
+        def update_varchar_attribute(
+            database_id:,
+            collection_id:,
+            key:,
+            required:,
+            default:,
+            size: nil,
+            new_key: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/varchar/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "required"')
+                raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
 
             if default.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "default"')
+                raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
 
             api_params = {
@@ -2870,7 +3148,7 @@ module Appwrite
                 size: size,
                 newKey: new_key,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -2884,7 +3162,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AttributeVarchar
             )
-
         end
 
         #
@@ -2897,27 +3174,30 @@ module Appwrite
         # @param [String] key Attribute Key.
         #
         # @return [AttributeBoolean, AttributeInteger, AttributeFloat, AttributeEmail, AttributeEnum, AttributeUrl, AttributeIp, AttributeDatetime, AttributeRelationship, AttributeString]
-        def get_attribute(database_id:, collection_id:, key:)
+        def get_attribute(
+            database_id:,
+            collection_id:,
+            key:
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -2985,7 +3265,6 @@ module Appwrite
             end
 
             raise Exception, "Unable to match response to any expected response model"
-
         end
 
         #
@@ -2998,27 +3277,30 @@ module Appwrite
         # @param [String] key Attribute Key.
         #
         # @return []
-        def delete_attribute(database_id:, collection_id:, key:)
+        def delete_attribute(
+            database_id:,
+            collection_id:,
+            key:
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -3030,13 +3312,12 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
 
         #
         # @deprecated This API has been deprecated since 1.8.0. Please use `TablesDB.listRows` instead.
         #
-        # Get a list of all the user's documents in a given collection. You can use
+        # Get a list of all the user&#039;s documents in a given collection. You can use
         # the query params to filter your results.
         #
         # @param [String] database_id Database ID.
@@ -3047,17 +3328,24 @@ module Appwrite
         # @param [Integer] ttl TTL (seconds) for caching list responses. Responses are stored in an in-memory key-value cache, keyed per project, collection, schema version (attributes and indexes), caller authorization roles, and the exact query — so users with different permissions never share cached entries. Schema changes invalidate cached entries automatically; document writes do not, so choose a TTL you are comfortable serving as stale data. Set to 0 to disable caching. Must be between 0 and 86400 (24 hours).
         #
         # @return [DocumentList]
-        def list_documents(database_id:, collection_id:, queries: nil, transaction_id: nil, total: nil, ttl: nil)
+        def list_documents(
+            database_id:,
+            collection_id:,
+            queries: nil,
+            transaction_id: nil,
+            total: nil,
+            ttl: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             api_params = {
@@ -3066,7 +3354,7 @@ module Appwrite
                 total: total,
                 ttl: ttl,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -3079,7 +3367,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::DocumentList
             )
-
         end
 
         #
@@ -3092,31 +3379,38 @@ module Appwrite
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). Make sure to define attributes before creating documents.
-        # @param [String] document_id Document ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] document_id Document ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [Hash] data Document data as JSON object.
         # @param [Array] permissions An array of permissions strings. By default, only the current user is granted all permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
         # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [Document]
-        def create_document(database_id:, collection_id:, document_id:, data:, permissions: nil, transaction_id: nil)
+        def create_document(
+            database_id:,
+            collection_id:,
+            document_id:,
+            data:,
+            permissions: nil,
+            transaction_id: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if document_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "documentId"')
+                raise Appwrite::Exception.new('Missing required parameter: "documentId"')
             end
 
             if data.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "data"')
+                raise Appwrite::Exception.new('Missing required parameter: "data"')
             end
 
             api_params = {
@@ -3125,7 +3419,7 @@ module Appwrite
                 permissions: permissions,
                 transactionId: transaction_id,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -3139,7 +3433,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Document
             )
-
         end
 
         #
@@ -3156,28 +3449,33 @@ module Appwrite
         # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [DocumentList]
-        def create_documents(database_id:, collection_id:, documents:, transaction_id: nil)
+        def create_documents(
+            database_id:,
+            collection_id:,
+            documents:,
+            transaction_id: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if documents.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "documents"')
+                raise Appwrite::Exception.new('Missing required parameter: "documents"')
             end
 
             api_params = {
                 documents: documents,
                 transactionId: transaction_id,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -3191,7 +3489,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::DocumentList
             )
-
         end
 
         #
@@ -3201,7 +3498,7 @@ module Appwrite
         # new collection resource using either a [server
         # integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)
         # API or directly from your database console.
-        # 
+        #
         #
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID.
@@ -3209,28 +3506,33 @@ module Appwrite
         # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [DocumentList]
-        def upsert_documents(database_id:, collection_id:, documents:, transaction_id: nil)
+        def upsert_documents(
+            database_id:,
+            collection_id:,
+            documents:,
+            transaction_id: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if documents.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "documents"')
+                raise Appwrite::Exception.new('Missing required parameter: "documents"')
             end
 
             api_params = {
                 documents: documents,
                 transactionId: transaction_id,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -3244,7 +3546,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::DocumentList
             )
-
         end
 
         #
@@ -3261,17 +3562,23 @@ module Appwrite
         # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [DocumentList]
-        def update_documents(database_id:, collection_id:, data: nil, queries: nil, transaction_id: nil)
+        def update_documents(
+            database_id:,
+            collection_id:,
+            data: nil,
+            queries: nil,
+            transaction_id: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             api_params = {
@@ -3279,7 +3586,7 @@ module Appwrite
                 queries: queries,
                 transactionId: transaction_id,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -3293,7 +3600,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::DocumentList
             )
-
         end
 
         #
@@ -3308,24 +3614,29 @@ module Appwrite
         # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [DocumentList]
-        def delete_documents(database_id:, collection_id:, queries: nil, transaction_id: nil)
+        def delete_documents(
+            database_id:,
+            collection_id:,
+            queries: nil,
+            transaction_id: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             api_params = {
                 queries: queries,
                 transactionId: transaction_id,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -3339,7 +3650,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::DocumentList
             )
-
         end
 
         #
@@ -3355,29 +3665,35 @@ module Appwrite
         # @param [String] transaction_id Transaction ID to read uncommitted changes within the transaction.
         #
         # @return [Document]
-        def get_document(database_id:, collection_id:, document_id:, queries: nil, transaction_id: nil)
+        def get_document(
+            database_id:,
+            collection_id:,
+            document_id:,
+            queries: nil,
+            transaction_id: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{documentId}', document_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if document_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "documentId"')
+                raise Appwrite::Exception.new('Missing required parameter: "documentId"')
             end
 
             api_params = {
                 queries: queries,
                 transactionId: transaction_id,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -3390,7 +3706,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Document
             )
-
         end
 
         #
@@ -3409,22 +3724,29 @@ module Appwrite
         # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [Document]
-        def upsert_document(database_id:, collection_id:, document_id:, data: nil, permissions: nil, transaction_id: nil)
+        def upsert_document(
+            database_id:,
+            collection_id:,
+            document_id:,
+            data: nil,
+            permissions: nil,
+            transaction_id: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{documentId}', document_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if document_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "documentId"')
+                raise Appwrite::Exception.new('Missing required parameter: "documentId"')
             end
 
             api_params = {
@@ -3432,7 +3754,7 @@ module Appwrite
                 permissions: permissions,
                 transactionId: transaction_id,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -3446,7 +3768,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Document
             )
-
         end
 
         #
@@ -3463,22 +3784,29 @@ module Appwrite
         # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [Document]
-        def update_document(database_id:, collection_id:, document_id:, data: nil, permissions: nil, transaction_id: nil)
+        def update_document(
+            database_id:,
+            collection_id:,
+            document_id:,
+            data: nil,
+            permissions: nil,
+            transaction_id: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{documentId}', document_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if document_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "documentId"')
+                raise Appwrite::Exception.new('Missing required parameter: "documentId"')
             end
 
             api_params = {
@@ -3486,7 +3814,7 @@ module Appwrite
                 permissions: permissions,
                 transactionId: transaction_id,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -3500,7 +3828,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Document
             )
-
         end
 
         #
@@ -3514,28 +3841,33 @@ module Appwrite
         # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return []
-        def delete_document(database_id:, collection_id:, document_id:, transaction_id: nil)
+        def delete_document(
+            database_id:,
+            collection_id:,
+            document_id:,
+            transaction_id: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{documentId}', document_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if document_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "documentId"')
+                raise Appwrite::Exception.new('Missing required parameter: "documentId"')
             end
 
             api_params = {
                 transactionId: transaction_id,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -3547,7 +3879,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
 
         #
@@ -3564,7 +3895,15 @@ module Appwrite
         # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [Document]
-        def decrement_document_attribute(database_id:, collection_id:, document_id:, attribute:, value: nil, min: nil, transaction_id: nil)
+        def decrement_document_attribute(
+            database_id:,
+            collection_id:,
+            document_id:,
+            attribute:,
+            value: nil,
+            min: nil,
+            transaction_id: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}/{attribute}/decrement'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -3572,19 +3911,19 @@ module Appwrite
                 .gsub('{attribute}', attribute)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if document_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "documentId"')
+                raise Appwrite::Exception.new('Missing required parameter: "documentId"')
             end
 
             if attribute.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "attribute"')
+                raise Appwrite::Exception.new('Missing required parameter: "attribute"')
             end
 
             api_params = {
@@ -3592,7 +3931,7 @@ module Appwrite
                 min: min,
                 transactionId: transaction_id,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -3606,7 +3945,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Document
             )
-
         end
 
         #
@@ -3623,7 +3961,15 @@ module Appwrite
         # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [Document]
-        def increment_document_attribute(database_id:, collection_id:, document_id:, attribute:, value: nil, max: nil, transaction_id: nil)
+        def increment_document_attribute(
+            database_id:,
+            collection_id:,
+            document_id:,
+            attribute:,
+            value: nil,
+            max: nil,
+            transaction_id: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}/{attribute}/increment'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
@@ -3631,19 +3977,19 @@ module Appwrite
                 .gsub('{attribute}', attribute)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if document_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "documentId"')
+                raise Appwrite::Exception.new('Missing required parameter: "documentId"')
             end
 
             if attribute.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "attribute"')
+                raise Appwrite::Exception.new('Missing required parameter: "attribute"')
             end
 
             api_params = {
@@ -3651,7 +3997,7 @@ module Appwrite
                 max: max,
                 transactionId: transaction_id,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -3665,7 +4011,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Document
             )
-
         end
 
         #
@@ -3679,24 +4024,29 @@ module Appwrite
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [IndexList]
-        def list_indexes(database_id:, collection_id:, queries: nil, total: nil)
+        def list_indexes(
+            database_id:,
+            collection_id:,
+            queries: nil,
+            total: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/indexes'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             api_params = {
                 queries: queries,
                 total: total,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -3709,7 +4059,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::IndexList
             )
-
         end
 
         #
@@ -3728,29 +4077,37 @@ module Appwrite
         # @param [Array] lengths Length of index. Maximum of 100
         #
         # @return [Index]
-        def create_index(database_id:, collection_id:, key:, type:, attributes:, orders: nil, lengths: nil)
+        def create_index(
+            database_id:,
+            collection_id:,
+            key:,
+            type:,
+            attributes:,
+            orders: nil,
+            lengths: nil
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/indexes'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if type.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "type"')
+                raise Appwrite::Exception.new('Missing required parameter: "type"')
             end
 
             if attributes.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "attributes"')
+                raise Appwrite::Exception.new('Missing required parameter: "attributes"')
             end
 
             api_params = {
@@ -3760,7 +4117,7 @@ module Appwrite
                 orders: orders,
                 lengths: lengths,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -3774,7 +4131,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Index
             )
-
         end
 
         #
@@ -3787,27 +4143,30 @@ module Appwrite
         # @param [String] key Index Key.
         #
         # @return [Index]
-        def get_index(database_id:, collection_id:, key:)
+        def get_index(
+            database_id:,
+            collection_id:,
+            key:
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/indexes/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -3820,7 +4179,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Index
             )
-
         end
 
         #
@@ -3833,27 +4191,30 @@ module Appwrite
         # @param [String] key Index Key.
         #
         # @return []
-        def delete_index(database_id:, collection_id:, key:)
+        def delete_index(
+            database_id:,
+            collection_id:,
+            key:
+        )
             api_path = '/databases/{databaseId}/collections/{collectionId}/indexes/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
 
             if database_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if collection_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if key.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "key"')
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -3865,8 +4226,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
-
-    end 
+    end
 end

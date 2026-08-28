@@ -1,21 +1,24 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     class Presences < Service
-
         def initialize(client)
             @client = client
         end
 
         # List presence logs. Expired entries are filtered out automatically.
-        # 
+        #
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK.
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         # @param [Integer] ttl TTL (seconds) for caching list responses. Responses are stored in an in-memory key-value cache, keyed per project, collection, schema version (attributes and indexes), caller authorization roles, and the exact query — so users with different permissions never share cached entries. Schema changes invalidate cached entries automatically; document writes do not, so choose a TTL you are comfortable serving as stale data. Set to 0 to disable caching. Must be between 0 and 86400 (24 hours).
         #
         # @return [PresenceList]
-        def list(queries: nil, total: nil, ttl: nil)
+        def list(
+            queries: nil,
+            total: nil,
+            ttl: nil
+        )
             api_path = '/presences'
 
             api_params = {
@@ -23,7 +26,7 @@ module Appwrite
                 total: total,
                 ttl: ttl,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -36,27 +39,27 @@ module Appwrite
                 params: api_params,
                 response_type: Models::PresenceList
             )
-
         end
 
         # Get a presence log by its unique ID. Entries whose `expiresAt` is in the
         # past are treated as not found.
-        # 
+        #
         #
         # @param [String] presence_id Presence unique ID.
         #
         # @return [Presence]
-        def get(presence_id:)
+        def get(
+            presence_id:
+        )
             api_path = '/presences/{presenceId}'
                 .gsub('{presenceId}', presence_id)
 
             if presence_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "presenceId"')
+                raise Appwrite::Exception.new('Missing required parameter: "presenceId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -69,11 +72,10 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Presence
             )
-
         end
 
         # Create or update a presence log by its user ID.
-        # 
+        #
         #
         # @param [String] presence_id Presence unique ID.
         # @param [String] user_id User ID.
@@ -83,20 +85,27 @@ module Appwrite
         # @param [Hash] metadata Presence metadata object.
         #
         # @return [Presence]
-        def upsert(presence_id:, user_id:, status:, permissions: nil, expires_at: nil, metadata: nil)
+        def upsert(
+            presence_id:,
+            user_id:,
+            status:,
+            permissions: nil,
+            expires_at: nil,
+            metadata: nil
+        )
             api_path = '/presences/{presenceId}'
                 .gsub('{presenceId}', presence_id)
 
             if presence_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "presenceId"')
+                raise Appwrite::Exception.new('Missing required parameter: "presenceId"')
             end
 
             if user_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+                raise Appwrite::Exception.new('Missing required parameter: "userId"')
             end
 
             if status.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "status"')
+                raise Appwrite::Exception.new('Missing required parameter: "status"')
             end
 
             api_params = {
@@ -106,7 +115,7 @@ module Appwrite
                 expiresAt: expires_at,
                 metadata: metadata,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -120,12 +129,11 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Presence
             )
-
         end
 
         # Update a presence log by its unique ID. Using the patch method you can pass
         # only specific fields that will get updated.
-        # 
+        #
         #
         # @param [String] presence_id Presence unique ID.
         # @param [String] user_id User ID.
@@ -136,16 +144,24 @@ module Appwrite
         # @param [] purge When true, purge cached responses used by list presences endpoint.
         #
         # @return [Presence]
-        def update(presence_id:, user_id:, status: nil, expires_at: nil, metadata: nil, permissions: nil, purge: nil)
+        def update(
+            presence_id:,
+            user_id:,
+            status: nil,
+            expires_at: nil,
+            metadata: nil,
+            permissions: nil,
+            purge: nil
+        )
             api_path = '/presences/{presenceId}'
                 .gsub('{presenceId}', presence_id)
 
             if presence_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "presenceId"')
+                raise Appwrite::Exception.new('Missing required parameter: "presenceId"')
             end
 
             if user_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "userId"')
+                raise Appwrite::Exception.new('Missing required parameter: "userId"')
             end
 
             api_params = {
@@ -156,7 +172,7 @@ module Appwrite
                 permissions: permissions,
                 purge: purge,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -170,26 +186,26 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Presence
             )
-
         end
 
         # Delete a presence log by its unique ID.
-        # 
+        #
         #
         # @param [String] presence_id Presence unique ID.
         #
         # @return []
-        def delete(presence_id:)
+        def delete(
+            presence_id:
+        )
             api_path = '/presences/{presenceId}'
                 .gsub('{presenceId}', presence_id)
 
             if presence_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "presenceId"')
+                raise Appwrite::Exception.new('Missing required parameter: "presenceId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -201,8 +217,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
-
-    end 
+    end
 end

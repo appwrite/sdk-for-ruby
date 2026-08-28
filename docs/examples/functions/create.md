@@ -17,7 +17,7 @@ result = functions.create(
     runtime: Runtime::NODE_14_5,
     execute: ["any"], # optional
     events: [], # optional
-    schedule: '', # optional
+    schedule: '0 0 * * *', # optional
     timeout: 1, # optional
     enabled: false, # optional
     logging: false, # optional
@@ -31,8 +31,8 @@ result = functions.create(
     provider_root_directory: '<PROVIDER_ROOT_DIRECTORY>', # optional
     provider_branches: [], # optional
     provider_paths: [], # optional
-    build_specification: '', # optional
-    runtime_specification: '', # optional
+    build_specification: 's-1vcpu-512mb', # optional
+    runtime_specification: 's-1vcpu-512mb', # optional
     deployment_retention: 0 # optional
 )
 ```

@@ -12,8 +12,8 @@ client = Client.new
 project = Project.new(client)
 
 result = project.update_smtp(
-    host: '', # optional
-    port: null, # optional
+    host: 'example.com', # optional
+    port: 587, # optional
     username: '<USERNAME>', # optional
     password: 'password', # optional
     sender_email: 'email@example.com', # optional

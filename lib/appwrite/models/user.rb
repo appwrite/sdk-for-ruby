@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -35,9 +35,9 @@ module Appwrite
                 created_at:,
                 updated_at:,
                 name:,
-                password: ,
-                hash: ,
-                hash_options: ,
+                password:,
+                hash:,
+                hash_options:,
                 registration:,
                 status:,
                 labels:,
@@ -45,18 +45,18 @@ module Appwrite
                 email:,
                 phone:,
                 email_verification:,
-                email_canonical: ,
-                email_is_free: ,
-                email_is_disposable: ,
-                email_is_corporate: ,
-                email_is_canonical: ,
+                email_canonical:,
+                email_is_free:,
+                email_is_disposable:,
+                email_is_corporate:,
+                email_is_canonical:,
                 phone_verification:,
                 mfa:,
                 prefs:,
                 targets:,
                 accessed_at:,
-                impersonator: ,
-                impersonator_user_id: 
+                impersonator:,
+                impersonator_user_id:
             )
                 @id = id
                 @created_at = created_at

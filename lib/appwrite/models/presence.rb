@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -19,10 +19,10 @@ module Appwrite
                 updated_at:,
                 permissions:,
                 user_id:,
-                status: ,
+                status:,
                 source:,
-                expires_at: ,
-                metadata: 
+                expires_at:,
+                metadata:
             )
                 @id = id
                 @created_at = created_at

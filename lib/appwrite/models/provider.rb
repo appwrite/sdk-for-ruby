@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -22,7 +22,7 @@ module Appwrite
                 enabled:,
                 type:,
                 credentials:,
-                options: 
+                options:
             )
                 @id = id
                 @created_at = created_at

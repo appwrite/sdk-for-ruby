@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -7,8 +7,8 @@ module Appwrite
             attr_reader :daily_credits
 
             def initialize(
-                credits: ,
-                daily_credits: 
+                credits:,
+                daily_credits:
             )
                 @credits = credits
                 @daily_credits = daily_credits

@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -43,7 +43,6 @@ module Appwrite
 
                 id
             end
-
         end
     end
 end

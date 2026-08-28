@@ -13,9 +13,9 @@ databases = Databases.new(client)
 result = databases.update_datetime_attribute(
     database_id: '<DATABASE_ID>',
     collection_id: '<COLLECTION_ID>',
-    key: '',
+    key: '<KEY>',
     required: false,
     default: '2020-10-15T06:38:00.000+00:00',
-    new_key: '' # optional
+    new_key: '<NEW_KEY>' # optional
 )
 ```

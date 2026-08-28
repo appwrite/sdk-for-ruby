@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -36,9 +36,9 @@ module Appwrite
                 title:,
                 summary:,
                 ctas:,
-                analyzed_at: ,
-                dismissed_at: ,
-                dismissed_by: 
+                analyzed_at:,
+                dismissed_at:,
+                dismissed_by:
             )
                 @id = id
                 @created_at = created_at

@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -17,8 +17,8 @@ module Appwrite
                 expires_in:,
                 refresh_token:,
                 scope:,
-                authorization_details: ,
-                id_token: 
+                authorization_details:,
+                id_token:
             )
                 @access_token = access_token
                 @token_type = token_type

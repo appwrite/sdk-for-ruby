@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -24,25 +24,25 @@ module Appwrite
             attr_reader :allowed_sync_modes
 
             def initialize(
-                min_cpu: ,
-                max_cpu: ,
-                min_memory_mb: ,
-                max_memory_mb: ,
-                min_storage_gb: ,
-                max_storage_gb: ,
-                max_replicas: ,
-                max_connections: ,
-                max_ip_allowlist_size: ,
-                max_extensions: ,
-                max_backup_retention_days: ,
-                max_pitr_retention_days: ,
-                max_sql_api_max_rows: ,
-                max_sql_api_max_bytes: ,
-                max_sql_api_timeout_seconds: ,
-                max_sql_api_allowed_statements: ,
-                allowed_sql_statements: ,
-                allowed_storage_classes: ,
-                allowed_sync_modes: 
+                min_cpu:,
+                max_cpu:,
+                min_memory_mb:,
+                max_memory_mb:,
+                min_storage_gb:,
+                max_storage_gb:,
+                max_replicas:,
+                max_connections:,
+                max_ip_allowlist_size:,
+                max_extensions:,
+                max_backup_retention_days:,
+                max_pitr_retention_days:,
+                max_sql_api_max_rows:,
+                max_sql_api_max_bytes:,
+                max_sql_api_timeout_seconds:,
+                max_sql_api_allowed_statements:,
+                allowed_sql_statements:,
+                allowed_storage_classes:,
+                allowed_sync_modes:
             )
                 @min_cpu = min_cpu
                 @max_cpu = max_cpu

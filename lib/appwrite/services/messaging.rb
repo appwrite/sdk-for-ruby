@@ -1,8 +1,7 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     class Messaging < Service
-
         def initialize(client)
             @client = client
         end
@@ -14,7 +13,11 @@ module Appwrite
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [MessageList]
-        def list_messages(queries: nil, search: nil, total: nil)
+        def list_messages(
+            queries: nil,
+            search: nil,
+            total: nil
+        )
             api_path = '/messaging/messages'
 
             api_params = {
@@ -22,7 +25,7 @@ module Appwrite
                 search: search,
                 total: total,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -35,12 +38,11 @@ module Appwrite
                 params: api_params,
                 response_type: Models::MessageList
             )
-
         end
 
         # Create a new email message.
         #
-        # @param [String] message_id Message ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] message_id Message ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] subject Email Subject.
         # @param [String] content Email Content.
         # @param [Array] topics List of Topic IDs.
@@ -48,25 +50,38 @@ module Appwrite
         # @param [Array] targets List of Targets IDs.
         # @param [Array] cc Array of target IDs to be added as CC.
         # @param [Array] bcc Array of target IDs to be added as BCC.
-        # @param [Array] attachments Array of compound ID strings of bucket IDs and file IDs to be attached to the email. They should be formatted as <BUCKET_ID>:<FILE_ID>.
+        # @param [Array] attachments Array of compound ID strings of bucket IDs and file IDs to be attached to the email. They should be formatted as &lt;BUCKET_ID&gt;:&lt;FILE_ID&gt;.
         # @param [] draft Is message a draft
         # @param [] html Is content of type HTML
         # @param [String] scheduled_at Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future.
         #
         # @return [Message]
-        def create_email(message_id:, subject:, content:, topics: nil, users: nil, targets: nil, cc: nil, bcc: nil, attachments: nil, draft: nil, html: nil, scheduled_at: nil)
+        def create_email(
+            message_id:,
+            subject:,
+            content:,
+            topics: nil,
+            users: nil,
+            targets: nil,
+            cc: nil,
+            bcc: nil,
+            attachments: nil,
+            draft: nil,
+            html: nil,
+            scheduled_at: nil
+        )
             api_path = '/messaging/messages/email'
 
             if message_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "messageId"')
+                raise Appwrite::Exception.new('Missing required parameter: "messageId"')
             end
 
             if subject.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "subject"')
+                raise Appwrite::Exception.new('Missing required parameter: "subject"')
             end
 
             if content.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "content"')
+                raise Appwrite::Exception.new('Missing required parameter: "content"')
             end
 
             api_params = {
@@ -83,7 +98,7 @@ module Appwrite
                 html: html,
                 scheduledAt: scheduled_at,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -97,13 +112,12 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Message
             )
-
         end
 
         # Update an email message by its unique ID. This endpoint only works on
         # messages that are in draft status. Messages that are already processing,
         # sent, or failed cannot be updated.
-        # 
+        #
         #
         # @param [String] message_id Message ID.
         # @param [Array] topics List of Topic IDs.
@@ -116,15 +130,28 @@ module Appwrite
         # @param [Array] cc Array of target IDs to be added as CC.
         # @param [Array] bcc Array of target IDs to be added as BCC.
         # @param [String] scheduled_at Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future.
-        # @param [Array] attachments Array of compound ID strings of bucket IDs and file IDs to be attached to the email. They should be formatted as <BUCKET_ID>:<FILE_ID>.
+        # @param [Array] attachments Array of compound ID strings of bucket IDs and file IDs to be attached to the email. They should be formatted as &lt;BUCKET_ID&gt;:&lt;FILE_ID&gt;.
         #
         # @return [Message]
-        def update_email(message_id:, topics: nil, users: nil, targets: nil, subject: nil, content: nil, draft: nil, html: nil, cc: nil, bcc: nil, scheduled_at: nil, attachments: nil)
+        def update_email(
+            message_id:,
+            topics: nil,
+            users: nil,
+            targets: nil,
+            subject: nil,
+            content: nil,
+            draft: nil,
+            html: nil,
+            cc: nil,
+            bcc: nil,
+            scheduled_at: nil,
+            attachments: nil
+        )
             api_path = '/messaging/messages/email/{messageId}'
                 .gsub('{messageId}', message_id)
 
             if message_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "messageId"')
+                raise Appwrite::Exception.new('Missing required parameter: "messageId"')
             end
 
             api_params = {
@@ -140,7 +167,7 @@ module Appwrite
                 scheduledAt: scheduled_at,
                 attachments: attachments,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -154,12 +181,11 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Message
             )
-
         end
 
         # Create a new push notification.
         #
-        # @param [String] message_id Message ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] message_id Message ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] title Title for push notification.
         # @param [String] body Body for push notification.
         # @param [Array] topics List of Topic IDs.
@@ -167,7 +193,7 @@ module Appwrite
         # @param [Array] targets List of Targets IDs.
         # @param [Hash] data Additional key-value pair data for push notification.
         # @param [String] action Action for push notification.
-        # @param [String] image Image for push notification. Must be a compound bucket ID to file ID of a jpeg, png, or bmp image in Appwrite Storage. It should be formatted as <BUCKET_ID>:<FILE_ID>.
+        # @param [String] image Image for push notification. Must be a compound bucket ID to file ID of a jpeg, png, or bmp image in Appwrite Storage. It should be formatted as &lt;BUCKET_ID&gt;:&lt;FILE_ID&gt;.
         # @param [String] icon Icon for push notification. Available only for Android and Web Platform.
         # @param [String] sound Sound for push notification. Available only for Android and iOS Platform.
         # @param [String] color Color for push notification. Available only for Android Platform.
@@ -177,14 +203,34 @@ module Appwrite
         # @param [String] scheduled_at Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future.
         # @param [] content_available If set to true, the notification will be delivered in the background. Available only for iOS Platform.
         # @param [] critical If set to true, the notification will be marked as critical. This requires the app to have the critical notification entitlement. Available only for iOS Platform.
-        # @param [MessagePriority] priority Set the notification priority. "normal" will consider device state and may not deliver notifications immediately. "high" will always attempt to immediately deliver the notification.
+        # @param [MessagePriority] priority Set the notification priority. &quot;normal&quot; will consider device state and may not deliver notifications immediately. &quot;high&quot; will always attempt to immediately deliver the notification.
         #
         # @return [Message]
-        def create_push(message_id:, title: nil, body: nil, topics: nil, users: nil, targets: nil, data: nil, action: nil, image: nil, icon: nil, sound: nil, color: nil, tag: nil, badge: nil, draft: nil, scheduled_at: nil, content_available: nil, critical: nil, priority: nil)
+        def create_push(
+            message_id:,
+            title: nil,
+            body: nil,
+            topics: nil,
+            users: nil,
+            targets: nil,
+            data: nil,
+            action: nil,
+            image: nil,
+            icon: nil,
+            sound: nil,
+            color: nil,
+            tag: nil,
+            badge: nil,
+            draft: nil,
+            scheduled_at: nil,
+            content_available: nil,
+            critical: nil,
+            priority: nil
+        )
             api_path = '/messaging/messages/push'
 
             if message_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "messageId"')
+                raise Appwrite::Exception.new('Missing required parameter: "messageId"')
             end
 
             api_params = {
@@ -208,7 +254,7 @@ module Appwrite
                 critical: critical,
                 priority: priority,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -222,13 +268,12 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Message
             )
-
         end
 
         # Update a push notification by its unique ID. This endpoint only works on
         # messages that are in draft status. Messages that are already processing,
         # sent, or failed cannot be updated.
-        # 
+        #
         #
         # @param [String] message_id Message ID.
         # @param [Array] topics List of Topic IDs.
@@ -238,7 +283,7 @@ module Appwrite
         # @param [String] body Body for push notification.
         # @param [Hash] data Additional Data for push notification.
         # @param [String] action Action for push notification.
-        # @param [String] image Image for push notification. Must be a compound bucket ID to file ID of a jpeg, png, or bmp image in Appwrite Storage. It should be formatted as <BUCKET_ID>:<FILE_ID>.
+        # @param [String] image Image for push notification. Must be a compound bucket ID to file ID of a jpeg, png, or bmp image in Appwrite Storage. It should be formatted as &lt;BUCKET_ID&gt;:&lt;FILE_ID&gt;.
         # @param [String] icon Icon for push notification. Available only for Android and Web platforms.
         # @param [String] sound Sound for push notification. Available only for Android and iOS platforms.
         # @param [String] color Color for push notification. Available only for Android platforms.
@@ -248,15 +293,35 @@ module Appwrite
         # @param [String] scheduled_at Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future.
         # @param [] content_available If set to true, the notification will be delivered in the background. Available only for iOS Platform.
         # @param [] critical If set to true, the notification will be marked as critical. This requires the app to have the critical notification entitlement. Available only for iOS Platform.
-        # @param [MessagePriority] priority Set the notification priority. "normal" will consider device battery state and may send notifications later. "high" will always attempt to immediately deliver the notification.
+        # @param [MessagePriority] priority Set the notification priority. &quot;normal&quot; will consider device battery state and may send notifications later. &quot;high&quot; will always attempt to immediately deliver the notification.
         #
         # @return [Message]
-        def update_push(message_id:, topics: nil, users: nil, targets: nil, title: nil, body: nil, data: nil, action: nil, image: nil, icon: nil, sound: nil, color: nil, tag: nil, badge: nil, draft: nil, scheduled_at: nil, content_available: nil, critical: nil, priority: nil)
+        def update_push(
+            message_id:,
+            topics: nil,
+            users: nil,
+            targets: nil,
+            title: nil,
+            body: nil,
+            data: nil,
+            action: nil,
+            image: nil,
+            icon: nil,
+            sound: nil,
+            color: nil,
+            tag: nil,
+            badge: nil,
+            draft: nil,
+            scheduled_at: nil,
+            content_available: nil,
+            critical: nil,
+            priority: nil
+        )
             api_path = '/messaging/messages/push/{messageId}'
                 .gsub('{messageId}', message_id)
 
             if message_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "messageId"')
+                raise Appwrite::Exception.new('Missing required parameter: "messageId"')
             end
 
             api_params = {
@@ -279,7 +344,7 @@ module Appwrite
                 critical: critical,
                 priority: priority,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -293,12 +358,11 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Message
             )
-
         end
 
         # Create a new SMS message.
         #
-        # @param [String] message_id Message ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] message_id Message ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] content SMS Content.
         # @param [Array] topics List of Topic IDs.
         # @param [Array] users List of User IDs.
@@ -307,15 +371,23 @@ module Appwrite
         # @param [String] scheduled_at Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future.
         #
         # @return [Message]
-        def create_sms(message_id:, content:, topics: nil, users: nil, targets: nil, draft: nil, scheduled_at: nil)
+        def create_sms(
+            message_id:,
+            content:,
+            topics: nil,
+            users: nil,
+            targets: nil,
+            draft: nil,
+            scheduled_at: nil
+        )
             api_path = '/messaging/messages/sms'
 
             if message_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "messageId"')
+                raise Appwrite::Exception.new('Missing required parameter: "messageId"')
             end
 
             if content.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "content"')
+                raise Appwrite::Exception.new('Missing required parameter: "content"')
             end
 
             api_params = {
@@ -327,7 +399,7 @@ module Appwrite
                 draft: draft,
                 scheduledAt: scheduled_at,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -341,13 +413,12 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Message
             )
-
         end
 
         # Update an SMS message by its unique ID. This endpoint only works on
         # messages that are in draft status. Messages that are already processing,
         # sent, or failed cannot be updated.
-        # 
+        #
         #
         # @param [String] message_id Message ID.
         # @param [Array] topics List of Topic IDs.
@@ -358,12 +429,20 @@ module Appwrite
         # @param [String] scheduled_at Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future.
         #
         # @return [Message]
-        def update_sms(message_id:, topics: nil, users: nil, targets: nil, content: nil, draft: nil, scheduled_at: nil)
+        def update_sms(
+            message_id:,
+            topics: nil,
+            users: nil,
+            targets: nil,
+            content: nil,
+            draft: nil,
+            scheduled_at: nil
+        )
             api_path = '/messaging/messages/sms/{messageId}'
                 .gsub('{messageId}', message_id)
 
             if message_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "messageId"')
+                raise Appwrite::Exception.new('Missing required parameter: "messageId"')
             end
 
             api_params = {
@@ -374,7 +453,7 @@ module Appwrite
                 draft: draft,
                 scheduledAt: scheduled_at,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -388,26 +467,26 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Message
             )
-
         end
 
         # Get a message by its unique ID.
-        # 
+        #
         #
         # @param [String] message_id Message ID.
         #
         # @return [Message]
-        def get_message(message_id:)
+        def get_message(
+            message_id:
+        )
             api_path = '/messaging/messages/{messageId}'
                 .gsub('{messageId}', message_id)
 
             if message_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "messageId"')
+                raise Appwrite::Exception.new('Missing required parameter: "messageId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -420,7 +499,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Message
             )
-
         end
 
         # Delete a message. If the message is not a draft or scheduled, but has been
@@ -429,17 +507,18 @@ module Appwrite
         # @param [String] message_id Message ID.
         #
         # @return []
-        def delete(message_id:)
+        def delete(
+            message_id:
+        )
             api_path = '/messaging/messages/{messageId}'
                 .gsub('{messageId}', message_id)
 
             if message_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "messageId"')
+                raise Appwrite::Exception.new('Missing required parameter: "messageId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -451,7 +530,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
 
         # Get a list of the targets associated with a message.
@@ -461,19 +539,23 @@ module Appwrite
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [TargetList]
-        def list_targets(message_id:, queries: nil, total: nil)
+        def list_targets(
+            message_id:,
+            queries: nil,
+            total: nil
+        )
             api_path = '/messaging/messages/{messageId}/targets'
                 .gsub('{messageId}', message_id)
 
             if message_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "messageId"')
+                raise Appwrite::Exception.new('Missing required parameter: "messageId"')
             end
 
             api_params = {
                 queries: queries,
                 total: total,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -486,7 +568,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::TargetList
             )
-
         end
 
         # Get a list of all providers from the current Appwrite project.
@@ -496,7 +577,11 @@ module Appwrite
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [ProviderList]
-        def list_providers(queries: nil, search: nil, total: nil)
+        def list_providers(
+            queries: nil,
+            search: nil,
+            total: nil
+        )
             api_path = '/messaging/providers'
 
             api_params = {
@@ -504,7 +589,7 @@ module Appwrite
                 search: search,
                 total: total,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -517,12 +602,11 @@ module Appwrite
                 params: api_params,
                 response_type: Models::ProviderList
             )
-
         end
 
         # Create a new Apple Push Notification service provider.
         #
-        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] name Provider name.
         # @param [String] auth_key APNS authentication key.
         # @param [String] auth_key_id APNS authentication key ID.
@@ -532,15 +616,24 @@ module Appwrite
         # @param [] enabled Set as enabled.
         #
         # @return [Provider]
-        def create_apns_provider(provider_id:, name:, auth_key: nil, auth_key_id: nil, team_id: nil, bundle_id: nil, sandbox: nil, enabled: nil)
+        def create_apns_provider(
+            provider_id:,
+            name:,
+            auth_key: nil,
+            auth_key_id: nil,
+            team_id: nil,
+            bundle_id: nil,
+            sandbox: nil,
+            enabled: nil
+        )
             api_path = '/messaging/providers/apns'
 
             if provider_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
 
             if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
             api_params = {
@@ -553,7 +646,7 @@ module Appwrite
                 sandbox: sandbox,
                 enabled: enabled,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -567,7 +660,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
-
         end
 
         # Update a Apple Push Notification service provider by its unique ID.
@@ -582,12 +674,21 @@ module Appwrite
         # @param [] sandbox Use APNS sandbox environment.
         #
         # @return [Provider]
-        def update_apns_provider(provider_id:, name: nil, enabled: nil, auth_key: nil, auth_key_id: nil, team_id: nil, bundle_id: nil, sandbox: nil)
+        def update_apns_provider(
+            provider_id:,
+            name: nil,
+            enabled: nil,
+            auth_key: nil,
+            auth_key_id: nil,
+            team_id: nil,
+            bundle_id: nil,
+            sandbox: nil
+        )
             api_path = '/messaging/providers/apns/{providerId}'
                 .gsub('{providerId}', provider_id)
 
             if provider_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
 
             api_params = {
@@ -599,7 +700,7 @@ module Appwrite
                 bundleId: bundle_id,
                 sandbox: sandbox,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -613,26 +714,30 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
-
         end
 
         # Create a new Firebase Cloud Messaging provider.
         #
-        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] name Provider name.
         # @param [Hash] service_account_json FCM service account JSON.
         # @param [] enabled Set as enabled.
         #
         # @return [Provider]
-        def create_fcm_provider(provider_id:, name:, service_account_json: nil, enabled: nil)
+        def create_fcm_provider(
+            provider_id:,
+            name:,
+            service_account_json: nil,
+            enabled: nil
+        )
             api_path = '/messaging/providers/fcm'
 
             if provider_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
 
             if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
             api_params = {
@@ -641,7 +746,7 @@ module Appwrite
                 serviceAccountJSON: service_account_json,
                 enabled: enabled,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -655,7 +760,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
-
         end
 
         # Update a Firebase Cloud Messaging provider by its unique ID.
@@ -666,12 +770,17 @@ module Appwrite
         # @param [Hash] service_account_json FCM service account JSON.
         #
         # @return [Provider]
-        def update_fcm_provider(provider_id:, name: nil, enabled: nil, service_account_json: nil)
+        def update_fcm_provider(
+            provider_id:,
+            name: nil,
+            enabled: nil,
+            service_account_json: nil
+        )
             api_path = '/messaging/providers/fcm/{providerId}'
                 .gsub('{providerId}', provider_id)
 
             if provider_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
 
             api_params = {
@@ -679,7 +788,7 @@ module Appwrite
                 enabled: enabled,
                 serviceAccountJSON: service_account_json,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -693,12 +802,11 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
-
         end
 
         # Create a new Mailgun provider.
         #
-        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] name Provider name.
         # @param [String] api_key Mailgun API Key.
         # @param [String] domain Mailgun Domain.
@@ -710,15 +818,26 @@ module Appwrite
         # @param [] enabled Set as enabled.
         #
         # @return [Provider]
-        def create_mailgun_provider(provider_id:, name:, api_key: nil, domain: nil, is_eu_region: nil, from_name: nil, from_email: nil, reply_to_name: nil, reply_to_email: nil, enabled: nil)
+        def create_mailgun_provider(
+            provider_id:,
+            name:,
+            api_key: nil,
+            domain: nil,
+            is_eu_region: nil,
+            from_name: nil,
+            from_email: nil,
+            reply_to_name: nil,
+            reply_to_email: nil,
+            enabled: nil
+        )
             api_path = '/messaging/providers/mailgun'
 
             if provider_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
 
             if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
             api_params = {
@@ -733,7 +852,7 @@ module Appwrite
                 replyToEmail: reply_to_email,
                 enabled: enabled,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -747,7 +866,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
-
         end
 
         # Update a Mailgun provider by its unique ID.
@@ -764,12 +882,23 @@ module Appwrite
         # @param [String] reply_to_email Email set in the reply to field for the mail. Default value is sender email.
         #
         # @return [Provider]
-        def update_mailgun_provider(provider_id:, name: nil, api_key: nil, domain: nil, is_eu_region: nil, enabled: nil, from_name: nil, from_email: nil, reply_to_name: nil, reply_to_email: nil)
+        def update_mailgun_provider(
+            provider_id:,
+            name: nil,
+            api_key: nil,
+            domain: nil,
+            is_eu_region: nil,
+            enabled: nil,
+            from_name: nil,
+            from_email: nil,
+            reply_to_name: nil,
+            reply_to_email: nil
+        )
             api_path = '/messaging/providers/mailgun/{providerId}'
                 .gsub('{providerId}', provider_id)
 
             if provider_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
 
             api_params = {
@@ -783,7 +912,7 @@ module Appwrite
                 replyToName: reply_to_name,
                 replyToEmail: reply_to_email,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -797,12 +926,11 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
-
         end
 
         # Create a new MSG91 provider.
         #
-        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] name Provider name.
         # @param [String] template_id Msg91 template ID
         # @param [String] sender_id Msg91 sender ID.
@@ -810,15 +938,22 @@ module Appwrite
         # @param [] enabled Set as enabled.
         #
         # @return [Provider]
-        def create_msg91_provider(provider_id:, name:, template_id: nil, sender_id: nil, auth_key: nil, enabled: nil)
+        def create_msg91_provider(
+            provider_id:,
+            name:,
+            template_id: nil,
+            sender_id: nil,
+            auth_key: nil,
+            enabled: nil
+        )
             api_path = '/messaging/providers/msg91'
 
             if provider_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
 
             if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
             api_params = {
@@ -829,7 +964,7 @@ module Appwrite
                 authKey: auth_key,
                 enabled: enabled,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -843,7 +978,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
-
         end
 
         # Update a MSG91 provider by its unique ID.
@@ -856,12 +990,19 @@ module Appwrite
         # @param [String] auth_key Msg91 auth key.
         #
         # @return [Provider]
-        def update_msg91_provider(provider_id:, name: nil, enabled: nil, template_id: nil, sender_id: nil, auth_key: nil)
+        def update_msg91_provider(
+            provider_id:,
+            name: nil,
+            enabled: nil,
+            template_id: nil,
+            sender_id: nil,
+            auth_key: nil
+        )
             api_path = '/messaging/providers/msg91/{providerId}'
                 .gsub('{providerId}', provider_id)
 
             if provider_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
 
             api_params = {
@@ -871,7 +1012,7 @@ module Appwrite
                 senderId: sender_id,
                 authKey: auth_key,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -885,12 +1026,11 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
-
         end
 
         # Create a new Resend provider.
         #
-        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] name Provider name.
         # @param [String] api_key Resend API key.
         # @param [String] from_name Sender Name.
@@ -900,15 +1040,24 @@ module Appwrite
         # @param [] enabled Set as enabled.
         #
         # @return [Provider]
-        def create_resend_provider(provider_id:, name:, api_key: nil, from_name: nil, from_email: nil, reply_to_name: nil, reply_to_email: nil, enabled: nil)
+        def create_resend_provider(
+            provider_id:,
+            name:,
+            api_key: nil,
+            from_name: nil,
+            from_email: nil,
+            reply_to_name: nil,
+            reply_to_email: nil,
+            enabled: nil
+        )
             api_path = '/messaging/providers/resend'
 
             if provider_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
 
             if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
             api_params = {
@@ -921,7 +1070,7 @@ module Appwrite
                 replyToEmail: reply_to_email,
                 enabled: enabled,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -935,7 +1084,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
-
         end
 
         # Update a Resend provider by its unique ID.
@@ -950,12 +1098,21 @@ module Appwrite
         # @param [String] reply_to_email Email set in the Reply To field for the mail. Default value is Sender Email.
         #
         # @return [Provider]
-        def update_resend_provider(provider_id:, name: nil, enabled: nil, api_key: nil, from_name: nil, from_email: nil, reply_to_name: nil, reply_to_email: nil)
+        def update_resend_provider(
+            provider_id:,
+            name: nil,
+            enabled: nil,
+            api_key: nil,
+            from_name: nil,
+            from_email: nil,
+            reply_to_name: nil,
+            reply_to_email: nil
+        )
             api_path = '/messaging/providers/resend/{providerId}'
                 .gsub('{providerId}', provider_id)
 
             if provider_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
 
             api_params = {
@@ -967,7 +1124,7 @@ module Appwrite
                 replyToName: reply_to_name,
                 replyToEmail: reply_to_email,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -981,12 +1138,11 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
-
         end
 
         # Create a new Sendgrid provider.
         #
-        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] name Provider name.
         # @param [String] api_key Sendgrid API key.
         # @param [String] from_name Sender Name.
@@ -996,15 +1152,24 @@ module Appwrite
         # @param [] enabled Set as enabled.
         #
         # @return [Provider]
-        def create_sendgrid_provider(provider_id:, name:, api_key: nil, from_name: nil, from_email: nil, reply_to_name: nil, reply_to_email: nil, enabled: nil)
+        def create_sendgrid_provider(
+            provider_id:,
+            name:,
+            api_key: nil,
+            from_name: nil,
+            from_email: nil,
+            reply_to_name: nil,
+            reply_to_email: nil,
+            enabled: nil
+        )
             api_path = '/messaging/providers/sendgrid'
 
             if provider_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
 
             if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
             api_params = {
@@ -1017,7 +1182,7 @@ module Appwrite
                 replyToEmail: reply_to_email,
                 enabled: enabled,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1031,7 +1196,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
-
         end
 
         # Update a Sendgrid provider by its unique ID.
@@ -1046,12 +1210,21 @@ module Appwrite
         # @param [String] reply_to_email Email set in the Reply To field for the mail. Default value is Sender Email.
         #
         # @return [Provider]
-        def update_sendgrid_provider(provider_id:, name: nil, enabled: nil, api_key: nil, from_name: nil, from_email: nil, reply_to_name: nil, reply_to_email: nil)
+        def update_sendgrid_provider(
+            provider_id:,
+            name: nil,
+            enabled: nil,
+            api_key: nil,
+            from_name: nil,
+            from_email: nil,
+            reply_to_name: nil,
+            reply_to_email: nil
+        )
             api_path = '/messaging/providers/sendgrid/{providerId}'
                 .gsub('{providerId}', provider_id)
 
             if provider_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
 
             api_params = {
@@ -1063,7 +1236,7 @@ module Appwrite
                 replyToName: reply_to_name,
                 replyToEmail: reply_to_email,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1077,12 +1250,11 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
-
         end
 
         # Create a new Amazon SES provider.
         #
-        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] name Provider name.
         # @param [String] access_key AWS access key ID.
         # @param [String] secret_key AWS secret access key.
@@ -1094,15 +1266,26 @@ module Appwrite
         # @param [] enabled Set as enabled.
         #
         # @return [Provider]
-        def create_ses_provider(provider_id:, name:, access_key: nil, secret_key: nil, region: nil, from_name: nil, from_email: nil, reply_to_name: nil, reply_to_email: nil, enabled: nil)
+        def create_ses_provider(
+            provider_id:,
+            name:,
+            access_key: nil,
+            secret_key: nil,
+            region: nil,
+            from_name: nil,
+            from_email: nil,
+            reply_to_name: nil,
+            reply_to_email: nil,
+            enabled: nil
+        )
             api_path = '/messaging/providers/ses'
 
             if provider_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
 
             if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
             api_params = {
@@ -1117,7 +1300,7 @@ module Appwrite
                 replyToEmail: reply_to_email,
                 enabled: enabled,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1131,7 +1314,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
-
         end
 
         # Update an Amazon SES provider by its unique ID.
@@ -1148,12 +1330,23 @@ module Appwrite
         # @param [String] reply_to_email Email set in the Reply To field for the mail. Default value is Sender Email.
         #
         # @return [Provider]
-        def update_ses_provider(provider_id:, name: nil, enabled: nil, access_key: nil, secret_key: nil, region: nil, from_name: nil, from_email: nil, reply_to_name: nil, reply_to_email: nil)
+        def update_ses_provider(
+            provider_id:,
+            name: nil,
+            enabled: nil,
+            access_key: nil,
+            secret_key: nil,
+            region: nil,
+            from_name: nil,
+            from_email: nil,
+            reply_to_name: nil,
+            reply_to_email: nil
+        )
             api_path = '/messaging/providers/ses/{providerId}'
                 .gsub('{providerId}', provider_id)
 
             if provider_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
 
             api_params = {
@@ -1167,7 +1360,7 @@ module Appwrite
                 replyToName: reply_to_name,
                 replyToEmail: reply_to_email,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1181,18 +1374,17 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
-
         end
 
         # Create a new SMTP provider.
         #
-        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] name Provider name.
-        # @param [String] host SMTP hosts. Either a single hostname or multiple semicolon-delimited hostnames. You can also specify a different port for each host such as `smtp1.example.com:25;smtp2.example.com`. You can also specify encryption type, for example: `tls://smtp1.example.com:587;ssl://smtp2.example.com:465"`. Hosts will be tried in order.
+        # @param [String] host SMTP hosts. Either a single hostname or multiple semicolon-delimited hostnames. You can also specify a different port for each host such as `smtp1.example.com:25;smtp2.example.com`. You can also specify encryption type, for example: `tls://smtp1.example.com:587;ssl://smtp2.example.com:465&quot;`. Hosts will be tried in order.
         # @param [Integer] port The default SMTP server port.
         # @param [String] username Authentication username.
         # @param [String] password Authentication password.
-        # @param [SmtpEncryption] encryption Encryption type. Can be omitted, 'ssl', or 'tls'
+        # @param [SmtpEncryption] encryption Encryption type. Can be omitted, &#039;ssl&#039;, or &#039;tls&#039;
         # @param [] auto_tls Enable SMTP AutoTLS feature.
         # @param [String] mailer The value to use for the X-Mailer header.
         # @param [String] from_name Sender Name.
@@ -1202,19 +1394,34 @@ module Appwrite
         # @param [] enabled Set as enabled.
         #
         # @return [Provider]
-        def create_smtp_provider(provider_id:, name:, host:, port: nil, username: nil, password: nil, encryption: nil, auto_tls: nil, mailer: nil, from_name: nil, from_email: nil, reply_to_name: nil, reply_to_email: nil, enabled: nil)
+        def create_smtp_provider(
+            provider_id:,
+            name:,
+            host:,
+            port: nil,
+            username: nil,
+            password: nil,
+            encryption: nil,
+            auto_tls: nil,
+            mailer: nil,
+            from_name: nil,
+            from_email: nil,
+            reply_to_name: nil,
+            reply_to_email: nil,
+            enabled: nil
+        )
             api_path = '/messaging/providers/smtp'
 
             if provider_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
 
             if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
             if host.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "host"')
+                raise Appwrite::Exception.new('Missing required parameter: "host"')
             end
 
             api_params = {
@@ -1233,7 +1440,7 @@ module Appwrite
                 replyToEmail: reply_to_email,
                 enabled: enabled,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1247,18 +1454,17 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
-
         end
 
         # Update a SMTP provider by its unique ID.
         #
         # @param [String] provider_id Provider ID.
         # @param [String] name Provider name.
-        # @param [String] host SMTP hosts. Either a single hostname or multiple semicolon-delimited hostnames. You can also specify a different port for each host such as `smtp1.example.com:25;smtp2.example.com`. You can also specify encryption type, for example: `tls://smtp1.example.com:587;ssl://smtp2.example.com:465"`. Hosts will be tried in order.
+        # @param [String] host SMTP hosts. Either a single hostname or multiple semicolon-delimited hostnames. You can also specify a different port for each host such as `smtp1.example.com:25;smtp2.example.com`. You can also specify encryption type, for example: `tls://smtp1.example.com:587;ssl://smtp2.example.com:465&quot;`. Hosts will be tried in order.
         # @param [Integer] port SMTP port.
         # @param [String] username Authentication username.
         # @param [String] password Authentication password.
-        # @param [SmtpEncryption] encryption Encryption type. Can be 'ssl' or 'tls'
+        # @param [SmtpEncryption] encryption Encryption type. Can be &#039;ssl&#039; or &#039;tls&#039;
         # @param [] auto_tls Enable SMTP AutoTLS feature.
         # @param [String] mailer The value to use for the X-Mailer header.
         # @param [String] from_name Sender Name.
@@ -1268,12 +1474,27 @@ module Appwrite
         # @param [] enabled Set as enabled.
         #
         # @return [Provider]
-        def update_smtp_provider(provider_id:, name: nil, host: nil, port: nil, username: nil, password: nil, encryption: nil, auto_tls: nil, mailer: nil, from_name: nil, from_email: nil, reply_to_name: nil, reply_to_email: nil, enabled: nil)
+        def update_smtp_provider(
+            provider_id:,
+            name: nil,
+            host: nil,
+            port: nil,
+            username: nil,
+            password: nil,
+            encryption: nil,
+            auto_tls: nil,
+            mailer: nil,
+            from_name: nil,
+            from_email: nil,
+            reply_to_name: nil,
+            reply_to_email: nil,
+            enabled: nil
+        )
             api_path = '/messaging/providers/smtp/{providerId}'
                 .gsub('{providerId}', provider_id)
 
             if provider_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
 
             api_params = {
@@ -1291,7 +1512,7 @@ module Appwrite
                 replyToEmail: reply_to_email,
                 enabled: enabled,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1305,28 +1526,34 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
-
         end
 
         # Create a new Telesign provider.
         #
-        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] name Provider name.
-        # @param [String] from Sender Phone number. Format this number with a leading '+' and a country code, e.g., +16175551212.
+        # @param [String] from Sender Phone number. Format this number with a leading &#039;+&#039; and a country code, e.g., +16175551212.
         # @param [String] customer_id Telesign customer ID.
         # @param [String] api_key Telesign API key.
         # @param [] enabled Set as enabled.
         #
         # @return [Provider]
-        def create_telesign_provider(provider_id:, name:, from: nil, customer_id: nil, api_key: nil, enabled: nil)
+        def create_telesign_provider(
+            provider_id:,
+            name:,
+            from: nil,
+            customer_id: nil,
+            api_key: nil,
+            enabled: nil
+        )
             api_path = '/messaging/providers/telesign'
 
             if provider_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
 
             if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
             api_params = {
@@ -1337,7 +1564,7 @@ module Appwrite
                 apiKey: api_key,
                 enabled: enabled,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1351,7 +1578,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
-
         end
 
         # Update a Telesign provider by its unique ID.
@@ -1364,12 +1590,19 @@ module Appwrite
         # @param [String] from Sender number.
         #
         # @return [Provider]
-        def update_telesign_provider(provider_id:, name: nil, enabled: nil, customer_id: nil, api_key: nil, from: nil)
+        def update_telesign_provider(
+            provider_id:,
+            name: nil,
+            enabled: nil,
+            customer_id: nil,
+            api_key: nil,
+            from: nil
+        )
             api_path = '/messaging/providers/telesign/{providerId}'
                 .gsub('{providerId}', provider_id)
 
             if provider_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
 
             api_params = {
@@ -1379,7 +1612,7 @@ module Appwrite
                 apiKey: api_key,
                 from: from,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1393,28 +1626,34 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
-
         end
 
         # Create a new Textmagic provider.
         #
-        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] name Provider name.
-        # @param [String] from Sender Phone number. Format this number with a leading '+' and a country code, e.g., +16175551212.
+        # @param [String] from Sender Phone number. Format this number with a leading &#039;+&#039; and a country code, e.g., +16175551212.
         # @param [String] username Textmagic username.
         # @param [String] api_key Textmagic apiKey.
         # @param [] enabled Set as enabled.
         #
         # @return [Provider]
-        def create_textmagic_provider(provider_id:, name:, from: nil, username: nil, api_key: nil, enabled: nil)
+        def create_textmagic_provider(
+            provider_id:,
+            name:,
+            from: nil,
+            username: nil,
+            api_key: nil,
+            enabled: nil
+        )
             api_path = '/messaging/providers/textmagic'
 
             if provider_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
 
             if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
             api_params = {
@@ -1425,7 +1664,7 @@ module Appwrite
                 apiKey: api_key,
                 enabled: enabled,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1439,7 +1678,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
-
         end
 
         # Update a Textmagic provider by its unique ID.
@@ -1452,12 +1690,19 @@ module Appwrite
         # @param [String] from Sender number.
         #
         # @return [Provider]
-        def update_textmagic_provider(provider_id:, name: nil, enabled: nil, username: nil, api_key: nil, from: nil)
+        def update_textmagic_provider(
+            provider_id:,
+            name: nil,
+            enabled: nil,
+            username: nil,
+            api_key: nil,
+            from: nil
+        )
             api_path = '/messaging/providers/textmagic/{providerId}'
                 .gsub('{providerId}', provider_id)
 
             if provider_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
 
             api_params = {
@@ -1467,7 +1712,7 @@ module Appwrite
                 apiKey: api_key,
                 from: from,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1481,28 +1726,34 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
-
         end
 
         # Create a new Twilio provider.
         #
-        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] name Provider name.
-        # @param [String] from Sender Phone number. Format this number with a leading '+' and a country code, e.g., +16175551212.
+        # @param [String] from Sender Phone number. Format this number with a leading &#039;+&#039; and a country code, e.g., +16175551212.
         # @param [String] account_sid Twilio account secret ID.
         # @param [String] auth_token Twilio authentication token.
         # @param [] enabled Set as enabled.
         #
         # @return [Provider]
-        def create_twilio_provider(provider_id:, name:, from: nil, account_sid: nil, auth_token: nil, enabled: nil)
+        def create_twilio_provider(
+            provider_id:,
+            name:,
+            from: nil,
+            account_sid: nil,
+            auth_token: nil,
+            enabled: nil
+        )
             api_path = '/messaging/providers/twilio'
 
             if provider_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
 
             if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
             api_params = {
@@ -1513,7 +1764,7 @@ module Appwrite
                 authToken: auth_token,
                 enabled: enabled,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1527,7 +1778,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
-
         end
 
         # Update a Twilio provider by its unique ID.
@@ -1540,12 +1790,19 @@ module Appwrite
         # @param [String] from Sender number.
         #
         # @return [Provider]
-        def update_twilio_provider(provider_id:, name: nil, enabled: nil, account_sid: nil, auth_token: nil, from: nil)
+        def update_twilio_provider(
+            provider_id:,
+            name: nil,
+            enabled: nil,
+            account_sid: nil,
+            auth_token: nil,
+            from: nil
+        )
             api_path = '/messaging/providers/twilio/{providerId}'
                 .gsub('{providerId}', provider_id)
 
             if provider_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
 
             api_params = {
@@ -1555,7 +1812,7 @@ module Appwrite
                 authToken: auth_token,
                 from: from,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1569,28 +1826,34 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
-
         end
 
         # Create a new Vonage provider.
         #
-        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] name Provider name.
-        # @param [String] from Sender Phone number. Format this number with a leading '+' and a country code, e.g., +16175551212.
+        # @param [String] from Sender Phone number. Format this number with a leading &#039;+&#039; and a country code, e.g., +16175551212.
         # @param [String] api_key Vonage API key.
         # @param [String] api_secret Vonage API secret.
         # @param [] enabled Set as enabled.
         #
         # @return [Provider]
-        def create_vonage_provider(provider_id:, name:, from: nil, api_key: nil, api_secret: nil, enabled: nil)
+        def create_vonage_provider(
+            provider_id:,
+            name:,
+            from: nil,
+            api_key: nil,
+            api_secret: nil,
+            enabled: nil
+        )
             api_path = '/messaging/providers/vonage'
 
             if provider_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
 
             if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
             api_params = {
@@ -1601,7 +1864,7 @@ module Appwrite
                 apiSecret: api_secret,
                 enabled: enabled,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1615,7 +1878,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
-
         end
 
         # Update a Vonage provider by its unique ID.
@@ -1628,12 +1890,19 @@ module Appwrite
         # @param [String] from Sender number.
         #
         # @return [Provider]
-        def update_vonage_provider(provider_id:, name: nil, enabled: nil, api_key: nil, api_secret: nil, from: nil)
+        def update_vonage_provider(
+            provider_id:,
+            name: nil,
+            enabled: nil,
+            api_key: nil,
+            api_secret: nil,
+            from: nil
+        )
             api_path = '/messaging/providers/vonage/{providerId}'
                 .gsub('{providerId}', provider_id)
 
             if provider_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
 
             api_params = {
@@ -1643,7 +1912,7 @@ module Appwrite
                 apiSecret: api_secret,
                 from: from,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1657,26 +1926,26 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
-
         end
 
         # Get a provider by its unique ID.
-        # 
+        #
         #
         # @param [String] provider_id Provider ID.
         #
         # @return [Provider]
-        def get_provider(provider_id:)
+        def get_provider(
+            provider_id:
+        )
             api_path = '/messaging/providers/{providerId}'
                 .gsub('{providerId}', provider_id)
 
             if provider_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -1689,7 +1958,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Provider
             )
-
         end
 
         # Delete a provider by its unique ID.
@@ -1697,17 +1965,18 @@ module Appwrite
         # @param [String] provider_id Provider ID.
         #
         # @return []
-        def delete_provider(provider_id:)
+        def delete_provider(
+            provider_id:
+        )
             api_path = '/messaging/providers/{providerId}'
                 .gsub('{providerId}', provider_id)
 
             if provider_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1719,7 +1988,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
 
         # Get a list of all topics from the current Appwrite project.
@@ -1729,7 +1997,11 @@ module Appwrite
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [TopicList]
-        def list_topics(queries: nil, search: nil, total: nil)
+        def list_topics(
+            queries: nil,
+            search: nil,
+            total: nil
+        )
             api_path = '/messaging/topics'
 
             api_params = {
@@ -1737,7 +2009,7 @@ module Appwrite
                 search: search,
                 total: total,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -1750,7 +2022,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::TopicList
             )
-
         end
 
         # Create a new topic.
@@ -1760,15 +2031,19 @@ module Appwrite
         # @param [Array] subscribe An array of role strings with subscribe permission. By default all users are granted with any subscribe permission. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long.
         #
         # @return [Topic]
-        def create_topic(topic_id:, name:, subscribe: nil)
+        def create_topic(
+            topic_id:,
+            name:,
+            subscribe: nil
+        )
             api_path = '/messaging/topics'
 
             if topic_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "topicId"')
+                raise Appwrite::Exception.new('Missing required parameter: "topicId"')
             end
 
             if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
             api_params = {
@@ -1776,7 +2051,7 @@ module Appwrite
                 name: name,
                 subscribe: subscribe,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1790,26 +2065,26 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Topic
             )
-
         end
 
         # Get a topic by its unique ID.
-        # 
+        #
         #
         # @param [String] topic_id Topic ID.
         #
         # @return [Topic]
-        def get_topic(topic_id:)
+        def get_topic(
+            topic_id:
+        )
             api_path = '/messaging/topics/{topicId}'
                 .gsub('{topicId}', topic_id)
 
             if topic_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "topicId"')
+                raise Appwrite::Exception.new('Missing required parameter: "topicId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -1822,30 +2097,33 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Topic
             )
-
         end
 
         # Update a topic by its unique ID.
-        # 
+        #
         #
         # @param [String] topic_id Topic ID.
         # @param [String] name Topic Name.
         # @param [Array] subscribe An array of role strings with subscribe permission. By default all users are granted with any subscribe permission. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long.
         #
         # @return [Topic]
-        def update_topic(topic_id:, name: nil, subscribe: nil)
+        def update_topic(
+            topic_id:,
+            name: nil,
+            subscribe: nil
+        )
             api_path = '/messaging/topics/{topicId}'
                 .gsub('{topicId}', topic_id)
 
             if topic_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "topicId"')
+                raise Appwrite::Exception.new('Missing required parameter: "topicId"')
             end
 
             api_params = {
                 name: name,
                 subscribe: subscribe,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1859,7 +2137,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Topic
             )
-
         end
 
         # Delete a topic by its unique ID.
@@ -1867,17 +2144,18 @@ module Appwrite
         # @param [String] topic_id Topic ID.
         #
         # @return []
-        def delete_topic(topic_id:)
+        def delete_topic(
+            topic_id:
+        )
             api_path = '/messaging/topics/{topicId}'
                 .gsub('{topicId}', topic_id)
 
             if topic_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "topicId"')
+                raise Appwrite::Exception.new('Missing required parameter: "topicId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1889,7 +2167,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
 
         # Get a list of all subscribers from the current Appwrite project.
@@ -1900,12 +2177,17 @@ module Appwrite
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [SubscriberList]
-        def list_subscribers(topic_id:, queries: nil, search: nil, total: nil)
+        def list_subscribers(
+            topic_id:,
+            queries: nil,
+            search: nil,
+            total: nil
+        )
             api_path = '/messaging/topics/{topicId}/subscribers'
                 .gsub('{topicId}', topic_id)
 
             if topic_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "topicId"')
+                raise Appwrite::Exception.new('Missing required parameter: "topicId"')
             end
 
             api_params = {
@@ -1913,7 +2195,7 @@ module Appwrite
                 search: search,
                 total: total,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -1926,7 +2208,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::SubscriberList
             )
-
         end
 
         # Create a new subscriber.
@@ -1936,27 +2217,31 @@ module Appwrite
         # @param [String] target_id Target ID. The target ID to link to the specified Topic ID.
         #
         # @return [Subscriber]
-        def create_subscriber(topic_id:, subscriber_id:, target_id:)
+        def create_subscriber(
+            topic_id:,
+            subscriber_id:,
+            target_id:
+        )
             api_path = '/messaging/topics/{topicId}/subscribers'
                 .gsub('{topicId}', topic_id)
 
             if topic_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "topicId"')
+                raise Appwrite::Exception.new('Missing required parameter: "topicId"')
             end
 
             if subscriber_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "subscriberId"')
+                raise Appwrite::Exception.new('Missing required parameter: "subscriberId"')
             end
 
             if target_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "targetId"')
+                raise Appwrite::Exception.new('Missing required parameter: "targetId"')
             end
 
             api_params = {
                 subscriberId: subscriber_id,
                 targetId: target_id,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -1970,32 +2255,33 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Subscriber
             )
-
         end
 
         # Get a subscriber by its unique ID.
-        # 
+        #
         #
         # @param [String] topic_id Topic ID. The topic ID subscribed to.
         # @param [String] subscriber_id Subscriber ID.
         #
         # @return [Subscriber]
-        def get_subscriber(topic_id:, subscriber_id:)
+        def get_subscriber(
+            topic_id:,
+            subscriber_id:
+        )
             api_path = '/messaging/topics/{topicId}/subscribers/{subscriberId}'
                 .gsub('{topicId}', topic_id)
                 .gsub('{subscriberId}', subscriber_id)
 
             if topic_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "topicId"')
+                raise Appwrite::Exception.new('Missing required parameter: "topicId"')
             end
 
             if subscriber_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "subscriberId"')
+                raise Appwrite::Exception.new('Missing required parameter: "subscriberId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -2008,7 +2294,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Subscriber
             )
-
         end
 
         # Delete a subscriber by its unique ID.
@@ -2017,22 +2302,24 @@ module Appwrite
         # @param [String] subscriber_id Subscriber ID.
         #
         # @return []
-        def delete_subscriber(topic_id:, subscriber_id:)
+        def delete_subscriber(
+            topic_id:,
+            subscriber_id:
+        )
             api_path = '/messaging/topics/{topicId}/subscribers/{subscriberId}'
                 .gsub('{topicId}', topic_id)
                 .gsub('{subscriberId}', subscriber_id)
 
             if topic_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "topicId"')
+                raise Appwrite::Exception.new('Missing required parameter: "topicId"')
             end
 
             if subscriber_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "subscriberId"')
+                raise Appwrite::Exception.new('Missing required parameter: "subscriberId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -2044,8 +2331,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
-
-    end 
+    end
 end

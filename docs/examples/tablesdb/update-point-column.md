@@ -13,9 +13,9 @@ tables_db = TablesDB.new(client)
 result = tables_db.update_point_column(
     database_id: '<DATABASE_ID>',
     table_id: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     required: false,
     default: [1, 2], # optional
-    new_key: '' # optional
+    new_key: '<NEW_KEY>' # optional
 )
 ```

@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -30,17 +30,17 @@ module Appwrite
                 continent:,
                 eu:,
                 currency:,
-                city: ,
-                time_zone: ,
-                postal_code: ,
-                latitude: ,
-                longitude: ,
-                autonomous_system_number: ,
-                autonomous_system_organization: ,
-                isp: ,
-                connection_type: ,
-                connection_usage_type: ,
-                connection_organization: 
+                city:,
+                time_zone:,
+                postal_code:,
+                latitude:,
+                longitude:,
+                autonomous_system_number:,
+                autonomous_system_organization:,
+                isp:,
+                connection_type:,
+                connection_usage_type:,
+                connection_organization:
             )
                 @ip = ip
                 @country_code = country_code

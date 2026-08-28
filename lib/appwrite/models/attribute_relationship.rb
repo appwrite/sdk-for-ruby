@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -24,7 +24,7 @@ module Appwrite
                 status:,
                 error:,
                 required:,
-                array: ,
+                array:,
                 created_at:,
                 updated_at:,
                 related_collection:,
@@ -105,7 +105,6 @@ module Appwrite
 
                 status
             end
-
         end
     end
 end

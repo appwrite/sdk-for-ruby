@@ -1,8 +1,7 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     class Apps < Service
-
         def initialize(client)
             @client = client
         end
@@ -13,14 +12,17 @@ module Appwrite
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [AppsList]
-        def list(queries: nil, total: nil)
+        def list(
+            queries: nil,
+            total: nil
+        )
             api_path = '/apps'
 
             api_params = {
                 queries: queries,
                 total: total,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -33,12 +35,11 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AppsList
             )
-
         end
 
         # Create a new application.
         #
-        # @param [String] app_id Application ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+        # @param [String] app_id Application ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] name Application name.
         # @param [Array] redirect_uris Redirect URIs. Each must be an https URL, an http loopback URL (localhost, 127.0.0.1, [::1]), or a private-use scheme URI (e.g. com.example.app:/oauth), and must not contain a fragment.
         # @param [String] description Application description shown to users during OAuth2 consent.
@@ -59,19 +60,39 @@ module Appwrite
         # @param [String] team_id Team unique ID.
         #
         # @return [App]
-        def create(app_id:, name:, redirect_uris:, description: nil, client_uri: nil, logo_uri: nil, privacy_policy_url: nil, terms_url: nil, contacts: nil, tagline: nil, tags: nil, images: nil, support_url: nil, data_deletion_url: nil, post_logout_redirect_uris: nil, enabled: nil, type: nil, device_flow: nil, team_id: nil)
+        def create(
+            app_id:,
+            name:,
+            redirect_uris:,
+            description: nil,
+            client_uri: nil,
+            logo_uri: nil,
+            privacy_policy_url: nil,
+            terms_url: nil,
+            contacts: nil,
+            tagline: nil,
+            tags: nil,
+            images: nil,
+            support_url: nil,
+            data_deletion_url: nil,
+            post_logout_redirect_uris: nil,
+            enabled: nil,
+            type: nil,
+            device_flow: nil,
+            team_id: nil
+        )
             api_path = '/apps'
 
             if app_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "appId"')
+                raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
             if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
             if redirect_uris.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "redirectUris"')
+                raise Appwrite::Exception.new('Missing required parameter: "redirectUris"')
             end
 
             api_params = {
@@ -95,7 +116,7 @@ module Appwrite
                 deviceFlow: device_flow,
                 teamId: team_id,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -109,7 +130,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::App
             )
-
         end
 
         # List scopes an application can request when installed on a team.
@@ -119,9 +139,8 @@ module Appwrite
         def list_installation_scopes()
             api_path = '/apps/scopes/installations'
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -134,7 +153,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AppScopeList
             )
-
         end
 
         # List scopes an application can request during the OAuth2 flow.
@@ -144,9 +162,8 @@ module Appwrite
         def list_o_auth2_scopes()
             api_path = '/apps/scopes/oauth2'
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -159,7 +176,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AppScopeList
             )
-
         end
 
         # Get an application by its unique ID.
@@ -167,17 +183,18 @@ module Appwrite
         # @param [String] app_id Application unique ID.
         #
         # @return [App]
-        def get(app_id:)
+        def get(
+            app_id:
+        )
             api_path = '/apps/{appId}'
                 .gsub('{appId}', app_id)
 
             if app_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "appId"')
+                raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -190,7 +207,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::App
             )
-
         end
 
         # Update an application by its unique ID.
@@ -213,20 +229,41 @@ module Appwrite
         # @param [Array] post_logout_redirect_uris Post-logout redirect URIs for OpenID Connect RP-Initiated Logout. Each must be an https URL, an http loopback URL, or a private-use scheme URI, and must not contain a fragment. After ending the user session, the logout endpoint only redirects to URIs in this list.
         # @param [String] type OAuth2 client type. Use `public` for SPAs, mobile, and native apps that cannot keep a `client_secret` — PKCE is then required at the token endpoint. Use `confidential` for server-side clients that present a `client_secret`. Defaults to `confidential`.
         # @param [] device_flow Allow this client to use the OAuth2 Device Authorization Grant (RFC 8628) for input-constrained devices such as TVs and CLIs. Defaults to false.
-        # @param [Array] installation_scopes Scopes the application requests when installed on a team. Only scopes allowed by the project's OAuth2 server installation scopes configuration are accepted; use the list installation scopes endpoint to discover available values. Maximum of 100 scopes are allowed.
+        # @param [Array] installation_scopes Scopes the application requests when installed on a team. Only scopes allowed by the project&#039;s OAuth2 server installation scopes configuration are accepted; use the list installation scopes endpoint to discover available values. Maximum of 100 scopes are allowed.
         # @param [String] installation_redirect_url URL users are redirected to after creating or updating an installation of this application. Must be an https URL, an http loopback URL (localhost, 127.0.0.1, [::1]), or a private-use scheme URI, and must not contain a fragment. Leave empty for no redirect.
         #
         # @return [App]
-        def update(app_id:, name:, description: nil, client_uri: nil, logo_uri: nil, privacy_policy_url: nil, terms_url: nil, contacts: nil, tagline: nil, tags: nil, images: nil, support_url: nil, data_deletion_url: nil, enabled: nil, redirect_uris: nil, post_logout_redirect_uris: nil, type: nil, device_flow: nil, installation_scopes: nil, installation_redirect_url: nil)
+        def update(
+            app_id:,
+            name:,
+            description: nil,
+            client_uri: nil,
+            logo_uri: nil,
+            privacy_policy_url: nil,
+            terms_url: nil,
+            contacts: nil,
+            tagline: nil,
+            tags: nil,
+            images: nil,
+            support_url: nil,
+            data_deletion_url: nil,
+            enabled: nil,
+            redirect_uris: nil,
+            post_logout_redirect_uris: nil,
+            type: nil,
+            device_flow: nil,
+            installation_scopes: nil,
+            installation_redirect_url: nil
+        )
             api_path = '/apps/{appId}'
                 .gsub('{appId}', app_id)
 
             if app_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "appId"')
+                raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
             if name.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "name"')
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
 
             api_params = {
@@ -250,7 +287,7 @@ module Appwrite
                 installationScopes: installation_scopes,
                 installationRedirectUrl: installation_redirect_url,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -264,7 +301,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::App
             )
-
         end
 
         # Delete an application by its unique ID.
@@ -272,17 +308,18 @@ module Appwrite
         # @param [String] app_id Application unique ID.
         #
         # @return []
-        def delete(app_id:)
+        def delete(
+            app_id:
+        )
             api_path = '/apps/{appId}'
                 .gsub('{appId}', app_id)
 
             if app_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "appId"')
+                raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -295,7 +332,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
 
         # List installations of an application. Requires an app key sent in the
@@ -307,19 +343,23 @@ module Appwrite
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [AppInstallationList]
-        def list_installations(app_id:, queries: nil, total: nil)
+        def list_installations(
+            app_id:,
+            queries: nil,
+            total: nil
+        )
             api_path = '/apps/{appId}/installations'
                 .gsub('{appId}', app_id)
 
             if app_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "appId"')
+                raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
             api_params = {
                 queries: queries,
                 total: total,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -332,7 +372,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AppInstallationList
             )
-
         end
 
         # Get an installation of an application by its unique ID. Requires an app key
@@ -343,22 +382,24 @@ module Appwrite
         # @param [String] installation_id Installation unique ID.
         #
         # @return [AppInstallation]
-        def get_installation(app_id:, installation_id:)
+        def get_installation(
+            app_id:,
+            installation_id:
+        )
             api_path = '/apps/{appId}/installations/{installationId}'
                 .gsub('{appId}', app_id)
                 .gsub('{installationId}', installation_id)
 
             if app_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "appId"')
+                raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
             if installation_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "installationId"')
+                raise Appwrite::Exception.new('Missing required parameter: "installationId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -371,7 +412,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AppInstallation
             )
-
         end
 
         # Delete an installation of an application by its unique ID. Requires a
@@ -382,22 +422,24 @@ module Appwrite
         # @param [String] installation_id Installation unique ID.
         #
         # @return []
-        def delete_installation(app_id:, installation_id:)
+        def delete_installation(
+            app_id:,
+            installation_id:
+        )
             api_path = '/apps/{appId}/installations/{installationId}'
                 .gsub('{appId}', app_id)
                 .gsub('{installationId}', installation_id)
 
             if app_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "appId"')
+                raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
             if installation_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "installationId"')
+                raise Appwrite::Exception.new('Missing required parameter: "installationId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -410,7 +452,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
 
         # Create a token for an installation of an application. Requires an app key
@@ -426,22 +467,24 @@ module Appwrite
         # @param [String] installation_id Installation unique ID.
         #
         # @return [Oauth2Token]
-        def create_installation_token(app_id:, installation_id:)
+        def create_installation_token(
+            app_id:,
+            installation_id:
+        )
             api_path = '/apps/{appId}/installations/{installationId}/tokens'
                 .gsub('{appId}', app_id)
                 .gsub('{installationId}', installation_id)
 
             if app_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "appId"')
+                raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
             if installation_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "installationId"')
+                raise Appwrite::Exception.new('Missing required parameter: "installationId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -455,7 +498,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::Oauth2Token
             )
-
         end
 
         # List app keys for an application.
@@ -465,19 +507,23 @@ module Appwrite
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [AppKeyList]
-        def list_keys(app_id:, queries: nil, total: nil)
+        def list_keys(
+            app_id:,
+            queries: nil,
+            total: nil
+        )
             api_path = '/apps/{appId}/keys'
                 .gsub('{appId}', app_id)
 
             if app_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "appId"')
+                raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
             api_params = {
                 queries: queries,
                 total: total,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -490,27 +536,27 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AppKeyList
             )
-
         end
 
         # Create a new app key for an application. App keys carry no scopes; send one
         # in the `X-Appwrite-Key` header alongside the `X-Appwrite-App` header to
-        # list the application's installations and create installation access tokens.
+        # list the application&#039;s installations and create installation access tokens.
         #
         # @param [String] app_id Application unique ID.
         #
         # @return [AppKey]
-        def create_key(app_id:)
+        def create_key(
+            app_id:
+        )
             api_path = '/apps/{appId}/keys'
                 .gsub('{appId}', app_id)
 
             if app_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "appId"')
+                raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -524,7 +570,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AppKey
             )
-
         end
 
         # Get an app key by its unique ID.
@@ -533,22 +578,24 @@ module Appwrite
         # @param [String] key_id App key unique ID.
         #
         # @return [AppKey]
-        def get_key(app_id:, key_id:)
+        def get_key(
+            app_id:,
+            key_id:
+        )
             api_path = '/apps/{appId}/keys/{keyId}'
                 .gsub('{appId}', app_id)
                 .gsub('{keyId}', key_id)
 
             if app_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "appId"')
+                raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
             if key_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "keyId"')
+                raise Appwrite::Exception.new('Missing required parameter: "keyId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -561,7 +608,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AppKey
             )
-
         end
 
         # Delete an app key by its unique ID.
@@ -570,22 +616,24 @@ module Appwrite
         # @param [String] key_id App key unique ID.
         #
         # @return []
-        def delete_key(app_id:, key_id:)
+        def delete_key(
+            app_id:,
+            key_id:
+        )
             api_path = '/apps/{appId}/keys/{keyId}'
                 .gsub('{appId}', app_id)
                 .gsub('{keyId}', key_id)
 
             if app_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "appId"')
+                raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
             if key_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "keyId"')
+                raise Appwrite::Exception.new('Missing required parameter: "keyId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -598,7 +646,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
 
         # Update the labels of an application. Labels are read-only for clients; only
@@ -609,22 +656,25 @@ module Appwrite
         # @param [Array] labels Array of application labels. Replaces the previous labels. Maximum of 1000 labels are allowed, each up to 36 alphanumeric characters long.
         #
         # @return [App]
-        def update_labels(app_id:, labels:)
+        def update_labels(
+            app_id:,
+            labels:
+        )
             api_path = '/apps/{appId}/labels'
                 .gsub('{appId}', app_id)
 
             if app_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "appId"')
+                raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
             if labels.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "labels"')
+                raise Appwrite::Exception.new('Missing required parameter: "labels"')
             end
 
             api_params = {
                 labels: labels,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -638,7 +688,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::App
             )
-
         end
 
         # List client secrets for an application.
@@ -648,19 +697,23 @@ module Appwrite
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [AppSecretList]
-        def list_secrets(app_id:, queries: nil, total: nil)
+        def list_secrets(
+            app_id:,
+            queries: nil,
+            total: nil
+        )
             api_path = '/apps/{appId}/secrets'
                 .gsub('{appId}', app_id)
 
             if app_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "appId"')
+                raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
             api_params = {
                 queries: queries,
                 total: total,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -673,7 +726,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AppSecretList
             )
-
         end
 
         # Create a new client secret for an application.
@@ -681,17 +733,18 @@ module Appwrite
         # @param [String] app_id Application unique ID.
         #
         # @return [AppSecretPlaintext]
-        def create_secret(app_id:)
+        def create_secret(
+            app_id:
+        )
             api_path = '/apps/{appId}/secrets'
                 .gsub('{appId}', app_id)
 
             if app_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "appId"')
+                raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -705,7 +758,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AppSecretPlaintext
             )
-
         end
 
         # Get an application client secret by its unique ID.
@@ -714,22 +766,24 @@ module Appwrite
         # @param [String] secret_id Secret unique ID.
         #
         # @return [AppSecret]
-        def get_secret(app_id:, secret_id:)
+        def get_secret(
+            app_id:,
+            secret_id:
+        )
             api_path = '/apps/{appId}/secrets/{secretId}'
                 .gsub('{appId}', app_id)
                 .gsub('{secretId}', secret_id)
 
             if app_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "appId"')
+                raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
             if secret_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "secretId"')
+                raise Appwrite::Exception.new('Missing required parameter: "secretId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "accept": 'application/json',
@@ -742,7 +796,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::AppSecret
             )
-
         end
 
         # Delete an application client secret by its unique ID.
@@ -751,22 +804,24 @@ module Appwrite
         # @param [String] secret_id Secret unique ID.
         #
         # @return []
-        def delete_secret(app_id:, secret_id:)
+        def delete_secret(
+            app_id:,
+            secret_id:
+        )
             api_path = '/apps/{appId}/secrets/{secretId}'
                 .gsub('{appId}', app_id)
                 .gsub('{secretId}', secret_id)
 
             if app_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "appId"')
+                raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
             if secret_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "secretId"')
+                raise Appwrite::Exception.new('Missing required parameter: "secretId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -779,7 +834,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
 
         # Transfer an application to another team by its unique ID.
@@ -788,22 +842,25 @@ module Appwrite
         # @param [String] team_id Team ID of the team to transfer application to.
         #
         # @return [App]
-        def update_team(app_id:, team_id:)
+        def update_team(
+            app_id:,
+            team_id:
+        )
             api_path = '/apps/{appId}/team'
                 .gsub('{appId}', app_id)
 
             if app_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "appId"')
+                raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
             if team_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "teamId"')
+                raise Appwrite::Exception.new('Missing required parameter: "teamId"')
             end
 
             api_params = {
                 teamId: team_id,
             }
-            
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -817,7 +874,6 @@ module Appwrite
                 params: api_params,
                 response_type: Models::App
             )
-
         end
 
         # Revoke all tokens for an application by its unique ID.
@@ -825,17 +881,18 @@ module Appwrite
         # @param [String] app_id Application unique ID.
         #
         # @return []
-        def delete_tokens(app_id:)
+        def delete_tokens(
+            app_id:
+        )
             api_path = '/apps/{appId}/tokens'
                 .gsub('{appId}', app_id)
 
             if app_id.nil?
-              raise Appwrite::Exception.new('Missing required parameter: "appId"')
+                raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
-            api_params = {
-            }
-            
+            api_params = {}
+
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
@@ -848,8 +905,6 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
             )
-
         end
-
-    end 
+    end
 end

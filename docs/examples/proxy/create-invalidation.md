@@ -12,7 +12,7 @@ client = Client.new
 proxy = Proxy.new(client)
 
 result = proxy.create_invalidation(
-    domain: '',
+    domain: 'example.com',
     type: InvalidationType::TAG,
     reference: '<REFERENCE>' # optional
 )

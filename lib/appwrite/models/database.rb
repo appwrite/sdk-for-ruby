@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -13,6 +13,9 @@ module Appwrite
             attr_reader :engine
             attr_reader :specification
             attr_reader :replicas
+            attr_reader :error
+            attr_reader :container_status
+            attr_reader :lifecycle_state
             attr_reader :policies
             attr_reader :archives
 
@@ -23,12 +26,15 @@ module Appwrite
                 updated_at:,
                 enabled:,
                 type:,
-                status: ,
-                engine: ,
-                specification: ,
-                replicas: ,
-                policies: ,
-                archives: 
+                status:,
+                engine:,
+                specification:,
+                replicas:,
+                error:,
+                container_status:,
+                lifecycle_state:,
+                policies:,
+                archives:
             )
                 @id = id
                 @name = name
@@ -40,6 +46,9 @@ module Appwrite
                 @engine = engine
                 @specification = specification
                 @replicas = replicas
+                @error = error
+                @container_status = container_status
+                @lifecycle_state = lifecycle_state
                 @policies = policies
                 @archives = archives
             end
@@ -56,6 +65,9 @@ module Appwrite
                     engine: map["engine"],
                     specification: map["specification"],
                     replicas: map["replicas"],
+                    error: map["error"],
+                    container_status: map["containerStatus"],
+                    lifecycle_state: map["lifecycleState"],
                     policies: map["policies"]&.map { |it| BackupPolicy.from(map: it) },
                     archives: map["archives"]&.map { |it| BackupArchive.from(map: it) }
                 )
@@ -73,6 +85,9 @@ module Appwrite
                     "engine": @engine,
                     "specification": @specification,
                     "replicas": @replicas,
+                    "error": @error,
+                    "containerStatus": @container_status,
+                    "lifecycleState": @lifecycle_state,
                     "policies": @policies&.map { |it| it.to_map },
                     "archives": @archives&.map { |it| it.to_map }
                 }
@@ -122,7 +137,6 @@ module Appwrite
 
                 status
             end
-
         end
     end
 end

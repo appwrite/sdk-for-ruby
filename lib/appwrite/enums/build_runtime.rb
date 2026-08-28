@@ -79,6 +79,7 @@ module Appwrite
             BUN_1_1 = 'bun-1.1'
             BUN_1_2 = 'bun-1.2'
             BUN_1_3 = 'bun-1.3'
+            BUN_1_4 = 'bun-1.4'
             GO_1_23 = 'go-1.23'
             GO_1_24 = 'go-1.24'
             GO_1_25 = 'go-1.25'

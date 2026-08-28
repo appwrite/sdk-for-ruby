@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -24,7 +24,7 @@ module Appwrite
                 authorization_details:,
                 created_by_id:,
                 created_by_name:,
-                last_accessed_at: 
+                last_accessed_at:
             )
                 @id = id
                 @created_at = created_at

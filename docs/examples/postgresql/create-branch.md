@@ -1,0 +1,18 @@
+```ruby
+require 'appwrite'
+
+include Appwrite
+
+client = Client.new
+    .set_endpoint('https://<REGION>.cloud.appwrite.io/v1') # Your API Endpoint
+    .set_project('<YOUR_PROJECT_ID>') # Your project ID
+    .set_key('<YOUR_API_KEY>') # Your secret API key
+
+postgresql = Postgresql.new(client)
+
+result = postgresql.create_branch(
+    database_id: '<DATABASE_ID>',
+    branch_id: '<BRANCH_ID>', # optional
+    ttl: 300 # optional
+)
+```

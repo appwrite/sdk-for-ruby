@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Appwrite
     module Models
@@ -28,7 +28,7 @@ module Appwrite
                 target:,
                 categories:,
                 insights:,
-                analyzed_at: 
+                analyzed_at:
             )
                 @id = id
                 @created_at = created_at

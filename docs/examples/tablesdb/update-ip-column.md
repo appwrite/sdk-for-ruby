@@ -13,9 +13,9 @@ tables_db = TablesDB.new(client)
 result = tables_db.update_ip_column(
     database_id: '<DATABASE_ID>',
     table_id: '<TABLE_ID>',
-    key: '',
+    key: '<KEY>',
     required: false,
-    default: '',
-    new_key: '' # optional
+    default: '192.0.2.0',
+    new_key: '<NEW_KEY>' # optional
 )
 ```

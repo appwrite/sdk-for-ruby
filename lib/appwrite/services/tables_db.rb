@@ -632,11 +632,11 @@ module Appwrite
         # @param [String] migration_id Migration ID.
         #
         # @return [DatabaseMigration]
-        def cutover_migration(
+        def create_cutover(
             database_id:,
             migration_id:
         )
-            api_path = '/tablesdb/{databaseId}/migrations/{migrationId}/cutover'
+            api_path = '/tablesdb/{databaseId}/migrations/{migrationId}/cutovers'
                 .gsub('{databaseId}', database_id)
                 .gsub('{migrationId}', migration_id)
 

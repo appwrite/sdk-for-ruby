@@ -868,14 +868,14 @@ module Appwrite
             )
         end
 
-        # Rotate the primary connection credentials for a dedicated database.
-        # Generates a new password and updates the database atomically. Previous
-        # credentials stop working immediately. Returns the database with a refreshed
-        # connection string carrying the new password.
+        # Queue a rotation of the primary connection credentials for a dedicated
+        # database. A hibernated database is woken by the worker before rotation.
+        # List database operations until the returned operation reaches a terminal
+        # status, then fetch the database again for the refreshed connection string.
         #
         # @param [String] database_id Database ID.
         #
-        # @return [DedicatedDatabase]
+        # @return [DedicatedDatabaseOperation]
         def update_credentials(
             database_id:
         )
@@ -899,7 +899,7 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::DedicatedDatabase
+                response_type: Models::DedicatedDatabaseOperation
             )
         end
 

@@ -8,12 +8,11 @@ client = Client.new
     .set_project('<YOUR_PROJECT_ID>') # Your project ID
     .set_key('<YOUR_API_KEY>') # Your secret API key
 
-vectors_db = VectorsDB.new(client)
+project = Project.new(client)
 
-result = vectors_db.create_documents(
-    database_id: '<DATABASE_ID>',
-    collection_id: '<COLLECTION_ID>',
-    documents: [],
-    transaction_id: '<TRANSACTION_ID>' # optional
+result = project.update_o_auth2_resend(
+    client_id: '<CLIENT_ID>', # optional
+    client_secret: '<CLIENT_SECRET>', # optional
+    enabled: false # optional
 )
 ```

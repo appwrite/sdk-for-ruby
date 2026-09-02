@@ -932,6 +932,41 @@ module Appwrite
             )
         end
 
+        # Update the project OAuth2 Cloudflare configuration.
+        #
+        # @param [String] client_id &#039;Client ID&#039; of Cloudflare OAuth2 app. For example: 4b866000000000000000000000c9e4e2
+        # @param [String] client_secret &#039;Client Secret&#039; of Cloudflare OAuth2 app. For example: cfoc_5Q6YRl0000000000000000000000000000000000003d214f
+        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        #
+        # @return [OAuth2Cloudflare]
+        def update_o_auth2_cloudflare(
+            client_id: nil,
+            client_secret: nil,
+            enabled: nil
+        )
+            api_path = '/project/oauth2/cloudflare'
+
+            api_params = {
+                clientId: client_id,
+                clientSecret: client_secret,
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::OAuth2Cloudflare
+            )
+        end
+
         # Update the project OAuth2 Dailymotion configuration.
         #
         # @param [String] api_key &#039;API Key&#039; of Dailymotion OAuth2 app. For example: 07a9000000000000067f
@@ -1744,6 +1779,41 @@ module Appwrite
             )
         end
 
+        # Update the project OAuth2 Resend configuration.
+        #
+        # @param [String] client_id &#039;Client ID&#039; of Resend OAuth2 app. For example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+        # @param [String] client_secret &#039;Client Secret&#039; of Resend OAuth2 app. For example: 9c1e4b00000000000000000000000000000000000000000000000000a72d5f4
+        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        #
+        # @return [OAuth2Resend]
+        def update_o_auth2_resend(
+            client_id: nil,
+            client_secret: nil,
+            enabled: nil
+        )
+            api_path = '/project/oauth2/resend'
+
+            api_params = {
+                clientId: client_id,
+                clientSecret: client_secret,
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::OAuth2Resend
+            )
+        end
+
         # Update the project OAuth2 Salesforce configuration.
         #
         # @param [String] customer_key &#039;Consumer Key&#039; of Salesforce OAuth2 app. For example: 3MVG9I0000000000000000000000000000000000000000000000000000000000000000000000000C5Aejq
@@ -2204,7 +2274,7 @@ module Appwrite
         #
         # @param [ProjectOAuthProviderId] provider_id OAuth2 provider key. For example: github, google, apple.
         #
-        # @return [OAuth2Github, OAuth2Discord, OAuth2Figma, OAuth2Dropbox, OAuth2Dailymotion, OAuth2Bitbucket, OAuth2Bitly, OAuth2Box, OAuth2Autodesk, OAuth2Google, OAuth2Zoom, OAuth2Zoho, OAuth2Yandex, OAuth2X, OAuth2WordPress, OAuth2Twitch, OAuth2Stripe, OAuth2Spotify, OAuth2Slack, OAuth2Podio, OAuth2Notion, OAuth2Salesforce, OAuth2Yahoo, OAuth2HuggingFace, OAuth2Linkedin, OAuth2Disqus, OAuth2Amazon, OAuth2Etsy, OAuth2Facebook, OAuth2Tradeshift, OAuth2Paypal, OAuth2Gitlab, OAuth2Authentik, OAuth2Auth0, OAuth2FusionAuth, OAuth2Keycloak, OAuth2Oidc, OAuth2Apple, OAuth2Okta, OAuth2Kick, OAuth2Microsoft]
+        # @return [OAuth2Github, OAuth2Discord, OAuth2Figma, OAuth2Dropbox, OAuth2Dailymotion, OAuth2Bitbucket, OAuth2Bitly, OAuth2Box, OAuth2Autodesk, OAuth2Google, OAuth2Zoom, OAuth2Zoho, OAuth2Yandex, OAuth2X, OAuth2WordPress, OAuth2Twitch, OAuth2Stripe, OAuth2Spotify, OAuth2Slack, OAuth2Podio, OAuth2Notion, OAuth2Salesforce, OAuth2Yahoo, OAuth2HuggingFace, OAuth2Resend, OAuth2Cloudflare, OAuth2Linkedin, OAuth2Disqus, OAuth2Amazon, OAuth2Etsy, OAuth2Facebook, OAuth2Tradeshift, OAuth2Paypal, OAuth2Gitlab, OAuth2Authentik, OAuth2Auth0, OAuth2FusionAuth, OAuth2Keycloak, OAuth2Oidc, OAuth2Apple, OAuth2Okta, OAuth2Kick, OAuth2Microsoft]
         def get_o_auth2_provider(
             provider_id:
         )
@@ -2351,6 +2421,16 @@ module Appwrite
             if response['$id'] == 'huggingface'
 
                 return Models::OAuth2HuggingFace.from(map: response)
+            end
+
+            if response['$id'] == 'resend'
+
+                return Models::OAuth2Resend.from(map: response)
+            end
+
+            if response['$id'] == 'cloudflare'
+
+                return Models::OAuth2Cloudflare.from(map: response)
             end
 
             if response['$id'] == 'linkedin'

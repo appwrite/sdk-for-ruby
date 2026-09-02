@@ -17,6 +17,7 @@ module Appwrite
             attr_reader :connection_port
             attr_reader :connection_user
             attr_reader :connection_password
+            attr_reader :credential_generation
             attr_reader :connection_string
             attr_reader :ssl
             attr_reader :status
@@ -67,6 +68,7 @@ module Appwrite
                 connection_port:,
                 connection_user:,
                 connection_password:,
+                credential_generation:,
                 connection_string:,
                 ssl:,
                 status:,
@@ -116,6 +118,7 @@ module Appwrite
                 @connection_port = connection_port
                 @connection_user = connection_user
                 @connection_password = connection_password
+                @credential_generation = credential_generation
                 @connection_string = connection_string
                 @ssl = ssl
                 @status = status
@@ -168,6 +171,7 @@ module Appwrite
                     connection_port: map["connectionPort"],
                     connection_user: map["connectionUser"],
                     connection_password: map["connectionPassword"],
+                    credential_generation: map["credentialGeneration"],
                     connection_string: map["connectionString"],
                     ssl: map["ssl"],
                     status: map["status"],
@@ -221,6 +225,7 @@ module Appwrite
                     "connectionPort": @connection_port,
                     "connectionUser": @connection_user,
                     "connectionPassword": @connection_password,
+                    "credentialGeneration": @credential_generation,
                     "connectionString": @connection_string,
                     "ssl": @ssl,
                     "status": @status,

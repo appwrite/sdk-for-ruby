@@ -8,10 +8,11 @@ client = Client.new
     .set_project('<YOUR_PROJECT_ID>') # Your project ID
     .set_key('<YOUR_API_KEY>') # Your secret API key
 
-tables_db = TablesDB.new(client)
+project = Project.new(client)
 
-result = tables_db.cutover_migration(
-    database_id: '<DATABASE_ID>',
-    migration_id: '<MIGRATION_ID>'
+result = project.update_o_auth2_cloudflare(
+    client_id: '<CLIENT_ID>', # optional
+    client_secret: '<CLIENT_SECRET>', # optional
+    enabled: false # optional
 )
 ```

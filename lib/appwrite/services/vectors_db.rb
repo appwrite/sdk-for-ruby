@@ -730,6 +730,7 @@ module Appwrite
         # @param [String] document_id Document ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [Hash] data Document data as JSON object.
         # @param [Array] permissions An array of permissions strings. By default, only the current user is granted all permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
+        # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [Document]
         def create_document(
@@ -737,7 +738,8 @@ module Appwrite
             collection_id:,
             document_id:,
             data:,
-            permissions: nil
+            permissions: nil,
+            transaction_id: nil
         )
             api_path = '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
                 .gsub('{databaseId}', database_id)
@@ -763,6 +765,7 @@ module Appwrite
                 documentId: document_id,
                 data: data,
                 permissions: permissions,
+                transactionId: transaction_id,
             }
 
             api_headers = {
@@ -788,12 +791,14 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] collection_id Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). Make sure to define attributes before creating documents.
         # @param [Array] documents Array of documents data as JSON objects.
+        # @param [String] transaction_id Transaction ID for staging the operation.
         #
         # @return [DocumentList]
         def create_documents(
             database_id:,
             collection_id:,
-            documents:
+            documents:,
+            transaction_id: nil
         )
             api_path = '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
                 .gsub('{databaseId}', database_id)
@@ -813,6 +818,7 @@ module Appwrite
 
             api_params = {
                 documents: documents,
+                transactionId: transaction_id,
             }
 
             api_headers = {

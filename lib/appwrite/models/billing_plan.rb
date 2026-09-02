@@ -40,6 +40,7 @@ module Appwrite
             attr_reader :activity_logs
             attr_reader :usage_logs
             attr_reader :usage_logs_intervals
+            attr_reader :usage_aggregate_only_metrics
             attr_reader :project_inactivity_days
             attr_reader :alert_limit
             attr_reader :usage
@@ -113,6 +114,7 @@ module Appwrite
                 activity_logs:,
                 usage_logs:,
                 usage_logs_intervals:,
+                usage_aggregate_only_metrics:,
                 project_inactivity_days:,
                 alert_limit:,
                 usage:,
@@ -185,6 +187,7 @@ module Appwrite
                 @activity_logs = activity_logs
                 @usage_logs = usage_logs
                 @usage_logs_intervals = usage_logs_intervals
+                @usage_aggregate_only_metrics = usage_aggregate_only_metrics
                 @project_inactivity_days = project_inactivity_days
                 @alert_limit = alert_limit
                 @usage = usage
@@ -260,6 +263,7 @@ module Appwrite
                     activity_logs: map["activityLogs"],
                     usage_logs: map["usageLogs"],
                     usage_logs_intervals: map["usageLogsIntervals"],
+                    usage_aggregate_only_metrics: map["usageAggregateOnlyMetrics"],
                     project_inactivity_days: map["projectInactivityDays"],
                     alert_limit: map["alertLimit"],
                     usage: UsageBillingPlan.from(map: map["usage"]),
@@ -336,6 +340,7 @@ module Appwrite
                     "activityLogs": @activity_logs,
                     "usageLogs": @usage_logs,
                     "usageLogsIntervals": @usage_logs_intervals,
+                    "usageAggregateOnlyMetrics": @usage_aggregate_only_metrics,
                     "projectInactivityDays": @project_inactivity_days,
                     "alertLimit": @alert_limit,
                     "usage": @usage.to_map,

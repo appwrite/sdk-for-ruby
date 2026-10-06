@@ -15,6 +15,7 @@ result = account.create_o_auth2_token(
     provider: OAuthProvider::AMAZON,
     success: 'https://example.com', # optional
     failure: 'https://example.com', # optional
-    scopes: [] # optional
+    scopes: [], # optional
+    state: '<STATE>' # optional
 )
 ```

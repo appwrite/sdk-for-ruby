@@ -1554,13 +1554,15 @@ module Appwrite
         # @param [String] success URL to redirect back to your app after a successful login attempt.  Only URLs from hostnames in your project&#039;s platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.
         # @param [String] failure URL to redirect back to your app after a failed login attempt.  Only URLs from hostnames in your project&#039;s platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.
         # @param [Array] scopes A list of custom OAuth2 scopes. Check each provider internal docs for a list of supported scopes. Maximum of 100 scopes are allowed, each 4096 characters long.
+        # @param [String] state An opaque value your app generates and keeps, for example in a cookie. It is returned unchanged as the `state` query parameter on the success and failure URLs, so your app can check that the sign-in it receives is one it started. Printable ASCII only (RFC 6749 Appendix A.5). Max length: 256 chars.
         #
         # @return []
         def create_o_auth2_token(
             provider:,
             success: nil,
             failure: nil,
-            scopes: nil
+            scopes: nil,
+            state: nil
         )
             api_path = '/account/tokens/oauth2/{provider}'
                 .gsub('{provider}', provider)
@@ -1573,6 +1575,7 @@ module Appwrite
                 success: success,
                 failure: failure,
                 scopes: scopes,
+                state: state,
             }
 
             api_headers = {

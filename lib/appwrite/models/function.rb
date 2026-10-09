@@ -22,6 +22,7 @@ module Appwrite
             attr_reader :vars
             attr_reader :events
             attr_reader :schedule
+            attr_reader :interval
             attr_reader :timeout
             attr_reader :entrypoint
             attr_reader :commands
@@ -56,6 +57,7 @@ module Appwrite
                 vars:,
                 events:,
                 schedule:,
+                interval:,
                 timeout:,
                 entrypoint:,
                 commands:,
@@ -89,6 +91,7 @@ module Appwrite
                 @vars = vars
                 @events = events
                 @schedule = schedule
+                @interval = interval
                 @timeout = timeout
                 @entrypoint = entrypoint
                 @commands = commands
@@ -125,6 +128,7 @@ module Appwrite
                     vars: map["vars"].map { |it| Variable.from(map: it) },
                     events: map["events"],
                     schedule: map["schedule"],
+                    interval: map["interval"],
                     timeout: map["timeout"],
                     entrypoint: map["entrypoint"],
                     commands: map["commands"],
@@ -162,6 +166,7 @@ module Appwrite
                     "vars": @vars.map { |it| it.to_map },
                     "events": @events,
                     "schedule": @schedule,
+                    "interval": @interval,
                     "timeout": @timeout,
                     "entrypoint": @entrypoint,
                     "commands": @commands,

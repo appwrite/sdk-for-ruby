@@ -69,6 +69,7 @@ module Appwrite
             attr_reader :backup_policies
             attr_reader :deployment_size
             attr_reader :build_size
+            attr_reader :functions_interval_minimum
             attr_reader :databases_allow_encrypt
             attr_reader :limits
             attr_reader :group
@@ -143,6 +144,7 @@ module Appwrite
                 backup_policies:,
                 deployment_size:,
                 build_size:,
+                functions_interval_minimum:,
                 databases_allow_encrypt:,
                 limits:,
                 group:,
@@ -216,6 +218,7 @@ module Appwrite
                 @backup_policies = backup_policies
                 @deployment_size = deployment_size
                 @build_size = build_size
+                @functions_interval_minimum = functions_interval_minimum
                 @databases_allow_encrypt = databases_allow_encrypt
                 @limits = limits
                 @group = validate_group(group)
@@ -292,6 +295,7 @@ module Appwrite
                     backup_policies: map["backupPolicies"],
                     deployment_size: map["deploymentSize"],
                     build_size: map["buildSize"],
+                    functions_interval_minimum: map["functionsIntervalMinimum"],
                     databases_allow_encrypt: map["databasesAllowEncrypt"],
                     limits: map["limits"].nil? ? nil : BillingPlanLimits.from(map: map["limits"]),
                     group: map["group"],
@@ -369,6 +373,7 @@ module Appwrite
                     "backupPolicies": @backup_policies,
                     "deploymentSize": @deployment_size,
                     "buildSize": @build_size,
+                    "functionsIntervalMinimum": @functions_interval_minimum,
                     "databasesAllowEncrypt": @databases_allow_encrypt,
                     "limits": @limits&.to_map,
                     "group": @group,

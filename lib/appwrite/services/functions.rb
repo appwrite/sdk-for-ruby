@@ -51,7 +51,7 @@ module Appwrite
         # @param [Runtime] runtime Execution runtime.
         # @param [Array] execute An array of role strings with execution permissions. By default no user is granted with any execute permissions. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long.
         # @param [Array] events Events list. Maximum of 100 events are allowed.
-        # @param [String] schedule Schedule CRON syntax.
+        # @param [String] schedule Schedule CRON syntax. Cannot be combined with interval.
         # @param [Integer] timeout Function maximum execution time in seconds.
         # @param [] enabled Is function enabled? When set to &#039;disabled&#039;, users cannot access the function but Server SDKs with and API key can still access the function. No data is lost when this is toggled.
         # @param [] logging When disabled, executions will exclude logs and errors, and will be slightly faster.
@@ -68,6 +68,7 @@ module Appwrite
         # @param [String] build_specification Build specification for the function deployments.
         # @param [String] runtime_specification Runtime specification for the function executions.
         # @param [Integer] deployment_retention Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept.
+        # @param [Integer] interval Minutes between scheduled executions. Appwrite picks when within each interval the function runs. Use 0 to disable. Cannot be combined with schedule.
         #
         # @return [Function]
         def create(
@@ -92,7 +93,8 @@ module Appwrite
             provider_paths: nil,
             build_specification: nil,
             runtime_specification: nil,
-            deployment_retention: nil
+            deployment_retention: nil,
+            interval: nil
         )
             api_path = '/functions'
 
@@ -131,6 +133,7 @@ module Appwrite
                 buildSpecification: build_specification,
                 runtimeSpecification: runtime_specification,
                 deploymentRetention: deployment_retention,
+                interval: interval,
             }
 
             api_headers = {
@@ -237,7 +240,7 @@ module Appwrite
         # @param [Runtime] runtime Execution runtime.
         # @param [Array] execute An array of role strings with execution permissions. By default no user is granted with any execute permissions. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long.
         # @param [Array] events Events list. Maximum of 100 events are allowed.
-        # @param [String] schedule Schedule CRON syntax.
+        # @param [String] schedule Schedule CRON syntax. Cannot be combined with interval.
         # @param [Integer] timeout Maximum execution time in seconds.
         # @param [] enabled Is function enabled? When set to &#039;disabled&#039;, users cannot access the function but Server SDKs with and API key can still access the function. No data is lost when this is toggled.
         # @param [] logging When disabled, executions will exclude logs and errors, and will be slightly faster.
@@ -254,6 +257,7 @@ module Appwrite
         # @param [String] build_specification Build specification for the function deployments.
         # @param [String] runtime_specification Runtime specification for the function executions.
         # @param [Integer] deployment_retention Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept.
+        # @param [Integer] interval Minutes between scheduled executions. Appwrite picks when within each interval the function runs. Use 0 to disable. Cannot be combined with schedule. When omitted, the current interval is kept unless schedule is set.
         #
         # @return [Function]
         def update(
@@ -278,7 +282,8 @@ module Appwrite
             provider_paths: nil,
             build_specification: nil,
             runtime_specification: nil,
-            deployment_retention: nil
+            deployment_retention: nil,
+            interval: nil
         )
             api_path = '/functions/{functionId}'
                 .gsub('{functionId}', function_id)
@@ -313,6 +318,7 @@ module Appwrite
                 buildSpecification: build_specification,
                 runtimeSpecification: runtime_specification,
                 deploymentRetention: deployment_retention,
+                interval: interval,
             }
 
             api_headers = {

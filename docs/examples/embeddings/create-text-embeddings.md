@@ -12,7 +12,7 @@ client = Client.new
 embeddings = Embeddings.new(client)
 
 result = embeddings.create_text_embeddings(
-    texts: [],
+    texts: ["Appwrite helps developers build applications.", "Find documents with semantic search."],
     model: EmbeddingModel::NOMIC_EMBED_TEXT # optional
 )
 ```

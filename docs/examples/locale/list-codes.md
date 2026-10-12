@@ -10,5 +10,7 @@ client = Client.new
 
 locale = Locale.new(client)
 
-result = locale.list_codes()
+result = locale.list_codes(
+    total: false # optional
+)
 ```

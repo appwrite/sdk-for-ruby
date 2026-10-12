@@ -11,6 +11,7 @@ client = Client.new
 functions = Functions.new(client)
 
 result = functions.list_specifications(
-    type: 'runtimes' # optional
+    type: 'runtimes', # optional
+    total: false # optional
 )
 ```

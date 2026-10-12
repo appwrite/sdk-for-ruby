@@ -22,7 +22,7 @@ module Appwrite
                 enabled:,
                 type:,
                 credentials:,
-                options:
+                options: {}
             )
                 @id = id
                 @created_at = created_at
@@ -36,6 +36,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "provider" => "", "enabled" => true, "type" => "", "credentials" => {} }.merge(map)
                 Provider.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

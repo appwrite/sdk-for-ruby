@@ -33,6 +33,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "key" => "", "type" => "", "error" => "", "required" => false, "$createdAt" => "", "$updatedAt" => "" }.merge(map)
                 AttributeObject.new(
                     key: map["key"],
                     type: map["type"],

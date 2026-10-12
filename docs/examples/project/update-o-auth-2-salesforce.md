@@ -2,6 +2,7 @@
 require 'appwrite'
 
 include Appwrite
+include Appwrite::Enums
 
 client = Client.new
     .set_endpoint('https://<REGION>.cloud.appwrite.io/v1') # Your API Endpoint
@@ -13,6 +14,7 @@ project = Project.new(client)
 result = project.update_o_auth2_salesforce(
     customer_key: '<CUSTOMER_KEY>', # optional
     customer_secret: '<CUSTOMER_SECRET>', # optional
+    prompt: [ProjectOAuth2SalesforcePrompt::LOGIN], # optional
     enabled: false # optional
 )
 ```

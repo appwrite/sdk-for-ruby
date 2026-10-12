@@ -10,5 +10,7 @@ client = Client.new
 
 locale = Locale.new(client)
 
-result = locale.list_currencies()
+result = locale.list_currencies(
+    total: false # optional
+)
 ```

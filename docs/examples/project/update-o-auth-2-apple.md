@@ -15,6 +15,8 @@ result = project.update_o_auth2_apple(
     key_id: '<KEY_ID>', # optional
     team_id: '<TEAM_ID>', # optional
     p8_file: '<P8_FILE>', # optional
-    enabled: false # optional
+    native_client_ids: [], # optional
+    enabled: false, # optional
+    native_enabled: false # optional
 )
 ```

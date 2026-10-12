@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0 }.merge(map)
                 PlatformList.new(
                     total: map["total"],
                     platforms: map["platforms"]

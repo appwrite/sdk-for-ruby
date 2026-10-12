@@ -22,6 +22,7 @@ module Appwrite
             attr_reader :email_is_disposable
             attr_reader :email_is_corporate
             attr_reader :email_is_canonical
+            attr_reader :password_pwned
             attr_reader :phone_verification
             attr_reader :mfa
             attr_reader :prefs
@@ -50,6 +51,7 @@ module Appwrite
                 email_is_disposable:,
                 email_is_corporate:,
                 email_is_canonical:,
+                password_pwned:,
                 phone_verification:,
                 mfa:,
                 prefs:,
@@ -77,6 +79,7 @@ module Appwrite
                 @email_is_disposable = email_is_disposable
                 @email_is_corporate = email_is_corporate
                 @email_is_canonical = email_is_canonical
+                @password_pwned = password_pwned
                 @phone_verification = phone_verification
                 @mfa = mfa
                 @prefs = prefs
@@ -87,6 +90,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "registration" => "", "status" => true, "labels" => [], "passwordUpdate" => "", "email" => "", "phone" => "", "emailVerification" => false, "phoneVerification" => false, "mfa" => false, "accessedAt" => "" }.merge(map)
                 User.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],
@@ -107,6 +111,7 @@ module Appwrite
                     email_is_disposable: map["emailIsDisposable"],
                     email_is_corporate: map["emailIsCorporate"],
                     email_is_canonical: map["emailIsCanonical"],
+                    password_pwned: map["passwordPwned"],
                     phone_verification: map["phoneVerification"],
                     mfa: map["mfa"],
                     prefs: Preferences.from(map: map["prefs"]),
@@ -138,6 +143,7 @@ module Appwrite
                     "emailIsDisposable": @email_is_disposable,
                     "emailIsCorporate": @email_is_corporate,
                     "emailIsCanonical": @email_is_canonical,
+                    "passwordPwned": @password_pwned,
                     "phoneVerification": @phone_verification,
                     "mfa": @mfa,
                     "prefs": @prefs.to_map,

@@ -24,6 +24,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "type" => "scrypt", "costCpu" => 8, "costMemory" => 14, "costParallel" => 1, "length" => 64 }.merge(map)
                 AlgoScrypt.new(
                     type: map["type"],
                     cost_cpu: map["costCpu"],

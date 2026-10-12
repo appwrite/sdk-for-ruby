@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "request_uri" => "", "expires_in" => 0 }.merge(map)
                 Oauth2PAR.new(
                     request_uri: map["request_uri"],
                     expires_in: map["expires_in"]

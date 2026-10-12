@@ -21,6 +21,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "type" => "scryptMod", "salt" => "", "saltSeparator" => "", "signerKey" => "" }.merge(map)
                 AlgoScryptModified.new(
                     type: map["type"],
                     salt: map["salt"],

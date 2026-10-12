@@ -24,6 +24,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "key" => "", "name" => "", "buildRuntime" => "" }.merge(map)
                 Framework.new(
                     key: map["key"],
                     name: map["name"],

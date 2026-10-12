@@ -27,6 +27,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "device_code" => "", "user_code" => "", "verification_uri" => "", "verification_uri_complete" => "", "expires_in" => 0, "interval" => 0 }.merge(map)
                 Oauth2DeviceAuthorization.new(
                     device_code: map["device_code"],
                     user_code: map["user_code"],

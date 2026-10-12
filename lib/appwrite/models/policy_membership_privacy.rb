@@ -30,6 +30,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "userId" => false, "userEmail" => false, "userPhone" => false, "userName" => false, "userMFA" => false, "userAccessedAt" => false }.merge(map)
                 PolicyMembershipPrivacy.new(
                     id: map["$id"],
                     user_id: map["userId"],

@@ -54,6 +54,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "domain" => "", "type" => "", "trigger" => "", "redirectUrl" => "", "redirectStatusCode" => 301, "deploymentId" => "", "deploymentResourceId" => "", "deploymentVcsProviderBranch" => "", "status" => "unverified", "logs" => "" }.merge(map)
                 ProxyRule.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],
@@ -99,6 +100,7 @@ module Appwrite
                 valid_deployment_resource_type = [
                     Appwrite::Enums::ProxyRuleDeploymentResourceType::FUNCTION,
                     Appwrite::Enums::ProxyRuleDeploymentResourceType::SITE,
+                    Appwrite::Enums::ProxyRuleDeploymentResourceType::DEDICATEDDATABASE,
                 ]
 
                 unless valid_deployment_resource_type.include?(deployment_resource_type)

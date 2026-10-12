@@ -33,6 +33,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$sequence" => "", "$tableId" => "", "$databaseId" => "", "$createdAt" => "", "$updatedAt" => "" }.merge(map)
                 Row.new(
                     id: map["$id"],
                     sequence: map["$sequence"],

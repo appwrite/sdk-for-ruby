@@ -13,11 +13,11 @@ messaging = Messaging.new(client)
 
 result = messaging.update_push(
     message_id: '<MESSAGE_ID>',
+    title: '<TITLE>', # optional
+    body: '<BODY>', # optional
     topics: [], # optional
     users: [], # optional
     targets: [], # optional
-    title: '<TITLE>', # optional
-    body: '<BODY>', # optional
     data: {}, # optional
     action: '<ACTION>', # optional
     image: '<ID1:ID2>', # optional
@@ -30,6 +30,7 @@ result = messaging.update_push(
     scheduled_at: '2020-10-15T06:38:00.000+00:00', # optional
     content_available: false, # optional
     critical: false, # optional
-    priority: MessagePriority::NORMAL # optional
+    priority: MessagePriority::NORMAL, # optional
+    channel_id: '<CHANNEL_ID>' # optional
 )
 ```

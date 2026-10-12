@@ -36,6 +36,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "userId" => "", "providerType" => "", "identifier" => "", "expired" => false }.merge(map)
                 Target.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

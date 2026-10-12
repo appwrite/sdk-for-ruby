@@ -52,6 +52,7 @@ module Appwrite
             DART_3_10 = 'dart-3.10'
             DART_3_11 = 'dart-3.11'
             DART_3_12 = 'dart-3.12'
+            DART_3_13 = 'dart-3.13'
             DOTNET_6_0 = 'dotnet-6.0'
             DOTNET_7_0 = 'dotnet-7.0'
             DOTNET_8_0 = 'dotnet-8.0'
@@ -94,6 +95,7 @@ module Appwrite
             FLUTTER_3_38 = 'flutter-3.38'
             FLUTTER_3_41 = 'flutter-3.41'
             FLUTTER_3_44 = 'flutter-3.44'
+            FLUTTER_3_47 = 'flutter-3.47'
         end
     end
 end

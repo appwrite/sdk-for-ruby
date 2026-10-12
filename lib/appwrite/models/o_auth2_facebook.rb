@@ -21,6 +21,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "enabled" => false, "appId" => "", "appSecret" => "" }.merge(map)
                 OAuth2Facebook.new(
                     id: map["$id"],
                     enabled: map["enabled"],

@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0 }.merge(map)
                 DatabaseList.new(
                     total: map["total"],
                     databases: map["databases"].map { |it| Database.from(map: it) }

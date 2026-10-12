@@ -51,6 +51,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "$permissions" => [], "fileSecurity" => false, "name" => "", "enabled" => true, "maximumFileSize" => 0, "allowedFileExtensions" => [], "compression" => "", "encryption" => true, "antivirus" => true, "transformations" => true, "totalSize" => 0 }.merge(map)
                 Bucket.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

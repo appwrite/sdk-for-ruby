@@ -18,6 +18,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "baa" => false, "premiumGeoDB" => false, "premiumGeoDBOrg" => false }.merge(map)
                 BillingPlanSupportedAddons.new(
                     baa: map["baa"],
                     premium_geo_db: map["premiumGeoDB"],

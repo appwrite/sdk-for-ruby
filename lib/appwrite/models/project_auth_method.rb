@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "enabled" => true }.merge(map)
                 ProjectAuthMethod.new(
                     id: map["$id"],
                     enabled: map["enabled"]
@@ -39,6 +40,7 @@ module Appwrite
                     Appwrite::Enums::ProjectAuthMethodId::INVITES,
                     Appwrite::Enums::ProjectAuthMethodId::JWT,
                     Appwrite::Enums::ProjectAuthMethodId::PHONE,
+                    Appwrite::Enums::ProjectAuthMethodId::PASSKEY,
                 ]
 
                 unless valid_id.include?(id)

@@ -45,6 +45,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "policyId" => "", "status" => "", "migrationId" => "" }.merge(map)
                 BackupArchive.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

@@ -21,6 +21,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "memory" => 0, "cpus" => 0, "enabled" => false, "slug" => "" }.merge(map)
                 Specification.new(
                     memory: map["memory"],
                     cpus: map["cpus"],

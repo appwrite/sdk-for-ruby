@@ -18,6 +18,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "installed" => [], "available" => [] }.merge(map)
                 DedicatedDatabaseExtensions.new(
                     installed: map["installed"],
                     available: map["available"],

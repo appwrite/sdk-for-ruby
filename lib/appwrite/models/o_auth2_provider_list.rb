@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0 }.merge(map)
                 OAuth2ProviderList.new(
                     total: map["total"],
                     providers: map["providers"]

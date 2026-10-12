@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0 }.merge(map)
                 ExecutionList.new(
                     total: map["total"],
                     executions: map["executions"].map { |it| Execution.from(map: it) }

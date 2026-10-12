@@ -12,6 +12,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "jwt" => "" }.merge(map)
                 Jwt.new(
                     jwt: map["jwt"]
                 )

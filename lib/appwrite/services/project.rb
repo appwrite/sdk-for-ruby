@@ -17,6 +17,7 @@ module Appwrite
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -40,6 +41,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -53,7 +55,7 @@ module Appwrite
         # Update properties of a specific auth method. Use this endpoint to enable or
         # disable a method in your project.
         #
-        # @param [ProjectAuthMethodId] method_id Auth Method ID. Possible values: email-password,magic-url,email-otp,anonymous,invites,jwt,phone
+        # @param [ProjectAuthMethodId] method_id Auth Method ID. Possible values: email-password,magic-url,email-otp,anonymous,invites,jwt,phone,passkey
         # @param [] enabled Auth method status.
         #
         # @return [Project]
@@ -61,9 +63,6 @@ module Appwrite
             method_id:,
             enabled:
         )
-            api_path = '/project/auth-methods/{methodId}'
-                .gsub('{methodId}', method_id)
-
             if method_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "methodId"')
             end
@@ -71,6 +70,9 @@ module Appwrite
             if enabled.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "enabled"')
             end
+
+            api_path = '/project/auth-methods/{methodId}'
+                .gsub('{methodId}', method_id)
 
             api_params = {
                 enabled: enabled,
@@ -136,8 +138,6 @@ module Appwrite
             scopes:,
             duration:
         )
-            api_path = '/project/keys/ephemeral'
-
             if scopes.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "scopes"')
             end
@@ -145,6 +145,8 @@ module Appwrite
             if duration.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "duration"')
             end
+
+            api_path = '/project/keys/ephemeral'
 
             api_params = {
                 scopes: scopes,
@@ -174,12 +176,12 @@ module Appwrite
         def get_key(
             key_id:
         )
-            api_path = '/project/keys/{keyId}'
-                .gsub('{keyId}', key_id)
-
-            if key_id.nil?
+            if key_id.nil? || key_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "keyId"')
             end
+
+            api_path = '/project/keys/{keyId}'
+                .gsub('{keyId}', key_id)
 
             api_params = {}
 
@@ -212,10 +214,7 @@ module Appwrite
             scopes:,
             expire: nil
         )
-            api_path = '/project/keys/{keyId}'
-                .gsub('{keyId}', key_id)
-
-            if key_id.nil?
+            if key_id.nil? || key_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "keyId"')
             end
 
@@ -226,6 +225,9 @@ module Appwrite
             if scopes.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "scopes"')
             end
+
+            api_path = '/project/keys/{keyId}'
+                .gsub('{keyId}', key_id)
 
             api_params = {
                 name: name,
@@ -257,18 +259,19 @@ module Appwrite
         def delete_key(
             key_id:
         )
-            api_path = '/project/keys/{keyId}'
-                .gsub('{keyId}', key_id)
-
-            if key_id.nil?
+            if key_id.nil? || key_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "keyId"')
             end
+
+            api_path = '/project/keys/{keyId}'
+                .gsub('{keyId}', key_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -288,11 +291,11 @@ module Appwrite
         def update_labels(
             labels:
         )
-            api_path = '/project/labels'
-
             if labels.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "labels"')
             end
+
+            api_path = '/project/labels'
 
             api_params = {
                 labels: labels,
@@ -356,8 +359,6 @@ module Appwrite
             number:,
             otp:
         )
-            api_path = '/project/mock-phones'
-
             if number.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "number"')
             end
@@ -365,6 +366,8 @@ module Appwrite
             if otp.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "otp"')
             end
+
+            api_path = '/project/mock-phones'
 
             api_params = {
                 number: number,
@@ -395,12 +398,12 @@ module Appwrite
         def get_mock_phone(
             number:
         )
-            api_path = '/project/mock-phones/{number}'
-                .gsub('{number}', number)
-
-            if number.nil?
+            if number.nil? || number == ''
                 raise Appwrite::Exception.new('Missing required parameter: "number"')
             end
+
+            api_path = '/project/mock-phones/{number}'
+                .gsub('{number}', number)
 
             api_params = {}
 
@@ -429,16 +432,16 @@ module Appwrite
             number:,
             otp:
         )
-            api_path = '/project/mock-phones/{number}'
-                .gsub('{number}', number)
-
-            if number.nil?
+            if number.nil? || number == ''
                 raise Appwrite::Exception.new('Missing required parameter: "number"')
             end
 
             if otp.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "otp"')
             end
+
+            api_path = '/project/mock-phones/{number}'
+                .gsub('{number}', number)
 
             api_params = {
                 otp: otp,
@@ -468,18 +471,19 @@ module Appwrite
         def delete_mock_phone(
             number:
         )
-            api_path = '/project/mock-phones/{number}'
-                .gsub('{number}', number)
-
-            if number.nil?
+            if number.nil? || number == ''
                 raise Appwrite::Exception.new('Missing required parameter: "number"')
             end
+
+            api_path = '/project/mock-phones/{number}'
+                .gsub('{number}', number)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -561,8 +565,6 @@ module Appwrite
             default_scopes: nil,
             installation_scopes: nil
         )
-            api_path = '/project/oauth2-server'
-
             if enabled.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "enabled"')
             end
@@ -570,6 +572,8 @@ module Appwrite
             if authorization_url.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "authorizationUrl"')
             end
+
+            api_path = '/project/oauth2-server'
 
             api_params = {
                 enabled: enabled,
@@ -646,7 +650,9 @@ module Appwrite
         # @param [String] key_id &#039;Key ID&#039; of Apple OAuth2 app. For example: P4000000N8
         # @param [String] team_id &#039;Team ID&#039; of Apple OAuth2 app. For example: D4000000R6
         # @param [String] p8_file Contents of the Apple OAuth2 app .p8 private key file. The secret key wrapped by the PEM markers is 200 characters long. For example: -----BEGIN PRIVATE KEY-----MIGTAg...jy2Xbna-----END PRIVATE KEY-----
-        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        # @param [Array] native_client_ids App bundle IDs accepted as ID token audiences for native Sign in with Apple. For example: com.example.app. Together with the Services ID, these are the only client IDs whose tokens are trusted. Pass an empty array to clear the list.
+        # @param [] enabled Browser-based OAuth2 sign-in status. Set to true to enable new session creation through the redirect flow. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. Has no effect on native sign-in, which is controlled by nativeEnabled only.
+        # @param [] native_enabled Native Sign in with Apple status. This is the only switch for creating sessions from ID tokens obtained on device and is independent of enabled. Needs a Services ID or at least one native client ID to match tokens against, but no key or team ID: this method verifies a signature rather than redeeming an authorization code.
         #
         # @return [OAuth2Apple]
         def update_o_auth2_apple(
@@ -654,7 +660,9 @@ module Appwrite
             key_id: nil,
             team_id: nil,
             p8_file: nil,
-            enabled: nil
+            native_client_ids: nil,
+            enabled: nil,
+            native_enabled: nil
         )
             api_path = '/project/oauth2/apple'
 
@@ -663,7 +671,9 @@ module Appwrite
                 keyId: key_id,
                 teamId: team_id,
                 p8File: p8_file,
+                nativeClientIds: native_client_ids,
                 enabled: enabled,
+                nativeEnabled: native_enabled,
             }
 
             api_headers = {
@@ -721,6 +731,7 @@ module Appwrite
         # @param [String] client_id &#039;Client ID&#039; of Auth0 OAuth2 app. For example: OaOkIA000000000000000000005KLSYq
         # @param [String] client_secret &#039;Client Secret&#039; of Auth0 OAuth2 app. For example: zXz0000-00000000000000000000000000000-00000000000000000000PJafnF
         # @param [String] endpoint Domain of Auth0 instance. For example: example.us.auth0.com
+        # @param [Array] prompt Array of Auth0 OAuth2 prompt values. If &quot;none&quot; is included, it must be the only element. &quot;none&quot; means: don&#039;t display any authentication or consent screens. &quot;login&quot; means: prompt the user to re-authenticate. &quot;consent&quot; means: prompt the user for consent. Pass an empty array to use the Auth0 default.
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Auth0]
@@ -728,6 +739,7 @@ module Appwrite
             client_id: nil,
             client_secret: nil,
             endpoint: nil,
+            prompt: nil,
             enabled: nil
         )
             api_path = '/project/oauth2/auth0'
@@ -736,6 +748,7 @@ module Appwrite
                 clientId: client_id,
                 clientSecret: client_secret,
                 endpoint: endpoint,
+                prompt: prompt,
                 enabled: enabled,
             }
 
@@ -1006,12 +1019,14 @@ module Appwrite
         #
         # @param [String] client_id &#039;Client ID&#039; of Discord OAuth2 app. For example: 950722000000343754
         # @param [String] client_secret &#039;Client Secret&#039; of Discord OAuth2 app. For example: YmPXnM000000000000000000002zFg5D
+        # @param [Array] prompt Array with at most one Discord OAuth2 prompt value. &quot;none&quot; means: skip the authorization screen for users who already authorized the app with the requested scopes. &quot;consent&quot; means: ask users who already authorized the app to approve it again. Pass an empty array to use the Discord default.
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Discord]
         def update_o_auth2_discord(
             client_id: nil,
             client_secret: nil,
+            prompt: nil,
             enabled: nil
         )
             api_path = '/project/oauth2/discord'
@@ -1019,6 +1034,7 @@ module Appwrite
             api_params = {
                 clientId: client_id,
                 clientSecret: client_secret,
+                prompt: prompt,
                 enabled: enabled,
             }
 
@@ -1254,12 +1270,14 @@ module Appwrite
         #
         # @param [String] client_id &#039;OAuth2 app Client ID, or App ID&#039; of GitHub OAuth2 app. For example: e4d87900000000540733. Example of wrong value: 370006
         # @param [String] client_secret &#039;Client Secret&#039; of GitHub OAuth2 app. For example: 5e07c00000000000000000000000000000198bcc
+        # @param [Array] prompt Array of GitHub OAuth2 prompt values. &quot;select_account&quot; means: prompt the user to select an account. Pass an empty array to use the GitHub default.
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Github]
         def update_o_auth2_git_hub(
             client_id: nil,
             client_secret: nil,
+            prompt: nil,
             enabled: nil
         )
             api_path = '/project/oauth2/github'
@@ -1267,6 +1285,7 @@ module Appwrite
             api_params = {
                 clientId: client_id,
                 clientSecret: client_secret,
+                prompt: prompt,
                 enabled: enabled,
             }
 
@@ -1328,14 +1347,18 @@ module Appwrite
         # @param [String] client_id &#039;Client ID&#039; of Google OAuth2 app. For example: 120000000095-92ifjb00000000000000000000g7ijfb.apps.googleusercontent.com
         # @param [String] client_secret &#039;Client Secret&#039; of Google OAuth2 app. For example: GOCSPX-2k8gsR0000000000000000VNahJj
         # @param [Array] prompt Array of Google OAuth2 prompt values. If &quot;none&quot; is included, it must be the only element. &quot;none&quot; means: don&#039;t display any authentication or consent screens. Must not be specified with other values. &quot;consent&quot; means: prompt the user for consent. &quot;select_account&quot; means: prompt the user to select an account.
-        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        # @param [Array] native_client_ids Additional OAuth2 client IDs accepted as ID token audiences for native sign-in (Android and iOS client IDs). Together with the client ID, which is always accepted, these are the only client IDs whose tokens are trusted. Pass an empty array to clear the list.
+        # @param [] enabled Browser-based OAuth2 sign-in status. Set to true to enable new session creation through the redirect flow. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. Has no effect on native sign-in, which is controlled by nativeEnabled only.
+        # @param [] native_enabled Native Google sign-in status. This is the only switch for creating sessions from ID tokens obtained on device and is independent of enabled. Needs a client ID or at least one native client ID to match tokens against, but no client secret: this method verifies a signature rather than redeeming an authorization code.
         #
         # @return [OAuth2Google]
         def update_o_auth2_google(
             client_id: nil,
             client_secret: nil,
             prompt: nil,
-            enabled: nil
+            native_client_ids: nil,
+            enabled: nil,
+            native_enabled: nil
         )
             api_path = '/project/oauth2/google'
 
@@ -1343,7 +1366,9 @@ module Appwrite
                 clientId: client_id,
                 clientSecret: client_secret,
                 prompt: prompt,
+                nativeClientIds: native_client_ids,
                 enabled: enabled,
+                nativeEnabled: native_enabled,
             }
 
             api_headers = {
@@ -1393,6 +1418,44 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::OAuth2HuggingFace
+            )
+        end
+
+        # Update the project OAuth2 Kakao configuration.
+        #
+        # @param [String] client_id &#039;REST API key&#039; of Kakao OAuth2 app. For example: 839ff5000000000000000000013206de
+        # @param [String] client_secret &#039;Client Secret&#039; of Kakao OAuth2 app. For example: jLNVOK00000000000000000000yJebea. Generate it under Kakao Login &gt; Security and set its status to enabled
+        # @param [Array] prompt Array of Kakao OAuth2 prompt values. If &quot;none&quot; is included, it must be the only element. &quot;none&quot; means: don&#039;t display any authentication or consent screens. &quot;login&quot; means: prompt the user to re-authenticate. &quot;create&quot; means: prompt the user to sign up. &quot;select_account&quot; means: prompt the user to select an account. Pass an empty array to use the Kakao default.
+        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        #
+        # @return [OAuth2Kakao]
+        def update_o_auth2_kakao(
+            client_id: nil,
+            client_secret: nil,
+            prompt: nil,
+            enabled: nil
+        )
+            api_path = '/project/oauth2/kakao'
+
+            api_params = {
+                clientId: client_id,
+                clientSecret: client_secret,
+                prompt: prompt,
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::OAuth2Kakao
             )
         end
 
@@ -1512,6 +1575,7 @@ module Appwrite
         # @param [String] application_id &#039;Entra ID Application ID, also known as Client ID&#039; of Microsoft OAuth2 app. For example: 00001111-aaaa-2222-bbbb-3333cccc4444
         # @param [String] application_secret &#039;Entra ID Application Secret, also known as Client Secret&#039; of Microsoft OAuth2 app. For example: A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u
         # @param [String] tenant Microsoft Entra ID tenant identifier. Use &#039;common&#039;, &#039;organizations&#039;, &#039;consumers&#039; or a specific tenant ID. For example: common
+        # @param [Array] prompt Array of Microsoft OAuth2 prompt values. &quot;none&quot; means: don&#039;t display any authentication or consent screens. &quot;login&quot; means: prompt the user to re-authenticate. &quot;consent&quot; means: prompt the user for consent. &quot;select_account&quot; means: prompt the user to select an account. Pass an empty array to use the Microsoft default.
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Microsoft]
@@ -1519,6 +1583,7 @@ module Appwrite
             application_id: nil,
             application_secret: nil,
             tenant: nil,
+            prompt: nil,
             enabled: nil
         )
             api_path = '/project/oauth2/microsoft'
@@ -1527,6 +1592,7 @@ module Appwrite
                 applicationId: application_id,
                 applicationSecret: application_secret,
                 tenant: tenant,
+                prompt: prompt,
                 enabled: enabled,
             }
 
@@ -1639,6 +1705,7 @@ module Appwrite
         # @param [String] client_secret &#039;Client Secret&#039; of Okta OAuth2 app. For example: Kiq0000000000000000000000000000000000000-00000000000H2L5-3SJ-vRV
         # @param [String] domain Okta company domain. Required when enabling the provider. For example: trial-6400025.okta.com. Example of wrong value: trial-6400025-admin.okta.com, or https://trial-6400025.okta.com/
         # @param [String] authorization_server_id Custom Authorization Servers. Optional, can be left empty or unconfigured. For example: aus000000000000000h7z
+        # @param [Array] prompt Array of Okta OAuth2 prompt values. If &quot;none&quot; is included, it must be the only element. &quot;none&quot; means: don&#039;t display any authentication or consent screens. &quot;login&quot; means: prompt the user to re-authenticate. &quot;consent&quot; means: prompt the user for consent. Pass an empty array to use the Okta default.
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Okta]
@@ -1647,6 +1714,7 @@ module Appwrite
             client_secret: nil,
             domain: nil,
             authorization_server_id: nil,
+            prompt: nil,
             enabled: nil
         )
             api_path = '/project/oauth2/okta'
@@ -1656,6 +1724,7 @@ module Appwrite
                 clientSecret: client_secret,
                 domain: domain,
                 authorizationServerId: authorization_server_id,
+                prompt: prompt,
                 enabled: enabled,
             }
 
@@ -1818,12 +1887,14 @@ module Appwrite
         #
         # @param [String] customer_key &#039;Consumer Key&#039; of Salesforce OAuth2 app. For example: 3MVG9I0000000000000000000000000000000000000000000000000000000000000000000000000C5Aejq
         # @param [String] customer_secret &#039;Consumer Secret&#039; of Salesforce OAuth2 app. For example: 3w000000000000e2
+        # @param [Array] prompt Array of Salesforce OAuth2 prompt values. &quot;login&quot; means: prompt the user to re-authenticate. &quot;consent&quot; means: prompt the user for consent. Pass an empty array to use the Salesforce default.
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Salesforce]
         def update_o_auth2_salesforce(
             customer_key: nil,
             customer_secret: nil,
+            prompt: nil,
             enabled: nil
         )
             api_path = '/project/oauth2/salesforce'
@@ -1831,6 +1902,7 @@ module Appwrite
             api_params = {
                 customerKey: customer_key,
                 customerSecret: customer_secret,
+                prompt: prompt,
                 enabled: enabled,
             }
 
@@ -1954,6 +2026,41 @@ module Appwrite
             )
         end
 
+        # Update the project OAuth2 TikTok configuration.
+        #
+        # @param [String] client_id &#039;Client key&#039; of TikTok OAuth2 app. For example: awz000000000tyw0
+        # @param [String] client_secret &#039;Client secret&#039; of TikTok OAuth2 app. For example: 6wXewM00000000000000000000yXnite
+        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        #
+        # @return [OAuth2TikTok]
+        def update_o_auth2_tik_tok(
+            client_id: nil,
+            client_secret: nil,
+            enabled: nil
+        )
+            api_path = '/project/oauth2/tiktok'
+
+            api_params = {
+                clientId: client_id,
+                clientSecret: client_secret,
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::OAuth2TikTok
+            )
+        end
+
         # Update the project OAuth2 Tradeshift configuration.
         #
         # @param [String] oauth2_client_id &#039;OAuth2 Client ID&#039; of Tradeshift OAuth2 app. For example: appwrite-tes00000.0000000000est-app
@@ -2056,6 +2163,41 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::OAuth2Twitch
+            )
+        end
+
+        # Update the project OAuth2 Webflow configuration.
+        #
+        # @param [String] client_id &#039;Client ID&#039; of Webflow OAuth2 app. For example: 8bb20000000000000000000000000000000000000000000000000000000040dd
+        # @param [String] client_secret &#039;Client Secret&#039; of Webflow OAuth2 app. For example: 59bf00000000000000000000000000000000000000000000000000000000fe59
+        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        #
+        # @return [OAuth2Webflow]
+        def update_o_auth2_webflow(
+            client_id: nil,
+            client_secret: nil,
+            enabled: nil
+        )
+            api_path = '/project/oauth2/webflow'
+
+            api_params = {
+                clientId: client_id,
+                clientSecret: client_secret,
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::OAuth2Webflow
             )
         end
 
@@ -2203,12 +2345,14 @@ module Appwrite
         #
         # @param [String] client_id &#039;Client ID&#039; of Zoho OAuth2 app. For example: 1000.83C178000000000000000000RPNX0B
         # @param [String] client_secret &#039;Client Secret&#039; of Zoho OAuth2 app. For example: fb5cac000000000000000000000000000000a68f6e
+        # @param [Array] prompt Array of Zoho OAuth2 prompt values. &quot;consent&quot; means: prompt the user for consent. Pass an empty array to use the Zoho default.
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
         #
         # @return [OAuth2Zoho]
         def update_o_auth2_zoho(
             client_id: nil,
             client_secret: nil,
+            prompt: nil,
             enabled: nil
         )
             api_path = '/project/oauth2/zoho'
@@ -2216,6 +2360,7 @@ module Appwrite
             api_params = {
                 clientId: client_id,
                 clientSecret: client_secret,
+                prompt: prompt,
                 enabled: enabled,
             }
 
@@ -2274,16 +2419,16 @@ module Appwrite
         #
         # @param [ProjectOAuthProviderId] provider_id OAuth2 provider key. For example: github, google, apple.
         #
-        # @return [OAuth2Github, OAuth2Discord, OAuth2Figma, OAuth2Dropbox, OAuth2Dailymotion, OAuth2Bitbucket, OAuth2Bitly, OAuth2Box, OAuth2Autodesk, OAuth2Google, OAuth2Zoom, OAuth2Zoho, OAuth2Yandex, OAuth2X, OAuth2WordPress, OAuth2Twitch, OAuth2Stripe, OAuth2Spotify, OAuth2Slack, OAuth2Podio, OAuth2Notion, OAuth2Salesforce, OAuth2Yahoo, OAuth2HuggingFace, OAuth2Resend, OAuth2Cloudflare, OAuth2Linkedin, OAuth2Disqus, OAuth2Amazon, OAuth2Etsy, OAuth2Facebook, OAuth2Tradeshift, OAuth2Paypal, OAuth2Gitlab, OAuth2Authentik, OAuth2Auth0, OAuth2FusionAuth, OAuth2Keycloak, OAuth2Oidc, OAuth2Apple, OAuth2Okta, OAuth2Kick, OAuth2Microsoft]
+        # @return [OAuth2Github, OAuth2Discord, OAuth2Figma, OAuth2Dropbox, OAuth2Dailymotion, OAuth2Bitbucket, OAuth2Bitly, OAuth2Box, OAuth2Autodesk, OAuth2Google, OAuth2Zoom, OAuth2Zoho, OAuth2Yandex, OAuth2X, OAuth2WordPress, OAuth2Webflow, OAuth2Twitch, OAuth2Stripe, OAuth2Spotify, OAuth2Slack, OAuth2Podio, OAuth2Notion, OAuth2Salesforce, OAuth2Yahoo, OAuth2HuggingFace, OAuth2Resend, OAuth2Cloudflare, OAuth2Linkedin, OAuth2Disqus, OAuth2Amazon, OAuth2Etsy, OAuth2Facebook, OAuth2Tradeshift, OAuth2Paypal, OAuth2Gitlab, OAuth2Authentik, OAuth2Auth0, OAuth2FusionAuth, OAuth2Keycloak, OAuth2Oidc, OAuth2Apple, OAuth2Okta, OAuth2Kick, OAuth2Microsoft, OAuth2TikTok, OAuth2Kakao]
         def get_o_auth2_provider(
             provider_id:
         )
-            api_path = '/project/oauth2/{providerId}'
-                .gsub('{providerId}', provider_id)
-
             if provider_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
+
+            api_path = '/project/oauth2/{providerId}'
+                .gsub('{providerId}', provider_id)
 
             api_params = {}
 
@@ -2376,6 +2521,11 @@ module Appwrite
             if response['$id'] == 'wordpress'
 
                 return Models::OAuth2WordPress.from(map: response)
+            end
+
+            if response['$id'] == 'webflow'
+
+                return Models::OAuth2Webflow.from(map: response)
             end
 
             if response['$id'] == 'twitch'
@@ -2518,6 +2668,16 @@ module Appwrite
                 return Models::OAuth2Microsoft.from(map: response)
             end
 
+            if response['$id'] == 'tiktok'
+
+                return Models::OAuth2TikTok.from(map: response)
+            end
+
+            if response['$id'] == 'kakao'
+
+                return Models::OAuth2Kakao.from(map: response)
+            end
+
             raise Exception, "Unable to match response to any expected response model"
         end
 
@@ -2560,15 +2720,15 @@ module Appwrite
         # @param [String] platform_id Platform ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] name Platform name. Max length: 128 chars.
         # @param [String] application_id Android application ID. Max length: 256 chars.
+        # @param [Array] fingerprints SHA-256 fingerprints of the certificates your app is signed with, such as &quot;14:6D:E9:...:2B:6A&quot;. Passkeys created in the app are accepted when its signature matches one. Find them under App signing in Play Console, or with `./gradlew signingReport`.
         #
         # @return [PlatformAndroid]
         def create_android_platform(
             platform_id:,
             name:,
-            application_id:
+            application_id:,
+            fingerprints: nil
         )
-            api_path = '/project/platforms/android'
-
             if platform_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "platformId"')
             end
@@ -2581,10 +2741,13 @@ module Appwrite
                 raise Appwrite::Exception.new('Missing required parameter: "applicationId"')
             end
 
+            api_path = '/project/platforms/android'
+
             api_params = {
                 platformId: platform_id,
                 name: name,
                 applicationId: application_id,
+                fingerprints: fingerprints,
             }
 
             api_headers = {
@@ -2603,22 +2766,21 @@ module Appwrite
         end
 
         # Update an Android platform by its unique ID. Use this endpoint to update
-        # the platform&#039;s name or application ID.
+        # the platform&#039;s name, application ID or signing certificate fingerprints.
         #
         # @param [String] platform_id Platform ID.
         # @param [String] name Platform name. Max length: 128 chars.
         # @param [String] application_id Android application ID. Max length: 256 chars.
+        # @param [Array] fingerprints SHA-256 fingerprints of the certificates your app is signed with, such as &quot;14:6D:E9:...:2B:6A&quot;. Passkeys created in the app are accepted when its signature matches one. Find them under App signing in Play Console, or with `./gradlew signingReport`. Omit to keep the current list, or pass an empty array to clear it.
         #
         # @return [PlatformAndroid]
         def update_android_platform(
             platform_id:,
             name:,
-            application_id:
+            application_id:,
+            fingerprints: nil
         )
-            api_path = '/project/platforms/android/{platformId}'
-                .gsub('{platformId}', platform_id)
-
-            if platform_id.nil?
+            if platform_id.nil? || platform_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "platformId"')
             end
 
@@ -2630,9 +2792,13 @@ module Appwrite
                 raise Appwrite::Exception.new('Missing required parameter: "applicationId"')
             end
 
+            api_path = '/project/platforms/android/{platformId}'
+                .gsub('{platformId}', platform_id)
+
             api_params = {
                 name: name,
                 applicationId: application_id,
+                fingerprints: fingerprints,
             }
 
             api_headers = {
@@ -2664,8 +2830,6 @@ module Appwrite
             name:,
             bundle_identifier:
         )
-            api_path = '/project/platforms/apple'
-
             if platform_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "platformId"')
             end
@@ -2677,6 +2841,8 @@ module Appwrite
             if bundle_identifier.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "bundleIdentifier"')
             end
+
+            api_path = '/project/platforms/apple'
 
             api_params = {
                 platformId: platform_id,
@@ -2712,10 +2878,7 @@ module Appwrite
             name:,
             bundle_identifier:
         )
-            api_path = '/project/platforms/apple/{platformId}'
-                .gsub('{platformId}', platform_id)
-
-            if platform_id.nil?
+            if platform_id.nil? || platform_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "platformId"')
             end
 
@@ -2726,6 +2889,9 @@ module Appwrite
             if bundle_identifier.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "bundleIdentifier"')
             end
+
+            api_path = '/project/platforms/apple/{platformId}'
+                .gsub('{platformId}', platform_id)
 
             api_params = {
                 name: name,
@@ -2761,8 +2927,6 @@ module Appwrite
             name:,
             package_name:
         )
-            api_path = '/project/platforms/linux'
-
             if platform_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "platformId"')
             end
@@ -2774,6 +2938,8 @@ module Appwrite
             if package_name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "packageName"')
             end
+
+            api_path = '/project/platforms/linux'
 
             api_params = {
                 platformId: platform_id,
@@ -2809,10 +2975,7 @@ module Appwrite
             name:,
             package_name:
         )
-            api_path = '/project/platforms/linux/{platformId}'
-                .gsub('{platformId}', platform_id)
-
-            if platform_id.nil?
+            if platform_id.nil? || platform_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "platformId"')
             end
 
@@ -2823,6 +2986,9 @@ module Appwrite
             if package_name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "packageName"')
             end
+
+            api_path = '/project/platforms/linux/{platformId}'
+                .gsub('{platformId}', platform_id)
 
             api_params = {
                 name: name,
@@ -2858,8 +3024,6 @@ module Appwrite
             name:,
             hostname:
         )
-            api_path = '/project/platforms/web'
-
             if platform_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "platformId"')
             end
@@ -2871,6 +3035,8 @@ module Appwrite
             if hostname.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "hostname"')
             end
+
+            api_path = '/project/platforms/web'
 
             api_params = {
                 platformId: platform_id,
@@ -2906,10 +3072,7 @@ module Appwrite
             name:,
             hostname:
         )
-            api_path = '/project/platforms/web/{platformId}'
-                .gsub('{platformId}', platform_id)
-
-            if platform_id.nil?
+            if platform_id.nil? || platform_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "platformId"')
             end
 
@@ -2920,6 +3083,9 @@ module Appwrite
             if hostname.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "hostname"')
             end
+
+            api_path = '/project/platforms/web/{platformId}'
+                .gsub('{platformId}', platform_id)
 
             api_params = {
                 name: name,
@@ -2955,8 +3121,6 @@ module Appwrite
             name:,
             package_identifier_name:
         )
-            api_path = '/project/platforms/windows'
-
             if platform_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "platformId"')
             end
@@ -2968,6 +3132,8 @@ module Appwrite
             if package_identifier_name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "packageIdentifierName"')
             end
+
+            api_path = '/project/platforms/windows'
 
             api_params = {
                 platformId: platform_id,
@@ -3003,10 +3169,7 @@ module Appwrite
             name:,
             package_identifier_name:
         )
-            api_path = '/project/platforms/windows/{platformId}'
-                .gsub('{platformId}', platform_id)
-
-            if platform_id.nil?
+            if platform_id.nil? || platform_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "platformId"')
             end
 
@@ -3017,6 +3180,9 @@ module Appwrite
             if package_identifier_name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "packageIdentifierName"')
             end
+
+            api_path = '/project/platforms/windows/{platformId}'
+                .gsub('{platformId}', platform_id)
 
             api_params = {
                 name: name,
@@ -3047,12 +3213,12 @@ module Appwrite
         def get_platform(
             platform_id:
         )
-            api_path = '/project/platforms/{platformId}'
-                .gsub('{platformId}', platform_id)
-
-            if platform_id.nil?
+            if platform_id.nil? || platform_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "platformId"')
             end
+
+            api_path = '/project/platforms/{platformId}'
+                .gsub('{platformId}', platform_id)
 
             api_params = {}
 
@@ -3109,18 +3275,19 @@ module Appwrite
         def delete_platform(
             platform_id:
         )
-            api_path = '/project/platforms/{platformId}'
-                .gsub('{platformId}', platform_id)
-
-            if platform_id.nil?
+            if platform_id.nil? || platform_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "platformId"')
             end
+
+            api_path = '/project/platforms/{platformId}'
+                .gsub('{platformId}', platform_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3171,11 +3338,11 @@ module Appwrite
         def update_deny_aliased_email_policy(
             enabled:
         )
-            api_path = '/project/policies/deny-aliased-email'
-
             if enabled.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "enabled"')
             end
+
+            api_path = '/project/policies/deny-aliased-email'
 
             api_params = {
                 enabled: enabled,
@@ -3205,11 +3372,11 @@ module Appwrite
         def update_deny_corporate_email_policy(
             enabled:
         )
-            api_path = '/project/policies/deny-corporate-email'
-
             if enabled.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "enabled"')
             end
+
+            api_path = '/project/policies/deny-corporate-email'
 
             api_params = {
                 enabled: enabled,
@@ -3239,11 +3406,11 @@ module Appwrite
         def update_deny_disposable_email_policy(
             enabled:
         )
-            api_path = '/project/policies/deny-disposable-email'
-
             if enabled.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "enabled"')
             end
+
+            api_path = '/project/policies/deny-disposable-email'
 
             api_params = {
                 enabled: enabled,
@@ -3273,11 +3440,11 @@ module Appwrite
         def update_deny_free_email_policy(
             enabled:
         )
-            api_path = '/project/policies/deny-free-email'
-
             if enabled.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "enabled"')
             end
+
+            api_path = '/project/policies/deny-free-email'
 
             api_params = {
                 enabled: enabled,
@@ -3386,6 +3553,44 @@ module Appwrite
             )
         end
 
+        # Set the relying party ID passkeys are bound to: the domain of your
+        # application. Passkeys work on the project&#039;s web platforms on that domain or
+        # its subdomains, and on the domain itself for Apple apps. A localhost web
+        # platform enables passkeys for local development without a relying party ID.
+        # The relying party ID cannot change while users have passkeys, and any
+        # change invalidates ceremonies in progress.
+        #
+        # @param [String] rp_id Relying party ID: the domain of your application, such as `example.com`. Use `localhost` for local development, or an empty string to unset it.
+        #
+        # @return [Project]
+        def update_passkey_policy(
+            rp_id:
+        )
+            if rp_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "rpId"')
+            end
+
+            api_path = '/project/policies/passkey'
+
+            api_params = {
+                rpId: rp_id,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Project
+            )
+        end
+
         # Updating this policy allows you to control if new passwords are checked
         # against most common passwords dictionary. When enabled, and user changes
         # their password, password must not be contained in the dictionary.
@@ -3396,11 +3601,11 @@ module Appwrite
         def update_password_dictionary_policy(
             enabled:
         )
-            api_path = '/project/policies/password-dictionary'
-
             if enabled.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "enabled"')
             end
+
+            api_path = '/project/policies/password-dictionary'
 
             api_params = {
                 enabled: enabled,
@@ -3437,11 +3642,11 @@ module Appwrite
         def update_password_history_policy(
             total:
         )
-            api_path = '/project/policies/password-history'
-
             if total.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "total"')
             end
+
+            api_path = '/project/policies/password-history'
 
             api_params = {
                 total: total,
@@ -3473,14 +3678,90 @@ module Appwrite
         def update_password_personal_data_policy(
             enabled:
         )
-            api_path = '/project/policies/password-personal-data'
-
             if enabled.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "enabled"')
             end
 
+            api_path = '/project/policies/password-personal-data'
+
             api_params = {
                 enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Project
+            )
+        end
+
+        # Updating this policy allows you to control if passwords are checked against
+        # the Have I Been Pwned breach database. When enabled, every password a user
+        # signs up, signs in or resets with is checked and the result is recorded on
+        # the user as `passwordPwned`. On its own the policy only records. Enable
+        # `users` to reject a breached password when a user signs up or sets a new
+        # password, and `sessions` to refuse a sign-in with a breached password until
+        # it is reset. Only the first five characters of the password hash are ever
+        # shared with the service. Options left out keep their current value.
+        #
+        # @param [] enabled Toggle password pwned policy. Set to true to check passwords against known data breaches and record the result on the user, or false to never check. Default is true. On its own this only records; use `users` and `sessions` to block. When changing this policy, existing passwords remain valid.
+        # @param [] sessions Whether a sign-in with a breached password is refused until the password is reset. Default is false, which allows the sign-in and only records the result.
+        # @param [] users Whether a breached password is rejected when a user signs up or sets a new password. Default is false, which allows the password and only records the result.
+        #
+        # @return [Project]
+        def update_password_pwned_policy(
+            enabled: nil,
+            sessions: nil,
+            users: nil
+        )
+            api_path = '/project/policies/password-pwned'
+
+            api_params = {
+                enabled: enabled,
+                sessions: sessions,
+                users: users,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Project
+            )
+        end
+
+        # Require a password reset when an email/password sign-in uses a password
+        # older than the configured maximum age. Options left out keep their current
+        # value.
+        #
+        # @param [] enabled Enable password rotation. Disabled by default.
+        # @param [Integer] max_age Maximum password age in seconds. Minimum allowed value is 86400 seconds (1 day), and maximum is 10 years, which is 315360000 seconds. Defaults to 1 year, which is 31536000 seconds.
+        #
+        # @return [Project]
+        def update_password_rotation_policy(
+            enabled: nil,
+            max_age: nil
+        )
+            api_path = '/project/policies/password-rotation'
+
+            api_params = {
+                enabled: enabled,
+                maxAge: max_age,
             }
 
             api_headers = {
@@ -3551,11 +3832,11 @@ module Appwrite
         def update_session_alert_policy(
             enabled:
         )
-            api_path = '/project/policies/session-alert'
-
             if enabled.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "enabled"')
             end
+
+            api_path = '/project/policies/session-alert'
 
             api_params = {
                 enabled: enabled,
@@ -3585,11 +3866,11 @@ module Appwrite
         def update_session_duration_policy(
             duration:
         )
-            api_path = '/project/policies/session-duration'
-
             if duration.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "duration"')
             end
+
+            api_path = '/project/policies/session-duration'
 
             api_params = {
                 duration: duration,
@@ -3620,11 +3901,11 @@ module Appwrite
         def update_session_invalidation_policy(
             enabled:
         )
-            api_path = '/project/policies/session-invalidation'
-
             if enabled.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "enabled"')
             end
+
+            api_path = '/project/policies/session-invalidation'
 
             api_params = {
                 enabled: enabled,
@@ -3654,11 +3935,11 @@ module Appwrite
         def update_session_limit_policy(
             total:
         )
-            api_path = '/project/policies/session-limit'
-
             if total.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "total"')
             end
+
+            api_path = '/project/policies/session-limit'
 
             api_params = {
                 total: total,
@@ -3689,11 +3970,11 @@ module Appwrite
         def update_user_limit_policy(
             total:
         )
-            api_path = '/project/policies/user-limit'
-
             if total.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "total"')
             end
+
+            api_path = '/project/policies/user-limit'
 
             api_params = {
                 total: total,
@@ -3717,18 +3998,18 @@ module Appwrite
         # Get a policy by its unique ID. This endpoint returns the current
         # configuration for the requested project policy.
         #
-        # @param [ProjectPolicyId] policy_id Policy ID. Can be one of: password-dictionary, password-history, password-strength, password-personal-data, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, mfa-factors, deny-aliased-email, deny-disposable-email, deny-free-email, deny-corporate-email.
+        # @param [ProjectPolicyId] policy_id Policy ID. Can be one of: password-dictionary, password-history, password-strength, password-personal-data, password-pwned, password-rotation, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, mfa-factors, deny-aliased-email, deny-disposable-email, deny-free-email, deny-corporate-email, passkey.
         #
-        # @return [PolicyPasswordDictionary, PolicyPasswordHistory, PolicyPasswordStrength, PolicyPasswordPersonalData, PolicySessionAlert, PolicySessionDuration, PolicySessionInvalidation, PolicySessionLimit, PolicyUserLimit, PolicyMembershipPrivacy, PolicyMfaFactors, PolicyDenyAliasedEmail, PolicyDenyDisposableEmail, PolicyDenyFreeEmail, PolicyDenyCorporateEmail]
+        # @return [PolicyPasswordDictionary, PolicyPasswordHistory, PolicyPasswordStrength, PolicyPasswordPersonalData, PolicyPasswordPwned, PolicyPasswordRotation, PolicySessionAlert, PolicySessionDuration, PolicySessionInvalidation, PolicySessionLimit, PolicyUserLimit, PolicyMembershipPrivacy, PolicyMfaFactors, PolicyDenyAliasedEmail, PolicyDenyDisposableEmail, PolicyDenyFreeEmail, PolicyDenyCorporateEmail, PolicyPasskey]
         def get_policy(
             policy_id:
         )
-            api_path = '/project/policies/{policyId}'
-                .gsub('{policyId}', policy_id)
-
             if policy_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "policyId"')
             end
+
+            api_path = '/project/policies/{policyId}'
+                .gsub('{policyId}', policy_id)
 
             api_params = {}
 
@@ -3766,6 +4047,16 @@ module Appwrite
             if response['$id'] == 'password-personal-data'
 
                 return Models::PolicyPasswordPersonalData.from(map: response)
+            end
+
+            if response['$id'] == 'password-pwned'
+
+                return Models::PolicyPasswordPwned.from(map: response)
+            end
+
+            if response['$id'] == 'password-rotation'
+
+                return Models::PolicyPasswordRotation.from(map: response)
             end
 
             if response['$id'] == 'session-alert'
@@ -3823,6 +4114,11 @@ module Appwrite
                 return Models::PolicyDenyCorporateEmail.from(map: response)
             end
 
+            if response['$id'] == 'passkey'
+
+                return Models::PolicyPasskey.from(map: response)
+            end
+
             raise Exception, "Unable to match response to any expected response model"
         end
 
@@ -3837,9 +4133,6 @@ module Appwrite
             protocol_id:,
             enabled:
         )
-            api_path = '/project/protocols/{protocolId}'
-                .gsub('{protocolId}', protocol_id)
-
             if protocol_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "protocolId"')
             end
@@ -3847,6 +4140,9 @@ module Appwrite
             if enabled.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "enabled"')
             end
+
+            api_path = '/project/protocols/{protocolId}'
+                .gsub('{protocolId}', protocol_id)
 
             api_params = {
                 enabled: enabled,
@@ -3878,9 +4174,6 @@ module Appwrite
             service_id:,
             enabled:
         )
-            api_path = '/project/services/{serviceId}'
-                .gsub('{serviceId}', service_id)
-
             if service_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "serviceId"')
             end
@@ -3888,6 +4181,9 @@ module Appwrite
             if enabled.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "enabled"')
             end
+
+            api_path = '/project/services/{serviceId}'
+                .gsub('{serviceId}', service_id)
 
             api_params = {
                 enabled: enabled,
@@ -3974,11 +4270,11 @@ module Appwrite
         def create_smtp_test(
             emails:
         )
-            api_path = '/project/smtp/tests'
-
             if emails.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "emails"')
             end
+
+            api_path = '/project/smtp/tests'
 
             api_params = {
                 emails: emails,
@@ -3987,6 +4283,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -4033,7 +4330,7 @@ module Appwrite
         # Update a custom email template for the specified locale and type. Use this
         # endpoint to modify the content of your email templates.
         #
-        # @param [ProjectEmailTemplateId] template_id Custom email template type. Can be one of: verification, magicSession, recovery, invitation, mfaChallenge, sessionAlert, otpSession
+        # @param [ProjectEmailTemplateId] template_id Custom email template type. Can be one of: verification, magicSession, recovery, invitation, mfaChallenge, sessionAlert, otpSession, otpVerification, otpRecovery
         # @param [ProjectEmailTemplateLocale] locale Custom email template locale. If left empty, the fallback locale (en) will be used.
         # @param [String] subject Subject of the email template. Can be up to 255 characters.
         # @param [String] message Plain or HTML body of the email template message. Can be up to 10MB of content.
@@ -4053,11 +4350,11 @@ module Appwrite
             reply_to_email: nil,
             reply_to_name: nil
         )
-            api_path = '/project/templates/email'
-
             if template_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "templateId"')
             end
+
+            api_path = '/project/templates/email'
 
             api_params = {
                 templateId: template_id,
@@ -4089,7 +4386,7 @@ module Appwrite
         # endpoint returns the template content, subject, and other configuration
         # details.
         #
-        # @param [ProjectEmailTemplateId] template_id Custom email template type. Can be one of: verification, magicSession, recovery, invitation, mfaChallenge, sessionAlert, otpSession
+        # @param [ProjectEmailTemplateId] template_id Custom email template type. Can be one of: verification, magicSession, recovery, invitation, mfaChallenge, sessionAlert, otpSession, otpVerification, otpRecovery
         # @param [ProjectEmailTemplateLocale] locale Custom email template locale. If left empty, the fallback locale (en) will be used.
         #
         # @return [EmailTemplate]
@@ -4097,12 +4394,12 @@ module Appwrite
             template_id:,
             locale: nil
         )
-            api_path = '/project/templates/email/{templateId}'
-                .gsub('{templateId}', template_id)
-
             if template_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "templateId"')
             end
+
+            api_path = '/project/templates/email/{templateId}'
+                .gsub('{templateId}', template_id)
 
             api_params = {
                 locale: locale,
@@ -4168,8 +4465,6 @@ module Appwrite
             value:,
             secret: nil
         )
-            api_path = '/project/variables'
-
             if variable_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "variableId"')
             end
@@ -4181,6 +4476,8 @@ module Appwrite
             if value.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "value"')
             end
+
+            api_path = '/project/variables'
 
             api_params = {
                 variableId: variable_id,
@@ -4212,12 +4509,12 @@ module Appwrite
         def get_variable(
             variable_id:
         )
-            api_path = '/project/variables/{variableId}'
-                .gsub('{variableId}', variable_id)
-
-            if variable_id.nil?
+            if variable_id.nil? || variable_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "variableId"')
             end
+
+            api_path = '/project/variables/{variableId}'
+                .gsub('{variableId}', variable_id)
 
             api_params = {}
 
@@ -4249,12 +4546,12 @@ module Appwrite
             value: nil,
             secret: nil
         )
-            api_path = '/project/variables/{variableId}'
-                .gsub('{variableId}', variable_id)
-
-            if variable_id.nil?
+            if variable_id.nil? || variable_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "variableId"')
             end
+
+            api_path = '/project/variables/{variableId}'
+                .gsub('{variableId}', variable_id)
 
             api_params = {
                 key: key,
@@ -4285,18 +4582,19 @@ module Appwrite
         def delete_variable(
             variable_id:
         )
-            api_path = '/project/variables/{variableId}'
-                .gsub('{variableId}', variable_id)
-
-            if variable_id.nil?
+            if variable_id.nil? || variable_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "variableId"')
             end
+
+            api_path = '/project/variables/{variableId}'
+                .gsub('{variableId}', variable_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(

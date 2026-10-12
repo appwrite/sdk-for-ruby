@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0 }.merge(map)
                 DedicatedDatabaseBranchList.new(
                     total: map["total"],
                     branches: map["branches"].map { |it| DedicatedDatabaseBranch.from(map: it) }

@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0 }.merge(map)
                 SessionList.new(
                     total: map["total"],
                     sessions: map["sessions"].map { |it| Session.from(map: it) }

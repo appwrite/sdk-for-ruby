@@ -36,6 +36,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "userId" => "", "source" => "" }.merge(map)
                 Presence.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

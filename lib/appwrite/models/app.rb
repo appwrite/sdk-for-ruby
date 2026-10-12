@@ -87,6 +87,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "description" => "", "clientUri" => "", "logoUri" => "", "privacyPolicyUrl" => "", "termsUrl" => "", "contacts" => [], "tagline" => "", "tags" => [], "labels" => [], "images" => [], "supportUrl" => "", "dataDeletionUrl" => "", "redirectUris" => [], "postLogoutRedirectUris" => [], "enabled" => true, "type" => "confidential", "deviceFlow" => false, "teamId" => "", "userId" => "", "installationScopes" => [], "installationRedirectUrl" => "" }.merge(map)
                 App.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

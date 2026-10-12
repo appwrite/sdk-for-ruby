@@ -9,6 +9,8 @@ module Appwrite
             attr_reader :key_id
             attr_reader :team_id
             attr_reader :p8_file
+            attr_reader :native_enabled
+            attr_reader :native_client_ids
 
             def initialize(
                 id:,
@@ -16,7 +18,9 @@ module Appwrite
                 service_id:,
                 key_id:,
                 team_id:,
-                p8_file:
+                p8_file:,
+                native_enabled:,
+                native_client_ids:
             )
                 @id = id
                 @enabled = enabled
@@ -24,16 +28,21 @@ module Appwrite
                 @key_id = key_id
                 @team_id = team_id
                 @p8_file = p8_file
+                @native_enabled = native_enabled
+                @native_client_ids = native_client_ids
             end
 
             def self.from(map:)
+                map = { "$id" => "", "enabled" => false, "serviceId" => "", "keyId" => "", "teamId" => "", "p8File" => "", "nativeEnabled" => false, "nativeClientIds" => [] }.merge(map)
                 OAuth2Apple.new(
                     id: map["$id"],
                     enabled: map["enabled"],
                     service_id: map["serviceId"],
                     key_id: map["keyId"],
                     team_id: map["teamId"],
-                    p8_file: map["p8File"]
+                    p8_file: map["p8File"],
+                    native_enabled: map["nativeEnabled"],
+                    native_client_ids: map["nativeClientIds"]
                 )
             end
 
@@ -44,7 +53,9 @@ module Appwrite
                     "serviceId": @service_id,
                     "keyId": @key_id,
                     "teamId": @team_id,
-                    "p8File": @p8_file
+                    "p8File": @p8_file,
+                    "nativeEnabled": @native_enabled,
+                    "nativeClientIds": @native_client_ids
                 }
             end
         end

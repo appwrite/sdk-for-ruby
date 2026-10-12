@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0 }.merge(map)
                 MockNumberList.new(
                     total: map["total"],
                     mock_numbers: map["mockNumbers"].map { |it| MockNumber.from(map: it) }

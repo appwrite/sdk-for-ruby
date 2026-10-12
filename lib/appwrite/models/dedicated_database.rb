@@ -29,6 +29,9 @@ module Appwrite
             attr_reader :cpu
             attr_reader :memory
             attr_reader :storage
+            attr_reader :storage_status
+            attr_reader :storage_target_gb
+            attr_reader :storage_resize_started_at
             attr_reader :storage_class
             attr_reader :storage_max_gb
             attr_reader :node_pool
@@ -80,6 +83,9 @@ module Appwrite
                 cpu:,
                 memory:,
                 storage:,
+                storage_status:,
+                storage_target_gb:,
+                storage_resize_started_at:,
                 storage_class:,
                 storage_max_gb:,
                 node_pool:,
@@ -130,6 +136,9 @@ module Appwrite
                 @cpu = cpu
                 @memory = memory
                 @storage = storage
+                @storage_status = storage_status
+                @storage_target_gb = storage_target_gb
+                @storage_resize_started_at = storage_resize_started_at
                 @storage_class = storage_class
                 @storage_max_gb = storage_max_gb
                 @node_pool = node_pool
@@ -156,6 +165,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "projectId" => "", "name" => "", "version" => "", "specification" => "", "backend" => "", "hostname" => "", "connectionUser" => "", "connectionPassword" => "", "connectionString" => "", "ssl" => false, "status" => "provisioning", "containerStatus" => "", "lifecycleState" => "", "idleTimeoutMinutes" => 15, "cpu" => 500, "memory" => 512, "storage" => 10, "storageStatus" => "idle", "storageTargetGb" => 0, "storageClass" => "ssd", "storageMaxGb" => 0, "nodePool" => "", "replicas" => 0, "syncMode" => "", "networkMaxConnections" => 100, "networkIdleTimeoutSeconds" => 900, "networkIPAllowlist" => [], "backupEnabled" => true, "pitr" => true, "pitrRetentionDays" => 7, "storageAutoscaling" => true, "storageAutoscalingThresholdPercent" => 85, "storageAutoscalingMaxGb" => 0, "maintenanceWindowDay" => "sun", "maintenanceWindowHourUtc" => 3, "metricsEnabled" => false, "sqlApiEnabled" => true, "sqlApiAllowedStatements" => ["SELECT", "INSERT", "UPDATE", "DELETE"], "sqlApiMaxRows" => 10000, "sqlApiMaxBytes" => 10485760, "sqlApiTimeoutSeconds" => 30, "error" => "" }.merge(map)
                 DedicatedDatabase.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],
@@ -183,6 +193,9 @@ module Appwrite
                     cpu: map["cpu"],
                     memory: map["memory"],
                     storage: map["storage"],
+                    storage_status: map["storageStatus"],
+                    storage_target_gb: map["storageTargetGb"],
+                    storage_resize_started_at: map["storageResizeStartedAt"],
                     storage_class: map["storageClass"],
                     storage_max_gb: map["storageMaxGb"],
                     node_pool: map["nodePool"],
@@ -237,6 +250,9 @@ module Appwrite
                     "cpu": @cpu,
                     "memory": @memory,
                     "storage": @storage,
+                    "storageStatus": @storage_status,
+                    "storageTargetGb": @storage_target_gb,
+                    "storageResizeStartedAt": @storage_resize_started_at,
                     "storageClass": @storage_class,
                     "storageMaxGb": @storage_max_gb,
                     "nodePool": @node_pool,

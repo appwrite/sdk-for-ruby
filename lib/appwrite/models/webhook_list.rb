@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0 }.merge(map)
                 WebhookList.new(
                     total: map["total"],
                     webhooks: map["webhooks"].map { |it| Webhook.from(map: it) }

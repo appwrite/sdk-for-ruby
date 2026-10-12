@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "name" => "", "type" => "" }.merge(map)
                 DedicatedDatabaseExecutionColumn.new(
                     name: map["name"],
                     type: map["type"]

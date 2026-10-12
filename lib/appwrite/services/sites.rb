@@ -95,8 +95,6 @@ module Appwrite
             deployment_retention: nil,
             scopes: nil
         )
-            api_path = '/sites'
-
             if site_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "siteId"')
             end
@@ -112,6 +110,8 @@ module Appwrite
             if build_runtime.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "buildRuntime"')
             end
+
+            api_path = '/sites'
 
             api_params = {
                 siteId: site_id,
@@ -158,12 +158,17 @@ module Appwrite
         # Get a list of all frameworks that are currently available on the server
         # instance.
         #
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [FrameworkList]
-        def list_frameworks()
+        def list_frameworks(
+            total: nil
+        )
             api_path = '/sites/frameworks'
 
-            api_params = {}
+            api_params = {
+                total: total,
+            }
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
@@ -182,15 +187,18 @@ module Appwrite
         # List allowed site specifications for this instance.
         #
         # @param [String] type Specification type to list. Can be one of: runtimes, builds. Defaults to runtimes.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [SpecificationList]
         def list_specifications(
-            type: nil
+            type: nil,
+            total: nil
         )
             api_path = '/sites/specifications'
 
             api_params = {
                 type: type,
+                total: total,
             }
 
             api_headers = {
@@ -215,12 +223,12 @@ module Appwrite
         def get(
             site_id:
         )
-            api_path = '/sites/{siteId}'
-                .gsub('{siteId}', site_id)
-
-            if site_id.nil?
+            if site_id.nil? || site_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "siteId"')
             end
+
+            api_path = '/sites/{siteId}'
+                .gsub('{siteId}', site_id)
 
             api_params = {}
 
@@ -292,10 +300,7 @@ module Appwrite
             deployment_retention: nil,
             scopes: nil
         )
-            api_path = '/sites/{siteId}'
-                .gsub('{siteId}', site_id)
-
-            if site_id.nil?
+            if site_id.nil? || site_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "siteId"')
             end
 
@@ -306,6 +311,9 @@ module Appwrite
             if framework.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "framework"')
             end
+
+            api_path = '/sites/{siteId}'
+                .gsub('{siteId}', site_id)
 
             api_params = {
                 name: name,
@@ -356,18 +364,19 @@ module Appwrite
         def delete(
             site_id:
         )
-            api_path = '/sites/{siteId}'
-                .gsub('{siteId}', site_id)
-
-            if site_id.nil?
+            if site_id.nil? || site_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "siteId"')
             end
+
+            api_path = '/sites/{siteId}'
+                .gsub('{siteId}', site_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -389,16 +398,16 @@ module Appwrite
             site_id:,
             deployment_id:
         )
-            api_path = '/sites/{siteId}/deployment'
-                .gsub('{siteId}', site_id)
-
-            if site_id.nil?
+            if site_id.nil? || site_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "siteId"')
             end
 
             if deployment_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
             end
+
+            api_path = '/sites/{siteId}/deployment'
+                .gsub('{siteId}', site_id)
 
             api_params = {
                 deploymentId: deployment_id,
@@ -434,12 +443,12 @@ module Appwrite
             search: nil,
             total: nil
         )
-            api_path = '/sites/{siteId}/deployments'
-                .gsub('{siteId}', site_id)
-
-            if site_id.nil?
+            if site_id.nil? || site_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "siteId"')
             end
+
+            api_path = '/sites/{siteId}/deployments'
+                .gsub('{siteId}', site_id)
 
             api_params = {
                 queries: queries,
@@ -482,16 +491,16 @@ module Appwrite
             activate: nil,
             on_progress: nil
         )
-            api_path = '/sites/{siteId}/deployments'
-                .gsub('{siteId}', site_id)
-
-            if site_id.nil?
+            if site_id.nil? || site_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "siteId"')
             end
 
             if code.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "code"')
             end
+
+            api_path = '/sites/{siteId}/deployments'
+                .gsub('{siteId}', site_id)
 
             api_params = {
                 installCommand: install_command,
@@ -517,6 +526,7 @@ module Appwrite
                 param_name: param_name,
                 id_param_name: id_param_name,
                 on_progress: on_progress,
+                method: 'POST',
                 response_type: Models::Deployment
             )
         end
@@ -535,16 +545,16 @@ module Appwrite
             site_id:,
             deployment_id:
         )
-            api_path = '/sites/{siteId}/deployments/duplicate'
-                .gsub('{siteId}', site_id)
-
-            if site_id.nil?
+            if site_id.nil? || site_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "siteId"')
             end
 
             if deployment_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
             end
+
+            api_path = '/sites/{siteId}/deployments/duplicate'
+                .gsub('{siteId}', site_id)
 
             api_params = {
                 deploymentId: deployment_id,
@@ -589,10 +599,7 @@ module Appwrite
             reference:,
             activate: nil
         )
-            api_path = '/sites/{siteId}/deployments/template'
-                .gsub('{siteId}', site_id)
-
-            if site_id.nil?
+            if site_id.nil? || site_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "siteId"')
             end
 
@@ -615,6 +622,9 @@ module Appwrite
             if reference.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "reference"')
             end
+
+            api_path = '/sites/{siteId}/deployments/template'
+                .gsub('{siteId}', site_id)
 
             api_params = {
                 repository: repository,
@@ -656,10 +666,7 @@ module Appwrite
             reference:,
             activate: nil
         )
-            api_path = '/sites/{siteId}/deployments/vcs'
-                .gsub('{siteId}', site_id)
-
-            if site_id.nil?
+            if site_id.nil? || site_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "siteId"')
             end
 
@@ -670,6 +677,9 @@ module Appwrite
             if reference.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "reference"')
             end
+
+            api_path = '/sites/{siteId}/deployments/vcs'
+                .gsub('{siteId}', site_id)
 
             api_params = {
                 type: type,
@@ -702,17 +712,17 @@ module Appwrite
             site_id:,
             deployment_id:
         )
-            api_path = '/sites/{siteId}/deployments/{deploymentId}'
-                .gsub('{siteId}', site_id)
-                .gsub('{deploymentId}', deployment_id)
-
-            if site_id.nil?
+            if site_id.nil? || site_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "siteId"')
             end
 
-            if deployment_id.nil?
+            if deployment_id.nil? || deployment_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
             end
+
+            api_path = '/sites/{siteId}/deployments/{deploymentId}'
+                .gsub('{siteId}', site_id)
+                .gsub('{deploymentId}', deployment_id)
 
             api_params = {}
 
@@ -740,23 +750,24 @@ module Appwrite
             site_id:,
             deployment_id:
         )
-            api_path = '/sites/{siteId}/deployments/{deploymentId}'
-                .gsub('{siteId}', site_id)
-                .gsub('{deploymentId}', deployment_id)
-
-            if site_id.nil?
+            if site_id.nil? || site_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "siteId"')
             end
 
-            if deployment_id.nil?
+            if deployment_id.nil? || deployment_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
             end
+
+            api_path = '/sites/{siteId}/deployments/{deploymentId}'
+                .gsub('{siteId}', site_id)
+                .gsub('{deploymentId}', deployment_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -783,17 +794,17 @@ module Appwrite
             type: nil,
             token: nil
         )
-            api_path = '/sites/{siteId}/deployments/{deploymentId}/download'
-                .gsub('{siteId}', site_id)
-                .gsub('{deploymentId}', deployment_id)
-
-            if site_id.nil?
+            if site_id.nil? || site_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "siteId"')
             end
 
-            if deployment_id.nil?
+            if deployment_id.nil? || deployment_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
             end
+
+            api_path = '/sites/{siteId}/deployments/{deploymentId}/download'
+                .gsub('{siteId}', site_id)
+                .gsub('{deploymentId}', deployment_id)
 
             api_params = {
                 type: type,
@@ -827,17 +838,17 @@ module Appwrite
             site_id:,
             deployment_id:
         )
-            api_path = '/sites/{siteId}/deployments/{deploymentId}/status'
-                .gsub('{siteId}', site_id)
-                .gsub('{deploymentId}', deployment_id)
-
-            if site_id.nil?
+            if site_id.nil? || site_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "siteId"')
             end
 
-            if deployment_id.nil?
+            if deployment_id.nil? || deployment_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
             end
+
+            api_path = '/sites/{siteId}/deployments/{deploymentId}/status'
+                .gsub('{siteId}', site_id)
+                .gsub('{deploymentId}', deployment_id)
 
             api_params = {}
 
@@ -869,12 +880,12 @@ module Appwrite
             queries: nil,
             total: nil
         )
-            api_path = '/sites/{siteId}/logs'
-                .gsub('{siteId}', site_id)
-
-            if site_id.nil?
+            if site_id.nil? || site_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "siteId"')
             end
+
+            api_path = '/sites/{siteId}/logs'
+                .gsub('{siteId}', site_id)
 
             api_params = {
                 queries: queries,
@@ -905,17 +916,17 @@ module Appwrite
             site_id:,
             log_id:
         )
-            api_path = '/sites/{siteId}/logs/{logId}'
-                .gsub('{siteId}', site_id)
-                .gsub('{logId}', log_id)
-
-            if site_id.nil?
+            if site_id.nil? || site_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "siteId"')
             end
 
-            if log_id.nil?
+            if log_id.nil? || log_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "logId"')
             end
+
+            api_path = '/sites/{siteId}/logs/{logId}'
+                .gsub('{siteId}', site_id)
+                .gsub('{logId}', log_id)
 
             api_params = {}
 
@@ -943,17 +954,17 @@ module Appwrite
             site_id:,
             log_id:
         )
-            api_path = '/sites/{siteId}/logs/{logId}'
-                .gsub('{siteId}', site_id)
-                .gsub('{logId}', log_id)
-
-            if site_id.nil?
+            if site_id.nil? || site_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "siteId"')
             end
 
-            if log_id.nil?
+            if log_id.nil? || log_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "logId"')
             end
+
+            api_path = '/sites/{siteId}/logs/{logId}'
+                .gsub('{siteId}', site_id)
+                .gsub('{logId}', log_id)
 
             api_params = {}
 
@@ -983,12 +994,12 @@ module Appwrite
             queries: nil,
             total: nil
         )
-            api_path = '/sites/{siteId}/variables'
-                .gsub('{siteId}', site_id)
-
-            if site_id.nil?
+            if site_id.nil? || site_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "siteId"')
             end
+
+            api_path = '/sites/{siteId}/variables'
+                .gsub('{siteId}', site_id)
 
             api_params = {
                 queries: queries,
@@ -1026,10 +1037,7 @@ module Appwrite
             value:,
             secret: nil
         )
-            api_path = '/sites/{siteId}/variables'
-                .gsub('{siteId}', site_id)
-
-            if site_id.nil?
+            if site_id.nil? || site_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "siteId"')
             end
 
@@ -1044,6 +1052,9 @@ module Appwrite
             if value.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "value"')
             end
+
+            api_path = '/sites/{siteId}/variables'
+                .gsub('{siteId}', site_id)
 
             api_params = {
                 variableId: variable_id,
@@ -1077,17 +1088,17 @@ module Appwrite
             site_id:,
             variable_id:
         )
-            api_path = '/sites/{siteId}/variables/{variableId}'
-                .gsub('{siteId}', site_id)
-                .gsub('{variableId}', variable_id)
-
-            if site_id.nil?
+            if site_id.nil? || site_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "siteId"')
             end
 
-            if variable_id.nil?
+            if variable_id.nil? || variable_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "variableId"')
             end
+
+            api_path = '/sites/{siteId}/variables/{variableId}'
+                .gsub('{siteId}', site_id)
+                .gsub('{variableId}', variable_id)
 
             api_params = {}
 
@@ -1121,17 +1132,17 @@ module Appwrite
             value: nil,
             secret: nil
         )
-            api_path = '/sites/{siteId}/variables/{variableId}'
-                .gsub('{siteId}', site_id)
-                .gsub('{variableId}', variable_id)
-
-            if site_id.nil?
+            if site_id.nil? || site_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "siteId"')
             end
 
-            if variable_id.nil?
+            if variable_id.nil? || variable_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "variableId"')
             end
+
+            api_path = '/sites/{siteId}/variables/{variableId}'
+                .gsub('{siteId}', site_id)
+                .gsub('{variableId}', variable_id)
 
             api_params = {
                 key: key,
@@ -1164,23 +1175,24 @@ module Appwrite
             site_id:,
             variable_id:
         )
-            api_path = '/sites/{siteId}/variables/{variableId}'
-                .gsub('{siteId}', site_id)
-                .gsub('{variableId}', variable_id)
-
-            if site_id.nil?
+            if site_id.nil? || site_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "siteId"')
             end
 
-            if variable_id.nil?
+            if variable_id.nil? || variable_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "variableId"')
             end
+
+            api_path = '/sites/{siteId}/variables/{variableId}'
+                .gsub('{siteId}', site_id)
+                .gsub('{variableId}', variable_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(

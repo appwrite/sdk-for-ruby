@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0 }.merge(map)
                 Oauth2ConsentTokenList.new(
                     total: map["total"],
                     tokens: map["tokens"].map { |it| Oauth2ConsentToken.from(map: it) }

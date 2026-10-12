@@ -12,6 +12,6 @@ users = Users.new(client)
 
 result = users.update_labels(
     user_id: '<USER_ID>',
-    labels: []
+    labels: ["subscriber"]
 )
 ```

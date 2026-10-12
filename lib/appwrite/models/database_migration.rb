@@ -60,6 +60,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "projectId" => "", "databaseId" => "", "specification" => "", "phase" => "pending", "attempt" => 0, "lastError" => "", "lagDocuments" => 0, "changelogWatermark" => 0, "verifiedAt" => "", "cutoverAt" => "", "soakUntil" => "", "autoCutover" => true, "cutoverRequested" => false, "paused" => false }.merge(map)
                 DatabaseMigration.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

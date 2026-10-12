@@ -30,6 +30,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "resourceId" => "", "resourceType" => "", "expire" => "", "secret" => "", "accessedAt" => "" }.merge(map)
                 ResourceToken.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

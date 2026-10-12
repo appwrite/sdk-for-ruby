@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0 }.merge(map)
                 FunctionList.new(
                     total: map["total"],
                     functions: map["functions"].map { |it| Function.from(map: it) }

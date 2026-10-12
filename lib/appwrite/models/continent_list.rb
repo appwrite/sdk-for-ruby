@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0 }.merge(map)
                 ContinentList.new(
                     total: map["total"],
                     continents: map["continents"].map { |it| Continent.from(map: it) }

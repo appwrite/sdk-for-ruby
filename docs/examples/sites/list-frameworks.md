@@ -10,5 +10,7 @@ client = Client.new
 
 sites = Sites.new(client)
 
-result = sites.list_frameworks()
+result = sites.list_frameworks(
+    total: false # optional
+)
 ```

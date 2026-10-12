@@ -57,7 +57,7 @@ module Appwrite
                 vars:,
                 events:,
                 schedule:,
-                interval:,
+                interval: 0,
                 timeout:,
                 entrypoint:,
                 commands:,
@@ -108,6 +108,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "execute" => [], "name" => "", "enabled" => true, "live" => true, "logging" => true, "runtime" => "", "deploymentRetention" => 0, "deploymentId" => "", "deploymentCreatedAt" => "", "latestDeploymentId" => "", "latestDeploymentCreatedAt" => "", "latestDeploymentStatus" => "", "scopes" => [], "events" => [], "schedule" => "", "timeout" => 15, "entrypoint" => "", "commands" => "", "version" => "v5", "installationId" => "", "providerRepositoryId" => "", "providerBranch" => "", "providerRootDirectory" => "", "providerSilentMode" => false, "providerBranches" => [], "providerPaths" => [], "buildSpecification" => "s-1vcpu-512mb", "runtimeSpecification" => "s-1vcpu-512mb" }.merge(map)
                 Function.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

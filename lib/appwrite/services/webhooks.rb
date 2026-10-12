@@ -47,8 +47,8 @@ module Appwrite
         # @param [Array] events Events list. Maximum of 100 events are allowed.
         # @param [] enabled Enable or disable a webhook.
         # @param [] tls Certificate verification, false for disabled or true for enabled.
-        # @param [String] auth_username Webhook HTTP user. Max length: 256 chars.
-        # @param [String] auth_password Webhook HTTP password. Max length: 256 chars.
+        # @param [String] auth_username Webhook HTTP user. Max length: 255 chars.
+        # @param [String] auth_password Webhook HTTP password. Max length: 2048 chars.
         # @param [String] secret Webhook secret key. If not provided, a new key will be generated automatically. Key must be at least 8 characters long, and at max 256 characters.
         #
         # @return [Webhook]
@@ -63,8 +63,6 @@ module Appwrite
             auth_password: nil,
             secret: nil
         )
-            api_path = '/webhooks'
-
             if webhook_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "webhookId"')
             end
@@ -80,6 +78,8 @@ module Appwrite
             if events.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "events"')
             end
+
+            api_path = '/webhooks'
 
             api_params = {
                 webhookId: webhook_id,
@@ -117,12 +117,12 @@ module Appwrite
         def get(
             webhook_id:
         )
-            api_path = '/webhooks/{webhookId}'
-                .gsub('{webhookId}', webhook_id)
-
-            if webhook_id.nil?
+            if webhook_id.nil? || webhook_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "webhookId"')
             end
+
+            api_path = '/webhooks/{webhookId}'
+                .gsub('{webhookId}', webhook_id)
 
             api_params = {}
 
@@ -149,8 +149,8 @@ module Appwrite
         # @param [Array] events Events list. Maximum of 100 events are allowed.
         # @param [] enabled Enable or disable a webhook.
         # @param [] tls Certificate verification, false for disabled or true for enabled.
-        # @param [String] auth_username Webhook HTTP user. Max length: 256 chars.
-        # @param [String] auth_password Webhook HTTP password. Max length: 256 chars.
+        # @param [String] auth_username Webhook HTTP user. Max length: 255 chars.
+        # @param [String] auth_password Webhook HTTP password. Max length: 2048 chars. Omit to keep the current password; it is cleared when the URL changes or TLS verification is disabled.
         #
         # @return [Webhook]
         def update(
@@ -163,10 +163,7 @@ module Appwrite
             auth_username: nil,
             auth_password: nil
         )
-            api_path = '/webhooks/{webhookId}'
-                .gsub('{webhookId}', webhook_id)
-
-            if webhook_id.nil?
+            if webhook_id.nil? || webhook_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "webhookId"')
             end
 
@@ -181,6 +178,9 @@ module Appwrite
             if events.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "events"')
             end
+
+            api_path = '/webhooks/{webhookId}'
+                .gsub('{webhookId}', webhook_id)
 
             api_params = {
                 name: name,
@@ -216,18 +216,19 @@ module Appwrite
         def delete(
             webhook_id:
         )
-            api_path = '/webhooks/{webhookId}'
-                .gsub('{webhookId}', webhook_id)
-
-            if webhook_id.nil?
+            if webhook_id.nil? || webhook_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "webhookId"')
             end
+
+            api_path = '/webhooks/{webhookId}'
+                .gsub('{webhookId}', webhook_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -250,12 +251,12 @@ module Appwrite
             webhook_id:,
             secret: nil
         )
-            api_path = '/webhooks/{webhookId}/secret'
-                .gsub('{webhookId}', webhook_id)
-
-            if webhook_id.nil?
+            if webhook_id.nil? || webhook_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "webhookId"')
             end
+
+            api_path = '/webhooks/{webhookId}/secret'
+                .gsub('{webhookId}', webhook_id)
 
             api_params = {
                 secret: secret,

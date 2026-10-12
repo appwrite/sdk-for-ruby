@@ -57,6 +57,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "bucketId" => "", "$createdAt" => "", "$updatedAt" => "", "$permissions" => [], "name" => "", "folder" => "", "key" => "", "signature" => "", "mimeType" => "", "sizeOriginal" => 0, "sizeActual" => 0, "chunksTotal" => 0, "chunksUploaded" => 0, "encryption" => false, "compression" => "none" }.merge(map)
                 File.new(
                     id: map["$id"],
                     bucket_id: map["bucketId"],

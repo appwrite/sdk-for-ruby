@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0 }.merge(map)
                 EmailTemplateList.new(
                     total: map["total"],
                     templates: map["templates"].map { |it| EmailTemplate.from(map: it) }

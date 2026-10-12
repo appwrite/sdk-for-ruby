@@ -24,6 +24,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "provider" => "", "bucket" => "", "region" => "", "prefix" => "backups/", "endpoint" => "" }.merge(map)
                 DedicatedDatabaseBackupStorage.new(
                     provider: map["provider"],
                     bucket: map["bucket"],

@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0 }.merge(map)
                 ActivityEventList.new(
                     total: map["total"],
                     events: map["events"].map { |it| ActivityEvent.from(map: it) }

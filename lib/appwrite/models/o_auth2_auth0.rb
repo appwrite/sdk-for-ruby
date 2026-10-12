@@ -7,6 +7,7 @@ module Appwrite
             attr_reader :enabled
             attr_reader :client_id
             attr_reader :client_secret
+            attr_reader :prompt
             attr_reader :endpoint
 
             def initialize(
@@ -14,21 +15,25 @@ module Appwrite
                 enabled:,
                 client_id:,
                 client_secret:,
+                prompt:,
                 endpoint:
             )
                 @id = id
                 @enabled = enabled
                 @client_id = client_id
                 @client_secret = client_secret
+                @prompt = validate_prompt(prompt)
                 @endpoint = endpoint
             end
 
             def self.from(map:)
+                map = { "$id" => "", "enabled" => false, "clientId" => "", "clientSecret" => "", "prompt" => [], "endpoint" => "" }.merge(map)
                 OAuth2Auth0.new(
                     id: map["$id"],
                     enabled: map["enabled"],
                     client_id: map["clientId"],
                     client_secret: map["clientSecret"],
+                    prompt: map["prompt"],
                     endpoint: map["endpoint"]
                 )
             end
@@ -39,8 +44,25 @@ module Appwrite
                     "enabled": @enabled,
                     "clientId": @client_id,
                     "clientSecret": @client_secret,
+                    "prompt": @prompt,
                     "endpoint": @endpoint
                 }
+            end
+
+            private
+
+            def validate_prompt(prompt)
+                valid_prompt = [
+                    Appwrite::Enums::OAuth2Auth0Prompt::NONE,
+                    Appwrite::Enums::OAuth2Auth0Prompt::LOGIN,
+                    Appwrite::Enums::OAuth2Auth0Prompt::CONSENT,
+                ]
+
+                unless valid_prompt.include?(prompt)
+                    raise ArgumentError, "Invalid " + prompt + ". Must be one of: " + valid_prompt.join(', ')
+                end
+
+                prompt
             end
         end
     end

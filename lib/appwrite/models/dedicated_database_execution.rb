@@ -27,6 +27,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "rows" => [], "rowCount" => 0, "durationMs" => 0, "truncated" => false, "bytes" => 0 }.merge(map)
                 DedicatedDatabaseExecution.new(
                     rows: map["rows"],
                     row_count: map["rowCount"],

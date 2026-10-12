@@ -36,6 +36,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "appId" => "", "secret" => "", "hint" => "", "createdById" => "", "createdByName" => "" }.merge(map)
                 AppSecretPlaintext.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

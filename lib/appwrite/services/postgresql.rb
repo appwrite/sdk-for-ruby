@@ -50,7 +50,7 @@ module Appwrite
         # @param [Integer] pitr_retention_days Number of days to retain PITR data.
         # @param [] storage_autoscaling Enable automatic storage expansion when usage exceeds threshold.
         # @param [Integer] storage_autoscaling_threshold_percent Storage usage percentage (50-95) that triggers automatic expansion.
-        # @param [Integer] storage_autoscaling_max_gb Maximum storage size in GB for autoscaling. 0 means no limit.
+        # @param [Integer] storage_autoscaling_max_gb Maximum storage size in GB for autoscaling. Defaults to 3 times the specification&#039;s storage. 0 means no limit.
         #
         # @return [DedicatedDatabase]
         def create(
@@ -69,8 +69,6 @@ module Appwrite
             storage_autoscaling_threshold_percent: nil,
             storage_autoscaling_max_gb: nil
         )
-            api_path = '/postgresql'
-
             if database_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
@@ -78,6 +76,8 @@ module Appwrite
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
+
+            api_path = '/postgresql'
 
             api_params = {
                 databaseId: database_id,
@@ -112,8 +112,8 @@ module Appwrite
         end
 
         # List the dedicated database specifications available on the current plan.
-        # Each specification reports its resource limits, pricing, and whether it is
-        # enabled for the organization.
+        # Each specification reports its resource limits, its own prices and overage
+        # rates, and whether it is enabled for the organization.
         #
         #
         # @return [DedicatedDatabaseSpecificationList]
@@ -145,12 +145,12 @@ module Appwrite
         def get(
             database_id:
         )
-            api_path = '/postgresql/{databaseId}'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/postgresql/{databaseId}'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 
@@ -219,12 +219,12 @@ module Appwrite
             sql_api_max_bytes: nil,
             sql_api_timeout_seconds: nil
         )
-            api_path = '/postgresql/{databaseId}'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/postgresql/{databaseId}'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 name: name,
@@ -275,12 +275,12 @@ module Appwrite
         def delete(
             database_id:
         )
-            api_path = '/postgresql/{databaseId}'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/postgresql/{databaseId}'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 
@@ -309,12 +309,12 @@ module Appwrite
             database_id:,
             queries: nil
         )
-            api_path = '/postgresql/{databaseId}/backups'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/postgresql/{databaseId}/backups'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 queries: queries,
@@ -345,12 +345,12 @@ module Appwrite
             database_id:,
             type: nil
         )
-            api_path = '/postgresql/{databaseId}/backups'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/postgresql/{databaseId}/backups'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 type: type,
@@ -381,12 +381,12 @@ module Appwrite
             database_id:,
             queries: nil
         )
-            api_path = '/postgresql/{databaseId}/backups/policies'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/postgresql/{databaseId}/backups/policies'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 queries: queries,
@@ -426,10 +426,7 @@ module Appwrite
             type: nil,
             enabled: nil
         )
-            api_path = '/postgresql/{databaseId}/backups/policies'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
@@ -448,6 +445,9 @@ module Appwrite
             if retention.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "retention"')
             end
+
+            api_path = '/postgresql/{databaseId}/backups/policies'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 policyId: policy_id,
@@ -483,17 +483,17 @@ module Appwrite
             database_id:,
             policy_id:
         )
-            api_path = '/postgresql/{databaseId}/backups/policies/{policyId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{policyId}', policy_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if policy_id.nil?
+            if policy_id.nil? || policy_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "policyId"')
             end
+
+            api_path = '/postgresql/{databaseId}/backups/policies/{policyId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{policyId}', policy_id)
 
             api_params = {}
 
@@ -529,17 +529,17 @@ module Appwrite
             retention: nil,
             enabled: nil
         )
-            api_path = '/postgresql/{databaseId}/backups/policies/{policyId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{policyId}', policy_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if policy_id.nil?
+            if policy_id.nil? || policy_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "policyId"')
             end
+
+            api_path = '/postgresql/{databaseId}/backups/policies/{policyId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{policyId}', policy_id)
 
             api_params = {
                 name: name,
@@ -574,17 +574,17 @@ module Appwrite
             database_id:,
             policy_id:
         )
-            api_path = '/postgresql/{databaseId}/backups/policies/{policyId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{policyId}', policy_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if policy_id.nil?
+            if policy_id.nil? || policy_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "policyId"')
             end
+
+            api_path = '/postgresql/{databaseId}/backups/policies/{policyId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{policyId}', policy_id)
 
             api_params = {}
 
@@ -626,10 +626,7 @@ module Appwrite
             prefix: nil,
             endpoint: nil
         )
-            api_path = '/postgresql/{databaseId}/backups/storage'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
@@ -648,6 +645,9 @@ module Appwrite
             if secret_key.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "secretKey"')
             end
+
+            api_path = '/postgresql/{databaseId}/backups/storage'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 provider: provider,
@@ -685,17 +685,17 @@ module Appwrite
             database_id:,
             backup_id:
         )
-            api_path = '/postgresql/{databaseId}/backups/{backupId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{backupId}', backup_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if backup_id.nil?
+            if backup_id.nil? || backup_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "backupId"')
             end
+
+            api_path = '/postgresql/{databaseId}/backups/{backupId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{backupId}', backup_id)
 
             api_params = {}
 
@@ -724,17 +724,17 @@ module Appwrite
             database_id:,
             backup_id:
         )
-            api_path = '/postgresql/{databaseId}/backups/{backupId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{backupId}', backup_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if backup_id.nil?
+            if backup_id.nil? || backup_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "backupId"')
             end
+
+            api_path = '/postgresql/{databaseId}/backups/{backupId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{backupId}', backup_id)
 
             api_params = {}
 
@@ -761,12 +761,12 @@ module Appwrite
         def list_branches(
             database_id:
         )
-            api_path = '/postgresql/{databaseId}/branches'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/postgresql/{databaseId}/branches'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 
@@ -800,12 +800,12 @@ module Appwrite
             branch_id: nil,
             ttl: nil
         )
-            api_path = '/postgresql/{databaseId}/branches'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/postgresql/{databaseId}/branches'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 branchId: branch_id,
@@ -839,17 +839,17 @@ module Appwrite
             database_id:,
             branch_id:
         )
-            api_path = '/postgresql/{databaseId}/branches/{branchId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{branchId}', branch_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if branch_id.nil?
+            if branch_id.nil? || branch_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "branchId"')
             end
+
+            api_path = '/postgresql/{databaseId}/branches/{branchId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{branchId}', branch_id)
 
             api_params = {}
 
@@ -879,12 +879,12 @@ module Appwrite
         def update_credentials(
             database_id:
         )
-            api_path = '/postgresql/{databaseId}/credentials'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/postgresql/{databaseId}/credentials'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 
@@ -925,16 +925,16 @@ module Appwrite
             bindings: nil,
             timeout_seconds: nil
         )
-            api_path = '/postgresql/{databaseId}/executions'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if sql.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "sql"')
             end
+
+            api_path = '/postgresql/{databaseId}/executions'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 sql: sql,
@@ -965,12 +965,12 @@ module Appwrite
         def list_extensions(
             database_id:
         )
-            api_path = '/postgresql/{databaseId}/extensions'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/postgresql/{databaseId}/extensions'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 
@@ -999,16 +999,16 @@ module Appwrite
             database_id:,
             name:
         )
-            api_path = '/postgresql/{databaseId}/extensions'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
+
+            api_path = '/postgresql/{databaseId}/extensions'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 name: name,
@@ -1040,17 +1040,17 @@ module Appwrite
             database_id:,
             extension_name:
         )
-            api_path = '/postgresql/{databaseId}/extensions/{extensionName}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{extensionName}', extension_name)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if extension_name.nil?
+            if extension_name.nil? || extension_name == ''
                 raise Appwrite::Exception.new('Missing required parameter: "extensionName"')
             end
+
+            api_path = '/postgresql/{databaseId}/extensions/{extensionName}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{extensionName}', extension_name)
 
             api_params = {}
 
@@ -1087,12 +1087,12 @@ module Appwrite
             database_id:,
             target_replica_id: nil
         )
-            api_path = '/postgresql/{databaseId}/failovers'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/postgresql/{databaseId}/failovers'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 targetReplicaId: target_replica_id,
@@ -1127,10 +1127,7 @@ module Appwrite
             day:,
             hour_utc:
         )
-            api_path = '/postgresql/{databaseId}/maintenance'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
@@ -1141,6 +1138,9 @@ module Appwrite
             if hour_utc.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "hourUtc"')
             end
+
+            api_path = '/postgresql/{databaseId}/maintenance'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 day: day,
@@ -1177,16 +1177,16 @@ module Appwrite
             target_type:,
             specification: nil
         )
-            api_path = '/postgresql/{databaseId}/migrations'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if target_type.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "targetType"')
             end
+
+            api_path = '/postgresql/{databaseId}/migrations'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 targetType: target_type,
@@ -1225,12 +1225,12 @@ module Appwrite
             limit: nil,
             offset: nil
         )
-            api_path = '/postgresql/{databaseId}/operations'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/postgresql/{databaseId}/operations'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 status: status,
@@ -1261,12 +1261,12 @@ module Appwrite
         def get_pitr(
             database_id:
         )
-            api_path = '/postgresql/{databaseId}/pitr'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/postgresql/{databaseId}/pitr'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 
@@ -1293,12 +1293,12 @@ module Appwrite
         def get_pooler(
             database_id:
         )
-            api_path = '/postgresql/{databaseId}/pooler'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/postgresql/{databaseId}/pooler'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 
@@ -1341,12 +1341,12 @@ module Appwrite
             pooler_memory_request: nil,
             pooler_memory_limit: nil
         )
-            api_path = '/postgresql/{databaseId}/pooler'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/postgresql/{databaseId}/pooler'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 mode: mode,
@@ -1383,12 +1383,12 @@ module Appwrite
         def get_replicas(
             database_id:
         )
-            api_path = '/postgresql/{databaseId}/replicas'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/postgresql/{databaseId}/replicas'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 
@@ -1423,12 +1423,12 @@ module Appwrite
             limit: nil,
             offset: nil
         )
-            api_path = '/postgresql/{databaseId}/restorations'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/postgresql/{databaseId}/restorations'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 status: status,
@@ -1470,12 +1470,12 @@ module Appwrite
             target_database_id: nil,
             target_time: nil
         )
-            api_path = '/postgresql/{databaseId}/restorations'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/postgresql/{databaseId}/restorations'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 type: type,
@@ -1510,17 +1510,17 @@ module Appwrite
             database_id:,
             restoration_id:
         )
-            api_path = '/postgresql/{databaseId}/restorations/{restorationId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{restorationId}', restoration_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if restoration_id.nil?
+            if restoration_id.nil? || restoration_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "restorationId"')
             end
+
+            api_path = '/postgresql/{databaseId}/restorations/{restorationId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{restorationId}', restoration_id)
 
             api_params = {}
 
@@ -1548,12 +1548,12 @@ module Appwrite
         def get_status(
             database_id:
         )
-            api_path = '/postgresql/{databaseId}/status'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/postgresql/{databaseId}/status'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 
@@ -1582,16 +1582,16 @@ module Appwrite
             database_id:,
             target_version:
         )
-            api_path = '/postgresql/{databaseId}/upgrades'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if target_version.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "targetVersion"')
             end
+
+            api_path = '/postgresql/{databaseId}/upgrades'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 targetVersion: target_version,

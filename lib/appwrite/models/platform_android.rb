@@ -9,6 +9,7 @@ module Appwrite
             attr_reader :name
             attr_reader :type
             attr_reader :application_id
+            attr_reader :fingerprints
 
             def initialize(
                 id:,
@@ -16,7 +17,8 @@ module Appwrite
                 updated_at:,
                 name:,
                 type:,
-                application_id:
+                application_id:,
+                fingerprints:
             )
                 @id = id
                 @created_at = created_at
@@ -24,16 +26,19 @@ module Appwrite
                 @name = name
                 @type = validate_type(type)
                 @application_id = application_id
+                @fingerprints = fingerprints
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "applicationId" => "", "fingerprints" => [] }.merge(map)
                 PlatformAndroid.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],
                     updated_at: map["$updatedAt"],
                     name: map["name"],
                     type: map["type"],
-                    application_id: map["applicationId"]
+                    application_id: map["applicationId"],
+                    fingerprints: map["fingerprints"]
                 )
             end
 
@@ -44,7 +49,8 @@ module Appwrite
                     "$updatedAt": @updated_at,
                     "name": @name,
                     "type": @type,
-                    "applicationId": @application_id
+                    "applicationId": @application_id,
+                    "fingerprints": @fingerprints
                 }
             end
 

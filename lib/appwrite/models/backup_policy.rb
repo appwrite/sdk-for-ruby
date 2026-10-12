@@ -45,6 +45,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "name" => "", "$createdAt" => "", "$updatedAt" => "", "retention" => 1, "schedule" => "0 * * * *", "type" => "full", "enabled" => false }.merge(map)
                 BackupPolicy.new(
                     id: map["$id"],
                     name: map["name"],

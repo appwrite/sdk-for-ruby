@@ -57,8 +57,6 @@ module Appwrite
             replicas: nil,
             sync_mode: nil
         )
-            api_path = '/documentsdb'
-
             if database_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
@@ -66,6 +64,8 @@ module Appwrite
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
+
+            api_path = '/documentsdb'
 
             api_params = {
                 databaseId: database_id,
@@ -92,8 +92,8 @@ module Appwrite
         end
 
         # List the dedicated database specifications available on the current plan.
-        # Each specification reports its resource limits, pricing, and whether it is
-        # enabled for the organization.
+        # Each specification reports its resource limits, its own prices and overage
+        # rates, and whether it is enabled for the organization.
         #
         #
         # @return [DedicatedDatabaseSpecificationList]
@@ -119,15 +119,18 @@ module Appwrite
         # List transactions across all databases.
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries).
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [TransactionList]
         def list_transactions(
-            queries: nil
+            queries: nil,
+            total: nil
         )
             api_path = '/documentsdb/transactions'
 
             api_params = {
                 queries: queries,
+                total: total,
             }
 
             api_headers = {
@@ -181,12 +184,12 @@ module Appwrite
         def get_transaction(
             transaction_id:
         )
-            api_path = '/documentsdb/transactions/{transactionId}'
-                .gsub('{transactionId}', transaction_id)
-
-            if transaction_id.nil?
+            if transaction_id.nil? || transaction_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
             end
+
+            api_path = '/documentsdb/transactions/{transactionId}'
+                .gsub('{transactionId}', transaction_id)
 
             api_params = {}
 
@@ -216,12 +219,12 @@ module Appwrite
             commit: nil,
             rollback: nil
         )
-            api_path = '/documentsdb/transactions/{transactionId}'
-                .gsub('{transactionId}', transaction_id)
-
-            if transaction_id.nil?
+            if transaction_id.nil? || transaction_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
             end
+
+            api_path = '/documentsdb/transactions/{transactionId}'
+                .gsub('{transactionId}', transaction_id)
 
             api_params = {
                 commit: commit,
@@ -251,18 +254,19 @@ module Appwrite
         def delete_transaction(
             transaction_id:
         )
-            api_path = '/documentsdb/transactions/{transactionId}'
-                .gsub('{transactionId}', transaction_id)
-
-            if transaction_id.nil?
+            if transaction_id.nil? || transaction_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
             end
+
+            api_path = '/documentsdb/transactions/{transactionId}'
+                .gsub('{transactionId}', transaction_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -283,12 +287,12 @@ module Appwrite
             transaction_id:,
             operations: nil
         )
-            api_path = '/documentsdb/transactions/{transactionId}/operations'
-                .gsub('{transactionId}', transaction_id)
-
-            if transaction_id.nil?
+            if transaction_id.nil? || transaction_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
             end
+
+            api_path = '/documentsdb/transactions/{transactionId}/operations'
+                .gsub('{transactionId}', transaction_id)
 
             api_params = {
                 operations: operations,
@@ -318,12 +322,12 @@ module Appwrite
         def get(
             database_id:
         )
-            api_path = '/documentsdb/{databaseId}'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/documentsdb/{databaseId}'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 
@@ -359,16 +363,16 @@ module Appwrite
             replicas: nil,
             sync_mode: nil
         )
-            api_path = '/documentsdb/{databaseId}'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
+
+            api_path = '/documentsdb/{databaseId}'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 name: name,
@@ -402,18 +406,19 @@ module Appwrite
         def delete(
             database_id:
         )
-            api_path = '/documentsdb/{databaseId}'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/documentsdb/{databaseId}'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -439,12 +444,12 @@ module Appwrite
             search: nil,
             total: nil
         )
-            api_path = '/documentsdb/{databaseId}/collections'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/documentsdb/{databaseId}/collections'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 queries: queries,
@@ -491,10 +496,7 @@ module Appwrite
             attributes: nil,
             indexes: nil
         )
-            api_path = '/documentsdb/{databaseId}/collections'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
@@ -505,6 +507,9 @@ module Appwrite
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
+
+            api_path = '/documentsdb/{databaseId}/collections'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 collectionId: collection_id,
@@ -542,17 +547,17 @@ module Appwrite
             database_id:,
             collection_id:
         )
-            api_path = '/documentsdb/{databaseId}/collections/{collectionId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if collection_id.nil?
+            if collection_id.nil? || collection_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
+
+            api_path = '/documentsdb/{databaseId}/collections/{collectionId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
 
             api_params = {}
 
@@ -590,21 +595,21 @@ module Appwrite
             enabled: nil,
             purge: nil
         )
-            api_path = '/documentsdb/{databaseId}/collections/{collectionId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if collection_id.nil?
+            if collection_id.nil? || collection_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
+
+            api_path = '/documentsdb/{databaseId}/collections/{collectionId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
 
             api_params = {
                 name: name,
@@ -640,23 +645,24 @@ module Appwrite
             database_id:,
             collection_id:
         )
-            api_path = '/documentsdb/{databaseId}/collections/{collectionId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if collection_id.nil?
+            if collection_id.nil? || collection_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
+
+            api_path = '/documentsdb/{databaseId}/collections/{collectionId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -686,17 +692,17 @@ module Appwrite
             total: nil,
             ttl: nil
         )
-            api_path = '/documentsdb/{databaseId}/collections/{collectionId}/documents'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if collection_id.nil?
+            if collection_id.nil? || collection_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
+
+            api_path = '/documentsdb/{databaseId}/collections/{collectionId}/documents'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
 
             api_params = {
                 queries: queries,
@@ -740,15 +746,11 @@ module Appwrite
             permissions: nil,
             transaction_id: nil
         )
-            api_path = '/documentsdb/{databaseId}/collections/{collectionId}/documents'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if collection_id.nil?
+            if collection_id.nil? || collection_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
@@ -759,6 +761,10 @@ module Appwrite
             if data.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "data"')
             end
+
+            api_path = '/documentsdb/{databaseId}/collections/{collectionId}/documents'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
 
             api_params = {
                 documentId: document_id,
@@ -799,21 +805,21 @@ module Appwrite
             documents:,
             transaction_id: nil
         )
-            api_path = '/documentsdb/{databaseId}/collections/{collectionId}/documents'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if collection_id.nil?
+            if collection_id.nil? || collection_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if documents.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "documents"')
             end
+
+            api_path = '/documentsdb/{databaseId}/collections/{collectionId}/documents'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
 
             api_params = {
                 documents: documents,
@@ -853,21 +859,21 @@ module Appwrite
             documents:,
             transaction_id: nil
         )
-            api_path = '/documentsdb/{databaseId}/collections/{collectionId}/documents'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if collection_id.nil?
+            if collection_id.nil? || collection_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if documents.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "documents"')
             end
+
+            api_path = '/documentsdb/{databaseId}/collections/{collectionId}/documents'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
 
             api_params = {
                 documents: documents,
@@ -907,17 +913,17 @@ module Appwrite
             queries: nil,
             transaction_id: nil
         )
-            api_path = '/documentsdb/{databaseId}/collections/{collectionId}/documents'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if collection_id.nil?
+            if collection_id.nil? || collection_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
+
+            api_path = '/documentsdb/{databaseId}/collections/{collectionId}/documents'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
 
             api_params = {
                 data: data,
@@ -955,17 +961,17 @@ module Appwrite
             queries: nil,
             transaction_id: nil
         )
-            api_path = '/documentsdb/{databaseId}/collections/{collectionId}/documents'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if collection_id.nil?
+            if collection_id.nil? || collection_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
+
+            api_path = '/documentsdb/{databaseId}/collections/{collectionId}/documents'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
 
             api_params = {
                 queries: queries,
@@ -1004,22 +1010,22 @@ module Appwrite
             queries: nil,
             transaction_id: nil
         )
+            if database_id.nil? || database_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil? || collection_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if document_id.nil? || document_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "documentId"')
+            end
+
             api_path = '/documentsdb/{databaseId}/collections/{collectionId}/documents/{documentId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{documentId}', document_id)
-
-            if database_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if collection_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
-            end
-
-            if document_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "documentId"')
-            end
 
             api_params = {
                 queries: queries,
@@ -1061,22 +1067,22 @@ module Appwrite
             permissions: nil,
             transaction_id: nil
         )
+            if database_id.nil? || database_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil? || collection_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if document_id.nil? || document_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "documentId"')
+            end
+
             api_path = '/documentsdb/{databaseId}/collections/{collectionId}/documents/{documentId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{documentId}', document_id)
-
-            if database_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if collection_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
-            end
-
-            if document_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "documentId"')
-            end
 
             api_params = {
                 data: data,
@@ -1118,22 +1124,22 @@ module Appwrite
             permissions: nil,
             transaction_id: nil
         )
+            if database_id.nil? || database_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil? || collection_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if document_id.nil? || document_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "documentId"')
+            end
+
             api_path = '/documentsdb/{databaseId}/collections/{collectionId}/documents/{documentId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{documentId}', document_id)
-
-            if database_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if collection_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
-            end
-
-            if document_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "documentId"')
-            end
 
             api_params = {
                 data: data,
@@ -1170,22 +1176,22 @@ module Appwrite
             document_id:,
             transaction_id: nil
         )
+            if database_id.nil? || database_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil? || collection_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if document_id.nil? || document_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "documentId"')
+            end
+
             api_path = '/documentsdb/{databaseId}/collections/{collectionId}/documents/{documentId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{documentId}', document_id)
-
-            if database_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if collection_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
-            end
-
-            if document_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "documentId"')
-            end
 
             api_params = {
                 transactionId: transaction_id,
@@ -1194,6 +1200,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1224,27 +1231,27 @@ module Appwrite
             min: nil,
             transaction_id: nil
         )
+            if database_id.nil? || database_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil? || collection_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if document_id.nil? || document_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "documentId"')
+            end
+
+            if attribute.nil? || attribute == ''
+                raise Appwrite::Exception.new('Missing required parameter: "attribute"')
+            end
+
             api_path = '/documentsdb/{databaseId}/collections/{collectionId}/documents/{documentId}/{attribute}/decrement'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{documentId}', document_id)
                 .gsub('{attribute}', attribute)
-
-            if database_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if collection_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
-            end
-
-            if document_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "documentId"')
-            end
-
-            if attribute.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "attribute"')
-            end
 
             api_params = {
                 value: value,
@@ -1287,27 +1294,27 @@ module Appwrite
             max: nil,
             transaction_id: nil
         )
+            if database_id.nil? || database_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil? || collection_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if document_id.nil? || document_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "documentId"')
+            end
+
+            if attribute.nil? || attribute == ''
+                raise Appwrite::Exception.new('Missing required parameter: "attribute"')
+            end
+
             api_path = '/documentsdb/{databaseId}/collections/{collectionId}/documents/{documentId}/{attribute}/increment'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{documentId}', document_id)
                 .gsub('{attribute}', attribute)
-
-            if database_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if collection_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
-            end
-
-            if document_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "documentId"')
-            end
-
-            if attribute.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "attribute"')
-            end
 
             api_params = {
                 value: value,
@@ -1344,17 +1351,17 @@ module Appwrite
             queries: nil,
             total: nil
         )
-            api_path = '/documentsdb/{databaseId}/collections/{collectionId}/indexes'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if collection_id.nil?
+            if collection_id.nil? || collection_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
+
+            api_path = '/documentsdb/{databaseId}/collections/{collectionId}/indexes'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
 
             api_params = {
                 queries: queries,
@@ -1397,15 +1404,11 @@ module Appwrite
             orders: nil,
             lengths: nil
         )
-            api_path = '/documentsdb/{databaseId}/collections/{collectionId}/indexes'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if collection_id.nil?
+            if collection_id.nil? || collection_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
@@ -1420,6 +1423,10 @@ module Appwrite
             if attributes.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "attributes"')
             end
+
+            api_path = '/documentsdb/{databaseId}/collections/{collectionId}/indexes'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
 
             api_params = {
                 key: key,
@@ -1456,22 +1463,22 @@ module Appwrite
             collection_id:,
             key:
         )
+            if database_id.nil? || database_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil? || collection_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil? || key == ''
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
             api_path = '/documentsdb/{databaseId}/collections/{collectionId}/indexes/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
-
-            if database_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if collection_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
-            end
-
-            if key.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "key"')
-            end
 
             api_params = {}
 
@@ -1501,28 +1508,29 @@ module Appwrite
             collection_id:,
             key:
         )
+            if database_id.nil? || database_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil? || collection_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil? || key == ''
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
             api_path = '/documentsdb/{databaseId}/collections/{collectionId}/indexes/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
-
-            if database_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if collection_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
-            end
-
-            if key.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "key"')
-            end
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1551,12 +1559,12 @@ module Appwrite
             database_id:,
             target_replica_id: nil
         )
-            api_path = '/documentsdb/{databaseId}/failovers'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/documentsdb/{databaseId}/failovers'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 targetReplicaId: target_replica_id,
@@ -1594,12 +1602,12 @@ module Appwrite
             limit: nil,
             offset: nil
         )
-            api_path = '/documentsdb/{databaseId}/operations'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/documentsdb/{databaseId}/operations'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 status: status,
@@ -1630,12 +1638,12 @@ module Appwrite
         def get_replicas(
             database_id:
         )
-            api_path = '/documentsdb/{databaseId}/replicas'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/documentsdb/{databaseId}/replicas'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 
@@ -1663,12 +1671,12 @@ module Appwrite
         def get_status(
             database_id:
         )
-            api_path = '/documentsdb/{databaseId}/status'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/documentsdb/{databaseId}/status'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 

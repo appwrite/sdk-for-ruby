@@ -8,28 +8,37 @@ module Appwrite
             attr_reader :client_id
             attr_reader :client_secret
             attr_reader :prompt
+            attr_reader :native_enabled
+            attr_reader :native_client_ids
 
             def initialize(
                 id:,
                 enabled:,
                 client_id:,
                 client_secret:,
-                prompt:
+                prompt:,
+                native_enabled:,
+                native_client_ids:
             )
                 @id = id
                 @enabled = enabled
                 @client_id = client_id
                 @client_secret = client_secret
                 @prompt = validate_prompt(prompt)
+                @native_enabled = native_enabled
+                @native_client_ids = native_client_ids
             end
 
             def self.from(map:)
+                map = { "$id" => "", "enabled" => false, "clientId" => "", "clientSecret" => "", "prompt" => ["consent"], "nativeEnabled" => false, "nativeClientIds" => [] }.merge(map)
                 OAuth2Google.new(
                     id: map["$id"],
                     enabled: map["enabled"],
                     client_id: map["clientId"],
                     client_secret: map["clientSecret"],
-                    prompt: map["prompt"]
+                    prompt: map["prompt"],
+                    native_enabled: map["nativeEnabled"],
+                    native_client_ids: map["nativeClientIds"]
                 )
             end
 
@@ -39,7 +48,9 @@ module Appwrite
                     "enabled": @enabled,
                     "clientId": @client_id,
                     "clientSecret": @client_secret,
-                    "prompt": @prompt
+                    "prompt": @prompt,
+                    "nativeEnabled": @native_enabled,
+                    "nativeClientIds": @native_client_ids
                 }
             end
 

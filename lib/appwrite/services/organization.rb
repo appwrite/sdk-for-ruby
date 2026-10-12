@@ -37,11 +37,11 @@ module Appwrite
         def update(
             name:
         )
-            api_path = '/organization'
-
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
+
+            api_path = '/organization'
 
             api_params = {
                 name: name,
@@ -75,6 +75,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -129,11 +130,11 @@ module Appwrite
             app_id:,
             authorization_details: nil
         )
-            api_path = '/organization/installations'
-
             if app_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
+
+            api_path = '/organization/installations'
 
             api_params = {
                 appId: app_id,
@@ -164,12 +165,12 @@ module Appwrite
         def get_installation(
             installation_id:
         )
-            api_path = '/organization/installations/{installationId}'
-                .gsub('{installationId}', installation_id)
-
-            if installation_id.nil?
+            if installation_id.nil? || installation_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "installationId"')
             end
+
+            api_path = '/organization/installations/{installationId}'
+                .gsub('{installationId}', installation_id)
 
             api_params = {}
 
@@ -200,12 +201,12 @@ module Appwrite
             installation_id:,
             authorization_details: nil
         )
-            api_path = '/organization/installations/{installationId}'
-                .gsub('{installationId}', installation_id)
-
-            if installation_id.nil?
+            if installation_id.nil? || installation_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "installationId"')
             end
+
+            api_path = '/organization/installations/{installationId}'
+                .gsub('{installationId}', installation_id)
 
             api_params = {
                 authorizationDetails: authorization_details,
@@ -236,214 +237,19 @@ module Appwrite
         def delete_installation(
             installation_id:
         )
-            api_path = '/organization/installations/{installationId}'
-                .gsub('{installationId}', installation_id)
-
-            if installation_id.nil?
+            if installation_id.nil? || installation_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "installationId"')
             end
 
-            api_params = {}
-
-            api_headers = {
-                "X-Appwrite-Project": @client.get_config('project'),
-                "content-type": 'application/json',
-                "accept": 'application/json',
-            }
-
-            @client.call(
-                method: 'DELETE',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-            )
-        end
-
-        # Get a list of all API keys from the current organization.
-        #
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: expire, accessedAt, name, scopes
-        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
-        #
-        # @return [KeyList]
-        def list_keys(
-            queries: nil,
-            total: nil
-        )
-            api_path = '/organization/keys'
-
-            api_params = {
-                queries: queries,
-                total: total,
-            }
-
-            api_headers = {
-                "X-Appwrite-Project": @client.get_config('project'),
-                "accept": 'application/json',
-            }
-
-            @client.call(
-                method: 'GET',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                response_type: Models::KeyList
-            )
-        end
-
-        # Create a new organization API key.
-        #
-        # @param [String] key_id Key ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
-        # @param [String] name Key name. Max length: 128 chars.
-        # @param [Array] scopes Key scopes list. Maximum of 200 scopes are allowed.
-        # @param [String] expire Expiration time in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Use null for unlimited expiration.
-        #
-        # @return [Key]
-        def create_key(
-            key_id:,
-            name:,
-            scopes:,
-            expire: nil
-        )
-            api_path = '/organization/keys'
-
-            if key_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "keyId"')
-            end
-
-            if name.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "name"')
-            end
-
-            if scopes.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "scopes"')
-            end
-
-            api_params = {
-                keyId: key_id,
-                name: name,
-                scopes: scopes,
-                expire: expire,
-            }
-
-            api_headers = {
-                "X-Appwrite-Project": @client.get_config('project'),
-                "content-type": 'application/json',
-                "accept": 'application/json',
-            }
-
-            @client.call(
-                method: 'POST',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                response_type: Models::Key
-            )
-        end
-
-        # Get a key by its unique ID. This endpoint returns details about a specific
-        # API key in your organization including its scopes.
-        #
-        # @param [String] key_id Key unique ID.
-        #
-        # @return [Key]
-        def get_key(
-            key_id:
-        )
-            api_path = '/organization/keys/{keyId}'
-                .gsub('{keyId}', key_id)
-
-            if key_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "keyId"')
-            end
-
-            api_params = {}
-
-            api_headers = {
-                "X-Appwrite-Project": @client.get_config('project'),
-                "accept": 'application/json',
-            }
-
-            @client.call(
-                method: 'GET',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                response_type: Models::Key
-            )
-        end
-
-        # Update a key by its unique ID. Use this endpoint to update the name,
-        # scopes, or expiration time of an API key.
-        #
-        # @param [String] key_id Key unique ID.
-        # @param [String] name Key name. Max length: 128 chars.
-        # @param [Array] scopes Key scopes list. Maximum of 200 scopes are allowed.
-        # @param [String] expire Expiration time in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Use null for unlimited expiration.
-        #
-        # @return [Key]
-        def update_key(
-            key_id:,
-            name:,
-            scopes:,
-            expire: nil
-        )
-            api_path = '/organization/keys/{keyId}'
-                .gsub('{keyId}', key_id)
-
-            if key_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "keyId"')
-            end
-
-            if name.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "name"')
-            end
-
-            if scopes.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "scopes"')
-            end
-
-            api_params = {
-                name: name,
-                scopes: scopes,
-                expire: expire,
-            }
-
-            api_headers = {
-                "X-Appwrite-Project": @client.get_config('project'),
-                "content-type": 'application/json',
-                "accept": 'application/json',
-            }
-
-            @client.call(
-                method: 'PUT',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                response_type: Models::Key
-            )
-        end
-
-        # Delete a key by its unique ID. Once deleted, the key can no longer be used
-        # to authenticate API calls.
-        #
-        # @param [String] key_id Key unique ID.
-        #
-        # @return []
-        def delete_key(
-            key_id:
-        )
-            api_path = '/organization/keys/{keyId}'
-                .gsub('{keyId}', key_id)
-
-            if key_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "keyId"')
-            end
+            api_path = '/organization/installations/{installationId}'
+                .gsub('{installationId}', installation_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -508,11 +314,11 @@ module Appwrite
             url: nil,
             name: nil
         )
-            api_path = '/organization/memberships'
-
             if roles.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "roles"')
             end
+
+            api_path = '/organization/memberships'
 
             api_params = {
                 email: email,
@@ -546,12 +352,12 @@ module Appwrite
         def get_membership(
             membership_id:
         )
-            api_path = '/organization/memberships/{membershipId}'
-                .gsub('{membershipId}', membership_id)
-
-            if membership_id.nil?
+            if membership_id.nil? || membership_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "membershipId"')
             end
+
+            api_path = '/organization/memberships/{membershipId}'
+                .gsub('{membershipId}', membership_id)
 
             api_params = {}
 
@@ -579,16 +385,16 @@ module Appwrite
             membership_id:,
             roles:
         )
-            api_path = '/organization/memberships/{membershipId}'
-                .gsub('{membershipId}', membership_id)
-
-            if membership_id.nil?
+            if membership_id.nil? || membership_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "membershipId"')
             end
 
             if roles.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "roles"')
             end
+
+            api_path = '/organization/memberships/{membershipId}'
+                .gsub('{membershipId}', membership_id)
 
             api_params = {
                 roles: roles,
@@ -619,18 +425,19 @@ module Appwrite
         def delete_membership(
             membership_id:
         )
-            api_path = '/organization/memberships/{membershipId}'
-                .gsub('{membershipId}', membership_id)
-
-            if membership_id.nil?
+            if membership_id.nil? || membership_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "membershipId"')
             end
+
+            api_path = '/organization/memberships/{membershipId}'
+                .gsub('{membershipId}', membership_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -688,8 +495,6 @@ module Appwrite
             name:,
             region: nil
         )
-            api_path = '/organization/projects'
-
             if project_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "projectId"')
             end
@@ -697,6 +502,8 @@ module Appwrite
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
+
+            api_path = '/organization/projects'
 
             api_params = {
                 projectId: project_id,
@@ -727,17 +534,18 @@ module Appwrite
         def get_project(
             project_id:
         )
-            api_path = '/organization/projects/{projectId}'
-                .gsub('{projectId}', project_id)
-
-            if project_id.nil?
+            if project_id.nil? || project_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "projectId"')
             end
+
+            api_path = '/organization/projects/{projectId}'
+                .gsub('{projectId}', project_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -759,16 +567,16 @@ module Appwrite
             project_id:,
             name:
         )
-            api_path = '/organization/projects/{projectId}'
-                .gsub('{projectId}', project_id)
-
-            if project_id.nil?
+            if project_id.nil? || project_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "projectId"')
             end
 
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
+
+            api_path = '/organization/projects/{projectId}'
+                .gsub('{projectId}', project_id)
 
             api_params = {
                 name: name,
@@ -797,18 +605,244 @@ module Appwrite
         def delete_project(
             project_id:
         )
-            api_path = '/organization/projects/{projectId}'
-                .gsub('{projectId}', project_id)
-
-            if project_id.nil?
+            if project_id.nil? || project_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "projectId"')
             end
+
+            api_path = '/organization/projects/{projectId}'
+                .gsub('{projectId}', project_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+            )
+        end
+
+        # Get a list of all API keys of a project in your organization.
+        #
+        # @param [String] project_id Project unique ID.
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: expire, accessedAt, name, scopes
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
+        #
+        # @return [KeyList]
+        def list_project_keys(
+            project_id:,
+            queries: nil,
+            total: nil
+        )
+            if project_id.nil? || project_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "projectId"')
+            end
+
+            api_path = '/organization/projects/{projectId}/keys'
+                .gsub('{projectId}', project_id)
+
+            api_params = {
+                queries: queries,
+                total: total,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::KeyList
+            )
+        end
+
+        # Create a new ephemeral API key for a project in your organization. It&#039;s
+        # recommended to have multiple API keys with strict scopes for separate
+        # functions within your project.
+        #
+        # You can also create a standard API key if you need a longer-lived key
+        # instead.
+        #
+        # @param [String] project_id Project unique ID.
+        # @param [Array] scopes Key scopes list. Maximum of 200 scopes are allowed.
+        # @param [Integer] duration Time in seconds before ephemeral key expires. Maximum duration is 3600 seconds.
+        #
+        # @return [EphemeralKey]
+        def create_ephemeral_project_key(
+            project_id:,
+            scopes:,
+            duration:
+        )
+            if project_id.nil? || project_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "projectId"')
+            end
+
+            if scopes.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "scopes"')
+            end
+
+            if duration.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "duration"')
+            end
+
+            api_path = '/organization/projects/{projectId}/keys/ephemeral'
+                .gsub('{projectId}', project_id)
+
+            api_params = {
+                scopes: scopes,
+                duration: duration,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::EphemeralKey
+            )
+        end
+
+        # Get a project key by its unique ID.
+        #
+        # @param [String] project_id Project unique ID.
+        # @param [String] key_id Key ID.
+        #
+        # @return [Key]
+        def get_project_key(
+            project_id:,
+            key_id:
+        )
+            if project_id.nil? || project_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "projectId"')
+            end
+
+            if key_id.nil? || key_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "keyId"')
+            end
+
+            api_path = '/organization/projects/{projectId}/keys/{keyId}'
+                .gsub('{projectId}', project_id)
+                .gsub('{keyId}', key_id)
+
+            api_params = {}
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Key
+            )
+        end
+
+        # Update a project key by its unique ID. Use this endpoint to update the
+        # name, scopes, or expiration time of an API key.
+        #
+        # @param [String] project_id Project unique ID.
+        # @param [String] key_id Key ID.
+        # @param [String] name Key name. Max length: 128 chars.
+        # @param [Array] scopes Key scopes list. Maximum of 200 scopes are allowed.
+        # @param [String] expire Expiration time in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Use null for unlimited expiration.
+        #
+        # @return [Key]
+        def update_project_key(
+            project_id:,
+            key_id:,
+            name:,
+            scopes:,
+            expire: nil
+        )
+            if project_id.nil? || project_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "projectId"')
+            end
+
+            if key_id.nil? || key_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "keyId"')
+            end
+
+            if name.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
+            end
+
+            if scopes.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "scopes"')
+            end
+
+            api_path = '/organization/projects/{projectId}/keys/{keyId}'
+                .gsub('{projectId}', project_id)
+                .gsub('{keyId}', key_id)
+
+            api_params = {
+                name: name,
+                scopes: scopes,
+                expire: expire,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PUT',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Key
+            )
+        end
+
+        # Delete a project key by its unique ID. Once deleted, the key can no longer
+        # be used to authenticate API calls.
+        #
+        # @param [String] project_id Project unique ID.
+        # @param [String] key_id Key ID.
+        #
+        # @return []
+        def delete_project_key(
+            project_id:,
+            key_id:
+        )
+            if project_id.nil? || project_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "projectId"')
+            end
+
+            if key_id.nil? || key_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "keyId"')
+            end
+
+            api_path = '/organization/projects/{projectId}/keys/{keyId}'
+                .gsub('{projectId}', project_id)
+                .gsub('{keyId}', key_id)
+
+            api_params = {}
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(

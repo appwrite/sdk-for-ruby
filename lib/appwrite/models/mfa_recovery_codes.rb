@@ -12,6 +12,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "recoveryCodes" => [] }.merge(map)
                 MfaRecoveryCodes.new(
                     recovery_codes: map["recoveryCodes"]
                 )

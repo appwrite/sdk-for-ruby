@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0 }.merge(map)
                 AppSecretList.new(
                     total: map["total"],
                     secrets: map["secrets"].map { |it| AppSecret.from(map: it) }

@@ -9,7 +9,6 @@ module Appwrite
             attr_reader :name
             attr_reader :team_id
             attr_reader :region
-            attr_reader :dev_keys
             attr_reader :smtp_enabled
             attr_reader :smtp_sender_name
             attr_reader :smtp_sender_email
@@ -32,6 +31,8 @@ module Appwrite
             attr_reader :console_accessed_at
             attr_reader :waf_enabled
             attr_reader :billing_limits
+            attr_reader :first_accessed_at
+            attr_reader :mcp_accessed_at
             attr_reader :o_auth2_server_enabled
             attr_reader :o_auth2_server_authorization_url
             attr_reader :o_auth2_server_scopes
@@ -57,7 +58,6 @@ module Appwrite
                 name:,
                 team_id:,
                 region:,
-                dev_keys:,
                 smtp_enabled:,
                 smtp_sender_name:,
                 smtp_sender_email:,
@@ -80,22 +80,24 @@ module Appwrite
                 console_accessed_at:,
                 waf_enabled:,
                 billing_limits:,
+                first_accessed_at:,
+                mcp_accessed_at:,
                 o_auth2_server_enabled:,
                 o_auth2_server_authorization_url:,
-                o_auth2_server_scopes:,
-                o_auth2_server_default_scopes:,
-                o_auth2_server_installation_scopes:,
-                o_auth2_server_authorization_details_types:,
-                o_auth2_server_access_token_duration:,
-                o_auth2_server_refresh_token_duration:,
-                o_auth2_server_public_access_token_duration:,
-                o_auth2_server_public_refresh_token_duration:,
-                o_auth2_server_installation_access_token_duration:,
+                o_auth2_server_scopes: [],
+                o_auth2_server_default_scopes: [],
+                o_auth2_server_installation_scopes: [],
+                o_auth2_server_authorization_details_types: [],
+                o_auth2_server_access_token_duration: 0,
+                o_auth2_server_refresh_token_duration: 0,
+                o_auth2_server_public_access_token_duration: 0,
+                o_auth2_server_public_refresh_token_duration: 0,
+                o_auth2_server_installation_access_token_duration: 0,
                 o_auth2_server_confidential_pkce:,
                 o_auth2_server_verification_url:,
-                o_auth2_server_user_code_length:,
-                o_auth2_server_user_code_format:,
-                o_auth2_server_device_code_duration:,
+                o_auth2_server_user_code_length: 8,
+                o_auth2_server_user_code_format: "alphanumeric",
+                o_auth2_server_device_code_duration: 600,
                 o_auth2_server_discovery_url:
             )
                 @id = id
@@ -104,7 +106,6 @@ module Appwrite
                 @name = name
                 @team_id = team_id
                 @region = region
-                @dev_keys = dev_keys
                 @smtp_enabled = smtp_enabled
                 @smtp_sender_name = smtp_sender_name
                 @smtp_sender_email = smtp_sender_email
@@ -127,6 +128,8 @@ module Appwrite
                 @console_accessed_at = console_accessed_at
                 @waf_enabled = waf_enabled
                 @billing_limits = billing_limits
+                @first_accessed_at = first_accessed_at
+                @mcp_accessed_at = mcp_accessed_at
                 @o_auth2_server_enabled = o_auth2_server_enabled
                 @o_auth2_server_authorization_url = o_auth2_server_authorization_url
                 @o_auth2_server_scopes = o_auth2_server_scopes
@@ -147,6 +150,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "teamId" => "", "region" => "fra", "smtpEnabled" => false, "smtpSenderName" => "", "smtpSenderEmail" => "", "smtpReplyToName" => "", "smtpReplyToEmail" => "", "smtpHost" => "", "smtpPort" => 0, "smtpUsername" => "", "smtpPassword" => "", "smtpSecure" => "", "pingCount" => 0, "pingedAt" => "", "labels" => [], "status" => "active", "onboarding" => {}, "consoleAccessedAt" => "" }.merge(map)
                 Project.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],
@@ -154,7 +158,6 @@ module Appwrite
                     name: map["name"],
                     team_id: map["teamId"],
                     region: map["region"],
-                    dev_keys: map["devKeys"].map { |it| DevKey.from(map: it) },
                     smtp_enabled: map["smtpEnabled"],
                     smtp_sender_name: map["smtpSenderName"],
                     smtp_sender_email: map["smtpSenderEmail"],
@@ -177,6 +180,8 @@ module Appwrite
                     console_accessed_at: map["consoleAccessedAt"],
                     waf_enabled: map["wafEnabled"],
                     billing_limits: map["billingLimits"].nil? ? nil : BillingLimits.from(map: map["billingLimits"]),
+                    first_accessed_at: map["firstAccessedAt"],
+                    mcp_accessed_at: map["mcpAccessedAt"],
                     o_auth2_server_enabled: map["oAuth2ServerEnabled"],
                     o_auth2_server_authorization_url: map["oAuth2ServerAuthorizationUrl"],
                     o_auth2_server_scopes: map["oAuth2ServerScopes"],
@@ -205,7 +210,6 @@ module Appwrite
                     "name": @name,
                     "teamId": @team_id,
                     "region": @region,
-                    "devKeys": @dev_keys.map { |it| it.to_map },
                     "smtpEnabled": @smtp_enabled,
                     "smtpSenderName": @smtp_sender_name,
                     "smtpSenderEmail": @smtp_sender_email,
@@ -228,6 +232,8 @@ module Appwrite
                     "consoleAccessedAt": @console_accessed_at,
                     "wafEnabled": @waf_enabled,
                     "billingLimits": @billing_limits&.to_map,
+                    "firstAccessedAt": @first_accessed_at,
+                    "mcpAccessedAt": @mcp_accessed_at,
                     "oAuth2ServerEnabled": @o_auth2_server_enabled,
                     "oAuth2ServerAuthorizationUrl": @o_auth2_server_authorization_url,
                     "oAuth2ServerScopes": @o_auth2_server_scopes,

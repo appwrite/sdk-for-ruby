@@ -33,6 +33,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "supported" => false, "planIncluded" => 0, "limit" => 0, "type" => "numeric", "price" => 0, "value" => 0, "invoiceDesc" => "" }.merge(map)
                 BillingPlanAddonDetails.new(
                     supported: map["supported"],
                     plan_included: map["planIncluded"],

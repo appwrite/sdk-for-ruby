@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0 }.merge(map)
                 ColumnList.new(
                     total: map["total"],
                     columns: map["columns"]

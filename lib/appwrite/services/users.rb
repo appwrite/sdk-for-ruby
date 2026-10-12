@@ -1188,6 +1188,168 @@ module Appwrite
             )
         end
 
+        # Get the list of verified passkeys registered by a user.
+        #
+        # @param [String] user_id User ID.
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter and order on the following attributes: $id, $createdAt, $updatedAt, name, accessedAt
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
+        #
+        # @return [PasskeyList]
+        def list_passkeys(
+            user_id:,
+            queries: nil,
+            total: nil
+        )
+            if user_id.nil? || user_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            api_path = '/users/{userId}/passkeys'
+                .gsub('{userId}', user_id)
+
+            api_params = {
+                queries: queries,
+                total: total,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::PasskeyList
+            )
+        end
+
+        # Get a verified passkey of a user by its unique ID.
+        #
+        # @param [String] user_id User ID.
+        # @param [String] passkey_id Passkey ID.
+        #
+        # @return [Passkey]
+        def get_passkey(
+            user_id:,
+            passkey_id:
+        )
+            if user_id.nil? || user_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            if passkey_id.nil? || passkey_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "passkeyId"')
+            end
+
+            api_path = '/users/{userId}/passkeys/{passkeyId}'
+                .gsub('{userId}', user_id)
+                .gsub('{passkeyId}', passkey_id)
+
+            api_params = {}
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Passkey
+            )
+        end
+
+        # Rename a passkey of a user.
+        #
+        # @param [String] user_id User ID.
+        # @param [String] passkey_id Passkey ID.
+        # @param [String] name Passkey name. Max length: 128 chars.
+        #
+        # @return [Passkey]
+        def update_passkey(
+            user_id:,
+            passkey_id:,
+            name:
+        )
+            if user_id.nil? || user_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            if passkey_id.nil? || passkey_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "passkeyId"')
+            end
+
+            if name.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
+            end
+
+            api_path = '/users/{userId}/passkeys/{passkeyId}'
+                .gsub('{userId}', user_id)
+                .gsub('{passkeyId}', passkey_id)
+
+            api_params = {
+                name: name,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Passkey
+            )
+        end
+
+        # Delete a passkey from a user, for example when a device is lost. The
+        # passkey can no longer be used to sign in.
+        #
+        # @param [String] user_id User ID.
+        # @param [String] passkey_id Passkey ID.
+        #
+        # @return []
+        def delete_passkey(
+            user_id:,
+            passkey_id:
+        )
+            if user_id.nil? || user_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "userId"')
+            end
+
+            if passkey_id.nil? || passkey_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "passkeyId"')
+            end
+
+            api_path = '/users/{userId}/passkeys/{passkeyId}'
+                .gsub('{userId}', user_id)
+                .gsub('{passkeyId}', passkey_id)
+
+            api_params = {}
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+            )
+        end
+
         # Update the user password by its unique ID.
         #
         # @param [String] user_id User ID.

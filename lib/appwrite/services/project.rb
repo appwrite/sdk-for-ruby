@@ -3757,7 +3757,7 @@ module Appwrite
         #
         # @param [ProjectPolicyId] policy_id Policy ID. Can be one of: password-dictionary, password-history, password-strength, password-personal-data, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, mfa-factors, deny-aliased-email, deny-disposable-email, deny-free-email, deny-corporate-email.
         #
-        # @return [PolicyPasswordDictionary, PolicyPasswordHistory, PolicyPasswordStrength, PolicyPasswordPersonalData, PolicySessionAlert, PolicySessionDuration, PolicySessionInvalidation, PolicySessionLimit, PolicyUserLimit, PolicyMembershipPrivacy, PolicyMfaFactors, PolicyDenyAliasedEmail, PolicyDenyDisposableEmail, PolicyDenyFreeEmail, PolicyDenyCorporateEmail]
+        # @return [PolicyPasswordDictionary, PolicyPasswordHistory, PolicyPasswordStrength, PolicyPasswordPersonalData, PolicySessionAlert, PolicySessionDuration, PolicySessionInvalidation, PolicySessionLimit, PolicyUserLimit, PolicyMembershipPrivacy, PolicyMfaFactors, PolicyDenyAliasedEmail, PolicyDenyDisposableEmail, PolicyDenyFreeEmail, PolicyDenyCorporateEmail, PolicyPasskey]
         def get_policy(
             policy_id:
         )
@@ -3859,6 +3859,11 @@ module Appwrite
             if response['$id'] == 'deny-corporate-email'
 
                 return Models::PolicyDenyCorporateEmail.from(map: response)
+            end
+
+            if response['$id'] == 'passkey'
+
+                return Models::PolicyPasskey.from(map: response)
             end
 
             raise Exception, "Unable to match response to any expected response model"

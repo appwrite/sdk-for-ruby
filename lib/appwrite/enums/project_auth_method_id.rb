@@ -8,6 +8,7 @@ module Appwrite
             INVITES = 'invites'
             JWT = 'jwt'
             PHONE = 'phone'
+            PASSKEY = 'passkey'
         end
     end
 end

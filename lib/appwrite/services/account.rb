@@ -797,6 +797,226 @@ module Appwrite
             )
         end
 
+        # Get the list of verified passkeys registered by the currently logged in
+        # user.
+        #
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter and order on the following attributes: $id, $createdAt, $updatedAt, name, accessedAt
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
+        #
+        # @return [PasskeyList]
+        def list_passkeys(
+            queries: nil,
+            total: nil
+        )
+            api_path = '/account/passkeys'
+
+            api_params = {
+                queries: queries,
+                total: total,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::PasskeyList
+            )
+        end
+
+        # Start registering a passkey for the currently logged in user. The session
+        # must have signed in or completed an MFA challenge within the last 10
+        # minutes. Pass the returned `publicKey` options to
+        # `navigator.credentials.create()`, then complete the registration with
+        # [Update passkey
+        # verification](/docs/references/cloud/client-web/account#updatePasskeyVerification).
+        # The passkey stays pending until verified, and the challenge expires after 5
+        # minutes.
+        #
+        # @param [String] passkey_id Passkey ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
+        # @param [String] name Passkey name, shown when listing passkeys. Max length: 128 chars.
+        #
+        # @return [PasskeyChallenge]
+        def create_passkey(
+            passkey_id: nil,
+            name: nil
+        )
+            api_path = '/account/passkeys'
+
+            api_params = {
+                passkeyId: passkey_id,
+                name: name,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::PasskeyChallenge
+            )
+        end
+
+        # Get a verified passkey of the currently logged in user by its unique ID.
+        #
+        # @param [String] passkey_id Passkey ID.
+        #
+        # @return [Passkey]
+        def get_passkey(
+            passkey_id:
+        )
+            if passkey_id.nil? || passkey_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "passkeyId"')
+            end
+
+            api_path = '/account/passkeys/{passkeyId}'
+                .gsub('{passkeyId}', passkey_id)
+
+            api_params = {}
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Passkey
+            )
+        end
+
+        # Rename a passkey of the currently logged in user.
+        #
+        # @param [String] passkey_id Passkey ID.
+        # @param [String] name Passkey name. Max length: 128 chars.
+        #
+        # @return [Passkey]
+        def update_passkey(
+            passkey_id:,
+            name:
+        )
+            if passkey_id.nil? || passkey_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "passkeyId"')
+            end
+
+            if name.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
+            end
+
+            api_path = '/account/passkeys/{passkeyId}'
+                .gsub('{passkeyId}', passkey_id)
+
+            api_params = {
+                name: name,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Passkey
+            )
+        end
+
+        # Delete a passkey from the currently logged in user. The passkey can no
+        # longer be used to sign in, although it may remain stored on the user&#039;s
+        # device. The session must have signed in or completed an MFA challenge
+        # within the last 10 minutes.
+        #
+        # @param [String] passkey_id Passkey ID.
+        #
+        # @return []
+        def delete_passkey(
+            passkey_id:
+        )
+            if passkey_id.nil? || passkey_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "passkeyId"')
+            end
+
+            api_path = '/account/passkeys/{passkeyId}'
+                .gsub('{passkeyId}', passkey_id)
+
+            api_params = {}
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+            )
+        end
+
+        # Complete a passkey registration started with [Create
+        # passkey](/docs/references/cloud/client-web/account#createPasskey). Pass the
+        # JSON form of the credential returned by `navigator.credentials.create()`,
+        # for example `credential.toJSON()`. Each registration can be verified once;
+        # a failed attempt requires starting it again.
+        #
+        # @param [String] passkey_id Passkey ID.
+        # @param [Hash] credential Registration credential returned by the authenticator, in the JSON form produced by `PublicKeyCredential.toJSON()`.
+        #
+        # @return [Passkey]
+        def update_passkey_verification(
+            passkey_id:,
+            credential:
+        )
+            if passkey_id.nil? || passkey_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "passkeyId"')
+            end
+
+            if credential.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "credential"')
+            end
+
+            api_path = '/account/passkeys/{passkeyId}/verification'
+                .gsub('{passkeyId}', passkey_id)
+
+            api_params = {
+                credential: credential,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PUT',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Passkey
+            )
+        end
+
         # Update currently logged in user password. For validation, user is required
         # to pass in the new password, and the old password. For users created with
         # OAuth, Team Invites and Magic URL, oldPassword is optional.
@@ -1589,6 +1809,84 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: "location"
+            )
+        end
+
+        # Start signing in with a passkey. No email or user ID is needed: pass the
+        # returned `publicKey` options to `navigator.credentials.get()` and the user
+        # picks one of their passkeys. Then call [Update passkey
+        # token](/docs/references/cloud/client-web/account#updatePasskeyToken) with
+        # the credential to receive a token, and exchange it with [Create
+        # session](/docs/references/cloud/client-web/account#createSession). The
+        # challenge expires after 5 minutes.
+        #
+        #
+        # @return [PasskeyChallenge]
+        def create_passkey_token()
+            api_path = '/account/tokens/passkey'
+
+            api_params = {}
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::PasskeyChallenge
+            )
+        end
+
+        # Complete a passkey sign-in started with [Create passkey
+        # token](/docs/references/cloud/client-web/account#createPasskeyToken). Pass
+        # the challenge ID and the JSON form of the credential returned by
+        # `navigator.credentials.get()`, for example `credential.toJSON()`. The
+        # returned token includes its secret and expires after 1 minute: exchange it
+        # for a session with [Create
+        # session](/docs/references/cloud/client-web/account#createSession). Passkeys
+        # require user verification, so the session also satisfies MFA. Each
+        # challenge can only be used once.
+        #
+        # @param [String] challenge_id Challenge ID returned by createPasskeyToken.
+        # @param [Hash] credential Authentication credential returned by the authenticator, in the JSON form produced by `PublicKeyCredential.toJSON()`.
+        #
+        # @return [TokenSecret]
+        def update_passkey_token(
+            challenge_id:,
+            credential:
+        )
+            if challenge_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "challengeId"')
+            end
+
+            if credential.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "credential"')
+            end
+
+            api_path = '/account/tokens/passkey'
+
+            api_params = {
+                challengeId: challenge_id,
+                credential: credential,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PUT',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::TokenSecret
             )
         end
 

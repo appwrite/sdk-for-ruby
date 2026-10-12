@@ -3386,6 +3386,44 @@ module Appwrite
             )
         end
 
+        # Set the relying party ID passkeys are bound to: the domain of your
+        # application. Passkeys work on the project&#039;s web platforms on that domain or
+        # its subdomains, and on the domain itself for Apple apps. A localhost web
+        # platform enables passkeys for local development without a relying party ID.
+        # The relying party ID cannot change while users have passkeys, and any
+        # change invalidates ceremonies in progress.
+        #
+        # @param [String] rp_id Relying party ID: the domain of your application, such as `example.com`. Use `localhost` for local development, or an empty string to unset it.
+        #
+        # @return [Project]
+        def update_passkey_policy(
+            rp_id:
+        )
+            if rp_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "rpId"')
+            end
+
+            api_path = '/project/policies/passkey'
+
+            api_params = {
+                rpId: rp_id,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Project
+            )
+        end
+
         # Updating this policy allows you to control if new passwords are checked
         # against most common passwords dictionary. When enabled, and user changes
         # their password, password must not be contained in the dictionary.

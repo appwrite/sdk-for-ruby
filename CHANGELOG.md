@@ -1,5 +1,9 @@
 # Change Log
 
+## 28.3.2
+
+* Fixed: `Project` responses no longer raise `ArgumentError` on the `oauth2` service
+
 ## 28.3.1
 
 * Fixed: added `ProjectAuthMethodId::PASSKEY`, so `project.updateAuthMethod` can enable passkeys

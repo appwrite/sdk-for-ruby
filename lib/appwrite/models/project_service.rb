@@ -50,6 +50,7 @@ module Appwrite
                     Appwrite::Enums::ProjectServiceId::MIGRATIONS,
                     Appwrite::Enums::ProjectServiceId::MESSAGING,
                     Appwrite::Enums::ProjectServiceId::ADVISOR,
+                    Appwrite::Enums::ProjectServiceId::OAUTH2,
                 ]
 
                 unless valid_id.include?(id)

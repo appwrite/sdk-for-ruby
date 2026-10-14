@@ -11,6 +11,7 @@ client = Client.new
 documents_db = DocumentsDB.new(client)
 
 result = documents_db.list_transactions(
-    queries: [] # optional
+    queries: [], # optional
+    total: false # optional
 )
 ```

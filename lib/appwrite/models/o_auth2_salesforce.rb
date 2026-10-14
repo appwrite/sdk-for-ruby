@@ -7,17 +7,20 @@ module Appwrite
             attr_reader :enabled
             attr_reader :customer_key
             attr_reader :customer_secret
+            attr_reader :prompt
 
             def initialize(
                 id:,
                 enabled:,
                 customer_key:,
-                customer_secret:
+                customer_secret:,
+                prompt:
             )
                 @id = id
                 @enabled = enabled
                 @customer_key = customer_key
                 @customer_secret = customer_secret
+                @prompt = prompt.nil? ? prompt : validate_prompt(prompt)
             end
 
             def self.from(map:)
@@ -25,7 +28,8 @@ module Appwrite
                     id: map["$id"],
                     enabled: map["enabled"],
                     customer_key: map["customerKey"],
-                    customer_secret: map["customerSecret"]
+                    customer_secret: map["customerSecret"],
+                    prompt: map["prompt"]
                 )
             end
 
@@ -34,8 +38,26 @@ module Appwrite
                     "$id": @id,
                     "enabled": @enabled,
                     "customerKey": @customer_key,
-                    "customerSecret": @customer_secret
+                    "customerSecret": @customer_secret,
+                    "prompt": @prompt
                 }
+            end
+
+            private
+
+            def validate_prompt(prompt)
+                valid_prompt = [
+                    Appwrite::Enums::OAuth2SalesforcePrompt::LOGIN,
+                    Appwrite::Enums::OAuth2SalesforcePrompt::CONSENT,
+                ]
+
+                (prompt || []).each do |value|
+                    unless valid_prompt.include?(value)
+                        raise ArgumentError, "Invalid " + value.to_s + ". Must be one of: " + valid_prompt.join(', ')
+                    end
+                end
+
+                prompt
             end
         end
     end

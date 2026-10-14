@@ -7,17 +7,20 @@ module Appwrite
             attr_reader :enabled
             attr_reader :client_id
             attr_reader :client_secret
+            attr_reader :prompt
 
             def initialize(
                 id:,
                 enabled:,
                 client_id:,
-                client_secret:
+                client_secret:,
+                prompt:
             )
                 @id = id
                 @enabled = enabled
                 @client_id = client_id
                 @client_secret = client_secret
+                @prompt = prompt.nil? ? prompt : validate_prompt(prompt)
             end
 
             def self.from(map:)
@@ -25,7 +28,8 @@ module Appwrite
                     id: map["$id"],
                     enabled: map["enabled"],
                     client_id: map["clientId"],
-                    client_secret: map["clientSecret"]
+                    client_secret: map["clientSecret"],
+                    prompt: map["prompt"]
                 )
             end
 
@@ -34,8 +38,25 @@ module Appwrite
                     "$id": @id,
                     "enabled": @enabled,
                     "clientId": @client_id,
-                    "clientSecret": @client_secret
+                    "clientSecret": @client_secret,
+                    "prompt": @prompt
                 }
+            end
+
+            private
+
+            def validate_prompt(prompt)
+                valid_prompt = [
+                    Appwrite::Enums::OAuth2GithubPrompt::SELECT_ACCOUNT,
+                ]
+
+                (prompt || []).each do |value|
+                    unless valid_prompt.include?(value)
+                        raise ArgumentError, "Invalid " + value.to_s + ". Must be one of: " + valid_prompt.join(', ')
+                    end
+                end
+
+                prompt
             end
         end
     end

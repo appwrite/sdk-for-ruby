@@ -78,8 +78,10 @@ module Appwrite
                     Appwrite::Enums::OAuth2OidcPrompt::SELECT_ACCOUNT,
                 ]
 
-                unless valid_prompt.include?(prompt)
-                    raise ArgumentError, "Invalid " + prompt + ". Must be one of: " + valid_prompt.join(', ')
+                (prompt || []).each do |value|
+                    unless valid_prompt.include?(value)
+                        raise ArgumentError, "Invalid " + value.to_s + ". Must be one of: " + valid_prompt.join(', ')
+                    end
                 end
 
                 prompt

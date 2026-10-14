@@ -37,12 +37,17 @@ module Appwrite
         # List of all locale codes in [ISO
         # 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
         #
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [LocaleCodeList]
-        def list_codes()
+        def list_codes(
+            total: nil
+        )
             api_path = '/locale/codes'
 
-            api_params = {}
+            api_params = {
+                total: total,
+            }
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
@@ -61,12 +66,17 @@ module Appwrite
         # List of all continents. You can use the locale header to get the data in a
         # supported language.
         #
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [ContinentList]
-        def list_continents()
+        def list_continents(
+            total: nil
+        )
             api_path = '/locale/continents'
 
-            api_params = {}
+            api_params = {
+                total: total,
+            }
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
@@ -85,12 +95,17 @@ module Appwrite
         # List of all countries. You can use the locale header to get the data in a
         # supported language.
         #
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [CountryList]
-        def list_countries()
+        def list_countries(
+            total: nil
+        )
             api_path = '/locale/countries'
 
-            api_params = {}
+            api_params = {
+                total: total,
+            }
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
@@ -109,12 +124,17 @@ module Appwrite
         # List of all countries that are currently members of the EU. You can use the
         # locale header to get the data in a supported language.
         #
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [CountryList]
-        def list_countries_eu()
+        def list_countries_eu(
+            total: nil
+        )
             api_path = '/locale/countries/eu'
 
-            api_params = {}
+            api_params = {
+                total: total,
+            }
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
@@ -133,12 +153,17 @@ module Appwrite
         # List of all countries phone codes. You can use the locale header to get the
         # data in a supported language.
         #
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [PhoneList]
-        def list_countries_phones()
+        def list_countries_phones(
+            total: nil
+        )
             api_path = '/locale/countries/phones'
 
-            api_params = {}
+            api_params = {
+                total: total,
+            }
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
@@ -158,12 +183,17 @@ module Appwrite
         # decimal digits for all major and minor currencies. You can use the locale
         # header to get the data in a supported language.
         #
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [CurrencyList]
-        def list_currencies()
+        def list_currencies(
+            total: nil
+        )
             api_path = '/locale/currencies'
 
-            api_params = {}
+            api_params = {
+                total: total,
+            }
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
@@ -182,12 +212,17 @@ module Appwrite
         # List of all languages classified by ISO 639-1 including 2-letter code, name
         # in English, and name in the respective language.
         #
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [LanguageList]
-        def list_languages()
+        def list_languages(
+            total: nil
+        )
             api_path = '/locale/languages'
 
-            api_params = {}
+            api_params = {
+                total: total,
+            }
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),

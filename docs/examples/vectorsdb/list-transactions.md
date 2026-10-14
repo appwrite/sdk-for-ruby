@@ -11,6 +11,7 @@ client = Client.new
 vectors_db = VectorsDB.new(client)
 
 result = vectors_db.list_transactions(
-    queries: [] # optional
+    queries: [], # optional
+    total: false # optional
 )
 ```

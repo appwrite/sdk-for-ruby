@@ -31,7 +31,10 @@ module Appwrite
             attr_reader :blocks
             attr_reader :console_accessed_at
             attr_reader :waf_enabled
+            attr_reader :parent_id
             attr_reader :billing_limits
+            attr_reader :first_accessed_at
+            attr_reader :mcp_accessed_at
             attr_reader :o_auth2_server_enabled
             attr_reader :o_auth2_server_authorization_url
             attr_reader :o_auth2_server_scopes
@@ -79,7 +82,10 @@ module Appwrite
                 blocks:,
                 console_accessed_at:,
                 waf_enabled:,
+                parent_id:,
                 billing_limits:,
+                first_accessed_at:,
+                mcp_accessed_at:,
                 o_auth2_server_enabled:,
                 o_auth2_server_authorization_url:,
                 o_auth2_server_scopes:,
@@ -126,7 +132,10 @@ module Appwrite
                 @blocks = blocks
                 @console_accessed_at = console_accessed_at
                 @waf_enabled = waf_enabled
+                @parent_id = parent_id
                 @billing_limits = billing_limits
+                @first_accessed_at = first_accessed_at
+                @mcp_accessed_at = mcp_accessed_at
                 @o_auth2_server_enabled = o_auth2_server_enabled
                 @o_auth2_server_authorization_url = o_auth2_server_authorization_url
                 @o_auth2_server_scopes = o_auth2_server_scopes
@@ -176,7 +185,10 @@ module Appwrite
                     blocks: map["blocks"].map { |it| Block.from(map: it) },
                     console_accessed_at: map["consoleAccessedAt"],
                     waf_enabled: map["wafEnabled"],
+                    parent_id: map["parentId"],
                     billing_limits: map["billingLimits"].nil? ? nil : BillingLimits.from(map: map["billingLimits"]),
+                    first_accessed_at: map["firstAccessedAt"],
+                    mcp_accessed_at: map["mcpAccessedAt"],
                     o_auth2_server_enabled: map["oAuth2ServerEnabled"],
                     o_auth2_server_authorization_url: map["oAuth2ServerAuthorizationUrl"],
                     o_auth2_server_scopes: map["oAuth2ServerScopes"],
@@ -227,7 +239,10 @@ module Appwrite
                     "blocks": @blocks.map { |it| it.to_map },
                     "consoleAccessedAt": @console_accessed_at,
                     "wafEnabled": @waf_enabled,
+                    "parentId": @parent_id,
                     "billingLimits": @billing_limits&.to_map,
+                    "firstAccessedAt": @first_accessed_at,
+                    "mcpAccessedAt": @mcp_accessed_at,
                     "oAuth2ServerEnabled": @o_auth2_server_enabled,
                     "oAuth2ServerAuthorizationUrl": @o_auth2_server_authorization_url,
                     "oAuth2ServerScopes": @o_auth2_server_scopes,

@@ -13,6 +13,8 @@ messaging = Messaging.new(client)
 result = messaging.create_topic(
     topic_id: '<TOPIC_ID>',
     name: '<NAME>',
-    subscribe: ["any"] # optional
+    subscribe: ["any"], # optional
+    qos: 0, # optional
+    expiry: 0 # optional
 )
 ```

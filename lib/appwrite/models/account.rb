@@ -1,0 +1,143 @@
+# frozen_string_literal: true
+
+module Appwrite
+    module Models
+        class Account
+            attr_reader :id
+            attr_reader :created_at
+            attr_reader :updated_at
+            attr_reader :name
+            attr_reader :registration
+            attr_reader :status
+            attr_reader :labels
+            attr_reader :password_update
+            attr_reader :email
+            attr_reader :phone
+            attr_reader :email_verification
+            attr_reader :email_canonical
+            attr_reader :email_is_free
+            attr_reader :email_is_disposable
+            attr_reader :email_is_corporate
+            attr_reader :email_is_canonical
+            attr_reader :password_pwned
+            attr_reader :phone_verification
+            attr_reader :mfa
+            attr_reader :prefs
+            attr_reader :targets
+            attr_reader :accessed_at
+            attr_reader :impersonator
+            attr_reader :impersonator_user_id
+
+            def initialize(
+                id:,
+                created_at:,
+                updated_at:,
+                name:,
+                registration:,
+                status:,
+                labels:,
+                password_update:,
+                email:,
+                phone:,
+                email_verification:,
+                email_canonical:,
+                email_is_free:,
+                email_is_disposable:,
+                email_is_corporate:,
+                email_is_canonical:,
+                password_pwned:,
+                phone_verification:,
+                mfa:,
+                prefs:,
+                targets:,
+                accessed_at:,
+                impersonator:,
+                impersonator_user_id:
+            )
+                @id = id
+                @created_at = created_at
+                @updated_at = updated_at
+                @name = name
+                @registration = registration
+                @status = status
+                @labels = labels
+                @password_update = password_update
+                @email = email
+                @phone = phone
+                @email_verification = email_verification
+                @email_canonical = email_canonical
+                @email_is_free = email_is_free
+                @email_is_disposable = email_is_disposable
+                @email_is_corporate = email_is_corporate
+                @email_is_canonical = email_is_canonical
+                @password_pwned = password_pwned
+                @phone_verification = phone_verification
+                @mfa = mfa
+                @prefs = prefs
+                @targets = targets
+                @accessed_at = accessed_at
+                @impersonator = impersonator
+                @impersonator_user_id = impersonator_user_id
+            end
+
+            def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "registration" => "", "status" => true, "labels" => [], "passwordUpdate" => "", "email" => "", "phone" => "", "emailVerification" => false, "phoneVerification" => false, "mfa" => false, "targets" => [], "accessedAt" => "" }.merge(map)
+                Account.new(
+                    id: map["$id"],
+                    created_at: map["$createdAt"],
+                    updated_at: map["$updatedAt"],
+                    name: map["name"],
+                    registration: map["registration"],
+                    status: map["status"],
+                    labels: map["labels"],
+                    password_update: map["passwordUpdate"],
+                    email: map["email"],
+                    phone: map["phone"],
+                    email_verification: map["emailVerification"],
+                    email_canonical: map["emailCanonical"],
+                    email_is_free: map["emailIsFree"],
+                    email_is_disposable: map["emailIsDisposable"],
+                    email_is_corporate: map["emailIsCorporate"],
+                    email_is_canonical: map["emailIsCanonical"],
+                    password_pwned: map["passwordPwned"],
+                    phone_verification: map["phoneVerification"],
+                    mfa: map["mfa"],
+                    prefs: Preferences.from(map: map["prefs"]),
+                    targets: map["targets"].map { |it| Target.from(map: it) },
+                    accessed_at: map["accessedAt"],
+                    impersonator: map["impersonator"],
+                    impersonator_user_id: map["impersonatorUserId"]
+                )
+            end
+
+            def to_map
+                {
+                    "$id": @id,
+                    "$createdAt": @created_at,
+                    "$updatedAt": @updated_at,
+                    "name": @name,
+                    "registration": @registration,
+                    "status": @status,
+                    "labels": @labels,
+                    "passwordUpdate": @password_update,
+                    "email": @email,
+                    "phone": @phone,
+                    "emailVerification": @email_verification,
+                    "emailCanonical": @email_canonical,
+                    "emailIsFree": @email_is_free,
+                    "emailIsDisposable": @email_is_disposable,
+                    "emailIsCorporate": @email_is_corporate,
+                    "emailIsCanonical": @email_is_canonical,
+                    "passwordPwned": @password_pwned,
+                    "phoneVerification": @phone_verification,
+                    "mfa": @mfa,
+                    "prefs": @prefs.to_map,
+                    "targets": @targets.map { |it| it.to_map },
+                    "accessedAt": @accessed_at,
+                    "impersonator": @impersonator,
+                    "impersonatorUserId": @impersonator_user_id
+                }
+            end
+        end
+    end
+end

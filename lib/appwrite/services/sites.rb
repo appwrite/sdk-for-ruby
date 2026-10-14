@@ -158,12 +158,17 @@ module Appwrite
         # Get a list of all frameworks that are currently available on the server
         # instance.
         #
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [FrameworkList]
-        def list_frameworks()
+        def list_frameworks(
+            total: nil
+        )
             api_path = '/sites/frameworks'
 
-            api_params = {}
+            api_params = {
+                total: total,
+            }
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
@@ -182,15 +187,18 @@ module Appwrite
         # List allowed site specifications for this instance.
         #
         # @param [String] type Specification type to list. Can be one of: runtimes, builds. Defaults to runtimes.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [SpecificationList]
         def list_specifications(
-            type: nil
+            type: nil,
+            total: nil
         )
             api_path = '/sites/specifications'
 
             api_params = {
                 type: type,
+                total: total,
             }
 
             api_headers = {

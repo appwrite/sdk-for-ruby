@@ -8,6 +8,8 @@ module Appwrite
             MFACHALLENGE = 'mfaChallenge'
             SESSIONALERT = 'sessionAlert'
             OTPSESSION = 'otpSession'
+            OTPVERIFICATION = 'otpVerification'
+            OTPRECOVERY = 'otpRecovery'
         end
     end
 end

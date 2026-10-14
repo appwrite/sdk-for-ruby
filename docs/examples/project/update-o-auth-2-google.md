@@ -15,6 +15,8 @@ result = project.update_o_auth2_google(
     client_id: '<CLIENT_ID>', # optional
     client_secret: '<CLIENT_SECRET>', # optional
     prompt: [ProjectOAuth2GooglePrompt::NONE], # optional
-    enabled: false # optional
+    enabled: false, # optional
+    native_client_ids: [], # optional
+    native_enabled: false # optional
 )
 ```

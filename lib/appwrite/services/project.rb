@@ -91,6 +91,182 @@ module Appwrite
             )
         end
 
+        # Get a list of all environments of the project. You can use the query params
+        # to filter your results.
+        #
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, teamId, labels, search, accessedAt, status, parentId
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
+        #
+        # @return [ProjectList]
+        def list_environments(
+            queries: nil,
+            total: nil
+        )
+            api_path = '/project/environments'
+
+            api_params = {
+                queries: queries,
+                total: total,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::ProjectList
+            )
+        end
+
+        # Create a new environment of the project. An environment is a separate
+        # project in the same organization and region, with its own resources and
+        # users. Its usage is billed under the project it belongs to.
+        #
+        # @param [String] environment_id Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, and hyphen. Can&#039;t start with a special char. Max length is 36 chars.
+        # @param [String] name Environment name. Max length: 128 chars.
+        #
+        # @return [Project]
+        def create_environment(
+            environment_id:,
+            name:
+        )
+            if environment_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "environmentId"')
+            end
+
+            if name.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
+            end
+
+            api_path = '/project/environments'
+
+            api_params = {
+                environmentId: environment_id,
+                name: name,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Project
+            )
+        end
+
+        # Get an environment of the project by its unique ID.
+        #
+        # @param [String] environment_id Environment unique ID.
+        #
+        # @return [Project]
+        def get_environment(
+            environment_id:
+        )
+            if environment_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "environmentId"')
+            end
+
+            api_path = '/project/environments/{environmentId}'
+                .gsub('{environmentId}', environment_id)
+
+            api_params = {}
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Project
+            )
+        end
+
+        # Update the name of an environment of the project.
+        #
+        # @param [String] environment_id Environment unique ID.
+        # @param [String] name Environment name. Max length: 128 chars.
+        #
+        # @return [Project]
+        def update_environment(
+            environment_id:,
+            name:
+        )
+            if environment_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "environmentId"')
+            end
+
+            if name.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
+            end
+
+            api_path = '/project/environments/{environmentId}'
+                .gsub('{environmentId}', environment_id)
+
+            api_params = {
+                name: name,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Project
+            )
+        end
+
+        # Delete an environment of the project, with all of its resources and users.
+        #
+        # @param [String] environment_id Environment unique ID.
+        #
+        # @return []
+        def delete_environment(
+            environment_id:
+        )
+            if environment_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "environmentId"')
+            end
+
+            api_path = '/project/environments/{environmentId}'
+                .gsub('{environmentId}', environment_id)
+
+            api_params = {}
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+            )
+        end
+
         # Get a list of all API keys from the current project.
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: expire, accessedAt, name, scopes
@@ -646,7 +822,9 @@ module Appwrite
         # @param [String] key_id &#039;Key ID&#039; of Apple OAuth2 app. For example: P4000000N8
         # @param [String] team_id &#039;Team ID&#039; of Apple OAuth2 app. For example: D4000000R6
         # @param [String] p8_file Contents of the Apple OAuth2 app .p8 private key file. The secret key wrapped by the PEM markers is 200 characters long. For example: -----BEGIN PRIVATE KEY-----MIGTAg...jy2Xbna-----END PRIVATE KEY-----
-        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        # @param [] enabled Browser-based OAuth2 sign-in status. Set to true to enable new session creation through the redirect flow. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. Has no effect on native sign-in, which is controlled by nativeEnabled only.
+        # @param [Array] native_client_ids App bundle IDs accepted as ID token audiences for native Sign in with Apple. For example: com.example.app. Together with the Services ID, these are the only client IDs whose tokens are trusted. Pass an empty array to clear the list.
+        # @param [] native_enabled Native Sign in with Apple status. This is the only switch for creating sessions from ID tokens obtained on device and is independent of enabled. Needs a Services ID or at least one native client ID to match tokens against, but no key or team ID: this method verifies a signature rather than redeeming an authorization code.
         #
         # @return [OAuth2Apple]
         def update_o_auth2_apple(
@@ -654,7 +832,9 @@ module Appwrite
             key_id: nil,
             team_id: nil,
             p8_file: nil,
-            enabled: nil
+            enabled: nil,
+            native_client_ids: nil,
+            native_enabled: nil
         )
             api_path = '/project/oauth2/apple'
 
@@ -664,6 +844,8 @@ module Appwrite
                 teamId: team_id,
                 p8File: p8_file,
                 enabled: enabled,
+                nativeClientIds: native_client_ids,
+                nativeEnabled: native_enabled,
             }
 
             api_headers = {
@@ -722,13 +904,15 @@ module Appwrite
         # @param [String] client_secret &#039;Client Secret&#039; of Auth0 OAuth2 app. For example: zXz0000-00000000000000000000000000000-00000000000000000000PJafnF
         # @param [String] endpoint Domain of Auth0 instance. For example: example.us.auth0.com
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        # @param [Array] prompt Array of Auth0 OAuth2 prompt values. If &quot;none&quot; is included, it must be the only element. &quot;none&quot; means: don&#039;t display any authentication or consent screens. &quot;login&quot; means: prompt the user to re-authenticate. &quot;consent&quot; means: prompt the user for consent. Pass an empty array to use the Auth0 default.
         #
         # @return [OAuth2Auth0]
         def update_o_auth2_auth0(
             client_id: nil,
             client_secret: nil,
             endpoint: nil,
-            enabled: nil
+            enabled: nil,
+            prompt: nil
         )
             api_path = '/project/oauth2/auth0'
 
@@ -737,6 +921,7 @@ module Appwrite
                 clientSecret: client_secret,
                 endpoint: endpoint,
                 enabled: enabled,
+                prompt: prompt,
             }
 
             api_headers = {
@@ -1007,12 +1192,14 @@ module Appwrite
         # @param [String] client_id &#039;Client ID&#039; of Discord OAuth2 app. For example: 950722000000343754
         # @param [String] client_secret &#039;Client Secret&#039; of Discord OAuth2 app. For example: YmPXnM000000000000000000002zFg5D
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        # @param [Array] prompt Array with at most one Discord OAuth2 prompt value. &quot;none&quot; means: skip the authorization screen for users who already authorized the app with the requested scopes. &quot;consent&quot; means: ask users who already authorized the app to approve it again. Pass an empty array to use the Discord default.
         #
         # @return [OAuth2Discord]
         def update_o_auth2_discord(
             client_id: nil,
             client_secret: nil,
-            enabled: nil
+            enabled: nil,
+            prompt: nil
         )
             api_path = '/project/oauth2/discord'
 
@@ -1020,6 +1207,7 @@ module Appwrite
                 clientId: client_id,
                 clientSecret: client_secret,
                 enabled: enabled,
+                prompt: prompt,
             }
 
             api_headers = {
@@ -1255,12 +1443,14 @@ module Appwrite
         # @param [String] client_id &#039;OAuth2 app Client ID, or App ID&#039; of GitHub OAuth2 app. For example: e4d87900000000540733. Example of wrong value: 370006
         # @param [String] client_secret &#039;Client Secret&#039; of GitHub OAuth2 app. For example: 5e07c00000000000000000000000000000198bcc
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        # @param [Array] prompt Array of GitHub OAuth2 prompt values. &quot;select_account&quot; means: prompt the user to select an account. Pass an empty array to use the GitHub default.
         #
         # @return [OAuth2Github]
         def update_o_auth2_git_hub(
             client_id: nil,
             client_secret: nil,
-            enabled: nil
+            enabled: nil,
+            prompt: nil
         )
             api_path = '/project/oauth2/github'
 
@@ -1268,6 +1458,7 @@ module Appwrite
                 clientId: client_id,
                 clientSecret: client_secret,
                 enabled: enabled,
+                prompt: prompt,
             }
 
             api_headers = {
@@ -1328,14 +1519,18 @@ module Appwrite
         # @param [String] client_id &#039;Client ID&#039; of Google OAuth2 app. For example: 120000000095-92ifjb00000000000000000000g7ijfb.apps.googleusercontent.com
         # @param [String] client_secret &#039;Client Secret&#039; of Google OAuth2 app. For example: GOCSPX-2k8gsR0000000000000000VNahJj
         # @param [Array] prompt Array of Google OAuth2 prompt values. If &quot;none&quot; is included, it must be the only element. &quot;none&quot; means: don&#039;t display any authentication or consent screens. Must not be specified with other values. &quot;consent&quot; means: prompt the user for consent. &quot;select_account&quot; means: prompt the user to select an account.
-        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        # @param [] enabled Browser-based OAuth2 sign-in status. Set to true to enable new session creation through the redirect flow. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid. Has no effect on native sign-in, which is controlled by nativeEnabled only.
+        # @param [Array] native_client_ids Additional OAuth2 client IDs accepted as ID token audiences for native sign-in (Android and iOS client IDs). Together with the client ID, which is always accepted, these are the only client IDs whose tokens are trusted. Pass an empty array to clear the list.
+        # @param [] native_enabled Native Google sign-in status. This is the only switch for creating sessions from ID tokens obtained on device and is independent of enabled. Needs a client ID or at least one native client ID to match tokens against, but no client secret: this method verifies a signature rather than redeeming an authorization code.
         #
         # @return [OAuth2Google]
         def update_o_auth2_google(
             client_id: nil,
             client_secret: nil,
             prompt: nil,
-            enabled: nil
+            enabled: nil,
+            native_client_ids: nil,
+            native_enabled: nil
         )
             api_path = '/project/oauth2/google'
 
@@ -1344,6 +1539,8 @@ module Appwrite
                 clientSecret: client_secret,
                 prompt: prompt,
                 enabled: enabled,
+                nativeClientIds: native_client_ids,
+                nativeEnabled: native_enabled,
             }
 
             api_headers = {
@@ -1393,6 +1590,44 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::OAuth2HuggingFace
+            )
+        end
+
+        # Update the project OAuth2 Kakao configuration.
+        #
+        # @param [String] client_id &#039;REST API key&#039; of Kakao OAuth2 app. For example: 839ff5000000000000000000013206de
+        # @param [String] client_secret &#039;Client Secret&#039; of Kakao OAuth2 app. For example: jLNVOK00000000000000000000yJebea. Generate it under Kakao Login &gt; Security and set its status to enabled
+        # @param [Array] prompt Array of Kakao OAuth2 prompt values. If &quot;none&quot; is included, it must be the only element. &quot;none&quot; means: don&#039;t display any authentication or consent screens. &quot;login&quot; means: prompt the user to re-authenticate. &quot;create&quot; means: prompt the user to sign up. &quot;select_account&quot; means: prompt the user to select an account. Pass an empty array to use the Kakao default.
+        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        #
+        # @return [OAuth2Kakao]
+        def update_o_auth2_kakao(
+            client_id: nil,
+            client_secret: nil,
+            prompt: nil,
+            enabled: nil
+        )
+            api_path = '/project/oauth2/kakao'
+
+            api_params = {
+                clientId: client_id,
+                clientSecret: client_secret,
+                prompt: prompt,
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::OAuth2Kakao
             )
         end
 
@@ -1513,13 +1748,15 @@ module Appwrite
         # @param [String] application_secret &#039;Entra ID Application Secret, also known as Client Secret&#039; of Microsoft OAuth2 app. For example: A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u
         # @param [String] tenant Microsoft Entra ID tenant identifier. Use &#039;common&#039;, &#039;organizations&#039;, &#039;consumers&#039; or a specific tenant ID. For example: common
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        # @param [Array] prompt Array of Microsoft OAuth2 prompt values. &quot;none&quot; means: don&#039;t display any authentication or consent screens. &quot;login&quot; means: prompt the user to re-authenticate. &quot;consent&quot; means: prompt the user for consent. &quot;select_account&quot; means: prompt the user to select an account. Pass an empty array to use the Microsoft default.
         #
         # @return [OAuth2Microsoft]
         def update_o_auth2_microsoft(
             application_id: nil,
             application_secret: nil,
             tenant: nil,
-            enabled: nil
+            enabled: nil,
+            prompt: nil
         )
             api_path = '/project/oauth2/microsoft'
 
@@ -1528,6 +1765,7 @@ module Appwrite
                 applicationSecret: application_secret,
                 tenant: tenant,
                 enabled: enabled,
+                prompt: prompt,
             }
 
             api_headers = {
@@ -1640,6 +1878,7 @@ module Appwrite
         # @param [String] domain Okta company domain. Required when enabling the provider. For example: trial-6400025.okta.com. Example of wrong value: trial-6400025-admin.okta.com, or https://trial-6400025.okta.com/
         # @param [String] authorization_server_id Custom Authorization Servers. Optional, can be left empty or unconfigured. For example: aus000000000000000h7z
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        # @param [Array] prompt Array of Okta OAuth2 prompt values. If &quot;none&quot; is included, it must be the only element. &quot;none&quot; means: don&#039;t display any authentication or consent screens. &quot;login&quot; means: prompt the user to re-authenticate. &quot;consent&quot; means: prompt the user for consent. Pass an empty array to use the Okta default.
         #
         # @return [OAuth2Okta]
         def update_o_auth2_okta(
@@ -1647,7 +1886,8 @@ module Appwrite
             client_secret: nil,
             domain: nil,
             authorization_server_id: nil,
-            enabled: nil
+            enabled: nil,
+            prompt: nil
         )
             api_path = '/project/oauth2/okta'
 
@@ -1657,6 +1897,7 @@ module Appwrite
                 domain: domain,
                 authorizationServerId: authorization_server_id,
                 enabled: enabled,
+                prompt: prompt,
             }
 
             api_headers = {
@@ -1819,12 +2060,14 @@ module Appwrite
         # @param [String] customer_key &#039;Consumer Key&#039; of Salesforce OAuth2 app. For example: 3MVG9I0000000000000000000000000000000000000000000000000000000000000000000000000C5Aejq
         # @param [String] customer_secret &#039;Consumer Secret&#039; of Salesforce OAuth2 app. For example: 3w000000000000e2
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        # @param [Array] prompt Array of Salesforce OAuth2 prompt values. &quot;login&quot; means: prompt the user to re-authenticate. &quot;consent&quot; means: prompt the user for consent. Pass an empty array to use the Salesforce default.
         #
         # @return [OAuth2Salesforce]
         def update_o_auth2_salesforce(
             customer_key: nil,
             customer_secret: nil,
-            enabled: nil
+            enabled: nil,
+            prompt: nil
         )
             api_path = '/project/oauth2/salesforce'
 
@@ -1832,6 +2075,7 @@ module Appwrite
                 customerKey: customer_key,
                 customerSecret: customer_secret,
                 enabled: enabled,
+                prompt: prompt,
             }
 
             api_headers = {
@@ -1954,6 +2198,41 @@ module Appwrite
             )
         end
 
+        # Update the project OAuth2 TikTok configuration.
+        #
+        # @param [String] client_id &#039;Client key&#039; of TikTok OAuth2 app. For example: awz000000000tyw0
+        # @param [String] client_secret &#039;Client secret&#039; of TikTok OAuth2 app. For example: 6wXewM00000000000000000000yXnite
+        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        #
+        # @return [OAuth2TikTok]
+        def update_o_auth2_tik_tok(
+            client_id: nil,
+            client_secret: nil,
+            enabled: nil
+        )
+            api_path = '/project/oauth2/tiktok'
+
+            api_params = {
+                clientId: client_id,
+                clientSecret: client_secret,
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::OAuth2TikTok
+            )
+        end
+
         # Update the project OAuth2 Tradeshift configuration.
         #
         # @param [String] oauth2_client_id &#039;OAuth2 Client ID&#039; of Tradeshift OAuth2 app. For example: appwrite-tes00000.0000000000est-app
@@ -2056,6 +2335,41 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::OAuth2Twitch
+            )
+        end
+
+        # Update the project OAuth2 Webflow configuration.
+        #
+        # @param [String] client_id &#039;Client ID&#039; of Webflow OAuth2 app. For example: 8bb20000000000000000000000000000000000000000000000000000000040dd
+        # @param [String] client_secret &#039;Client Secret&#039; of Webflow OAuth2 app. For example: 59bf00000000000000000000000000000000000000000000000000000000fe59
+        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        #
+        # @return [OAuth2Webflow]
+        def update_o_auth2_webflow(
+            client_id: nil,
+            client_secret: nil,
+            enabled: nil
+        )
+            api_path = '/project/oauth2/webflow'
+
+            api_params = {
+                clientId: client_id,
+                clientSecret: client_secret,
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::OAuth2Webflow
             )
         end
 
@@ -2204,12 +2518,14 @@ module Appwrite
         # @param [String] client_id &#039;Client ID&#039; of Zoho OAuth2 app. For example: 1000.83C178000000000000000000RPNX0B
         # @param [String] client_secret &#039;Client Secret&#039; of Zoho OAuth2 app. For example: fb5cac000000000000000000000000000000a68f6e
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        # @param [Array] prompt Array of Zoho OAuth2 prompt values. &quot;consent&quot; means: prompt the user for consent. Pass an empty array to use the Zoho default.
         #
         # @return [OAuth2Zoho]
         def update_o_auth2_zoho(
             client_id: nil,
             client_secret: nil,
-            enabled: nil
+            enabled: nil,
+            prompt: nil
         )
             api_path = '/project/oauth2/zoho'
 
@@ -2217,6 +2533,7 @@ module Appwrite
                 clientId: client_id,
                 clientSecret: client_secret,
                 enabled: enabled,
+                prompt: prompt,
             }
 
             api_headers = {
@@ -2274,7 +2591,7 @@ module Appwrite
         #
         # @param [ProjectOAuthProviderId] provider_id OAuth2 provider key. For example: github, google, apple.
         #
-        # @return [OAuth2Github, OAuth2Discord, OAuth2Figma, OAuth2Dropbox, OAuth2Dailymotion, OAuth2Bitbucket, OAuth2Bitly, OAuth2Box, OAuth2Autodesk, OAuth2Google, OAuth2Zoom, OAuth2Zoho, OAuth2Yandex, OAuth2X, OAuth2WordPress, OAuth2Twitch, OAuth2Stripe, OAuth2Spotify, OAuth2Slack, OAuth2Podio, OAuth2Notion, OAuth2Salesforce, OAuth2Yahoo, OAuth2HuggingFace, OAuth2Resend, OAuth2Cloudflare, OAuth2Linkedin, OAuth2Disqus, OAuth2Amazon, OAuth2Etsy, OAuth2Facebook, OAuth2Tradeshift, OAuth2Paypal, OAuth2Gitlab, OAuth2Authentik, OAuth2Auth0, OAuth2FusionAuth, OAuth2Keycloak, OAuth2Oidc, OAuth2Apple, OAuth2Okta, OAuth2Kick, OAuth2Microsoft]
+        # @return [OAuth2Github, OAuth2Discord, OAuth2Figma, OAuth2Dropbox, OAuth2Dailymotion, OAuth2Bitbucket, OAuth2Bitly, OAuth2Box, OAuth2Autodesk, OAuth2Google, OAuth2Zoom, OAuth2Zoho, OAuth2Yandex, OAuth2X, OAuth2WordPress, OAuth2Webflow, OAuth2Twitch, OAuth2Stripe, OAuth2Spotify, OAuth2Slack, OAuth2Podio, OAuth2Notion, OAuth2Salesforce, OAuth2Yahoo, OAuth2HuggingFace, OAuth2Resend, OAuth2Cloudflare, OAuth2Linkedin, OAuth2Disqus, OAuth2Amazon, OAuth2Etsy, OAuth2Facebook, OAuth2Tradeshift, OAuth2Paypal, OAuth2Gitlab, OAuth2Authentik, OAuth2Auth0, OAuth2FusionAuth, OAuth2Keycloak, OAuth2Oidc, OAuth2Apple, OAuth2Okta, OAuth2Kick, OAuth2Microsoft, OAuth2TikTok, OAuth2Kakao]
         def get_o_auth2_provider(
             provider_id:
         )
@@ -2376,6 +2693,11 @@ module Appwrite
             if response['$id'] == 'wordpress'
 
                 return Models::OAuth2WordPress.from(map: response)
+            end
+
+            if response['$id'] == 'webflow'
+
+                return Models::OAuth2Webflow.from(map: response)
             end
 
             if response['$id'] == 'twitch'
@@ -2518,6 +2840,16 @@ module Appwrite
                 return Models::OAuth2Microsoft.from(map: response)
             end
 
+            if response['$id'] == 'tiktok'
+
+                return Models::OAuth2TikTok.from(map: response)
+            end
+
+            if response['$id'] == 'kakao'
+
+                return Models::OAuth2Kakao.from(map: response)
+            end
+
             raise Exception, "Unable to match response to any expected response model"
         end
 
@@ -2560,12 +2892,14 @@ module Appwrite
         # @param [String] platform_id Platform ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] name Platform name. Max length: 128 chars.
         # @param [String] application_id Android application ID. Max length: 256 chars.
+        # @param [Array] fingerprints SHA-256 fingerprints of the certificates your app is signed with, such as &quot;14:6D:E9:...:2B:6A&quot;. Passkeys created in the app are accepted when its signature matches one. Find them under App signing in Play Console, or with `./gradlew signingReport`.
         #
         # @return [PlatformAndroid]
         def create_android_platform(
             platform_id:,
             name:,
-            application_id:
+            application_id:,
+            fingerprints: nil
         )
             api_path = '/project/platforms/android'
 
@@ -2585,6 +2919,7 @@ module Appwrite
                 platformId: platform_id,
                 name: name,
                 applicationId: application_id,
+                fingerprints: fingerprints,
             }
 
             api_headers = {
@@ -2608,12 +2943,14 @@ module Appwrite
         # @param [String] platform_id Platform ID.
         # @param [String] name Platform name. Max length: 128 chars.
         # @param [String] application_id Android application ID. Max length: 256 chars.
+        # @param [Array] fingerprints SHA-256 fingerprints of the certificates your app is signed with, such as &quot;14:6D:E9:...:2B:6A&quot;. Passkeys created in the app are accepted when its signature matches one. Find them under App signing in Play Console, or with `./gradlew signingReport`. Omit to keep the current list, or pass an empty array to clear it.
         #
         # @return [PlatformAndroid]
         def update_android_platform(
             platform_id:,
             name:,
-            application_id:
+            application_id:,
+            fingerprints: nil
         )
             api_path = '/project/platforms/android/{platformId}'
                 .gsub('{platformId}', platform_id)
@@ -2633,6 +2970,7 @@ module Appwrite
             api_params = {
                 name: name,
                 applicationId: application_id,
+                fingerprints: fingerprints,
             }
 
             api_headers = {
@@ -3536,6 +3874,82 @@ module Appwrite
             )
         end
 
+        # Updating this policy allows you to control if passwords are checked against
+        # the Have I Been Pwned breach database. When enabled, every password a user
+        # signs up, signs in or resets with is checked and the result is recorded on
+        # the user as `passwordPwned`. On its own the policy only records. Enable
+        # `users` to reject a breached password when a user signs up or sets a new
+        # password, and `sessions` to refuse a sign-in with a breached password until
+        # it is reset. Only the first five characters of the password hash are ever
+        # shared with the service. Options left out keep their current value.
+        #
+        # @param [] enabled Toggle password pwned policy. Set to true to check passwords against known data breaches and record the result on the user, or false to never check. Default is true. On its own this only records; use `users` and `sessions` to block. When changing this policy, existing passwords remain valid.
+        # @param [] sessions Whether a sign-in with a breached password is refused until the password is reset. Default is false, which allows the sign-in and only records the result.
+        # @param [] users Whether a breached password is rejected when a user signs up or sets a new password. Default is false, which allows the password and only records the result.
+        #
+        # @return [Project]
+        def update_password_pwned_policy(
+            enabled: nil,
+            sessions: nil,
+            users: nil
+        )
+            api_path = '/project/policies/password-pwned'
+
+            api_params = {
+                enabled: enabled,
+                sessions: sessions,
+                users: users,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Project
+            )
+        end
+
+        # Require a password reset when an email/password sign-in uses a password
+        # older than the configured maximum age. Options left out keep their current
+        # value.
+        #
+        # @param [] enabled Enable password rotation. Disabled by default.
+        # @param [Integer] max_age Maximum password age in seconds. Minimum allowed value is 86400 seconds (1 day), and maximum is 10 years, which is 315360000 seconds. Defaults to 1 year, which is 31536000 seconds.
+        #
+        # @return [Project]
+        def update_password_rotation_policy(
+            enabled: nil,
+            max_age: nil
+        )
+            api_path = '/project/policies/password-rotation'
+
+            api_params = {
+                enabled: enabled,
+                maxAge: max_age,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Project
+            )
+        end
+
         # Update the password strength requirements for users in the project.
         #
         # @param [Integer] min Minimum password length. Value must be between 8 and 256. Default is 8.
@@ -3757,7 +4171,7 @@ module Appwrite
         #
         # @param [ProjectPolicyId] policy_id Policy ID. Can be one of: password-dictionary, password-history, password-strength, password-personal-data, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, mfa-factors, deny-aliased-email, deny-disposable-email, deny-free-email, deny-corporate-email.
         #
-        # @return [PolicyPasswordDictionary, PolicyPasswordHistory, PolicyPasswordStrength, PolicyPasswordPersonalData, PolicySessionAlert, PolicySessionDuration, PolicySessionInvalidation, PolicySessionLimit, PolicyUserLimit, PolicyMembershipPrivacy, PolicyMfaFactors, PolicyDenyAliasedEmail, PolicyDenyDisposableEmail, PolicyDenyFreeEmail, PolicyDenyCorporateEmail, PolicyPasskey]
+        # @return [PolicyPasswordDictionary, PolicyPasswordHistory, PolicyPasswordStrength, PolicyPasswordPersonalData, PolicyPasswordPwned, PolicyPasswordRotation, PolicySessionAlert, PolicySessionDuration, PolicySessionInvalidation, PolicySessionLimit, PolicyUserLimit, PolicyMembershipPrivacy, PolicyMfaFactors, PolicyDenyAliasedEmail, PolicyDenyDisposableEmail, PolicyDenyFreeEmail, PolicyDenyCorporateEmail, PolicyPasskey]
         def get_policy(
             policy_id:
         )
@@ -3804,6 +4218,16 @@ module Appwrite
             if response['$id'] == 'password-personal-data'
 
                 return Models::PolicyPasswordPersonalData.from(map: response)
+            end
+
+            if response['$id'] == 'password-pwned'
+
+                return Models::PolicyPasswordPwned.from(map: response)
+            end
+
+            if response['$id'] == 'password-rotation'
+
+                return Models::PolicyPasswordRotation.from(map: response)
             end
 
             if response['$id'] == 'session-alert'

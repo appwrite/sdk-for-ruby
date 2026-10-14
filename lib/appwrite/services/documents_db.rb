@@ -119,15 +119,18 @@ module Appwrite
         # List transactions across all databases.
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries).
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [TransactionList]
         def list_transactions(
-            queries: nil
+            queries: nil,
+            total: nil
         )
             api_path = '/documentsdb/transactions'
 
             api_params = {
                 queries: queries,
+                total: total,
             }
 
             api_headers = {

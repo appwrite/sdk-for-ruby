@@ -469,6 +469,7 @@ module Appwrite
         # @param [String] phone Phone number. Format this number with a leading &#039;+&#039; and a country code, e.g., +16175551212.
         # @param [String] url URL to redirect the user back to your app from the invitation email. This parameter is not required when an API key is supplied. Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.
         # @param [String] name Name of the new team member. Max length: 128 chars.
+        # @param [String] membership_id Membership ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         #
         # @return [Membership]
         def create_membership(
@@ -478,7 +479,8 @@ module Appwrite
             user_id: nil,
             phone: nil,
             url: nil,
-            name: nil
+            name: nil,
+            membership_id: nil
         )
             api_path = '/teams/{teamId}/memberships'
                 .gsub('{teamId}', team_id)
@@ -498,6 +500,7 @@ module Appwrite
                 roles: roles,
                 url: url,
                 name: name,
+                membershipId: membership_id,
             }
 
             api_headers = {

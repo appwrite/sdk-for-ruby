@@ -10,5 +10,7 @@ client = Client.new
 
 account = Account.new(client)
 
-result = account.delete_sessions()
+result = account.delete_sessions(
+    current: false # optional
+)
 ```

@@ -5,6 +5,7 @@ module Appwrite
             FULLTEXT = 'fulltext'
             UNIQUE = 'unique'
             SPATIAL = 'spatial'
+            TRIGRAM = 'trigram'
         end
     end
 end

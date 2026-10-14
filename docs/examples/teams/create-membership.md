@@ -17,6 +17,7 @@ result = teams.create_membership(
     user_id: '<USER_ID>', # optional
     phone: '+12065550100', # optional
     url: 'https://example.com', # optional
-    name: '<NAME>' # optional
+    name: '<NAME>', # optional
+    membership_id: '<MEMBERSHIP_ID>' # optional
 )
 ```

@@ -13,6 +13,7 @@ module Appwrite
             attr_reader :provider_access_token
             attr_reader :provider_access_token_expiry
             attr_reader :provider_refresh_token
+            attr_reader :provider_id_token
 
             def initialize(
                 id:,
@@ -24,7 +25,8 @@ module Appwrite
                 provider_email:,
                 provider_access_token:,
                 provider_access_token_expiry:,
-                provider_refresh_token:
+                provider_refresh_token:,
+                provider_id_token:
             )
                 @id = id
                 @created_at = created_at
@@ -36,6 +38,7 @@ module Appwrite
                 @provider_access_token = provider_access_token
                 @provider_access_token_expiry = provider_access_token_expiry
                 @provider_refresh_token = provider_refresh_token
+                @provider_id_token = provider_id_token
             end
 
             def self.from(map:)
@@ -49,7 +52,8 @@ module Appwrite
                     provider_email: map["providerEmail"],
                     provider_access_token: map["providerAccessToken"],
                     provider_access_token_expiry: map["providerAccessTokenExpiry"],
-                    provider_refresh_token: map["providerRefreshToken"]
+                    provider_refresh_token: map["providerRefreshToken"],
+                    provider_id_token: map["providerIdToken"]
                 )
             end
 
@@ -64,7 +68,8 @@ module Appwrite
                     "providerEmail": @provider_email,
                     "providerAccessToken": @provider_access_token,
                     "providerAccessTokenExpiry": @provider_access_token_expiry,
-                    "providerRefreshToken": @provider_refresh_token
+                    "providerRefreshToken": @provider_refresh_token,
+                    "providerIdToken": @provider_id_token
                 }
             end
         end

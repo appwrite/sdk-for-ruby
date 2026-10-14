@@ -99,6 +99,7 @@ module Appwrite
                 valid_deployment_resource_type = [
                     Appwrite::Enums::ProxyRuleDeploymentResourceType::FUNCTION,
                     Appwrite::Enums::ProxyRuleDeploymentResourceType::SITE,
+                    Appwrite::Enums::ProxyRuleDeploymentResourceType::DEDICATEDDATABASE,
                 ]
 
                 unless valid_deployment_resource_type.include?(deployment_resource_type)

@@ -10,5 +10,7 @@ client = Client.new
 
 functions = Functions.new(client)
 
-result = functions.list_runtimes()
+result = functions.list_runtimes(
+    total: false # optional
+)
 ```

@@ -1,6 +1,7 @@
 module Appwrite
     module Enums
         module ImageGravity
+            AUTO = 'auto'
             CENTER = 'center'
             TOP_LEFT = 'top-left'
             TOP = 'top'

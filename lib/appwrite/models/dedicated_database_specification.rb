@@ -6,6 +6,10 @@ module Appwrite
             attr_reader :slug
             attr_reader :name
             attr_reader :price
+            attr_reader :storage_overage_rate
+            attr_reader :bandwidth_overage_rate
+            attr_reader :replica_rate
+            attr_reader :pitr_rate
             attr_reader :cpu
             attr_reader :memory
             attr_reader :max_connections
@@ -17,6 +21,10 @@ module Appwrite
                 slug:,
                 name:,
                 price:,
+                storage_overage_rate:,
+                bandwidth_overage_rate:,
+                replica_rate:,
+                pitr_rate:,
                 cpu:,
                 memory:,
                 max_connections:,
@@ -27,6 +35,10 @@ module Appwrite
                 @slug = slug
                 @name = name
                 @price = price
+                @storage_overage_rate = storage_overage_rate
+                @bandwidth_overage_rate = bandwidth_overage_rate
+                @replica_rate = replica_rate
+                @pitr_rate = pitr_rate
                 @cpu = cpu
                 @memory = memory
                 @max_connections = max_connections
@@ -40,6 +52,10 @@ module Appwrite
                     slug: map["slug"],
                     name: map["name"],
                     price: map["price"],
+                    storage_overage_rate: map["storageOverageRate"],
+                    bandwidth_overage_rate: map["bandwidthOverageRate"],
+                    replica_rate: map["replicaRate"],
+                    pitr_rate: map["pitrRate"],
                     cpu: map["cpu"],
                     memory: map["memory"],
                     max_connections: map["maxConnections"],
@@ -54,6 +70,10 @@ module Appwrite
                     "slug": @slug,
                     "name": @name,
                     "price": @price,
+                    "storageOverageRate": @storage_overage_rate,
+                    "bandwidthOverageRate": @bandwidth_overage_rate,
+                    "replicaRate": @replica_rate,
+                    "pitrRate": @pitr_rate,
                     "cpu": @cpu,
                     "memory": @memory,
                     "maxConnections": @max_connections,

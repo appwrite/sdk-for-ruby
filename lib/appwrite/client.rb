@@ -14,7 +14,7 @@ module Appwrite
                 'x-sdk-name' => 'Ruby',
                 'x-sdk-platform' => 'server',
                 'x-sdk-language' => 'ruby',
-                'x-sdk-version' => '28.3.2',
+                'x-sdk-version' => '28.4.0',
                 'X-Appwrite-Response-Format' => '2.0.0'
             }
             @endpoint = 'https://cloud.appwrite.io/v1'
@@ -278,7 +278,8 @@ module Appwrite
             param_name: '',
             id_param_name: nil,
             on_progress: nil,
-            response_type: nil
+            response_type: nil,
+            method: 'POST'
         )
             input_file = params[param_name.to_sym]
 
@@ -295,7 +296,7 @@ module Appwrite
                 end
                 params[param_name.to_sym] = input_file
                 return call(
-                    method: 'POST',
+                    method: method,
                     path: path,
                     headers: headers,
                     params: params,
@@ -359,7 +360,7 @@ module Appwrite
                 chunk_headers['x-appwrite-id'] = current_upload_id if current_upload_id
 
                 call(
-                    method: 'POST',
+                    method: method,
                     path: path,
                     headers: chunk_headers,
                     params: chunk_params,
@@ -520,11 +521,26 @@ module Appwrite
                 raise Appwrite::Exception.new(response.body, response.code, response, response.body)
             end
 
+            if response_type == "text"
+                return decode_text(response)
+            end
+
             if response.respond_to?("body_permitted?")
                 return response.body if response.body_permitted?
             end
 
             return response
+        end
+
+        def decode_text(response)
+            charset = response.type_params['charset'] || 'utf-8'
+            encoding = begin
+                Encoding.find(charset)
+            rescue ArgumentError
+                Encoding::UTF_8
+            end
+
+            String.new(response.body.to_s, encoding: encoding).encode(Encoding::UTF_8)
         end
 
         def encode_form_data(value, key = nil)

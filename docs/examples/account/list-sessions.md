@@ -10,5 +10,7 @@ client = Client.new
 
 account = Account.new(client)
 
-result = account.list_sessions()
+result = account.list_sessions(
+    total: false # optional
+)
 ```

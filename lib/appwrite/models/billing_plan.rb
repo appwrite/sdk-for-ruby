@@ -16,6 +16,7 @@ module Appwrite
             attr_reader :members
             attr_reader :webhooks
             attr_reader :waf_rules
+            attr_reader :environments
             attr_reader :projects
             attr_reader :platforms
             attr_reader :users
@@ -50,6 +51,7 @@ module Appwrite
             attr_reader :email_branding
             attr_reader :requires_payment_method
             attr_reader :requires_billing_address
+            attr_reader :eligible_countries
             attr_reader :is_available
             attr_reader :self_service
             attr_reader :premium_support
@@ -91,6 +93,7 @@ module Appwrite
                 members:,
                 webhooks:,
                 waf_rules:,
+                environments:,
                 projects:,
                 platforms:,
                 users:,
@@ -125,6 +128,7 @@ module Appwrite
                 email_branding:,
                 requires_payment_method:,
                 requires_billing_address:,
+                eligible_countries:,
                 is_available:,
                 self_service:,
                 premium_support:,
@@ -165,6 +169,7 @@ module Appwrite
                 @members = members
                 @webhooks = webhooks
                 @waf_rules = waf_rules
+                @environments = environments
                 @projects = projects
                 @platforms = platforms
                 @users = users
@@ -199,6 +204,7 @@ module Appwrite
                 @email_branding = email_branding
                 @requires_payment_method = requires_payment_method
                 @requires_billing_address = requires_billing_address
+                @eligible_countries = eligible_countries
                 @is_available = is_available
                 @self_service = self_service
                 @premium_support = premium_support
@@ -242,6 +248,7 @@ module Appwrite
                     members: map["members"],
                     webhooks: map["webhooks"],
                     waf_rules: map["wafRules"],
+                    environments: map["environments"],
                     projects: map["projects"],
                     platforms: map["platforms"],
                     users: map["users"],
@@ -276,6 +283,7 @@ module Appwrite
                     email_branding: map["emailBranding"],
                     requires_payment_method: map["requiresPaymentMethod"],
                     requires_billing_address: map["requiresBillingAddress"],
+                    eligible_countries: map["eligibleCountries"],
                     is_available: map["isAvailable"],
                     self_service: map["selfService"],
                     premium_support: map["premiumSupport"],
@@ -320,6 +328,7 @@ module Appwrite
                     "members": @members,
                     "webhooks": @webhooks,
                     "wafRules": @waf_rules,
+                    "environments": @environments,
                     "projects": @projects,
                     "platforms": @platforms,
                     "users": @users,
@@ -354,6 +363,7 @@ module Appwrite
                     "emailBranding": @email_branding,
                     "requiresPaymentMethod": @requires_payment_method,
                     "requiresBillingAddress": @requires_billing_address,
+                    "eligibleCountries": @eligible_countries,
                     "isAvailable": @is_available,
                     "selfService": @self_service,
                     "premiumSupport": @premium_support,
@@ -388,6 +398,8 @@ module Appwrite
             def validate_group(group)
                 valid_group = [
                     Appwrite::Enums::BillingPlanGroup::STARTER,
+                    Appwrite::Enums::BillingPlanGroup::FREE,
+                    Appwrite::Enums::BillingPlanGroup::START,
                     Appwrite::Enums::BillingPlanGroup::PRO,
                     Appwrite::Enums::BillingPlanGroup::SCALE,
                 ]

@@ -153,12 +153,17 @@ module Appwrite
 
         # Get a list of all runtimes that are currently active on your instance.
         #
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [RuntimeList]
-        def list_runtimes()
+        def list_runtimes(
+            total: nil
+        )
             api_path = '/functions/runtimes'
 
-            api_params = {}
+            api_params = {
+                total: total,
+            }
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
@@ -177,15 +182,18 @@ module Appwrite
         # List allowed function specifications for this instance.
         #
         # @param [String] type Specification type to list. Can be one of: runtimes, builds. Defaults to runtimes.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [SpecificationList]
         def list_specifications(
-            type: nil
+            type: nil,
+            total: nil
         )
             api_path = '/functions/specifications'
 
             api_params = {
                 type: type,
+                total: total,
             }
 
             api_headers = {

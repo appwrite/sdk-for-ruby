@@ -303,6 +303,51 @@ module Appwrite
             )
         end
 
+        # Introspect an OAuth2 access token or refresh token. Authenticate with an
+        # API key holding the `oauth2.introspect` scope to introspect any token in
+        # the project, or with the client credentials of the app the token was issued
+        # to.
+        #
+        # @param [String] token The access token or refresh token to introspect.
+        # @param [String] token_type_hint Type of token to introspect. Can be one of: `access_token` or `refresh_token`.
+        # @param [String] client_id OAuth2 client ID. Either a registered app ID or an HTTPS client ID metadata document URL.
+        # @param [String] client_secret OAuth2 client secret.
+        #
+        # @return [Oauth2Introspection]
+        def introspect(
+            token:,
+            token_type_hint: nil,
+            client_id: nil,
+            client_secret: nil
+        )
+            if token.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "token"')
+            end
+
+            api_path = '/oauth2/{project_id}/introspect'
+                .gsub('{project_id}', @client.get_config('project'))
+
+            api_params = {
+                token: token,
+                token_type_hint: token_type_hint,
+                client_id: client_id,
+                client_secret: client_secret,
+            }
+
+            api_headers = {
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Oauth2Introspection
+            )
+        end
+
         # List the organizations the OAuth2 access token can access. Resolves the
         # token&#039;s `organization` authorization details, expanding the `*` wildcard
         # into the concrete set of organizations the user can see.

@@ -10,5 +10,7 @@ client = Client.new
 
 locale = Locale.new(client)
 
-result = locale.list_countries()
+result = locale.list_countries(
+    total: false # optional
+)
 ```

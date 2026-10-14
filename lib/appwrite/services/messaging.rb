@@ -54,6 +54,8 @@ module Appwrite
         # @param [] draft Is message a draft
         # @param [] html Is content of type HTML
         # @param [String] scheduled_at Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future.
+        # @param [String] reply_to_email Email address to reply to. If not set, defaults to the sender email address.
+        # @param [String] reply_to_name Name of the reply to recipient. If not set, defaults to the sender name.
         #
         # @return [Message]
         def create_email(
@@ -68,7 +70,9 @@ module Appwrite
             attachments: nil,
             draft: nil,
             html: nil,
-            scheduled_at: nil
+            scheduled_at: nil,
+            reply_to_email: nil,
+            reply_to_name: nil
         )
             api_path = '/messaging/messages/email'
 
@@ -97,6 +101,8 @@ module Appwrite
                 draft: draft,
                 html: html,
                 scheduledAt: scheduled_at,
+                replyToEmail: reply_to_email,
+                replyToName: reply_to_name,
             }
 
             api_headers = {
@@ -131,6 +137,8 @@ module Appwrite
         # @param [Array] bcc Array of target IDs to be added as BCC.
         # @param [String] scheduled_at Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future.
         # @param [Array] attachments Array of compound ID strings of bucket IDs and file IDs to be attached to the email. They should be formatted as &lt;BUCKET_ID&gt;:&lt;FILE_ID&gt;.
+        # @param [String] reply_to_email Email address to reply to. Pass an empty string to restore the provider or sender default.
+        # @param [String] reply_to_name Name of the reply to recipient. Pass an empty string to restore the provider or sender default.
         #
         # @return [Message]
         def update_email(
@@ -145,7 +153,9 @@ module Appwrite
             cc: nil,
             bcc: nil,
             scheduled_at: nil,
-            attachments: nil
+            attachments: nil,
+            reply_to_email: nil,
+            reply_to_name: nil
         )
             api_path = '/messaging/messages/email/{messageId}'
                 .gsub('{messageId}', message_id)
@@ -166,6 +176,8 @@ module Appwrite
                 bcc: bcc,
                 scheduledAt: scheduled_at,
                 attachments: attachments,
+                replyToEmail: reply_to_email,
+                replyToName: reply_to_name,
             }
 
             api_headers = {
@@ -204,6 +216,7 @@ module Appwrite
         # @param [] content_available If set to true, the notification will be delivered in the background. Available only for iOS Platform.
         # @param [] critical If set to true, the notification will be marked as critical. This requires the app to have the critical notification entitlement. Available only for iOS Platform.
         # @param [MessagePriority] priority Set the notification priority. &quot;normal&quot; will consider device state and may not deliver notifications immediately. &quot;high&quot; will always attempt to immediately deliver the notification.
+        # @param [String] channel_id ID of the notification channel to deliver the notification on. The app must have already created a channel with this ID, otherwise the channel from the app manifest is used. Available only for Android Platform.
         #
         # @return [Message]
         def create_push(
@@ -225,7 +238,8 @@ module Appwrite
             scheduled_at: nil,
             content_available: nil,
             critical: nil,
-            priority: nil
+            priority: nil,
+            channel_id: nil
         )
             api_path = '/messaging/messages/push'
 
@@ -253,6 +267,7 @@ module Appwrite
                 contentAvailable: content_available,
                 critical: critical,
                 priority: priority,
+                channelId: channel_id,
             }
 
             api_headers = {
@@ -294,6 +309,7 @@ module Appwrite
         # @param [] content_available If set to true, the notification will be delivered in the background. Available only for iOS Platform.
         # @param [] critical If set to true, the notification will be marked as critical. This requires the app to have the critical notification entitlement. Available only for iOS Platform.
         # @param [MessagePriority] priority Set the notification priority. &quot;normal&quot; will consider device battery state and may send notifications later. &quot;high&quot; will always attempt to immediately deliver the notification.
+        # @param [String] channel_id ID of the notification channel to deliver the notification on. The app must have already created a channel with this ID, otherwise the channel from the app manifest is used. Pass an empty string to clear it. Available only for Android platforms.
         #
         # @return [Message]
         def update_push(
@@ -315,7 +331,8 @@ module Appwrite
             scheduled_at: nil,
             content_available: nil,
             critical: nil,
-            priority: nil
+            priority: nil,
+            channel_id: nil
         )
             api_path = '/messaging/messages/push/{messageId}'
                 .gsub('{messageId}', message_id)
@@ -343,6 +360,7 @@ module Appwrite
                 contentAvailable: content_available,
                 critical: critical,
                 priority: priority,
+                channelId: channel_id,
             }
 
             api_headers = {
@@ -699,6 +717,100 @@ module Appwrite
                 teamId: team_id,
                 bundleId: bundle_id,
                 sandbox: sandbox,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Provider
+            )
+        end
+
+        # Create a new Appwrite push provider.
+        #
+        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
+        # @param [String] name Provider name.
+        # @param [] enabled Set as enabled.
+        # @param [Integer] qos Default QoS for topics on this provider (0 or 1). Null lets the subscriber choose.
+        # @param [Integer] expiry Default message retention in seconds for offline delivery. Max 7 days (604800).
+        #
+        # @return [Provider]
+        def create_appwrite_provider(
+            provider_id:,
+            name:,
+            enabled: nil,
+            qos: nil,
+            expiry: nil
+        )
+            if provider_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+            end
+
+            if name.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
+            end
+
+            api_path = '/messaging/providers/appwrite'
+
+            api_params = {
+                providerId: provider_id,
+                name: name,
+                enabled: enabled,
+                qos: qos,
+                expiry: expiry,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Provider
+            )
+        end
+
+        # Update an Appwrite push provider by its unique ID.
+        #
+        # @param [String] provider_id Provider ID.
+        # @param [String] name Provider name.
+        # @param [] enabled Set as enabled.
+        # @param [Integer] qos Default QoS for topics on this provider (0 or 1). Null lets the subscriber choose.
+        # @param [Integer] expiry Default message retention in seconds for offline delivery. Max 7 days (604800).
+        #
+        # @return [Provider]
+        def update_appwrite_provider(
+            provider_id:,
+            name: nil,
+            enabled: nil,
+            qos: nil,
+            expiry: nil
+        )
+            if provider_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+            end
+
+            api_path = '/messaging/providers/appwrite/{providerId}'
+                .gsub('{providerId}', provider_id)
+
+            api_params = {
+                name: name,
+                enabled: enabled,
+                qos: qos,
+                expiry: expiry,
             }
 
             api_headers = {
@@ -2029,12 +2141,16 @@ module Appwrite
         # @param [String] topic_id Topic ID. Choose a custom Topic ID or a new Topic ID.
         # @param [String] name Topic Name.
         # @param [Array] subscribe An array of role strings with subscribe permission. By default all users are granted with any subscribe permission. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long.
+        # @param [Integer] qos MQTT delivery quality of service for this topic. 0 is fire-and-forget (delivered only to clients connected at publish time). 1 persists each message and replays it when a client reconnects without having acknowledged it. Null lets the subscriber choose.
+        # @param [Integer] expiry Message retention in seconds for offline delivery. Max 7 days (604800).
         #
         # @return [Topic]
         def create_topic(
             topic_id:,
             name:,
-            subscribe: nil
+            subscribe: nil,
+            qos: nil,
+            expiry: nil
         )
             api_path = '/messaging/topics'
 
@@ -2050,6 +2166,8 @@ module Appwrite
                 topicId: topic_id,
                 name: name,
                 subscribe: subscribe,
+                qos: qos,
+                expiry: expiry,
             }
 
             api_headers = {
@@ -2105,12 +2223,16 @@ module Appwrite
         # @param [String] topic_id Topic ID.
         # @param [String] name Topic Name.
         # @param [Array] subscribe An array of role strings with subscribe permission. By default all users are granted with any subscribe permission. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long.
+        # @param [Integer] qos MQTT delivery quality of service for this topic. 0 is fire-and-forget (delivered only to clients connected at publish time). 1 persists each message and replays it when a client reconnects without having acknowledged it. Null lets the subscriber choose.
+        # @param [Integer] expiry Message retention in seconds for offline delivery. Max 7 days (604800).
         #
         # @return [Topic]
         def update_topic(
             topic_id:,
             name: nil,
-            subscribe: nil
+            subscribe: nil,
+            qos: nil,
+            expiry: nil
         )
             api_path = '/messaging/topics/{topicId}'
                 .gsub('{topicId}', topic_id)
@@ -2122,6 +2244,8 @@ module Appwrite
             api_params = {
                 name: name,
                 subscribe: subscribe,
+                qos: qos,
+                expiry: expiry,
             }
 
             api_headers = {

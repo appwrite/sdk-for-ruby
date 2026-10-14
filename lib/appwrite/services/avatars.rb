@@ -346,6 +346,77 @@ module Appwrite
             )
         end
 
+        # Update the profile photo of the currently authenticated user. The uploaded
+        # image takes priority over every other photo source, including OAuth2
+        # identity photos, Gravatar, and Libravatar. Updating an already customized
+        # photo replaces it. The image must be at most 5MB and is sent in a single
+        # request.
+        #
+        # @param [file] file Binary image file of at most 5MB. Allowed file types are png, jpg, jpeg, and webp.
+        #
+        # @return [Account]
+        def update_photo(
+            file:,
+            on_progress: nil
+        )
+            if file.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "file"')
+            end
+
+            api_path = '/avatars/photo'
+
+            api_params = {
+                file: file,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'multipart/form-data',
+                "accept": 'application/json',
+            }
+
+            id_param_name = nil
+            param_name = 'file'
+
+            @client.chunked_upload(
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                param_name: param_name,
+                id_param_name: id_param_name,
+                on_progress: on_progress,
+                method: 'PUT',
+                response_type: Models::Account
+            )
+        end
+
+        # Delete the profile photo of the currently authenticated user and store the
+        # built-in static placeholder in its place. The placeholder is the user&#039;s
+        # photo from then on, so it takes priority over every other photo source —
+        # OAuth2 identity photos, Gravatar, Libravatar, and initials — until a new
+        # photo is uploaded with avatars.updatePhoto.
+        #
+        #
+        # @return []
+        def delete_photo()
+            api_path = '/avatars/photo'
+
+            api_params = {}
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+            )
+        end
+
         # Converts a given plain text to a QR code image. You can use the query
         # parameters to change the size and style of the resulting image.
         #

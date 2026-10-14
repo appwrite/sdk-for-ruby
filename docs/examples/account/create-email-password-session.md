@@ -12,6 +12,7 @@ account = Account.new(client)
 
 result = account.create_email_password_session(
     email: 'email@example.com',
-    password: 'password'
+    password: 'password',
+    duration: 60 # optional
 )
 ```

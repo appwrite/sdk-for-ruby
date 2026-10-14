@@ -11,6 +11,7 @@ client = Client.new
 databases = Databases.new(client)
 
 result = databases.list_transactions(
-    queries: [] # optional
+    queries: [], # optional
+    total: false # optional
 )
 ```

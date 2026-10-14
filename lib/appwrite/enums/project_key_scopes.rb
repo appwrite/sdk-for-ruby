@@ -91,6 +91,7 @@ module Appwrite
             WEBHOOKS_WRITE = 'webhooks.write'
             LOCALE_READ = 'locale.read'
             AVATARS_READ = 'avatars.read'
+            AVATARS_WRITE = 'avatars.write'
             HEALTH_READ = 'health.read'
             ASSISTANT_READ = 'assistant.read'
             MIGRATIONS_READ = 'migrations.read'
@@ -105,6 +106,7 @@ module Appwrite
             REPORTS_WRITE = 'reports.write'
             PRESENCES_READ = 'presences.read'
             PRESENCES_WRITE = 'presences.write'
+            DEDICATEDDATABASES_EXECUTE = 'dedicatedDatabases.execute'
             BACKUPS_POLICIES_READ = 'backups.policies.read'
             BACKUPS_POLICIES_WRITE = 'backups.policies.write'
             ARCHIVES_READ = 'archives.read'
@@ -122,6 +124,8 @@ module Appwrite
             OAUTH2_READ = 'oauth2.read'
             OAUTH2_WRITE = 'oauth2.write'
             OAUTH2_INTROSPECT = 'oauth2.introspect'
+            ANALYTICS_READ = 'analytics.read'
+            ANALYTICS_WRITE = 'analytics.write'
         end
     end
 end

@@ -11,6 +11,8 @@ client = Client.new
 graphql = Graphql.new(client)
 
 result = graphql.query(
-    query: {}
+    query: {
+        "query" => "query { localeGet { ip } }"
+    }
 )
 ```

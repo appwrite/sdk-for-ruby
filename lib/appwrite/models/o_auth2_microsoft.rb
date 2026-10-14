@@ -22,11 +22,12 @@ module Appwrite
                 @enabled = enabled
                 @application_id = application_id
                 @application_secret = application_secret
-                @prompt = prompt.nil? ? prompt : validate_prompt(prompt)
+                @prompt = validate_prompt(prompt)
                 @tenant = tenant
             end
 
             def self.from(map:)
+                map = { "$id" => "", "enabled" => false, "applicationId" => "", "applicationSecret" => "", "prompt" => [], "tenant" => "" }.merge(map)
                 OAuth2Microsoft.new(
                     id: map["$id"],
                     enabled: map["enabled"],

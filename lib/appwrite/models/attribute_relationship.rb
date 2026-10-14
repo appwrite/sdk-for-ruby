@@ -51,6 +51,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "key" => "", "type" => "", "error" => "", "required" => false, "$createdAt" => "", "$updatedAt" => "", "relationType" => "", "twoWay" => false, "twoWayKey" => "", "onDelete" => "restrict", "side" => "" }.merge(map)
                 AttributeRelationship.new(
                     key: map["key"],
                     type: map["type"],

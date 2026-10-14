@@ -11,6 +11,8 @@ client = Client.new
 graphql = Graphql.new(client)
 
 result = graphql.mutation(
-    query: {}
+    query: {
+        "query" => "mutation { accountUpdateName(name: "Walter") { name } }"
+    }
 )
 ```

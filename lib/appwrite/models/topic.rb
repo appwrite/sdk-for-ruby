@@ -39,6 +39,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "emailTotal" => 0, "smsTotal" => 0, "pushTotal" => 0, "subscribe" => ["users"] }.merge(map)
                 Topic.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

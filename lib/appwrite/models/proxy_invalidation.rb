@@ -21,6 +21,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "domain" => "", "type" => "", "reference" => "", "status" => "" }.merge(map)
                 ProxyInvalidation.new(
                     domain: map["domain"],
                     type: map["type"],

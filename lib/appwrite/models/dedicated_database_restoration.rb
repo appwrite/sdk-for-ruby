@@ -45,6 +45,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "databaseId" => "", "projectId" => "", "type" => "backup", "status" => "pending", "error" => "" }.merge(map)
                 DedicatedDatabaseRestoration.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

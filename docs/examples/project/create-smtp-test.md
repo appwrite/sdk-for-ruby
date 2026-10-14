@@ -11,6 +11,6 @@ client = Client.new
 project = Project.new(client)
 
 result = project.create_smtp_test(
-    emails: []
+    emails: ["recipient@example.com"]
 )
 ```

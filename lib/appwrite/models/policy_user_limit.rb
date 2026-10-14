@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "total" => 0 }.merge(map)
                 PolicyUserLimit.new(
                     id: map["$id"],
                     total: map["total"]

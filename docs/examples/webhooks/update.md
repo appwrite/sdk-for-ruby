@@ -14,7 +14,7 @@ result = webhooks.update(
     webhook_id: '<WEBHOOK_ID>',
     name: '<NAME>',
     url: 'https://example.com/webhook',
-    events: [],
+    events: ["users.*.create"],
     enabled: false, # optional
     tls: false, # optional
     auth_username: '<AUTH_USERNAME>', # optional

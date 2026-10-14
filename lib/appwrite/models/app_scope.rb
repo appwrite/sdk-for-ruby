@@ -24,6 +24,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "value" => "", "description" => "", "type" => "", "category" => "", "deprecated" => false }.merge(map)
                 AppScope.new(
                     value: map["value"],
                     description: map["description"],

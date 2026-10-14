@@ -21,6 +21,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "enabled" => false, "clientId" => "", "secretKey" => "" }.merge(map)
                 OAuth2Paypal.new(
                     id: map["$id"],
                     enabled: map["enabled"],

@@ -21,6 +21,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "label" => "", "service" => "", "method" => "", "params" => {} }.merge(map)
                 InsightCTA.new(
                     label: map["label"],
                     service: map["service"],

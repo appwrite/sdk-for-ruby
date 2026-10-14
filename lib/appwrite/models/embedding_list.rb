@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0, "embeddings" => [] }.merge(map)
                 EmbeddingList.new(
                     total: map["total"],
                     embeddings: map["embeddings"].map { |it| Embedding.from(map: it) }

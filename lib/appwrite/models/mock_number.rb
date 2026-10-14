@@ -21,6 +21,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "number" => "", "otp" => "", "$createdAt" => "", "$updatedAt" => "" }.merge(map)
                 MockNumber.new(
                     number: map["number"],
                     otp: map["otp"],

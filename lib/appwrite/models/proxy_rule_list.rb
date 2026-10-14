@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0, "rules" => [] }.merge(map)
                 ProxyRuleList.new(
                     total: map["total"],
                     rules: map["rules"].map { |it| ProxyRule.from(map: it) }

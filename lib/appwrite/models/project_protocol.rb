@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "enabled" => true }.merge(map)
                 ProjectProtocol.new(
                     id: map["$id"],
                     enabled: map["enabled"]

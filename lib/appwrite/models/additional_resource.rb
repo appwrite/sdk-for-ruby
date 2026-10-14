@@ -27,6 +27,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "name" => "", "unit" => "", "currency" => "", "price" => 0, "value" => 0, "invoiceDesc" => "" }.merge(map)
                 AdditionalResource.new(
                     name: map["name"],
                     unit: map["unit"],

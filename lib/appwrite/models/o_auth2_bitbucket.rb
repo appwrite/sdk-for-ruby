@@ -21,6 +21,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "enabled" => false, "key" => "", "secret" => "" }.merge(map)
                 OAuth2Bitbucket.new(
                     id: map["$id"],
                     enabled: map["enabled"],

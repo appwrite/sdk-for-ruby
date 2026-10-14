@@ -60,8 +60,6 @@ module Appwrite
             replicas: nil,
             sync_mode: nil
         )
-            api_path = '/tablesdb'
-
             if database_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
@@ -69,6 +67,8 @@ module Appwrite
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
+
+            api_path = '/tablesdb'
 
             api_params = {
                 databaseId: database_id,
@@ -95,8 +95,8 @@ module Appwrite
         end
 
         # List the dedicated database specifications available on the current plan.
-        # Each specification reports its resource limits, pricing, and whether it is
-        # enabled for the organization.
+        # Each specification reports its resource limits, its own prices and overage
+        # rates, and whether it is enabled for the organization.
         #
         #
         # @return [DedicatedDatabaseSpecificationList]
@@ -187,12 +187,12 @@ module Appwrite
         def get_transaction(
             transaction_id:
         )
-            api_path = '/tablesdb/transactions/{transactionId}'
-                .gsub('{transactionId}', transaction_id)
-
-            if transaction_id.nil?
+            if transaction_id.nil? || transaction_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
             end
+
+            api_path = '/tablesdb/transactions/{transactionId}'
+                .gsub('{transactionId}', transaction_id)
 
             api_params = {}
 
@@ -222,12 +222,12 @@ module Appwrite
             commit: nil,
             rollback: nil
         )
-            api_path = '/tablesdb/transactions/{transactionId}'
-                .gsub('{transactionId}', transaction_id)
-
-            if transaction_id.nil?
+            if transaction_id.nil? || transaction_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
             end
+
+            api_path = '/tablesdb/transactions/{transactionId}'
+                .gsub('{transactionId}', transaction_id)
 
             api_params = {
                 commit: commit,
@@ -257,18 +257,19 @@ module Appwrite
         def delete_transaction(
             transaction_id:
         )
-            api_path = '/tablesdb/transactions/{transactionId}'
-                .gsub('{transactionId}', transaction_id)
-
-            if transaction_id.nil?
+            if transaction_id.nil? || transaction_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
             end
+
+            api_path = '/tablesdb/transactions/{transactionId}'
+                .gsub('{transactionId}', transaction_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -289,12 +290,12 @@ module Appwrite
             transaction_id:,
             operations: nil
         )
-            api_path = '/tablesdb/transactions/{transactionId}/operations'
-                .gsub('{transactionId}', transaction_id)
-
-            if transaction_id.nil?
+            if transaction_id.nil? || transaction_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
             end
+
+            api_path = '/tablesdb/transactions/{transactionId}/operations'
+                .gsub('{transactionId}', transaction_id)
 
             api_params = {
                 operations: operations,
@@ -324,12 +325,12 @@ module Appwrite
         def get(
             database_id:
         )
-            api_path = '/tablesdb/{databaseId}'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/tablesdb/{databaseId}'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 
@@ -365,12 +366,12 @@ module Appwrite
             replicas: nil,
             sync_mode: nil
         )
-            api_path = '/tablesdb/{databaseId}'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/tablesdb/{databaseId}'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 name: name,
@@ -404,18 +405,19 @@ module Appwrite
         def delete(
             database_id:
         )
-            api_path = '/tablesdb/{databaseId}'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/tablesdb/{databaseId}'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -444,12 +446,12 @@ module Appwrite
             database_id:,
             target_replica_id: nil
         )
-            api_path = '/tablesdb/{databaseId}/failovers'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/tablesdb/{databaseId}/failovers'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 targetReplicaId: target_replica_id,
@@ -479,12 +481,12 @@ module Appwrite
         def list_migrations(
             database_id:
         )
-            api_path = '/tablesdb/{databaseId}/migrations'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/tablesdb/{databaseId}/migrations'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 
@@ -516,16 +518,16 @@ module Appwrite
             specification:,
             auto_cutover: nil
         )
-            api_path = '/tablesdb/{databaseId}/migrations'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if specification.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "specification"')
             end
+
+            api_path = '/tablesdb/{databaseId}/migrations'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 specification: specification,
@@ -557,17 +559,17 @@ module Appwrite
             database_id:,
             migration_id:
         )
-            api_path = '/tablesdb/{databaseId}/migrations/{migrationId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{migrationId}', migration_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if migration_id.nil?
+            if migration_id.nil? || migration_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "migrationId"')
             end
+
+            api_path = '/tablesdb/{databaseId}/migrations/{migrationId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{migrationId}', migration_id)
 
             api_params = {}
 
@@ -596,17 +598,17 @@ module Appwrite
             database_id:,
             migration_id:
         )
-            api_path = '/tablesdb/{databaseId}/migrations/{migrationId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{migrationId}', migration_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if migration_id.nil?
+            if migration_id.nil? || migration_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "migrationId"')
             end
+
+            api_path = '/tablesdb/{databaseId}/migrations/{migrationId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{migrationId}', migration_id)
 
             api_params = {}
 
@@ -639,17 +641,17 @@ module Appwrite
             database_id:,
             migration_id:
         )
-            api_path = '/tablesdb/{databaseId}/migrations/{migrationId}/cutovers'
-                .gsub('{databaseId}', database_id)
-                .gsub('{migrationId}', migration_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if migration_id.nil?
+            if migration_id.nil? || migration_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "migrationId"')
             end
+
+            api_path = '/tablesdb/{databaseId}/migrations/{migrationId}/cutovers'
+                .gsub('{databaseId}', database_id)
+                .gsub('{migrationId}', migration_id)
 
             api_params = {}
 
@@ -685,12 +687,12 @@ module Appwrite
             limit: nil,
             offset: nil
         )
-            api_path = '/tablesdb/{databaseId}/operations'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/tablesdb/{databaseId}/operations'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 status: status,
@@ -721,12 +723,12 @@ module Appwrite
         def get_replicas(
             database_id:
         )
-            api_path = '/tablesdb/{databaseId}/replicas'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/tablesdb/{databaseId}/replicas'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 
@@ -754,12 +756,12 @@ module Appwrite
         def get_status(
             database_id:
         )
-            api_path = '/tablesdb/{databaseId}/status'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/tablesdb/{databaseId}/status'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 
@@ -792,12 +794,12 @@ module Appwrite
             search: nil,
             total: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 queries: queries,
@@ -831,7 +833,7 @@ module Appwrite
         # @param [] row_security Enables configuring permissions for individual rows. A user needs one of row or table level permissions to access a row. [Learn more about permissions](https://appwrite.io/docs/permissions).
         # @param [] enabled Is table enabled? When set to &#039;disabled&#039;, users cannot access the table but Server SDKs with and API key can still read and write to the table. No data is lost when this is toggled.
         # @param [Array] columns Array of column definitions to create. Each column should contain: key (string), type (string: string, varchar, text, mediumtext, longtext, integer, bigint, double, boolean, datetime, point, linestring, polygon, email, url, ip, enum), size (integer, required for string and varchar types), required (boolean, optional), default (mixed, optional), array (boolean, optional), and type-specific options.
-        # @param [Array] indexes Array of index definitions to create. Each index should contain: key (string), type (string: key, fulltext, unique, spatial), attributes (array of column keys), orders (array of ASC/DESC, optional), and lengths (array of integers, optional).
+        # @param [Array] indexes Array of index definitions to create. Each index should contain: key (string), type (string: key, fulltext, unique, spatial, trigram), attributes (array of column keys), orders (array of ASC/DESC, optional), and lengths (array of integers, optional).
         #
         # @return [Table]
         def create_table(
@@ -844,10 +846,7 @@ module Appwrite
             columns: nil,
             indexes: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
@@ -858,6 +857,9 @@ module Appwrite
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 tableId: table_id,
@@ -895,17 +897,17 @@ module Appwrite
             database_id:,
             table_id:
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {}
 
@@ -943,17 +945,17 @@ module Appwrite
             enabled: nil,
             purge: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 name: name,
@@ -989,23 +991,24 @@ module Appwrite
             database_id:,
             table_id:
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1030,17 +1033,17 @@ module Appwrite
             queries: nil,
             total: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 queries: queries,
@@ -1085,15 +1088,11 @@ module Appwrite
             default: nil,
             array: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/bigint'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
@@ -1104,6 +1103,10 @@ module Appwrite
             if required.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/bigint'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 key: key,
@@ -1153,20 +1156,15 @@ module Appwrite
             max: nil,
             new_key: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/bigint/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
-            if key.nil?
+            if key.nil? || key == ''
                 raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
@@ -1177,6 +1175,11 @@ module Appwrite
             if default.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/bigint/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+                .gsub('{key}', key)
 
             api_params = {
                 required: required,
@@ -1220,15 +1223,11 @@ module Appwrite
             default: nil,
             array: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/boolean'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
@@ -1239,6 +1238,10 @@ module Appwrite
             if required.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/boolean'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 key: key,
@@ -1281,20 +1284,15 @@ module Appwrite
             default:,
             new_key: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/boolean/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
-            if key.nil?
+            if key.nil? || key == ''
                 raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
@@ -1305,6 +1303,11 @@ module Appwrite
             if default.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/boolean/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+                .gsub('{key}', key)
 
             api_params = {
                 required: required,
@@ -1345,15 +1348,11 @@ module Appwrite
             default: nil,
             array: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/datetime'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
@@ -1364,6 +1363,10 @@ module Appwrite
             if required.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/datetime'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 key: key,
@@ -1406,20 +1409,15 @@ module Appwrite
             default:,
             new_key: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/datetime/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
-            if key.nil?
+            if key.nil? || key == ''
                 raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
@@ -1430,6 +1428,11 @@ module Appwrite
             if default.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/datetime/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+                .gsub('{key}', key)
 
             api_params = {
                 required: required,
@@ -1471,15 +1474,11 @@ module Appwrite
             default: nil,
             array: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/email'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
@@ -1490,6 +1489,10 @@ module Appwrite
             if required.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/email'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 key: key,
@@ -1533,20 +1536,15 @@ module Appwrite
             default:,
             new_key: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/email/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
-            if key.nil?
+            if key.nil? || key == ''
                 raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
@@ -1557,6 +1555,11 @@ module Appwrite
             if default.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/email/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+                .gsub('{key}', key)
 
             api_params = {
                 required: required,
@@ -1600,15 +1603,11 @@ module Appwrite
             default: nil,
             array: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/enum'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
@@ -1623,6 +1622,10 @@ module Appwrite
             if required.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/enum'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 key: key,
@@ -1669,20 +1672,15 @@ module Appwrite
             default:,
             new_key: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/enum/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
-            if key.nil?
+            if key.nil? || key == ''
                 raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
@@ -1697,6 +1695,11 @@ module Appwrite
             if default.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/enum/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+                .gsub('{key}', key)
 
             api_params = {
                 elements: elements,
@@ -1744,15 +1747,11 @@ module Appwrite
             default: nil,
             array: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/float'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
@@ -1763,6 +1762,10 @@ module Appwrite
             if required.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/float'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 key: key,
@@ -1812,20 +1815,15 @@ module Appwrite
             max: nil,
             new_key: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/float/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
-            if key.nil?
+            if key.nil? || key == ''
                 raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
@@ -1836,6 +1834,11 @@ module Appwrite
             if default.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/float/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+                .gsub('{key}', key)
 
             api_params = {
                 required: required,
@@ -1884,15 +1887,11 @@ module Appwrite
             default: nil,
             array: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/integer'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
@@ -1903,6 +1902,10 @@ module Appwrite
             if required.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/integer'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 key: key,
@@ -1952,20 +1955,15 @@ module Appwrite
             max: nil,
             new_key: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/integer/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
-            if key.nil?
+            if key.nil? || key == ''
                 raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
@@ -1976,6 +1974,11 @@ module Appwrite
             if default.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/integer/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+                .gsub('{key}', key)
 
             api_params = {
                 required: required,
@@ -2019,15 +2022,11 @@ module Appwrite
             default: nil,
             array: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/ip'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
@@ -2038,6 +2037,10 @@ module Appwrite
             if required.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/ip'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 key: key,
@@ -2081,20 +2084,15 @@ module Appwrite
             default:,
             new_key: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/ip/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
-            if key.nil?
+            if key.nil? || key == ''
                 raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
@@ -2105,6 +2103,11 @@ module Appwrite
             if default.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/ip/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+                .gsub('{key}', key)
 
             api_params = {
                 required: required,
@@ -2143,15 +2146,11 @@ module Appwrite
             required:,
             default: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/line'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
@@ -2162,6 +2161,10 @@ module Appwrite
             if required.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/line'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 key: key,
@@ -2203,26 +2206,26 @@ module Appwrite
             default: nil,
             new_key: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/line/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
-            if key.nil?
+            if key.nil? || key == ''
                 raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/line/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+                .gsub('{key}', key)
 
             api_params = {
                 required: required,
@@ -2266,15 +2269,11 @@ module Appwrite
             array: nil,
             encrypt: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/longtext'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
@@ -2285,6 +2284,10 @@ module Appwrite
             if required.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/longtext'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 key: key,
@@ -2329,20 +2332,15 @@ module Appwrite
             default:,
             new_key: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/longtext/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
-            if key.nil?
+            if key.nil? || key == ''
                 raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
@@ -2353,6 +2351,11 @@ module Appwrite
             if default.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/longtext/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+                .gsub('{key}', key)
 
             api_params = {
                 required: required,
@@ -2396,15 +2399,11 @@ module Appwrite
             array: nil,
             encrypt: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/mediumtext'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
@@ -2415,6 +2414,10 @@ module Appwrite
             if required.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/mediumtext'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 key: key,
@@ -2459,20 +2462,15 @@ module Appwrite
             default:,
             new_key: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/mediumtext/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
-            if key.nil?
+            if key.nil? || key == ''
                 raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
@@ -2483,6 +2481,11 @@ module Appwrite
             if default.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/mediumtext/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+                .gsub('{key}', key)
 
             api_params = {
                 required: required,
@@ -2521,15 +2524,11 @@ module Appwrite
             required:,
             default: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/point'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
@@ -2540,6 +2539,10 @@ module Appwrite
             if required.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/point'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 key: key,
@@ -2581,26 +2584,26 @@ module Appwrite
             default: nil,
             new_key: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/point/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
-            if key.nil?
+            if key.nil? || key == ''
                 raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/point/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+                .gsub('{key}', key)
 
             api_params = {
                 required: required,
@@ -2639,15 +2642,11 @@ module Appwrite
             required:,
             default: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/polygon'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
@@ -2658,6 +2657,10 @@ module Appwrite
             if required.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/polygon'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 key: key,
@@ -2699,26 +2702,26 @@ module Appwrite
             default: nil,
             new_key: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/polygon/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
-            if key.nil?
+            if key.nil? || key == ''
                 raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
             if required.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/polygon/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+                .gsub('{key}', key)
 
             api_params = {
                 required: required,
@@ -2765,15 +2768,11 @@ module Appwrite
             two_way_key: nil,
             on_delete: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/relationship'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
@@ -2784,6 +2783,10 @@ module Appwrite
             if type.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "type"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/relationship'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 relatedTableId: related_table_id,
@@ -2802,6 +2805,61 @@ module Appwrite
 
             @client.call(
                 method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::ColumnRelationship
+            )
+        end
+
+        # Update relationship column. [Learn more about relationship
+        # columns](https://appwrite.io/docs/databases-relationships#relationship-columns).
+        #
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] table_id Table ID.
+        # @param [String] key Column Key.
+        # @param [RelationMutate] on_delete Delete constraint. Possible values are: cascade, restrict, setNull.
+        # @param [String] new_key New Column Key.
+        #
+        # @return [ColumnRelationship]
+        def update_relationship_column(
+            database_id:,
+            table_id:,
+            key:,
+            on_delete: nil,
+            new_key: nil
+        )
+            if database_id.nil? || database_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil? || table_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            if key.nil? || key == ''
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/relationship/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+                .gsub('{key}', key)
+
+            api_params = {
+                onDelete: on_delete,
+                newKey: new_key,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
@@ -2835,15 +2893,11 @@ module Appwrite
             array: nil,
             encrypt: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/string'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
@@ -2858,6 +2912,10 @@ module Appwrite
             if required.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/string'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 key: key,
@@ -2908,20 +2966,15 @@ module Appwrite
             size: nil,
             new_key: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/string/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
-            if key.nil?
+            if key.nil? || key == ''
                 raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
@@ -2932,6 +2985,11 @@ module Appwrite
             if default.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/string/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+                .gsub('{key}', key)
 
             api_params = {
                 required: required,
@@ -2976,15 +3034,11 @@ module Appwrite
             array: nil,
             encrypt: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/text'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
@@ -2995,6 +3049,10 @@ module Appwrite
             if required.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/text'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 key: key,
@@ -3039,20 +3097,15 @@ module Appwrite
             default:,
             new_key: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/text/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
-            if key.nil?
+            if key.nil? || key == ''
                 raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
@@ -3063,6 +3116,11 @@ module Appwrite
             if default.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/text/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+                .gsub('{key}', key)
 
             api_params = {
                 required: required,
@@ -3104,15 +3162,11 @@ module Appwrite
             default: nil,
             array: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/url'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
@@ -3123,6 +3177,10 @@ module Appwrite
             if required.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/url'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 key: key,
@@ -3166,20 +3224,15 @@ module Appwrite
             default:,
             new_key: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/url/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
-            if key.nil?
+            if key.nil? || key == ''
                 raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
@@ -3190,6 +3243,11 @@ module Appwrite
             if default.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/url/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+                .gsub('{key}', key)
 
             api_params = {
                 required: required,
@@ -3235,15 +3293,11 @@ module Appwrite
             array: nil,
             encrypt: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/varchar'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
@@ -3258,6 +3312,10 @@ module Appwrite
             if required.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "required"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/varchar'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 key: key,
@@ -3305,20 +3363,15 @@ module Appwrite
             size: nil,
             new_key: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/varchar/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
-            if key.nil?
+            if key.nil? || key == ''
                 raise Appwrite::Exception.new('Missing required parameter: "key"')
             end
 
@@ -3329,6 +3382,11 @@ module Appwrite
             if default.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "default"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/varchar/{key}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+                .gsub('{key}', key)
 
             api_params = {
                 required: required,
@@ -3358,28 +3416,28 @@ module Appwrite
         # @param [String] table_id Table ID.
         # @param [String] key Column Key.
         #
-        # @return [ColumnBoolean, ColumnInteger, ColumnFloat, ColumnEmail, ColumnEnum, ColumnUrl, ColumnIp, ColumnDatetime, ColumnRelationship, ColumnString]
+        # @return [ColumnBoolean, ColumnBigint, ColumnInteger, ColumnFloat, ColumnEmail, ColumnEnum, ColumnUrl, ColumnIp, ColumnDatetime, ColumnRelationship, ColumnPoint, ColumnLine, ColumnPolygon, ColumnVarchar, ColumnText, ColumnMediumtext, ColumnLongtext, ColumnString]
         def get_column(
             database_id:,
             table_id:,
             key:
         )
+            if database_id.nil? || database_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil? || table_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            if key.nil? || key == ''
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
                 .gsub('{key}', key)
-
-            if database_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if table_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "tableId"')
-            end
-
-            if key.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "key"')
-            end
 
             api_params = {}
 
@@ -3424,6 +3482,11 @@ module Appwrite
                 return Models::ColumnBoolean.from(map: response)
             end
 
+            if response['type'] == 'bigint'
+
+                return Models::ColumnBigint.from(map: response)
+            end
+
             if response['type'] == 'integer'
 
                 return Models::ColumnInteger.from(map: response)
@@ -3442,6 +3505,41 @@ module Appwrite
             if response['type'] == 'relationship'
 
                 return Models::ColumnRelationship.from(map: response)
+            end
+
+            if response['type'] == 'point'
+
+                return Models::ColumnPoint.from(map: response)
+            end
+
+            if response['type'] == 'linestring'
+
+                return Models::ColumnLine.from(map: response)
+            end
+
+            if response['type'] == 'polygon'
+
+                return Models::ColumnPolygon.from(map: response)
+            end
+
+            if response['type'] == 'varchar'
+
+                return Models::ColumnVarchar.from(map: response)
+            end
+
+            if response['type'] == 'text'
+
+                return Models::ColumnText.from(map: response)
+            end
+
+            if response['type'] == 'mediumtext'
+
+                return Models::ColumnMediumtext.from(map: response)
+            end
+
+            if response['type'] == 'longtext'
+
+                return Models::ColumnLongtext.from(map: response)
             end
 
             if response['type'] == 'string'
@@ -3464,77 +3562,24 @@ module Appwrite
             table_id:,
             key:
         )
+            if database_id.nil? || database_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil? || table_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            if key.nil? || key == ''
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
                 .gsub('{key}', key)
 
-            if database_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if table_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "tableId"')
-            end
-
-            if key.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "key"')
-            end
-
             api_params = {}
-
-            api_headers = {
-                "X-Appwrite-Project": @client.get_config('project'),
-                "content-type": 'application/json',
-            }
-
-            @client.call(
-                method: 'DELETE',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-            )
-        end
-
-        # Update relationship column. [Learn more about relationship
-        # columns](https://appwrite.io/docs/databases-relationships#relationship-columns).
-        #
-        #
-        # @param [String] database_id Database ID.
-        # @param [String] table_id Table ID.
-        # @param [String] key Column Key.
-        # @param [RelationMutate] on_delete Delete constraint. Possible values are: cascade, restrict, setNull.
-        # @param [String] new_key New Column Key.
-        #
-        # @return [ColumnRelationship]
-        def update_relationship_column(
-            database_id:,
-            table_id:,
-            key:,
-            on_delete: nil,
-            new_key: nil
-        )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/{key}/relationship'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
-
-            if database_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if table_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "tableId"')
-            end
-
-            if key.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "key"')
-            end
-
-            api_params = {
-                onDelete: on_delete,
-                newKey: new_key,
-            }
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
@@ -3543,11 +3588,10 @@ module Appwrite
             }
 
             @client.call(
-                method: 'PATCH',
+                method: 'DELETE',
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::ColumnRelationship
             )
         end
 
@@ -3565,17 +3609,17 @@ module Appwrite
             queries: nil,
             total: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/indexes'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/indexes'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 queries: queries,
@@ -3598,7 +3642,9 @@ module Appwrite
 
         # Creates an index on the columns listed. Your index should include all the
         # columns you will query in a single request.
-        # Type can be `key`, `fulltext`, or `unique`.
+        # Type can be `key`, `fulltext`, `unique`, `spatial`, or `trigram`. `trigram`
+        # is only available on PostgreSQL and lets `contains`, `startsWith`, and
+        # `endsWith` queries on string columns use an index.
         #
         # @param [String] database_id Database ID.
         # @param [String] table_id Table ID. You can create a new table using the Database service [server integration](https://appwrite.io/docs/references/cloud/server-dart/tablesDB#createTable).
@@ -3618,15 +3664,11 @@ module Appwrite
             orders: nil,
             lengths: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/indexes'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
@@ -3641,6 +3683,10 @@ module Appwrite
             if columns.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "columns"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/indexes'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 key: key,
@@ -3677,22 +3723,22 @@ module Appwrite
             table_id:,
             key:
         )
+            if database_id.nil? || database_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil? || table_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            if key.nil? || key == ''
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/indexes/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
                 .gsub('{key}', key)
-
-            if database_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if table_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "tableId"')
-            end
-
-            if key.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "key"')
-            end
 
             api_params = {}
 
@@ -3722,28 +3768,29 @@ module Appwrite
             table_id:,
             key:
         )
+            if database_id.nil? || database_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil? || table_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            if key.nil? || key == ''
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/indexes/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
                 .gsub('{key}', key)
-
-            if database_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if table_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "tableId"')
-            end
-
-            if key.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "key"')
-            end
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3773,17 +3820,17 @@ module Appwrite
             total: nil,
             ttl: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 queries: queries,
@@ -3827,15 +3874,11 @@ module Appwrite
             permissions: nil,
             transaction_id: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
@@ -3846,6 +3889,10 @@ module Appwrite
             if data.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "data"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 rowId: row_id,
@@ -3886,21 +3933,21 @@ module Appwrite
             rows:,
             transaction_id: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
             if rows.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "rows"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 rows: rows,
@@ -3940,21 +3987,21 @@ module Appwrite
             rows:,
             transaction_id: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
 
             if rows.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "rows"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 rows: rows,
@@ -3993,17 +4040,17 @@ module Appwrite
             queries: nil,
             transaction_id: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 data: data,
@@ -4041,17 +4088,17 @@ module Appwrite
             queries: nil,
             transaction_id: nil
         )
-            api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if table_id.nil?
+            if table_id.nil? || table_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tableId"')
             end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
 
             api_params = {
                 queries: queries,
@@ -4090,22 +4137,22 @@ module Appwrite
             queries: nil,
             transaction_id: nil
         )
+            if database_id.nil? || database_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil? || table_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            if row_id.nil? || row_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "rowId"')
+            end
+
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
                 .gsub('{rowId}', row_id)
-
-            if database_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if table_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "tableId"')
-            end
-
-            if row_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "rowId"')
-            end
 
             api_params = {
                 queries: queries,
@@ -4147,22 +4194,22 @@ module Appwrite
             permissions: nil,
             transaction_id: nil
         )
+            if database_id.nil? || database_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil? || table_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            if row_id.nil? || row_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "rowId"')
+            end
+
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
                 .gsub('{rowId}', row_id)
-
-            if database_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if table_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "tableId"')
-            end
-
-            if row_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "rowId"')
-            end
 
             api_params = {
                 data: data,
@@ -4204,22 +4251,22 @@ module Appwrite
             permissions: nil,
             transaction_id: nil
         )
+            if database_id.nil? || database_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil? || table_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            if row_id.nil? || row_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "rowId"')
+            end
+
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
                 .gsub('{rowId}', row_id)
-
-            if database_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if table_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "tableId"')
-            end
-
-            if row_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "rowId"')
-            end
 
             api_params = {
                 data: data,
@@ -4256,22 +4303,22 @@ module Appwrite
             row_id:,
             transaction_id: nil
         )
+            if database_id.nil? || database_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil? || table_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            if row_id.nil? || row_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "rowId"')
+            end
+
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
                 .gsub('{rowId}', row_id)
-
-            if database_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if table_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "tableId"')
-            end
-
-            if row_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "rowId"')
-            end
 
             api_params = {
                 transactionId: transaction_id,
@@ -4280,6 +4327,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -4310,27 +4358,27 @@ module Appwrite
             min: nil,
             transaction_id: nil
         )
+            if database_id.nil? || database_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil? || table_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            if row_id.nil? || row_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "rowId"')
+            end
+
+            if column.nil? || column == ''
+                raise Appwrite::Exception.new('Missing required parameter: "column"')
+            end
+
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}/{column}/decrement'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
                 .gsub('{rowId}', row_id)
                 .gsub('{column}', column)
-
-            if database_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if table_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "tableId"')
-            end
-
-            if row_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "rowId"')
-            end
-
-            if column.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "column"')
-            end
 
             api_params = {
                 value: value,
@@ -4373,27 +4421,27 @@ module Appwrite
             max: nil,
             transaction_id: nil
         )
+            if database_id.nil? || database_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil? || table_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            if row_id.nil? || row_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "rowId"')
+            end
+
+            if column.nil? || column == ''
+                raise Appwrite::Exception.new('Missing required parameter: "column"')
+            end
+
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}/{column}/increment'
                 .gsub('{databaseId}', database_id)
                 .gsub('{tableId}', table_id)
                 .gsub('{rowId}', row_id)
                 .gsub('{column}', column)
-
-            if database_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if table_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "tableId"')
-            end
-
-            if row_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "rowId"')
-            end
-
-            if column.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "column"')
-            end
 
             api_params = {
                 value: value,

@@ -39,6 +39,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "appId" => "", "teamId" => "", "scopes" => [], "authorizationDetails" => [], "createdById" => "", "createdByName" => "" }.merge(map)
                 AppInstallation.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

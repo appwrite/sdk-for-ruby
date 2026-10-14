@@ -24,6 +24,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "enabled" => false, "clientId" => "", "clientSecret" => "", "endpoint" => "" }.merge(map)
                 OAuth2Authentik.new(
                     id: map["$id"],
                     enabled: map["enabled"],

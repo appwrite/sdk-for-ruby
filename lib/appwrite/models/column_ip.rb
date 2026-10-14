@@ -39,6 +39,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "key" => "", "type" => "", "error" => "", "required" => false, "$createdAt" => "", "$updatedAt" => "", "format" => "ip" }.merge(map)
                 ColumnIp.new(
                     key: map["key"],
                     type: map["type"],

@@ -13,7 +13,7 @@ domains = Domains.new(client)
 
 result = domains.list_prices(
     domains: [],
-    period_years: nil, # optional
+    period_years: null, # optional
     registration_type: DomainRegistrationType::NEW # optional
 )
 ```

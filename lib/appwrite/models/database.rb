@@ -54,6 +54,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "name" => "", "$createdAt" => "", "$updatedAt" => "", "enabled" => true, "type" => "legacy" }.merge(map)
                 Database.new(
                     id: map["$id"],
                     name: map["name"],

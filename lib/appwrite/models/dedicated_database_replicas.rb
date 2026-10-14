@@ -33,6 +33,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "replicas" => 0, "syncMode" => "async", "syncDegraded" => false, "syncAcknowledgements" => 0, "syncStandbyCount" => 0, "members" => [] }.merge(map)
                 DedicatedDatabaseReplicas.new(
                     replicas: map["replicas"],
                     sync_mode: map["syncMode"],

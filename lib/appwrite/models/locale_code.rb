@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "code" => "", "name" => "" }.merge(map)
                 LocaleCode.new(
                     code: map["code"],
                     name: map["name"]

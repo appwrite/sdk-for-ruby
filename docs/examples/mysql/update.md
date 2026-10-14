@@ -25,7 +25,7 @@ result = mysql.update(
     storage_autoscaling: false, # optional
     storage_autoscaling_threshold_percent: 50, # optional
     storage_autoscaling_max_gb: 0, # optional
-    metrics_trace_sample_rate: nil, # optional
+    metrics_trace_sample_rate: null, # optional
     metrics_slow_query_log_threshold_ms: 0, # optional
     sql_api_enabled: false, # optional
     sql_api_allowed_statements: [], # optional

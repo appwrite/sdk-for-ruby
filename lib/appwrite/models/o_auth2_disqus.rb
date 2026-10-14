@@ -21,6 +21,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "enabled" => false, "publicKey" => "", "secretKey" => "" }.merge(map)
                 OAuth2Disqus.new(
                     id: map["$id"],
                     enabled: map["enabled"],

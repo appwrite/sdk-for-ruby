@@ -39,6 +39,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "userId" => "", "appId" => "", "cimdUrl" => "", "scopes" => [], "resources" => [], "authorizationDetails" => "[]", "expire" => "" }.merge(map)
                 Oauth2Consent.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

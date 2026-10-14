@@ -45,6 +45,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "userId" => "", "appId" => "", "scopes" => [], "resources" => [], "authorizationDetails" => "[]", "prompt" => "", "redirectUri" => "", "authTime" => 0, "expire" => "" }.merge(map)
                 Oauth2Grant.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

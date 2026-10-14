@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0, "operations" => [] }.merge(map)
                 DedicatedDatabaseOperationList.new(
                     total: map["total"],
                     operations: map["operations"].map { |it| DedicatedDatabaseOperation.from(map: it) }

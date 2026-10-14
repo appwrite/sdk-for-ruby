@@ -47,7 +47,7 @@ module Appwrite
         #
         # @param [String] team_id Team ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] name Team name. Max length: 128 chars.
-        # @param [Array] roles Array of strings. Use this param to set the roles in the team for the user who created it. The default role is **owner**. A role can be any string. Learn more about [roles and permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long.
+        # @param [Array] roles Array of strings. Use this param to set the roles in the team for the user who created it. The default role is **owner**. A role can be any string. Learn more about [roles and permissions](https://appwrite.io/docs/permissions). Maximum of 100 roles are allowed, each 81 characters long.
         #
         # @return [Team]
         def create(
@@ -55,8 +55,6 @@ module Appwrite
             name:,
             roles: nil
         )
-            api_path = '/teams'
-
             if team_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "teamId"')
             end
@@ -64,6 +62,8 @@ module Appwrite
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
+
+            api_path = '/teams'
 
             api_params = {
                 teamId: team_id,
@@ -94,12 +94,12 @@ module Appwrite
         def get(
             team_id:
         )
-            api_path = '/teams/{teamId}'
-                .gsub('{teamId}', team_id)
-
-            if team_id.nil?
+            if team_id.nil? || team_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "teamId"')
             end
+
+            api_path = '/teams/{teamId}'
+                .gsub('{teamId}', team_id)
 
             api_params = {}
 
@@ -127,16 +127,16 @@ module Appwrite
             team_id:,
             name:
         )
-            api_path = '/teams/{teamId}'
-                .gsub('{teamId}', team_id)
-
-            if team_id.nil?
+            if team_id.nil? || team_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "teamId"')
             end
 
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
+
+            api_path = '/teams/{teamId}'
+                .gsub('{teamId}', team_id)
 
             api_params = {
                 name: name,
@@ -166,18 +166,19 @@ module Appwrite
         def delete(
             team_id:
         )
-            api_path = '/teams/{teamId}'
-                .gsub('{teamId}', team_id)
-
-            if team_id.nil?
+            if team_id.nil? || team_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "teamId"')
             end
+
+            api_path = '/teams/{teamId}'
+                .gsub('{teamId}', team_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -200,12 +201,12 @@ module Appwrite
             queries: nil,
             total: nil
         )
-            api_path = '/teams/{teamId}/installations'
-                .gsub('{teamId}', team_id)
-
-            if team_id.nil?
+            if team_id.nil? || team_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "teamId"')
             end
+
+            api_path = '/teams/{teamId}/installations'
+                .gsub('{teamId}', team_id)
 
             api_params = {
                 queries: queries,
@@ -241,16 +242,16 @@ module Appwrite
             app_id:,
             authorization_details: nil
         )
-            api_path = '/teams/{teamId}/installations'
-                .gsub('{teamId}', team_id)
-
-            if team_id.nil?
+            if team_id.nil? || team_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "teamId"')
             end
 
             if app_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
+
+            api_path = '/teams/{teamId}/installations'
+                .gsub('{teamId}', team_id)
 
             api_params = {
                 appId: app_id,
@@ -283,17 +284,17 @@ module Appwrite
             team_id:,
             installation_id:
         )
-            api_path = '/teams/{teamId}/installations/{installationId}'
-                .gsub('{teamId}', team_id)
-                .gsub('{installationId}', installation_id)
-
-            if team_id.nil?
+            if team_id.nil? || team_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "teamId"')
             end
 
-            if installation_id.nil?
+            if installation_id.nil? || installation_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "installationId"')
             end
+
+            api_path = '/teams/{teamId}/installations/{installationId}'
+                .gsub('{teamId}', team_id)
+                .gsub('{installationId}', installation_id)
 
             api_params = {}
 
@@ -326,17 +327,17 @@ module Appwrite
             installation_id:,
             authorization_details: nil
         )
-            api_path = '/teams/{teamId}/installations/{installationId}'
-                .gsub('{teamId}', team_id)
-                .gsub('{installationId}', installation_id)
-
-            if team_id.nil?
+            if team_id.nil? || team_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "teamId"')
             end
 
-            if installation_id.nil?
+            if installation_id.nil? || installation_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "installationId"')
             end
+
+            api_path = '/teams/{teamId}/installations/{installationId}'
+                .gsub('{teamId}', team_id)
+                .gsub('{installationId}', installation_id)
 
             api_params = {
                 authorizationDetails: authorization_details,
@@ -369,17 +370,17 @@ module Appwrite
             team_id:,
             installation_id:
         )
-            api_path = '/teams/{teamId}/installations/{installationId}'
-                .gsub('{teamId}', team_id)
-                .gsub('{installationId}', installation_id)
-
-            if team_id.nil?
+            if team_id.nil? || team_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "teamId"')
             end
 
-            if installation_id.nil?
+            if installation_id.nil? || installation_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "installationId"')
             end
+
+            api_path = '/teams/{teamId}/installations/{installationId}'
+                .gsub('{teamId}', team_id)
+                .gsub('{installationId}', installation_id)
 
             api_params = {}
 
@@ -413,12 +414,12 @@ module Appwrite
             search: nil,
             total: nil
         )
-            api_path = '/teams/{teamId}/memberships'
-                .gsub('{teamId}', team_id)
-
-            if team_id.nil?
+            if team_id.nil? || team_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "teamId"')
             end
+
+            api_path = '/teams/{teamId}/memberships'
+                .gsub('{teamId}', team_id)
 
             api_params = {
                 queries: queries,
@@ -482,16 +483,16 @@ module Appwrite
             name: nil,
             membership_id: nil
         )
-            api_path = '/teams/{teamId}/memberships'
-                .gsub('{teamId}', team_id)
-
-            if team_id.nil?
+            if team_id.nil? || team_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "teamId"')
             end
 
             if roles.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "roles"')
             end
+
+            api_path = '/teams/{teamId}/memberships'
+                .gsub('{teamId}', team_id)
 
             api_params = {
                 email: email,
@@ -530,17 +531,17 @@ module Appwrite
             team_id:,
             membership_id:
         )
-            api_path = '/teams/{teamId}/memberships/{membershipId}'
-                .gsub('{teamId}', team_id)
-                .gsub('{membershipId}', membership_id)
-
-            if team_id.nil?
+            if team_id.nil? || team_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "teamId"')
             end
 
-            if membership_id.nil?
+            if membership_id.nil? || membership_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "membershipId"')
             end
+
+            api_path = '/teams/{teamId}/memberships/{membershipId}'
+                .gsub('{teamId}', team_id)
+                .gsub('{membershipId}', membership_id)
 
             api_params = {}
 
@@ -573,21 +574,21 @@ module Appwrite
             membership_id:,
             roles:
         )
-            api_path = '/teams/{teamId}/memberships/{membershipId}'
-                .gsub('{teamId}', team_id)
-                .gsub('{membershipId}', membership_id)
-
-            if team_id.nil?
+            if team_id.nil? || team_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "teamId"')
             end
 
-            if membership_id.nil?
+            if membership_id.nil? || membership_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "membershipId"')
             end
 
             if roles.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "roles"')
             end
+
+            api_path = '/teams/{teamId}/memberships/{membershipId}'
+                .gsub('{teamId}', team_id)
+                .gsub('{membershipId}', membership_id)
 
             api_params = {
                 roles: roles,
@@ -620,23 +621,24 @@ module Appwrite
             team_id:,
             membership_id:
         )
-            api_path = '/teams/{teamId}/memberships/{membershipId}'
-                .gsub('{teamId}', team_id)
-                .gsub('{membershipId}', membership_id)
-
-            if team_id.nil?
+            if team_id.nil? || team_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "teamId"')
             end
 
-            if membership_id.nil?
+            if membership_id.nil? || membership_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "membershipId"')
             end
+
+            api_path = '/teams/{teamId}/memberships/{membershipId}'
+                .gsub('{teamId}', team_id)
+                .gsub('{membershipId}', membership_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -667,15 +669,11 @@ module Appwrite
             user_id:,
             secret:
         )
-            api_path = '/teams/{teamId}/memberships/{membershipId}/status'
-                .gsub('{teamId}', team_id)
-                .gsub('{membershipId}', membership_id)
-
-            if team_id.nil?
+            if team_id.nil? || team_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "teamId"')
             end
 
-            if membership_id.nil?
+            if membership_id.nil? || membership_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "membershipId"')
             end
 
@@ -686,6 +684,10 @@ module Appwrite
             if secret.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "secret"')
             end
+
+            api_path = '/teams/{teamId}/memberships/{membershipId}/status'
+                .gsub('{teamId}', team_id)
+                .gsub('{membershipId}', membership_id)
 
             api_params = {
                 userId: user_id,
@@ -717,12 +719,12 @@ module Appwrite
         def get_prefs(
             team_id:
         )
-            api_path = '/teams/{teamId}/prefs'
-                .gsub('{teamId}', team_id)
-
-            if team_id.nil?
+            if team_id.nil? || team_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "teamId"')
             end
+
+            api_path = '/teams/{teamId}/prefs'
+                .gsub('{teamId}', team_id)
 
             api_params = {}
 
@@ -752,16 +754,16 @@ module Appwrite
             team_id:,
             prefs:
         )
-            api_path = '/teams/{teamId}/prefs'
-                .gsub('{teamId}', team_id)
-
-            if team_id.nil?
+            if team_id.nil? || team_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "teamId"')
             end
 
             if prefs.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "prefs"')
             end
+
+            api_path = '/teams/{teamId}/prefs'
+                .gsub('{teamId}', team_id)
 
             api_params = {
                 prefs: prefs,

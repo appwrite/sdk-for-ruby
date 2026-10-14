@@ -114,6 +114,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "total" => 0, "budgetAlerts" => [75], "billingPlan" => "tier-0", "billingPlanId" => "tier-0", "billingEmail" => "", "status" => "draft", "markedForDeletion" => false, "platform" => "appwrite", "projects" => [] }.merge(map)
                 Organization.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

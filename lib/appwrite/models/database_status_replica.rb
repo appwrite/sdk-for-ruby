@@ -24,6 +24,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "index" => 0, "role" => "unknown", "healthy" => false }.merge(map)
                 DatabaseStatusReplica.new(
                     index: map["index"],
                     role: map["role"],

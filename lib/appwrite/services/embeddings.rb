@@ -19,11 +19,11 @@ module Appwrite
             texts:,
             model: nil
         )
-            api_path = '/embeddings/text'
-
             if texts.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "texts"')
             end
+
+            api_path = '/embeddings/text'
 
             api_params = {
                 texts: texts,

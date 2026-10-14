@@ -66,6 +66,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "$permissions" => [], "resourceId" => "", "resourceType" => "functions", "deploymentId" => "", "requestMethod" => "", "requestPath" => "", "requestHeaders" => [], "responseStatusCode" => 0, "responseBody" => "", "responseHeaders" => [], "logs" => "", "errors" => "", "duration" => 0 }.merge(map)
                 Execution.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

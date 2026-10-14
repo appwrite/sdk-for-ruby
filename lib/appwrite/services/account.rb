@@ -49,8 +49,6 @@ module Appwrite
             password:,
             name: nil
         )
-            api_path = '/account'
-
             if user_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userId"')
             end
@@ -62,6 +60,8 @@ module Appwrite
             if password.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "password"')
             end
+
+            api_path = '/account'
 
             api_params = {
                 userId: user_id,
@@ -126,12 +126,12 @@ module Appwrite
         def get_consent(
             consent_id:
         )
-            api_path = '/account/consents/{consentId}'
-                .gsub('{consentId}', consent_id)
-
-            if consent_id.nil?
+            if consent_id.nil? || consent_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "consentId"')
             end
+
+            api_path = '/account/consents/{consentId}'
+                .gsub('{consentId}', consent_id)
 
             api_params = {}
 
@@ -159,12 +159,12 @@ module Appwrite
         def delete_consent(
             consent_id:
         )
-            api_path = '/account/consents/{consentId}'
-                .gsub('{consentId}', consent_id)
-
-            if consent_id.nil?
+            if consent_id.nil? || consent_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "consentId"')
             end
+
+            api_path = '/account/consents/{consentId}'
+                .gsub('{consentId}', consent_id)
 
             api_params = {}
 
@@ -196,12 +196,12 @@ module Appwrite
             queries: nil,
             total: nil
         )
-            api_path = '/account/consents/{consentId}/tokens'
-                .gsub('{consentId}', consent_id)
-
-            if consent_id.nil?
+            if consent_id.nil? || consent_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "consentId"')
             end
+
+            api_path = '/account/consents/{consentId}/tokens'
+                .gsub('{consentId}', consent_id)
 
             api_params = {
                 queries: queries,
@@ -233,17 +233,17 @@ module Appwrite
             consent_id:,
             token_id:
         )
-            api_path = '/account/consents/{consentId}/tokens/{tokenId}'
-                .gsub('{consentId}', consent_id)
-                .gsub('{tokenId}', token_id)
-
-            if consent_id.nil?
+            if consent_id.nil? || consent_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "consentId"')
             end
 
-            if token_id.nil?
+            if token_id.nil? || token_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tokenId"')
             end
+
+            api_path = '/account/consents/{consentId}/tokens/{tokenId}'
+                .gsub('{consentId}', consent_id)
+                .gsub('{tokenId}', token_id)
 
             api_params = {}
 
@@ -273,17 +273,17 @@ module Appwrite
             consent_id:,
             token_id:
         )
-            api_path = '/account/consents/{consentId}/tokens/{tokenId}'
-                .gsub('{consentId}', consent_id)
-                .gsub('{tokenId}', token_id)
-
-            if consent_id.nil?
+            if consent_id.nil? || consent_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "consentId"')
             end
 
-            if token_id.nil?
+            if token_id.nil? || token_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tokenId"')
             end
+
+            api_path = '/account/consents/{consentId}/tokens/{tokenId}'
+                .gsub('{consentId}', consent_id)
+                .gsub('{tokenId}', token_id)
 
             api_params = {}
 
@@ -318,8 +318,6 @@ module Appwrite
             email:,
             password:
         )
-            api_path = '/account/email'
-
             if email.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "email"')
             end
@@ -327,6 +325,8 @@ module Appwrite
             if password.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "password"')
             end
+
+            api_path = '/account/email'
 
             api_params = {
                 email: email,
@@ -387,18 +387,19 @@ module Appwrite
         def delete_identity(
             identity_id:
         )
-            api_path = '/account/identities/{identityId}'
-                .gsub('{identityId}', identity_id)
-
-            if identity_id.nil?
+            if identity_id.nil? || identity_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "identityId"')
             end
+
+            api_path = '/account/identities/{identityId}'
+                .gsub('{identityId}', identity_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -406,38 +407,6 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-            )
-        end
-
-        # Get the list of latest security activity logs for the currently logged in
-        # user. Each log returns user IP address, location and date and time of log.
-        #
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset
-        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
-        #
-        # @return [LogList]
-        def list_logs(
-            queries: nil,
-            total: nil
-        )
-            api_path = '/account/logs'
-
-            api_params = {
-                queries: queries,
-                total: total,
-            }
-
-            api_headers = {
-                "X-Appwrite-Project": @client.get_config('project'),
-                "accept": 'application/json',
-            }
-
-            @client.call(
-                method: 'GET',
-                path: api_path,
-                headers: api_headers,
-                params: api_params,
-                response_type: Models::LogList
             )
         end
 
@@ -449,11 +418,11 @@ module Appwrite
         def update_mfa(
             mfa:
         )
-            api_path = '/account/mfa'
-
             if mfa.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "mfa"')
             end
+
+            api_path = '/account/mfa'
 
             api_params = {
                 mfa: mfa,
@@ -485,12 +454,12 @@ module Appwrite
         def create_mfa_authenticator(
             type:
         )
-            api_path = '/account/mfa/authenticators/{type}'
-                .gsub('{type}', type)
-
             if type.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "type"')
             end
+
+            api_path = '/account/mfa/authenticators/{type}'
+                .gsub('{type}', type)
 
             api_params = {}
 
@@ -521,9 +490,6 @@ module Appwrite
             type:,
             otp:
         )
-            api_path = '/account/mfa/authenticators/{type}'
-                .gsub('{type}', type)
-
             if type.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "type"')
             end
@@ -531,6 +497,9 @@ module Appwrite
             if otp.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "otp"')
             end
+
+            api_path = '/account/mfa/authenticators/{type}'
+                .gsub('{type}', type)
 
             api_params = {
                 otp: otp,
@@ -559,18 +528,19 @@ module Appwrite
         def delete_mfa_authenticator(
             type:
         )
-            api_path = '/account/mfa/authenticators/{type}'
-                .gsub('{type}', type)
-
             if type.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "type"')
             end
+
+            api_path = '/account/mfa/authenticators/{type}'
+                .gsub('{type}', type)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -591,11 +561,11 @@ module Appwrite
         def create_mfa_challenge(
             factor:
         )
-            api_path = '/account/mfa/challenges'
-
             if factor.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "factor"')
             end
+
+            api_path = '/account/mfa/challenges'
 
             api_params = {
                 factor: factor,
@@ -630,8 +600,6 @@ module Appwrite
             challenge_id:,
             otp:
         )
-            api_path = '/account/mfa/challenges'
-
             if challenge_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "challengeId"')
             end
@@ -639,6 +607,8 @@ module Appwrite
             if otp.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "otp"')
             end
+
+            api_path = '/account/mfa/challenges'
 
             api_params = {
                 challengeId: challenge_id,
@@ -772,11 +742,11 @@ module Appwrite
         def update_name(
             name:
         )
-            api_path = '/account/name'
-
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
+
+            api_path = '/account/name'
 
             api_params = {
                 name: name,
@@ -1029,11 +999,11 @@ module Appwrite
             password:,
             old_password: nil
         )
-            api_path = '/account/password'
-
             if password.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "password"')
             end
+
+            api_path = '/account/password'
 
             api_params = {
                 password: password,
@@ -1069,8 +1039,6 @@ module Appwrite
             phone:,
             password:
         )
-            api_path = '/account/phone'
-
             if phone.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "phone"')
             end
@@ -1078,6 +1046,8 @@ module Appwrite
             if password.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "password"')
             end
+
+            api_path = '/account/phone'
 
             api_params = {
                 phone: phone,
@@ -1132,11 +1102,11 @@ module Appwrite
         def update_prefs(
             prefs:
         )
-            api_path = '/account/prefs'
-
             if prefs.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "prefs"')
             end
+
+            api_path = '/account/prefs'
 
             api_params = {
                 prefs: prefs,
@@ -1174,8 +1144,6 @@ module Appwrite
             email:,
             url:
         )
-            api_path = '/account/recovery'
-
             if email.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "email"')
             end
@@ -1183,6 +1151,8 @@ module Appwrite
             if url.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "url"')
             end
+
+            api_path = '/account/recovery'
 
             api_params = {
                 email: email,
@@ -1225,8 +1195,6 @@ module Appwrite
             secret:,
             password:
         )
-            api_path = '/account/recovery'
-
             if user_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userId"')
             end
@@ -1238,6 +1206,8 @@ module Appwrite
             if password.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "password"')
             end
+
+            api_path = '/account/recovery'
 
             api_params = {
                 userId: user_id,
@@ -1392,7 +1362,8 @@ module Appwrite
         end
 
         # Delete all sessions from the user account and remove any sessions cookies
-        # from the end client.
+        # from the end client. Pass `current` as false to keep the session making the
+        # request and sign out of every other session.
         #
         # @param [] current Delete the current session too. Use false to sign out of every other session while staying signed in on this one.
         #
@@ -1409,6 +1380,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1451,6 +1423,9 @@ module Appwrite
 
         # Allow the user to login into their account by providing a valid email and
         # password combination. This route will create a new session for the user.
+        # Use the optional `duration` parameter to create a shorter session, for
+        # example when the user doesn&#039;t choose &quot;remember me&quot;. It must be at least 60
+        # seconds and cannot exceed the project maximum session length.
         #
         # A user is limited to 10 active sessions at a time by default. [Learn more
         # about session
@@ -1466,8 +1441,6 @@ module Appwrite
             password:,
             duration: nil
         )
-            api_path = '/account/sessions/email'
-
             if email.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "email"')
             end
@@ -1475,6 +1448,8 @@ module Appwrite
             if password.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "password"')
             end
+
+            api_path = '/account/sessions/email'
 
             api_params = {
                 email: email,
@@ -1605,8 +1580,6 @@ module Appwrite
             user_id:,
             secret:
         )
-            api_path = '/account/sessions/magic-url'
-
             if user_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userId"')
             end
@@ -1614,6 +1587,8 @@ module Appwrite
             if secret.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "secret"')
             end
+
+            api_path = '/account/sessions/magic-url'
 
             api_params = {
                 userId: user_id,
@@ -1650,8 +1625,6 @@ module Appwrite
             user_id:,
             secret:
         )
-            api_path = '/account/sessions/phone'
-
             if user_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userId"')
             end
@@ -1659,6 +1632,8 @@ module Appwrite
             if secret.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "secret"')
             end
+
+            api_path = '/account/sessions/phone'
 
             api_params = {
                 userId: user_id,
@@ -1692,8 +1667,6 @@ module Appwrite
             user_id:,
             secret:
         )
-            api_path = '/account/sessions/token'
-
             if user_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userId"')
             end
@@ -1701,6 +1674,8 @@ module Appwrite
             if secret.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "secret"')
             end
+
+            api_path = '/account/sessions/token'
 
             api_params = {
                 userId: user_id,
@@ -1731,12 +1706,12 @@ module Appwrite
         def get_session(
             session_id:
         )
-            api_path = '/account/sessions/{sessionId}'
-                .gsub('{sessionId}', session_id)
-
-            if session_id.nil?
+            if session_id.nil? || session_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "sessionId"')
             end
+
+            api_path = '/account/sessions/{sessionId}'
+                .gsub('{sessionId}', session_id)
 
             api_params = {}
 
@@ -1764,12 +1739,12 @@ module Appwrite
         def update_session(
             session_id:
         )
-            api_path = '/account/sessions/{sessionId}'
-                .gsub('{sessionId}', session_id)
-
-            if session_id.nil?
+            if session_id.nil? || session_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "sessionId"')
             end
+
+            api_path = '/account/sessions/{sessionId}'
+                .gsub('{sessionId}', session_id)
 
             api_params = {}
 
@@ -1800,18 +1775,19 @@ module Appwrite
         def delete_session(
             session_id:
         )
-            api_path = '/account/sessions/{sessionId}'
-                .gsub('{sessionId}', session_id)
-
-            if session_id.nil?
+            if session_id.nil? || session_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "sessionId"')
             end
+
+            api_path = '/account/sessions/{sessionId}'
+                .gsub('{sessionId}', session_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1873,8 +1849,6 @@ module Appwrite
             email:,
             phrase: nil
         )
-            api_path = '/account/tokens/email'
-
             if user_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userId"')
             end
@@ -1882,6 +1856,8 @@ module Appwrite
             if email.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "email"')
             end
+
+            api_path = '/account/tokens/email'
 
             api_params = {
                 userId: user_id,
@@ -1931,8 +1907,6 @@ module Appwrite
             url: nil,
             phrase: nil
         )
-            api_path = '/account/tokens/magic-url'
-
             if user_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userId"')
             end
@@ -1940,6 +1914,8 @@ module Appwrite
             if email.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "email"')
             end
+
+            api_path = '/account/tokens/magic-url'
 
             api_params = {
                 userId: user_id,
@@ -1974,11 +1950,15 @@ module Appwrite
         # session](https://appwrite.io/docs/references/cloud/client-web/account#createSession)
         # endpoint.
         #
+        # If there is already an active session, the OAuth2 identity is attached to
+        # the logged-in account and that session stays active until the token is
+        # exchanged for a new one.
+        #
         # A user is limited to 10 active sessions at a time by default. [Learn more
         # about session
         # limits](https://appwrite.io/docs/authentication-security#limits).
         #
-        # @param [OAuthProvider] provider OAuth2 Provider. Currently, supported providers are: amazon, apple, appwrite, auth0, authentik, autodesk, bitbucket, bitly, box, cloudflare, dailymotion, discord, disqus, dropbox, etsy, facebook, figma, fusionauth, github, gitlab, google, huggingface, keycloak, kick, linkedin, microsoft, notion, oidc, okta, paypal, paypalSandbox, podio, resend, salesforce, slack, spotify, stripe, tradeshift, tradeshiftBox, twitch, wordpress, x, yahoo, yammer, yandex, zoho, zoom.
+        # @param [OAuthProvider] provider OAuth2 Provider. Currently, supported providers are: amazon, apple, appwrite, auth0, authentik, autodesk, bitbucket, bitly, box, cloudflare, dailymotion, discord, disqus, dropbox, etsy, facebook, figma, fusionauth, github, gitlab, google, huggingface, kakao, keycloak, kick, linkedin, microsoft, notion, oidc, okta, paypal, paypalSandbox, podio, resend, salesforce, slack, spotify, stripe, tiktok, tradeshift, tradeshiftBox, twitch, webflow, wordpress, x, yahoo, yammer, yandex, zoho, zoom.
         # @param [String] success URL to redirect back to your app after a successful login attempt.  Only URLs from hostnames in your project&#039;s platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.
         # @param [String] failure URL to redirect back to your app after a failed login attempt.  Only URLs from hostnames in your project&#039;s platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.
         # @param [Array] scopes A list of custom OAuth2 scopes. Check each provider internal docs for a list of supported scopes. Maximum of 100 scopes are allowed, each 4096 characters long.
@@ -1992,12 +1972,12 @@ module Appwrite
             scopes: nil,
             state: nil
         )
-            api_path = '/account/tokens/oauth2/{provider}'
-                .gsub('{provider}', provider)
-
             if provider.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "provider"')
             end
+
+            api_path = '/account/tokens/oauth2/{provider}'
+                .gsub('{provider}', provider)
 
             api_params = {
                 success: success,
@@ -2117,8 +2097,6 @@ module Appwrite
             user_id:,
             phone:
         )
-            api_path = '/account/tokens/phone'
-
             if user_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userId"')
             end
@@ -2126,6 +2104,8 @@ module Appwrite
             if phone.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "phone"')
             end
+
+            api_path = '/account/tokens/phone'
 
             api_params = {
                 userId: user_id,
@@ -2169,11 +2149,11 @@ module Appwrite
         def create_email_verification(
             url:
         )
-            api_path = '/account/verifications/email'
-
             if url.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "url"')
             end
+
+            api_path = '/account/verifications/email'
 
             api_params = {
                 url: url,
@@ -2219,11 +2199,11 @@ module Appwrite
         def create_verification(
             url:
         )
-            api_path = '/account/verifications/email'
-
             if url.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "url"')
             end
+
+            api_path = '/account/verifications/email'
 
             api_params = {
                 url: url,
@@ -2257,8 +2237,6 @@ module Appwrite
             user_id:,
             secret:
         )
-            api_path = '/account/verifications/email'
-
             if user_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userId"')
             end
@@ -2266,6 +2244,8 @@ module Appwrite
             if secret.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "secret"')
             end
+
+            api_path = '/account/verifications/email'
 
             api_params = {
                 userId: user_id,
@@ -2303,8 +2283,6 @@ module Appwrite
             user_id:,
             secret:
         )
-            api_path = '/account/verifications/email'
-
             if user_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userId"')
             end
@@ -2312,6 +2290,8 @@ module Appwrite
             if secret.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "secret"')
             end
+
+            api_path = '/account/verifications/email'
 
             api_params = {
                 userId: user_id,
@@ -2465,8 +2445,6 @@ module Appwrite
             user_id:,
             secret:
         )
-            api_path = '/account/verifications/phone'
-
             if user_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userId"')
             end
@@ -2474,6 +2452,8 @@ module Appwrite
             if secret.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "secret"')
             end
+
+            api_path = '/account/verifications/phone'
 
             api_params = {
                 userId: user_id,

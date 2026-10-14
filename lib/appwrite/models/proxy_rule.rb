@@ -54,6 +54,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "domain" => "", "type" => "", "trigger" => "", "redirectUrl" => "", "redirectStatusCode" => 301, "deploymentId" => "", "deploymentResourceId" => "", "deploymentVcsProviderBranch" => "", "status" => "unverified", "logs" => "" }.merge(map)
                 ProxyRule.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

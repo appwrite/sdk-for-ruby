@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "enabled" => false }.merge(map)
                 PolicyDenyCorporateEmail.new(
                     id: map["$id"],
                     enabled: map["enabled"]

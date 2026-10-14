@@ -24,6 +24,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "accessedAt" => "" }.merge(map)
                 Passkey.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

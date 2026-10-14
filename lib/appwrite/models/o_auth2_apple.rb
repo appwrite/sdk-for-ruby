@@ -33,6 +33,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "enabled" => false, "serviceId" => "", "keyId" => "", "teamId" => "", "p8File" => "", "nativeEnabled" => false, "nativeClientIds" => [] }.merge(map)
                 OAuth2Apple.new(
                     id: map["$id"],
                     enabled: map["enabled"],

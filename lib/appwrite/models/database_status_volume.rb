@@ -21,6 +21,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "path" => "", "usedPercent" => "0%", "available" => "0GB", "mounted" => false }.merge(map)
                 DatabaseStatusVolume.new(
                     xpath: map["path"],
                     used_percent: map["usedPercent"],

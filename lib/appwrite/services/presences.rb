@@ -51,12 +51,12 @@ module Appwrite
         def get(
             presence_id:
         )
-            api_path = '/presences/{presenceId}'
-                .gsub('{presenceId}', presence_id)
-
-            if presence_id.nil?
+            if presence_id.nil? || presence_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "presenceId"')
             end
+
+            api_path = '/presences/{presenceId}'
+                .gsub('{presenceId}', presence_id)
 
             api_params = {}
 
@@ -93,10 +93,7 @@ module Appwrite
             expires_at: nil,
             metadata: nil
         )
-            api_path = '/presences/{presenceId}'
-                .gsub('{presenceId}', presence_id)
-
-            if presence_id.nil?
+            if presence_id.nil? || presence_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "presenceId"')
             end
 
@@ -107,6 +104,9 @@ module Appwrite
             if status.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "status"')
             end
+
+            api_path = '/presences/{presenceId}'
+                .gsub('{presenceId}', presence_id)
 
             api_params = {
                 userId: user_id,
@@ -153,16 +153,16 @@ module Appwrite
             permissions: nil,
             purge: nil
         )
-            api_path = '/presences/{presenceId}'
-                .gsub('{presenceId}', presence_id)
-
-            if presence_id.nil?
+            if presence_id.nil? || presence_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "presenceId"')
             end
 
             if user_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userId"')
             end
+
+            api_path = '/presences/{presenceId}'
+                .gsub('{presenceId}', presence_id)
 
             api_params = {
                 userId: user_id,
@@ -197,18 +197,19 @@ module Appwrite
         def delete(
             presence_id:
         )
-            api_path = '/presences/{presenceId}'
-                .gsub('{presenceId}', presence_id)
-
-            if presence_id.nil?
+            if presence_id.nil? || presence_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "presenceId"')
             end
+
+            api_path = '/presences/{presenceId}'
+                .gsub('{presenceId}', presence_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(

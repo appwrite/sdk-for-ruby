@@ -18,6 +18,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "region" => "", "endpoint" => "" }.merge(map)
                 Oauth2Project.new(
                     id: map["$id"],
                     region: map["region"],

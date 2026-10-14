@@ -30,6 +30,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "enabled" => false, "clientId" => "", "clientSecret" => "", "prompt" => ["consent"], "nativeEnabled" => false, "nativeClientIds" => [] }.merge(map)
                 OAuth2Google.new(
                     id: map["$id"],
                     enabled: map["enabled"],

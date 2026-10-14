@@ -90,6 +90,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "registration" => "", "status" => true, "labels" => [], "passwordUpdate" => "", "email" => "", "phone" => "", "emailVerification" => false, "phoneVerification" => false, "mfa" => false, "targets" => [], "accessedAt" => "" }.merge(map)
                 User.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

@@ -24,6 +24,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "totp" => false, "phone" => false, "email" => false, "recoveryCode" => false, "custom" => false }.merge(map)
                 MfaFactors.new(
                     totp: map["totp"],
                     phone: map["phone"],

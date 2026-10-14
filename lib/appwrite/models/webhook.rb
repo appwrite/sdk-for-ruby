@@ -48,6 +48,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "url" => "", "events" => [], "tls" => true, "authUsername" => "", "authPassword" => "", "secret" => "", "enabled" => true, "logs" => "", "attempts" => 0 }.merge(map)
                 Webhook.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

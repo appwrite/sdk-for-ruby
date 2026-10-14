@@ -16,7 +16,7 @@ result = vectors_db.create_collection(
     database_id: '<DATABASE_ID>',
     collection_id: '<COLLECTION_ID>',
     name: '<NAME>',
-    dimension: 1,
+    dimension: 4,
     permissions: [Permission.read(Role.any())], # optional
     document_security: false, # optional
     enabled: false # optional

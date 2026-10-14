@@ -20,10 +20,11 @@ module Appwrite
                 @enabled = enabled
                 @customer_key = customer_key
                 @customer_secret = customer_secret
-                @prompt = prompt.nil? ? prompt : validate_prompt(prompt)
+                @prompt = validate_prompt(prompt)
             end
 
             def self.from(map:)
+                map = { "$id" => "", "enabled" => false, "customerKey" => "", "customerSecret" => "", "prompt" => [] }.merge(map)
                 OAuth2Salesforce.new(
                     id: map["$id"],
                     enabled: map["enabled"],

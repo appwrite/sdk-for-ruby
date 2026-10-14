@@ -12,6 +12,8 @@ module Appwrite
         # Depending on type, the invalidation purges a single cache tag, a single URL
         # path, or all cached content for the domain.
         #
+        # Domains that route to a function do not support cache invalidation.
+        #
         # @param [String] domain Domain name.
         # @param [InvalidationType] type Type of reference passed. Allowed values are: tag, path, all
         # @param [String] reference Reference to invalidate. Depending on type this can be: cache tag name (up to 128 characters), URL path (up to 2048 characters). Not required when type is all.
@@ -22,8 +24,6 @@ module Appwrite
             type:,
             reference: nil
         )
-            api_path = '/proxy/invalidations'
-
             if domain.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "domain"')
             end
@@ -31,6 +31,8 @@ module Appwrite
             if type.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "type"')
             end
+
+            api_path = '/proxy/invalidations'
 
             api_params = {
                 domain: domain,
@@ -96,11 +98,11 @@ module Appwrite
         def create_api_rule(
             domain:
         )
-            api_path = '/proxy/rules/api'
-
             if domain.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "domain"')
             end
+
+            api_path = '/proxy/rules/api'
 
             api_params = {
                 domain: domain,
@@ -136,8 +138,6 @@ module Appwrite
             function_id:,
             branch: nil
         )
-            api_path = '/proxy/rules/function'
-
             if domain.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "domain"')
             end
@@ -145,6 +145,8 @@ module Appwrite
             if function_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
+
+            api_path = '/proxy/rules/function'
 
             api_params = {
                 domain: domain,
@@ -187,8 +189,6 @@ module Appwrite
             resource_id:,
             resource_type:
         )
-            api_path = '/proxy/rules/redirect'
-
             if domain.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "domain"')
             end
@@ -208,6 +208,8 @@ module Appwrite
             if resource_type.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "resourceType"')
             end
+
+            api_path = '/proxy/rules/redirect'
 
             api_params = {
                 domain: domain,
@@ -247,8 +249,6 @@ module Appwrite
             site_id:,
             branch: nil
         )
-            api_path = '/proxy/rules/site'
-
             if domain.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "domain"')
             end
@@ -256,6 +256,8 @@ module Appwrite
             if site_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "siteId"')
             end
+
+            api_path = '/proxy/rules/site'
 
             api_params = {
                 domain: domain,
@@ -286,12 +288,12 @@ module Appwrite
         def get_rule(
             rule_id:
         )
-            api_path = '/proxy/rules/{ruleId}'
-                .gsub('{ruleId}', rule_id)
-
-            if rule_id.nil?
+            if rule_id.nil? || rule_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
             end
+
+            api_path = '/proxy/rules/{ruleId}'
+                .gsub('{ruleId}', rule_id)
 
             api_params = {}
 
@@ -317,18 +319,19 @@ module Appwrite
         def delete_rule(
             rule_id:
         )
-            api_path = '/proxy/rules/{ruleId}'
-                .gsub('{ruleId}', rule_id)
-
-            if rule_id.nil?
+            if rule_id.nil? || rule_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
             end
+
+            api_path = '/proxy/rules/{ruleId}'
+                .gsub('{ruleId}', rule_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -350,12 +353,12 @@ module Appwrite
         def update_rule_status(
             rule_id:
         )
-            api_path = '/proxy/rules/{ruleId}/status'
-                .gsub('{ruleId}', rule_id)
-
-            if rule_id.nil?
+            if rule_id.nil? || rule_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
             end
+
+            api_path = '/proxy/rules/{ruleId}/status'
+                .gsub('{ruleId}', rule_id)
 
             api_params = {}
 

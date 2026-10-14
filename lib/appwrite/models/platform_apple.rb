@@ -27,6 +27,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "bundleIdentifier" => "" }.merge(map)
                 PlatformApple.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

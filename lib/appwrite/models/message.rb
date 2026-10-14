@@ -48,6 +48,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "providerType" => "", "topics" => [], "users" => [], "targets" => [], "deliveredTotal" => 0, "data" => {}, "status" => "draft" }.merge(map)
                 Message.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

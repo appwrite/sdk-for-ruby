@@ -18,6 +18,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "rpId" => "", "origins" => [] }.merge(map)
                 PolicyPasskey.new(
                     id: map["$id"],
                     rp_id: map["rpId"],

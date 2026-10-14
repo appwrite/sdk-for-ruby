@@ -12,6 +12,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "type" => "md5" }.merge(map)
                 AlgoMd5.new(
                     type: map["type"]
                 )

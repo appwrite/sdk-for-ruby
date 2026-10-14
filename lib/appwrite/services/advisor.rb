@@ -49,12 +49,12 @@ module Appwrite
         def get_report(
             report_id:
         )
-            api_path = '/reports/{reportId}'
-                .gsub('{reportId}', report_id)
-
-            if report_id.nil?
+            if report_id.nil? || report_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "reportId"')
             end
+
+            api_path = '/reports/{reportId}'
+                .gsub('{reportId}', report_id)
 
             api_params = {}
 
@@ -82,18 +82,19 @@ module Appwrite
         def delete_report(
             report_id:
         )
-            api_path = '/reports/{reportId}'
-                .gsub('{reportId}', report_id)
-
-            if report_id.nil?
+            if report_id.nil? || report_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "reportId"')
             end
+
+            api_path = '/reports/{reportId}'
+                .gsub('{reportId}', report_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -118,12 +119,12 @@ module Appwrite
             queries: nil,
             total: nil
         )
-            api_path = '/reports/{reportId}/insights'
-                .gsub('{reportId}', report_id)
-
-            if report_id.nil?
+            if report_id.nil? || report_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "reportId"')
             end
+
+            api_path = '/reports/{reportId}/insights'
+                .gsub('{reportId}', report_id)
 
             api_params = {
                 queries: queries,
@@ -155,17 +156,17 @@ module Appwrite
             report_id:,
             insight_id:
         )
-            api_path = '/reports/{reportId}/insights/{insightId}'
-                .gsub('{reportId}', report_id)
-                .gsub('{insightId}', insight_id)
-
-            if report_id.nil?
+            if report_id.nil? || report_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "reportId"')
             end
 
-            if insight_id.nil?
+            if insight_id.nil? || insight_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "insightId"')
             end
+
+            api_path = '/reports/{reportId}/insights/{insightId}'
+                .gsub('{reportId}', report_id)
+                .gsub('{insightId}', insight_id)
 
             api_params = {}
 

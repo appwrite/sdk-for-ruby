@@ -21,6 +21,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "userId" => "", "expire" => "" }.merge(map)
                 MfaChallenge.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

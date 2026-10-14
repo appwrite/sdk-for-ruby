@@ -9,7 +9,6 @@ module Appwrite
             attr_reader :name
             attr_reader :team_id
             attr_reader :region
-            attr_reader :dev_keys
             attr_reader :smtp_enabled
             attr_reader :smtp_sender_name
             attr_reader :smtp_sender_email
@@ -60,7 +59,6 @@ module Appwrite
                 name:,
                 team_id:,
                 region:,
-                dev_keys:,
                 smtp_enabled:,
                 smtp_sender_name:,
                 smtp_sender_email:,
@@ -88,20 +86,20 @@ module Appwrite
                 mcp_accessed_at:,
                 o_auth2_server_enabled:,
                 o_auth2_server_authorization_url:,
-                o_auth2_server_scopes:,
-                o_auth2_server_default_scopes:,
-                o_auth2_server_installation_scopes:,
-                o_auth2_server_authorization_details_types:,
-                o_auth2_server_access_token_duration:,
-                o_auth2_server_refresh_token_duration:,
-                o_auth2_server_public_access_token_duration:,
-                o_auth2_server_public_refresh_token_duration:,
-                o_auth2_server_installation_access_token_duration:,
+                o_auth2_server_scopes: [],
+                o_auth2_server_default_scopes: [],
+                o_auth2_server_installation_scopes: [],
+                o_auth2_server_authorization_details_types: [],
+                o_auth2_server_access_token_duration: 0,
+                o_auth2_server_refresh_token_duration: 0,
+                o_auth2_server_public_access_token_duration: 0,
+                o_auth2_server_public_refresh_token_duration: 0,
+                o_auth2_server_installation_access_token_duration: 0,
                 o_auth2_server_confidential_pkce:,
                 o_auth2_server_verification_url:,
-                o_auth2_server_user_code_length:,
-                o_auth2_server_user_code_format:,
-                o_auth2_server_device_code_duration:,
+                o_auth2_server_user_code_length: 8,
+                o_auth2_server_user_code_format: "alphanumeric",
+                o_auth2_server_device_code_duration: 600,
                 o_auth2_server_discovery_url:
             )
                 @id = id
@@ -110,7 +108,6 @@ module Appwrite
                 @name = name
                 @team_id = team_id
                 @region = region
-                @dev_keys = dev_keys
                 @smtp_enabled = smtp_enabled
                 @smtp_sender_name = smtp_sender_name
                 @smtp_sender_email = smtp_sender_email
@@ -156,6 +153,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "teamId" => "", "region" => "fra", "smtpEnabled" => false, "smtpSenderName" => "", "smtpSenderEmail" => "", "smtpReplyToName" => "", "smtpReplyToEmail" => "", "smtpHost" => "", "smtpPort" => 0, "smtpUsername" => "", "smtpPassword" => "", "smtpSecure" => "", "pingCount" => 0, "pingedAt" => "", "labels" => [], "status" => "active", "onboarding" => {}, "authMethods" => [], "services" => [], "protocols" => [], "blocks" => [], "consoleAccessedAt" => "" }.merge(map)
                 Project.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],
@@ -163,7 +161,6 @@ module Appwrite
                     name: map["name"],
                     team_id: map["teamId"],
                     region: map["region"],
-                    dev_keys: map["devKeys"].map { |it| DevKey.from(map: it) },
                     smtp_enabled: map["smtpEnabled"],
                     smtp_sender_name: map["smtpSenderName"],
                     smtp_sender_email: map["smtpSenderEmail"],
@@ -217,7 +214,6 @@ module Appwrite
                     "name": @name,
                     "teamId": @team_id,
                     "region": @region,
-                    "devKeys": @dev_keys.map { |it| it.to_map },
                     "smtpEnabled": @smtp_enabled,
                     "smtpSenderName": @smtp_sender_name,
                     "smtpSenderEmail": @smtp_sender_email,

@@ -69,8 +69,6 @@ module Appwrite
             antivirus: nil,
             transformations: nil
         )
-            api_path = '/storage/buckets'
-
             if bucket_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
@@ -78,6 +76,8 @@ module Appwrite
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
+
+            api_path = '/storage/buckets'
 
             api_params = {
                 bucketId: bucket_id,
@@ -117,12 +117,12 @@ module Appwrite
         def get_bucket(
             bucket_id:
         )
-            api_path = '/storage/buckets/{bucketId}'
-                .gsub('{bucketId}', bucket_id)
-
-            if bucket_id.nil?
+            if bucket_id.nil? || bucket_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
+
+            api_path = '/storage/buckets/{bucketId}'
+                .gsub('{bucketId}', bucket_id)
 
             api_params = {}
 
@@ -168,16 +168,16 @@ module Appwrite
             antivirus: nil,
             transformations: nil
         )
-            api_path = '/storage/buckets/{bucketId}'
-                .gsub('{bucketId}', bucket_id)
-
-            if bucket_id.nil?
+            if bucket_id.nil? || bucket_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
+
+            api_path = '/storage/buckets/{bucketId}'
+                .gsub('{bucketId}', bucket_id)
 
             api_params = {
                 name: name,
@@ -215,18 +215,19 @@ module Appwrite
         def delete_bucket(
             bucket_id:
         )
-            api_path = '/storage/buckets/{bucketId}'
-                .gsub('{bucketId}', bucket_id)
-
-            if bucket_id.nil?
+            if bucket_id.nil? || bucket_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
+
+            api_path = '/storage/buckets/{bucketId}'
+                .gsub('{bucketId}', bucket_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -252,12 +253,12 @@ module Appwrite
             search: nil,
             total: nil
         )
-            api_path = '/storage/buckets/{bucketId}/files'
-                .gsub('{bucketId}', bucket_id)
-
-            if bucket_id.nil?
+            if bucket_id.nil? || bucket_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
+
+            api_path = '/storage/buckets/{bucketId}/files'
+                .gsub('{bucketId}', bucket_id)
 
             api_params = {
                 queries: queries,
@@ -313,10 +314,7 @@ module Appwrite
             folder: nil,
             on_progress: nil
         )
-            api_path = '/storage/buckets/{bucketId}/files'
-                .gsub('{bucketId}', bucket_id)
-
-            if bucket_id.nil?
+            if bucket_id.nil? || bucket_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
@@ -327,6 +325,9 @@ module Appwrite
             if file.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "file"')
             end
+
+            api_path = '/storage/buckets/{bucketId}/files'
+                .gsub('{bucketId}', bucket_id)
 
             api_params = {
                 fileId: file_id,
@@ -351,6 +352,7 @@ module Appwrite
                 param_name: param_name,
                 id_param_name: id_param_name,
                 on_progress: on_progress,
+                method: 'POST',
                 response_type: Models::File
             )
         end
@@ -366,17 +368,17 @@ module Appwrite
             bucket_id:,
             file_id:
         )
-            api_path = '/storage/buckets/{bucketId}/files/{fileId}'
-                .gsub('{bucketId}', bucket_id)
-                .gsub('{fileId}', file_id)
-
-            if bucket_id.nil?
+            if bucket_id.nil? || bucket_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
-            if file_id.nil?
+            if file_id.nil? || file_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
+
+            api_path = '/storage/buckets/{bucketId}/files/{fileId}'
+                .gsub('{bucketId}', bucket_id)
+                .gsub('{fileId}', file_id)
 
             api_params = {}
 
@@ -409,17 +411,17 @@ module Appwrite
             name: nil,
             permissions: nil
         )
-            api_path = '/storage/buckets/{bucketId}/files/{fileId}'
-                .gsub('{bucketId}', bucket_id)
-                .gsub('{fileId}', file_id)
-
-            if bucket_id.nil?
+            if bucket_id.nil? || bucket_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
-            if file_id.nil?
+            if file_id.nil? || file_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
+
+            api_path = '/storage/buckets/{bucketId}/files/{fileId}'
+                .gsub('{bucketId}', bucket_id)
+                .gsub('{fileId}', file_id)
 
             api_params = {
                 name: name,
@@ -452,23 +454,24 @@ module Appwrite
             bucket_id:,
             file_id:
         )
-            api_path = '/storage/buckets/{bucketId}/files/{fileId}'
-                .gsub('{bucketId}', bucket_id)
-                .gsub('{fileId}', file_id)
-
-            if bucket_id.nil?
+            if bucket_id.nil? || bucket_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
-            if file_id.nil?
+            if file_id.nil? || file_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
+
+            api_path = '/storage/buckets/{bucketId}/files/{fileId}'
+                .gsub('{bucketId}', bucket_id)
+                .gsub('{fileId}', file_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -493,17 +496,17 @@ module Appwrite
             file_id:,
             token: nil
         )
-            api_path = '/storage/buckets/{bucketId}/files/{fileId}/download'
-                .gsub('{bucketId}', bucket_id)
-                .gsub('{fileId}', file_id)
-
-            if bucket_id.nil?
+            if bucket_id.nil? || bucket_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
-            if file_id.nil?
+            if file_id.nil? || file_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
+
+            api_path = '/storage/buckets/{bucketId}/files/{fileId}/download'
+                .gsub('{bucketId}', bucket_id)
+                .gsub('{fileId}', file_id)
 
             api_params = {
                 token: token,
@@ -532,7 +535,7 @@ module Appwrite
         # @param [String] file_id File ID
         # @param [Integer] width Resize preview image width, Pass an integer between 0 to 4000.
         # @param [Integer] height Resize preview image height, Pass an integer between 0 to 4000.
-        # @param [ImageGravity] gravity Image crop gravity. Can be one of center,top-left,top,top-right,left,right,bottom-left,bottom,bottom-right
+        # @param [ImageGravity] gravity Image crop gravity. Can be one of auto,center,top-left,top,top-right,left,right,bottom-left,bottom,bottom-right
         # @param [Integer] quality Preview image quality. Pass an integer between 0 to 100. Defaults to keep existing image quality.
         # @param [Integer] border_width Preview image border in pixels. Pass an integer between 0 to 100. Defaults to 0.
         # @param [String] border_color Preview image border color. Use a valid HEX color, no # is needed for prefix.
@@ -560,17 +563,17 @@ module Appwrite
             output: nil,
             token: nil
         )
-            api_path = '/storage/buckets/{bucketId}/files/{fileId}/preview'
-                .gsub('{bucketId}', bucket_id)
-                .gsub('{fileId}', file_id)
-
-            if bucket_id.nil?
+            if bucket_id.nil? || bucket_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
-            if file_id.nil?
+            if file_id.nil? || file_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
+
+            api_path = '/storage/buckets/{bucketId}/files/{fileId}/preview'
+                .gsub('{bucketId}', bucket_id)
+                .gsub('{fileId}', file_id)
 
             api_params = {
                 width: width,
@@ -614,17 +617,17 @@ module Appwrite
             file_id:,
             token: nil
         )
-            api_path = '/storage/buckets/{bucketId}/files/{fileId}/view'
-                .gsub('{bucketId}', bucket_id)
-                .gsub('{fileId}', file_id)
-
-            if bucket_id.nil?
+            if bucket_id.nil? || bucket_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
-            if file_id.nil?
+            if file_id.nil? || file_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
+
+            api_path = '/storage/buckets/{bucketId}/files/{fileId}/view'
+                .gsub('{bucketId}', bucket_id)
+                .gsub('{fileId}', file_id)
 
             api_params = {
                 token: token,

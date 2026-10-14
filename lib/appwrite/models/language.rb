@@ -18,6 +18,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "name" => "", "code" => "", "nativeName" => "" }.merge(map)
                 Language.new(
                     name: map["name"],
                     code: map["code"],

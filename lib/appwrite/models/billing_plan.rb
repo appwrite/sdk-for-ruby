@@ -90,7 +90,7 @@ module Appwrite
                 storage:,
                 image_transformations:,
                 screenshots_generated:,
-                members:,
+                members: 0,
                 webhooks:,
                 waf_rules:,
                 environments:,
@@ -115,10 +115,10 @@ module Appwrite
                 topics:,
                 auth_phone:,
                 domains:,
-                activity_logs:,
+                activity_logs: 1,
                 usage_logs:,
-                usage_logs_intervals:,
-                usage_aggregate_only_metrics:,
+                usage_logs_intervals: ["15m", "1h", "1d"],
+                usage_aggregate_only_metrics: [],
                 project_inactivity_days:,
                 alert_limit:,
                 usage:,
@@ -128,7 +128,7 @@ module Appwrite
                 email_branding:,
                 requires_payment_method:,
                 requires_billing_address:,
-                eligible_countries:,
+                eligible_countries: [],
                 is_available:,
                 self_service:,
                 premium_support:,
@@ -142,10 +142,10 @@ module Appwrite
                 supports_free_email_validation:,
                 supports_corporate_email_validation:,
                 supports_project_specific_roles:,
-                backups_enabled:,
+                backups_enabled: true,
                 usage_per_project:,
                 supported_addons:,
-                backup_policies:,
+                backup_policies: 0,
                 deployment_size:,
                 build_size:,
                 functions_interval_minimum:,
@@ -234,6 +234,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "name" => "", "desc" => "", "order" => 0, "price" => 0, "trial" => 0, "bandwidth" => 0, "storage" => 0, "imageTransformations" => 0, "screenshotsGenerated" => 0, "webhooks" => 0, "wafRules" => 0, "environments" => 0, "projects" => 0, "platforms" => 0, "users" => 0, "teams" => 0, "databases" => 0, "databasesReads" => 0, "databasesWrites" => 0, "databasesBatchSize" => 0, "buckets" => 0, "fileSize" => 0, "functions" => 0, "sites" => 0, "executions" => 0, "executionsRetentionCount" => 1000, "GBHours" => 0, "realtime" => 0, "realtimeMessages" => 0, "messages" => 0, "topics" => 0, "authPhone" => 0, "domains" => 0, "usageLogs" => 0, "projectInactivityDays" => 0, "alertLimit" => 80, "budgetCapEnabled" => false, "customSmtp" => false, "emailBranding" => false, "requiresPaymentMethod" => true, "requiresBillingAddress" => false, "isAvailable" => true, "selfService" => true, "premiumSupport" => true, "budgeting" => true, "supportsMockNumbers" => true, "supportsOrganizationRoles" => true, "supportsCredits" => false, "supportsDedicatedDatabases" => false, "supportsDisposableEmailValidation" => false, "supportsCanonicalEmailValidation" => false, "supportsFreeEmailValidation" => false, "supportsCorporateEmailValidation" => false, "supportsProjectSpecificRoles" => false, "usagePerProject" => true, "deploymentSize" => 0, "buildSize" => 0, "functionsIntervalMinimum" => 0, "databasesAllowEncrypt" => false, "databaseComputeCredit" => 0 }.merge(map)
                 BillingPlan.new(
                     id: map["$id"],
                     name: map["name"],
@@ -276,7 +277,7 @@ module Appwrite
                     usage_aggregate_only_metrics: map["usageAggregateOnlyMetrics"],
                     project_inactivity_days: map["projectInactivityDays"],
                     alert_limit: map["alertLimit"],
-                    usage: UsageBillingPlan.from(map: map["usage"]),
+                    usage: map["usage"].nil? ? nil : UsageBillingPlan.from(map: map["usage"]),
                     addons: BillingPlanAddon.from(map: map["addons"]),
                     budget_cap_enabled: map["budgetCapEnabled"],
                     custom_smtp: map["customSmtp"],
@@ -356,7 +357,7 @@ module Appwrite
                     "usageAggregateOnlyMetrics": @usage_aggregate_only_metrics,
                     "projectInactivityDays": @project_inactivity_days,
                     "alertLimit": @alert_limit,
-                    "usage": @usage.to_map,
+                    "usage": @usage&.to_map,
                     "addons": @addons.to_map,
                     "budgetCapEnabled": @budget_cap_enabled,
                     "customSmtp": @custom_smtp,
@@ -397,7 +398,6 @@ module Appwrite
 
             def validate_group(group)
                 valid_group = [
-                    Appwrite::Enums::BillingPlanGroup::STARTER,
                     Appwrite::Enums::BillingPlanGroup::FREE,
                     Appwrite::Enums::BillingPlanGroup::START,
                     Appwrite::Enums::BillingPlanGroup::PRO,

@@ -96,6 +96,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "actorType" => "", "actorId" => "", "actorEmail" => "", "actorName" => "", "resourceParent" => "", "resourceType" => "", "resourceId" => "", "resource" => "", "event" => "", "userAgent" => "", "ip" => "", "mode" => "", "country" => "", "continentCode" => "", "city" => "", "subdivisions" => "", "isp" => "", "autonomousSystemNumber" => "", "autonomousSystemOrganization" => "", "connectionType" => "", "connectionUsageType" => "", "connectionOrganization" => "", "time" => "", "projectId" => "", "teamId" => "", "hostname" => "", "sdk" => "", "sdkVersion" => "" }.merge(map)
                 ActivityEvent.new(
                     id: map["$id"],
                     actor_type: map["actorType"],

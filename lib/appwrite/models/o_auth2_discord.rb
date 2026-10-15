@@ -20,10 +20,11 @@ module Appwrite
                 @enabled = enabled
                 @client_id = client_id
                 @client_secret = client_secret
-                @prompt = prompt.nil? ? prompt : validate_prompt(prompt)
+                @prompt = validate_prompt(prompt)
             end
 
             def self.from(map:)
+                map = { "$id" => "", "enabled" => false, "clientId" => "", "clientSecret" => "", "prompt" => [] }.merge(map)
                 OAuth2Discord.new(
                     id: map["$id"],
                     enabled: map["enabled"],

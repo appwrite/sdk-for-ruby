@@ -24,7 +24,7 @@ result = vectors_db.create_document(
           "3" => 1.02
       },
         "metadata" => {
-          "key" => "value"
+          "key" => 'value'
       }
     },
     permissions: [Permission.read(Role.any())], # optional

@@ -17,8 +17,8 @@ module Appwrite
                 expires_in:,
                 refresh_token:,
                 scope:,
-                authorization_details:,
-                id_token:
+                authorization_details: nil,
+                id_token: nil
             )
                 @access_token = access_token
                 @token_type = token_type
@@ -30,6 +30,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "access_token" => "", "token_type" => "Bearer", "expires_in" => 0, "refresh_token" => "", "scope" => "" }.merge(map)
                 Oauth2Token.new(
                     access_token: map["access_token"],
                     token_type: map["token_type"],

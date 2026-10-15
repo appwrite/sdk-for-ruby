@@ -33,6 +33,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "key" => "", "name" => "", "version" => "", "base" => "", "image" => "", "logo" => "", "supports" => [] }.merge(map)
                 Runtime.new(
                     id: map["$id"],
                     key: map["key"],

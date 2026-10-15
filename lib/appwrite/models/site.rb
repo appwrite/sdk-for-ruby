@@ -114,6 +114,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "enabled" => true, "live" => true, "logging" => true, "framework" => "", "deploymentRetention" => 0, "deploymentId" => "", "deploymentCreatedAt" => "", "deploymentScreenshotLight" => "", "deploymentScreenshotDark" => "", "latestDeploymentId" => "", "latestDeploymentCreatedAt" => "", "latestDeploymentStatus" => "", "scopes" => [], "vars" => [], "timeout" => 15, "installCommand" => "", "buildCommand" => "", "startCommand" => "", "outputDirectory" => "", "installationId" => "", "providerRepositoryId" => "", "providerBranch" => "", "providerRootDirectory" => "", "providerSilentMode" => false, "providerBranches" => [], "providerPaths" => [], "buildSpecification" => "s-1vcpu-512mb", "runtimeSpecification" => "s-1vcpu-512mb", "buildRuntime" => "" }.merge(map)
                 Site.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

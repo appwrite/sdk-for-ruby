@@ -23,8 +23,8 @@ module Appwrite
                 updated_at:,
                 services:,
                 resources:,
-                resource_id:,
-                resource_type:,
+                resource_id: nil,
+                resource_type: nil,
                 retention:,
                 schedule:,
                 type:,
@@ -45,6 +45,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "name" => "", "$createdAt" => "", "$updatedAt" => "", "services" => [], "resources" => [], "retention" => 1, "schedule" => "0 * * * *", "type" => "full", "enabled" => false }.merge(map)
                 BackupPolicy.new(
                     id: map["$id"],
                     name: map["name"],

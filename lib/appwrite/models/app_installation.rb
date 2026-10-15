@@ -24,7 +24,7 @@ module Appwrite
                 authorization_details:,
                 created_by_id:,
                 created_by_name:,
-                last_accessed_at:
+                last_accessed_at: nil
             )
                 @id = id
                 @created_at = created_at
@@ -39,6 +39,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "appId" => "", "teamId" => "", "scopes" => [], "authorizationDetails" => [], "createdById" => "", "createdByName" => "" }.merge(map)
                 AppInstallation.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

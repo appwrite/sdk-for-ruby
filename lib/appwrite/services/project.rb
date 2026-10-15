@@ -17,6 +17,7 @@ module Appwrite
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -40,6 +41,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -53,7 +55,7 @@ module Appwrite
         # Update properties of a specific auth method. Use this endpoint to enable or
         # disable a method in your project.
         #
-        # @param [ProjectAuthMethodId] method_id Auth Method ID. Possible values: email-password,magic-url,email-otp,anonymous,invites,jwt,phone
+        # @param [ProjectAuthMethodId] method_id Auth Method ID. Possible values: email-password,magic-url,email-otp,anonymous,invites,jwt,phone,passkey
         # @param [] enabled Auth method status.
         #
         # @return [Project]
@@ -61,9 +63,6 @@ module Appwrite
             method_id:,
             enabled:
         )
-            api_path = '/project/auth-methods/{methodId}'
-                .gsub('{methodId}', method_id)
-
             if method_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "methodId"')
             end
@@ -71,6 +70,9 @@ module Appwrite
             if enabled.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "enabled"')
             end
+
+            api_path = '/project/auth-methods/{methodId}'
+                .gsub('{methodId}', method_id)
 
             api_params = {
                 enabled: enabled,
@@ -173,7 +175,7 @@ module Appwrite
         def get_environment(
             environment_id:
         )
-            if environment_id.nil?
+            if environment_id.nil? || environment_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "environmentId"')
             end
 
@@ -206,7 +208,7 @@ module Appwrite
             environment_id:,
             name:
         )
-            if environment_id.nil?
+            if environment_id.nil? || environment_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "environmentId"')
             end
 
@@ -244,7 +246,7 @@ module Appwrite
         def delete_environment(
             environment_id:
         )
-            if environment_id.nil?
+            if environment_id.nil? || environment_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "environmentId"')
             end
 
@@ -312,8 +314,6 @@ module Appwrite
             scopes:,
             duration:
         )
-            api_path = '/project/keys/ephemeral'
-
             if scopes.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "scopes"')
             end
@@ -321,6 +321,8 @@ module Appwrite
             if duration.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "duration"')
             end
+
+            api_path = '/project/keys/ephemeral'
 
             api_params = {
                 scopes: scopes,
@@ -350,12 +352,12 @@ module Appwrite
         def get_key(
             key_id:
         )
-            api_path = '/project/keys/{keyId}'
-                .gsub('{keyId}', key_id)
-
-            if key_id.nil?
+            if key_id.nil? || key_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "keyId"')
             end
+
+            api_path = '/project/keys/{keyId}'
+                .gsub('{keyId}', key_id)
 
             api_params = {}
 
@@ -388,10 +390,7 @@ module Appwrite
             scopes:,
             expire: nil
         )
-            api_path = '/project/keys/{keyId}'
-                .gsub('{keyId}', key_id)
-
-            if key_id.nil?
+            if key_id.nil? || key_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "keyId"')
             end
 
@@ -402,6 +401,9 @@ module Appwrite
             if scopes.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "scopes"')
             end
+
+            api_path = '/project/keys/{keyId}'
+                .gsub('{keyId}', key_id)
 
             api_params = {
                 name: name,
@@ -433,18 +435,19 @@ module Appwrite
         def delete_key(
             key_id:
         )
-            api_path = '/project/keys/{keyId}'
-                .gsub('{keyId}', key_id)
-
-            if key_id.nil?
+            if key_id.nil? || key_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "keyId"')
             end
+
+            api_path = '/project/keys/{keyId}'
+                .gsub('{keyId}', key_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -464,11 +467,11 @@ module Appwrite
         def update_labels(
             labels:
         )
-            api_path = '/project/labels'
-
             if labels.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "labels"')
             end
+
+            api_path = '/project/labels'
 
             api_params = {
                 labels: labels,
@@ -532,8 +535,6 @@ module Appwrite
             number:,
             otp:
         )
-            api_path = '/project/mock-phones'
-
             if number.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "number"')
             end
@@ -541,6 +542,8 @@ module Appwrite
             if otp.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "otp"')
             end
+
+            api_path = '/project/mock-phones'
 
             api_params = {
                 number: number,
@@ -571,12 +574,12 @@ module Appwrite
         def get_mock_phone(
             number:
         )
-            api_path = '/project/mock-phones/{number}'
-                .gsub('{number}', number)
-
-            if number.nil?
+            if number.nil? || number == ''
                 raise Appwrite::Exception.new('Missing required parameter: "number"')
             end
+
+            api_path = '/project/mock-phones/{number}'
+                .gsub('{number}', number)
 
             api_params = {}
 
@@ -605,16 +608,16 @@ module Appwrite
             number:,
             otp:
         )
-            api_path = '/project/mock-phones/{number}'
-                .gsub('{number}', number)
-
-            if number.nil?
+            if number.nil? || number == ''
                 raise Appwrite::Exception.new('Missing required parameter: "number"')
             end
 
             if otp.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "otp"')
             end
+
+            api_path = '/project/mock-phones/{number}'
+                .gsub('{number}', number)
 
             api_params = {
                 otp: otp,
@@ -644,18 +647,19 @@ module Appwrite
         def delete_mock_phone(
             number:
         )
-            api_path = '/project/mock-phones/{number}'
-                .gsub('{number}', number)
-
-            if number.nil?
+            if number.nil? || number == ''
                 raise Appwrite::Exception.new('Missing required parameter: "number"')
             end
+
+            api_path = '/project/mock-phones/{number}'
+                .gsub('{number}', number)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -737,8 +741,6 @@ module Appwrite
             default_scopes: nil,
             installation_scopes: nil
         )
-            api_path = '/project/oauth2-server'
-
             if enabled.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "enabled"')
             end
@@ -746,6 +748,8 @@ module Appwrite
             if authorization_url.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "authorizationUrl"')
             end
+
+            api_path = '/project/oauth2-server'
 
             api_params = {
                 enabled: enabled,
@@ -1597,23 +1601,23 @@ module Appwrite
         #
         # @param [String] client_id &#039;REST API key&#039; of Kakao OAuth2 app. For example: 839ff5000000000000000000013206de
         # @param [String] client_secret &#039;Client Secret&#039; of Kakao OAuth2 app. For example: jLNVOK00000000000000000000yJebea. Generate it under Kakao Login &gt; Security and set its status to enabled
-        # @param [Array] prompt Array of Kakao OAuth2 prompt values. If &quot;none&quot; is included, it must be the only element. &quot;none&quot; means: don&#039;t display any authentication or consent screens. &quot;login&quot; means: prompt the user to re-authenticate. &quot;create&quot; means: prompt the user to sign up. &quot;select_account&quot; means: prompt the user to select an account. Pass an empty array to use the Kakao default.
         # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        # @param [Array] prompt Array of Kakao OAuth2 prompt values. If &quot;none&quot; is included, it must be the only element. &quot;none&quot; means: don&#039;t display any authentication or consent screens. &quot;login&quot; means: prompt the user to re-authenticate. &quot;create&quot; means: prompt the user to sign up. &quot;select_account&quot; means: prompt the user to select an account. Pass an empty array to use the Kakao default.
         #
         # @return [OAuth2Kakao]
         def update_o_auth2_kakao(
             client_id: nil,
             client_secret: nil,
-            prompt: nil,
-            enabled: nil
+            enabled: nil,
+            prompt: nil
         )
             api_path = '/project/oauth2/kakao'
 
             api_params = {
                 clientId: client_id,
                 clientSecret: client_secret,
-                prompt: prompt,
                 enabled: enabled,
+                prompt: prompt,
             }
 
             api_headers = {
@@ -2595,12 +2599,12 @@ module Appwrite
         def get_o_auth2_provider(
             provider_id:
         )
-            api_path = '/project/oauth2/{providerId}'
-                .gsub('{providerId}', provider_id)
-
             if provider_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "providerId"')
             end
+
+            api_path = '/project/oauth2/{providerId}'
+                .gsub('{providerId}', provider_id)
 
             api_params = {}
 
@@ -2901,8 +2905,6 @@ module Appwrite
             application_id:,
             fingerprints: nil
         )
-            api_path = '/project/platforms/android'
-
             if platform_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "platformId"')
             end
@@ -2914,6 +2916,8 @@ module Appwrite
             if application_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "applicationId"')
             end
+
+            api_path = '/project/platforms/android'
 
             api_params = {
                 platformId: platform_id,
@@ -2938,7 +2942,7 @@ module Appwrite
         end
 
         # Update an Android platform by its unique ID. Use this endpoint to update
-        # the platform&#039;s name or application ID.
+        # the platform&#039;s name, application ID or signing certificate fingerprints.
         #
         # @param [String] platform_id Platform ID.
         # @param [String] name Platform name. Max length: 128 chars.
@@ -2952,10 +2956,7 @@ module Appwrite
             application_id:,
             fingerprints: nil
         )
-            api_path = '/project/platforms/android/{platformId}'
-                .gsub('{platformId}', platform_id)
-
-            if platform_id.nil?
+            if platform_id.nil? || platform_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "platformId"')
             end
 
@@ -2966,6 +2967,9 @@ module Appwrite
             if application_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "applicationId"')
             end
+
+            api_path = '/project/platforms/android/{platformId}'
+                .gsub('{platformId}', platform_id)
 
             api_params = {
                 name: name,
@@ -3002,8 +3006,6 @@ module Appwrite
             name:,
             bundle_identifier:
         )
-            api_path = '/project/platforms/apple'
-
             if platform_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "platformId"')
             end
@@ -3015,6 +3017,8 @@ module Appwrite
             if bundle_identifier.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "bundleIdentifier"')
             end
+
+            api_path = '/project/platforms/apple'
 
             api_params = {
                 platformId: platform_id,
@@ -3050,10 +3054,7 @@ module Appwrite
             name:,
             bundle_identifier:
         )
-            api_path = '/project/platforms/apple/{platformId}'
-                .gsub('{platformId}', platform_id)
-
-            if platform_id.nil?
+            if platform_id.nil? || platform_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "platformId"')
             end
 
@@ -3064,6 +3065,9 @@ module Appwrite
             if bundle_identifier.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "bundleIdentifier"')
             end
+
+            api_path = '/project/platforms/apple/{platformId}'
+                .gsub('{platformId}', platform_id)
 
             api_params = {
                 name: name,
@@ -3099,8 +3103,6 @@ module Appwrite
             name:,
             package_name:
         )
-            api_path = '/project/platforms/linux'
-
             if platform_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "platformId"')
             end
@@ -3112,6 +3114,8 @@ module Appwrite
             if package_name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "packageName"')
             end
+
+            api_path = '/project/platforms/linux'
 
             api_params = {
                 platformId: platform_id,
@@ -3147,10 +3151,7 @@ module Appwrite
             name:,
             package_name:
         )
-            api_path = '/project/platforms/linux/{platformId}'
-                .gsub('{platformId}', platform_id)
-
-            if platform_id.nil?
+            if platform_id.nil? || platform_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "platformId"')
             end
 
@@ -3161,6 +3162,9 @@ module Appwrite
             if package_name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "packageName"')
             end
+
+            api_path = '/project/platforms/linux/{platformId}'
+                .gsub('{platformId}', platform_id)
 
             api_params = {
                 name: name,
@@ -3196,8 +3200,6 @@ module Appwrite
             name:,
             hostname:
         )
-            api_path = '/project/platforms/web'
-
             if platform_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "platformId"')
             end
@@ -3209,6 +3211,8 @@ module Appwrite
             if hostname.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "hostname"')
             end
+
+            api_path = '/project/platforms/web'
 
             api_params = {
                 platformId: platform_id,
@@ -3244,10 +3248,7 @@ module Appwrite
             name:,
             hostname:
         )
-            api_path = '/project/platforms/web/{platformId}'
-                .gsub('{platformId}', platform_id)
-
-            if platform_id.nil?
+            if platform_id.nil? || platform_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "platformId"')
             end
 
@@ -3258,6 +3259,9 @@ module Appwrite
             if hostname.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "hostname"')
             end
+
+            api_path = '/project/platforms/web/{platformId}'
+                .gsub('{platformId}', platform_id)
 
             api_params = {
                 name: name,
@@ -3293,8 +3297,6 @@ module Appwrite
             name:,
             package_identifier_name:
         )
-            api_path = '/project/platforms/windows'
-
             if platform_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "platformId"')
             end
@@ -3306,6 +3308,8 @@ module Appwrite
             if package_identifier_name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "packageIdentifierName"')
             end
+
+            api_path = '/project/platforms/windows'
 
             api_params = {
                 platformId: platform_id,
@@ -3341,10 +3345,7 @@ module Appwrite
             name:,
             package_identifier_name:
         )
-            api_path = '/project/platforms/windows/{platformId}'
-                .gsub('{platformId}', platform_id)
-
-            if platform_id.nil?
+            if platform_id.nil? || platform_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "platformId"')
             end
 
@@ -3355,6 +3356,9 @@ module Appwrite
             if package_identifier_name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "packageIdentifierName"')
             end
+
+            api_path = '/project/platforms/windows/{platformId}'
+                .gsub('{platformId}', platform_id)
 
             api_params = {
                 name: name,
@@ -3385,12 +3389,12 @@ module Appwrite
         def get_platform(
             platform_id:
         )
-            api_path = '/project/platforms/{platformId}'
-                .gsub('{platformId}', platform_id)
-
-            if platform_id.nil?
+            if platform_id.nil? || platform_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "platformId"')
             end
+
+            api_path = '/project/platforms/{platformId}'
+                .gsub('{platformId}', platform_id)
 
             api_params = {}
 
@@ -3447,18 +3451,19 @@ module Appwrite
         def delete_platform(
             platform_id:
         )
-            api_path = '/project/platforms/{platformId}'
-                .gsub('{platformId}', platform_id)
-
-            if platform_id.nil?
+            if platform_id.nil? || platform_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "platformId"')
             end
+
+            api_path = '/project/platforms/{platformId}'
+                .gsub('{platformId}', platform_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -3509,11 +3514,11 @@ module Appwrite
         def update_deny_aliased_email_policy(
             enabled:
         )
-            api_path = '/project/policies/deny-aliased-email'
-
             if enabled.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "enabled"')
             end
+
+            api_path = '/project/policies/deny-aliased-email'
 
             api_params = {
                 enabled: enabled,
@@ -3543,11 +3548,11 @@ module Appwrite
         def update_deny_corporate_email_policy(
             enabled:
         )
-            api_path = '/project/policies/deny-corporate-email'
-
             if enabled.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "enabled"')
             end
+
+            api_path = '/project/policies/deny-corporate-email'
 
             api_params = {
                 enabled: enabled,
@@ -3577,11 +3582,11 @@ module Appwrite
         def update_deny_disposable_email_policy(
             enabled:
         )
-            api_path = '/project/policies/deny-disposable-email'
-
             if enabled.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "enabled"')
             end
+
+            api_path = '/project/policies/deny-disposable-email'
 
             api_params = {
                 enabled: enabled,
@@ -3611,11 +3616,11 @@ module Appwrite
         def update_deny_free_email_policy(
             enabled:
         )
-            api_path = '/project/policies/deny-free-email'
-
             if enabled.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "enabled"')
             end
+
+            api_path = '/project/policies/deny-free-email'
 
             api_params = {
                 enabled: enabled,
@@ -3772,11 +3777,11 @@ module Appwrite
         def update_password_dictionary_policy(
             enabled:
         )
-            api_path = '/project/policies/password-dictionary'
-
             if enabled.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "enabled"')
             end
+
+            api_path = '/project/policies/password-dictionary'
 
             api_params = {
                 enabled: enabled,
@@ -3813,11 +3818,11 @@ module Appwrite
         def update_password_history_policy(
             total:
         )
-            api_path = '/project/policies/password-history'
-
             if total.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "total"')
             end
+
+            api_path = '/project/policies/password-history'
 
             api_params = {
                 total: total,
@@ -3849,11 +3854,11 @@ module Appwrite
         def update_password_personal_data_policy(
             enabled:
         )
-            api_path = '/project/policies/password-personal-data'
-
             if enabled.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "enabled"')
             end
+
+            api_path = '/project/policies/password-personal-data'
 
             api_params = {
                 enabled: enabled,
@@ -4003,11 +4008,11 @@ module Appwrite
         def update_session_alert_policy(
             enabled:
         )
-            api_path = '/project/policies/session-alert'
-
             if enabled.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "enabled"')
             end
+
+            api_path = '/project/policies/session-alert'
 
             api_params = {
                 enabled: enabled,
@@ -4037,11 +4042,11 @@ module Appwrite
         def update_session_duration_policy(
             duration:
         )
-            api_path = '/project/policies/session-duration'
-
             if duration.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "duration"')
             end
+
+            api_path = '/project/policies/session-duration'
 
             api_params = {
                 duration: duration,
@@ -4072,11 +4077,11 @@ module Appwrite
         def update_session_invalidation_policy(
             enabled:
         )
-            api_path = '/project/policies/session-invalidation'
-
             if enabled.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "enabled"')
             end
+
+            api_path = '/project/policies/session-invalidation'
 
             api_params = {
                 enabled: enabled,
@@ -4106,11 +4111,11 @@ module Appwrite
         def update_session_limit_policy(
             total:
         )
-            api_path = '/project/policies/session-limit'
-
             if total.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "total"')
             end
+
+            api_path = '/project/policies/session-limit'
 
             api_params = {
                 total: total,
@@ -4141,11 +4146,11 @@ module Appwrite
         def update_user_limit_policy(
             total:
         )
-            api_path = '/project/policies/user-limit'
-
             if total.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "total"')
             end
+
+            api_path = '/project/policies/user-limit'
 
             api_params = {
                 total: total,
@@ -4169,18 +4174,18 @@ module Appwrite
         # Get a policy by its unique ID. This endpoint returns the current
         # configuration for the requested project policy.
         #
-        # @param [ProjectPolicyId] policy_id Policy ID. Can be one of: password-dictionary, password-history, password-strength, password-personal-data, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, mfa-factors, deny-aliased-email, deny-disposable-email, deny-free-email, deny-corporate-email.
+        # @param [ProjectPolicyId] policy_id Policy ID. Can be one of: password-dictionary, password-history, password-strength, password-personal-data, password-pwned, password-rotation, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, mfa-factors, deny-aliased-email, deny-disposable-email, deny-free-email, deny-corporate-email, passkey.
         #
         # @return [PolicyPasswordDictionary, PolicyPasswordHistory, PolicyPasswordStrength, PolicyPasswordPersonalData, PolicyPasswordPwned, PolicyPasswordRotation, PolicySessionAlert, PolicySessionDuration, PolicySessionInvalidation, PolicySessionLimit, PolicyUserLimit, PolicyMembershipPrivacy, PolicyMfaFactors, PolicyDenyAliasedEmail, PolicyDenyDisposableEmail, PolicyDenyFreeEmail, PolicyDenyCorporateEmail, PolicyPasskey]
         def get_policy(
             policy_id:
         )
-            api_path = '/project/policies/{policyId}'
-                .gsub('{policyId}', policy_id)
-
             if policy_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "policyId"')
             end
+
+            api_path = '/project/policies/{policyId}'
+                .gsub('{policyId}', policy_id)
 
             api_params = {}
 
@@ -4304,9 +4309,6 @@ module Appwrite
             protocol_id:,
             enabled:
         )
-            api_path = '/project/protocols/{protocolId}'
-                .gsub('{protocolId}', protocol_id)
-
             if protocol_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "protocolId"')
             end
@@ -4314,6 +4316,9 @@ module Appwrite
             if enabled.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "enabled"')
             end
+
+            api_path = '/project/protocols/{protocolId}'
+                .gsub('{protocolId}', protocol_id)
 
             api_params = {
                 enabled: enabled,
@@ -4345,9 +4350,6 @@ module Appwrite
             service_id:,
             enabled:
         )
-            api_path = '/project/services/{serviceId}'
-                .gsub('{serviceId}', service_id)
-
             if service_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "serviceId"')
             end
@@ -4355,6 +4357,9 @@ module Appwrite
             if enabled.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "enabled"')
             end
+
+            api_path = '/project/services/{serviceId}'
+                .gsub('{serviceId}', service_id)
 
             api_params = {
                 enabled: enabled,
@@ -4441,11 +4446,11 @@ module Appwrite
         def create_smtp_test(
             emails:
         )
-            api_path = '/project/smtp/tests'
-
             if emails.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "emails"')
             end
+
+            api_path = '/project/smtp/tests'
 
             api_params = {
                 emails: emails,
@@ -4454,6 +4459,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -4500,7 +4506,7 @@ module Appwrite
         # Update a custom email template for the specified locale and type. Use this
         # endpoint to modify the content of your email templates.
         #
-        # @param [ProjectEmailTemplateId] template_id Custom email template type. Can be one of: verification, magicSession, recovery, invitation, mfaChallenge, sessionAlert, otpSession
+        # @param [ProjectEmailTemplateId] template_id Custom email template type. Can be one of: verification, magicSession, recovery, invitation, mfaChallenge, sessionAlert, otpSession, otpVerification, otpRecovery
         # @param [ProjectEmailTemplateLocale] locale Custom email template locale. If left empty, the fallback locale (en) will be used.
         # @param [String] subject Subject of the email template. Can be up to 255 characters.
         # @param [String] message Plain or HTML body of the email template message. Can be up to 10MB of content.
@@ -4520,11 +4526,11 @@ module Appwrite
             reply_to_email: nil,
             reply_to_name: nil
         )
-            api_path = '/project/templates/email'
-
             if template_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "templateId"')
             end
+
+            api_path = '/project/templates/email'
 
             api_params = {
                 templateId: template_id,
@@ -4556,7 +4562,7 @@ module Appwrite
         # endpoint returns the template content, subject, and other configuration
         # details.
         #
-        # @param [ProjectEmailTemplateId] template_id Custom email template type. Can be one of: verification, magicSession, recovery, invitation, mfaChallenge, sessionAlert, otpSession
+        # @param [ProjectEmailTemplateId] template_id Custom email template type. Can be one of: verification, magicSession, recovery, invitation, mfaChallenge, sessionAlert, otpSession, otpVerification, otpRecovery
         # @param [ProjectEmailTemplateLocale] locale Custom email template locale. If left empty, the fallback locale (en) will be used.
         #
         # @return [EmailTemplate]
@@ -4564,12 +4570,12 @@ module Appwrite
             template_id:,
             locale: nil
         )
-            api_path = '/project/templates/email/{templateId}'
-                .gsub('{templateId}', template_id)
-
             if template_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "templateId"')
             end
+
+            api_path = '/project/templates/email/{templateId}'
+                .gsub('{templateId}', template_id)
 
             api_params = {
                 locale: locale,
@@ -4635,8 +4641,6 @@ module Appwrite
             value:,
             secret: nil
         )
-            api_path = '/project/variables'
-
             if variable_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "variableId"')
             end
@@ -4648,6 +4652,8 @@ module Appwrite
             if value.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "value"')
             end
+
+            api_path = '/project/variables'
 
             api_params = {
                 variableId: variable_id,
@@ -4679,12 +4685,12 @@ module Appwrite
         def get_variable(
             variable_id:
         )
-            api_path = '/project/variables/{variableId}'
-                .gsub('{variableId}', variable_id)
-
-            if variable_id.nil?
+            if variable_id.nil? || variable_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "variableId"')
             end
+
+            api_path = '/project/variables/{variableId}'
+                .gsub('{variableId}', variable_id)
 
             api_params = {}
 
@@ -4716,12 +4722,12 @@ module Appwrite
             value: nil,
             secret: nil
         )
-            api_path = '/project/variables/{variableId}'
-                .gsub('{variableId}', variable_id)
-
-            if variable_id.nil?
+            if variable_id.nil? || variable_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "variableId"')
             end
+
+            api_path = '/project/variables/{variableId}'
+                .gsub('{variableId}', variable_id)
 
             api_params = {
                 key: key,
@@ -4752,18 +4758,19 @@ module Appwrite
         def delete_variable(
             variable_id:
         )
-            api_path = '/project/variables/{variableId}'
-                .gsub('{variableId}', variable_id)
-
-            if variable_id.nil?
+            if variable_id.nil? || variable_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "variableId"')
             end
+
+            api_path = '/project/variables/{variableId}'
+                .gsub('{variableId}', variable_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(

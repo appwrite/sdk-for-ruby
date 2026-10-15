@@ -12,8 +12,8 @@ account = Account.new(client)
 
 result = account.update_prefs(
     prefs: {
-        "language" => "en",
-        "timezone" => "UTC",
+        "language" => 'en',
+        "timezone" => 'UTC',
         "darkTheme" => true
     }
 )

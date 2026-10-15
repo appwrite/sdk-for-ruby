@@ -21,6 +21,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "key" => "", "name" => "", "description" => "", "category" => "" }.merge(map)
                 PostgresExtension.new(
                     key: map["key"],
                     name: map["name"],

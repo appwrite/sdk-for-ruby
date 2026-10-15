@@ -33,6 +33,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$sequence" => "", "$collectionId" => "", "$databaseId" => "", "$createdAt" => "", "$updatedAt" => "", "$permissions" => [] }.merge(map)
                 Document.new(
                     id: map["$id"],
                     sequence: map["$sequence"],

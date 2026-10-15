@@ -24,6 +24,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "enabled" => false, "applicationId" => "", "secret" => "", "endpoint" => "" }.merge(map)
                 OAuth2Gitlab.new(
                     id: map["$id"],
                     enabled: map["enabled"],

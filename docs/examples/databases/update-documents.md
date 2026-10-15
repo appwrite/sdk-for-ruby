@@ -14,9 +14,9 @@ result = databases.update_documents(
     database_id: '<DATABASE_ID>',
     collection_id: '<COLLECTION_ID>',
     data: {
-        "username" => "walter.obrien",
-        "email" => "walter.obrien@example.com",
-        "fullName" => "Walter O'Brien",
+        "username" => 'walter.obrien',
+        "email" => 'walter.obrien@example.com',
+        "fullName" => 'Walter O\'Brien',
         "age" => 33,
         "isAdmin" => false
     }, # optional

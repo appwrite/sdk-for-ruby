@@ -90,6 +90,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "type" => "", "resourceId" => "", "resourceType" => "", "entrypoint" => "", "sourceSize" => 0, "buildSize" => 0, "totalSize" => 0, "buildId" => "", "activate" => false, "screenshotLight" => "", "screenshotDark" => "", "buildLogs" => "", "buildDuration" => 0, "providerRepositoryName" => "", "providerRepositoryOwner" => "", "providerRepositoryUrl" => "", "providerCommitHash" => "", "providerCommitAuthorUrl" => "", "providerCommitAuthor" => "", "providerCommitMessage" => "", "providerCommitUrl" => "", "providerBranch" => "", "providerBranchUrl" => "" }.merge(map)
                 Deployment.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

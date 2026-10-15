@@ -21,14 +21,14 @@ module Appwrite
                 created_at:,
                 updated_at:,
                 policy_id:,
-                size:,
+                size: nil,
                 status:,
-                started_at:,
+                started_at: nil,
                 migration_id:,
                 services:,
                 resources:,
-                resource_id:,
-                resource_type:
+                resource_id: nil,
+                resource_type: nil
             )
                 @id = id
                 @created_at = created_at
@@ -45,6 +45,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "policyId" => "", "status" => "", "migrationId" => "", "services" => [], "resources" => [] }.merge(map)
                 BackupArchive.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

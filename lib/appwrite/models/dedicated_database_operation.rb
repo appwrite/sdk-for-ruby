@@ -22,9 +22,9 @@ module Appwrite
                 type:,
                 status:,
                 attempts:,
-                requested_at:,
-                started_at:,
-                completed_at:,
+                requested_at: nil,
+                started_at: nil,
+                completed_at: nil,
                 error_code:,
                 error_message:
             )
@@ -42,6 +42,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "databaseId" => "", "type" => "", "status" => "", "attempts" => 0, "errorCode" => "", "errorMessage" => "" }.merge(map)
                 DedicatedDatabaseOperation.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

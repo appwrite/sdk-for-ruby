@@ -22,11 +22,12 @@ module Appwrite
                 @enabled = enabled
                 @client_id = client_id
                 @client_secret = client_secret
-                @prompt = prompt.nil? ? prompt : validate_prompt(prompt)
+                @prompt = validate_prompt(prompt)
                 @endpoint = endpoint
             end
 
             def self.from(map:)
+                map = { "$id" => "", "enabled" => false, "clientId" => "", "clientSecret" => "", "prompt" => [], "endpoint" => "" }.merge(map)
                 OAuth2Auth0.new(
                     id: map["$id"],
                     enabled: map["enabled"],

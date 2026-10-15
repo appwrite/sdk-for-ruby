@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0, "restorations" => [] }.merge(map)
                 BackupRestorationList.new(
                     total: map["total"],
                     restorations: map["restorations"].map { |it| BackupRestoration.from(map: it) }

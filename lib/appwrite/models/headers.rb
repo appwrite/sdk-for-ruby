@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "name" => "", "value" => "" }.merge(map)
                 Headers.new(
                     name: map["name"],
                     value: map["value"]

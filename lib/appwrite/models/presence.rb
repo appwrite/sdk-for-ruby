@@ -19,10 +19,10 @@ module Appwrite
                 updated_at:,
                 permissions:,
                 user_id:,
-                status:,
+                status: nil,
                 source:,
-                expires_at:,
-                metadata:
+                expires_at: nil,
+                metadata: nil
             )
                 @id = id
                 @created_at = created_at
@@ -36,6 +36,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "$permissions" => [], "userId" => "", "source" => "" }.merge(map)
                 Presence.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

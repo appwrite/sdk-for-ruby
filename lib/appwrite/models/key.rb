@@ -36,6 +36,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "expire" => "", "scopes" => [], "secret" => "", "accessedAt" => "", "sdks" => [] }.merge(map)
                 Key.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

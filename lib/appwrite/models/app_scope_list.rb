@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0, "scopes" => [] }.merge(map)
                 AppScopeList.new(
                     total: map["total"],
                     scopes: map["scopes"].map { |it| AppScope.from(map: it) }

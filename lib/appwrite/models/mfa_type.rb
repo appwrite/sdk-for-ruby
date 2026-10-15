@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "secret" => "", "uri" => "" }.merge(map)
                 MfaType.new(
                     secret: map["secret"],
                     uri: map["uri"]

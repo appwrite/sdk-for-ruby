@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0, "sites" => [] }.merge(map)
                 SiteList.new(
                     total: map["total"],
                     sites: map["sites"].map { |it| Site.from(map: it) }

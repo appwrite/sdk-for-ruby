@@ -13,8 +13,8 @@ module Appwrite
                 id:,
                 role:,
                 status:,
-                replicating:,
-                lag_seconds:
+                replicating: nil,
+                lag_seconds: nil
             )
                 @id = id
                 @role = role
@@ -24,6 +24,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "role" => "unknown", "status" => "" }.merge(map)
                 DedicatedDatabaseMember.new(
                     id: map["$id"],
                     role: map["role"],

@@ -18,6 +18,7 @@ module Appwrite
             attr_reader :status
             attr_reader :logs
             attr_reader :renew_at
+            attr_reader :protocol
 
             def initialize(
                 id:,
@@ -29,12 +30,13 @@ module Appwrite
                 redirect_url:,
                 redirect_status_code:,
                 deployment_id:,
-                deployment_resource_type:,
+                deployment_resource_type: nil,
                 deployment_resource_id:,
                 deployment_vcs_provider_branch:,
                 status:,
                 logs:,
-                renew_at:
+                renew_at:,
+                protocol:
             )
                 @id = id
                 @created_at = created_at
@@ -51,9 +53,11 @@ module Appwrite
                 @status = validate_status(status)
                 @logs = logs
                 @renew_at = renew_at
+                @protocol = validate_protocol(protocol)
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "domain" => "", "type" => "", "trigger" => "", "redirectUrl" => "", "redirectStatusCode" => 301, "deploymentId" => "", "deploymentResourceId" => "", "deploymentVcsProviderBranch" => "", "status" => "unverified", "logs" => "", "protocol" => "http" }.merge(map)
                 ProxyRule.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],
@@ -69,7 +73,8 @@ module Appwrite
                     deployment_vcs_provider_branch: map["deploymentVcsProviderBranch"],
                     status: map["status"],
                     logs: map["logs"],
-                    renew_at: map["renewAt"]
+                    renew_at: map["renewAt"],
+                    protocol: map["protocol"]
                 )
             end
 
@@ -89,7 +94,8 @@ module Appwrite
                     "deploymentVcsProviderBranch": @deployment_vcs_provider_branch,
                     "status": @status,
                     "logs": @logs,
-                    "renewAt": @renew_at
+                    "renewAt": @renew_at,
+                    "protocol": @protocol
                 }
             end
 
@@ -121,6 +127,19 @@ module Appwrite
                 end
 
                 status
+            end
+
+            def validate_protocol(protocol)
+                valid_protocol = [
+                    Appwrite::Enums::ProxyRuleProtocol::HTTP,
+                    Appwrite::Enums::ProxyRuleProtocol::SMTP,
+                ]
+
+                unless valid_protocol.include?(protocol)
+                    raise ArgumentError, "Invalid " + protocol + ". Must be one of: " + valid_protocol.join(', ')
+                end
+
+                protocol
             end
         end
     end

@@ -24,6 +24,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "passkeyId" => "", "expire" => "", "publicKey" => {} }.merge(map)
                 PasskeyChallenge.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

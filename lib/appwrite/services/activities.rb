@@ -43,12 +43,12 @@ module Appwrite
         def get_event(
             event_id:
         )
-            api_path = '/activities/events/{eventId}'
-                .gsub('{eventId}', event_id)
-
-            if event_id.nil?
+            if event_id.nil? || event_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "eventId"')
             end
+
+            api_path = '/activities/events/{eventId}'
+                .gsub('{eventId}', event_id)
 
             api_params = {}
 

@@ -16,7 +16,7 @@ result = storage.get_file_preview(
     file_id: '<FILE_ID>',
     width: 0, # optional
     height: 0, # optional
-    gravity: ImageGravity::CENTER, # optional
+    gravity: ImageGravity::AUTO, # optional
     quality: -1, # optional
     border_width: 0, # optional
     border_color: 'FFFFFF', # optional

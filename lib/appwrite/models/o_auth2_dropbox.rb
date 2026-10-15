@@ -21,6 +21,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "enabled" => false, "appKey" => "", "appSecret" => "" }.merge(map)
                 OAuth2Dropbox.new(
                     id: map["$id"],
                     enabled: map["enabled"],

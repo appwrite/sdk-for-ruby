@@ -20,11 +20,11 @@ module Appwrite
                 status:,
                 error:,
                 required:,
-                array:,
+                array: false,
                 created_at:,
                 updated_at:,
                 format:,
-                default:
+                default: nil
             )
                 @key = key
                 @type = type
@@ -39,6 +39,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "key" => "", "type" => "", "error" => "", "required" => false, "$createdAt" => "", "$updatedAt" => "", "format" => "email" }.merge(map)
                 AttributeEmail.new(
                     key: map["key"],
                     type: map["type"],

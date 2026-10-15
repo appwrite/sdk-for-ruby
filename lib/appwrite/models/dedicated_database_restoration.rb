@@ -10,6 +10,7 @@ module Appwrite
             attr_reader :project_id
             attr_reader :backup_id
             attr_reader :type
+            attr_reader :restore_mode
             attr_reader :status
             attr_reader :target_time
             attr_reader :started_at
@@ -20,14 +21,15 @@ module Appwrite
                 id:,
                 created_at:,
                 database_id:,
-                source_database_id:,
+                source_database_id: nil,
                 project_id:,
-                backup_id:,
+                backup_id: nil,
                 type:,
+                restore_mode:,
                 status:,
-                target_time:,
-                started_at:,
-                completed_at:,
+                target_time: nil,
+                started_at: nil,
+                completed_at: nil,
                 error:
             )
                 @id = id
@@ -37,6 +39,7 @@ module Appwrite
                 @project_id = project_id
                 @backup_id = backup_id
                 @type = type
+                @restore_mode = restore_mode
                 @status = status
                 @target_time = target_time
                 @started_at = started_at
@@ -45,6 +48,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "databaseId" => "", "projectId" => "", "type" => "backup", "restoreMode" => "in_place", "status" => "pending", "error" => "" }.merge(map)
                 DedicatedDatabaseRestoration.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],
@@ -53,6 +57,7 @@ module Appwrite
                     project_id: map["projectId"],
                     backup_id: map["backupId"],
                     type: map["type"],
+                    restore_mode: map["restoreMode"],
                     status: map["status"],
                     target_time: map["targetTime"],
                     started_at: map["startedAt"],
@@ -70,6 +75,7 @@ module Appwrite
                     "projectId": @project_id,
                     "backupId": @backup_id,
                     "type": @type,
+                    "restoreMode": @restore_mode,
                     "status": @status,
                     "targetTime": @target_time,
                     "startedAt": @started_at,

@@ -48,6 +48,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "slug" => "", "name" => "", "price" => 0, "storageOverageRate" => 0, "bandwidthOverageRate" => 0, "replicaRate" => 0, "pitrRate" => 0, "cpu" => 0, "memory" => 0, "maxConnections" => 0, "includedStorage" => 0, "includedBandwidth" => 0, "enabled" => false }.merge(map)
                 DedicatedDatabaseSpecification.new(
                     slug: map["slug"],
                     name: map["name"],

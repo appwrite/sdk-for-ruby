@@ -57,8 +57,6 @@ module Appwrite
             replicas: nil,
             sync_mode: nil
         )
-            api_path = '/vectorsdb'
-
             if database_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
@@ -66,6 +64,8 @@ module Appwrite
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
+
+            api_path = '/vectorsdb'
 
             api_params = {
                 databaseId: database_id,
@@ -92,8 +92,8 @@ module Appwrite
         end
 
         # List the dedicated database specifications available on the current plan.
-        # Each specification reports its resource limits, pricing, and whether it is
-        # enabled for the organization.
+        # Each specification reports its resource limits, its own prices and overage
+        # rates, and whether it is enabled for the organization.
         #
         #
         # @return [DedicatedDatabaseSpecificationList]
@@ -184,12 +184,12 @@ module Appwrite
         def get_transaction(
             transaction_id:
         )
-            api_path = '/vectorsdb/transactions/{transactionId}'
-                .gsub('{transactionId}', transaction_id)
-
-            if transaction_id.nil?
+            if transaction_id.nil? || transaction_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
             end
+
+            api_path = '/vectorsdb/transactions/{transactionId}'
+                .gsub('{transactionId}', transaction_id)
 
             api_params = {}
 
@@ -219,12 +219,12 @@ module Appwrite
             commit: nil,
             rollback: nil
         )
-            api_path = '/vectorsdb/transactions/{transactionId}'
-                .gsub('{transactionId}', transaction_id)
-
-            if transaction_id.nil?
+            if transaction_id.nil? || transaction_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
             end
+
+            api_path = '/vectorsdb/transactions/{transactionId}'
+                .gsub('{transactionId}', transaction_id)
 
             api_params = {
                 commit: commit,
@@ -254,18 +254,19 @@ module Appwrite
         def delete_transaction(
             transaction_id:
         )
-            api_path = '/vectorsdb/transactions/{transactionId}'
-                .gsub('{transactionId}', transaction_id)
-
-            if transaction_id.nil?
+            if transaction_id.nil? || transaction_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
             end
+
+            api_path = '/vectorsdb/transactions/{transactionId}'
+                .gsub('{transactionId}', transaction_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -286,12 +287,12 @@ module Appwrite
             transaction_id:,
             operations: nil
         )
-            api_path = '/vectorsdb/transactions/{transactionId}/operations'
-                .gsub('{transactionId}', transaction_id)
-
-            if transaction_id.nil?
+            if transaction_id.nil? || transaction_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "transactionId"')
             end
+
+            api_path = '/vectorsdb/transactions/{transactionId}/operations'
+                .gsub('{transactionId}', transaction_id)
 
             api_params = {
                 operations: operations,
@@ -321,12 +322,12 @@ module Appwrite
         def get(
             database_id:
         )
-            api_path = '/vectorsdb/{databaseId}'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/vectorsdb/{databaseId}'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 
@@ -362,16 +363,16 @@ module Appwrite
             replicas: nil,
             sync_mode: nil
         )
-            api_path = '/vectorsdb/{databaseId}'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
+
+            api_path = '/vectorsdb/{databaseId}'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 name: name,
@@ -405,18 +406,19 @@ module Appwrite
         def delete(
             database_id:
         )
-            api_path = '/vectorsdb/{databaseId}'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/vectorsdb/{databaseId}'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -442,12 +444,12 @@ module Appwrite
             search: nil,
             total: nil
         )
-            api_path = '/vectorsdb/{databaseId}/collections'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/vectorsdb/{databaseId}/collections'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 queries: queries,
@@ -492,10 +494,7 @@ module Appwrite
             document_security: nil,
             enabled: nil
         )
-            api_path = '/vectorsdb/{databaseId}/collections'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
@@ -510,6 +509,9 @@ module Appwrite
             if dimension.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "dimension"')
             end
+
+            api_path = '/vectorsdb/{databaseId}/collections'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 collectionId: collection_id,
@@ -546,17 +548,17 @@ module Appwrite
             database_id:,
             collection_id:
         )
-            api_path = '/vectorsdb/{databaseId}/collections/{collectionId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if collection_id.nil?
+            if collection_id.nil? || collection_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
+
+            api_path = '/vectorsdb/{databaseId}/collections/{collectionId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
 
             api_params = {}
 
@@ -594,21 +596,21 @@ module Appwrite
             document_security: nil,
             enabled: nil
         )
-            api_path = '/vectorsdb/{databaseId}/collections/{collectionId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if collection_id.nil?
+            if collection_id.nil? || collection_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
+
+            api_path = '/vectorsdb/{databaseId}/collections/{collectionId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
 
             api_params = {
                 name: name,
@@ -644,23 +646,24 @@ module Appwrite
             database_id:,
             collection_id:
         )
-            api_path = '/vectorsdb/{databaseId}/collections/{collectionId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if collection_id.nil?
+            if collection_id.nil? || collection_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
+
+            api_path = '/vectorsdb/{databaseId}/collections/{collectionId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -690,17 +693,17 @@ module Appwrite
             total: nil,
             ttl: nil
         )
-            api_path = '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if collection_id.nil?
+            if collection_id.nil? || collection_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
+
+            api_path = '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
 
             api_params = {
                 queries: queries,
@@ -744,15 +747,11 @@ module Appwrite
             permissions: nil,
             transaction_id: nil
         )
-            api_path = '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if collection_id.nil?
+            if collection_id.nil? || collection_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
@@ -763,6 +762,10 @@ module Appwrite
             if data.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "data"')
             end
+
+            api_path = '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
 
             api_params = {
                 documentId: document_id,
@@ -803,21 +806,21 @@ module Appwrite
             documents:,
             transaction_id: nil
         )
-            api_path = '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if collection_id.nil?
+            if collection_id.nil? || collection_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if documents.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "documents"')
             end
+
+            api_path = '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
 
             api_params = {
                 documents: documents,
@@ -857,21 +860,21 @@ module Appwrite
             documents:,
             transaction_id: nil
         )
-            api_path = '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if collection_id.nil?
+            if collection_id.nil? || collection_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
             if documents.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "documents"')
             end
+
+            api_path = '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
 
             api_params = {
                 documents: documents,
@@ -911,17 +914,17 @@ module Appwrite
             queries: nil,
             transaction_id: nil
         )
-            api_path = '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if collection_id.nil?
+            if collection_id.nil? || collection_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
+
+            api_path = '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
 
             api_params = {
                 data: data,
@@ -959,17 +962,17 @@ module Appwrite
             queries: nil,
             transaction_id: nil
         )
-            api_path = '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if collection_id.nil?
+            if collection_id.nil? || collection_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
+
+            api_path = '/vectorsdb/{databaseId}/collections/{collectionId}/documents'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
 
             api_params = {
                 queries: queries,
@@ -1013,17 +1016,17 @@ module Appwrite
             total: nil,
             ttl: nil
         )
-            api_path = '/vectorsdb/{databaseId}/collections/{collectionId}/documents/query'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if collection_id.nil?
+            if collection_id.nil? || collection_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
+
+            api_path = '/vectorsdb/{databaseId}/collections/{collectionId}/documents/query'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
 
             api_params = {
                 queries: queries,
@@ -1064,22 +1067,22 @@ module Appwrite
             queries: nil,
             transaction_id: nil
         )
+            if database_id.nil? || database_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil? || collection_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if document_id.nil? || document_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "documentId"')
+            end
+
             api_path = '/vectorsdb/{databaseId}/collections/{collectionId}/documents/{documentId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{documentId}', document_id)
-
-            if database_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if collection_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
-            end
-
-            if document_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "documentId"')
-            end
 
             api_params = {
                 queries: queries,
@@ -1121,22 +1124,22 @@ module Appwrite
             permissions: nil,
             transaction_id: nil
         )
+            if database_id.nil? || database_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil? || collection_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if document_id.nil? || document_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "documentId"')
+            end
+
             api_path = '/vectorsdb/{databaseId}/collections/{collectionId}/documents/{documentId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{documentId}', document_id)
-
-            if database_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if collection_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
-            end
-
-            if document_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "documentId"')
-            end
 
             api_params = {
                 data: data,
@@ -1178,22 +1181,22 @@ module Appwrite
             permissions: nil,
             transaction_id: nil
         )
+            if database_id.nil? || database_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil? || collection_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if document_id.nil? || document_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "documentId"')
+            end
+
             api_path = '/vectorsdb/{databaseId}/collections/{collectionId}/documents/{documentId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{documentId}', document_id)
-
-            if database_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if collection_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
-            end
-
-            if document_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "documentId"')
-            end
 
             api_params = {
                 data: data,
@@ -1230,22 +1233,22 @@ module Appwrite
             document_id:,
             transaction_id: nil
         )
+            if database_id.nil? || database_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil? || collection_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if document_id.nil? || document_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "documentId"')
+            end
+
             api_path = '/vectorsdb/{databaseId}/collections/{collectionId}/documents/{documentId}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{documentId}', document_id)
-
-            if database_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if collection_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
-            end
-
-            if document_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "documentId"')
-            end
 
             api_params = {
                 transactionId: transaction_id,
@@ -1254,6 +1257,7 @@ module Appwrite
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1278,17 +1282,17 @@ module Appwrite
             queries: nil,
             total: nil
         )
-            api_path = '/vectorsdb/{databaseId}/collections/{collectionId}/indexes'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if collection_id.nil?
+            if collection_id.nil? || collection_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
+
+            api_path = '/vectorsdb/{databaseId}/collections/{collectionId}/indexes'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
 
             api_params = {
                 queries: queries,
@@ -1331,15 +1335,11 @@ module Appwrite
             orders: nil,
             lengths: nil
         )
-            api_path = '/vectorsdb/{databaseId}/collections/{collectionId}/indexes'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if collection_id.nil?
+            if collection_id.nil? || collection_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
             end
 
@@ -1354,6 +1354,10 @@ module Appwrite
             if attributes.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "attributes"')
             end
+
+            api_path = '/vectorsdb/{databaseId}/collections/{collectionId}/indexes'
+                .gsub('{databaseId}', database_id)
+                .gsub('{collectionId}', collection_id)
 
             api_params = {
                 key: key,
@@ -1390,22 +1394,22 @@ module Appwrite
             collection_id:,
             key:
         )
+            if database_id.nil? || database_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil? || collection_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil? || key == ''
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
             api_path = '/vectorsdb/{databaseId}/collections/{collectionId}/indexes/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
-
-            if database_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if collection_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
-            end
-
-            if key.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "key"')
-            end
 
             api_params = {}
 
@@ -1435,28 +1439,29 @@ module Appwrite
             collection_id:,
             key:
         )
+            if database_id.nil? || database_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if collection_id.nil? || collection_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
+            end
+
+            if key.nil? || key == ''
+                raise Appwrite::Exception.new('Missing required parameter: "key"')
+            end
+
             api_path = '/vectorsdb/{databaseId}/collections/{collectionId}/indexes/{key}'
                 .gsub('{databaseId}', database_id)
                 .gsub('{collectionId}', collection_id)
                 .gsub('{key}', key)
-
-            if database_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
-            end
-
-            if collection_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "collectionId"')
-            end
-
-            if key.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "key"')
-            end
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1485,12 +1490,12 @@ module Appwrite
             database_id:,
             target_replica_id: nil
         )
-            api_path = '/vectorsdb/{databaseId}/failovers'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/vectorsdb/{databaseId}/failovers'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 targetReplicaId: target_replica_id,
@@ -1528,12 +1533,12 @@ module Appwrite
             limit: nil,
             offset: nil
         )
-            api_path = '/vectorsdb/{databaseId}/operations'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/vectorsdb/{databaseId}/operations'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 status: status,
@@ -1564,12 +1569,12 @@ module Appwrite
         def get_replicas(
             database_id:
         )
-            api_path = '/vectorsdb/{databaseId}/replicas'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/vectorsdb/{databaseId}/replicas'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 
@@ -1597,12 +1602,12 @@ module Appwrite
         def get_status(
             database_id:
         )
-            api_path = '/vectorsdb/{databaseId}/status'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/vectorsdb/{databaseId}/status'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 

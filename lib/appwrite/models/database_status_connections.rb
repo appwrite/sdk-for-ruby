@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "current" => 0, "max" => 100 }.merge(map)
                 DatabaseStatusConnections.new(
                     current: map["current"],
                     max: map["max"]

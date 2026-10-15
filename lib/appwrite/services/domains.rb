@@ -174,7 +174,7 @@ module Appwrite
         def get(
             domain_id:
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -208,7 +208,7 @@ module Appwrite
         def delete(
             domain_id:
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -243,7 +243,7 @@ module Appwrite
             domain_id:,
             nameservers: nil
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -281,7 +281,7 @@ module Appwrite
         def verify_nameservers(
             domain_id:
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -313,7 +313,7 @@ module Appwrite
         def get_preset_google_workspace(
             domain_id:
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -346,7 +346,7 @@ module Appwrite
         def create_preset_google_workspace(
             domain_id:
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -378,7 +378,7 @@ module Appwrite
         def get_preset_i_cloud(
             domain_id:
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -411,7 +411,7 @@ module Appwrite
         def create_preset_i_cloud(
             domain_id:
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -443,7 +443,7 @@ module Appwrite
         def get_preset_mailgun(
             domain_id:
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -476,7 +476,7 @@ module Appwrite
         def create_preset_mailgun(
             domain_id:
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -508,7 +508,7 @@ module Appwrite
         def get_preset_outlook(
             domain_id:
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -541,7 +541,7 @@ module Appwrite
         def create_preset_outlook(
             domain_id:
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -573,7 +573,7 @@ module Appwrite
         def get_preset_proton_mail(
             domain_id:
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -606,7 +606,7 @@ module Appwrite
         def create_preset_proton_mail(
             domain_id:
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -638,7 +638,7 @@ module Appwrite
         def get_preset_zoho(
             domain_id:
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -671,7 +671,7 @@ module Appwrite
         def create_preset_zoho(
             domain_id:
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -707,7 +707,7 @@ module Appwrite
             domain_id:,
             queries: nil
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -750,7 +750,7 @@ module Appwrite
             ttl:,
             comment: nil
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -813,11 +813,11 @@ module Appwrite
             ttl:,
             comment: nil
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
-            if record_id.nil?
+            if record_id.nil? || record_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "recordId"')
             end
 
@@ -878,7 +878,7 @@ module Appwrite
             ttl:,
             comment: nil
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -941,11 +941,11 @@ module Appwrite
             ttl:,
             comment: nil
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
-            if record_id.nil?
+            if record_id.nil? || record_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "recordId"')
             end
 
@@ -1007,7 +1007,7 @@ module Appwrite
             ttl:,
             comment: nil
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -1073,11 +1073,11 @@ module Appwrite
             ttl:,
             comment: nil
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
-            if record_id.nil?
+            if record_id.nil? || record_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "recordId"')
             end
 
@@ -1138,7 +1138,7 @@ module Appwrite
             ttl:,
             comment: nil
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -1201,11 +1201,11 @@ module Appwrite
             ttl:,
             comment: nil
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
-            if record_id.nil?
+            if record_id.nil? || record_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "recordId"')
             end
 
@@ -1269,7 +1269,7 @@ module Appwrite
             ttl:,
             comment: nil
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -1328,11 +1328,11 @@ module Appwrite
             ttl:,
             comment: nil
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
-            if record_id.nil?
+            if record_id.nil? || record_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "recordId"')
             end
 
@@ -1392,7 +1392,7 @@ module Appwrite
             ttl:,
             comment: nil
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -1455,11 +1455,11 @@ module Appwrite
             ttl:,
             comment: nil
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
-            if record_id.nil?
+            if record_id.nil? || record_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "recordId"')
             end
 
@@ -1525,7 +1525,7 @@ module Appwrite
             priority:,
             comment: nil
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -1591,11 +1591,11 @@ module Appwrite
             priority:,
             comment: nil
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
-            if record_id.nil?
+            if record_id.nil? || record_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "recordId"')
             end
 
@@ -1661,7 +1661,7 @@ module Appwrite
             ttl:,
             comment: nil
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -1726,11 +1726,11 @@ module Appwrite
             ttl:,
             comment: nil
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
-            if record_id.nil?
+            if record_id.nil? || record_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "recordId"')
             end
 
@@ -1798,7 +1798,7 @@ module Appwrite
             port:,
             comment: nil
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -1891,11 +1891,11 @@ module Appwrite
             port:,
             comment: nil
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
-            if record_id.nil?
+            if record_id.nil? || record_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "recordId"')
             end
 
@@ -1970,7 +1970,7 @@ module Appwrite
             value: nil,
             comment: nil
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -2030,11 +2030,11 @@ module Appwrite
             ttl:,
             comment: nil
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
-            if record_id.nil?
+            if record_id.nil? || record_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "recordId"')
             end
 
@@ -2092,11 +2092,11 @@ module Appwrite
             domain_id:,
             record_id:
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
-            if record_id.nil?
+            if record_id.nil? || record_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "recordId"')
             end
 
@@ -2132,11 +2132,11 @@ module Appwrite
             domain_id:,
             record_id:
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
-            if record_id.nil?
+            if record_id.nil? || record_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "recordId"')
             end
 
@@ -2176,7 +2176,7 @@ module Appwrite
             domain_id:,
             team_id:
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -2215,7 +2215,7 @@ module Appwrite
         def get_transfer_status(
             domain_id:
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -2249,7 +2249,7 @@ module Appwrite
         def get_zone(
             domain_id:
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 
@@ -2285,7 +2285,7 @@ module Appwrite
             domain_id:,
             content:
         )
-            if domain_id.nil?
+            if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
             end
 

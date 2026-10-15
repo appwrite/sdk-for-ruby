@@ -28,7 +28,7 @@ module Appwrite
                 renewal:,
                 auto_renewal:,
                 renewal_price:,
-                transfer_status:,
+                transfer_status: nil,
                 team_id:,
                 dns_records:
             )

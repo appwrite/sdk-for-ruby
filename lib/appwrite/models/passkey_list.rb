@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0, "passkeys" => [] }.merge(map)
                 PasskeyList.new(
                     total: map["total"],
                     passkeys: map["passkeys"].map { |it| Passkey.from(map: it) }

@@ -27,6 +27,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "enabled" => false, "clientId" => "", "clientSecret" => "", "endpoint" => "", "realmName" => "" }.merge(map)
                 OAuth2Keycloak.new(
                     id: map["$id"],
                     enabled: map["enabled"],

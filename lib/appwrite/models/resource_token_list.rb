@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0, "tokens" => [] }.merge(map)
                 ResourceTokenList.new(
                     total: map["total"],
                     tokens: map["tokens"].map { |it| ResourceToken.from(map: it) }

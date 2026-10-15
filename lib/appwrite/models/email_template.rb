@@ -33,6 +33,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "templateId" => "", "locale" => "", "message" => "", "senderName" => "", "senderEmail" => "", "replyToEmail" => "", "replyToName" => "", "subject" => "" }.merge(map)
                 EmailTemplate.new(
                     template_id: map["templateId"],
                     locale: map["locale"],

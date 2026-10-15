@@ -14,7 +14,7 @@ project = Project.new(client)
 result = project.update_o_auth2_kakao(
     client_id: '<CLIENT_ID>', # optional
     client_secret: '<CLIENT_SECRET>', # optional
-    prompt: [ProjectOAuth2KakaoPrompt::NONE], # optional
-    enabled: false # optional
+    enabled: false, # optional
+    prompt: [ProjectOAuth2KakaoPrompt::NONE] # optional
 )
 ```

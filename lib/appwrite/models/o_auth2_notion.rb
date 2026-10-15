@@ -21,6 +21,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "enabled" => false, "oauthClientId" => "", "oauthClientSecret" => "" }.merge(map)
                 OAuth2Notion.new(
                     id: map["$id"],
                     enabled: map["enabled"],

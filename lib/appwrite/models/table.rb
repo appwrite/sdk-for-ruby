@@ -45,6 +45,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "$permissions" => [], "databaseId" => "", "name" => "", "enabled" => true, "rowSecurity" => false, "columns" => [], "indexes" => [], "bytesMax" => 0, "bytesUsed" => 0 }.merge(map)
                 Table.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

@@ -42,6 +42,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "key" => "", "type" => "", "error" => "", "required" => false, "$createdAt" => "", "$updatedAt" => "", "size" => 0 }.merge(map)
                 AttributeString.new(
                     key: map["key"],
                     type: map["type"],

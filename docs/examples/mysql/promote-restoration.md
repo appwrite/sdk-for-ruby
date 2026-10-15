@@ -6,12 +6,12 @@ include Appwrite
 client = Client.new
     .set_endpoint('https://<REGION>.cloud.appwrite.io/v1') # Your API Endpoint
     .set_project('<YOUR_PROJECT_ID>') # Your project ID
-    .set_session('') # The user session to authenticate with
+    .set_key('<YOUR_API_KEY>') # Your secret API key
 
-account = Account.new(client)
+mysql = Mysql.new(client)
 
-result = account.list_logs(
-    queries: [], # optional
-    total: false # optional
+result = mysql.promote_restoration(
+    database_id: '<DATABASE_ID>',
+    restoration_id: '<RESTORATION_ID>'
 )
 ```

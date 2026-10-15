@@ -13,7 +13,7 @@ documents_db = DocumentsDB.new(client)
 result = documents_db.delete_documents(
     database_id: '<DATABASE_ID>',
     collection_id: '<COLLECTION_ID>',
-    queries: [], # optional
+    queries: ["{\"method\":\"equal\", \"attribute\":\"$id\", \"values\":[\"<DOCUMENT_ID>\"]}"], # optional
     transaction_id: '<TRANSACTION_ID>' # optional
 )
 ```

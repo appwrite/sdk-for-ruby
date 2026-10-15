@@ -12,6 +12,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "type" => "bcrypt" }.merge(map)
                 AlgoBcrypt.new(
                     type: map["type"]
                 )

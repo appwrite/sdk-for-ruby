@@ -165,6 +165,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "projectId" => "", "name" => "", "version" => "", "specification" => "", "backend" => "", "hostname" => "", "connectionUser" => "", "connectionPassword" => "", "connectionString" => "", "ssl" => false, "status" => "provisioning", "containerStatus" => "", "lifecycleState" => "", "idleTimeoutMinutes" => 15, "cpu" => 500, "memory" => 512, "storage" => 10, "storageStatus" => "idle", "storageTargetGb" => 0, "storageClass" => "ssd", "storageMaxGb" => 0, "nodePool" => "", "replicas" => 0, "syncMode" => "", "networkMaxConnections" => 100, "networkIdleTimeoutSeconds" => 900, "networkIPAllowlist" => [], "backupEnabled" => true, "pitr" => true, "pitrRetentionDays" => 7, "storageAutoscaling" => true, "storageAutoscalingThresholdPercent" => 85, "storageAutoscalingMaxGb" => 0, "maintenanceWindowDay" => "sun", "maintenanceWindowHourUtc" => 3, "metricsEnabled" => false, "sqlApiEnabled" => true, "sqlApiAllowedStatements" => ["SELECT", "INSERT", "UPDATE", "DELETE"], "sqlApiMaxRows" => 10000, "sqlApiMaxBytes" => 10485760, "sqlApiTimeoutSeconds" => 30, "error" => "" }.merge(map)
                 DedicatedDatabase.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

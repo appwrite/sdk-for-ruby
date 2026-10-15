@@ -8,9 +8,10 @@ client = Client.new
     .set_project('<YOUR_PROJECT_ID>') # Your project ID
     .set_key('<YOUR_API_KEY>') # Your secret API key
 
-organization = Organization.new(client)
+postgresql = Postgresql.new(client)
 
-result = organization.get_key(
-    key_id: '<KEY_ID>'
+result = postgresql.promote_restoration(
+    database_id: '<DATABASE_ID>',
+    restoration_id: '<RESTORATION_ID>'
 )
 ```

@@ -12,6 +12,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "type" => "phpass" }.merge(map)
                 AlgoPhpass.new(
                     type: map["type"]
                 )

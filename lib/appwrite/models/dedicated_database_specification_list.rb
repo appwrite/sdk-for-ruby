@@ -5,31 +5,27 @@ module Appwrite
         class DedicatedDatabaseSpecificationList
             attr_reader :specifications
             attr_reader :total
-            attr_reader :pricing
 
             def initialize(
                 specifications:,
-                total:,
-                pricing:
+                total:
             )
                 @specifications = specifications
                 @total = total
-                @pricing = pricing
             end
 
             def self.from(map:)
+                map = { "specifications" => [], "total" => 0 }.merge(map)
                 DedicatedDatabaseSpecificationList.new(
                     specifications: map["specifications"].map { |it| DedicatedDatabaseSpecification.from(map: it) },
-                    total: map["total"],
-                    pricing: DedicatedDatabaseSpecificationPricing.from(map: map["pricing"])
+                    total: map["total"]
                 )
             end
 
             def to_map
                 {
                     "specifications": @specifications.map { |it| it.to_map },
-                    "total": @total,
-                    "pricing": @pricing.to_map
+                    "total": @total
                 }
             end
         end

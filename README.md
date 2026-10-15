@@ -1,12 +1,12 @@
 # Appwrite Ruby SDK
 
 ![License](https://img.shields.io/github/license/appwrite/sdk-for-ruby.svg?style=flat-square)
-![Version](https://img.shields.io/badge/api%20version-2.0.0-blue.svg?style=flat-square)
+![Version](https://img.shields.io/badge/api%20version-2.5.0-blue.svg?style=flat-square)
 [![Build Status](https://img.shields.io/travis/com/appwrite/sdk-generator?style=flat-square)](https://travis-ci.com/appwrite/sdk-generator)
 [![Twitter Account](https://img.shields.io/twitter/follow/appwrite?color=00acee&label=twitter&style=flat-square)](https://twitter.com/appwrite)
 [![Discord](https://img.shields.io/discord/564160730845151244?label=discord&style=flat-square)](https://appwrite.io/discord)
 
-**This SDK targets Appwrite server version 1.9.x as shipped on Appwrite Cloud.** Self-hosted releases can lag behind Cloud — if you run an older self-hosted build, use a matching older SDK from [previous releases](https://github.com/appwrite/sdk-for-ruby/releases) when APIs differ.
+**This SDK targets Appwrite server version 2.5.x as shipped on Appwrite Cloud.** Self-hosted releases can lag behind Cloud — if you run an older self-hosted build, use a matching older SDK from [previous releases](https://github.com/appwrite/sdk-for-ruby/releases) when APIs differ.
 
 Appwrite is an open-source backend as a service server that abstracts and simplifies complex and repetitive development tasks behind a very simple to use REST API. Appwrite aims to help you develop your apps faster and in a more secure way. Use the Ruby SDK to integrate your app with the Appwrite server to easily start interacting with all of Appwrite backend APIs and tools. For full API documentation and tutorials go to [https://appwrite.io/docs](https://appwrite.io/docs)
 
@@ -35,7 +35,7 @@ client
     .set_endpoint(ENV["APPWRITE_ENDPOINT"]) # Your API Endpoint
     .set_project(ENV["APPWRITE_PROJECT"]) # Your project ID
     .set_key(ENV["APPWRITE_SECRET"]) # Your secret API key
-    .setSelfSigned() # Use only on dev mode with a self-signed SSL cert
+    .set_self_signed # Use only on dev mode with a self-signed SSL cert
 ;
 ```
 
@@ -45,7 +45,7 @@ Once your SDK object is set, create any of the Appwrite service objects and choo
 ```ruby
 users = Appwrite::Users.new(client);
 
-user = users.create(userId: Appwrite::ID::unique(), email: "email@example.com", phone: "+123456789", password: "password", name: "Walter O'Brien");
+user = users.create(user_id: Appwrite::ID::unique(), email: "email@example.com", phone: "+123456789", password: "password", name: "Walter O'Brien");
 ```
 
 ### Full Example
@@ -58,12 +58,12 @@ client
     .set_endpoint(ENV["APPWRITE_ENDPOINT"]) # Your API Endpoint
     .set_project(ENV["APPWRITE_PROJECT"]) # Your project ID
     .set_key(ENV["APPWRITE_SECRET"]) # Your secret API key
-    .setSelfSigned() # Use only on dev mode with a self-signed SSL cert
+    .set_self_signed # Use only on dev mode with a self-signed SSL cert
 ;
 
 users = Appwrite::Users.new(client);
 
-user = users.create(userId: Appwrite::ID::unique(), email: "email@example.com", phone: "+123456789", password: "password", name: "Walter O'Brien");
+user = users.create(user_id: Appwrite::ID::unique(), email: "email@example.com", phone: "+123456789", password: "password", name: "Walter O'Brien");
 ```
 
 ### Error Handling
@@ -73,7 +73,7 @@ The Appwrite Ruby SDK raises `Appwrite::Exception` object with `message`, `code`
 users = Appwrite::Users.new(client);
 
 begin
-    user = users.create(userId: Appwrite::ID::unique(), email: "email@example.com", phone: "+123456789", password: "password", name: "Walter O'Brien");
+    user = users.create(user_id: Appwrite::ID::unique(), email: "email@example.com", phone: "+123456789", password: "password", name: "Walter O'Brien");
 rescue Appwrite::Exception => error
     puts error.message
 end

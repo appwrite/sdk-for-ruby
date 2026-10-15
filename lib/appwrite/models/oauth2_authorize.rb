@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "grantId" => "", "redirectUrl" => "" }.merge(map)
                 Oauth2Authorize.new(
                     grant_id: map["grantId"],
                     redirect_url: map["redirectUrl"]

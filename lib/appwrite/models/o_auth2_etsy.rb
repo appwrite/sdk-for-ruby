@@ -21,6 +21,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "enabled" => false, "keyString" => "", "sharedSecret" => "" }.merge(map)
                 OAuth2Etsy.new(
                     id: map["$id"],
                     enabled: map["enabled"],

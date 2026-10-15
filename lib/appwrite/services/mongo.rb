@@ -50,7 +50,7 @@ module Appwrite
         # @param [Integer] pitr_retention_days Number of days to retain PITR data.
         # @param [] storage_autoscaling Enable automatic storage expansion when usage exceeds threshold.
         # @param [Integer] storage_autoscaling_threshold_percent Storage usage percentage (50-95) that triggers automatic expansion.
-        # @param [Integer] storage_autoscaling_max_gb Maximum storage size in GB for autoscaling. 0 means no limit.
+        # @param [Integer] storage_autoscaling_max_gb Maximum storage size in GB for autoscaling. Defaults to 3 times the specification&#039;s storage. 0 means no limit.
         #
         # @return [DedicatedDatabase]
         def create(
@@ -69,8 +69,6 @@ module Appwrite
             storage_autoscaling_threshold_percent: nil,
             storage_autoscaling_max_gb: nil
         )
-            api_path = '/mongo'
-
             if database_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
@@ -78,6 +76,8 @@ module Appwrite
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
+
+            api_path = '/mongo'
 
             api_params = {
                 databaseId: database_id,
@@ -112,8 +112,8 @@ module Appwrite
         end
 
         # List the dedicated database specifications available on the current plan.
-        # Each specification reports its resource limits, pricing, and whether it is
-        # enabled for the organization.
+        # Each specification reports its resource limits, its own prices and overage
+        # rates, and whether it is enabled for the organization.
         #
         #
         # @return [DedicatedDatabaseSpecificationList]
@@ -145,12 +145,12 @@ module Appwrite
         def get(
             database_id:
         )
-            api_path = '/mongo/{databaseId}'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/mongo/{databaseId}'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 
@@ -219,12 +219,12 @@ module Appwrite
             sql_api_max_bytes: nil,
             sql_api_timeout_seconds: nil
         )
-            api_path = '/mongo/{databaseId}'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/mongo/{databaseId}'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 name: name,
@@ -275,12 +275,12 @@ module Appwrite
         def delete(
             database_id:
         )
-            api_path = '/mongo/{databaseId}'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/mongo/{databaseId}'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 
@@ -309,12 +309,12 @@ module Appwrite
             database_id:,
             queries: nil
         )
-            api_path = '/mongo/{databaseId}/backups'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/mongo/{databaseId}/backups'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 queries: queries,
@@ -345,12 +345,12 @@ module Appwrite
             database_id:,
             type: nil
         )
-            api_path = '/mongo/{databaseId}/backups'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/mongo/{databaseId}/backups'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 type: type,
@@ -381,12 +381,12 @@ module Appwrite
             database_id:,
             queries: nil
         )
-            api_path = '/mongo/{databaseId}/backups/policies'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/mongo/{databaseId}/backups/policies'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 queries: queries,
@@ -426,10 +426,7 @@ module Appwrite
             type: nil,
             enabled: nil
         )
-            api_path = '/mongo/{databaseId}/backups/policies'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
@@ -448,6 +445,9 @@ module Appwrite
             if retention.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "retention"')
             end
+
+            api_path = '/mongo/{databaseId}/backups/policies'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 policyId: policy_id,
@@ -483,17 +483,17 @@ module Appwrite
             database_id:,
             policy_id:
         )
-            api_path = '/mongo/{databaseId}/backups/policies/{policyId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{policyId}', policy_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if policy_id.nil?
+            if policy_id.nil? || policy_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "policyId"')
             end
+
+            api_path = '/mongo/{databaseId}/backups/policies/{policyId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{policyId}', policy_id)
 
             api_params = {}
 
@@ -529,17 +529,17 @@ module Appwrite
             retention: nil,
             enabled: nil
         )
-            api_path = '/mongo/{databaseId}/backups/policies/{policyId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{policyId}', policy_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if policy_id.nil?
+            if policy_id.nil? || policy_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "policyId"')
             end
+
+            api_path = '/mongo/{databaseId}/backups/policies/{policyId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{policyId}', policy_id)
 
             api_params = {
                 name: name,
@@ -574,17 +574,17 @@ module Appwrite
             database_id:,
             policy_id:
         )
-            api_path = '/mongo/{databaseId}/backups/policies/{policyId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{policyId}', policy_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if policy_id.nil?
+            if policy_id.nil? || policy_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "policyId"')
             end
+
+            api_path = '/mongo/{databaseId}/backups/policies/{policyId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{policyId}', policy_id)
 
             api_params = {}
 
@@ -626,10 +626,7 @@ module Appwrite
             prefix: nil,
             endpoint: nil
         )
-            api_path = '/mongo/{databaseId}/backups/storage'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
@@ -648,6 +645,9 @@ module Appwrite
             if secret_key.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "secretKey"')
             end
+
+            api_path = '/mongo/{databaseId}/backups/storage'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 provider: provider,
@@ -685,17 +685,17 @@ module Appwrite
             database_id:,
             backup_id:
         )
-            api_path = '/mongo/{databaseId}/backups/{backupId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{backupId}', backup_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if backup_id.nil?
+            if backup_id.nil? || backup_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "backupId"')
             end
+
+            api_path = '/mongo/{databaseId}/backups/{backupId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{backupId}', backup_id)
 
             api_params = {}
 
@@ -724,17 +724,17 @@ module Appwrite
             database_id:,
             backup_id:
         )
-            api_path = '/mongo/{databaseId}/backups/{backupId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{backupId}', backup_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if backup_id.nil?
+            if backup_id.nil? || backup_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "backupId"')
             end
+
+            api_path = '/mongo/{databaseId}/backups/{backupId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{backupId}', backup_id)
 
             api_params = {}
 
@@ -761,12 +761,12 @@ module Appwrite
         def list_branches(
             database_id:
         )
-            api_path = '/mongo/{databaseId}/branches'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/mongo/{databaseId}/branches'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 
@@ -800,12 +800,12 @@ module Appwrite
             branch_id: nil,
             ttl: nil
         )
-            api_path = '/mongo/{databaseId}/branches'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/mongo/{databaseId}/branches'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 branchId: branch_id,
@@ -839,17 +839,17 @@ module Appwrite
             database_id:,
             branch_id:
         )
-            api_path = '/mongo/{databaseId}/branches/{branchId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{branchId}', branch_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if branch_id.nil?
+            if branch_id.nil? || branch_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "branchId"')
             end
+
+            api_path = '/mongo/{databaseId}/branches/{branchId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{branchId}', branch_id)
 
             api_params = {}
 
@@ -879,12 +879,12 @@ module Appwrite
         def update_credentials(
             database_id:
         )
-            api_path = '/mongo/{databaseId}/credentials'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/mongo/{databaseId}/credentials'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 
@@ -921,12 +921,12 @@ module Appwrite
             database_id:,
             target_replica_id: nil
         )
-            api_path = '/mongo/{databaseId}/failovers'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/mongo/{databaseId}/failovers'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 targetReplicaId: target_replica_id,
@@ -961,10 +961,7 @@ module Appwrite
             day:,
             hour_utc:
         )
-            api_path = '/mongo/{databaseId}/maintenance'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
@@ -975,6 +972,9 @@ module Appwrite
             if hour_utc.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "hourUtc"')
             end
+
+            api_path = '/mongo/{databaseId}/maintenance'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 day: day,
@@ -1011,16 +1011,16 @@ module Appwrite
             target_type:,
             specification: nil
         )
-            api_path = '/mongo/{databaseId}/migrations'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if target_type.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "targetType"')
             end
+
+            api_path = '/mongo/{databaseId}/migrations'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 targetType: target_type,
@@ -1059,12 +1059,12 @@ module Appwrite
             limit: nil,
             offset: nil
         )
-            api_path = '/mongo/{databaseId}/operations'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/mongo/{databaseId}/operations'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 status: status,
@@ -1095,12 +1095,12 @@ module Appwrite
         def get_pitr(
             database_id:
         )
-            api_path = '/mongo/{databaseId}/pitr'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/mongo/{databaseId}/pitr'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 
@@ -1127,12 +1127,12 @@ module Appwrite
         def get_replicas(
             database_id:
         )
-            api_path = '/mongo/{databaseId}/replicas'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/mongo/{databaseId}/replicas'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 
@@ -1167,12 +1167,12 @@ module Appwrite
             limit: nil,
             offset: nil
         )
-            api_path = '/mongo/{databaseId}/restorations'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/mongo/{databaseId}/restorations'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 status: status,
@@ -1200,11 +1200,25 @@ module Appwrite
         # an ISO 8601 datetime. PITR requires the database to have PITR enabled and
         # is only available for enterprise databases.
         #
+        # By default the backup is replayed over the database it was taken from. Pass
+        # `restoreMode` as `clone` to recover it onto a second workload beside this
+        # database instead: this database keeps serving its own data while the clone
+        # is filled, and the switch happens as soon as the clone is ready, on the
+        # endpoint and credentials it already had. Pass `autoPromote` as false to
+        # hold the clone until you promote it yourself. Pass `restoreMode` as `copy`
+        # to recover onto a separate database with its own endpoint, either one you
+        # name with `targetDatabaseId` or one provisioned as a copy of this
+        # database&#039;s engine, version, specification and replicas. Neither mode is
+        # available for a point-in-time recovery or an incremental backup.
+        #
         # @param [String] database_id Database ID.
         # @param [String] type Restoration type. Allowed values: backup, pitr. Use &quot;backup&quot; to restore from a specific backup, or &quot;pitr&quot; for point-in-time recovery.
         # @param [String] backup_id Backup ID to restore from (required for backup type).
-        # @param [String] target_database_id Existing database ID to restore into. The target must be distinct, ready, and use the same engine and version.
+        # @param [String] target_database_id Existing database ID to restore into. The target must be distinct, ready, and use the same engine and version. Omit it on a copy restoration to have one provisioned. Not accepted for a clone, which is recovered inside this database.
         # @param [String] target_time Target time for PITR (required for pitr type) as an [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) datetime.
+        # @param [String] restore_mode Where the backup is restored. Allowed values: in_place, clone, copy. Use &quot;clone&quot; to recover onto a second workload beside this database and leave it serving until you promote — the endpoint and credentials do not change. Use &quot;copy&quot; to recover onto a separate database with its own endpoint, either one you name with targetDatabaseId or one Cloud provisions. Use &quot;in_place&quot; to replay the backup over this database. Defaults to &quot;copy&quot; when a targetDatabaseId is given, &quot;in_place&quot; otherwise.
+        # @param [String] target_name Display name for the database a copy restoration provisions. Defaults to this database&#039;s name followed by &quot;(restored)&quot;. Max length: 128 chars.
+        # @param [] auto_promote Whether a clone restoration switches the database over as soon as the recovery is ready. Default true: the restore finishes with the database serving the recovery point on the endpoint it already had, and the side it replaced kept briefly so the switch can be reversed. Pass false to hold the recovery until you call the promotion endpoint yourself.
         #
         # @return [DedicatedDatabaseRestoration]
         def create_restoration(
@@ -1212,20 +1226,26 @@ module Appwrite
             type: nil,
             backup_id: nil,
             target_database_id: nil,
-            target_time: nil
+            target_time: nil,
+            restore_mode: nil,
+            target_name: nil,
+            auto_promote: nil
         )
-            api_path = '/mongo/{databaseId}/restorations'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/mongo/{databaseId}/restorations'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 type: type,
                 backupId: backup_id,
                 targetDatabaseId: target_database_id,
                 targetTime: target_time,
+                restoreMode: restore_mode,
+                targetName: target_name,
+                autoPromote: auto_promote,
             }
 
             api_headers = {
@@ -1254,17 +1274,17 @@ module Appwrite
             database_id:,
             restoration_id:
         )
-            api_path = '/mongo/{databaseId}/restorations/{restorationId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{restorationId}', restoration_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
-            if restoration_id.nil?
+            if restoration_id.nil? || restoration_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "restorationId"')
             end
+
+            api_path = '/mongo/{databaseId}/restorations/{restorationId}'
+                .gsub('{databaseId}', database_id)
+                .gsub('{restorationId}', restoration_id)
 
             api_params = {}
 
@@ -1282,6 +1302,50 @@ module Appwrite
             )
         end
 
+        # Switch the database over to the clone a restoration recovered. The database
+        # keeps
+        # its endpoint and credentials; clients reconnect once. Writes made after the
+        # recovery point are discarded, and the side being replaced is retained
+        # briefly so
+        # the switch can be reversed.
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] restoration_id Restoration ID.
+        #
+        # @return [DedicatedDatabaseRestoration]
+        def promote_restoration(
+            database_id:,
+            restoration_id:
+        )
+            if database_id.nil? || database_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if restoration_id.nil? || restoration_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "restorationId"')
+            end
+
+            api_path = '/mongo/{databaseId}/restorations/{restorationId}/promotions'
+                .gsub('{databaseId}', database_id)
+                .gsub('{restorationId}', restoration_id)
+
+            api_params = {}
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::DedicatedDatabaseRestoration
+            )
+        end
+
         # Get real-time health and status information for a dedicated database.
         # Returns health status, readiness, uptime, connection info, replica status,
         # and volume information.
@@ -1292,12 +1356,12 @@ module Appwrite
         def get_status(
             database_id:
         )
-            api_path = '/mongo/{databaseId}/status'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
+
+            api_path = '/mongo/{databaseId}/status'
+                .gsub('{databaseId}', database_id)
 
             api_params = {}
 
@@ -1326,16 +1390,16 @@ module Appwrite
             database_id:,
             target_version:
         )
-            api_path = '/mongo/{databaseId}/upgrades'
-                .gsub('{databaseId}', database_id)
-
-            if database_id.nil?
+            if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
             end
 
             if target_version.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "targetVersion"')
             end
+
+            api_path = '/mongo/{databaseId}/upgrades'
+                .gsub('{databaseId}', database_id)
 
             api_params = {
                 targetVersion: target_version,

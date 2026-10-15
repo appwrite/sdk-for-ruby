@@ -27,6 +27,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "total" => 0 }.merge(map)
                 Team.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

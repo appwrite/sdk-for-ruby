@@ -21,6 +21,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "enabled" => false, "clientId" => "", "primaryClientSecret" => "" }.merge(map)
                 OAuth2Linkedin.new(
                     id: map["$id"],
                     enabled: map["enabled"],

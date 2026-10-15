@@ -137,7 +137,7 @@ module Appwrite
             enabled: nil,
             conditions: nil
         )
-            if rule_id.nil?
+            if rule_id.nil? || rule_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
             end
 
@@ -284,7 +284,7 @@ module Appwrite
             difficulty: nil,
             ttl: nil
         )
-            if rule_id.nil?
+            if rule_id.nil? || rule_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
             end
 
@@ -415,7 +415,7 @@ module Appwrite
             enabled: nil,
             conditions: nil
         )
-            if rule_id.nil?
+            if rule_id.nil? || rule_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
             end
 
@@ -578,7 +578,7 @@ module Appwrite
             enabled: nil,
             conditions: nil
         )
-            if rule_id.nil?
+            if rule_id.nil? || rule_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
             end
 
@@ -728,7 +728,7 @@ module Appwrite
             enabled: nil,
             conditions: nil
         )
-            if rule_id.nil?
+            if rule_id.nil? || rule_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
             end
 
@@ -771,7 +771,7 @@ module Appwrite
         def get_rule(
             rule_id:
         )
-            if rule_id.nil?
+            if rule_id.nil? || rule_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
             end
 
@@ -833,7 +833,7 @@ module Appwrite
         def delete_rule(
             rule_id:
         )
-            if rule_id.nil?
+            if rule_id.nil? || rule_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
             end
 

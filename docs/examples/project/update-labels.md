@@ -11,6 +11,6 @@ client = Client.new
 project = Project.new(client)
 
 result = project.update_labels(
-    labels: []
+    labels: ["production"]
 )
 ```

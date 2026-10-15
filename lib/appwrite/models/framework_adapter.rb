@@ -24,6 +24,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "key" => "", "installCommand" => "", "buildCommand" => "", "outputDirectory" => "" }.merge(map)
                 FrameworkAdapter.new(
                     key: map["key"],
                     install_command: map["installCommand"],

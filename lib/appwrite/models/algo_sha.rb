@@ -12,6 +12,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "type" => "sha" }.merge(map)
                 AlgoSha.new(
                     type: map["type"]
                 )

@@ -96,8 +96,6 @@ module Appwrite
             deployment_retention: nil,
             interval: nil
         )
-            api_path = '/functions'
-
             if function_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
@@ -109,6 +107,8 @@ module Appwrite
             if runtime.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "runtime"')
             end
+
+            api_path = '/functions'
 
             api_params = {
                 functionId: function_id,
@@ -218,12 +218,12 @@ module Appwrite
         def get(
             function_id:
         )
-            api_path = '/functions/{functionId}'
-                .gsub('{functionId}', function_id)
-
-            if function_id.nil?
+            if function_id.nil? || function_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
+
+            api_path = '/functions/{functionId}'
+                .gsub('{functionId}', function_id)
 
             api_params = {}
 
@@ -266,6 +266,7 @@ module Appwrite
         # @param [String] runtime_specification Runtime specification for the function executions.
         # @param [Integer] deployment_retention Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept.
         # @param [Integer] interval Minutes between scheduled executions. Appwrite picks when within each interval the function runs. Use 0 to disable. Cannot be combined with schedule. When omitted, the current interval is kept unless schedule is set.
+        # @param [] email_enabled Enable inbound email triggering for this function. When false or omitted on create, SMTP recipients are rejected. Opt-in; default is off.
         #
         # @return [Function]
         def update(
@@ -291,18 +292,19 @@ module Appwrite
             build_specification: nil,
             runtime_specification: nil,
             deployment_retention: nil,
-            interval: nil
+            interval: nil,
+            email_enabled: nil
         )
-            api_path = '/functions/{functionId}'
-                .gsub('{functionId}', function_id)
-
-            if function_id.nil?
+            if function_id.nil? || function_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
+
+            api_path = '/functions/{functionId}'
+                .gsub('{functionId}', function_id)
 
             api_params = {
                 name: name,
@@ -327,6 +329,7 @@ module Appwrite
                 runtimeSpecification: runtime_specification,
                 deploymentRetention: deployment_retention,
                 interval: interval,
+                emailEnabled: email_enabled,
             }
 
             api_headers = {
@@ -352,18 +355,19 @@ module Appwrite
         def delete(
             function_id:
         )
-            api_path = '/functions/{functionId}'
-                .gsub('{functionId}', function_id)
-
-            if function_id.nil?
+            if function_id.nil? || function_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
+
+            api_path = '/functions/{functionId}'
+                .gsub('{functionId}', function_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -385,16 +389,16 @@ module Appwrite
             function_id:,
             deployment_id:
         )
-            api_path = '/functions/{functionId}/deployment'
-                .gsub('{functionId}', function_id)
-
-            if function_id.nil?
+            if function_id.nil? || function_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
             if deployment_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
             end
+
+            api_path = '/functions/{functionId}/deployment'
+                .gsub('{functionId}', function_id)
 
             api_params = {
                 deploymentId: deployment_id,
@@ -430,12 +434,12 @@ module Appwrite
             search: nil,
             total: nil
         )
-            api_path = '/functions/{functionId}/deployments'
-                .gsub('{functionId}', function_id)
-
-            if function_id.nil?
+            if function_id.nil? || function_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
+
+            api_path = '/functions/{functionId}/deployments'
+                .gsub('{functionId}', function_id)
 
             api_params = {
                 queries: queries,
@@ -483,10 +487,7 @@ module Appwrite
             commands: nil,
             on_progress: nil
         )
-            api_path = '/functions/{functionId}/deployments'
-                .gsub('{functionId}', function_id)
-
-            if function_id.nil?
+            if function_id.nil? || function_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
@@ -497,6 +498,9 @@ module Appwrite
             if activate.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "activate"')
             end
+
+            api_path = '/functions/{functionId}/deployments'
+                .gsub('{functionId}', function_id)
 
             api_params = {
                 entrypoint: entrypoint,
@@ -521,6 +525,7 @@ module Appwrite
                 param_name: param_name,
                 id_param_name: id_param_name,
                 on_progress: on_progress,
+                method: 'POST',
                 response_type: Models::Deployment
             )
         end
@@ -541,16 +546,16 @@ module Appwrite
             deployment_id:,
             build_id: nil
         )
-            api_path = '/functions/{functionId}/deployments/duplicate'
-                .gsub('{functionId}', function_id)
-
-            if function_id.nil?
+            if function_id.nil? || function_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
             if deployment_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
             end
+
+            api_path = '/functions/{functionId}/deployments/duplicate'
+                .gsub('{functionId}', function_id)
 
             api_params = {
                 deploymentId: deployment_id,
@@ -596,10 +601,7 @@ module Appwrite
             reference:,
             activate: nil
         )
-            api_path = '/functions/{functionId}/deployments/template'
-                .gsub('{functionId}', function_id)
-
-            if function_id.nil?
+            if function_id.nil? || function_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
@@ -622,6 +624,9 @@ module Appwrite
             if reference.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "reference"')
             end
+
+            api_path = '/functions/{functionId}/deployments/template'
+                .gsub('{functionId}', function_id)
 
             api_params = {
                 repository: repository,
@@ -663,10 +668,7 @@ module Appwrite
             reference:,
             activate: nil
         )
-            api_path = '/functions/{functionId}/deployments/vcs'
-                .gsub('{functionId}', function_id)
-
-            if function_id.nil?
+            if function_id.nil? || function_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
@@ -677,6 +679,9 @@ module Appwrite
             if reference.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "reference"')
             end
+
+            api_path = '/functions/{functionId}/deployments/vcs'
+                .gsub('{functionId}', function_id)
 
             api_params = {
                 type: type,
@@ -709,17 +714,17 @@ module Appwrite
             function_id:,
             deployment_id:
         )
-            api_path = '/functions/{functionId}/deployments/{deploymentId}'
-                .gsub('{functionId}', function_id)
-                .gsub('{deploymentId}', deployment_id)
-
-            if function_id.nil?
+            if function_id.nil? || function_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
-            if deployment_id.nil?
+            if deployment_id.nil? || deployment_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
             end
+
+            api_path = '/functions/{functionId}/deployments/{deploymentId}'
+                .gsub('{functionId}', function_id)
+                .gsub('{deploymentId}', deployment_id)
 
             api_params = {}
 
@@ -747,23 +752,24 @@ module Appwrite
             function_id:,
             deployment_id:
         )
-            api_path = '/functions/{functionId}/deployments/{deploymentId}'
-                .gsub('{functionId}', function_id)
-                .gsub('{deploymentId}', deployment_id)
-
-            if function_id.nil?
+            if function_id.nil? || function_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
-            if deployment_id.nil?
+            if deployment_id.nil? || deployment_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
             end
+
+            api_path = '/functions/{functionId}/deployments/{deploymentId}'
+                .gsub('{functionId}', function_id)
+                .gsub('{deploymentId}', deployment_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -790,17 +796,17 @@ module Appwrite
             type: nil,
             token: nil
         )
-            api_path = '/functions/{functionId}/deployments/{deploymentId}/download'
-                .gsub('{functionId}', function_id)
-                .gsub('{deploymentId}', deployment_id)
-
-            if function_id.nil?
+            if function_id.nil? || function_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
-            if deployment_id.nil?
+            if deployment_id.nil? || deployment_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
             end
+
+            api_path = '/functions/{functionId}/deployments/{deploymentId}/download'
+                .gsub('{functionId}', function_id)
+                .gsub('{deploymentId}', deployment_id)
 
             api_params = {
                 type: type,
@@ -834,17 +840,17 @@ module Appwrite
             function_id:,
             deployment_id:
         )
-            api_path = '/functions/{functionId}/deployments/{deploymentId}/status'
-                .gsub('{functionId}', function_id)
-                .gsub('{deploymentId}', deployment_id)
-
-            if function_id.nil?
+            if function_id.nil? || function_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
-            if deployment_id.nil?
+            if deployment_id.nil? || deployment_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "deploymentId"')
             end
+
+            api_path = '/functions/{functionId}/deployments/{deploymentId}/status'
+                .gsub('{functionId}', function_id)
+                .gsub('{deploymentId}', deployment_id)
 
             api_params = {}
 
@@ -876,12 +882,12 @@ module Appwrite
             queries: nil,
             total: nil
         )
-            api_path = '/functions/{functionId}/executions'
-                .gsub('{functionId}', function_id)
-
-            if function_id.nil?
+            if function_id.nil? || function_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
+
+            api_path = '/functions/{functionId}/executions'
+                .gsub('{functionId}', function_id)
 
             api_params = {
                 queries: queries,
@@ -925,12 +931,12 @@ module Appwrite
             headers: nil,
             scheduled_at: nil
         )
-            api_path = '/functions/{functionId}/executions'
-                .gsub('{functionId}', function_id)
-
-            if function_id.nil?
+            if function_id.nil? || function_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
+
+            api_path = '/functions/{functionId}/executions'
+                .gsub('{functionId}', function_id)
 
             api_params = {
                 body: body,
@@ -966,17 +972,17 @@ module Appwrite
             function_id:,
             execution_id:
         )
-            api_path = '/functions/{functionId}/executions/{executionId}'
-                .gsub('{functionId}', function_id)
-                .gsub('{executionId}', execution_id)
-
-            if function_id.nil?
+            if function_id.nil? || function_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
-            if execution_id.nil?
+            if execution_id.nil? || execution_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "executionId"')
             end
+
+            api_path = '/functions/{functionId}/executions/{executionId}'
+                .gsub('{functionId}', function_id)
+                .gsub('{executionId}', execution_id)
 
             api_params = {}
 
@@ -1004,23 +1010,24 @@ module Appwrite
             function_id:,
             execution_id:
         )
-            api_path = '/functions/{functionId}/executions/{executionId}'
-                .gsub('{functionId}', function_id)
-                .gsub('{executionId}', execution_id)
-
-            if function_id.nil?
+            if function_id.nil? || function_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
-            if execution_id.nil?
+            if execution_id.nil? || execution_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "executionId"')
             end
+
+            api_path = '/functions/{functionId}/executions/{executionId}'
+                .gsub('{functionId}', function_id)
+                .gsub('{executionId}', execution_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(
@@ -1043,12 +1050,12 @@ module Appwrite
             queries: nil,
             total: nil
         )
-            api_path = '/functions/{functionId}/variables'
-                .gsub('{functionId}', function_id)
-
-            if function_id.nil?
+            if function_id.nil? || function_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
+
+            api_path = '/functions/{functionId}/variables'
+                .gsub('{functionId}', function_id)
 
             api_params = {
                 queries: queries,
@@ -1086,10 +1093,7 @@ module Appwrite
             value:,
             secret: nil
         )
-            api_path = '/functions/{functionId}/variables'
-                .gsub('{functionId}', function_id)
-
-            if function_id.nil?
+            if function_id.nil? || function_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
@@ -1104,6 +1108,9 @@ module Appwrite
             if value.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "value"')
             end
+
+            api_path = '/functions/{functionId}/variables'
+                .gsub('{functionId}', function_id)
 
             api_params = {
                 variableId: variable_id,
@@ -1137,17 +1144,17 @@ module Appwrite
             function_id:,
             variable_id:
         )
-            api_path = '/functions/{functionId}/variables/{variableId}'
-                .gsub('{functionId}', function_id)
-                .gsub('{variableId}', variable_id)
-
-            if function_id.nil?
+            if function_id.nil? || function_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
-            if variable_id.nil?
+            if variable_id.nil? || variable_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "variableId"')
             end
+
+            api_path = '/functions/{functionId}/variables/{variableId}'
+                .gsub('{functionId}', function_id)
+                .gsub('{variableId}', variable_id)
 
             api_params = {}
 
@@ -1181,17 +1188,17 @@ module Appwrite
             value: nil,
             secret: nil
         )
-            api_path = '/functions/{functionId}/variables/{variableId}'
-                .gsub('{functionId}', function_id)
-                .gsub('{variableId}', variable_id)
-
-            if function_id.nil?
+            if function_id.nil? || function_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
-            if variable_id.nil?
+            if variable_id.nil? || variable_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "variableId"')
             end
+
+            api_path = '/functions/{functionId}/variables/{variableId}'
+                .gsub('{functionId}', function_id)
+                .gsub('{variableId}', variable_id)
 
             api_params = {
                 key: key,
@@ -1224,23 +1231,24 @@ module Appwrite
             function_id:,
             variable_id:
         )
-            api_path = '/functions/{functionId}/variables/{variableId}'
-                .gsub('{functionId}', function_id)
-                .gsub('{variableId}', variable_id)
-
-            if function_id.nil?
+            if function_id.nil? || function_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
             end
 
-            if variable_id.nil?
+            if variable_id.nil? || variable_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "variableId"')
             end
+
+            api_path = '/functions/{functionId}/variables/{variableId}'
+                .gsub('{functionId}', function_id)
+                .gsub('{variableId}', variable_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(

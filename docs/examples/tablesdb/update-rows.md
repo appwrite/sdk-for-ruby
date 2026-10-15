@@ -14,9 +14,9 @@ result = tables_db.update_rows(
     database_id: '<DATABASE_ID>',
     table_id: '<TABLE_ID>',
     data: {
-        "username" => "walter.obrien",
-        "email" => "walter.obrien@example.com",
-        "fullName" => "Walter O'Brien",
+        "username" => 'walter.obrien',
+        "email" => 'walter.obrien@example.com',
+        "fullName" => 'Walter O\'Brien',
         "age" => 33,
         "isAdmin" => false
     }, # optional

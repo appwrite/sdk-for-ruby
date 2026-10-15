@@ -27,6 +27,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "status" => "pending", "operations" => 0, "expiresAt" => "" }.merge(map)
                 Transaction.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

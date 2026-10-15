@@ -27,6 +27,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "min" => 8, "uppercase" => false, "lowercase" => false, "number" => false, "symbols" => false }.merge(map)
                 PolicyPasswordStrength.new(
                     id: map["$id"],
                     min: map["min"],

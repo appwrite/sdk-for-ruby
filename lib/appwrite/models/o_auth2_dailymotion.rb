@@ -21,6 +21,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "enabled" => false, "apiKey" => "", "apiSecret" => "" }.merge(map)
                 OAuth2Dailymotion.new(
                     id: map["$id"],
                     enabled: map["enabled"],

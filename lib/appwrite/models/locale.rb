@@ -63,6 +63,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "ip" => "", "countryCode" => "", "country" => "", "continentCode" => "", "continent" => "", "eu" => false, "currency" => "" }.merge(map)
                 Locale.new(
                     ip: map["ip"],
                     country_code: map["countryCode"],

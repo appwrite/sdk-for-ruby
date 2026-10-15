@@ -22,12 +22,12 @@ module Appwrite
             authorization_details: nil,
             scope: nil
         )
-            api_path = '/oauth2/{project_id}/approve'
-                .gsub('{project_id}', @client.get_config('project'))
-
             if grant_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "grantId"')
             end
+
+            api_path = '/oauth2/{project_id}/approve'
+                .gsub('{project_id}', @client.get_config('project'))
 
             api_params = {
                 grant_id: grant_id,
@@ -66,7 +66,7 @@ module Appwrite
         # @param [String] prompt OIDC prompt parameter for customization of consent screen. Space-separated list of: none, login, consent, select_account.
         # @param [Integer] max_age OIDC max_age paraleter for customization of consent screen. Maximum allowable elapsed time in seconds since the user last authenticated. If exceeded, re-authentication is required.
         # @param [String] authorization_details Rich authorization request. JSON array of objects, each with a `type` and project-defined fields
-        # @param [String] resource RFC 8707 resource indicator URI or URI list. Each value must be an absolute URI without a fragment.
+        # @param [Array] resource RFC 8707 resource indicator URI or URI list. Each value must be an absolute URI without a fragment.
         # @param [String] audience Compatibility alias for a single OAuth2 resource indicator URI.
         # @param [String] request_uri OAuth2 authorization request handle returned by the pushed authorization request endpoint.
         #
@@ -137,7 +137,7 @@ module Appwrite
         # @param [String] prompt OIDC prompt parameter for customization of consent screen. Space-separated list of: none, login, consent, select_account.
         # @param [Integer] max_age OIDC max_age paraleter for customization of consent screen. Maximum allowable elapsed time in seconds since the user last authenticated. If exceeded, re-authentication is required.
         # @param [String] authorization_details Rich authorization request. JSON array of objects, each with a `type` and project-defined fields
-        # @param [String] resource RFC 8707 resource indicator URI or URI list. Each value must be an absolute URI without a fragment.
+        # @param [Array] resource RFC 8707 resource indicator URI or URI list. Each value must be an absolute URI without a fragment.
         # @param [String] audience Compatibility alias for a single OAuth2 resource indicator URI.
         # @param [String] request_uri OAuth2 authorization request handle returned by the pushed authorization request endpoint.
         #
@@ -198,7 +198,7 @@ module Appwrite
         # @param [String] client_id OAuth2 client ID. Either a registered app ID or an HTTPS client ID metadata document URL.
         # @param [String] scope Space-separated OAuth2 scopes. Can include project scopes, and built-in scopes: `openid`, `email`, `profile`.
         # @param [String] authorization_details Rich authorization request. JSON array of objects, each with a `type` and project-defined fields
-        # @param [String] resource RFC 8707 resource indicator URI or URI list. Each value must be an absolute URI without a fragment.
+        # @param [Array] resource RFC 8707 resource indicator URI or URI list. Each value must be an absolute URI without a fragment.
         # @param [String] audience Compatibility alias for a single OAuth2 resource indicator URI.
         #
         # @return [Oauth2DeviceAuthorization]
@@ -245,12 +245,12 @@ module Appwrite
         def create_grant(
             user_code:
         )
-            api_path = '/oauth2/{project_id}/grants'
-                .gsub('{project_id}', @client.get_config('project'))
-
             if user_code.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "userCode"')
             end
+
+            api_path = '/oauth2/{project_id}/grants'
+                .gsub('{project_id}', @client.get_config('project'))
 
             api_params = {
                 user_code: user_code,
@@ -280,13 +280,13 @@ module Appwrite
         def get_grant(
             grant_id:
         )
+            if grant_id.nil? || grant_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "grantId"')
+            end
+
             api_path = '/oauth2/{project_id}/grants/{grant_id}'
                 .gsub('{project_id}', @client.get_config('project'))
                 .gsub('{grant_id}', grant_id)
-
-            if grant_id.nil?
-                raise Appwrite::Exception.new('Missing required parameter: "grantId"')
-            end
 
             api_params = {}
 
@@ -398,7 +398,7 @@ module Appwrite
         # @param [String] prompt OIDC prompt parameter for customization of consent screen. Space-separated list of: none, login, consent, select_account.
         # @param [Integer] max_age OIDC max_age parameter for customization of consent screen.
         # @param [String] authorization_details Rich authorization request. JSON array of objects, each with a `type` and project-defined fields
-        # @param [String] resource RFC 8707 resource indicator URI or URI list. Each value must be an absolute URI without a fragment.
+        # @param [Array] resource RFC 8707 resource indicator URI or URI list. Each value must be an absolute URI without a fragment.
         # @param [String] audience Compatibility alias for a single OAuth2 resource indicator URI.
         #
         # @return [Oauth2PAR]
@@ -417,9 +417,6 @@ module Appwrite
             resource: nil,
             audience: nil
         )
-            api_path = '/oauth2/{project_id}/par'
-                .gsub('{project_id}', @client.get_config('project'))
-
             if client_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "clientId"')
             end
@@ -431,6 +428,9 @@ module Appwrite
             if response_type.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "responseType"')
             end
+
+            api_path = '/oauth2/{project_id}/par'
+                .gsub('{project_id}', @client.get_config('project'))
 
             api_params = {
                 client_id: client_id,
@@ -509,12 +509,12 @@ module Appwrite
         def reject(
             grant_id:
         )
-            api_path = '/oauth2/{project_id}/reject'
-                .gsub('{project_id}', @client.get_config('project'))
-
             if grant_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "grantId"')
             end
+
+            api_path = '/oauth2/{project_id}/reject'
+                .gsub('{project_id}', @client.get_config('project'))
 
             api_params = {
                 grant_id: grant_id,
@@ -548,12 +548,12 @@ module Appwrite
             client_id: nil,
             client_secret: nil
         )
-            api_path = '/oauth2/{project_id}/revoke'
-                .gsub('{project_id}', @client.get_config('project'))
-
             if token.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "token"')
             end
+
+            api_path = '/oauth2/{project_id}/revoke'
+                .gsub('{project_id}', @client.get_config('project'))
 
             api_params = {
                 token: token,
@@ -586,7 +586,7 @@ module Appwrite
         # @param [String] client_secret OAuth2 client secret. Required for confidential apps.
         # @param [String] code_verifier PKCE code verifier. Required for public apps.
         # @param [String] redirect_uri Redirect URI. Required for `authorization_code` grant type.
-        # @param [String] resource RFC 8707 resource indicator URI or URI list. Each value must be an absolute URI without a fragment.
+        # @param [Array] resource RFC 8707 resource indicator URI or URI list. Each value must be an absolute URI without a fragment.
         # @param [String] audience Compatibility alias for a single OAuth2 resource indicator URI.
         #
         # @return [Oauth2Token]
@@ -602,12 +602,12 @@ module Appwrite
             resource: nil,
             audience: nil
         )
-            api_path = '/oauth2/{project_id}/token'
-                .gsub('{project_id}', @client.get_config('project'))
-
             if grant_type.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "grantType"')
             end
+
+            api_path = '/oauth2/{project_id}/token'
+                .gsub('{project_id}', @client.get_config('project'))
 
             api_params = {
                 grant_type: grant_type,

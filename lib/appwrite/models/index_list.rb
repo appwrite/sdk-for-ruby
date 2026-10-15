@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0, "indexes" => [] }.merge(map)
                 IndexList.new(
                     total: map["total"],
                     indexes: map["indexes"].map { |it| Index.from(map: it) }

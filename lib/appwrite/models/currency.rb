@@ -30,6 +30,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "symbol" => "", "name" => "", "symbolNative" => "", "decimalDigits" => 0, "rounding" => 0, "code" => "", "namePlural" => "" }.merge(map)
                 Currency.new(
                     symbol: map["symbol"],
                     name: map["name"],

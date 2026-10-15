@@ -39,6 +39,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "enabled" => false, "mode" => "transaction", "maxConnections" => 100, "defaultPoolSize" => 20, "port" => 6432, "readWriteSplitting" => false, "poolerCpuRequest" => "", "poolerCpuLimit" => "", "poolerMemoryRequest" => "", "poolerMemoryLimit" => "" }.merge(map)
                 DedicatedDatabasePooler.new(
                     enabled: map["enabled"],
                     mode: map["mode"],

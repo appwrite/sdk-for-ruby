@@ -54,6 +54,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "userId" => "", "userName" => "", "userEmail" => "", "userPhone" => "", "teamId" => "", "teamName" => "", "invited" => "", "joined" => "", "confirm" => false, "mfa" => false, "userAccessedAt" => "", "roles" => [] }.merge(map)
                 Membership.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

@@ -12,6 +12,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "redirectUrl" => "" }.merge(map)
                 Oauth2Reject.new(
                     redirect_url: map["redirectUrl"]
                 )

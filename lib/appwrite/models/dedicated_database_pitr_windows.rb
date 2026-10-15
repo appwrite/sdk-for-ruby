@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "earliest" => "", "latest" => "" }.merge(map)
                 DedicatedDatabasePITRWindows.new(
                     earliest: map["earliest"],
                     latest: map["latest"]

@@ -21,17 +21,17 @@ module Appwrite
             queries: nil,
             total: nil
         )
-            api_path = '/tokens/buckets/{bucketId}/files/{fileId}'
-                .gsub('{bucketId}', bucket_id)
-                .gsub('{fileId}', file_id)
-
-            if bucket_id.nil?
+            if bucket_id.nil? || bucket_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
-            if file_id.nil?
+            if file_id.nil? || file_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
+
+            api_path = '/tokens/buckets/{bucketId}/files/{fileId}'
+                .gsub('{bucketId}', bucket_id)
+                .gsub('{fileId}', file_id)
 
             api_params = {
                 queries: queries,
@@ -65,17 +65,17 @@ module Appwrite
             file_id:,
             expire: nil
         )
-            api_path = '/tokens/buckets/{bucketId}/files/{fileId}'
-                .gsub('{bucketId}', bucket_id)
-                .gsub('{fileId}', file_id)
-
-            if bucket_id.nil?
+            if bucket_id.nil? || bucket_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
             end
 
-            if file_id.nil?
+            if file_id.nil? || file_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "fileId"')
             end
+
+            api_path = '/tokens/buckets/{bucketId}/files/{fileId}'
+                .gsub('{bucketId}', bucket_id)
+                .gsub('{fileId}', file_id)
 
             api_params = {
                 expire: expire,
@@ -104,12 +104,12 @@ module Appwrite
         def get(
             token_id:
         )
-            api_path = '/tokens/{tokenId}'
-                .gsub('{tokenId}', token_id)
-
-            if token_id.nil?
+            if token_id.nil? || token_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tokenId"')
             end
+
+            api_path = '/tokens/{tokenId}'
+                .gsub('{tokenId}', token_id)
 
             api_params = {}
 
@@ -138,12 +138,12 @@ module Appwrite
             token_id:,
             expire: nil
         )
-            api_path = '/tokens/{tokenId}'
-                .gsub('{tokenId}', token_id)
-
-            if token_id.nil?
+            if token_id.nil? || token_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tokenId"')
             end
+
+            api_path = '/tokens/{tokenId}'
+                .gsub('{tokenId}', token_id)
 
             api_params = {
                 expire: expire,
@@ -172,18 +172,19 @@ module Appwrite
         def delete(
             token_id:
         )
-            api_path = '/tokens/{tokenId}'
-                .gsub('{tokenId}', token_id)
-
-            if token_id.nil?
+            if token_id.nil? || token_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "tokenId"')
             end
+
+            api_path = '/tokens/{tokenId}'
+                .gsub('{tokenId}', token_id)
 
             api_params = {}
 
             api_headers = {
                 "X-Appwrite-Project": @client.get_config('project'),
                 "content-type": 'application/json',
+                "accept": 'application/json',
             }
 
             @client.call(

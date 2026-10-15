@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0, "collections" => [] }.merge(map)
                 VectorsdbCollectionList.new(
                     total: map["total"],
                     collections: map["collections"].map { |it| VectorsdbCollection.from(map: it) }

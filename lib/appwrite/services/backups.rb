@@ -44,11 +44,11 @@ module Appwrite
             services:,
             resource_id: nil
         )
-            api_path = '/backups/archives'
-
             if services.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "services"')
             end
+
+            api_path = '/backups/archives'
 
             api_params = {
                 services: services,
@@ -78,12 +78,12 @@ module Appwrite
         def get_archive(
             archive_id:
         )
-            api_path = '/backups/archives/{archiveId}'
-                .gsub('{archiveId}', archive_id)
-
-            if archive_id.nil?
+            if archive_id.nil? || archive_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "archiveId"')
             end
+
+            api_path = '/backups/archives/{archiveId}'
+                .gsub('{archiveId}', archive_id)
 
             api_params = {}
 
@@ -109,12 +109,12 @@ module Appwrite
         def delete_archive(
             archive_id:
         )
-            api_path = '/backups/archives/{archiveId}'
-                .gsub('{archiveId}', archive_id)
-
-            if archive_id.nil?
+            if archive_id.nil? || archive_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "archiveId"')
             end
+
+            api_path = '/backups/archives/{archiveId}'
+                .gsub('{archiveId}', archive_id)
 
             api_params = {}
 
@@ -180,8 +180,6 @@ module Appwrite
             resource_id: nil,
             enabled: nil
         )
-            api_path = '/backups/policies'
-
             if policy_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "policyId"')
             end
@@ -197,6 +195,8 @@ module Appwrite
             if schedule.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "schedule"')
             end
+
+            api_path = '/backups/policies'
 
             api_params = {
                 policyId: policy_id,
@@ -231,12 +231,12 @@ module Appwrite
         def get_policy(
             policy_id:
         )
-            api_path = '/backups/policies/{policyId}'
-                .gsub('{policyId}', policy_id)
-
-            if policy_id.nil?
+            if policy_id.nil? || policy_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "policyId"')
             end
+
+            api_path = '/backups/policies/{policyId}'
+                .gsub('{policyId}', policy_id)
 
             api_params = {}
 
@@ -270,12 +270,12 @@ module Appwrite
             schedule: nil,
             enabled: nil
         )
-            api_path = '/backups/policies/{policyId}'
-                .gsub('{policyId}', policy_id)
-
-            if policy_id.nil?
+            if policy_id.nil? || policy_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "policyId"')
             end
+
+            api_path = '/backups/policies/{policyId}'
+                .gsub('{policyId}', policy_id)
 
             api_params = {
                 name: name,
@@ -307,12 +307,12 @@ module Appwrite
         def delete_policy(
             policy_id:
         )
-            api_path = '/backups/policies/{policyId}'
-                .gsub('{policyId}', policy_id)
-
-            if policy_id.nil?
+            if policy_id.nil? || policy_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "policyId"')
             end
+
+            api_path = '/backups/policies/{policyId}'
+                .gsub('{policyId}', policy_id)
 
             api_params = {}
 
@@ -375,8 +375,6 @@ module Appwrite
             new_resource_id: nil,
             new_resource_name: nil
         )
-            api_path = '/backups/restoration'
-
             if archive_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "archiveId"')
             end
@@ -384,6 +382,8 @@ module Appwrite
             if services.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "services"')
             end
+
+            api_path = '/backups/restoration'
 
             api_params = {
                 archiveId: archive_id,
@@ -443,12 +443,12 @@ module Appwrite
         def get_restoration(
             restoration_id:
         )
-            api_path = '/backups/restorations/{restorationId}'
-                .gsub('{restorationId}', restoration_id)
-
-            if restoration_id.nil?
+            if restoration_id.nil? || restoration_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "restorationId"')
             end
+
+            api_path = '/backups/restorations/{restorationId}'
+                .gsub('{restorationId}', restoration_id)
 
             api_params = {}
 

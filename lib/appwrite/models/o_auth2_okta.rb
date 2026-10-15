@@ -24,12 +24,13 @@ module Appwrite
                 @enabled = enabled
                 @client_id = client_id
                 @client_secret = client_secret
-                @prompt = prompt.nil? ? prompt : validate_prompt(prompt)
+                @prompt = validate_prompt(prompt)
                 @domain = domain
                 @authorization_server_id = authorization_server_id
             end
 
             def self.from(map:)
+                map = { "$id" => "", "enabled" => false, "clientId" => "", "clientSecret" => "", "prompt" => [], "domain" => "", "authorizationServerId" => "" }.merge(map)
                 OAuth2Okta.new(
                     id: map["$id"],
                     enabled: map["enabled"],

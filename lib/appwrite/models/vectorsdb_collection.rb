@@ -48,6 +48,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "$permissions" => [], "databaseId" => "", "name" => "", "enabled" => true, "documentSecurity" => false, "attributes" => [], "indexes" => [], "bytesMax" => 0, "bytesUsed" => 0, "dimension" => 0 }.merge(map)
                 VectorsdbCollection.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

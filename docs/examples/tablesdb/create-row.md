@@ -17,9 +17,9 @@ result = tables_db.create_row(
     table_id: '<TABLE_ID>',
     row_id: '<ROW_ID>',
     data: {
-        "username" => "walter.obrien",
-        "email" => "walter.obrien@example.com",
-        "fullName" => "Walter O'Brien",
+        "username" => 'walter.obrien',
+        "email" => 'walter.obrien@example.com',
+        "fullName" => 'Walter O\'Brien',
         "age" => 30,
         "isAdmin" => false
     },

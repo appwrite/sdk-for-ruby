@@ -21,6 +21,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "enabled" => false, "clientId" => "", "apiSecretKey" => "" }.merge(map)
                 OAuth2Stripe.new(
                     id: map["$id"],
                     enabled: map["enabled"],

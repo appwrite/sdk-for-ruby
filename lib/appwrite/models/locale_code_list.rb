@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0, "localeCodes" => [] }.merge(map)
                 LocaleCodeList.new(
                     total: map["total"],
                     locale_codes: map["localeCodes"].map { |it| LocaleCode.from(map: it) }

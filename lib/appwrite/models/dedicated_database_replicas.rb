@@ -15,11 +15,11 @@ module Appwrite
             def initialize(
                 replicas:,
                 sync_mode:,
-                effective_sync_mode:,
+                effective_sync_mode: nil,
                 sync_degraded:,
                 sync_acknowledgements:,
                 sync_standby_count:,
-                sync_state_confirmed:,
+                sync_state_confirmed: nil,
                 members:
             )
                 @replicas = replicas
@@ -33,6 +33,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "replicas" => 0, "syncMode" => "async", "syncDegraded" => false, "syncAcknowledgements" => 0, "syncStandbyCount" => 0, "members" => [] }.merge(map)
                 DedicatedDatabaseReplicas.new(
                     replicas: map["replicas"],
                     sync_mode: map["syncMode"],

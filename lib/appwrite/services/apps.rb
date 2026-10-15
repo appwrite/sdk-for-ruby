@@ -81,8 +81,6 @@ module Appwrite
             device_flow: nil,
             team_id: nil
         )
-            api_path = '/apps'
-
             if app_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
@@ -94,6 +92,8 @@ module Appwrite
             if redirect_uris.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "redirectUris"')
             end
+
+            api_path = '/apps'
 
             api_params = {
                 appId: app_id,
@@ -186,12 +186,12 @@ module Appwrite
         def get(
             app_id:
         )
-            api_path = '/apps/{appId}'
-                .gsub('{appId}', app_id)
-
-            if app_id.nil?
+            if app_id.nil? || app_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
+
+            api_path = '/apps/{appId}'
+                .gsub('{appId}', app_id)
 
             api_params = {}
 
@@ -255,16 +255,16 @@ module Appwrite
             installation_scopes: nil,
             installation_redirect_url: nil
         )
-            api_path = '/apps/{appId}'
-                .gsub('{appId}', app_id)
-
-            if app_id.nil?
+            if app_id.nil? || app_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
             if name.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "name"')
             end
+
+            api_path = '/apps/{appId}'
+                .gsub('{appId}', app_id)
 
             api_params = {
                 name: name,
@@ -311,12 +311,12 @@ module Appwrite
         def delete(
             app_id:
         )
-            api_path = '/apps/{appId}'
-                .gsub('{appId}', app_id)
-
-            if app_id.nil?
+            if app_id.nil? || app_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
+
+            api_path = '/apps/{appId}'
+                .gsub('{appId}', app_id)
 
             api_params = {}
 
@@ -348,12 +348,12 @@ module Appwrite
             queries: nil,
             total: nil
         )
-            api_path = '/apps/{appId}/installations'
-                .gsub('{appId}', app_id)
-
-            if app_id.nil?
+            if app_id.nil? || app_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
+
+            api_path = '/apps/{appId}/installations'
+                .gsub('{appId}', app_id)
 
             api_params = {
                 queries: queries,
@@ -386,17 +386,17 @@ module Appwrite
             app_id:,
             installation_id:
         )
-            api_path = '/apps/{appId}/installations/{installationId}'
-                .gsub('{appId}', app_id)
-                .gsub('{installationId}', installation_id)
-
-            if app_id.nil?
+            if app_id.nil? || app_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
-            if installation_id.nil?
+            if installation_id.nil? || installation_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "installationId"')
             end
+
+            api_path = '/apps/{appId}/installations/{installationId}'
+                .gsub('{appId}', app_id)
+                .gsub('{installationId}', installation_id)
 
             api_params = {}
 
@@ -426,17 +426,17 @@ module Appwrite
             app_id:,
             installation_id:
         )
-            api_path = '/apps/{appId}/installations/{installationId}'
-                .gsub('{appId}', app_id)
-                .gsub('{installationId}', installation_id)
-
-            if app_id.nil?
+            if app_id.nil? || app_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
-            if installation_id.nil?
+            if installation_id.nil? || installation_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "installationId"')
             end
+
+            api_path = '/apps/{appId}/installations/{installationId}'
+                .gsub('{appId}', app_id)
+                .gsub('{installationId}', installation_id)
 
             api_params = {}
 
@@ -471,17 +471,17 @@ module Appwrite
             app_id:,
             installation_id:
         )
-            api_path = '/apps/{appId}/installations/{installationId}/tokens'
-                .gsub('{appId}', app_id)
-                .gsub('{installationId}', installation_id)
-
-            if app_id.nil?
+            if app_id.nil? || app_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
-            if installation_id.nil?
+            if installation_id.nil? || installation_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "installationId"')
             end
+
+            api_path = '/apps/{appId}/installations/{installationId}/tokens'
+                .gsub('{appId}', app_id)
+                .gsub('{installationId}', installation_id)
 
             api_params = {}
 
@@ -512,12 +512,12 @@ module Appwrite
             queries: nil,
             total: nil
         )
-            api_path = '/apps/{appId}/keys'
-                .gsub('{appId}', app_id)
-
-            if app_id.nil?
+            if app_id.nil? || app_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
+
+            api_path = '/apps/{appId}/keys'
+                .gsub('{appId}', app_id)
 
             api_params = {
                 queries: queries,
@@ -548,12 +548,12 @@ module Appwrite
         def create_key(
             app_id:
         )
-            api_path = '/apps/{appId}/keys'
-                .gsub('{appId}', app_id)
-
-            if app_id.nil?
+            if app_id.nil? || app_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
+
+            api_path = '/apps/{appId}/keys'
+                .gsub('{appId}', app_id)
 
             api_params = {}
 
@@ -582,17 +582,17 @@ module Appwrite
             app_id:,
             key_id:
         )
-            api_path = '/apps/{appId}/keys/{keyId}'
-                .gsub('{appId}', app_id)
-                .gsub('{keyId}', key_id)
-
-            if app_id.nil?
+            if app_id.nil? || app_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
-            if key_id.nil?
+            if key_id.nil? || key_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "keyId"')
             end
+
+            api_path = '/apps/{appId}/keys/{keyId}'
+                .gsub('{appId}', app_id)
+                .gsub('{keyId}', key_id)
 
             api_params = {}
 
@@ -620,17 +620,17 @@ module Appwrite
             app_id:,
             key_id:
         )
-            api_path = '/apps/{appId}/keys/{keyId}'
-                .gsub('{appId}', app_id)
-                .gsub('{keyId}', key_id)
-
-            if app_id.nil?
+            if app_id.nil? || app_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
-            if key_id.nil?
+            if key_id.nil? || key_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "keyId"')
             end
+
+            api_path = '/apps/{appId}/keys/{keyId}'
+                .gsub('{appId}', app_id)
+                .gsub('{keyId}', key_id)
 
             api_params = {}
 
@@ -653,23 +653,23 @@ module Appwrite
         # labels.
         #
         # @param [String] app_id Application unique ID.
-        # @param [Array] labels Array of application labels. Replaces the previous labels. Maximum of 1000 labels are allowed, each up to 36 alphanumeric characters long.
+        # @param [Array] labels Array of application labels. Replaces the previous labels. Maximum of 1000 labels are allowed, each up to 36 alphanumeric characters long. Reserved labels are rejected.
         #
         # @return [App]
         def update_labels(
             app_id:,
             labels:
         )
-            api_path = '/apps/{appId}/labels'
-                .gsub('{appId}', app_id)
-
-            if app_id.nil?
+            if app_id.nil? || app_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
             if labels.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "labels"')
             end
+
+            api_path = '/apps/{appId}/labels'
+                .gsub('{appId}', app_id)
 
             api_params = {
                 labels: labels,
@@ -702,12 +702,12 @@ module Appwrite
             queries: nil,
             total: nil
         )
-            api_path = '/apps/{appId}/secrets'
-                .gsub('{appId}', app_id)
-
-            if app_id.nil?
+            if app_id.nil? || app_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
+
+            api_path = '/apps/{appId}/secrets'
+                .gsub('{appId}', app_id)
 
             api_params = {
                 queries: queries,
@@ -736,12 +736,12 @@ module Appwrite
         def create_secret(
             app_id:
         )
-            api_path = '/apps/{appId}/secrets'
-                .gsub('{appId}', app_id)
-
-            if app_id.nil?
+            if app_id.nil? || app_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
+
+            api_path = '/apps/{appId}/secrets'
+                .gsub('{appId}', app_id)
 
             api_params = {}
 
@@ -770,17 +770,17 @@ module Appwrite
             app_id:,
             secret_id:
         )
-            api_path = '/apps/{appId}/secrets/{secretId}'
-                .gsub('{appId}', app_id)
-                .gsub('{secretId}', secret_id)
-
-            if app_id.nil?
+            if app_id.nil? || app_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
-            if secret_id.nil?
+            if secret_id.nil? || secret_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "secretId"')
             end
+
+            api_path = '/apps/{appId}/secrets/{secretId}'
+                .gsub('{appId}', app_id)
+                .gsub('{secretId}', secret_id)
 
             api_params = {}
 
@@ -808,17 +808,17 @@ module Appwrite
             app_id:,
             secret_id:
         )
-            api_path = '/apps/{appId}/secrets/{secretId}'
-                .gsub('{appId}', app_id)
-                .gsub('{secretId}', secret_id)
-
-            if app_id.nil?
+            if app_id.nil? || app_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
-            if secret_id.nil?
+            if secret_id.nil? || secret_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "secretId"')
             end
+
+            api_path = '/apps/{appId}/secrets/{secretId}'
+                .gsub('{appId}', app_id)
+                .gsub('{secretId}', secret_id)
 
             api_params = {}
 
@@ -846,16 +846,16 @@ module Appwrite
             app_id:,
             team_id:
         )
-            api_path = '/apps/{appId}/team'
-                .gsub('{appId}', app_id)
-
-            if app_id.nil?
+            if app_id.nil? || app_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
 
             if team_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "teamId"')
             end
+
+            api_path = '/apps/{appId}/team'
+                .gsub('{appId}', app_id)
 
             api_params = {
                 teamId: team_id,
@@ -884,12 +884,12 @@ module Appwrite
         def delete_tokens(
             app_id:
         )
-            api_path = '/apps/{appId}/tokens'
-                .gsub('{appId}', app_id)
-
-            if app_id.nil?
+            if app_id.nil? || app_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "appId"')
             end
+
+            api_path = '/apps/{appId}/tokens'
+                .gsub('{appId}', app_id)
 
             api_params = {}
 

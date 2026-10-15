@@ -18,17 +18,17 @@ module Appwrite
 
             def initialize(
                 active:,
-                token_use:,
-                token_type:,
-                scope:,
-                client_id:,
-                sub:,
-                aud:,
-                iss:,
-                exp:,
-                iat:,
-                jti:,
-                authorization_details:
+                token_use: nil,
+                token_type: nil,
+                scope: nil,
+                client_id: nil,
+                sub: nil,
+                aud: nil,
+                iss: nil,
+                exp: nil,
+                iat: nil,
+                jti: nil,
+                authorization_details: nil
             )
                 @active = active
                 @token_use = token_use

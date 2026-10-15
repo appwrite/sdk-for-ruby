@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0, "attributes" => [] }.merge(map)
                 AttributeList.new(
                     total: map["total"],
                     attributes: map["attributes"]

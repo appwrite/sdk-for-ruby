@@ -21,6 +21,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "enabled" => false, "oauth2ClientId" => "", "oauth2ClientSecret" => "" }.merge(map)
                 OAuth2Tradeshift.new(
                     id: map["$id"],
                     enabled: map["enabled"],

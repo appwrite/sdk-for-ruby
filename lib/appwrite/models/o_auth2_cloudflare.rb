@@ -21,6 +21,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "enabled" => false, "clientId" => "", "clientSecret" => "" }.merge(map)
                 OAuth2Cloudflare.new(
                     id: map["$id"],
                     enabled: map["enabled"],

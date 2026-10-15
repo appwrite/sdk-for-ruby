@@ -36,6 +36,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "title" => "", "description" => "", "tag" => "", "icon" => "", "url" => "", "active" => true, "external" => true, "billingPlanId" => "" }.merge(map)
                 Program.new(
                     id: map["$id"],
                     title: map["title"],

@@ -21,6 +21,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "type" => "argon2", "memoryCost" => 0, "timeCost" => 0, "threads" => 0 }.merge(map)
                 AlgoArgon2.new(
                     type: map["type"],
                     memory_cost: map["memoryCost"],

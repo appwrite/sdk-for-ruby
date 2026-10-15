@@ -22,7 +22,7 @@ module Appwrite
                 namespace:,
                 expires_at:,
                 host:,
-                port:,
+                port: nil,
                 database:,
                 username:,
                 password:,
@@ -45,6 +45,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "branchId" => "", "branchName" => "", "namespace" => "", "expiresAt" => 0, "host" => "", "database" => "", "username" => "", "password" => "", "ssl" => false, "engine" => "", "connectionString" => "" }.merge(map)
                 DedicatedDatabaseBranch.new(
                     branch_id: map["branchId"],
                     branch_name: map["branchName"],

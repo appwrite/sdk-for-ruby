@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0, "runtimes" => [] }.merge(map)
                 RuntimeList.new(
                     total: map["total"],
                     runtimes: map["runtimes"].map { |it| Runtime.from(map: it) }

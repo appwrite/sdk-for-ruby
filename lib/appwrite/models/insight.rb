@@ -36,9 +36,9 @@ module Appwrite
                 title:,
                 summary:,
                 ctas:,
-                analyzed_at:,
-                dismissed_at:,
-                dismissed_by:
+                analyzed_at: nil,
+                dismissed_at: nil,
+                dismissed_by: nil
             )
                 @id = id
                 @created_at = created_at
@@ -60,6 +60,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "reportId" => "", "type" => "", "severity" => "info", "status" => "active", "resourceType" => "", "resourceId" => "", "parentResourceType" => "", "parentResourceId" => "", "title" => "", "summary" => "", "ctas" => [] }.merge(map)
                 Insight.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

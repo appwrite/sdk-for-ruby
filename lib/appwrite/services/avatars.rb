@@ -29,12 +29,12 @@ module Appwrite
             height: nil,
             quality: nil
         )
-            api_path = '/avatars/browsers/{code}'
-                .gsub('{code}', code)
-
             if code.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "code"')
             end
+
+            api_path = '/avatars/browsers/{code}'
+                .gsub('{code}', code)
 
             api_params = {
                 width: width,
@@ -77,12 +77,12 @@ module Appwrite
             height: nil,
             quality: nil
         )
-            api_path = '/avatars/credit-cards/{code}'
-                .gsub('{code}', code)
-
             if code.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "code"')
             end
+
+            api_path = '/avatars/credit-cards/{code}'
+                .gsub('{code}', code)
 
             api_params = {
                 width: width,
@@ -114,11 +114,11 @@ module Appwrite
         def get_favicon(
             url:
         )
-            api_path = '/avatars/favicon'
-
             if url.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "url"')
             end
+
+            api_path = '/avatars/favicon'
 
             api_params = {
                 url: url,
@@ -160,12 +160,12 @@ module Appwrite
             height: nil,
             quality: nil
         )
-            api_path = '/avatars/flags/{code}'
-                .gsub('{code}', code)
-
             if code.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "code"')
             end
+
+            api_path = '/avatars/flags/{code}'
+                .gsub('{code}', code)
 
             api_params = {
                 width: width,
@@ -208,11 +208,11 @@ module Appwrite
             width: nil,
             height: nil
         )
-            api_path = '/avatars/image'
-
             if url.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "url"')
             end
+
+            api_path = '/avatars/image'
 
             api_params = {
                 url: url,
@@ -285,9 +285,9 @@ module Appwrite
         end
 
         # Returns the best available profile photo for a user. The endpoint tries
-        # each source in priority order and returns the first successful result:
-        # OAuth2 identity photo, Gravatar, Libravatar, Appwrite Initials, built-in
-        # static fallback.
+        # each source in priority order and returns the first successful result: a
+        # custom uploaded photo (see avatars.updatePhoto), OAuth2 identity photo,
+        # Gravatar, Libravatar, Appwrite Initials, built-in static fallback.
         #
         # Passing `userId` — `current()` for the authenticated user — resolves
         # the photo from everything known about that user: identity photos, email,
@@ -433,11 +433,11 @@ module Appwrite
             margin: nil,
             download: nil
         )
-            api_path = '/avatars/qr'
-
             if text.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "text"')
             end
+
+            api_path = '/avatars/qr'
 
             api_params = {
                 text: text,
@@ -471,7 +471,7 @@ module Appwrite
         # dimensions are not specified, the default viewport size is 1280x720px.
         #
         # @param [String] url Website URL which you want to capture.
-        # @param [Hash] headers HTTP headers to send with the browser request. Defaults to empty.
+        # @param [Hash] headers HTTP headers to send with the browser request. Only Accept and Accept-Language are allowed. Defaults to empty.
         # @param [Integer] viewport_width Browser viewport width. Pass an integer between 1 to 1920. Defaults to 1280.
         # @param [Integer] viewport_height Browser viewport height. Pass an integer between 1 to 1080. Defaults to 720.
         # @param [Float] scale Browser scale factor. Pass a number between 0.1 to 3. Defaults to 1.
@@ -514,11 +514,11 @@ module Appwrite
             quality: nil,
             output: nil
         )
-            api_path = '/avatars/screenshots'
-
             if url.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "url"')
             end
+
+            api_path = '/avatars/screenshots'
 
             api_params = {
                 url: url,

@@ -28,7 +28,7 @@ module Appwrite
                 target:,
                 categories:,
                 insights:,
-                analyzed_at:
+                analyzed_at: nil
             )
                 @id = id
                 @created_at = created_at
@@ -45,6 +45,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "appId" => "", "type" => "", "title" => "", "summary" => "", "targetType" => "", "target" => "", "categories" => [], "insights" => [] }.merge(map)
                 Report.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

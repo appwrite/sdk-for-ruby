@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0, "organizations" => [] }.merge(map)
                 Oauth2OrganizationList.new(
                     total: map["total"],
                     organizations: map["organizations"].map { |it| Oauth2Organization.from(map: it) }

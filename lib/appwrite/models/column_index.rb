@@ -24,7 +24,7 @@ module Appwrite
                 error:,
                 columns:,
                 lengths:,
-                orders:
+                orders: []
             )
                 @id = id
                 @created_at = created_at
@@ -39,6 +39,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "key" => "", "type" => "", "status" => "", "error" => "", "columns" => [], "lengths" => [] }.merge(map)
                 ColumnIndex.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

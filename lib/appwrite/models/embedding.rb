@@ -21,6 +21,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "model" => "", "dimension" => 0, "embedding" => [], "error" => "" }.merge(map)
                 Embedding.new(
                     model: map["model"],
                     dimension: map["dimension"],

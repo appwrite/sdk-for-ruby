@@ -25,9 +25,9 @@ module Appwrite
                 topics:,
                 users:,
                 targets:,
-                scheduled_at:,
-                delivered_at:,
-                delivery_errors:,
+                scheduled_at: nil,
+                delivered_at: nil,
+                delivery_errors: nil,
                 delivered_total:,
                 data:,
                 status:
@@ -48,6 +48,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "providerType" => "", "topics" => [], "users" => [], "targets" => [], "deliveredTotal" => 0, "data" => {}, "status" => "draft" }.merge(map)
                 Message.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

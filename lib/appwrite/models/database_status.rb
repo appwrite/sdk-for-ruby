@@ -24,13 +24,13 @@ module Appwrite
                 engine:,
                 version:,
                 uptime:,
-                connections:,
+                connections: nil,
                 sync_mode:,
-                effective_sync_mode:,
+                effective_sync_mode: nil,
                 sync_degraded:,
                 sync_acknowledgements:,
                 sync_standby_count:,
-                sync_state_confirmed:,
+                sync_state_confirmed: nil,
                 replicas:,
                 volumes:
             )
@@ -51,13 +51,14 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "health" => "unknown", "ready" => false, "engine" => "postgresql", "version" => "", "uptime" => 0, "syncMode" => "async", "syncDegraded" => false, "syncAcknowledgements" => 0, "syncStandbyCount" => 0, "replicas" => [], "volumes" => [] }.merge(map)
                 DatabaseStatus.new(
                     health: map["health"],
                     ready: map["ready"],
                     engine: map["engine"],
                     version: map["version"],
                     uptime: map["uptime"],
-                    connections: DatabaseStatusConnections.from(map: map["connections"]),
+                    connections: map["connections"].nil? ? nil : DatabaseStatusConnections.from(map: map["connections"]),
                     sync_mode: map["syncMode"],
                     effective_sync_mode: map["effectiveSyncMode"],
                     sync_degraded: map["syncDegraded"],
@@ -76,7 +77,7 @@ module Appwrite
                     "engine": @engine,
                     "version": @version,
                     "uptime": @uptime,
-                    "connections": @connections.to_map,
+                    "connections": @connections&.to_map,
                     "syncMode": @sync_mode,
                     "effectiveSyncMode": @effective_sync_mode,
                     "syncDegraded": @sync_degraded,

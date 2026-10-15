@@ -30,17 +30,17 @@ module Appwrite
                 continent:,
                 eu:,
                 currency:,
-                city:,
-                time_zone:,
-                postal_code:,
-                latitude:,
-                longitude:,
-                autonomous_system_number:,
-                autonomous_system_organization:,
-                isp:,
-                connection_type:,
-                connection_usage_type:,
-                connection_organization:
+                city: nil,
+                time_zone: nil,
+                postal_code: nil,
+                latitude: nil,
+                longitude: nil,
+                autonomous_system_number: nil,
+                autonomous_system_organization: nil,
+                isp: nil,
+                connection_type: nil,
+                connection_usage_type: nil,
+                connection_organization: nil
             )
                 @ip = ip
                 @country_code = country_code
@@ -63,6 +63,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "ip" => "", "countryCode" => "", "country" => "", "continentCode" => "", "continent" => "", "eu" => false, "currency" => "" }.merge(map)
                 Locale.new(
                     ip: map["ip"],
                     country_code: map["countryCode"],

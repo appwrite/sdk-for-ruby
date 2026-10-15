@@ -7,8 +7,8 @@ module Appwrite
             attr_reader :projects
 
             def initialize(
-                seats:,
-                projects:
+                seats: nil,
+                projects: nil
             )
                 @seats = seats
                 @projects = projects

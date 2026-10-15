@@ -7,8 +7,8 @@ module Appwrite
             attr_reader :daily_credits
 
             def initialize(
-                credits:,
-                daily_credits:
+                credits: 0,
+                daily_credits: 0
             )
                 @credits = credits
                 @daily_credits = daily_credits

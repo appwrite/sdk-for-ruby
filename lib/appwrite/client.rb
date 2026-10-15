@@ -14,8 +14,8 @@ module Appwrite
                 'x-sdk-name' => 'Ruby',
                 'x-sdk-platform' => 'server',
                 'x-sdk-language' => 'ruby',
-                'x-sdk-version' => '28.4.0',
-                'X-Appwrite-Response-Format' => '2.0.0'
+                'x-sdk-version' => '29.0.0',
+                'X-Appwrite-Response-Format' => '2.5.0'
             }
             @endpoint = 'https://cloud.appwrite.io/v1'
             @config = {}
@@ -126,20 +126,6 @@ module Appwrite
         def set_forwarded_user_agent(value)
             add_header('x-forwarded-user-agent', value)
             @config['forwardeduseragent'] = value
-
-            self
-        end
-
-        # Set DevKey
-        #
-        # Your secret dev API key
-        #
-        # @param [String] value The value to set for the DevKey header
-        #
-        # @return [self]
-        def set_dev_key(value)
-            add_header('x-appwrite-dev-key', value)
-            @config['devkey'] = value
 
             self
         end
@@ -265,6 +251,8 @@ module Appwrite
             params: {},
             response_type: nil
         )
+            params = params.transform_values { |value| Query._flatten(value) }
+
             separator = path.include?('?') ? '&' : '?'
             uri = URI.parse(@endpoint + path + ((method == "GET" && params.length) ? separator + encode(params) : ''))
 
@@ -283,6 +271,16 @@ module Appwrite
         )
             input_file = params[param_name.to_sym]
 
+            if input_file.nil?
+                return call(
+                    method: method,
+                    path: path,
+                    headers: headers,
+                    params: params,
+                    response_type: response_type,
+                )
+            end
+
             case input_file.source_type
             when 'path'
                 size = ::File.size(input_file.path)
@@ -290,7 +288,7 @@ module Appwrite
                 size = input_file.data.bytesize
             end
 
-            if size < @chunk_size
+            if size <= @chunk_size || response_type == "text"
                 if input_file.source_type == 'path'
                     input_file.data = IO.read(input_file.path)
                 end
@@ -546,6 +544,8 @@ module Appwrite
         def encode_form_data(value, key = nil)
             case value
             when Hash
+                return encode_form_data(value.to_json, key) unless key.nil?
+
                 value.map { |k, v| encode_form_data(v, k) }.join
             when Array
                 value.map { |v| encode_form_data(v, "#{key}[]") }.join

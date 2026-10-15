@@ -22,7 +22,7 @@ module Appwrite
                 archive_id:,
                 policy_id:,
                 status:,
-                started_at:,
+                started_at: nil,
                 migration_id:,
                 services:,
                 resources:,
@@ -42,6 +42,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "archiveId" => "", "policyId" => "", "status" => "", "migrationId" => "", "services" => [], "resources" => [], "options" => {} }.merge(map)
                 BackupRestoration.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

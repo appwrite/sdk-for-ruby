@@ -24,6 +24,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "totp" => true, "email" => true, "phone" => true, "custom" => false }.merge(map)
                 PolicyMfaFactors.new(
                     id: map["$id"],
                     totp: map["totp"],

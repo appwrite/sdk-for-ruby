@@ -27,6 +27,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "userId" => "", "secret" => "", "expire" => "", "phrase" => "" }.merge(map)
                 TokenSecret.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

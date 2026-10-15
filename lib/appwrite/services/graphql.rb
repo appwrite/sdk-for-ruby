@@ -14,11 +14,11 @@ module Appwrite
         def query(
             query:
         )
-            api_path = '/graphql'
-
             if query.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "query"')
             end
+
+            api_path = '/graphql'
 
             api_params = {
                 query: query,
@@ -47,11 +47,11 @@ module Appwrite
         def mutation(
             query:
         )
-            api_path = '/graphql/mutation'
-
             if query.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "query"')
             end
+
+            api_path = '/graphql/mutation'
 
             api_params = {
                 query: query,

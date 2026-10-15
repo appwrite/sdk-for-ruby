@@ -16,10 +16,10 @@ module Appwrite
                 domain:,
                 tld:,
                 available:,
-                price:,
+                price: nil,
                 period_years:,
                 premium:,
-                renewal_price:,
+                renewal_price: nil,
                 renewal_period_years:
             )
                 @domain = domain

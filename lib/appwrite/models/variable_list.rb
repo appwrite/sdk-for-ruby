@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "total" => 0, "variables" => [] }.merge(map)
                 VariableList.new(
                     total: map["total"],
                     variables: map["variables"].map { |it| Variable.from(map: it) }

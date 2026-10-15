@@ -22,7 +22,7 @@ module Appwrite
                 hint:,
                 created_by_id:,
                 created_by_name:,
-                last_accessed_at:
+                last_accessed_at: nil
             )
                 @id = id
                 @created_at = created_at
@@ -36,6 +36,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "appId" => "", "secret" => "", "hint" => "", "createdById" => "", "createdByName" => "" }.merge(map)
                 AppSecret.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

@@ -1,0 +1,53 @@
+module Appwrite
+    # Helper to build MQTT topics for `Push`, level by level.
+    #
+    #     Topic.path(['user', user_id, 'notification']) # "user/123/notification"
+    #     Topic.path(['org', org_id]).path(['logs']) # "org/42/logs"
+    class Topic
+        private_class_method :new
+
+        # Start a topic with the given levels, e.g. `Topic.path(['user', user_id])`.
+        def self.path(levels)
+            new([]).path(levels)
+        end
+
+        def initialize(levels)
+            @levels = levels.freeze
+        end
+
+        # Append the given levels.
+        def path(levels)
+            self.class.send(:new, @levels + self.class.send(:levels_of, levels))
+        end
+
+        def to_s
+            @levels.join('/')
+        end
+
+        # Validate the levels passed to `path`: a non-empty array of non-empty strings, none holding
+        # the level separator `/` or the MQTT wildcards `+` and `#`.
+        def self.levels_of(levels)
+            raise ArgumentError, "path() expects an array, e.g. path(['user'])" unless levels.is_a?(Array)
+            raise ArgumentError, 'path() needs at least one level' if levels.empty?
+
+            levels.each_with_index do |level, index|
+                unless level.is_a?(String)
+                    type = level.nil? ? 'null' : level.class.name
+                    raise ArgumentError, "level at index #{index} must be a string, got #{type}"
+                end
+                raise ArgumentError, "empty level at index #{index}" if level.empty?
+
+                if level.include?('/')
+                    parts = level.split('/', -1).map { |part| "'#{part}'" }.join(', ')
+                    raise ArgumentError, "\"#{level}\" contains \"/\", split it: path([#{parts}])"
+                end
+                raise ArgumentError, "\"#{level}\" contains \"+\", not allowed in a topic" if level.include?('+')
+                raise ArgumentError, "\"#{level}\" contains \"#\", not allowed in a topic" if level.include?('#')
+                raise ArgumentError, "level at index #{index} contains a NUL character" if level.include?("\0")
+            end
+
+            levels.dup
+        end
+        private_class_method :levels_of
+    end
+end

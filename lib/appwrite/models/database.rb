@@ -26,15 +26,15 @@ module Appwrite
                 updated_at:,
                 enabled:,
                 type:,
-                status:,
-                engine:,
-                specification:,
-                replicas:,
-                error:,
-                container_status:,
-                lifecycle_state:,
-                policies:,
-                archives:
+                status: nil,
+                engine: nil,
+                specification: nil,
+                replicas: nil,
+                error: nil,
+                container_status: nil,
+                lifecycle_state: nil,
+                policies: nil,
+                archives: nil
             )
                 @id = id
                 @name = name
@@ -54,6 +54,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "name" => "", "$createdAt" => "", "$updatedAt" => "", "enabled" => true, "type" => "legacy" }.merge(map)
                 Database.new(
                     id: map["$id"],
                     name: map["name"],

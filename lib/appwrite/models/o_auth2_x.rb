@@ -21,6 +21,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "enabled" => false, "customerKey" => "", "secretKey" => "" }.merge(map)
                 OAuth2X.new(
                     id: map["$id"],
                     enabled: map["enabled"],

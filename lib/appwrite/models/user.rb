@@ -36,9 +36,9 @@ module Appwrite
                 created_at:,
                 updated_at:,
                 name:,
-                password:,
-                hash:,
-                hash_options:,
+                password: nil,
+                hash: nil,
+                hash_options: nil,
                 registration:,
                 status:,
                 labels:,
@@ -46,19 +46,19 @@ module Appwrite
                 email:,
                 phone:,
                 email_verification:,
-                email_canonical:,
-                email_is_free:,
-                email_is_disposable:,
-                email_is_corporate:,
-                email_is_canonical:,
-                password_pwned:,
+                email_canonical: nil,
+                email_is_free: nil,
+                email_is_disposable: nil,
+                email_is_corporate: nil,
+                email_is_canonical: nil,
+                password_pwned: nil,
                 phone_verification:,
                 mfa:,
                 prefs:,
                 targets:,
                 accessed_at:,
-                impersonator:,
-                impersonator_user_id:
+                impersonator: false,
+                impersonator_user_id: nil
             )
                 @id = id
                 @created_at = created_at
@@ -90,6 +90,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "registration" => "", "status" => true, "labels" => [], "passwordUpdate" => "", "email" => "", "phone" => "", "emailVerification" => false, "phoneVerification" => false, "mfa" => false, "targets" => [], "accessedAt" => "" }.merge(map)
                 User.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

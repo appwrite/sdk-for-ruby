@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "name" => "", "code" => "" }.merge(map)
                 Country.new(
                     name: map["name"],
                     code: map["code"]

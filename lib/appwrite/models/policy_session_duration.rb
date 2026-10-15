@@ -15,6 +15,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "duration" => 31536000 }.merge(map)
                 PolicySessionDuration.new(
                     id: map["$id"],
                     duration: map["duration"]

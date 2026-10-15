@@ -13,14 +13,14 @@ module Appwrite
             attr_reader :budget_limit
 
             def initialize(
-                bandwidth:,
-                storage:,
-                users:,
-                executions:,
-                gb_hours:,
-                image_transformations:,
-                auth_phone:,
-                budget_limit:
+                bandwidth: 0,
+                storage: 0,
+                users: 0,
+                executions: 0,
+                gb_hours: 0,
+                image_transformations: 0,
+                auth_phone: 0,
+                budget_limit: 0
             )
                 @bandwidth = bandwidth
                 @storage = storage

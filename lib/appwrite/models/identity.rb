@@ -42,6 +42,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "userId" => "", "provider" => "", "providerUid" => "", "providerEmail" => "", "providerAccessToken" => "", "providerAccessTokenExpiry" => "", "providerRefreshToken" => "", "providerIdToken" => "" }.merge(map)
                 Identity.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

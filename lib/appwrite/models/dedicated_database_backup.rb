@@ -33,11 +33,11 @@ module Appwrite
                 fallback_reason:,
                 status:,
                 size_bytes:,
-                started_at:,
-                completed_at:,
-                verified_at:,
-                expires_at:,
-                log_position:,
+                started_at: nil,
+                completed_at: nil,
+                verified_at: nil,
+                expires_at: nil,
+                log_position: nil,
                 error:
             )
                 @id = id
@@ -60,6 +60,7 @@ module Appwrite
             end
 
             def self.from(map:)
+                map = { "$id" => "", "$createdAt" => "", "databaseId" => "", "projectId" => "", "policyId" => "", "trigger" => "manual", "type" => "full", "requestedType" => "", "fallbackReason" => "", "status" => "pending", "sizeBytes" => 0, "error" => "" }.merge(map)
                 DedicatedDatabaseBackup.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],

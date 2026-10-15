@@ -4,6 +4,7 @@ module Appwrite
             HTTP = 'http'
             SCHEDULE = 'schedule'
             EVENT = 'event'
+            EMAIL = 'email'
         end
     end
 end

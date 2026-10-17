@@ -29,15 +29,15 @@ gem install appwrite
 
 ### Initialize the client
 
-Create a client with your Appwrite endpoint, project ID and an [API key](https://appwrite.io/docs/partners/project/api-keys). Find the endpoint and project ID in your project&#039;s **Settings** page, and create an API key with only the scopes you need under **API keys** in the project sidebar.
+Create a client with your Appwrite endpoint, project ID and an [API key](https://appwrite.io/docs/partners/project/api-keys). Find the endpoint and project ID in your project's **Settings** page, and create an API key with only the scopes you need under **API keys** in the project sidebar.
 
 ```ruby
-require &#039;appwrite&#039;
+require 'appwrite'
 
 client = Appwrite::Client.new
-    .set_endpoint(&#039;https://&lt;REGION&gt;.cloud.appwrite.io/v1&#039;)
-    .set_project(&#039;&lt;PROJECT_ID&gt;&#039;)
-    .set_key(ENV[&#039;APPWRITE_API_KEY&#039;])
+    .set_endpoint('https://<REGION>.cloud.appwrite.io/v1')
+    .set_project('<PROJECT_ID>')
+    .set_key(ENV['APPWRITE_API_KEY'])
 ```
 
 API keys grant server-level access to your project. Keep them out of client-side code and version control.
@@ -51,9 +51,9 @@ users = Appwrite::Users.new(client)
 
 user = users.create(
     user_id: Appwrite::ID.unique,
-    email: &#039;email@example.com&#039;,
-    password: &#039;password&#039;,
-    name: &quot;Walter O&#039;Brien&quot;
+    email: 'email@example.com',
+    password: 'password',
+    name: "Walter O'Brien"
 )
 
 puts user.id
@@ -70,26 +70,26 @@ Use `Appwrite::TablesDB` to read and write rows. Row fields are available as a h
 tables_db = Appwrite::TablesDB.new(client)
 
 row = tables_db.create_row(
-    database_id: &#039;&lt;DATABASE_ID&gt;&#039;,
-    table_id: &#039;&lt;TABLE_ID&gt;&#039;,
+    database_id: '<DATABASE_ID>',
+    table_id: '<TABLE_ID>',
     row_id: Appwrite::ID.unique,
-    data: { title: &#039;Hello, world&#039;, published: true }
+    data: { title: 'Hello, world', published: true }
 )
 
 puts row.id
-puts row.data[&#039;title&#039;]
+puts row.data['title']
 
 result = tables_db.list_rows(
-    database_id: &#039;&lt;DATABASE_ID&gt;&#039;,
-    table_id: &#039;&lt;TABLE_ID&gt;&#039;,
+    database_id: '<DATABASE_ID>',
+    table_id: '<TABLE_ID>',
     queries: [
-        Appwrite::Query.equal(&#039;published&#039;, true),
+        Appwrite::Query.equal('published', true),
         Appwrite::Query.limit(25)
     ]
 )
 
 result.rows.each do |row|
-    puts row.data[&#039;title&#039;]
+    puts row.data['title']
 end
 ```
 
@@ -99,9 +99,9 @@ Failed requests raise `Appwrite::Exception`, which carries `message`, `code`, `t
 
 ```ruby
 begin
-    user = users.get(user_id: &#039;&lt;USER_ID&gt;&#039;)
-rescue Appwrite::Exception =&gt; error
-    puts &quot;#{error.code} #{error.type}: #{error.message}&quot;
+    user = users.get(user_id: '<USER_ID>')
+rescue Appwrite::Exception => error
+    puts "#{error.code} #{error.type}: #{error.message}"
 end
 ```
 
@@ -111,7 +111,7 @@ Point the client at your own instance instead of Appwrite Cloud. Call `set_self_
 
 ```ruby
 client
-    .set_endpoint(&#039;https://appwrite.example.com/v1&#039;)
+    .set_endpoint('https://appwrite.example.com/v1')
     .set_self_signed
 ```
 

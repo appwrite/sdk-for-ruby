@@ -24,6 +24,7 @@ result = storage.update_bucket(
     compression: Compression::NONE, # optional
     encryption: false, # optional
     antivirus: false, # optional
-    transformations: false # optional
+    transformations: false, # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

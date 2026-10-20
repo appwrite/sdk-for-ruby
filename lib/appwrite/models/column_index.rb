@@ -7,6 +7,7 @@ module Appwrite
             attr_reader :created_at
             attr_reader :updated_at
             attr_reader :key
+            attr_reader :description
             attr_reader :type
             attr_reader :status
             attr_reader :error
@@ -19,6 +20,7 @@ module Appwrite
                 created_at:,
                 updated_at:,
                 key:,
+                description:,
                 type:,
                 status:,
                 error:,
@@ -30,6 +32,7 @@ module Appwrite
                 @created_at = created_at
                 @updated_at = updated_at
                 @key = key
+                @description = description
                 @type = type
                 @status = status
                 @error = error
@@ -39,12 +42,13 @@ module Appwrite
             end
 
             def self.from(map:)
-                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "key" => "", "type" => "", "status" => "", "error" => "", "columns" => [], "lengths" => [] }.merge(map)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "key" => "", "description" => "", "type" => "", "status" => "", "error" => "", "columns" => [], "lengths" => [] }.merge(map)
                 ColumnIndex.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],
                     updated_at: map["$updatedAt"],
                     key: map["key"],
+                    description: map["description"],
                     type: map["type"],
                     status: map["status"],
                     error: map["error"],
@@ -60,6 +64,7 @@ module Appwrite
                     "$createdAt": @created_at,
                     "$updatedAt": @updated_at,
                     "key": @key,
+                    "description": @description,
                     "type": @type,
                     "status": @status,
                     "error": @error,

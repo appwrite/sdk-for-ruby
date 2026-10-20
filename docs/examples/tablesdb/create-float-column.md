@@ -18,6 +18,7 @@ result = tables_db.create_float_column(
     min: 0, # optional
     max: 100, # optional
     default: 10.5, # optional
-    array: false # optional
+    array: false, # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

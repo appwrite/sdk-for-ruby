@@ -9,15 +9,18 @@ module Appwrite
         # List all archives for a project.
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [BackupArchiveList]
         def list_archives(
-            queries: nil
+            queries: nil,
+            total: nil
         )
             api_path = '/backups/archives'
 
             api_params = {
                 queries: queries,
+                total: total,
             }
 
             api_headers = {
@@ -135,15 +138,18 @@ module Appwrite
         # List all policies for a project.
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [BackupPolicyList]
         def list_policies(
-            queries: nil
+            queries: nil,
+            total: nil
         )
             api_path = '/backups/policies'
 
             api_params = {
                 queries: queries,
+                total: total,
             }
 
             api_headers = {
@@ -410,15 +416,18 @@ module Appwrite
         # List all backup restorations for a project.
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [BackupRestorationList]
         def list_restorations(
-            queries: nil
+            queries: nil,
+            total: nil
         )
             api_path = '/backups/restorations'
 
             api_params = {
                 queries: queries,
+                total: total,
             }
 
             api_headers = {

@@ -16,6 +16,7 @@ result = tables_db.update_mediumtext_column(
     key: '<KEY>',
     required: false,
     default: 'Hello World',
-    new_key: '<NEW_KEY>' # optional
+    new_key: '<NEW_KEY>', # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

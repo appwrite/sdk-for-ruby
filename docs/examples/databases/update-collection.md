@@ -19,6 +19,7 @@ result = databases.update_collection(
     permissions: [Permission.read(Role.any())], # optional
     document_security: false, # optional
     enabled: false, # optional
-    purge: false # optional
+    purge: false, # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

@@ -7,6 +7,7 @@ module Appwrite
             attr_reader :created_at
             attr_reader :updated_at
             attr_reader :name
+            attr_reader :description
             attr_reader :url
             attr_reader :events
             attr_reader :tls
@@ -22,6 +23,7 @@ module Appwrite
                 created_at:,
                 updated_at:,
                 name:,
+                description:,
                 url:,
                 events:,
                 tls:,
@@ -36,6 +38,7 @@ module Appwrite
                 @created_at = created_at
                 @updated_at = updated_at
                 @name = name
+                @description = description
                 @url = url
                 @events = events
                 @tls = tls
@@ -48,12 +51,13 @@ module Appwrite
             end
 
             def self.from(map:)
-                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "url" => "", "events" => [], "tls" => true, "authUsername" => "", "authPassword" => "", "secret" => "", "enabled" => true, "logs" => "", "attempts" => 0 }.merge(map)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "description" => "", "url" => "", "events" => [], "tls" => true, "authUsername" => "", "authPassword" => "", "secret" => "", "enabled" => true, "logs" => "", "attempts" => 0 }.merge(map)
                 Webhook.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],
                     updated_at: map["$updatedAt"],
                     name: map["name"],
+                    description: map["description"],
                     url: map["url"],
                     events: map["events"],
                     tls: map["tls"],
@@ -72,6 +76,7 @@ module Appwrite
                     "$createdAt": @created_at,
                     "$updatedAt": @updated_at,
                     "name": @name,
+                    "description": @description,
                     "url": @url,
                     "events": @events,
                     "tls": @tls,

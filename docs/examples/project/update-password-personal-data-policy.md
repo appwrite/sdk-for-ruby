@@ -11,6 +11,7 @@ client = Client.new
 project = Project.new(client)
 
 result = project.update_password_personal_data_policy(
-    enabled: false
+    enabled: false,
+    deny_list: [] # optional
 )
 ```

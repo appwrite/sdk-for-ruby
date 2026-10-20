@@ -5,6 +5,7 @@ module Appwrite
         class Database
             attr_reader :id
             attr_reader :name
+            attr_reader :description
             attr_reader :created_at
             attr_reader :updated_at
             attr_reader :enabled
@@ -22,6 +23,7 @@ module Appwrite
             def initialize(
                 id:,
                 name:,
+                description:,
                 created_at:,
                 updated_at:,
                 enabled:,
@@ -38,6 +40,7 @@ module Appwrite
             )
                 @id = id
                 @name = name
+                @description = description
                 @created_at = created_at
                 @updated_at = updated_at
                 @enabled = enabled
@@ -54,10 +57,11 @@ module Appwrite
             end
 
             def self.from(map:)
-                map = { "$id" => "", "name" => "", "$createdAt" => "", "$updatedAt" => "", "enabled" => true, "type" => "legacy" }.merge(map)
+                map = { "$id" => "", "name" => "", "description" => "", "$createdAt" => "", "$updatedAt" => "", "enabled" => true, "type" => "legacy" }.merge(map)
                 Database.new(
                     id: map["$id"],
                     name: map["name"],
+                    description: map["description"],
                     created_at: map["$createdAt"],
                     updated_at: map["$updatedAt"],
                     enabled: map["enabled"],
@@ -78,6 +82,7 @@ module Appwrite
                 {
                     "$id": @id,
                     "name": @name,
+                    "description": @description,
                     "$createdAt": @created_at,
                     "$updatedAt": @updated_at,
                     "enabled": @enabled,

@@ -11,6 +11,7 @@ client = Client.new
 postgresql = Postgresql.new(client)
 
 result = postgresql.list(
-    queries: [] # optional
+    queries: [], # optional
+    total: false # optional
 )
 ```

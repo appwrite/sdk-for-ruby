@@ -11,6 +11,7 @@ client = Client.new
 mysql = Mysql.new(client)
 
 result = mysql.list(
-    queries: [] # optional
+    queries: [], # optional
+    total: false # optional
 )
 ```

@@ -16,6 +16,7 @@ result = tables_db.update_ip_column(
     key: '<KEY>',
     required: false,
     default: '192.0.2.0',
-    new_key: '<NEW_KEY>' # optional
+    new_key: '<NEW_KEY>', # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

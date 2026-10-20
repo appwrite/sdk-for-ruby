@@ -9,6 +9,7 @@ module Appwrite
             attr_reader :permissions
             attr_reader :file_security
             attr_reader :name
+            attr_reader :description
             attr_reader :enabled
             attr_reader :maximum_file_size
             attr_reader :allowed_file_extensions
@@ -25,6 +26,7 @@ module Appwrite
                 permissions:,
                 file_security:,
                 name:,
+                description:,
                 enabled:,
                 maximum_file_size:,
                 allowed_file_extensions:,
@@ -40,6 +42,7 @@ module Appwrite
                 @permissions = permissions
                 @file_security = file_security
                 @name = name
+                @description = description
                 @enabled = enabled
                 @maximum_file_size = maximum_file_size
                 @allowed_file_extensions = allowed_file_extensions
@@ -51,7 +54,7 @@ module Appwrite
             end
 
             def self.from(map:)
-                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "$permissions" => [], "fileSecurity" => false, "name" => "", "enabled" => true, "maximumFileSize" => 0, "allowedFileExtensions" => [], "compression" => "", "encryption" => true, "antivirus" => true, "transformations" => true, "totalSize" => 0 }.merge(map)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "$permissions" => [], "fileSecurity" => false, "name" => "", "description" => "", "enabled" => true, "maximumFileSize" => 0, "allowedFileExtensions" => [], "compression" => "", "encryption" => true, "antivirus" => true, "transformations" => true, "totalSize" => 0 }.merge(map)
                 Bucket.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],
@@ -59,6 +62,7 @@ module Appwrite
                     permissions: map["$permissions"],
                     file_security: map["fileSecurity"],
                     name: map["name"],
+                    description: map["description"],
                     enabled: map["enabled"],
                     maximum_file_size: map["maximumFileSize"],
                     allowed_file_extensions: map["allowedFileExtensions"],
@@ -78,6 +82,7 @@ module Appwrite
                     "$permissions": @permissions,
                     "fileSecurity": @file_security,
                     "name": @name,
+                    "description": @description,
                     "enabled": @enabled,
                     "maximumFileSize": @maximum_file_size,
                     "allowedFileExtensions": @allowed_file_extensions,

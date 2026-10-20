@@ -16,6 +16,7 @@ result = databases.update_boolean_attribute(
     key: '<KEY>',
     required: false,
     default: false,
-    new_key: '<NEW_KEY>' # optional
+    new_key: '<NEW_KEY>', # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

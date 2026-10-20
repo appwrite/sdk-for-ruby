@@ -9,15 +9,18 @@ module Appwrite
         # List all events for selected filters.
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on attributes such as userId, teamId, etc.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [ActivityEventList]
         def list_events(
-            queries: nil
+            queries: nil,
+            total: nil
         )
             api_path = '/activities/events'
 
             api_params = {
                 queries: queries,
+                total: total,
             }
 
             api_headers = {

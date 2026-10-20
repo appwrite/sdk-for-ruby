@@ -17,6 +17,7 @@ result = databases.update_string_attribute(
     required: false,
     default: 'Hello World',
     size: 1, # optional
-    new_key: '<NEW_KEY>' # optional
+    new_key: '<NEW_KEY>', # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

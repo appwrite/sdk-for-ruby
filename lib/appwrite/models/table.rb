@@ -9,6 +9,7 @@ module Appwrite
             attr_reader :permissions
             attr_reader :database_id
             attr_reader :name
+            attr_reader :description
             attr_reader :enabled
             attr_reader :row_security
             attr_reader :columns
@@ -23,6 +24,7 @@ module Appwrite
                 permissions:,
                 database_id:,
                 name:,
+                description:,
                 enabled:,
                 row_security:,
                 columns:,
@@ -36,6 +38,7 @@ module Appwrite
                 @permissions = permissions
                 @database_id = database_id
                 @name = name
+                @description = description
                 @enabled = enabled
                 @row_security = row_security
                 @columns = columns
@@ -45,7 +48,7 @@ module Appwrite
             end
 
             def self.from(map:)
-                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "$permissions" => [], "databaseId" => "", "name" => "", "enabled" => true, "rowSecurity" => false, "columns" => [], "indexes" => [], "bytesMax" => 0, "bytesUsed" => 0 }.merge(map)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "$permissions" => [], "databaseId" => "", "name" => "", "description" => "", "enabled" => true, "rowSecurity" => false, "columns" => [], "indexes" => [], "bytesMax" => 0, "bytesUsed" => 0 }.merge(map)
                 Table.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],
@@ -53,6 +56,7 @@ module Appwrite
                     permissions: map["$permissions"],
                     database_id: map["databaseId"],
                     name: map["name"],
+                    description: map["description"],
                     enabled: map["enabled"],
                     row_security: map["rowSecurity"],
                     columns: map["columns"],
@@ -70,6 +74,7 @@ module Appwrite
                     "$permissions": @permissions,
                     "databaseId": @database_id,
                     "name": @name,
+                    "description": @description,
                     "enabled": @enabled,
                     "rowSecurity": @row_security,
                     "columns": @columns,

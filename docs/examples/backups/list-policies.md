@@ -11,6 +11,7 @@ client = Client.new
 backups = Backups.new(client)
 
 result = backups.list_policies(
-    queries: [] # optional
+    queries: [], # optional
+    total: false # optional
 )
 ```

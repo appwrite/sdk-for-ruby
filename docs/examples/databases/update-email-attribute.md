@@ -16,6 +16,7 @@ result = databases.update_email_attribute(
     key: '<KEY>',
     required: false,
     default: 'email@example.com',
-    new_key: '<NEW_KEY>' # optional
+    new_key: '<NEW_KEY>', # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

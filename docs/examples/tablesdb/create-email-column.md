@@ -16,6 +16,7 @@ result = tables_db.create_email_column(
     key: '<KEY>',
     required: false,
     default: 'email@example.com', # optional
-    array: false # optional
+    array: false, # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

@@ -20,6 +20,7 @@ result = tables_db.create_table(
     row_security: false, # optional
     enabled: false, # optional
     columns: [], # optional
-    indexes: [] # optional
+    indexes: [], # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

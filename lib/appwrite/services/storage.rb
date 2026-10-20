@@ -54,6 +54,7 @@ module Appwrite
         # @param [] encryption Is encryption enabled? For file size above 20MB encryption is skipped even if it&#039;s enabled
         # @param [] antivirus Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it&#039;s enabled
         # @param [] transformations Are image transformations enabled?
+        # @param [String] description Optional description for the bucket.
         #
         # @return [Bucket]
         def create_bucket(
@@ -67,7 +68,8 @@ module Appwrite
             compression: nil,
             encryption: nil,
             antivirus: nil,
-            transformations: nil
+            transformations: nil,
+            description: nil
         )
             if bucket_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
@@ -91,6 +93,7 @@ module Appwrite
                 encryption: encryption,
                 antivirus: antivirus,
                 transformations: transformations,
+                description: description,
             }
 
             api_headers = {
@@ -153,6 +156,7 @@ module Appwrite
         # @param [] encryption Is encryption enabled? For file size above 20MB encryption is skipped even if it&#039;s enabled
         # @param [] antivirus Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it&#039;s enabled
         # @param [] transformations Are image transformations enabled?
+        # @param [String] description Optional description for the bucket.
         #
         # @return [Bucket]
         def update_bucket(
@@ -166,7 +170,8 @@ module Appwrite
             compression: nil,
             encryption: nil,
             antivirus: nil,
-            transformations: nil
+            transformations: nil,
+            description: nil
         )
             if bucket_id.nil? || bucket_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
@@ -190,6 +195,7 @@ module Appwrite
                 encryption: encryption,
                 antivirus: antivirus,
                 transformations: transformations,
+                description: description,
             }
 
             api_headers = {

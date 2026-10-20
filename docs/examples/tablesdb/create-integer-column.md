@@ -18,6 +18,7 @@ result = tables_db.create_integer_column(
     min: 0, # optional
     max: 100, # optional
     default: 10, # optional
-    array: false # optional
+    array: false, # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

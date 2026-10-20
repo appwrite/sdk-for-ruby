@@ -4,6 +4,7 @@ module Appwrite
     module Models
         class AttributePoint
             attr_reader :key
+            attr_reader :description
             attr_reader :type
             attr_reader :status
             attr_reader :error
@@ -15,6 +16,7 @@ module Appwrite
 
             def initialize(
                 key:,
+                description:,
                 type:,
                 status:,
                 error:,
@@ -25,6 +27,7 @@ module Appwrite
                 default: nil
             )
                 @key = key
+                @description = description
                 @type = type
                 @status = validate_status(status)
                 @error = error
@@ -36,9 +39,10 @@ module Appwrite
             end
 
             def self.from(map:)
-                map = { "key" => "", "type" => "", "error" => "", "required" => false, "$createdAt" => "", "$updatedAt" => "" }.merge(map)
+                map = { "key" => "", "description" => "", "type" => "", "error" => "", "required" => false, "$createdAt" => "", "$updatedAt" => "" }.merge(map)
                 AttributePoint.new(
                     key: map["key"],
+                    description: map["description"],
                     type: map["type"],
                     status: map["status"],
                     error: map["error"],
@@ -53,6 +57,7 @@ module Appwrite
             def to_map
                 {
                     "key": @key,
+                    "description": @description,
                     "type": @type,
                     "status": @status,
                     "error": @error,

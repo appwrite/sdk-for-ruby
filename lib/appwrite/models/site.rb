@@ -7,6 +7,7 @@ module Appwrite
             attr_reader :created_at
             attr_reader :updated_at
             attr_reader :name
+            attr_reader :description
             attr_reader :enabled
             attr_reader :live
             attr_reader :logging
@@ -44,6 +45,7 @@ module Appwrite
                 created_at:,
                 updated_at:,
                 name:,
+                description:,
                 enabled:,
                 live:,
                 logging:,
@@ -80,6 +82,7 @@ module Appwrite
                 @created_at = created_at
                 @updated_at = updated_at
                 @name = name
+                @description = description
                 @enabled = enabled
                 @live = live
                 @logging = logging
@@ -114,12 +117,13 @@ module Appwrite
             end
 
             def self.from(map:)
-                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "enabled" => true, "live" => true, "logging" => true, "framework" => "", "deploymentRetention" => 0, "deploymentId" => "", "deploymentCreatedAt" => "", "deploymentScreenshotLight" => "", "deploymentScreenshotDark" => "", "latestDeploymentId" => "", "latestDeploymentCreatedAt" => "", "latestDeploymentStatus" => "", "scopes" => [], "vars" => [], "timeout" => 15, "installCommand" => "", "buildCommand" => "", "startCommand" => "", "outputDirectory" => "", "installationId" => "", "providerRepositoryId" => "", "providerBranch" => "", "providerRootDirectory" => "", "providerSilentMode" => false, "providerBranches" => [], "providerPaths" => [], "buildSpecification" => "s-1vcpu-512mb", "runtimeSpecification" => "s-1vcpu-512mb", "buildRuntime" => "" }.merge(map)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "description" => "", "enabled" => true, "live" => true, "logging" => true, "framework" => "", "deploymentRetention" => 0, "deploymentId" => "", "deploymentCreatedAt" => "", "deploymentScreenshotLight" => "", "deploymentScreenshotDark" => "", "latestDeploymentId" => "", "latestDeploymentCreatedAt" => "", "latestDeploymentStatus" => "", "scopes" => [], "vars" => [], "timeout" => 15, "installCommand" => "", "buildCommand" => "", "startCommand" => "", "outputDirectory" => "", "installationId" => "", "providerRepositoryId" => "", "providerBranch" => "", "providerRootDirectory" => "", "providerSilentMode" => false, "providerBranches" => [], "providerPaths" => [], "buildSpecification" => "s-1vcpu-512mb", "runtimeSpecification" => "s-1vcpu-512mb", "buildRuntime" => "" }.merge(map)
                 Site.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],
                     updated_at: map["$updatedAt"],
                     name: map["name"],
+                    description: map["description"],
                     enabled: map["enabled"],
                     live: map["live"],
                     logging: map["logging"],
@@ -160,6 +164,7 @@ module Appwrite
                     "$createdAt": @created_at,
                     "$updatedAt": @updated_at,
                     "name": @name,
+                    "description": @description,
                     "enabled": @enabled,
                     "live": @live,
                     "logging": @logging,

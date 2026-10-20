@@ -20,6 +20,7 @@ result = documents_db.create_collection(
     document_security: false, # optional
     enabled: false, # optional
     attributes: [], # optional
-    indexes: [] # optional
+    indexes: [], # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

@@ -15,6 +15,7 @@ result = messaging.create_topic(
     name: '<NAME>',
     subscribe: ["any"], # optional
     qos: 0, # optional
-    expiry: 0 # optional
+    expiry: 0, # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

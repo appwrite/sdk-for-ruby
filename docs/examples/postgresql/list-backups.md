@@ -12,6 +12,7 @@ postgresql = Postgresql.new(client)
 
 result = postgresql.list_backups(
     database_id: '<DATABASE_ID>',
-    queries: [] # optional
+    queries: [], # optional
+    total: false # optional
 )
 ```

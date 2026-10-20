@@ -16,6 +16,7 @@ result = tables_db.update_url_column(
     key: '<KEY>',
     required: false,
     default: 'https://example.com',
-    new_key: '<NEW_KEY>' # optional
+    new_key: '<NEW_KEY>', # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

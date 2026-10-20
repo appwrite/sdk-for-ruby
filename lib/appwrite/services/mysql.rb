@@ -9,15 +9,18 @@ module Appwrite
         # List all dedicated databases. Results support pagination.
         #
         # @param [Array] queries Array of query strings.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [DedicatedDatabaseList]
         def list(
-            queries: nil
+            queries: nil,
+            total: nil
         )
             api_path = '/mysql'
 
             api_params = {
                 queries: queries,
+                total: total,
             }
 
             api_headers = {
@@ -303,11 +306,13 @@ module Appwrite
         #
         # @param [String] database_id Database ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: status, type, databaseId
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [DedicatedDatabaseBackupList]
         def list_backups(
             database_id:,
-            queries: nil
+            queries: nil,
+            total: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -318,6 +323,7 @@ module Appwrite
 
             api_params = {
                 queries: queries,
+                total: total,
             }
 
             api_headers = {
@@ -375,11 +381,13 @@ module Appwrite
         #
         # @param [String] database_id Database ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [BackupPolicyList]
         def list_backup_policies(
             database_id:,
-            queries: nil
+            queries: nil,
+            total: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -390,6 +398,7 @@ module Appwrite
 
             api_params = {
                 queries: queries,
+                total: total,
             }
 
             api_headers = {

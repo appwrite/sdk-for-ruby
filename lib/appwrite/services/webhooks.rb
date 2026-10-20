@@ -50,6 +50,7 @@ module Appwrite
         # @param [String] auth_username Webhook HTTP user. Max length: 255 chars.
         # @param [String] auth_password Webhook HTTP password. Max length: 2048 chars.
         # @param [String] secret Webhook secret key. If not provided, a new key will be generated automatically. Key must be at least 8 characters long, and at max 256 characters.
+        # @param [String] description Optional description for the webhook.
         #
         # @return [Webhook]
         def create(
@@ -61,7 +62,8 @@ module Appwrite
             tls: nil,
             auth_username: nil,
             auth_password: nil,
-            secret: nil
+            secret: nil,
+            description: nil
         )
             if webhook_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "webhookId"')
@@ -91,6 +93,7 @@ module Appwrite
                 authUsername: auth_username,
                 authPassword: auth_password,
                 secret: secret,
+                description: description,
             }
 
             api_headers = {
@@ -151,6 +154,7 @@ module Appwrite
         # @param [] tls Certificate verification, false for disabled or true for enabled.
         # @param [String] auth_username Webhook HTTP user. Max length: 255 chars.
         # @param [String] auth_password Webhook HTTP password. Max length: 2048 chars. Omit to keep the current password; it is cleared when the URL changes or TLS verification is disabled.
+        # @param [String] description Optional description for the webhook.
         #
         # @return [Webhook]
         def update(
@@ -161,7 +165,8 @@ module Appwrite
             enabled: nil,
             tls: nil,
             auth_username: nil,
-            auth_password: nil
+            auth_password: nil,
+            description: nil
         )
             if webhook_id.nil? || webhook_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "webhookId"')
@@ -190,6 +195,7 @@ module Appwrite
                 tls: tls,
                 authUsername: auth_username,
                 authPassword: auth_password,
+                description: description,
             }
 
             api_headers = {

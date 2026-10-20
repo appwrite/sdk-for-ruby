@@ -18,6 +18,7 @@ result = vectors_db.create_index(
     type: VectorsDBIndexType::HNSW_EUCLIDEAN,
     attributes: ["embeddings"],
     orders: [OrderBy::ASC], # optional
-    lengths: [] # optional
+    lengths: [], # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

@@ -18,6 +18,7 @@ result = databases.create_string_attribute(
     required: false,
     default: 'Hello World', # optional
     array: false, # optional
-    encrypt: false # optional
+    encrypt: false, # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

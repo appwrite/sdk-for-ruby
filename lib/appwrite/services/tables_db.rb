@@ -47,6 +47,7 @@ module Appwrite
         # @param [String] database_id Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] name Database name. Max length: 128 chars.
         # @param [] enabled Is the database enabled? When set to &#039;disabled&#039;, users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled.
+        # @param [String] description Optional description for the database.
         # @param [String] specification Database specification. Defaults to `serverless`, which creates the database on the shared pool. Any other value provisions a dedicated database on that specification.
         # @param [Integer] replicas Number of high availability replicas (0-5) for the dedicated database backing this database. Requires a dedicated `specification`; must be 0 for a serverless database. High availability is enabled when greater than 0.
         # @param [String] sync_mode Replication sync mode for the dedicated database backing this database. Requires a dedicated `specification`; the mode is only in force once there is at least one replica. Allowed values: async, sync, quorum.
@@ -56,6 +57,7 @@ module Appwrite
             database_id:,
             name:,
             enabled: nil,
+            description: nil,
             specification: nil,
             replicas: nil,
             sync_mode: nil
@@ -74,6 +76,7 @@ module Appwrite
                 databaseId: database_id,
                 name: name,
                 enabled: enabled,
+                description: description,
                 specification: specification,
                 replicas: replicas,
                 syncMode: sync_mode,
@@ -353,6 +356,7 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] name Database name. Max length: 128 chars.
         # @param [] enabled Is database enabled? When set to &#039;disabled&#039;, users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled.
+        # @param [String] description Optional description for the database.
         # @param [String] specification Database specification. Resizing between dedicated specifications changes cpu, memory, storage and the connection ceiling via a rolling cutover with zero downtime. Moving a `serverless` database onto a dedicated specification is a data migration, not a resize.
         # @param [Integer] replicas Number of high availability replicas (0-5) for the dedicated database backing this database. Only valid when the database is backed by a dedicated specification. High availability is enabled when greater than 0.
         # @param [String] sync_mode Replication sync mode for the dedicated database backing this database. Only valid when the database is backed by a dedicated specification; the mode is only in force once there is at least one replica. Allowed values: async, sync, quorum.
@@ -362,6 +366,7 @@ module Appwrite
             database_id:,
             name: nil,
             enabled: nil,
+            description: nil,
             specification: nil,
             replicas: nil,
             sync_mode: nil
@@ -376,6 +381,7 @@ module Appwrite
             api_params = {
                 name: name,
                 enabled: enabled,
+                description: description,
                 specification: specification,
                 replicas: replicas,
                 syncMode: sync_mode,
@@ -842,6 +848,7 @@ module Appwrite
         # @param [] enabled Is table enabled? When set to &#039;disabled&#039;, users cannot access the table but Server SDKs with and API key can still read and write to the table. No data is lost when this is toggled.
         # @param [Array] columns Array of column definitions to create. Each column should contain: key (string), type (string: string, varchar, text, mediumtext, longtext, integer, bigint, double, boolean, datetime, point, linestring, polygon, email, url, ip, enum), size (integer, required for string and varchar types), required (boolean, optional), default (mixed, optional), array (boolean, optional), and type-specific options.
         # @param [Array] indexes Array of index definitions to create. Each index should contain: key (string), type (string: key, fulltext, unique, spatial, trigram), attributes (array of column keys), orders (array of ASC/DESC, optional), and lengths (array of integers, optional).
+        # @param [String] description Optional description for the table.
         #
         # @return [Table]
         def create_table(
@@ -852,7 +859,8 @@ module Appwrite
             row_security: nil,
             enabled: nil,
             columns: nil,
-            indexes: nil
+            indexes: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -877,6 +885,7 @@ module Appwrite
                 enabled: enabled,
                 columns: columns,
                 indexes: indexes,
+                description: description,
             }
 
             api_headers = {
@@ -942,6 +951,7 @@ module Appwrite
         # @param [] row_security Enables configuring permissions for individual rows. A user needs one of row or table-level permissions to access a row. [Learn more about permissions](https://appwrite.io/docs/permissions).
         # @param [] enabled Is table enabled? When set to &#039;disabled&#039;, users cannot access the table but Server SDKs with and API key can still read and write to the table. No data is lost when this is toggled.
         # @param [] purge When true, purge all cached list responses for this table as part of the update. Use this to force readers to see fresh data immediately instead of waiting for the cache TTL to expire.
+        # @param [String] description Optional description for the table.
         #
         # @return [Table]
         def update_table(
@@ -951,7 +961,8 @@ module Appwrite
             permissions: nil,
             row_security: nil,
             enabled: nil,
-            purge: nil
+            purge: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -971,6 +982,7 @@ module Appwrite
                 rowSecurity: row_security,
                 enabled: enabled,
                 purge: purge,
+                description: description,
             }
 
             api_headers = {
@@ -1084,6 +1096,7 @@ module Appwrite
         # @param [Integer] max Maximum value
         # @param [Integer] default Default value. Cannot be set when column is required.
         # @param [] array Is column an array?
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnBigint]
         def create_big_int_column(
@@ -1094,7 +1107,8 @@ module Appwrite
             min: nil,
             max: nil,
             default: nil,
-            array: nil
+            array: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -1123,6 +1137,7 @@ module Appwrite
                 max: max,
                 default: default,
                 array: array,
+                description: description,
             }
 
             api_headers = {
@@ -1152,6 +1167,7 @@ module Appwrite
         # @param [Integer] min Minimum value
         # @param [Integer] max Maximum value
         # @param [String] new_key New Column Key.
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnBigint]
         def update_big_int_column(
@@ -1162,7 +1178,8 @@ module Appwrite
             default:,
             min: nil,
             max: nil,
-            new_key: nil
+            new_key: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -1195,6 +1212,7 @@ module Appwrite
                 max: max,
                 default: default,
                 newKey: new_key,
+                description: description,
             }
 
             api_headers = {
@@ -1221,6 +1239,7 @@ module Appwrite
         # @param [] required Is column required?
         # @param [] default Default value for column when not provided. Cannot be set when column is required.
         # @param [] array Is column an array?
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnBoolean]
         def create_boolean_column(
@@ -1229,7 +1248,8 @@ module Appwrite
             key:,
             required:,
             default: nil,
-            array: nil
+            array: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -1256,6 +1276,7 @@ module Appwrite
                 required: required,
                 default: default,
                 array: array,
+                description: description,
             }
 
             api_headers = {
@@ -1282,6 +1303,7 @@ module Appwrite
         # @param [] required Is column required?
         # @param [] default Default value for column when not provided. Cannot be set when column is required.
         # @param [String] new_key New Column Key.
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnBoolean]
         def update_boolean_column(
@@ -1290,7 +1312,8 @@ module Appwrite
             key:,
             required:,
             default:,
-            new_key: nil
+            new_key: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -1321,6 +1344,7 @@ module Appwrite
                 required: required,
                 default: default,
                 newKey: new_key,
+                description: description,
             }
 
             api_headers = {
@@ -1346,6 +1370,7 @@ module Appwrite
         # @param [] required Is column required?
         # @param [String] default Default value for the column in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Cannot be set when column is required.
         # @param [] array Is column an array?
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnDatetime]
         def create_datetime_column(
@@ -1354,7 +1379,8 @@ module Appwrite
             key:,
             required:,
             default: nil,
-            array: nil
+            array: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -1381,6 +1407,7 @@ module Appwrite
                 required: required,
                 default: default,
                 array: array,
+                description: description,
             }
 
             api_headers = {
@@ -1407,6 +1434,7 @@ module Appwrite
         # @param [] required Is column required?
         # @param [String] default Default value for column when not provided. Cannot be set when column is required.
         # @param [String] new_key New Column Key.
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnDatetime]
         def update_datetime_column(
@@ -1415,7 +1443,8 @@ module Appwrite
             key:,
             required:,
             default:,
-            new_key: nil
+            new_key: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -1446,6 +1475,7 @@ module Appwrite
                 required: required,
                 default: default,
                 newKey: new_key,
+                description: description,
             }
 
             api_headers = {
@@ -1472,6 +1502,7 @@ module Appwrite
         # @param [] required Is column required?
         # @param [String] default Default value for column when not provided. Cannot be set when column is required.
         # @param [] array Is column an array?
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnEmail]
         def create_email_column(
@@ -1480,7 +1511,8 @@ module Appwrite
             key:,
             required:,
             default: nil,
-            array: nil
+            array: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -1507,6 +1539,7 @@ module Appwrite
                 required: required,
                 default: default,
                 array: array,
+                description: description,
             }
 
             api_headers = {
@@ -1534,6 +1567,7 @@ module Appwrite
         # @param [] required Is column required?
         # @param [String] default Default value for column when not provided. Cannot be set when column is required.
         # @param [String] new_key New Column Key.
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnEmail]
         def update_email_column(
@@ -1542,7 +1576,8 @@ module Appwrite
             key:,
             required:,
             default:,
-            new_key: nil
+            new_key: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -1573,6 +1608,7 @@ module Appwrite
                 required: required,
                 default: default,
                 newKey: new_key,
+                description: description,
             }
 
             api_headers = {
@@ -1600,6 +1636,7 @@ module Appwrite
         # @param [] required Is column required?
         # @param [String] default Default value for column when not provided. Cannot be set when column is required.
         # @param [] array Is column an array?
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnEnum]
         def create_enum_column(
@@ -1609,7 +1646,8 @@ module Appwrite
             elements:,
             required:,
             default: nil,
-            array: nil
+            array: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -1641,6 +1679,7 @@ module Appwrite
                 required: required,
                 default: default,
                 array: array,
+                description: description,
             }
 
             api_headers = {
@@ -1669,6 +1708,7 @@ module Appwrite
         # @param [] required Is column required?
         # @param [String] default Default value for column when not provided. Cannot be set when column is required.
         # @param [String] new_key New Column Key.
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnEnum]
         def update_enum_column(
@@ -1678,7 +1718,8 @@ module Appwrite
             elements:,
             required:,
             default:,
-            new_key: nil
+            new_key: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -1714,6 +1755,7 @@ module Appwrite
                 required: required,
                 default: default,
                 newKey: new_key,
+                description: description,
             }
 
             api_headers = {
@@ -1743,6 +1785,7 @@ module Appwrite
         # @param [Float] max Maximum value
         # @param [Float] default Default value. Cannot be set when required.
         # @param [] array Is column an array?
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnFloat]
         def create_float_column(
@@ -1753,7 +1796,8 @@ module Appwrite
             min: nil,
             max: nil,
             default: nil,
-            array: nil
+            array: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -1782,6 +1826,7 @@ module Appwrite
                 max: max,
                 default: default,
                 array: array,
+                description: description,
             }
 
             api_headers = {
@@ -1811,6 +1856,7 @@ module Appwrite
         # @param [Float] min Minimum value
         # @param [Float] max Maximum value
         # @param [String] new_key New Column Key.
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnFloat]
         def update_float_column(
@@ -1821,7 +1867,8 @@ module Appwrite
             default:,
             min: nil,
             max: nil,
-            new_key: nil
+            new_key: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -1854,6 +1901,7 @@ module Appwrite
                 max: max,
                 default: default,
                 newKey: new_key,
+                description: description,
             }
 
             api_headers = {
@@ -1883,6 +1931,7 @@ module Appwrite
         # @param [Integer] max Maximum value
         # @param [Integer] default Default value. Cannot be set when column is required.
         # @param [] array Is column an array?
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnInteger]
         def create_integer_column(
@@ -1893,7 +1942,8 @@ module Appwrite
             min: nil,
             max: nil,
             default: nil,
-            array: nil
+            array: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -1922,6 +1972,7 @@ module Appwrite
                 max: max,
                 default: default,
                 array: array,
+                description: description,
             }
 
             api_headers = {
@@ -1951,6 +2002,7 @@ module Appwrite
         # @param [Integer] min Minimum value
         # @param [Integer] max Maximum value
         # @param [String] new_key New Column Key.
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnInteger]
         def update_integer_column(
@@ -1961,7 +2013,8 @@ module Appwrite
             default:,
             min: nil,
             max: nil,
-            new_key: nil
+            new_key: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -1994,6 +2047,7 @@ module Appwrite
                 max: max,
                 default: default,
                 newKey: new_key,
+                description: description,
             }
 
             api_headers = {
@@ -2020,6 +2074,7 @@ module Appwrite
         # @param [] required Is column required?
         # @param [String] default Default value. Cannot be set when column is required.
         # @param [] array Is column an array?
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnIp]
         def create_ip_column(
@@ -2028,7 +2083,8 @@ module Appwrite
             key:,
             required:,
             default: nil,
-            array: nil
+            array: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -2055,6 +2111,7 @@ module Appwrite
                 required: required,
                 default: default,
                 array: array,
+                description: description,
             }
 
             api_headers = {
@@ -2082,6 +2139,7 @@ module Appwrite
         # @param [] required Is column required?
         # @param [String] default Default value. Cannot be set when column is required.
         # @param [String] new_key New Column Key.
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnIp]
         def update_ip_column(
@@ -2090,7 +2148,8 @@ module Appwrite
             key:,
             required:,
             default:,
-            new_key: nil
+            new_key: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -2121,6 +2180,7 @@ module Appwrite
                 required: required,
                 default: default,
                 newKey: new_key,
+                description: description,
             }
 
             api_headers = {
@@ -2145,6 +2205,7 @@ module Appwrite
         # @param [String] key Column Key.
         # @param [] required Is column required?
         # @param [Array] default Default value for column when not provided, two-dimensional array of coordinate pairs, [[longitude, latitude], [longitude, latitude], …], listing the vertices of the line in order. Cannot be set when column is required.
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnLine]
         def create_line_column(
@@ -2152,7 +2213,8 @@ module Appwrite
             table_id:,
             key:,
             required:,
-            default: nil
+            default: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -2178,6 +2240,7 @@ module Appwrite
                 key: key,
                 required: required,
                 default: default,
+                description: description,
             }
 
             api_headers = {
@@ -2204,6 +2267,7 @@ module Appwrite
         # @param [] required Is column required?
         # @param [Array] default Default value for column when not provided, two-dimensional array of coordinate pairs, [[longitude, latitude], [longitude, latitude], …], listing the vertices of the line in order. Cannot be set when column is required.
         # @param [String] new_key New Column Key.
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnLine]
         def update_line_column(
@@ -2212,7 +2276,8 @@ module Appwrite
             key:,
             required:,
             default: nil,
-            new_key: nil
+            new_key: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -2239,6 +2304,7 @@ module Appwrite
                 required: required,
                 default: default,
                 newKey: new_key,
+                description: description,
             }
 
             api_headers = {
@@ -2266,6 +2332,7 @@ module Appwrite
         # @param [String] default Default value for column when not provided. Cannot be set when column is required.
         # @param [] array Is column an array?
         # @param [] encrypt Toggle encryption for the column. Encryption enhances security by not storing any plain text values in the database. However, encrypted columns cannot be queried.
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnLongtext]
         def create_longtext_column(
@@ -2275,7 +2342,8 @@ module Appwrite
             required:,
             default: nil,
             array: nil,
-            encrypt: nil
+            encrypt: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -2303,6 +2371,7 @@ module Appwrite
                 default: default,
                 array: array,
                 encrypt: encrypt,
+                description: description,
             }
 
             api_headers = {
@@ -2330,6 +2399,7 @@ module Appwrite
         # @param [] required Is column required?
         # @param [String] default Default value for column when not provided. Cannot be set when column is required.
         # @param [String] new_key New Column Key.
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnLongtext]
         def update_longtext_column(
@@ -2338,7 +2408,8 @@ module Appwrite
             key:,
             required:,
             default:,
-            new_key: nil
+            new_key: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -2369,6 +2440,7 @@ module Appwrite
                 required: required,
                 default: default,
                 newKey: new_key,
+                description: description,
             }
 
             api_headers = {
@@ -2396,6 +2468,7 @@ module Appwrite
         # @param [String] default Default value for column when not provided. Cannot be set when column is required.
         # @param [] array Is column an array?
         # @param [] encrypt Toggle encryption for the column. Encryption enhances security by not storing any plain text values in the database. However, encrypted columns cannot be queried.
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnMediumtext]
         def create_mediumtext_column(
@@ -2405,7 +2478,8 @@ module Appwrite
             required:,
             default: nil,
             array: nil,
-            encrypt: nil
+            encrypt: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -2433,6 +2507,7 @@ module Appwrite
                 default: default,
                 array: array,
                 encrypt: encrypt,
+                description: description,
             }
 
             api_headers = {
@@ -2460,6 +2535,7 @@ module Appwrite
         # @param [] required Is column required?
         # @param [String] default Default value for column when not provided. Cannot be set when column is required.
         # @param [String] new_key New Column Key.
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnMediumtext]
         def update_mediumtext_column(
@@ -2468,7 +2544,8 @@ module Appwrite
             key:,
             required:,
             default:,
-            new_key: nil
+            new_key: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -2499,6 +2576,7 @@ module Appwrite
                 required: required,
                 default: default,
                 newKey: new_key,
+                description: description,
             }
 
             api_headers = {
@@ -2523,6 +2601,7 @@ module Appwrite
         # @param [String] key Column Key.
         # @param [] required Is column required?
         # @param [Array] default Default value for column when not provided, array of two numbers [longitude, latitude], representing a single coordinate. Cannot be set when column is required.
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnPoint]
         def create_point_column(
@@ -2530,7 +2609,8 @@ module Appwrite
             table_id:,
             key:,
             required:,
-            default: nil
+            default: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -2556,6 +2636,7 @@ module Appwrite
                 key: key,
                 required: required,
                 default: default,
+                description: description,
             }
 
             api_headers = {
@@ -2582,6 +2663,7 @@ module Appwrite
         # @param [] required Is column required?
         # @param [Array] default Default value for column when not provided, array of two numbers [longitude, latitude], representing a single coordinate. Cannot be set when column is required.
         # @param [String] new_key New Column Key.
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnPoint]
         def update_point_column(
@@ -2590,7 +2672,8 @@ module Appwrite
             key:,
             required:,
             default: nil,
-            new_key: nil
+            new_key: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -2617,6 +2700,7 @@ module Appwrite
                 required: required,
                 default: default,
                 newKey: new_key,
+                description: description,
             }
 
             api_headers = {
@@ -2641,6 +2725,7 @@ module Appwrite
         # @param [String] key Column Key.
         # @param [] required Is column required?
         # @param [Array] default Default value for column when not provided, three-dimensional array where the outer array holds one or more linear rings, [[[longitude, latitude], …], …], the first ring is the exterior boundary, any additional rings are interior holes, and each ring must start and end with the same coordinate pair. Cannot be set when column is required.
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnPolygon]
         def create_polygon_column(
@@ -2648,7 +2733,8 @@ module Appwrite
             table_id:,
             key:,
             required:,
-            default: nil
+            default: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -2674,6 +2760,7 @@ module Appwrite
                 key: key,
                 required: required,
                 default: default,
+                description: description,
             }
 
             api_headers = {
@@ -2700,6 +2787,7 @@ module Appwrite
         # @param [] required Is column required?
         # @param [Array] default Default value for column when not provided, three-dimensional array where the outer array holds one or more linear rings, [[[longitude, latitude], …], …], the first ring is the exterior boundary, any additional rings are interior holes, and each ring must start and end with the same coordinate pair. Cannot be set when column is required.
         # @param [String] new_key New Column Key.
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnPolygon]
         def update_polygon_column(
@@ -2708,7 +2796,8 @@ module Appwrite
             key:,
             required:,
             default: nil,
-            new_key: nil
+            new_key: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -2735,6 +2824,7 @@ module Appwrite
                 required: required,
                 default: default,
                 newKey: new_key,
+                description: description,
             }
 
             api_headers = {
@@ -2764,6 +2854,7 @@ module Appwrite
         # @param [String] key Column Key.
         # @param [String] two_way_key Two Way Column Key.
         # @param [RelationMutate] on_delete Delete constraint. Possible values are: cascade, restrict, setNull.
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnRelationship]
         def create_relationship_column(
@@ -2774,7 +2865,8 @@ module Appwrite
             two_way: nil,
             key: nil,
             two_way_key: nil,
-            on_delete: nil
+            on_delete: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -2803,6 +2895,7 @@ module Appwrite
                 key: key,
                 twoWayKey: two_way_key,
                 onDelete: on_delete,
+                description: description,
             }
 
             api_headers = {
@@ -2829,6 +2922,7 @@ module Appwrite
         # @param [String] key Column Key.
         # @param [RelationMutate] on_delete Delete constraint. Possible values are: cascade, restrict, setNull.
         # @param [String] new_key New Column Key.
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnRelationship]
         def update_relationship_column(
@@ -2836,7 +2930,8 @@ module Appwrite
             table_id:,
             key:,
             on_delete: nil,
-            new_key: nil
+            new_key: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -2858,6 +2953,7 @@ module Appwrite
             api_params = {
                 onDelete: on_delete,
                 newKey: new_key,
+                description: description,
             }
 
             api_headers = {
@@ -2889,6 +2985,7 @@ module Appwrite
         # @param [String] default Default value for column when not provided. Cannot be set when column is required.
         # @param [] array Is column an array?
         # @param [] encrypt Toggle encryption for the column. Encryption enhances security by not storing any plain text values in the database. However, encrypted columns cannot be queried.
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnString]
         def create_string_column(
@@ -2899,7 +2996,8 @@ module Appwrite
             required:,
             default: nil,
             array: nil,
-            encrypt: nil
+            encrypt: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -2932,6 +3030,7 @@ module Appwrite
                 default: default,
                 array: array,
                 encrypt: encrypt,
+                description: description,
             }
 
             api_headers = {
@@ -2963,6 +3062,7 @@ module Appwrite
         # @param [String] default Default value for column when not provided. Cannot be set when column is required.
         # @param [Integer] size Maximum size of the string column.
         # @param [String] new_key New Column Key.
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnString]
         def update_string_column(
@@ -2972,7 +3072,8 @@ module Appwrite
             required:,
             default:,
             size: nil,
-            new_key: nil
+            new_key: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -3004,6 +3105,7 @@ module Appwrite
                 default: default,
                 size: size,
                 newKey: new_key,
+                description: description,
             }
 
             api_headers = {
@@ -3031,6 +3133,7 @@ module Appwrite
         # @param [String] default Default value for column when not provided. Cannot be set when column is required.
         # @param [] array Is column an array?
         # @param [] encrypt Toggle encryption for the column. Encryption enhances security by not storing any plain text values in the database. However, encrypted columns cannot be queried.
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnText]
         def create_text_column(
@@ -3040,7 +3143,8 @@ module Appwrite
             required:,
             default: nil,
             array: nil,
-            encrypt: nil
+            encrypt: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -3068,6 +3172,7 @@ module Appwrite
                 default: default,
                 array: array,
                 encrypt: encrypt,
+                description: description,
             }
 
             api_headers = {
@@ -3095,6 +3200,7 @@ module Appwrite
         # @param [] required Is column required?
         # @param [String] default Default value for column when not provided. Cannot be set when column is required.
         # @param [String] new_key New Column Key.
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnText]
         def update_text_column(
@@ -3103,7 +3209,8 @@ module Appwrite
             key:,
             required:,
             default:,
-            new_key: nil
+            new_key: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -3134,6 +3241,7 @@ module Appwrite
                 required: required,
                 default: default,
                 newKey: new_key,
+                description: description,
             }
 
             api_headers = {
@@ -3160,6 +3268,7 @@ module Appwrite
         # @param [] required Is column required?
         # @param [String] default Default value for column when not provided. Cannot be set when column is required.
         # @param [] array Is column an array?
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnUrl]
         def create_url_column(
@@ -3168,7 +3277,8 @@ module Appwrite
             key:,
             required:,
             default: nil,
-            array: nil
+            array: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -3195,6 +3305,7 @@ module Appwrite
                 required: required,
                 default: default,
                 array: array,
+                description: description,
             }
 
             api_headers = {
@@ -3222,6 +3333,7 @@ module Appwrite
         # @param [] required Is column required?
         # @param [String] default Default value for column when not provided. Cannot be set when column is required.
         # @param [String] new_key New Column Key.
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnUrl]
         def update_url_column(
@@ -3230,7 +3342,8 @@ module Appwrite
             key:,
             required:,
             default:,
-            new_key: nil
+            new_key: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -3261,6 +3374,7 @@ module Appwrite
                 required: required,
                 default: default,
                 newKey: new_key,
+                description: description,
             }
 
             api_headers = {
@@ -3289,6 +3403,7 @@ module Appwrite
         # @param [String] default Default value for column when not provided. Cannot be set when column is required.
         # @param [] array Is column an array?
         # @param [] encrypt Toggle encryption for the column. Encryption enhances security by not storing any plain text values in the database. However, encrypted columns cannot be queried.
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnVarchar]
         def create_varchar_column(
@@ -3299,7 +3414,8 @@ module Appwrite
             required:,
             default: nil,
             array: nil,
-            encrypt: nil
+            encrypt: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -3332,6 +3448,7 @@ module Appwrite
                 default: default,
                 array: array,
                 encrypt: encrypt,
+                description: description,
             }
 
             api_headers = {
@@ -3360,6 +3477,7 @@ module Appwrite
         # @param [String] default Default value for column when not provided. Cannot be set when column is required.
         # @param [Integer] size Maximum size of the varchar column.
         # @param [String] new_key New Column Key.
+        # @param [String] description Optional description for the column.
         #
         # @return [ColumnVarchar]
         def update_varchar_column(
@@ -3369,7 +3487,8 @@ module Appwrite
             required:,
             default:,
             size: nil,
-            new_key: nil
+            new_key: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -3401,6 +3520,7 @@ module Appwrite
                 default: default,
                 size: size,
                 newKey: new_key,
+                description: description,
             }
 
             api_headers = {
@@ -3661,6 +3781,7 @@ module Appwrite
         # @param [Array] columns Array of columns to index. Maximum of 100 columns are allowed, each 32 characters long.
         # @param [Array] orders Array of index orders. Maximum of 100 orders are allowed.
         # @param [Array] lengths Length of index. Maximum of 100
+        # @param [String] description Optional description for the index.
         #
         # @return [ColumnIndex]
         def create_index(
@@ -3670,7 +3791,8 @@ module Appwrite
             type:,
             columns:,
             orders: nil,
-            lengths: nil
+            lengths: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -3702,6 +3824,7 @@ module Appwrite
                 columns: columns,
                 orders: orders,
                 lengths: lengths,
+                description: description,
             }
 
             api_headers = {
@@ -3812,12 +3935,20 @@ module Appwrite
         # Get a list of all the user&#039;s rows in a given table. You can use the query
         # params to filter your results.
         #
+        # Rows returned by aggregate, groupBy or distinct queries hold only the
+        # columns they select, group or aggregate, typed as a row types them, with a
+        # joined column named by its join alias (`alias.column`). The response omits
+        # their `$id`, `$sequence`, `$createdAt`, `$updatedAt`, `$permissions`,
+        # `$databaseId` and `$tableId` unless they select or group it, and those of a
+        # right or full join row that no row of this table matched. SDK row models
+        # fill omitted system columns with empty values.
+        #
         # @param [String] database_id Database ID.
         # @param [String] table_id Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/products/databases/tables#create-table).
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
         # @param [String] transaction_id Transaction ID to read uncommitted changes within the transaction.
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
-        # @param [Integer] ttl TTL (seconds) for caching list responses. Responses are stored in an in-memory key-value cache, keyed per project, table, schema version (columns and indexes), caller authorization roles, and the exact query — so users with different permissions never share cached entries. Schema changes invalidate cached entries automatically; row writes do not, so choose a TTL you are comfortable serving as stale data. Set to 0 to disable caching. Must be between 0 and 86400 (24 hours).
+        # @param [Integer] ttl TTL (seconds) for caching list responses. Responses are stored in an in-memory key-value cache, keyed per project, table, schema version (columns and indexes), caller authorization roles, and the exact query — so users with different permissions never share cached entries. Schema changes invalidate cached entries automatically; row writes do not, so choose a TTL you are comfortable serving as stale data. Set to 0 to disable caching. Lists with join queries are not cached. Must be between 0 and 86400 (24 hours).
         #
         # @return [RowList]
         def list_rows(
@@ -4121,6 +4252,62 @@ module Appwrite
 
             @client.call(
                 method: 'DELETE',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::RowList
+            )
+        end
+
+        # Get a list of all the user&#039;s rows in a given table using a POST request.
+        # This behaves identically to the list rows endpoint but accepts the queries
+        # in the request body, allowing much larger `queries` arrays than can fit in
+        # a URL query string.
+        #
+        #
+        # @param [String] database_id Database ID.
+        # @param [String] table_id Table ID. You can create a new table using the TablesDB service [server integration](https://appwrite.io/docs/products/databases/tables#create-table).
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.
+        # @param [String] transaction_id Transaction ID to read uncommitted changes within the transaction.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
+        # @param [Integer] ttl TTL (seconds) for caching list responses. Responses are stored in an in-memory key-value cache, keyed per project, table, schema version (columns and indexes), caller authorization roles, and the exact query — so users with different permissions never share cached entries. Schema changes invalidate cached entries automatically; row writes do not, so choose a TTL you are comfortable serving as stale data. Set to 0 to disable caching. Lists with join queries are not cached. Must be between 0 and 86400 (24 hours).
+        #
+        # @return [RowList]
+        def create_query(
+            database_id:,
+            table_id:,
+            queries: nil,
+            transaction_id: nil,
+            total: nil,
+            ttl: nil
+        )
+            if database_id.nil? || database_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
+            end
+
+            if table_id.nil? || table_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "tableId"')
+            end
+
+            api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows/query'
+                .gsub('{databaseId}', database_id)
+                .gsub('{tableId}', table_id)
+
+            api_params = {
+                queries: queries,
+                transactionId: transaction_id,
+                total: total,
+                ttl: ttl,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
                 path: api_path,
                 headers: api_headers,
                 params: api_params,

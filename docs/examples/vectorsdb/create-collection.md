@@ -19,6 +19,7 @@ result = vectors_db.create_collection(
     dimension: 4,
     permissions: [Permission.read(Role.any())], # optional
     document_security: false, # optional
-    enabled: false # optional
+    enabled: false, # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

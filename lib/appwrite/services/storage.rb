@@ -9,7 +9,7 @@ module Appwrite
         # Get a list of all the storage buckets. You can use the query params to
         # filter your results.
         #
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: enabled, name, fileSecurity, maximumFileSize, encryption, antivirus, transformations
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: enabled, name, fileSecurity, maximumFileSize, encryption, antivirus, transformations, stripMetadata
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
@@ -54,6 +54,8 @@ module Appwrite
         # @param [] encryption Is encryption enabled? For file size above 20MB encryption is skipped even if it&#039;s enabled
         # @param [] antivirus Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it&#039;s enabled
         # @param [] transformations Are image transformations enabled?
+        # @param [String] description Optional description for the bucket.
+        # @param [] strip_metadata Remove metadata such as location, device and capture time from uploaded images. The color profile and orientation are kept. For file size above 20MB metadata is not removed even if it&#039;s enabled.
         #
         # @return [Bucket]
         def create_bucket(
@@ -67,7 +69,9 @@ module Appwrite
             compression: nil,
             encryption: nil,
             antivirus: nil,
-            transformations: nil
+            transformations: nil,
+            description: nil,
+            strip_metadata: nil
         )
             if bucket_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
@@ -91,6 +95,8 @@ module Appwrite
                 encryption: encryption,
                 antivirus: antivirus,
                 transformations: transformations,
+                description: description,
+                stripMetadata: strip_metadata,
             }
 
             api_headers = {
@@ -153,6 +159,8 @@ module Appwrite
         # @param [] encryption Is encryption enabled? For file size above 20MB encryption is skipped even if it&#039;s enabled
         # @param [] antivirus Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it&#039;s enabled
         # @param [] transformations Are image transformations enabled?
+        # @param [String] description Optional description for the bucket.
+        # @param [] strip_metadata Remove metadata such as location, device and capture time from uploaded images. The color profile and orientation are kept. For file size above 20MB metadata is not removed even if it&#039;s enabled. By default, the current setting is kept.
         #
         # @return [Bucket]
         def update_bucket(
@@ -166,7 +174,9 @@ module Appwrite
             compression: nil,
             encryption: nil,
             antivirus: nil,
-            transformations: nil
+            transformations: nil,
+            description: nil,
+            strip_metadata: nil
         )
             if bucket_id.nil? || bucket_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "bucketId"')
@@ -190,6 +200,8 @@ module Appwrite
                 encryption: encryption,
                 antivirus: antivirus,
                 transformations: transformations,
+                description: description,
+                stripMetadata: strip_metadata,
             }
 
             api_headers = {

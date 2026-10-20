@@ -11,6 +11,7 @@ client = Client.new
 mongo = Mongo.new(client)
 
 result = mongo.list(
-    queries: [] # optional
+    queries: [], # optional
+    total: false # optional
 )
 ```

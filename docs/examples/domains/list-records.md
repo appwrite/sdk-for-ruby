@@ -12,6 +12,7 @@ domains = Domains.new(client)
 
 result = domains.list_records(
     domain_id: '<DOMAIN_ID>',
-    queries: [] # optional
+    queries: [], # optional
+    total: false # optional
 )
 ```

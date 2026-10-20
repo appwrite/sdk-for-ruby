@@ -18,6 +18,7 @@ result = databases.update_integer_attribute(
     default: 10,
     min: 0, # optional
     max: 100, # optional
-    new_key: '<NEW_KEY>' # optional
+    new_key: '<NEW_KEY>', # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

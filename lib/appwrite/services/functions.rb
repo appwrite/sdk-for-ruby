@@ -69,6 +69,7 @@ module Appwrite
         # @param [String] runtime_specification Runtime specification for the function executions.
         # @param [Integer] deployment_retention Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept.
         # @param [Integer] interval Minutes between scheduled executions. Appwrite picks when within each interval the function runs. Use 0 to disable. Cannot be combined with schedule.
+        # @param [String] description Optional description for the function.
         #
         # @return [Function]
         def create(
@@ -94,7 +95,8 @@ module Appwrite
             build_specification: nil,
             runtime_specification: nil,
             deployment_retention: nil,
-            interval: nil
+            interval: nil,
+            description: nil
         )
             if function_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
@@ -134,6 +136,7 @@ module Appwrite
                 runtimeSpecification: runtime_specification,
                 deploymentRetention: deployment_retention,
                 interval: interval,
+                description: description,
             }
 
             api_headers = {
@@ -266,6 +269,7 @@ module Appwrite
         # @param [String] runtime_specification Runtime specification for the function executions.
         # @param [Integer] deployment_retention Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept.
         # @param [Integer] interval Minutes between scheduled executions. Appwrite picks when within each interval the function runs. Use 0 to disable. Cannot be combined with schedule. When omitted, the current interval is kept unless schedule is set.
+        # @param [String] description Optional description for the function.
         # @param [] email_enabled Enable inbound email triggering for this function. When false or omitted on create, SMTP recipients are rejected. Opt-in; default is off.
         #
         # @return [Function]
@@ -293,6 +297,7 @@ module Appwrite
             runtime_specification: nil,
             deployment_retention: nil,
             interval: nil,
+            description: nil,
             email_enabled: nil
         )
             if function_id.nil? || function_id == ''
@@ -329,6 +334,7 @@ module Appwrite
                 runtimeSpecification: runtime_specification,
                 deploymentRetention: deployment_retention,
                 interval: interval,
+                description: description,
                 emailEnabled: email_enabled,
             }
 
@@ -1084,6 +1090,7 @@ module Appwrite
         # @param [String] key Variable key. Letters, digits and underscores only, must not start with a digit. Max length: 255 chars.
         # @param [String] value Variable value. Max length: 8192 chars.
         # @param [] secret Secret variables can be updated or deleted, but only functions can read them during build and runtime.
+        # @param [String] description Optional description for the variable.
         #
         # @return [Variable]
         def create_variable(
@@ -1091,7 +1098,8 @@ module Appwrite
             variable_id:,
             key:,
             value:,
-            secret: nil
+            secret: nil,
+            description: nil
         )
             if function_id.nil? || function_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
@@ -1117,6 +1125,7 @@ module Appwrite
                 key: key,
                 value: value,
                 secret: secret,
+                description: description,
             }
 
             api_headers = {
@@ -1179,6 +1188,7 @@ module Appwrite
         # @param [String] key Variable key. Letters, digits and underscores only, must not start with a digit. Max length: 255 chars.
         # @param [String] value Variable value. Max length: 8192 chars.
         # @param [] secret Secret variables can be updated or deleted, but only functions can read them during build and runtime.
+        # @param [String] description Optional description for the variable.
         #
         # @return [Variable]
         def update_variable(
@@ -1186,7 +1196,8 @@ module Appwrite
             variable_id:,
             key: nil,
             value: nil,
-            secret: nil
+            secret: nil,
+            description: nil
         )
             if function_id.nil? || function_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "functionId"')
@@ -1204,6 +1215,7 @@ module Appwrite
                 key: key,
                 value: value,
                 secret: secret,
+                description: description,
             }
 
             api_headers = {

@@ -382,13 +382,15 @@ module Appwrite
         # @param [String] name Key name. Max length: 128 chars.
         # @param [Array] scopes Key scopes list. Maximum of 200 scopes are allowed.
         # @param [String] expire Expiration time in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Use null for unlimited expiration.
+        # @param [String] description Optional description for the key.
         #
         # @return [Key]
         def update_key(
             key_id:,
             name:,
             scopes:,
-            expire: nil
+            expire: nil,
+            description: nil
         )
             if key_id.nil? || key_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "keyId"')
@@ -409,6 +411,7 @@ module Appwrite
                 name: name,
                 scopes: scopes,
                 expire: expire,
+                description: description,
             }
 
             api_headers = {
@@ -3771,11 +3774,21 @@ module Appwrite
         # against most common passwords dictionary. When enabled, and user changes
         # their password, password must not be contained in the dictionary.
         #
+        # Custom denyList entries use case-sensitive equality and apply only while
+        # this policy is enabled. Omit denyList or pass null to preserve it, pass an
+        # array to replace it, or pass [] to clear it. Entries are stored without
+        # trimming or deduplication. Existing passwords remain valid for sign-in and
+        # password confirmation. The combined serialized project authentication
+        # configuration must fit within 16,384 characters, even when each list meets
+        # its entry limits.
+        #
         # @param [] enabled Toggle password dictionary policy. Set to true if you want password change to block passwords in the dictionary, or false to allow them. When changing this policy, existing passwords remain valid.
+        # @param [Array] deny_list Custom blocked values using case-sensitive equality. Up to 100 entries of 1 to 256 characters. Omit or pass null to preserve, an array to replace, or [] to clear. Combined authentication settings must fit within 16,384 characters.
         #
         # @return [Project]
         def update_password_dictionary_policy(
-            enabled:
+            enabled:,
+            deny_list: nil
         )
             if enabled.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "enabled"')
@@ -3785,6 +3798,7 @@ module Appwrite
 
             api_params = {
                 enabled: enabled,
+                denyList: deny_list,
             }
 
             api_headers = {
@@ -3848,11 +3862,23 @@ module Appwrite
         # password, the password must not contain user ID, name, email or phone
         # number.
         #
+        # Custom denyList entries use case-insensitive substring matching and apply
+        # only while this policy is enabled. Omit denyList or pass null to preserve
+        # it, pass an array to replace it, or pass [] to clear it. Entries are stored
+        # without trimming or deduplication. Existing passwords remain valid for
+        # sign-in and password confirmation. The combined serialized project
+        # authentication configuration must fit within 16,384 characters, even when
+        # each list meets its entry limits.
+        # Password recovery also checks the recovered user profile, closing the
+        # previous gap in profile-based personal-data validation.
+        #
         # @param [] enabled Toggle password personal data policy. Set to true if you want to block passwords including user&#039;s personal data, or false to allow it. When changing this policy, existing passwords remain valid.
+        # @param [Array] deny_list Custom blocked values using case-insensitive substring matching. Up to 100 entries of 1 to 256 characters. Omit or pass null to preserve, an array to replace, or [] to clear. Combined authentication settings must fit within 16,384 characters.
         #
         # @return [Project]
         def update_password_personal_data_policy(
-            enabled:
+            enabled:,
+            deny_list: nil
         )
             if enabled.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "enabled"')
@@ -3862,6 +3888,7 @@ module Appwrite
 
             api_params = {
                 enabled: enabled,
+                denyList: deny_list,
             }
 
             api_headers = {
@@ -4633,13 +4660,15 @@ module Appwrite
         # @param [String] key Variable key. Letters, digits and underscores only, must not start with a digit. Max length: 255 chars.
         # @param [String] value Variable value. Max length: 8192 chars.
         # @param [] secret Secret variables can be updated or deleted, but only projects can read them during build and runtime.
+        # @param [String] description Optional description for the variable.
         #
         # @return [Variable]
         def create_variable(
             variable_id:,
             key:,
             value:,
-            secret: nil
+            secret: nil,
+            description: nil
         )
             if variable_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "variableId"')
@@ -4660,6 +4689,7 @@ module Appwrite
                 key: key,
                 value: value,
                 secret: secret,
+                description: description,
             }
 
             api_headers = {
@@ -4714,13 +4744,15 @@ module Appwrite
         # @param [String] key Variable key. Letters, digits and underscores only, must not start with a digit. Max length: 255 chars.
         # @param [String] value Variable value. Max length: 8192 chars.
         # @param [] secret Secret variables can be updated or deleted, but only projects can read them during build and runtime.
+        # @param [String] description Optional description for the variable.
         #
         # @return [Variable]
         def update_variable(
             variable_id:,
             key: nil,
             value: nil,
-            secret: nil
+            secret: nil,
+            description: nil
         )
             if variable_id.nil? || variable_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "variableId"')
@@ -4733,6 +4765,7 @@ module Appwrite
                 key: key,
                 value: value,
                 secret: secret,
+                description: description,
             }
 
             api_headers = {

@@ -9,6 +9,7 @@ module Appwrite
             attr_reader :permissions
             attr_reader :file_security
             attr_reader :name
+            attr_reader :description
             attr_reader :enabled
             attr_reader :maximum_file_size
             attr_reader :allowed_file_extensions
@@ -16,6 +17,7 @@ module Appwrite
             attr_reader :encryption
             attr_reader :antivirus
             attr_reader :transformations
+            attr_reader :strip_metadata
             attr_reader :total_size
 
             def initialize(
@@ -25,6 +27,7 @@ module Appwrite
                 permissions:,
                 file_security:,
                 name:,
+                description:,
                 enabled:,
                 maximum_file_size:,
                 allowed_file_extensions:,
@@ -32,6 +35,7 @@ module Appwrite
                 encryption:,
                 antivirus:,
                 transformations:,
+                strip_metadata:,
                 total_size:
             )
                 @id = id
@@ -40,6 +44,7 @@ module Appwrite
                 @permissions = permissions
                 @file_security = file_security
                 @name = name
+                @description = description
                 @enabled = enabled
                 @maximum_file_size = maximum_file_size
                 @allowed_file_extensions = allowed_file_extensions
@@ -47,11 +52,12 @@ module Appwrite
                 @encryption = encryption
                 @antivirus = antivirus
                 @transformations = transformations
+                @strip_metadata = strip_metadata
                 @total_size = total_size
             end
 
             def self.from(map:)
-                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "$permissions" => [], "fileSecurity" => false, "name" => "", "enabled" => true, "maximumFileSize" => 0, "allowedFileExtensions" => [], "compression" => "", "encryption" => true, "antivirus" => true, "transformations" => true, "totalSize" => 0 }.merge(map)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "$permissions" => [], "fileSecurity" => false, "name" => "", "description" => "", "enabled" => true, "maximumFileSize" => 0, "allowedFileExtensions" => [], "compression" => "", "encryption" => true, "antivirus" => true, "transformations" => true, "stripMetadata" => false, "totalSize" => 0 }.merge(map)
                 Bucket.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],
@@ -59,6 +65,7 @@ module Appwrite
                     permissions: map["$permissions"],
                     file_security: map["fileSecurity"],
                     name: map["name"],
+                    description: map["description"],
                     enabled: map["enabled"],
                     maximum_file_size: map["maximumFileSize"],
                     allowed_file_extensions: map["allowedFileExtensions"],
@@ -66,6 +73,7 @@ module Appwrite
                     encryption: map["encryption"],
                     antivirus: map["antivirus"],
                     transformations: map["transformations"],
+                    strip_metadata: map["stripMetadata"],
                     total_size: map["totalSize"]
                 )
             end
@@ -78,6 +86,7 @@ module Appwrite
                     "$permissions": @permissions,
                     "fileSecurity": @file_security,
                     "name": @name,
+                    "description": @description,
                     "enabled": @enabled,
                     "maximumFileSize": @maximum_file_size,
                     "allowedFileExtensions": @allowed_file_extensions,
@@ -85,6 +94,7 @@ module Appwrite
                     "encryption": @encryption,
                     "antivirus": @antivirus,
                     "transformations": @transformations,
+                    "stripMetadata": @strip_metadata,
                     "totalSize": @total_size
                 }
             end

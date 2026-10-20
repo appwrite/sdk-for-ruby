@@ -15,6 +15,7 @@ result = functions.create_variable(
     variable_id: '<VARIABLE_ID>',
     key: '<KEY>',
     value: '<VALUE>',
-    secret: false # optional
+    secret: false, # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

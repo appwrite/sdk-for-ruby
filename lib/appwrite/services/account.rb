@@ -410,6 +410,37 @@ module Appwrite
             )
         end
 
+        # Get the team memberships of the currently logged in user.
+        #
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, teamId, invited, joined, confirm, roles
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
+        #
+        # @return [MembershipList]
+        def list_memberships(
+            queries: nil,
+            total: nil
+        )
+            api_path = '/account/memberships'
+
+            api_params = {
+                queries: queries,
+                total: total,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::MembershipList
+            )
+        end
+
         # Enable or disable MFA on an account.
         #
         # @param [] mfa Enable or disable MFA.
@@ -1185,6 +1216,15 @@ module Appwrite
         # the only valid redirect URLs are the ones from domains you have set when
         # adding your platforms in the console interface.
         #
+        # The new password must satisfy the project&#039;s enabled password policies,
+        # including custom deny lists. Dictionary entries match the entire password
+        # case-sensitively; personal-data terms match substrings case-insensitively.
+        # Personal-data validation runs after token verification against the
+        # recovered user&#039;s ID, name, email, and phone, closing the previous recovery
+        # gap for profile-based checks. A rejected password leaves the existing
+        # credentials unchanged and the recovery token usable.
+        #
+        #
         # @param [String] user_id User ID.
         # @param [String] secret Valid reset token.
         # @param [String] password New user password. Must be between 8 and 256 chars.
@@ -1285,6 +1325,14 @@ module Appwrite
         # Pass the **userId** of the user along with the **secret** code from the
         # email and the new **password** to set. If confirmed, this route will return
         # a 200 status code, the code is consumed and the user&#039;s password is updated.
+        #
+        # The new password must satisfy the project&#039;s enabled password policies,
+        # including custom deny lists. Dictionary entries match the entire password
+        # case-sensitively; personal-data terms match substrings case-insensitively.
+        # Personal-data validation runs after token verification against the
+        # recovered user&#039;s ID, name, email, and phone, closing the previous recovery
+        # gap for profile-based checks. A rejected password leaves the existing
+        # credentials unchanged and the recovery token usable.
         #
         #
         # @param [String] user_id User ID.

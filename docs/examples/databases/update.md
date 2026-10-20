@@ -13,6 +13,7 @@ databases = Databases.new(client)
 result = databases.update(
     database_id: '<DATABASE_ID>',
     name: '<NAME>', # optional
-    enabled: false # optional
+    enabled: false, # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

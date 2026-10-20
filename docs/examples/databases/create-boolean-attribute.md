@@ -16,6 +16,7 @@ result = databases.create_boolean_attribute(
     key: '<KEY>',
     required: false,
     default: false, # optional
-    array: false # optional
+    array: false, # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

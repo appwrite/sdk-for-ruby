@@ -17,6 +17,7 @@ result = tables_db.update_string_column(
     required: false,
     default: 'Hello World',
     size: 1, # optional
-    new_key: '<NEW_KEY>' # optional
+    new_key: '<NEW_KEY>', # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

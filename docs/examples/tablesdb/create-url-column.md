@@ -16,6 +16,7 @@ result = tables_db.create_url_column(
     key: '<KEY>',
     required: false,
     default: 'https://example.com', # optional
-    array: false # optional
+    array: false, # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

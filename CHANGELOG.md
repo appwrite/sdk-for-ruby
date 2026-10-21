@@ -1,5 +1,9 @@
 # Change Log
 
+## 30.0.1
+
+* Fixed: the SDK loads on Ruby 4.0; `mime-types` is now `~> 3.6` instead of `~> 3.4.1`
+
 ## 30.0.0
 
 * Breaking: model constructors require the new `description:` keyword; `BillingPlan.new` requires `functions_allow_cron:`, `Bucket.new` requires `strip_metadata:`, and the password dictionary and personal data policy models require `deny_list:`

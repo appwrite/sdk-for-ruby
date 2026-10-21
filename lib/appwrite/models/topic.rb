@@ -7,6 +7,7 @@ module Appwrite
             attr_reader :created_at
             attr_reader :updated_at
             attr_reader :name
+            attr_reader :description
             attr_reader :email_total
             attr_reader :sms_total
             attr_reader :push_total
@@ -19,6 +20,7 @@ module Appwrite
                 created_at:,
                 updated_at:,
                 name:,
+                description:,
                 email_total:,
                 sms_total:,
                 push_total:,
@@ -30,6 +32,7 @@ module Appwrite
                 @created_at = created_at
                 @updated_at = updated_at
                 @name = name
+                @description = description
                 @email_total = email_total
                 @sms_total = sms_total
                 @push_total = push_total
@@ -39,12 +42,13 @@ module Appwrite
             end
 
             def self.from(map:)
-                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "emailTotal" => 0, "smsTotal" => 0, "pushTotal" => 0, "subscribe" => ["users"] }.merge(map)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "description" => "", "emailTotal" => 0, "smsTotal" => 0, "pushTotal" => 0, "subscribe" => ["users"] }.merge(map)
                 Topic.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],
                     updated_at: map["$updatedAt"],
                     name: map["name"],
+                    description: map["description"],
                     email_total: map["emailTotal"],
                     sms_total: map["smsTotal"],
                     push_total: map["pushTotal"],
@@ -60,6 +64,7 @@ module Appwrite
                     "$createdAt": @created_at,
                     "$updatedAt": @updated_at,
                     "name": @name,
+                    "description": @description,
                     "emailTotal": @email_total,
                     "smsTotal": @sms_total,
                     "pushTotal": @push_total,

@@ -3,7 +3,7 @@
 require 'net/http'
 require 'uri'
 require 'json'
-require 'cgi'
+require 'cgi/escape'
 
 module Appwrite
     class Client
@@ -14,7 +14,7 @@ module Appwrite
                 'x-sdk-name' => 'Ruby',
                 'x-sdk-platform' => 'server',
                 'x-sdk-language' => 'ruby',
-                'x-sdk-version' => '29.0.0',
+                'x-sdk-version' => '30.0.0',
                 'X-Appwrite-Response-Format' => '2.5.0'
             }
             @endpoint = 'https://cloud.appwrite.io/v1'
@@ -500,7 +500,7 @@ module Appwrite
             if response.content_type == 'application/json'
                 begin
                     result = JSON.parse(response.body)
-                rescue JSON::ParserError => e
+                rescue JSON::ParserError
                     raise Appwrite::Exception.new(response.body, response.code, nil, response.body)
                 end
 

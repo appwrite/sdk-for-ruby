@@ -56,6 +56,7 @@ module Appwrite
         # @param [String] scheduled_at Scheduled delivery time for message in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. DateTime value must be in future.
         # @param [String] reply_to_email Email address to reply to. If not set, defaults to the sender email address.
         # @param [String] reply_to_name Name of the reply to recipient. If not set, defaults to the sender name.
+        # @param [Array] emails List of email addresses to send the message to. Use this to deliver to recipients that are not backed by an Appwrite user, target, or topic.
         #
         # @return [Message]
         def create_email(
@@ -72,7 +73,8 @@ module Appwrite
             html: nil,
             scheduled_at: nil,
             reply_to_email: nil,
-            reply_to_name: nil
+            reply_to_name: nil,
+            emails: nil
         )
             if message_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "messageId"')
@@ -103,6 +105,7 @@ module Appwrite
                 scheduledAt: scheduled_at,
                 replyToEmail: reply_to_email,
                 replyToName: reply_to_name,
+                emails: emails,
             }
 
             api_headers = {
@@ -139,6 +142,7 @@ module Appwrite
         # @param [Array] attachments Array of compound ID strings of bucket IDs and file IDs to be attached to the email. They should be formatted as &lt;BUCKET_ID&gt;:&lt;FILE_ID&gt;.
         # @param [String] reply_to_email Email address to reply to. Pass an empty string to restore the provider or sender default.
         # @param [String] reply_to_name Name of the reply to recipient. Pass an empty string to restore the provider or sender default.
+        # @param [Array] emails List of email addresses to send the message to. Use this to deliver to recipients that are not backed by an Appwrite user, target, or topic.
         #
         # @return [Message]
         def update_email(
@@ -155,7 +159,8 @@ module Appwrite
             scheduled_at: nil,
             attachments: nil,
             reply_to_email: nil,
-            reply_to_name: nil
+            reply_to_name: nil,
+            emails: nil
         )
             if message_id.nil? || message_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "messageId"')
@@ -178,6 +183,7 @@ module Appwrite
                 attachments: attachments,
                 replyToEmail: reply_to_email,
                 replyToName: reply_to_name,
+                emails: emails,
             }
 
             api_headers = {
@@ -2145,6 +2151,7 @@ module Appwrite
         # @param [Array] subscribe An array of role strings with subscribe permission. By default all users are granted with any subscribe permission. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long.
         # @param [Integer] qos MQTT delivery quality of service for this topic. 0 is fire-and-forget (delivered only to clients connected at publish time). 1 persists each message and replays it when a client reconnects without having acknowledged it. Null lets the subscriber choose.
         # @param [Integer] expiry Message retention in seconds for offline delivery. Max 7 days (604800). Null inherits the lowest expiry of the project&#039;s enabled Appwrite providers, or the 7-day ledger window if none sets one.
+        # @param [String] description Optional description for the topic.
         #
         # @return [Topic]
         def create_topic(
@@ -2152,7 +2159,8 @@ module Appwrite
             name:,
             subscribe: nil,
             qos: nil,
-            expiry: nil
+            expiry: nil,
+            description: nil
         )
             if topic_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "topicId"')
@@ -2170,6 +2178,7 @@ module Appwrite
                 subscribe: subscribe,
                 qos: qos,
                 expiry: expiry,
+                description: description,
             }
 
             api_headers = {
@@ -2227,6 +2236,7 @@ module Appwrite
         # @param [Array] subscribe An array of role strings with subscribe permission. By default all users are granted with any subscribe permission. [learn more about roles](https://appwrite.io/docs/permissions#permission-roles). Maximum of 100 roles are allowed, each 64 characters long.
         # @param [Integer] qos MQTT delivery quality of service for this topic. 0 is fire-and-forget (delivered only to clients connected at publish time). 1 persists each message and replays it when a client reconnects without having acknowledged it. Null lets the subscriber choose.
         # @param [Integer] expiry Message retention in seconds for offline delivery. Max 7 days (604800). Null inherits the lowest expiry of the project&#039;s enabled Appwrite providers, or the 7-day ledger window if none sets one.
+        # @param [String] description Optional description for the topic.
         #
         # @return [Topic]
         def update_topic(
@@ -2234,7 +2244,8 @@ module Appwrite
             name: nil,
             subscribe: nil,
             qos: nil,
-            expiry: nil
+            expiry: nil,
+            description: nil
         )
             if topic_id.nil? || topic_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "topicId"')
@@ -2248,6 +2259,7 @@ module Appwrite
                 subscribe: subscribe,
                 qos: qos,
                 expiry: expiry,
+                description: description,
             }
 
             api_headers = {

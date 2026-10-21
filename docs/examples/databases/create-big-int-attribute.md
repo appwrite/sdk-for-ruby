@@ -18,6 +18,7 @@ result = databases.create_big_int_attribute(
     min: 0, # optional
     max: 1000000, # optional
     default: 0, # optional
-    array: false # optional
+    array: false, # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

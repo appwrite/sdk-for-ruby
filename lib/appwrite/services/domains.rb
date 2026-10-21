@@ -11,17 +11,20 @@ module Appwrite
         #
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on attributes such as domain name, teamInternalId, expiration, etc.
         # @param [String] search Search term to filter your list results. Max length: 256 chars.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [DomainsList]
         def list(
             queries: nil,
-            search: nil
+            search: nil,
+            total: nil
         )
             api_path = '/domains'
 
             api_params = {
                 queries: queries,
                 search: search,
+                total: total,
             }
 
             api_headers = {
@@ -701,11 +704,13 @@ module Appwrite
         #
         # @param [String] domain_id Domain unique ID.
         # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. You may filter on attributes such as type, name, value, etc. Maximum of 100 queries are allowed, each 4096 characters long.
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
         # @return [DnsRecordsList]
         def list_records(
             domain_id:,
-            queries: nil
+            queries: nil,
+            total: nil
         )
             if domain_id.nil? || domain_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "domainId"')
@@ -716,6 +721,7 @@ module Appwrite
 
             api_params = {
                 queries: queries,
+                total: total,
             }
 
             api_headers = {

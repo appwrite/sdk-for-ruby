@@ -17,6 +17,7 @@ result = tables_db.create_enum_column(
     elements: ["active", "inactive"],
     required: false,
     default: 'active', # optional
-    array: false # optional
+    array: false, # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

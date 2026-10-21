@@ -12,6 +12,7 @@ mysql = Mysql.new(client)
 
 result = mysql.list_backups(
     database_id: '<DATABASE_ID>',
-    queries: [] # optional
+    queries: [], # optional
+    total: false # optional
 )
 ```

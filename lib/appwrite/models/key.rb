@@ -7,6 +7,7 @@ module Appwrite
             attr_reader :created_at
             attr_reader :updated_at
             attr_reader :name
+            attr_reader :description
             attr_reader :expire
             attr_reader :scopes
             attr_reader :secret
@@ -18,6 +19,7 @@ module Appwrite
                 created_at:,
                 updated_at:,
                 name:,
+                description:,
                 expire:,
                 scopes:,
                 secret:,
@@ -28,6 +30,7 @@ module Appwrite
                 @created_at = created_at
                 @updated_at = updated_at
                 @name = name
+                @description = description
                 @expire = expire
                 @scopes = scopes
                 @secret = secret
@@ -36,12 +39,13 @@ module Appwrite
             end
 
             def self.from(map:)
-                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "expire" => "", "scopes" => [], "secret" => "", "accessedAt" => "", "sdks" => [] }.merge(map)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "description" => "", "expire" => "", "scopes" => [], "secret" => "", "accessedAt" => "", "sdks" => [] }.merge(map)
                 Key.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],
                     updated_at: map["$updatedAt"],
                     name: map["name"],
+                    description: map["description"],
                     expire: map["expire"],
                     scopes: map["scopes"],
                     secret: map["secret"],
@@ -56,6 +60,7 @@ module Appwrite
                     "$createdAt": @created_at,
                     "$updatedAt": @updated_at,
                     "name": @name,
+                    "description": @description,
                     "expire": @expire,
                     "scopes": @scopes,
                     "secret": @secret,

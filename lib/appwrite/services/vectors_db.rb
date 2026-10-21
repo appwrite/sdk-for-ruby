@@ -44,6 +44,7 @@ module Appwrite
         # @param [String] database_id Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] name Database name. Max length: 128 chars.
         # @param [] enabled Is the database enabled? When set to &#039;disabled&#039;, users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled.
+        # @param [String] description Optional description for the database.
         # @param [String] specification Database specification. Defaults to `serverless`, which creates the database on the shared pool. Any other value provisions a dedicated database on that specification.
         # @param [Integer] replicas Number of high availability replicas (0-5) for the dedicated database backing this database. Requires a dedicated `specification`; must be 0 for a serverless database. High availability is enabled when greater than 0.
         # @param [String] sync_mode Replication sync mode for the dedicated database backing this database. Requires a dedicated `specification`; the mode is only in force once there is at least one replica. Allowed values: async, sync, quorum.
@@ -53,6 +54,7 @@ module Appwrite
             database_id:,
             name:,
             enabled: nil,
+            description: nil,
             specification: nil,
             replicas: nil,
             sync_mode: nil
@@ -71,6 +73,7 @@ module Appwrite
                 databaseId: database_id,
                 name: name,
                 enabled: enabled,
+                description: description,
                 specification: specification,
                 replicas: replicas,
                 syncMode: sync_mode,
@@ -350,6 +353,7 @@ module Appwrite
         # @param [String] database_id Database ID.
         # @param [String] name Database name. Max length: 128 chars.
         # @param [] enabled Is database enabled? When set to &#039;disabled&#039;, users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled.
+        # @param [String] description Optional description for the database.
         # @param [String] specification Database specification. Resizing between dedicated specifications changes cpu, memory, storage and the connection ceiling via a rolling cutover with zero downtime. Moving a `serverless` database onto a dedicated specification is a data migration, not a resize.
         # @param [Integer] replicas Number of high availability replicas (0-5) for the dedicated database backing this database. Only valid when the database is backed by a dedicated specification. High availability is enabled when greater than 0.
         # @param [String] sync_mode Replication sync mode for the dedicated database backing this database. Only valid when the database is backed by a dedicated specification; the mode is only in force once there is at least one replica. Allowed values: async, sync, quorum.
@@ -359,6 +363,7 @@ module Appwrite
             database_id:,
             name:,
             enabled: nil,
+            description: nil,
             specification: nil,
             replicas: nil,
             sync_mode: nil
@@ -377,6 +382,7 @@ module Appwrite
             api_params = {
                 name: name,
                 enabled: enabled,
+                description: description,
                 specification: specification,
                 replicas: replicas,
                 syncMode: sync_mode,
@@ -483,6 +489,7 @@ module Appwrite
         # @param [Array] permissions An array of permissions strings. By default, no user is granted with any permissions. [Learn more about permissions](https://appwrite.io/docs/permissions).
         # @param [] document_security Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](https://appwrite.io/docs/permissions).
         # @param [] enabled Is collection enabled? When set to &#039;disabled&#039;, users cannot access the collection but Server SDKs with and API key can still read and write to the collection. No data is lost when this is toggled.
+        # @param [String] description Optional description for the collection.
         #
         # @return [VectorsdbCollection]
         def create_collection(
@@ -492,7 +499,8 @@ module Appwrite
             dimension:,
             permissions: nil,
             document_security: nil,
-            enabled: nil
+            enabled: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -520,6 +528,7 @@ module Appwrite
                 permissions: permissions,
                 documentSecurity: document_security,
                 enabled: enabled,
+                description: description,
             }
 
             api_headers = {
@@ -585,6 +594,7 @@ module Appwrite
         # @param [Array] permissions An array of permission strings. By default, the current permissions are inherited. [Learn more about permissions](https://appwrite.io/docs/permissions).
         # @param [] document_security Enables configuring permissions for individual documents. A user needs one of document or collection level permissions to access a document. [Learn more about permissions](https://appwrite.io/docs/permissions).
         # @param [] enabled Is collection enabled? When set to &#039;disabled&#039;, users cannot access the collection but Server SDKs with and API key can still read and write to the collection. No data is lost when this is toggled.
+        # @param [String] description Optional description for the collection.
         #
         # @return [VectorsdbCollection]
         def update_collection(
@@ -594,7 +604,8 @@ module Appwrite
             dimension: nil,
             permissions: nil,
             document_security: nil,
-            enabled: nil
+            enabled: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -618,6 +629,7 @@ module Appwrite
                 permissions: permissions,
                 documentSecurity: document_security,
                 enabled: enabled,
+                description: description,
             }
 
             api_headers = {
@@ -1324,6 +1336,7 @@ module Appwrite
         # @param [Array] attributes Array of attributes to index. Maximum of 100 attributes are allowed, each 32 characters long.
         # @param [Array] orders Array of index orders. Maximum of 100 orders are allowed.
         # @param [Array] lengths Length of index. Maximum of 100
+        # @param [String] description Optional description for the index.
         #
         # @return [Index]
         def create_index(
@@ -1333,7 +1346,8 @@ module Appwrite
             type:,
             attributes:,
             orders: nil,
-            lengths: nil
+            lengths: nil,
+            description: nil
         )
             if database_id.nil? || database_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "databaseId"')
@@ -1365,6 +1379,7 @@ module Appwrite
                 attributes: attributes,
                 orders: orders,
                 lengths: lengths,
+                description: description,
             }
 
             api_headers = {

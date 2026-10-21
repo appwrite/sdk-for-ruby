@@ -17,6 +17,7 @@ result = databases.create_enum_attribute(
     elements: ["active", "inactive"],
     required: false,
     default: 'active', # optional
-    array: false # optional
+    array: false, # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

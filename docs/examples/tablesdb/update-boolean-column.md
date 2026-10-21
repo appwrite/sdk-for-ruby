@@ -16,6 +16,7 @@ result = tables_db.update_boolean_column(
     key: '<KEY>',
     required: false,
     default: false,
-    new_key: '<NEW_KEY>' # optional
+    new_key: '<NEW_KEY>', # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

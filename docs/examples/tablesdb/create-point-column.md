@@ -15,6 +15,7 @@ result = tables_db.create_point_column(
     table_id: '<TABLE_ID>',
     key: '<KEY>',
     required: false,
-    default: [1, 2] # optional
+    default: [1, 2], # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

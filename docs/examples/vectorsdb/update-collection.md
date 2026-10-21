@@ -19,6 +19,7 @@ result = vectors_db.update_collection(
     dimension: 4, # optional
     permissions: [Permission.read(Role.any())], # optional
     document_security: false, # optional
-    enabled: false # optional
+    enabled: false, # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

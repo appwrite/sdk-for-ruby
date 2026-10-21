@@ -4,6 +4,7 @@ module Appwrite
     module Models
         class AttributeRelationship
             attr_reader :key
+            attr_reader :description
             attr_reader :type
             attr_reader :status
             attr_reader :error
@@ -20,6 +21,7 @@ module Appwrite
 
             def initialize(
                 key:,
+                description:,
                 type:,
                 status:,
                 error:,
@@ -35,6 +37,7 @@ module Appwrite
                 side:
             )
                 @key = key
+                @description = description
                 @type = type
                 @status = validate_status(status)
                 @error = error
@@ -51,9 +54,10 @@ module Appwrite
             end
 
             def self.from(map:)
-                map = { "key" => "", "type" => "", "error" => "", "required" => false, "$createdAt" => "", "$updatedAt" => "", "relationType" => "", "twoWay" => false, "twoWayKey" => "", "onDelete" => "restrict", "side" => "" }.merge(map)
+                map = { "key" => "", "description" => "", "type" => "", "error" => "", "required" => false, "$createdAt" => "", "$updatedAt" => "", "relationType" => "", "twoWay" => false, "twoWayKey" => "", "onDelete" => "restrict", "side" => "" }.merge(map)
                 AttributeRelationship.new(
                     key: map["key"],
+                    description: map["description"],
                     type: map["type"],
                     status: map["status"],
                     error: map["error"],
@@ -73,6 +77,7 @@ module Appwrite
             def to_map
                 {
                     "key": @key,
+                    "description": @description,
                     "type": @type,
                     "status": @status,
                     "error": @error,

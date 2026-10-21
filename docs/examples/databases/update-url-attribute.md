@@ -16,6 +16,7 @@ result = databases.update_url_attribute(
     key: '<KEY>',
     required: false,
     default: 'https://example.com',
-    new_key: '<NEW_KEY>' # optional
+    new_key: '<NEW_KEY>', # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

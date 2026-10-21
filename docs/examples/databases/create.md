@@ -13,6 +13,7 @@ databases = Databases.new(client)
 result = databases.create(
     database_id: '<DATABASE_ID>',
     name: '<NAME>',
-    enabled: false # optional
+    enabled: false, # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

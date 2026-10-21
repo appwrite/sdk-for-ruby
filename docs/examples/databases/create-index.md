@@ -18,6 +18,7 @@ result = databases.create_index(
     type: DatabasesIndexType::KEY,
     attributes: ["username"],
     orders: [OrderBy::ASC], # optional
-    lengths: [] # optional
+    lengths: [], # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

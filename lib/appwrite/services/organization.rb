@@ -764,6 +764,7 @@ module Appwrite
         # @param [String] name Key name. Max length: 128 chars.
         # @param [Array] scopes Key scopes list. Maximum of 200 scopes are allowed.
         # @param [String] expire Expiration time in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. Use null for unlimited expiration.
+        # @param [String] description Optional description for the key.
         #
         # @return [Key]
         def update_project_key(
@@ -771,7 +772,8 @@ module Appwrite
             key_id:,
             name:,
             scopes:,
-            expire: nil
+            expire: nil,
+            description: nil
         )
             if project_id.nil? || project_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "projectId"')
@@ -797,6 +799,7 @@ module Appwrite
                 name: name,
                 scopes: scopes,
                 expire: expire,
+                description: description,
             }
 
             api_headers = {

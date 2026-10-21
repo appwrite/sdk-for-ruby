@@ -16,6 +16,7 @@ result = tables_db.create_boolean_column(
     key: '<KEY>',
     required: false,
     default: false, # optional
-    array: false # optional
+    array: false, # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

@@ -8,6 +8,7 @@ module Appwrite
             attr_reader :updated_at
             attr_reader :execute
             attr_reader :name
+            attr_reader :description
             attr_reader :enabled
             attr_reader :live
             attr_reader :logging
@@ -44,6 +45,7 @@ module Appwrite
                 updated_at:,
                 execute:,
                 name:,
+                description:,
                 enabled:,
                 live:,
                 logging:,
@@ -79,6 +81,7 @@ module Appwrite
                 @updated_at = updated_at
                 @execute = execute
                 @name = name
+                @description = description
                 @enabled = enabled
                 @live = live
                 @logging = logging
@@ -111,13 +114,14 @@ module Appwrite
             end
 
             def self.from(map:)
-                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "execute" => [], "name" => "", "enabled" => true, "live" => true, "logging" => true, "runtime" => "", "deploymentRetention" => 0, "deploymentId" => "", "deploymentCreatedAt" => "", "latestDeploymentId" => "", "latestDeploymentCreatedAt" => "", "latestDeploymentStatus" => "", "scopes" => [], "vars" => [], "events" => [], "schedule" => "", "timeout" => 15, "entrypoint" => "", "commands" => "", "version" => "v5", "installationId" => "", "providerRepositoryId" => "", "providerBranch" => "", "providerRootDirectory" => "", "providerSilentMode" => false, "providerBranches" => [], "providerPaths" => [], "buildSpecification" => "s-1vcpu-512mb", "runtimeSpecification" => "s-1vcpu-512mb", "emailEnabled" => false }.merge(map)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "execute" => [], "name" => "", "description" => "", "enabled" => true, "live" => true, "logging" => true, "runtime" => "", "deploymentRetention" => 0, "deploymentId" => "", "deploymentCreatedAt" => "", "latestDeploymentId" => "", "latestDeploymentCreatedAt" => "", "latestDeploymentStatus" => "", "scopes" => [], "vars" => [], "events" => [], "schedule" => "", "timeout" => 15, "entrypoint" => "", "commands" => "", "version" => "v5", "installationId" => "", "providerRepositoryId" => "", "providerBranch" => "", "providerRootDirectory" => "", "providerSilentMode" => false, "providerBranches" => [], "providerPaths" => [], "buildSpecification" => "s-1vcpu-512mb", "runtimeSpecification" => "s-1vcpu-512mb", "emailEnabled" => false }.merge(map)
                 Function.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],
                     updated_at: map["$updatedAt"],
                     execute: map["execute"],
                     name: map["name"],
+                    description: map["description"],
                     enabled: map["enabled"],
                     live: map["live"],
                     logging: map["logging"],
@@ -157,6 +161,7 @@ module Appwrite
                     "$updatedAt": @updated_at,
                     "execute": @execute,
                     "name": @name,
+                    "description": @description,
                     "enabled": @enabled,
                     "live": @live,
                     "logging": @logging,

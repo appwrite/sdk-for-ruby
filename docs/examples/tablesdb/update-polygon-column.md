@@ -16,6 +16,7 @@ result = tables_db.update_polygon_column(
     key: '<KEY>',
     required: false,
     default: [[[1, 2], [3, 4], [5, 6], [1, 2]]], # optional
-    new_key: '<NEW_KEY>' # optional
+    new_key: '<NEW_KEY>', # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

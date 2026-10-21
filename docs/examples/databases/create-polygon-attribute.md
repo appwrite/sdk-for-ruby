@@ -15,6 +15,7 @@ result = databases.create_polygon_attribute(
     collection_id: '<COLLECTION_ID>',
     key: '<KEY>',
     required: false,
-    default: [[[1, 2], [3, 4], [5, 6], [1, 2]]] # optional
+    default: [[[1, 2], [3, 4], [5, 6], [1, 2]]], # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

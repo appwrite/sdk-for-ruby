@@ -16,6 +16,7 @@ result = tables_db.update_relationship_column(
     table_id: '<TABLE_ID>',
     key: '<KEY>',
     on_delete: RelationMutate::CASCADE, # optional
-    new_key: '<NEW_KEY>' # optional
+    new_key: '<NEW_KEY>', # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

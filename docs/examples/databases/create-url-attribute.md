@@ -16,6 +16,7 @@ result = databases.create_url_attribute(
     key: '<KEY>',
     required: false,
     default: 'https://example.com', # optional
-    array: false # optional
+    array: false, # optional
+    description: '<DESCRIPTION>' # optional
 )
 ```

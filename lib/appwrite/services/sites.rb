@@ -67,6 +67,7 @@ module Appwrite
         # @param [String] runtime_specification Runtime specification for the SSR executions.
         # @param [Integer] deployment_retention Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept.
         # @param [Array] scopes List of scopes allowed for API key auto-generated for every site build and SSR execution. Maximum of 200 scopes are allowed.
+        # @param [String] description Optional description for the site.
         #
         # @return [Site]
         def create(
@@ -93,7 +94,8 @@ module Appwrite
             build_specification: nil,
             runtime_specification: nil,
             deployment_retention: nil,
-            scopes: nil
+            scopes: nil,
+            description: nil
         )
             if site_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "siteId"')
@@ -138,6 +140,7 @@ module Appwrite
                 runtimeSpecification: runtime_specification,
                 deploymentRetention: deployment_retention,
                 scopes: scopes,
+                description: description,
             }
 
             api_headers = {
@@ -272,6 +275,7 @@ module Appwrite
         # @param [String] runtime_specification Runtime specification for the SSR executions.
         # @param [Integer] deployment_retention Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept.
         # @param [Array] scopes List of scopes allowed for API key auto-generated for every site build and SSR execution. Maximum of 200 scopes are allowed.
+        # @param [String] description Optional description for the site.
         #
         # @return [Site]
         def update(
@@ -298,7 +302,8 @@ module Appwrite
             build_specification: nil,
             runtime_specification: nil,
             deployment_retention: nil,
-            scopes: nil
+            scopes: nil,
+            description: nil
         )
             if site_id.nil? || site_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "siteId"')
@@ -339,6 +344,7 @@ module Appwrite
                 runtimeSpecification: runtime_specification,
                 deploymentRetention: deployment_retention,
                 scopes: scopes,
+                description: description,
             }
 
             api_headers = {
@@ -1028,6 +1034,7 @@ module Appwrite
         # @param [String] key Variable key. Letters, digits and underscores only, must not start with a digit. Max length: 255 chars.
         # @param [String] value Variable value. Max length: 8192 chars.
         # @param [] secret Secret variables can be updated or deleted, but only sites can read them during build and runtime.
+        # @param [String] description Optional description for the variable.
         #
         # @return [Variable]
         def create_variable(
@@ -1035,7 +1042,8 @@ module Appwrite
             variable_id:,
             key:,
             value:,
-            secret: nil
+            secret: nil,
+            description: nil
         )
             if site_id.nil? || site_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "siteId"')
@@ -1061,6 +1069,7 @@ module Appwrite
                 key: key,
                 value: value,
                 secret: secret,
+                description: description,
             }
 
             api_headers = {
@@ -1123,6 +1132,7 @@ module Appwrite
         # @param [String] key Variable key. Letters, digits and underscores only, must not start with a digit. Max length: 255 chars.
         # @param [String] value Variable value. Max length: 8192 chars.
         # @param [] secret Secret variables can be updated or deleted, but only sites can read them during build and runtime.
+        # @param [String] description Optional description for the variable.
         #
         # @return [Variable]
         def update_variable(
@@ -1130,7 +1140,8 @@ module Appwrite
             variable_id:,
             key: nil,
             value: nil,
-            secret: nil
+            secret: nil,
+            description: nil
         )
             if site_id.nil? || site_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "siteId"')
@@ -1148,6 +1159,7 @@ module Appwrite
                 key: key,
                 value: value,
                 secret: secret,
+                description: description,
             }
 
             api_headers = {

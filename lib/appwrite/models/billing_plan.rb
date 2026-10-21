@@ -72,6 +72,7 @@ module Appwrite
             attr_reader :deployment_size
             attr_reader :build_size
             attr_reader :functions_interval_minimum
+            attr_reader :functions_allow_cron
             attr_reader :databases_allow_encrypt
             attr_reader :limits
             attr_reader :group
@@ -149,6 +150,7 @@ module Appwrite
                 deployment_size:,
                 build_size:,
                 functions_interval_minimum:,
+                functions_allow_cron:,
                 databases_allow_encrypt:,
                 limits: nil,
                 group:,
@@ -225,6 +227,7 @@ module Appwrite
                 @deployment_size = deployment_size
                 @build_size = build_size
                 @functions_interval_minimum = functions_interval_minimum
+                @functions_allow_cron = functions_allow_cron
                 @databases_allow_encrypt = databases_allow_encrypt
                 @limits = limits
                 @group = validate_group(group)
@@ -234,7 +237,7 @@ module Appwrite
             end
 
             def self.from(map:)
-                map = { "$id" => "", "name" => "", "desc" => "", "order" => 0, "price" => 0, "trial" => 0, "bandwidth" => 0, "storage" => 0, "imageTransformations" => 0, "screenshotsGenerated" => 0, "webhooks" => 0, "wafRules" => 0, "environments" => 0, "projects" => 0, "platforms" => 0, "users" => 0, "teams" => 0, "databases" => 0, "databasesReads" => 0, "databasesWrites" => 0, "databasesBatchSize" => 0, "buckets" => 0, "fileSize" => 0, "functions" => 0, "sites" => 0, "executions" => 0, "executionsRetentionCount" => 1000, "GBHours" => 0, "realtime" => 0, "realtimeMessages" => 0, "messages" => 0, "topics" => 0, "authPhone" => 0, "domains" => 0, "usageLogs" => 0, "projectInactivityDays" => 0, "alertLimit" => 80, "budgetCapEnabled" => false, "customSmtp" => false, "emailBranding" => false, "requiresPaymentMethod" => true, "requiresBillingAddress" => false, "isAvailable" => true, "selfService" => true, "premiumSupport" => true, "budgeting" => true, "supportsMockNumbers" => true, "supportsOrganizationRoles" => true, "supportsCredits" => false, "supportsDedicatedDatabases" => false, "supportsDisposableEmailValidation" => false, "supportsCanonicalEmailValidation" => false, "supportsFreeEmailValidation" => false, "supportsCorporateEmailValidation" => false, "supportsProjectSpecificRoles" => false, "usagePerProject" => true, "deploymentSize" => 0, "buildSize" => 0, "functionsIntervalMinimum" => 0, "databasesAllowEncrypt" => false, "databaseComputeCredit" => 0 }.merge(map)
+                map = { "$id" => "", "name" => "", "desc" => "", "order" => 0, "price" => 0, "trial" => 0, "bandwidth" => 0, "storage" => 0, "imageTransformations" => 0, "screenshotsGenerated" => 0, "webhooks" => 0, "wafRules" => 0, "environments" => 0, "projects" => 0, "platforms" => 0, "users" => 0, "teams" => 0, "databases" => 0, "databasesReads" => 0, "databasesWrites" => 0, "databasesBatchSize" => 0, "buckets" => 0, "fileSize" => 0, "functions" => 0, "sites" => 0, "executions" => 0, "executionsRetentionCount" => 1000, "GBHours" => 0, "realtime" => 0, "realtimeMessages" => 0, "messages" => 0, "topics" => 0, "authPhone" => 0, "domains" => 0, "usageLogs" => 0, "projectInactivityDays" => 0, "alertLimit" => 80, "budgetCapEnabled" => false, "customSmtp" => false, "emailBranding" => false, "requiresPaymentMethod" => true, "requiresBillingAddress" => false, "isAvailable" => true, "selfService" => true, "premiumSupport" => true, "budgeting" => true, "supportsMockNumbers" => true, "supportsOrganizationRoles" => true, "supportsCredits" => false, "supportsDedicatedDatabases" => false, "supportsDisposableEmailValidation" => false, "supportsCanonicalEmailValidation" => false, "supportsFreeEmailValidation" => false, "supportsCorporateEmailValidation" => false, "supportsProjectSpecificRoles" => false, "usagePerProject" => true, "deploymentSize" => 0, "buildSize" => 0, "functionsIntervalMinimum" => 0, "functionsAllowCron" => true, "databasesAllowEncrypt" => false, "databaseComputeCredit" => 0 }.merge(map)
                 BillingPlan.new(
                     id: map["$id"],
                     name: map["name"],
@@ -305,6 +308,7 @@ module Appwrite
                     deployment_size: map["deploymentSize"],
                     build_size: map["buildSize"],
                     functions_interval_minimum: map["functionsIntervalMinimum"],
+                    functions_allow_cron: map["functionsAllowCron"],
                     databases_allow_encrypt: map["databasesAllowEncrypt"],
                     limits: map["limits"].nil? ? nil : BillingPlanLimits.from(map: map["limits"]),
                     group: map["group"],
@@ -385,6 +389,7 @@ module Appwrite
                     "deploymentSize": @deployment_size,
                     "buildSize": @build_size,
                     "functionsIntervalMinimum": @functions_interval_minimum,
+                    "functionsAllowCron": @functions_allow_cron,
                     "databasesAllowEncrypt": @databases_allow_encrypt,
                     "limits": @limits&.to_map,
                     "group": @group,

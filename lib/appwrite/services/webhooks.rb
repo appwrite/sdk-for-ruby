@@ -125,7 +125,7 @@ module Appwrite
             end
 
             api_path = '/webhooks/{webhookId}'
-                .gsub('{webhookId}', webhook_id)
+                .gsub('{webhookId}', @client.encode_path(webhook_id))
 
             api_params = {}
 
@@ -185,7 +185,7 @@ module Appwrite
             end
 
             api_path = '/webhooks/{webhookId}'
-                .gsub('{webhookId}', webhook_id)
+                .gsub('{webhookId}', @client.encode_path(webhook_id))
 
             api_params = {
                 name: name,
@@ -227,7 +227,7 @@ module Appwrite
             end
 
             api_path = '/webhooks/{webhookId}'
-                .gsub('{webhookId}', webhook_id)
+                .gsub('{webhookId}', @client.encode_path(webhook_id))
 
             api_params = {}
 
@@ -262,7 +262,7 @@ module Appwrite
             end
 
             api_path = '/webhooks/{webhookId}/secret'
-                .gsub('{webhookId}', webhook_id)
+                .gsub('{webhookId}', @client.encode_path(webhook_id))
 
             api_params = {
                 secret: secret,

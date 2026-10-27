@@ -13,7 +13,7 @@ oauth2 = Oauth2.new(client)
 result = oauth2.authorize(
     client_id: '<CLIENT_ID>', # optional
     redirect_uri: 'https://example.com', # optional
-    response_type: '', # optional
+    response_type: nil, # optional
     scope: '<SCOPE>', # optional
     state: '<STATE>', # optional
     nonce: '<NONCE>', # optional

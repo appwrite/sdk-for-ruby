@@ -128,7 +128,7 @@ module Appwrite
             end
 
             api_path = '/storage/buckets/{bucketId}'
-                .gsub('{bucketId}', bucket_id)
+                .gsub('{bucketId}', @client.encode_path(bucket_id))
 
             api_params = {}
 
@@ -187,7 +187,7 @@ module Appwrite
             end
 
             api_path = '/storage/buckets/{bucketId}'
-                .gsub('{bucketId}', bucket_id)
+                .gsub('{bucketId}', @client.encode_path(bucket_id))
 
             api_params = {
                 name: name,
@@ -232,7 +232,7 @@ module Appwrite
             end
 
             api_path = '/storage/buckets/{bucketId}'
-                .gsub('{bucketId}', bucket_id)
+                .gsub('{bucketId}', @client.encode_path(bucket_id))
 
             api_params = {}
 
@@ -270,7 +270,7 @@ module Appwrite
             end
 
             api_path = '/storage/buckets/{bucketId}/files'
-                .gsub('{bucketId}', bucket_id)
+                .gsub('{bucketId}', @client.encode_path(bucket_id))
 
             api_params = {
                 queries: queries,
@@ -339,7 +339,7 @@ module Appwrite
             end
 
             api_path = '/storage/buckets/{bucketId}/files'
-                .gsub('{bucketId}', bucket_id)
+                .gsub('{bucketId}', @client.encode_path(bucket_id))
 
             api_params = {
                 fileId: file_id,
@@ -389,8 +389,8 @@ module Appwrite
             end
 
             api_path = '/storage/buckets/{bucketId}/files/{fileId}'
-                .gsub('{bucketId}', bucket_id)
-                .gsub('{fileId}', file_id)
+                .gsub('{bucketId}', @client.encode_path(bucket_id))
+                .gsub('{fileId}', @client.encode_path(file_id))
 
             api_params = {}
 
@@ -432,8 +432,8 @@ module Appwrite
             end
 
             api_path = '/storage/buckets/{bucketId}/files/{fileId}'
-                .gsub('{bucketId}', bucket_id)
-                .gsub('{fileId}', file_id)
+                .gsub('{bucketId}', @client.encode_path(bucket_id))
+                .gsub('{fileId}', @client.encode_path(file_id))
 
             api_params = {
                 name: name,
@@ -475,8 +475,8 @@ module Appwrite
             end
 
             api_path = '/storage/buckets/{bucketId}/files/{fileId}'
-                .gsub('{bucketId}', bucket_id)
-                .gsub('{fileId}', file_id)
+                .gsub('{bucketId}', @client.encode_path(bucket_id))
+                .gsub('{fileId}', @client.encode_path(file_id))
 
             api_params = {}
 
@@ -517,8 +517,8 @@ module Appwrite
             end
 
             api_path = '/storage/buckets/{bucketId}/files/{fileId}/download'
-                .gsub('{bucketId}', bucket_id)
-                .gsub('{fileId}', file_id)
+                .gsub('{bucketId}', @client.encode_path(bucket_id))
+                .gsub('{fileId}', @client.encode_path(file_id))
 
             api_params = {
                 token: token,
@@ -584,8 +584,8 @@ module Appwrite
             end
 
             api_path = '/storage/buckets/{bucketId}/files/{fileId}/preview'
-                .gsub('{bucketId}', bucket_id)
-                .gsub('{fileId}', file_id)
+                .gsub('{bucketId}', @client.encode_path(bucket_id))
+                .gsub('{fileId}', @client.encode_path(file_id))
 
             api_params = {
                 width: width,
@@ -638,8 +638,8 @@ module Appwrite
             end
 
             api_path = '/storage/buckets/{bucketId}/files/{fileId}/view'
-                .gsub('{bucketId}', bucket_id)
-                .gsub('{fileId}', file_id)
+                .gsub('{bucketId}', @client.encode_path(bucket_id))
+                .gsub('{fileId}', @client.encode_path(file_id))
 
             api_params = {
                 token: token,

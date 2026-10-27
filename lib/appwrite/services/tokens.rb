@@ -30,8 +30,8 @@ module Appwrite
             end
 
             api_path = '/tokens/buckets/{bucketId}/files/{fileId}'
-                .gsub('{bucketId}', bucket_id)
-                .gsub('{fileId}', file_id)
+                .gsub('{bucketId}', @client.encode_path(bucket_id))
+                .gsub('{fileId}', @client.encode_path(file_id))
 
             api_params = {
                 queries: queries,
@@ -74,8 +74,8 @@ module Appwrite
             end
 
             api_path = '/tokens/buckets/{bucketId}/files/{fileId}'
-                .gsub('{bucketId}', bucket_id)
-                .gsub('{fileId}', file_id)
+                .gsub('{bucketId}', @client.encode_path(bucket_id))
+                .gsub('{fileId}', @client.encode_path(file_id))
 
             api_params = {
                 expire: expire,
@@ -109,7 +109,7 @@ module Appwrite
             end
 
             api_path = '/tokens/{tokenId}'
-                .gsub('{tokenId}', token_id)
+                .gsub('{tokenId}', @client.encode_path(token_id))
 
             api_params = {}
 
@@ -143,7 +143,7 @@ module Appwrite
             end
 
             api_path = '/tokens/{tokenId}'
-                .gsub('{tokenId}', token_id)
+                .gsub('{tokenId}', @client.encode_path(token_id))
 
             api_params = {
                 expire: expire,
@@ -177,7 +177,7 @@ module Appwrite
             end
 
             api_path = '/tokens/{tokenId}'
-                .gsub('{tokenId}', token_id)
+                .gsub('{tokenId}', @client.encode_path(token_id))
 
             api_params = {}
 

@@ -18,6 +18,7 @@ module Appwrite
             DENY_DISPOSABLE_EMAIL = 'deny-disposable-email'
             DENY_FREE_EMAIL = 'deny-free-email'
             DENY_CORPORATE_EMAIL = 'deny-corporate-email'
+            DENY_REALTIME_GUESTS = 'deny-realtime-guests'
             PASSKEY = 'passkey'
         end
     end

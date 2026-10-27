@@ -170,7 +170,7 @@ module Appwrite
             end
 
             api_path = '/organization/installations/{installationId}'
-                .gsub('{installationId}', installation_id)
+                .gsub('{installationId}', @client.encode_path(installation_id))
 
             api_params = {}
 
@@ -206,7 +206,7 @@ module Appwrite
             end
 
             api_path = '/organization/installations/{installationId}'
-                .gsub('{installationId}', installation_id)
+                .gsub('{installationId}', @client.encode_path(installation_id))
 
             api_params = {
                 authorizationDetails: authorization_details,
@@ -242,7 +242,7 @@ module Appwrite
             end
 
             api_path = '/organization/installations/{installationId}'
-                .gsub('{installationId}', installation_id)
+                .gsub('{installationId}', @client.encode_path(installation_id))
 
             api_params = {}
 
@@ -357,7 +357,7 @@ module Appwrite
             end
 
             api_path = '/organization/memberships/{membershipId}'
-                .gsub('{membershipId}', membership_id)
+                .gsub('{membershipId}', @client.encode_path(membership_id))
 
             api_params = {}
 
@@ -394,7 +394,7 @@ module Appwrite
             end
 
             api_path = '/organization/memberships/{membershipId}'
-                .gsub('{membershipId}', membership_id)
+                .gsub('{membershipId}', @client.encode_path(membership_id))
 
             api_params = {
                 roles: roles,
@@ -430,7 +430,7 @@ module Appwrite
             end
 
             api_path = '/organization/memberships/{membershipId}'
-                .gsub('{membershipId}', membership_id)
+                .gsub('{membershipId}', @client.encode_path(membership_id))
 
             api_params = {}
 
@@ -539,7 +539,7 @@ module Appwrite
             end
 
             api_path = '/organization/projects/{projectId}'
-                .gsub('{projectId}', project_id)
+                .gsub('{projectId}', @client.encode_path(project_id))
 
             api_params = {}
 
@@ -576,7 +576,7 @@ module Appwrite
             end
 
             api_path = '/organization/projects/{projectId}'
-                .gsub('{projectId}', project_id)
+                .gsub('{projectId}', @client.encode_path(project_id))
 
             api_params = {
                 name: name,
@@ -610,7 +610,7 @@ module Appwrite
             end
 
             api_path = '/organization/projects/{projectId}'
-                .gsub('{projectId}', project_id)
+                .gsub('{projectId}', @client.encode_path(project_id))
 
             api_params = {}
 
@@ -645,7 +645,7 @@ module Appwrite
             end
 
             api_path = '/organization/projects/{projectId}/keys'
-                .gsub('{projectId}', project_id)
+                .gsub('{projectId}', @client.encode_path(project_id))
 
             api_params = {
                 queries: queries,
@@ -696,7 +696,7 @@ module Appwrite
             end
 
             api_path = '/organization/projects/{projectId}/keys/ephemeral'
-                .gsub('{projectId}', project_id)
+                .gsub('{projectId}', @client.encode_path(project_id))
 
             api_params = {
                 scopes: scopes,
@@ -737,8 +737,8 @@ module Appwrite
             end
 
             api_path = '/organization/projects/{projectId}/keys/{keyId}'
-                .gsub('{projectId}', project_id)
-                .gsub('{keyId}', key_id)
+                .gsub('{projectId}', @client.encode_path(project_id))
+                .gsub('{keyId}', @client.encode_path(key_id))
 
             api_params = {}
 
@@ -792,8 +792,8 @@ module Appwrite
             end
 
             api_path = '/organization/projects/{projectId}/keys/{keyId}'
-                .gsub('{projectId}', project_id)
-                .gsub('{keyId}', key_id)
+                .gsub('{projectId}', @client.encode_path(project_id))
+                .gsub('{keyId}', @client.encode_path(key_id))
 
             api_params = {
                 name: name,
@@ -837,8 +837,8 @@ module Appwrite
             end
 
             api_path = '/organization/projects/{projectId}/keys/{keyId}'
-                .gsub('{projectId}', project_id)
-                .gsub('{keyId}', key_id)
+                .gsub('{projectId}', @client.encode_path(project_id))
+                .gsub('{keyId}', @client.encode_path(key_id))
 
             api_params = {}
 

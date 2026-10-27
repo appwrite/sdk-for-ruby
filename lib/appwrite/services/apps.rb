@@ -191,7 +191,7 @@ module Appwrite
             end
 
             api_path = '/apps/{appId}'
-                .gsub('{appId}', app_id)
+                .gsub('{appId}', @client.encode_path(app_id))
 
             api_params = {}
 
@@ -264,7 +264,7 @@ module Appwrite
             end
 
             api_path = '/apps/{appId}'
-                .gsub('{appId}', app_id)
+                .gsub('{appId}', @client.encode_path(app_id))
 
             api_params = {
                 name: name,
@@ -316,7 +316,7 @@ module Appwrite
             end
 
             api_path = '/apps/{appId}'
-                .gsub('{appId}', app_id)
+                .gsub('{appId}', @client.encode_path(app_id))
 
             api_params = {}
 
@@ -353,7 +353,7 @@ module Appwrite
             end
 
             api_path = '/apps/{appId}/installations'
-                .gsub('{appId}', app_id)
+                .gsub('{appId}', @client.encode_path(app_id))
 
             api_params = {
                 queries: queries,
@@ -395,8 +395,8 @@ module Appwrite
             end
 
             api_path = '/apps/{appId}/installations/{installationId}'
-                .gsub('{appId}', app_id)
-                .gsub('{installationId}', installation_id)
+                .gsub('{appId}', @client.encode_path(app_id))
+                .gsub('{installationId}', @client.encode_path(installation_id))
 
             api_params = {}
 
@@ -435,8 +435,8 @@ module Appwrite
             end
 
             api_path = '/apps/{appId}/installations/{installationId}'
-                .gsub('{appId}', app_id)
-                .gsub('{installationId}', installation_id)
+                .gsub('{appId}', @client.encode_path(app_id))
+                .gsub('{installationId}', @client.encode_path(installation_id))
 
             api_params = {}
 
@@ -480,8 +480,8 @@ module Appwrite
             end
 
             api_path = '/apps/{appId}/installations/{installationId}/tokens'
-                .gsub('{appId}', app_id)
-                .gsub('{installationId}', installation_id)
+                .gsub('{appId}', @client.encode_path(app_id))
+                .gsub('{installationId}', @client.encode_path(installation_id))
 
             api_params = {}
 
@@ -517,7 +517,7 @@ module Appwrite
             end
 
             api_path = '/apps/{appId}/keys'
-                .gsub('{appId}', app_id)
+                .gsub('{appId}', @client.encode_path(app_id))
 
             api_params = {
                 queries: queries,
@@ -553,7 +553,7 @@ module Appwrite
             end
 
             api_path = '/apps/{appId}/keys'
-                .gsub('{appId}', app_id)
+                .gsub('{appId}', @client.encode_path(app_id))
 
             api_params = {}
 
@@ -591,8 +591,8 @@ module Appwrite
             end
 
             api_path = '/apps/{appId}/keys/{keyId}'
-                .gsub('{appId}', app_id)
-                .gsub('{keyId}', key_id)
+                .gsub('{appId}', @client.encode_path(app_id))
+                .gsub('{keyId}', @client.encode_path(key_id))
 
             api_params = {}
 
@@ -629,8 +629,8 @@ module Appwrite
             end
 
             api_path = '/apps/{appId}/keys/{keyId}'
-                .gsub('{appId}', app_id)
-                .gsub('{keyId}', key_id)
+                .gsub('{appId}', @client.encode_path(app_id))
+                .gsub('{keyId}', @client.encode_path(key_id))
 
             api_params = {}
 
@@ -669,7 +669,7 @@ module Appwrite
             end
 
             api_path = '/apps/{appId}/labels'
-                .gsub('{appId}', app_id)
+                .gsub('{appId}', @client.encode_path(app_id))
 
             api_params = {
                 labels: labels,
@@ -707,7 +707,7 @@ module Appwrite
             end
 
             api_path = '/apps/{appId}/secrets'
-                .gsub('{appId}', app_id)
+                .gsub('{appId}', @client.encode_path(app_id))
 
             api_params = {
                 queries: queries,
@@ -741,7 +741,7 @@ module Appwrite
             end
 
             api_path = '/apps/{appId}/secrets'
-                .gsub('{appId}', app_id)
+                .gsub('{appId}', @client.encode_path(app_id))
 
             api_params = {}
 
@@ -779,8 +779,8 @@ module Appwrite
             end
 
             api_path = '/apps/{appId}/secrets/{secretId}'
-                .gsub('{appId}', app_id)
-                .gsub('{secretId}', secret_id)
+                .gsub('{appId}', @client.encode_path(app_id))
+                .gsub('{secretId}', @client.encode_path(secret_id))
 
             api_params = {}
 
@@ -817,8 +817,8 @@ module Appwrite
             end
 
             api_path = '/apps/{appId}/secrets/{secretId}'
-                .gsub('{appId}', app_id)
-                .gsub('{secretId}', secret_id)
+                .gsub('{appId}', @client.encode_path(app_id))
+                .gsub('{secretId}', @client.encode_path(secret_id))
 
             api_params = {}
 
@@ -855,7 +855,7 @@ module Appwrite
             end
 
             api_path = '/apps/{appId}/team'
-                .gsub('{appId}', app_id)
+                .gsub('{appId}', @client.encode_path(app_id))
 
             api_params = {
                 teamId: team_id,
@@ -889,7 +889,7 @@ module Appwrite
             end
 
             api_path = '/apps/{appId}/tokens'
-                .gsub('{appId}', app_id)
+                .gsub('{appId}', @client.encode_path(app_id))
 
             api_params = {}
 

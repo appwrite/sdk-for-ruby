@@ -195,7 +195,7 @@ module Appwrite
             end
 
             api_path = '/tablesdb/transactions/{transactionId}'
-                .gsub('{transactionId}', transaction_id)
+                .gsub('{transactionId}', @client.encode_path(transaction_id))
 
             api_params = {}
 
@@ -230,7 +230,7 @@ module Appwrite
             end
 
             api_path = '/tablesdb/transactions/{transactionId}'
-                .gsub('{transactionId}', transaction_id)
+                .gsub('{transactionId}', @client.encode_path(transaction_id))
 
             api_params = {
                 commit: commit,
@@ -265,7 +265,7 @@ module Appwrite
             end
 
             api_path = '/tablesdb/transactions/{transactionId}'
-                .gsub('{transactionId}', transaction_id)
+                .gsub('{transactionId}', @client.encode_path(transaction_id))
 
             api_params = {}
 
@@ -298,7 +298,7 @@ module Appwrite
             end
 
             api_path = '/tablesdb/transactions/{transactionId}/operations'
-                .gsub('{transactionId}', transaction_id)
+                .gsub('{transactionId}', @client.encode_path(transaction_id))
 
             api_params = {
                 operations: operations,
@@ -333,7 +333,7 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {}
 
@@ -376,7 +376,7 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 name: name,
@@ -416,7 +416,7 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {}
 
@@ -457,7 +457,7 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/failovers'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 targetReplicaId: target_replica_id,
@@ -492,7 +492,7 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/migrations'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {}
 
@@ -538,7 +538,7 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/migrations'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 specification: specification,
@@ -579,8 +579,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/migrations/{migrationId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{migrationId}', migration_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{migrationId}', @client.encode_path(migration_id))
 
             api_params = {}
 
@@ -618,8 +618,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/migrations/{migrationId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{migrationId}', migration_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{migrationId}', @client.encode_path(migration_id))
 
             api_params = {}
 
@@ -664,8 +664,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/migrations/{migrationId}/cutovers'
-                .gsub('{databaseId}', database_id)
-                .gsub('{migrationId}', migration_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{migrationId}', @client.encode_path(migration_id))
 
             api_params = {}
 
@@ -706,7 +706,7 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/operations'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 status: status,
@@ -742,7 +742,7 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/replicas'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {}
 
@@ -775,7 +775,7 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/status'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {}
 
@@ -813,7 +813,7 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 queries: queries,
@@ -875,7 +875,7 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 tableId: table_id,
@@ -923,8 +923,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {}
 
@@ -973,8 +973,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 name: name,
@@ -1020,8 +1020,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {}
 
@@ -1062,8 +1062,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 queries: queries,
@@ -1127,8 +1127,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/bigint'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 key: key,
@@ -1202,9 +1202,9 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/bigint/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -1268,8 +1268,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/boolean'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 key: key,
@@ -1336,9 +1336,9 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/boolean/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -1399,8 +1399,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/datetime'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 key: key,
@@ -1467,9 +1467,9 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/datetime/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -1531,8 +1531,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/email'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 key: key,
@@ -1600,9 +1600,9 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/email/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -1670,8 +1670,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/enum'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 key: key,
@@ -1746,9 +1746,9 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/enum/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 elements: elements,
@@ -1816,8 +1816,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/float'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 key: key,
@@ -1891,9 +1891,9 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/float/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -1962,8 +1962,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/integer'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 key: key,
@@ -2037,9 +2037,9 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/integer/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -2103,8 +2103,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/ip'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 key: key,
@@ -2172,9 +2172,9 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/ip/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -2233,8 +2233,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/line'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 key: key,
@@ -2296,9 +2296,9 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/line/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -2362,8 +2362,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/longtext'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 key: key,
@@ -2432,9 +2432,9 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/longtext/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -2498,8 +2498,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/mediumtext'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 key: key,
@@ -2568,9 +2568,9 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/mediumtext/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -2629,8 +2629,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/point'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 key: key,
@@ -2692,9 +2692,9 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/point/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -2753,8 +2753,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/polygon'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 key: key,
@@ -2816,9 +2816,9 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/polygon/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -2885,8 +2885,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/relationship'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 relatedTableId: related_table_id,
@@ -2946,9 +2946,9 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/relationship/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 onDelete: on_delete,
@@ -3020,8 +3020,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/string'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 key: key,
@@ -3096,9 +3096,9 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/string/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -3163,8 +3163,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/text'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 key: key,
@@ -3233,9 +3233,9 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/text/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -3297,8 +3297,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/url'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 key: key,
@@ -3366,9 +3366,9 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/url/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -3438,8 +3438,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/varchar'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 key: key,
@@ -3511,9 +3511,9 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/varchar/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -3563,9 +3563,9 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {}
 
@@ -3703,9 +3703,9 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/columns/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {}
 
@@ -3746,8 +3746,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/indexes'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 queries: queries,
@@ -3815,8 +3815,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/indexes'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 key: key,
@@ -3867,9 +3867,9 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/indexes/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {}
 
@@ -3912,9 +3912,9 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/indexes/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {}
 
@@ -3968,8 +3968,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 queries: queries,
@@ -4030,8 +4030,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 rowId: row_id,
@@ -4085,8 +4085,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 rows: rows,
@@ -4139,8 +4139,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 rows: rows,
@@ -4188,8 +4188,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 data: data,
@@ -4236,8 +4236,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 queries: queries,
@@ -4290,8 +4290,8 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows/query'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
 
             api_params = {
                 queries: queries,
@@ -4345,9 +4345,9 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{rowId}', row_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{rowId}', @client.encode_path(row_id))
 
             api_params = {
                 queries: queries,
@@ -4402,9 +4402,9 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{rowId}', row_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{rowId}', @client.encode_path(row_id))
 
             api_params = {
                 data: data,
@@ -4459,9 +4459,9 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{rowId}', row_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{rowId}', @client.encode_path(row_id))
 
             api_params = {
                 data: data,
@@ -4511,9 +4511,9 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{rowId}', row_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{rowId}', @client.encode_path(row_id))
 
             api_params = {
                 transactionId: transaction_id,
@@ -4570,10 +4570,10 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}/{column}/decrement'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{rowId}', row_id)
-                .gsub('{column}', column)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{rowId}', @client.encode_path(row_id))
+                .gsub('{column}', @client.encode_path(column))
 
             api_params = {
                 value: value,
@@ -4633,10 +4633,10 @@ module Appwrite
             end
 
             api_path = '/tablesdb/{databaseId}/tables/{tableId}/rows/{rowId}/{column}/increment'
-                .gsub('{databaseId}', database_id)
-                .gsub('{tableId}', table_id)
-                .gsub('{rowId}', row_id)
-                .gsub('{column}', column)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{tableId}', @client.encode_path(table_id))
+                .gsub('{rowId}', @client.encode_path(row_id))
+                .gsub('{column}', @client.encode_path(column))
 
             api_params = {
                 value: value,

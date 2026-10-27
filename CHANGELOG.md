@@ -1,5 +1,19 @@
 # Change Log
 
+## 30.1.0
+
+* Added: `migrations` service to run Appwrite, Firebase, NHost, Supabase, CSV and JSON migrations, plus reports, retries and listing
+* Added: `Migration`, `MigrationList` and `MigrationReport` models and the `AppwriteMigrationResource`, `FirebaseMigrationResource`, `NHostMigrationResource`, `SupabaseMigrationResource` and `OnDuplicate` enums
+* Added: `project.update_deny_realtime_guests_policy`, the `PolicyDenyRealtimeGuests` model and `ProjectPolicyId::DENY_REALTIME_GUESTS`
+* Added: `project.delete_sessions` to sign out every user in the project
+* Added: `BillingPlan#deployment_retention`, `#deployment_retention_max` and `#deployments_retention_count`
+* Added: `python-3.15`, `deno-2.9`, `go-1.27` and `rust-1.99` to `Runtime` and `BuildRuntime`
+* Updated: requests send `X-Appwrite-Response-Format: 2.6.2`; README targets Appwrite 2.6.x
+* Updated: redirects are no longer followed; a 3xx raises `Appwrite::Exception` naming the `Location`
+* Fixed: path parameters are percent-encoded as one segment; `.` and `..` raise `Appwrite::Exception`
+* Fixed: `set_self_signed` keeps TLS on and only skips certificate verification
+* Fixed: multipart uploads use a random boundary and escape field and file names
+
 ## 30.0.1
 
 * Fixed: the SDK loads on Ruby 4.0; `mime-types` is now `~> 3.6` instead of `~> 3.4.1`

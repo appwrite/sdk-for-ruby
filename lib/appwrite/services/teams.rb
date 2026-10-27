@@ -99,7 +99,7 @@ module Appwrite
             end
 
             api_path = '/teams/{teamId}'
-                .gsub('{teamId}', team_id)
+                .gsub('{teamId}', @client.encode_path(team_id))
 
             api_params = {}
 
@@ -136,7 +136,7 @@ module Appwrite
             end
 
             api_path = '/teams/{teamId}'
-                .gsub('{teamId}', team_id)
+                .gsub('{teamId}', @client.encode_path(team_id))
 
             api_params = {
                 name: name,
@@ -171,7 +171,7 @@ module Appwrite
             end
 
             api_path = '/teams/{teamId}'
-                .gsub('{teamId}', team_id)
+                .gsub('{teamId}', @client.encode_path(team_id))
 
             api_params = {}
 
@@ -206,7 +206,7 @@ module Appwrite
             end
 
             api_path = '/teams/{teamId}/installations'
-                .gsub('{teamId}', team_id)
+                .gsub('{teamId}', @client.encode_path(team_id))
 
             api_params = {
                 queries: queries,
@@ -251,7 +251,7 @@ module Appwrite
             end
 
             api_path = '/teams/{teamId}/installations'
-                .gsub('{teamId}', team_id)
+                .gsub('{teamId}', @client.encode_path(team_id))
 
             api_params = {
                 appId: app_id,
@@ -293,8 +293,8 @@ module Appwrite
             end
 
             api_path = '/teams/{teamId}/installations/{installationId}'
-                .gsub('{teamId}', team_id)
-                .gsub('{installationId}', installation_id)
+                .gsub('{teamId}', @client.encode_path(team_id))
+                .gsub('{installationId}', @client.encode_path(installation_id))
 
             api_params = {}
 
@@ -336,8 +336,8 @@ module Appwrite
             end
 
             api_path = '/teams/{teamId}/installations/{installationId}'
-                .gsub('{teamId}', team_id)
-                .gsub('{installationId}', installation_id)
+                .gsub('{teamId}', @client.encode_path(team_id))
+                .gsub('{installationId}', @client.encode_path(installation_id))
 
             api_params = {
                 authorizationDetails: authorization_details,
@@ -379,8 +379,8 @@ module Appwrite
             end
 
             api_path = '/teams/{teamId}/installations/{installationId}'
-                .gsub('{teamId}', team_id)
-                .gsub('{installationId}', installation_id)
+                .gsub('{teamId}', @client.encode_path(team_id))
+                .gsub('{installationId}', @client.encode_path(installation_id))
 
             api_params = {}
 
@@ -419,7 +419,7 @@ module Appwrite
             end
 
             api_path = '/teams/{teamId}/memberships'
-                .gsub('{teamId}', team_id)
+                .gsub('{teamId}', @client.encode_path(team_id))
 
             api_params = {
                 queries: queries,
@@ -492,7 +492,7 @@ module Appwrite
             end
 
             api_path = '/teams/{teamId}/memberships'
-                .gsub('{teamId}', team_id)
+                .gsub('{teamId}', @client.encode_path(team_id))
 
             api_params = {
                 email: email,
@@ -540,8 +540,8 @@ module Appwrite
             end
 
             api_path = '/teams/{teamId}/memberships/{membershipId}'
-                .gsub('{teamId}', team_id)
-                .gsub('{membershipId}', membership_id)
+                .gsub('{teamId}', @client.encode_path(team_id))
+                .gsub('{membershipId}', @client.encode_path(membership_id))
 
             api_params = {}
 
@@ -587,8 +587,8 @@ module Appwrite
             end
 
             api_path = '/teams/{teamId}/memberships/{membershipId}'
-                .gsub('{teamId}', team_id)
-                .gsub('{membershipId}', membership_id)
+                .gsub('{teamId}', @client.encode_path(team_id))
+                .gsub('{membershipId}', @client.encode_path(membership_id))
 
             api_params = {
                 roles: roles,
@@ -630,8 +630,8 @@ module Appwrite
             end
 
             api_path = '/teams/{teamId}/memberships/{membershipId}'
-                .gsub('{teamId}', team_id)
-                .gsub('{membershipId}', membership_id)
+                .gsub('{teamId}', @client.encode_path(team_id))
+                .gsub('{membershipId}', @client.encode_path(membership_id))
 
             api_params = {}
 
@@ -686,8 +686,8 @@ module Appwrite
             end
 
             api_path = '/teams/{teamId}/memberships/{membershipId}/status'
-                .gsub('{teamId}', team_id)
-                .gsub('{membershipId}', membership_id)
+                .gsub('{teamId}', @client.encode_path(team_id))
+                .gsub('{membershipId}', @client.encode_path(membership_id))
 
             api_params = {
                 userId: user_id,
@@ -724,7 +724,7 @@ module Appwrite
             end
 
             api_path = '/teams/{teamId}/prefs'
-                .gsub('{teamId}', team_id)
+                .gsub('{teamId}', @client.encode_path(team_id))
 
             api_params = {}
 
@@ -763,7 +763,7 @@ module Appwrite
             end
 
             api_path = '/teams/{teamId}/prefs'
-                .gsub('{teamId}', team_id)
+                .gsub('{teamId}', @client.encode_path(team_id))
 
             api_params = {
                 prefs: prefs,

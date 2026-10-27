@@ -34,7 +34,7 @@ module Appwrite
             end
 
             api_path = '/avatars/browsers/{code}'
-                .gsub('{code}', code)
+                .gsub('{code}', @client.encode_path(code))
 
             api_params = {
                 width: width,
@@ -82,7 +82,7 @@ module Appwrite
             end
 
             api_path = '/avatars/credit-cards/{code}'
-                .gsub('{code}', code)
+                .gsub('{code}', @client.encode_path(code))
 
             api_params = {
                 width: width,
@@ -165,7 +165,7 @@ module Appwrite
             end
 
             api_path = '/avatars/flags/{code}'
-                .gsub('{code}', code)
+                .gsub('{code}', @client.encode_path(code))
 
             api_params = {
                 width: width,

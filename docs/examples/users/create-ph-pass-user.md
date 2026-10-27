@@ -13,7 +13,7 @@ users = Users.new(client)
 result = users.create_ph_pass_user(
     user_id: '<USER_ID>',
     email: 'email@example.com',
-    password: 'password',
+    password: '',
     name: '<NAME>' # optional
 )
 ```

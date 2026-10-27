@@ -182,7 +182,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {}
 
@@ -216,7 +216,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {}
 
@@ -251,7 +251,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/nameservers'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {
                 nameservers: nameservers,
@@ -289,7 +289,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/nameservers/verification'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {}
 
@@ -321,7 +321,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/presets/google-workspace'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {}
 
@@ -354,7 +354,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/presets/google-workspace'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {}
 
@@ -386,7 +386,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/presets/icloud'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {}
 
@@ -419,7 +419,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/presets/icloud'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {}
 
@@ -451,7 +451,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/presets/mailgun'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {}
 
@@ -484,7 +484,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/presets/mailgun'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {}
 
@@ -516,7 +516,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/presets/outlook'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {}
 
@@ -549,7 +549,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/presets/outlook'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {}
 
@@ -581,7 +581,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/presets/proton-mail'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {}
 
@@ -614,7 +614,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/presets/proton-mail'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {}
 
@@ -646,7 +646,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/presets/zoho'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {}
 
@@ -679,7 +679,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/presets/zoho'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {}
 
@@ -717,7 +717,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/records'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {
                 queries: queries,
@@ -743,7 +743,7 @@ module Appwrite
         # to an IPv4 address. The record value should be a valid IPv4 address.
         #
         # @param [String] domain_id Domain unique ID.
-        # @param [String] name Record name (subdomain).
+        # @param [String] name Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it.
         # @param [String] value IPv4 address for this A record.
         # @param [Integer] ttl Time to live, in seconds. Must be between 1 and 2147483647.
         # @param [String] comment A comment explaining what this record is for.
@@ -773,7 +773,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/records/a'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {
                 name: name,
@@ -805,7 +805,7 @@ module Appwrite
         #
         # @param [String] domain_id Domain unique ID.
         # @param [String] record_id DNS record unique ID.
-        # @param [String] name Record name (subdomain).
+        # @param [String] name Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it.
         # @param [String] value IPv4 address for this A record.
         # @param [Integer] ttl Time to live, in seconds. Must be between 1 and 2147483647.
         # @param [String] comment A comment explaining what this record is for.
@@ -840,8 +840,8 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/records/a/{recordId}'
-                .gsub('{domainId}', domain_id)
-                .gsub('{recordId}', record_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
+                .gsub('{recordId}', @client.encode_path(record_id))
 
             api_params = {
                 name: name,
@@ -871,7 +871,7 @@ module Appwrite
         # address.
         #
         # @param [String] domain_id Domain unique ID.
-        # @param [String] name Record name (subdomain).
+        # @param [String] name Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it.
         # @param [String] value IPv6 address for this AAAA record.
         # @param [Integer] ttl Time to live, in seconds. Must be between 1 and 2147483647.
         # @param [String] comment A comment explaining what this record is for.
@@ -901,7 +901,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/records/aaaa'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {
                 name: name,
@@ -933,7 +933,7 @@ module Appwrite
         #
         # @param [String] domain_id Domain unique ID.
         # @param [String] record_id DNS record unique ID.
-        # @param [String] name Record name (subdomain).
+        # @param [String] name Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it.
         # @param [String] value IPv6 address for this AAAA record.
         # @param [Integer] ttl Time to live, in seconds. Must be between 1 and 2147483647.
         # @param [String] comment A comment for this record.
@@ -968,8 +968,8 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/records/aaaa/{recordId}'
-                .gsub('{domainId}', domain_id)
-                .gsub('{recordId}', record_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
+                .gsub('{recordId}', @client.encode_path(record_id))
 
             api_params = {
                 name: name,
@@ -1000,7 +1000,7 @@ module Appwrite
         # map your domain to a target domain that may change its IP address.
         #
         # @param [String] domain_id Domain unique ID.
-        # @param [String] name Record name.
+        # @param [String] name Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it.
         # @param [String] value Target domain for this ALIAS record.
         # @param [Integer] ttl Time to live, in seconds. Must be between 1 and 2147483647.
         # @param [String] comment A comment for this record.
@@ -1030,7 +1030,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/records/alias'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {
                 name: name,
@@ -1065,7 +1065,7 @@ module Appwrite
         #
         # @param [String] domain_id Domain unique ID.
         # @param [String] record_id DNS record unique ID.
-        # @param [String] name Record name.
+        # @param [String] name Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it.
         # @param [String] value Target domain for this ALIAS record.
         # @param [Integer] ttl Time to live, in seconds. Must be between 1 and 2147483647.
         # @param [String] comment A comment for this record.
@@ -1100,8 +1100,8 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/records/alias/{recordId}'
-                .gsub('{domainId}', domain_id)
-                .gsub('{recordId}', record_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
+                .gsub('{recordId}', @client.encode_path(record_id))
 
             api_params = {
                 name: name,
@@ -1131,7 +1131,7 @@ module Appwrite
         # your domain.
         #
         # @param [String] domain_id Domain unique ID.
-        # @param [String] name Record name.
+        # @param [String] name Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it.
         # @param [String] value CAA value (e.g. issuer domain).
         # @param [Integer] ttl Time to live, in seconds. Must be between 1 and 2147483647.
         # @param [String] comment A comment for this record.
@@ -1161,7 +1161,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/records/caa'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {
                 name: name,
@@ -1193,7 +1193,7 @@ module Appwrite
         #
         # @param [String] domain_id Domain unique ID.
         # @param [String] record_id DNS record unique ID.
-        # @param [String] name Record name.
+        # @param [String] name Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it.
         # @param [String] value CAA value (e.g. issuer domain).
         # @param [Integer] ttl Time to live, in seconds. Must be between 1 and 2147483647.
         # @param [String] comment A comment for this record.
@@ -1228,8 +1228,8 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/records/caa/{recordId}'
-                .gsub('{domainId}', domain_id)
-                .gsub('{recordId}', record_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
+                .gsub('{recordId}', @client.encode_path(record_id))
 
             api_params = {
                 name: name,
@@ -1262,7 +1262,7 @@ module Appwrite
         # to &#039;example.wordpress.com&#039;.
         #
         # @param [String] domain_id Domain unique ID.
-        # @param [String] name Record name (subdomain).
+        # @param [String] name Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it.
         # @param [String] value Canonical target for this CNAME record.
         # @param [Integer] ttl Time to live, in seconds. Must be between 1 and 2147483647.
         # @param [String] comment A comment for this record.
@@ -1292,7 +1292,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/records/cname'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {
                 name: name,
@@ -1320,7 +1320,7 @@ module Appwrite
         #
         # @param [String] domain_id Domain unique ID.
         # @param [String] record_id DNS record unique ID.
-        # @param [String] name Record name (subdomain).
+        # @param [String] name Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it.
         # @param [String] value Canonical target for this CNAME record.
         # @param [Integer] ttl Time to live, in seconds. Must be between 1 and 2147483647.
         # @param [String] comment A comment for this record.
@@ -1355,8 +1355,8 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/records/cname/{recordId}'
-                .gsub('{domainId}', domain_id)
-                .gsub('{recordId}', record_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
+                .gsub('{recordId}', @client.encode_path(record_id))
 
             api_params = {
                 name: name,
@@ -1385,7 +1385,7 @@ module Appwrite
         # settings for your domain, enabling secure communication over SSL/TLS.
         #
         # @param [String] domain_id Domain unique ID.
-        # @param [String] name Record name (subdomain).
+        # @param [String] name Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it.
         # @param [String] value Target for the HTTPS record.
         # @param [Integer] ttl Time to live, in seconds. Must be between 1 and 2147483647.
         # @param [String] comment A comment for this record.
@@ -1415,7 +1415,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/records/https'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {
                 name: name,
@@ -1447,7 +1447,7 @@ module Appwrite
         #
         # @param [String] domain_id Domain unique ID.
         # @param [String] record_id DNS record unique ID.
-        # @param [String] name Record name (subdomain).
+        # @param [String] name Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it.
         # @param [String] value Target for the HTTPS record.
         # @param [Integer] ttl Time to live, in seconds. Must be between 1 and 2147483647.
         # @param [String] comment A comment for this record.
@@ -1482,8 +1482,8 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/records/https/{recordId}'
-                .gsub('{domainId}', domain_id)
-                .gsub('{recordId}', record_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
+                .gsub('{recordId}', @client.encode_path(record_id))
 
             api_params = {
                 name: name,
@@ -1516,7 +1516,7 @@ module Appwrite
         # higher priority.
         #
         # @param [String] domain_id Domain unique ID.
-        # @param [String] name Record name (subdomain).
+        # @param [String] name Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it.
         # @param [String] value Mail server domain for this MX record.
         # @param [Integer] ttl Time to live, in seconds. Must be between 1 and 2147483647.
         # @param [Integer] priority MX priority. Lower values are tried first.
@@ -1552,7 +1552,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/records/mx'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {
                 name: name,
@@ -1581,7 +1581,7 @@ module Appwrite
         #
         # @param [String] domain_id Domain unique ID.
         # @param [String] record_id DNS record unique ID.
-        # @param [String] name Record name (subdomain).
+        # @param [String] name Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it.
         # @param [String] value Mail server domain for this MX record.
         # @param [Integer] ttl Time to live, in seconds. Must be between 1 and 2147483647.
         # @param [Integer] priority MX priority. Lower values are tried first.
@@ -1622,8 +1622,8 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/records/mx/{recordId}'
-                .gsub('{domainId}', domain_id)
-                .gsub('{recordId}', record_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
+                .gsub('{recordId}', @client.encode_path(record_id))
 
             api_params = {
                 name: name,
@@ -1654,7 +1654,7 @@ module Appwrite
         # NS records.
         #
         # @param [String] domain_id Domain unique ID.
-        # @param [String] name Record name (subdomain).
+        # @param [String] name Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it.
         # @param [String] value Nameserver target for this NS record.
         # @param [Integer] ttl Time to live, in seconds. Must be between 1 and 2147483647.
         # @param [String] comment A comment for this record.
@@ -1684,7 +1684,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/records/ns'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {
                 name: name,
@@ -1718,7 +1718,7 @@ module Appwrite
         #
         # @param [String] domain_id Domain unique ID.
         # @param [String] record_id DNS record unique ID.
-        # @param [String] name Record name (subdomain).
+        # @param [String] name Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it.
         # @param [String] value Nameserver target for this NS record.
         # @param [Integer] ttl Time to live, in seconds. Must be between 1 and 2147483647.
         # @param [String] comment A comment for this record.
@@ -1753,8 +1753,8 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/records/ns/{recordId}'
-                .gsub('{domainId}', domain_id)
-                .gsub('{recordId}', record_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
+                .gsub('{recordId}', @client.encode_path(record_id))
 
             api_params = {
                 name: name,
@@ -1785,7 +1785,7 @@ module Appwrite
         # handles a specific service like SIP or XMPP for the domain.
         #
         # @param [String] domain_id Domain unique ID.
-        # @param [String] name Record name (service name).
+        # @param [String] name Record name relative to the domain: the service and protocol, such as `_sip._tcp`. A full name ending in the domain is also accepted and stored relative to it.
         # @param [String] value Target hostname for this SRV record.
         # @param [Integer] ttl Time to live, in seconds. Must be between 1 and 2147483647.
         # @param [Integer] priority Record priority. Lower values are tried first.
@@ -1833,7 +1833,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/records/srv'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {
                 name: name,
@@ -1877,7 +1877,7 @@ module Appwrite
         #
         # @param [String] domain_id Domain unique ID.
         # @param [String] record_id DNS record unique ID.
-        # @param [String] name Record name (service name).
+        # @param [String] name Record name relative to the domain: the service and protocol, such as `_sip._tcp`. A full name ending in the domain is also accepted and stored relative to it.
         # @param [String] value Target hostname for this SRV record.
         # @param [Integer] ttl Time to live, in seconds. Must be between 1 and 2147483647.
         # @param [Integer] priority Record priority. Lower values are tried first.
@@ -1930,8 +1930,8 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/records/srv/{recordId}'
-                .gsub('{domainId}', domain_id)
-                .gsub('{recordId}', record_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
+                .gsub('{recordId}', @client.encode_path(record_id))
 
             api_params = {
                 name: name,
@@ -1963,7 +1963,7 @@ module Appwrite
         # verification records, SPF records, or DKIM records.
         #
         # @param [String] domain_id Domain unique ID.
-        # @param [String] name Record name (subdomain) for the TXT record.
+        # @param [String] name Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it.
         # @param [Integer] ttl Time to live, in seconds. Must be between 1 and 2147483647.
         # @param [String] value TXT record value.
         # @param [String] comment A comment for this record.
@@ -1989,7 +1989,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/records/txt'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {
                 name: name,
@@ -2022,7 +2022,7 @@ module Appwrite
         #
         # @param [String] domain_id Domain unique ID.
         # @param [String] record_id DNS record unique ID.
-        # @param [String] name Record name (subdomain) for the TXT record.
+        # @param [String] name Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it.
         # @param [String] value TXT record value.
         # @param [Integer] ttl Time to live, in seconds. Must be between 1 and 2147483647.
         # @param [String] comment A comment for this record.
@@ -2057,8 +2057,8 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/records/txt/{recordId}'
-                .gsub('{domainId}', domain_id)
-                .gsub('{recordId}', record_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
+                .gsub('{recordId}', @client.encode_path(record_id))
 
             api_params = {
                 name: name,
@@ -2107,8 +2107,8 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/records/{recordId}'
-                .gsub('{domainId}', domain_id)
-                .gsub('{recordId}', record_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
+                .gsub('{recordId}', @client.encode_path(record_id))
 
             api_params = {}
 
@@ -2147,8 +2147,8 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/records/{recordId}'
-                .gsub('{domainId}', domain_id)
-                .gsub('{recordId}', record_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
+                .gsub('{recordId}', @client.encode_path(record_id))
 
             api_params = {}
 
@@ -2191,7 +2191,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/team'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {
                 teamId: team_id,
@@ -2226,7 +2226,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/transfers/status'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {}
 
@@ -2260,7 +2260,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/zone'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {}
 
@@ -2280,8 +2280,8 @@ module Appwrite
 
         # Update the DNS zone for the given domain using the provided zone file
         # content.
-        # All parsed records are imported and then the main domain document is
-        # returned.
+        # All parsed records the domain does not already have are imported and then
+        # the main domain document is returned.
         #
         # @param [String] domain_id Domain unique ID.
         # @param [String] content DNS zone file content as a string.
@@ -2300,7 +2300,7 @@ module Appwrite
             end
 
             api_path = '/domains/{domainId}/zone'
-                .gsub('{domainId}', domain_id)
+                .gsub('{domainId}', @client.encode_path(domain_id))
 
             api_params = {
                 content: content,

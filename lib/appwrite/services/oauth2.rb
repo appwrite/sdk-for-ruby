@@ -27,7 +27,7 @@ module Appwrite
             end
 
             api_path = '/oauth2/{project_id}/approve'
-                .gsub('{project_id}', @client.get_config('project'))
+                .gsub('{project_id}', @client.encode_path(@client.get_config('project')))
 
             api_params = {
                 grant_id: grant_id,
@@ -88,7 +88,7 @@ module Appwrite
             request_uri: nil
         )
             api_path = '/oauth2/{project_id}/authorize'
-                .gsub('{project_id}', @client.get_config('project'))
+                .gsub('{project_id}', @client.encode_path(@client.get_config('project')))
 
             api_params = {
                 client_id: client_id,
@@ -159,7 +159,7 @@ module Appwrite
             request_uri: nil
         )
             api_path = '/oauth2/{project_id}/authorize'
-                .gsub('{project_id}', @client.get_config('project'))
+                .gsub('{project_id}', @client.encode_path(@client.get_config('project')))
 
             api_params = {
                 client_id: client_id,
@@ -210,7 +210,7 @@ module Appwrite
             audience: nil
         )
             api_path = '/oauth2/{project_id}/device_authorization'
-                .gsub('{project_id}', @client.get_config('project'))
+                .gsub('{project_id}', @client.encode_path(@client.get_config('project')))
 
             api_params = {
                 client_id: client_id,
@@ -250,7 +250,7 @@ module Appwrite
             end
 
             api_path = '/oauth2/{project_id}/grants'
-                .gsub('{project_id}', @client.get_config('project'))
+                .gsub('{project_id}', @client.encode_path(@client.get_config('project')))
 
             api_params = {
                 user_code: user_code,
@@ -285,8 +285,8 @@ module Appwrite
             end
 
             api_path = '/oauth2/{project_id}/grants/{grant_id}'
-                .gsub('{project_id}', @client.get_config('project'))
-                .gsub('{grant_id}', grant_id)
+                .gsub('{project_id}', @client.encode_path(@client.get_config('project')))
+                .gsub('{grant_id}', @client.encode_path(grant_id))
 
             api_params = {}
 
@@ -325,7 +325,7 @@ module Appwrite
             end
 
             api_path = '/oauth2/{project_id}/introspect'
-                .gsub('{project_id}', @client.get_config('project'))
+                .gsub('{project_id}', @client.encode_path(@client.get_config('project')))
 
             api_params = {
                 token: token,
@@ -363,7 +363,7 @@ module Appwrite
             search: nil
         )
             api_path = '/oauth2/{project_id}/organizations'
-                .gsub('{project_id}', @client.get_config('project'))
+                .gsub('{project_id}', @client.encode_path(@client.get_config('project')))
 
             api_params = {
                 limit: limit,
@@ -430,7 +430,7 @@ module Appwrite
             end
 
             api_path = '/oauth2/{project_id}/par'
-                .gsub('{project_id}', @client.get_config('project'))
+                .gsub('{project_id}', @client.encode_path(@client.get_config('project')))
 
             api_params = {
                 client_id: client_id,
@@ -477,7 +477,7 @@ module Appwrite
             search: nil
         )
             api_path = '/oauth2/{project_id}/projects'
-                .gsub('{project_id}', @client.get_config('project'))
+                .gsub('{project_id}', @client.encode_path(@client.get_config('project')))
 
             api_params = {
                 limit: limit,
@@ -514,7 +514,7 @@ module Appwrite
             end
 
             api_path = '/oauth2/{project_id}/reject'
-                .gsub('{project_id}', @client.get_config('project'))
+                .gsub('{project_id}', @client.encode_path(@client.get_config('project')))
 
             api_params = {
                 grant_id: grant_id,
@@ -553,7 +553,7 @@ module Appwrite
             end
 
             api_path = '/oauth2/{project_id}/revoke'
-                .gsub('{project_id}', @client.get_config('project'))
+                .gsub('{project_id}', @client.encode_path(@client.get_config('project')))
 
             api_params = {
                 token: token,
@@ -607,7 +607,7 @@ module Appwrite
             end
 
             api_path = '/oauth2/{project_id}/token'
-                .gsub('{project_id}', @client.get_config('project'))
+                .gsub('{project_id}', @client.encode_path(@client.get_config('project')))
 
             api_params = {
                 grant_type: grant_type,

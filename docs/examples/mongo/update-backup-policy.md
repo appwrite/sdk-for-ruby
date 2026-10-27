@@ -14,7 +14,7 @@ result = mongo.update_backup_policy(
     database_id: '<DATABASE_ID>',
     policy_id: '<POLICY_ID>',
     name: '<NAME>', # optional
-    schedule: '', # optional
+    schedule: nil, # optional
     retention: 1, # optional
     enabled: false # optional
 )

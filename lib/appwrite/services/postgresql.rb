@@ -153,7 +153,7 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {}
 
@@ -227,7 +227,7 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 name: name,
@@ -283,7 +283,7 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {}
 
@@ -319,7 +319,7 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/backups'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 queries: queries,
@@ -356,7 +356,7 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/backups'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 type: type,
@@ -394,7 +394,7 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/backups/policies'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 queries: queries,
@@ -456,7 +456,7 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/backups/policies'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 policyId: policy_id,
@@ -501,8 +501,8 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/backups/policies/{policyId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{policyId}', policy_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{policyId}', @client.encode_path(policy_id))
 
             api_params = {}
 
@@ -547,8 +547,8 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/backups/policies/{policyId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{policyId}', policy_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{policyId}', @client.encode_path(policy_id))
 
             api_params = {
                 name: name,
@@ -592,8 +592,8 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/backups/policies/{policyId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{policyId}', policy_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{policyId}', @client.encode_path(policy_id))
 
             api_params = {}
 
@@ -656,7 +656,7 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/backups/storage'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 provider: provider,
@@ -703,8 +703,8 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/backups/{backupId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{backupId}', backup_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{backupId}', @client.encode_path(backup_id))
 
             api_params = {}
 
@@ -742,8 +742,8 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/backups/{backupId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{backupId}', backup_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{backupId}', @client.encode_path(backup_id))
 
             api_params = {}
 
@@ -775,7 +775,7 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/branches'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {}
 
@@ -814,7 +814,7 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/branches'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 branchId: branch_id,
@@ -857,8 +857,8 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/branches/{branchId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{branchId}', branch_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{branchId}', @client.encode_path(branch_id))
 
             api_params = {}
 
@@ -893,7 +893,7 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/credentials'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {}
 
@@ -947,7 +947,7 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/executions'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 sql: sql,
@@ -983,7 +983,7 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/extensions'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {}
 
@@ -1021,7 +1021,7 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/extensions'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 name: name,
@@ -1062,8 +1062,8 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/extensions/{extensionName}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{extensionName}', extension_name)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{extensionName}', @client.encode_path(extension_name))
 
             api_params = {}
 
@@ -1105,7 +1105,7 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/failovers'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 targetReplicaId: target_replica_id,
@@ -1153,7 +1153,7 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/maintenance'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 day: day,
@@ -1199,7 +1199,7 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/migrations'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 targetType: target_type,
@@ -1243,7 +1243,7 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/operations'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 status: status,
@@ -1279,7 +1279,7 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/pitr'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {}
 
@@ -1311,7 +1311,7 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/pooler'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {}
 
@@ -1359,7 +1359,7 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/pooler'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 mode: mode,
@@ -1401,7 +1401,7 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/replicas'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {}
 
@@ -1441,7 +1441,7 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/restorations'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 status: status,
@@ -1505,7 +1505,7 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/restorations'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 type: type,
@@ -1552,8 +1552,8 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/restorations/{restorationId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{restorationId}', restoration_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{restorationId}', @client.encode_path(restoration_id))
 
             api_params = {}
 
@@ -1595,8 +1595,8 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/restorations/{restorationId}/promotions'
-                .gsub('{databaseId}', database_id)
-                .gsub('{restorationId}', restoration_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{restorationId}', @client.encode_path(restoration_id))
 
             api_params = {}
 
@@ -1630,7 +1630,7 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/status'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {}
 
@@ -1668,7 +1668,7 @@ module Appwrite
             end
 
             api_path = '/postgresql/{databaseId}/upgrades'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 targetVersion: target_version,

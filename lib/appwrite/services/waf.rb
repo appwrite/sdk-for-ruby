@@ -44,9 +44,9 @@ module Appwrite
         # Create a bypass WAF rule. Conditions can match request attributes including
         # `ip` (plain IPs or CIDR blocks like `10.0.0.0/8`), `method`, `path`,
         # `host`, `country`, `continent`, `headers.&lt;name&gt;`, `query.&lt;key&gt;`,
-        # `queryKeys`, `userAgent`, `os`, `osVersion`, `browser`, and
-        # `browserVersion`. Conditions on `city` and `state` require the premium Geo
-        # DB addon.
+        # `queryKeys`, `accept`, `acceptLanguage`, `cookie`, `userAgent`, `os`,
+        # `osVersion`, `browser`, and `browserVersion`. Conditions on `city` and
+        # `state` require the premium Geo DB addon.
         #
         #
         # @param [String] rule_id Rule ID. Choose a custom ID or pass `ID.unique()` to generate a unique one.
@@ -112,9 +112,9 @@ module Appwrite
         # Update a bypass WAF rule. Conditions can match request attributes including
         # `ip` (plain IPs or CIDR blocks like `10.0.0.0/8`), `method`, `path`,
         # `host`, `country`, `continent`, `headers.&lt;name&gt;`, `query.&lt;key&gt;`,
-        # `queryKeys`, `userAgent`, `os`, `osVersion`, `browser`, and
-        # `browserVersion`. Conditions on `city` and `state` require the premium Geo
-        # DB addon.
+        # `queryKeys`, `accept`, `acceptLanguage`, `cookie`, `userAgent`, `os`,
+        # `osVersion`, `browser`, and `browserVersion`. Conditions on `city` and
+        # `state` require the premium Geo DB addon.
         #
         #
         # @param [String] rule_id Rule ID.
@@ -142,7 +142,7 @@ module Appwrite
             end
 
             api_path = '/waf/rules/bypass/{ruleId}'
-                .gsub('{ruleId}', rule_id)
+                .gsub('{ruleId}', @client.encode_path(rule_id))
 
             api_params = {
                 resourceType: resource_type,
@@ -175,8 +175,9 @@ module Appwrite
         # challenged again. Conditions can match request attributes including `ip`
         # (plain IPs or CIDR blocks like `10.0.0.0/8`), `method`, `path`, `host`,
         # `country`, `continent`, `headers.&lt;name&gt;`, `query.&lt;key&gt;`, `queryKeys`,
-        # `userAgent`, `os`, `osVersion`, `browser`, and `browserVersion`. Conditions
-        # on `city` and `state` require the premium Geo DB addon.
+        # `accept`, `acceptLanguage`, `cookie`, `userAgent`, `os`, `osVersion`,
+        # `browser`, and `browserVersion`. Conditions on `city` and `state` require
+        # the premium Geo DB addon.
         #
         #
         # @param [String] rule_id Rule ID. Choose a custom ID or pass `ID.unique()` to generate a unique one.
@@ -254,8 +255,9 @@ module Appwrite
         # challenged again. Conditions can match request attributes including `ip`
         # (plain IPs or CIDR blocks like `10.0.0.0/8`), `method`, `path`, `host`,
         # `country`, `continent`, `headers.&lt;name&gt;`, `query.&lt;key&gt;`, `queryKeys`,
-        # `userAgent`, `os`, `osVersion`, `browser`, and `browserVersion`. Conditions
-        # on `city` and `state` require the premium Geo DB addon.
+        # `accept`, `acceptLanguage`, `cookie`, `userAgent`, `os`, `osVersion`,
+        # `browser`, and `browserVersion`. Conditions on `city` and `state` require
+        # the premium Geo DB addon.
         #
         #
         # @param [String] rule_id Rule ID.
@@ -289,7 +291,7 @@ module Appwrite
             end
 
             api_path = '/waf/rules/challenge/{ruleId}'
-                .gsub('{ruleId}', rule_id)
+                .gsub('{ruleId}', @client.encode_path(rule_id))
 
             api_params = {
                 resourceType: resource_type,
@@ -322,9 +324,19 @@ module Appwrite
         # Create a deny WAF rule. Conditions can match request attributes including
         # `ip` (plain IPs or CIDR blocks like `10.0.0.0/8`), `method`, `path`,
         # `host`, `country`, `continent`, `headers.&lt;name&gt;`, `query.&lt;key&gt;`,
-        # `queryKeys`, `userAgent`, `os`, `osVersion`, `browser`, and
-        # `browserVersion`. Conditions on `city` and `state` require the premium Geo
-        # DB addon.
+        # `queryKeys`, `accept`, `acceptLanguage`, `cookie`, `userAgent`, `os`,
+        # `osVersion`, `browser`, and `browserVersion`. Conditions on `city` and
+        # `state` require the premium Geo DB addon. `sessionAge` and `mfaAge` hold
+        # the seconds since the request&#039;s session was created and since its last MFA
+        # challenge. Both are null for requests without a session, such as guests and
+        # API keys, while a request authenticated with the `x-appwrite-jwt` header
+        # carries the age of the session its token is bound to; on `functions` rules
+        # the session comes from the `x-appwrite-user-jwt` header, and `mfaAge` is
+        # null when the session never completed MFA. A deny matching on `mfaAge`
+        # returns `user_challenge_required` and one matching on `sessionAge` returns
+        # `user_reauthentication_required`, both with status 401, so the user can
+        # sign in again and retry. To also deny requests without a session, combine
+        # `isNull` and `greaterThan` in an `or` condition.
         #
         #
         # @param [String] rule_id Rule ID. Choose a custom ID or pass `ID.unique()` to generate a unique one.
@@ -390,9 +402,19 @@ module Appwrite
         # Update a deny WAF rule. Conditions can match request attributes including
         # `ip` (plain IPs or CIDR blocks like `10.0.0.0/8`), `method`, `path`,
         # `host`, `country`, `continent`, `headers.&lt;name&gt;`, `query.&lt;key&gt;`,
-        # `queryKeys`, `userAgent`, `os`, `osVersion`, `browser`, and
-        # `browserVersion`. Conditions on `city` and `state` require the premium Geo
-        # DB addon.
+        # `queryKeys`, `accept`, `acceptLanguage`, `cookie`, `userAgent`, `os`,
+        # `osVersion`, `browser`, and `browserVersion`. Conditions on `city` and
+        # `state` require the premium Geo DB addon. `sessionAge` and `mfaAge` hold
+        # the seconds since the request&#039;s session was created and since its last MFA
+        # challenge. Both are null for requests without a session, such as guests and
+        # API keys, while a request authenticated with the `x-appwrite-jwt` header
+        # carries the age of the session its token is bound to; on `functions` rules
+        # the session comes from the `x-appwrite-user-jwt` header, and `mfaAge` is
+        # null when the session never completed MFA. A deny matching on `mfaAge`
+        # returns `user_challenge_required` and one matching on `sessionAge` returns
+        # `user_reauthentication_required`, both with status 401, so the user can
+        # sign in again and retry. To also deny requests without a session, combine
+        # `isNull` and `greaterThan` in an `or` condition.
         #
         #
         # @param [String] rule_id Rule ID.
@@ -420,7 +442,7 @@ module Appwrite
             end
 
             api_path = '/waf/rules/deny/{ruleId}'
-                .gsub('{ruleId}', rule_id)
+                .gsub('{ruleId}', @client.encode_path(rule_id))
 
             api_params = {
                 resourceType: resource_type,
@@ -452,9 +474,9 @@ module Appwrite
         # without an authenticated user skip `userId` rules). Conditions can match
         # request attributes including `ip` (plain IPs or CIDR blocks like
         # `10.0.0.0/8`), `method`, `path`, `host`, `country`, `continent`,
-        # `headers.&lt;name&gt;`, `query.&lt;key&gt;`, `queryKeys`, `userAgent`, `os`,
-        # `osVersion`, `browser`, and `browserVersion`. Conditions on `city` and
-        # `state` require the premium Geo DB addon.
+        # `headers.&lt;name&gt;`, `query.&lt;key&gt;`, `queryKeys`, `accept`, `acceptLanguage`,
+        # `cookie`, `userAgent`, `os`, `osVersion`, `browser`, and `browserVersion`.
+        # Conditions on `city` and `state` require the premium Geo DB addon.
         #
         #
         # @param [String] rule_id Rule ID. Choose a custom ID or pass `ID.unique()` to generate a unique one.
@@ -545,9 +567,9 @@ module Appwrite
         # without an authenticated user skip `userId` rules). Conditions can match
         # request attributes including `ip` (plain IPs or CIDR blocks like
         # `10.0.0.0/8`), `method`, `path`, `host`, `country`, `continent`,
-        # `headers.&lt;name&gt;`, `query.&lt;key&gt;`, `queryKeys`, `userAgent`, `os`,
-        # `osVersion`, `browser`, and `browserVersion`. Conditions on `city` and
-        # `state` require the premium Geo DB addon.
+        # `headers.&lt;name&gt;`, `query.&lt;key&gt;`, `queryKeys`, `accept`, `acceptLanguage`,
+        # `cookie`, `userAgent`, `os`, `osVersion`, `browser`, and `browserVersion`.
+        # Conditions on `city` and `state` require the premium Geo DB addon.
         #
         #
         # @param [String] rule_id Rule ID.
@@ -583,7 +605,7 @@ module Appwrite
             end
 
             api_path = '/waf/rules/rate-limit/{ruleId}'
-                .gsub('{ruleId}', rule_id)
+                .gsub('{ruleId}', @client.encode_path(rule_id))
 
             api_params = {
                 resourceType: resource_type,
@@ -617,9 +639,9 @@ module Appwrite
         # Create a redirect WAF rule. Conditions can match request attributes
         # including `ip` (plain IPs or CIDR blocks like `10.0.0.0/8`), `method`,
         # `path`, `host`, `country`, `continent`, `headers.&lt;name&gt;`, `query.&lt;key&gt;`,
-        # `queryKeys`, `userAgent`, `os`, `osVersion`, `browser`, and
-        # `browserVersion`. Conditions on `city` and `state` require the premium Geo
-        # DB addon.
+        # `queryKeys`, `accept`, `acceptLanguage`, `cookie`, `userAgent`, `os`,
+        # `osVersion`, `browser`, and `browserVersion`. Conditions on `city` and
+        # `state` require the premium Geo DB addon.
         #
         #
         # @param [String] rule_id Rule ID. Choose a custom ID or pass `ID.unique()` to generate a unique one.
@@ -699,9 +721,9 @@ module Appwrite
         # Update a redirect WAF rule. Conditions can match request attributes
         # including `ip` (plain IPs or CIDR blocks like `10.0.0.0/8`), `method`,
         # `path`, `host`, `country`, `continent`, `headers.&lt;name&gt;`, `query.&lt;key&gt;`,
-        # `queryKeys`, `userAgent`, `os`, `osVersion`, `browser`, and
-        # `browserVersion`. Conditions on `city` and `state` require the premium Geo
-        # DB addon.
+        # `queryKeys`, `accept`, `acceptLanguage`, `cookie`, `userAgent`, `os`,
+        # `osVersion`, `browser`, and `browserVersion`. Conditions on `city` and
+        # `state` require the premium Geo DB addon.
         #
         #
         # @param [String] rule_id Rule ID.
@@ -733,7 +755,7 @@ module Appwrite
             end
 
             api_path = '/waf/rules/redirect/{ruleId}'
-                .gsub('{ruleId}', rule_id)
+                .gsub('{ruleId}', @client.encode_path(rule_id))
 
             api_params = {
                 resourceType: resource_type,
@@ -776,7 +798,7 @@ module Appwrite
             end
 
             api_path = '/waf/rules/{ruleId}'
-                .gsub('{ruleId}', rule_id)
+                .gsub('{ruleId}', @client.encode_path(rule_id))
 
             api_params = {}
 
@@ -838,7 +860,7 @@ module Appwrite
             end
 
             api_path = '/waf/rules/{ruleId}'
-                .gsub('{ruleId}', rule_id)
+                .gsub('{ruleId}', @client.encode_path(rule_id))
 
             api_params = {}
 

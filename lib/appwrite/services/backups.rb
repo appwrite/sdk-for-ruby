@@ -86,7 +86,7 @@ module Appwrite
             end
 
             api_path = '/backups/archives/{archiveId}'
-                .gsub('{archiveId}', archive_id)
+                .gsub('{archiveId}', @client.encode_path(archive_id))
 
             api_params = {}
 
@@ -117,7 +117,7 @@ module Appwrite
             end
 
             api_path = '/backups/archives/{archiveId}'
-                .gsub('{archiveId}', archive_id)
+                .gsub('{archiveId}', @client.encode_path(archive_id))
 
             api_params = {}
 
@@ -242,7 +242,7 @@ module Appwrite
             end
 
             api_path = '/backups/policies/{policyId}'
-                .gsub('{policyId}', policy_id)
+                .gsub('{policyId}', @client.encode_path(policy_id))
 
             api_params = {}
 
@@ -281,7 +281,7 @@ module Appwrite
             end
 
             api_path = '/backups/policies/{policyId}'
-                .gsub('{policyId}', policy_id)
+                .gsub('{policyId}', @client.encode_path(policy_id))
 
             api_params = {
                 name: name,
@@ -318,7 +318,7 @@ module Appwrite
             end
 
             api_path = '/backups/policies/{policyId}'
-                .gsub('{policyId}', policy_id)
+                .gsub('{policyId}', @client.encode_path(policy_id))
 
             api_params = {}
 
@@ -457,7 +457,7 @@ module Appwrite
             end
 
             api_path = '/backups/restorations/{restorationId}'
-                .gsub('{restorationId}', restoration_id)
+                .gsub('{restorationId}', @client.encode_path(restoration_id))
 
             api_params = {}
 

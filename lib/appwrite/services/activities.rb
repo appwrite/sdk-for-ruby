@@ -51,7 +51,7 @@ module Appwrite
             end
 
             api_path = '/activities/events/{eventId}'
-                .gsub('{eventId}', event_id)
+                .gsub('{eventId}', @client.encode_path(event_id))
 
             api_params = {}
 

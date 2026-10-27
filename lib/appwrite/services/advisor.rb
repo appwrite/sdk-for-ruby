@@ -54,7 +54,7 @@ module Appwrite
             end
 
             api_path = '/reports/{reportId}'
-                .gsub('{reportId}', report_id)
+                .gsub('{reportId}', @client.encode_path(report_id))
 
             api_params = {}
 
@@ -87,7 +87,7 @@ module Appwrite
             end
 
             api_path = '/reports/{reportId}'
-                .gsub('{reportId}', report_id)
+                .gsub('{reportId}', @client.encode_path(report_id))
 
             api_params = {}
 
@@ -124,7 +124,7 @@ module Appwrite
             end
 
             api_path = '/reports/{reportId}/insights'
-                .gsub('{reportId}', report_id)
+                .gsub('{reportId}', @client.encode_path(report_id))
 
             api_params = {
                 queries: queries,
@@ -165,8 +165,8 @@ module Appwrite
             end
 
             api_path = '/reports/{reportId}/insights/{insightId}'
-                .gsub('{reportId}', report_id)
-                .gsub('{insightId}', insight_id)
+                .gsub('{reportId}', @client.encode_path(report_id))
+                .gsub('{insightId}', @client.encode_path(insight_id))
 
             api_params = {}
 

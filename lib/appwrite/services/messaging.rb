@@ -167,7 +167,7 @@ module Appwrite
             end
 
             api_path = '/messaging/messages/email/{messageId}'
-                .gsub('{messageId}', message_id)
+                .gsub('{messageId}', @client.encode_path(message_id))
 
             api_params = {
                 topics: topics,
@@ -345,7 +345,7 @@ module Appwrite
             end
 
             api_path = '/messaging/messages/push/{messageId}'
-                .gsub('{messageId}', message_id)
+                .gsub('{messageId}', @client.encode_path(message_id))
 
             api_params = {
                 topics: topics,
@@ -467,7 +467,7 @@ module Appwrite
             end
 
             api_path = '/messaging/messages/sms/{messageId}'
-                .gsub('{messageId}', message_id)
+                .gsub('{messageId}', @client.encode_path(message_id))
 
             api_params = {
                 topics: topics,
@@ -507,7 +507,7 @@ module Appwrite
             end
 
             api_path = '/messaging/messages/{messageId}'
-                .gsub('{messageId}', message_id)
+                .gsub('{messageId}', @client.encode_path(message_id))
 
             api_params = {}
 
@@ -539,7 +539,7 @@ module Appwrite
             end
 
             api_path = '/messaging/messages/{messageId}'
-                .gsub('{messageId}', message_id)
+                .gsub('{messageId}', @client.encode_path(message_id))
 
             api_params = {}
 
@@ -574,7 +574,7 @@ module Appwrite
             end
 
             api_path = '/messaging/messages/{messageId}/targets'
-                .gsub('{messageId}', message_id)
+                .gsub('{messageId}', @client.encode_path(message_id))
 
             api_params = {
                 queries: queries,
@@ -714,7 +714,7 @@ module Appwrite
             end
 
             api_path = '/messaging/providers/apns/{providerId}'
-                .gsub('{providerId}', provider_id)
+                .gsub('{providerId}', @client.encode_path(provider_id))
 
             api_params = {
                 name: name,
@@ -811,7 +811,7 @@ module Appwrite
             end
 
             api_path = '/messaging/providers/appwrite/{providerId}'
-                .gsub('{providerId}', provider_id)
+                .gsub('{providerId}', @client.encode_path(provider_id))
 
             api_params = {
                 name: name,
@@ -900,7 +900,7 @@ module Appwrite
             end
 
             api_path = '/messaging/providers/fcm/{providerId}'
-                .gsub('{providerId}', provider_id)
+                .gsub('{providerId}', @client.encode_path(provider_id))
 
             api_params = {
                 name: name,
@@ -1018,7 +1018,7 @@ module Appwrite
             end
 
             api_path = '/messaging/providers/mailgun/{providerId}'
-                .gsub('{providerId}', provider_id)
+                .gsub('{providerId}', @client.encode_path(provider_id))
 
             api_params = {
                 name: name,
@@ -1122,7 +1122,7 @@ module Appwrite
             end
 
             api_path = '/messaging/providers/msg91/{providerId}'
-                .gsub('{providerId}', provider_id)
+                .gsub('{providerId}', @client.encode_path(provider_id))
 
             api_params = {
                 name: name,
@@ -1232,7 +1232,7 @@ module Appwrite
             end
 
             api_path = '/messaging/providers/resend/{providerId}'
-                .gsub('{providerId}', provider_id)
+                .gsub('{providerId}', @client.encode_path(provider_id))
 
             api_params = {
                 name: name,
@@ -1344,7 +1344,7 @@ module Appwrite
             end
 
             api_path = '/messaging/providers/sendgrid/{providerId}'
-                .gsub('{providerId}', provider_id)
+                .gsub('{providerId}', @client.encode_path(provider_id))
 
             api_params = {
                 name: name,
@@ -1466,7 +1466,7 @@ module Appwrite
             end
 
             api_path = '/messaging/providers/ses/{providerId}'
-                .gsub('{providerId}', provider_id)
+                .gsub('{providerId}', @client.encode_path(provider_id))
 
             api_params = {
                 name: name,
@@ -1614,7 +1614,7 @@ module Appwrite
             end
 
             api_path = '/messaging/providers/smtp/{providerId}'
-                .gsub('{providerId}', provider_id)
+                .gsub('{providerId}', @client.encode_path(provider_id))
 
             api_params = {
                 name: name,
@@ -1722,7 +1722,7 @@ module Appwrite
             end
 
             api_path = '/messaging/providers/telesign/{providerId}'
-                .gsub('{providerId}', provider_id)
+                .gsub('{providerId}', @client.encode_path(provider_id))
 
             api_params = {
                 name: name,
@@ -1822,7 +1822,7 @@ module Appwrite
             end
 
             api_path = '/messaging/providers/textmagic/{providerId}'
-                .gsub('{providerId}', provider_id)
+                .gsub('{providerId}', @client.encode_path(provider_id))
 
             api_params = {
                 name: name,
@@ -1922,7 +1922,7 @@ module Appwrite
             end
 
             api_path = '/messaging/providers/twilio/{providerId}'
-                .gsub('{providerId}', provider_id)
+                .gsub('{providerId}', @client.encode_path(provider_id))
 
             api_params = {
                 name: name,
@@ -2022,7 +2022,7 @@ module Appwrite
             end
 
             api_path = '/messaging/providers/vonage/{providerId}'
-                .gsub('{providerId}', provider_id)
+                .gsub('{providerId}', @client.encode_path(provider_id))
 
             api_params = {
                 name: name,
@@ -2061,7 +2061,7 @@ module Appwrite
             end
 
             api_path = '/messaging/providers/{providerId}'
-                .gsub('{providerId}', provider_id)
+                .gsub('{providerId}', @client.encode_path(provider_id))
 
             api_params = {}
 
@@ -2092,7 +2092,7 @@ module Appwrite
             end
 
             api_path = '/messaging/providers/{providerId}'
-                .gsub('{providerId}', provider_id)
+                .gsub('{providerId}', @client.encode_path(provider_id))
 
             api_params = {}
 
@@ -2210,7 +2210,7 @@ module Appwrite
             end
 
             api_path = '/messaging/topics/{topicId}'
-                .gsub('{topicId}', topic_id)
+                .gsub('{topicId}', @client.encode_path(topic_id))
 
             api_params = {}
 
@@ -2252,7 +2252,7 @@ module Appwrite
             end
 
             api_path = '/messaging/topics/{topicId}'
-                .gsub('{topicId}', topic_id)
+                .gsub('{topicId}', @client.encode_path(topic_id))
 
             api_params = {
                 name: name,
@@ -2290,7 +2290,7 @@ module Appwrite
             end
 
             api_path = '/messaging/topics/{topicId}'
-                .gsub('{topicId}', topic_id)
+                .gsub('{topicId}', @client.encode_path(topic_id))
 
             api_params = {}
 
@@ -2327,7 +2327,7 @@ module Appwrite
             end
 
             api_path = '/messaging/topics/{topicId}/subscribers'
-                .gsub('{topicId}', topic_id)
+                .gsub('{topicId}', @client.encode_path(topic_id))
 
             api_params = {
                 queries: queries,
@@ -2374,7 +2374,7 @@ module Appwrite
             end
 
             api_path = '/messaging/topics/{topicId}/subscribers'
-                .gsub('{topicId}', topic_id)
+                .gsub('{topicId}', @client.encode_path(topic_id))
 
             api_params = {
                 subscriberId: subscriber_id,
@@ -2416,8 +2416,8 @@ module Appwrite
             end
 
             api_path = '/messaging/topics/{topicId}/subscribers/{subscriberId}'
-                .gsub('{topicId}', topic_id)
-                .gsub('{subscriberId}', subscriber_id)
+                .gsub('{topicId}', @client.encode_path(topic_id))
+                .gsub('{subscriberId}', @client.encode_path(subscriber_id))
 
             api_params = {}
 
@@ -2454,8 +2454,8 @@ module Appwrite
             end
 
             api_path = '/messaging/topics/{topicId}/subscribers/{subscriberId}'
-                .gsub('{topicId}', topic_id)
-                .gsub('{subscriberId}', subscriber_id)
+                .gsub('{topicId}', @client.encode_path(topic_id))
+                .gsub('{subscriberId}', @client.encode_path(subscriber_id))
 
             api_params = {}
 

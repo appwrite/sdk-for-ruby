@@ -131,7 +131,7 @@ module Appwrite
             end
 
             api_path = '/account/consents/{consentId}'
-                .gsub('{consentId}', consent_id)
+                .gsub('{consentId}', @client.encode_path(consent_id))
 
             api_params = {}
 
@@ -164,7 +164,7 @@ module Appwrite
             end
 
             api_path = '/account/consents/{consentId}'
-                .gsub('{consentId}', consent_id)
+                .gsub('{consentId}', @client.encode_path(consent_id))
 
             api_params = {}
 
@@ -201,7 +201,7 @@ module Appwrite
             end
 
             api_path = '/account/consents/{consentId}/tokens'
-                .gsub('{consentId}', consent_id)
+                .gsub('{consentId}', @client.encode_path(consent_id))
 
             api_params = {
                 queries: queries,
@@ -242,8 +242,8 @@ module Appwrite
             end
 
             api_path = '/account/consents/{consentId}/tokens/{tokenId}'
-                .gsub('{consentId}', consent_id)
-                .gsub('{tokenId}', token_id)
+                .gsub('{consentId}', @client.encode_path(consent_id))
+                .gsub('{tokenId}', @client.encode_path(token_id))
 
             api_params = {}
 
@@ -282,8 +282,8 @@ module Appwrite
             end
 
             api_path = '/account/consents/{consentId}/tokens/{tokenId}'
-                .gsub('{consentId}', consent_id)
-                .gsub('{tokenId}', token_id)
+                .gsub('{consentId}', @client.encode_path(consent_id))
+                .gsub('{tokenId}', @client.encode_path(token_id))
 
             api_params = {}
 
@@ -392,7 +392,7 @@ module Appwrite
             end
 
             api_path = '/account/identities/{identityId}'
-                .gsub('{identityId}', identity_id)
+                .gsub('{identityId}', @client.encode_path(identity_id))
 
             api_params = {}
 
@@ -490,7 +490,7 @@ module Appwrite
             end
 
             api_path = '/account/mfa/authenticators/{type}'
-                .gsub('{type}', type)
+                .gsub('{type}', @client.encode_path(type))
 
             api_params = {}
 
@@ -530,7 +530,7 @@ module Appwrite
             end
 
             api_path = '/account/mfa/authenticators/{type}'
-                .gsub('{type}', type)
+                .gsub('{type}', @client.encode_path(type))
 
             api_params = {
                 otp: otp,
@@ -564,7 +564,7 @@ module Appwrite
             end
 
             api_path = '/account/mfa/authenticators/{type}'
-                .gsub('{type}', type)
+                .gsub('{type}', @client.encode_path(type))
 
             api_params = {}
 
@@ -882,7 +882,7 @@ module Appwrite
             end
 
             api_path = '/account/passkeys/{passkeyId}'
-                .gsub('{passkeyId}', passkey_id)
+                .gsub('{passkeyId}', @client.encode_path(passkey_id))
 
             api_params = {}
 
@@ -919,7 +919,7 @@ module Appwrite
             end
 
             api_path = '/account/passkeys/{passkeyId}'
-                .gsub('{passkeyId}', passkey_id)
+                .gsub('{passkeyId}', @client.encode_path(passkey_id))
 
             api_params = {
                 name: name,
@@ -956,7 +956,7 @@ module Appwrite
             end
 
             api_path = '/account/passkeys/{passkeyId}'
-                .gsub('{passkeyId}', passkey_id)
+                .gsub('{passkeyId}', @client.encode_path(passkey_id))
 
             api_params = {}
 
@@ -997,7 +997,7 @@ module Appwrite
             end
 
             api_path = '/account/passkeys/{passkeyId}/verification'
-                .gsub('{passkeyId}', passkey_id)
+                .gsub('{passkeyId}', @client.encode_path(passkey_id))
 
             api_params = {
                 credential: credential,
@@ -1759,7 +1759,7 @@ module Appwrite
             end
 
             api_path = '/account/sessions/{sessionId}'
-                .gsub('{sessionId}', session_id)
+                .gsub('{sessionId}', @client.encode_path(session_id))
 
             api_params = {}
 
@@ -1792,7 +1792,7 @@ module Appwrite
             end
 
             api_path = '/account/sessions/{sessionId}'
-                .gsub('{sessionId}', session_id)
+                .gsub('{sessionId}', @client.encode_path(session_id))
 
             api_params = {}
 
@@ -1828,7 +1828,7 @@ module Appwrite
             end
 
             api_path = '/account/sessions/{sessionId}'
-                .gsub('{sessionId}', session_id)
+                .gsub('{sessionId}', @client.encode_path(session_id))
 
             api_params = {}
 
@@ -2025,7 +2025,7 @@ module Appwrite
             end
 
             api_path = '/account/tokens/oauth2/{provider}'
-                .gsub('{provider}', provider)
+                .gsub('{provider}', @client.encode_path(provider))
 
             api_params = {
                 success: success,

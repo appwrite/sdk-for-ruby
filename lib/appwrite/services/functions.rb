@@ -67,7 +67,7 @@ module Appwrite
         # @param [Array] provider_paths List of file path patterns to trigger automatic deployments. Supports wildcards. Leave empty to deploy on all file changes.
         # @param [String] build_specification Build specification for the function deployments.
         # @param [String] runtime_specification Runtime specification for the function executions.
-        # @param [Integer] deployment_retention Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept.
+        # @param [Integer] deployment_retention Days to keep non-active deployments before deletion. Value 0 keeps all deployments unless the server applies a default retention.
         # @param [Integer] interval Minutes between scheduled executions. Appwrite picks when within each interval the function runs. Use 0 to disable. Cannot be combined with schedule.
         # @param [String] description Optional description for the function.
         #
@@ -226,7 +226,7 @@ module Appwrite
             end
 
             api_path = '/functions/{functionId}'
-                .gsub('{functionId}', function_id)
+                .gsub('{functionId}', @client.encode_path(function_id))
 
             api_params = {}
 
@@ -267,7 +267,7 @@ module Appwrite
         # @param [Array] provider_paths List of file path patterns to trigger automatic deployments. Supports wildcards. Leave empty to deploy on all file changes.
         # @param [String] build_specification Build specification for the function deployments.
         # @param [String] runtime_specification Runtime specification for the function executions.
-        # @param [Integer] deployment_retention Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept.
+        # @param [Integer] deployment_retention Days to keep non-active deployments before deletion. Value 0 keeps all deployments unless the server applies a default retention.
         # @param [Integer] interval Minutes between scheduled executions. Appwrite picks when within each interval the function runs. Use 0 to disable. Cannot be combined with schedule. When omitted, the current interval is kept unless schedule is set.
         # @param [String] description Optional description for the function.
         # @param [] email_enabled Enable inbound email triggering for this function. When false or omitted on create, SMTP recipients are rejected. Opt-in; default is off.
@@ -309,7 +309,7 @@ module Appwrite
             end
 
             api_path = '/functions/{functionId}'
-                .gsub('{functionId}', function_id)
+                .gsub('{functionId}', @client.encode_path(function_id))
 
             api_params = {
                 name: name,
@@ -366,7 +366,7 @@ module Appwrite
             end
 
             api_path = '/functions/{functionId}'
-                .gsub('{functionId}', function_id)
+                .gsub('{functionId}', @client.encode_path(function_id))
 
             api_params = {}
 
@@ -404,7 +404,7 @@ module Appwrite
             end
 
             api_path = '/functions/{functionId}/deployment'
-                .gsub('{functionId}', function_id)
+                .gsub('{functionId}', @client.encode_path(function_id))
 
             api_params = {
                 deploymentId: deployment_id,
@@ -445,7 +445,7 @@ module Appwrite
             end
 
             api_path = '/functions/{functionId}/deployments'
-                .gsub('{functionId}', function_id)
+                .gsub('{functionId}', @client.encode_path(function_id))
 
             api_params = {
                 queries: queries,
@@ -506,7 +506,7 @@ module Appwrite
             end
 
             api_path = '/functions/{functionId}/deployments'
-                .gsub('{functionId}', function_id)
+                .gsub('{functionId}', @client.encode_path(function_id))
 
             api_params = {
                 entrypoint: entrypoint,
@@ -561,7 +561,7 @@ module Appwrite
             end
 
             api_path = '/functions/{functionId}/deployments/duplicate'
-                .gsub('{functionId}', function_id)
+                .gsub('{functionId}', @client.encode_path(function_id))
 
             api_params = {
                 deploymentId: deployment_id,
@@ -632,7 +632,7 @@ module Appwrite
             end
 
             api_path = '/functions/{functionId}/deployments/template'
-                .gsub('{functionId}', function_id)
+                .gsub('{functionId}', @client.encode_path(function_id))
 
             api_params = {
                 repository: repository,
@@ -687,7 +687,7 @@ module Appwrite
             end
 
             api_path = '/functions/{functionId}/deployments/vcs'
-                .gsub('{functionId}', function_id)
+                .gsub('{functionId}', @client.encode_path(function_id))
 
             api_params = {
                 type: type,
@@ -729,8 +729,8 @@ module Appwrite
             end
 
             api_path = '/functions/{functionId}/deployments/{deploymentId}'
-                .gsub('{functionId}', function_id)
-                .gsub('{deploymentId}', deployment_id)
+                .gsub('{functionId}', @client.encode_path(function_id))
+                .gsub('{deploymentId}', @client.encode_path(deployment_id))
 
             api_params = {}
 
@@ -767,8 +767,8 @@ module Appwrite
             end
 
             api_path = '/functions/{functionId}/deployments/{deploymentId}'
-                .gsub('{functionId}', function_id)
-                .gsub('{deploymentId}', deployment_id)
+                .gsub('{functionId}', @client.encode_path(function_id))
+                .gsub('{deploymentId}', @client.encode_path(deployment_id))
 
             api_params = {}
 
@@ -811,8 +811,8 @@ module Appwrite
             end
 
             api_path = '/functions/{functionId}/deployments/{deploymentId}/download'
-                .gsub('{functionId}', function_id)
-                .gsub('{deploymentId}', deployment_id)
+                .gsub('{functionId}', @client.encode_path(function_id))
+                .gsub('{deploymentId}', @client.encode_path(deployment_id))
 
             api_params = {
                 type: type,
@@ -855,8 +855,8 @@ module Appwrite
             end
 
             api_path = '/functions/{functionId}/deployments/{deploymentId}/status'
-                .gsub('{functionId}', function_id)
-                .gsub('{deploymentId}', deployment_id)
+                .gsub('{functionId}', @client.encode_path(function_id))
+                .gsub('{deploymentId}', @client.encode_path(deployment_id))
 
             api_params = {}
 
@@ -893,7 +893,7 @@ module Appwrite
             end
 
             api_path = '/functions/{functionId}/executions'
-                .gsub('{functionId}', function_id)
+                .gsub('{functionId}', @client.encode_path(function_id))
 
             api_params = {
                 queries: queries,
@@ -942,7 +942,7 @@ module Appwrite
             end
 
             api_path = '/functions/{functionId}/executions'
-                .gsub('{functionId}', function_id)
+                .gsub('{functionId}', @client.encode_path(function_id))
 
             api_params = {
                 body: body,
@@ -987,8 +987,8 @@ module Appwrite
             end
 
             api_path = '/functions/{functionId}/executions/{executionId}'
-                .gsub('{functionId}', function_id)
-                .gsub('{executionId}', execution_id)
+                .gsub('{functionId}', @client.encode_path(function_id))
+                .gsub('{executionId}', @client.encode_path(execution_id))
 
             api_params = {}
 
@@ -1025,8 +1025,8 @@ module Appwrite
             end
 
             api_path = '/functions/{functionId}/executions/{executionId}'
-                .gsub('{functionId}', function_id)
-                .gsub('{executionId}', execution_id)
+                .gsub('{functionId}', @client.encode_path(function_id))
+                .gsub('{executionId}', @client.encode_path(execution_id))
 
             api_params = {}
 
@@ -1061,7 +1061,7 @@ module Appwrite
             end
 
             api_path = '/functions/{functionId}/variables'
-                .gsub('{functionId}', function_id)
+                .gsub('{functionId}', @client.encode_path(function_id))
 
             api_params = {
                 queries: queries,
@@ -1118,7 +1118,7 @@ module Appwrite
             end
 
             api_path = '/functions/{functionId}/variables'
-                .gsub('{functionId}', function_id)
+                .gsub('{functionId}', @client.encode_path(function_id))
 
             api_params = {
                 variableId: variable_id,
@@ -1162,8 +1162,8 @@ module Appwrite
             end
 
             api_path = '/functions/{functionId}/variables/{variableId}'
-                .gsub('{functionId}', function_id)
-                .gsub('{variableId}', variable_id)
+                .gsub('{functionId}', @client.encode_path(function_id))
+                .gsub('{variableId}', @client.encode_path(variable_id))
 
             api_params = {}
 
@@ -1208,8 +1208,8 @@ module Appwrite
             end
 
             api_path = '/functions/{functionId}/variables/{variableId}'
-                .gsub('{functionId}', function_id)
-                .gsub('{variableId}', variable_id)
+                .gsub('{functionId}', @client.encode_path(function_id))
+                .gsub('{variableId}', @client.encode_path(variable_id))
 
             api_params = {
                 key: key,
@@ -1252,8 +1252,8 @@ module Appwrite
             end
 
             api_path = '/functions/{functionId}/variables/{variableId}'
-                .gsub('{functionId}', function_id)
-                .gsub('{variableId}', variable_id)
+                .gsub('{functionId}', @client.encode_path(function_id))
+                .gsub('{variableId}', @client.encode_path(variable_id))
 
             api_params = {}
 

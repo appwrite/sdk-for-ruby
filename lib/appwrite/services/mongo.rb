@@ -153,7 +153,7 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {}
 
@@ -227,7 +227,7 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 name: name,
@@ -283,7 +283,7 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {}
 
@@ -319,7 +319,7 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}/backups'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 queries: queries,
@@ -356,7 +356,7 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}/backups'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 type: type,
@@ -394,7 +394,7 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}/backups/policies'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 queries: queries,
@@ -456,7 +456,7 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}/backups/policies'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 policyId: policy_id,
@@ -501,8 +501,8 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}/backups/policies/{policyId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{policyId}', policy_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{policyId}', @client.encode_path(policy_id))
 
             api_params = {}
 
@@ -547,8 +547,8 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}/backups/policies/{policyId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{policyId}', policy_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{policyId}', @client.encode_path(policy_id))
 
             api_params = {
                 name: name,
@@ -592,8 +592,8 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}/backups/policies/{policyId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{policyId}', policy_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{policyId}', @client.encode_path(policy_id))
 
             api_params = {}
 
@@ -656,7 +656,7 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}/backups/storage'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 provider: provider,
@@ -703,8 +703,8 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}/backups/{backupId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{backupId}', backup_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{backupId}', @client.encode_path(backup_id))
 
             api_params = {}
 
@@ -742,8 +742,8 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}/backups/{backupId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{backupId}', backup_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{backupId}', @client.encode_path(backup_id))
 
             api_params = {}
 
@@ -775,7 +775,7 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}/branches'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {}
 
@@ -814,7 +814,7 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}/branches'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 branchId: branch_id,
@@ -857,8 +857,8 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}/branches/{branchId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{branchId}', branch_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{branchId}', @client.encode_path(branch_id))
 
             api_params = {}
 
@@ -893,7 +893,7 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}/credentials'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {}
 
@@ -935,7 +935,7 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}/failovers'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 targetReplicaId: target_replica_id,
@@ -983,7 +983,7 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}/maintenance'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 day: day,
@@ -1029,7 +1029,7 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}/migrations'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 targetType: target_type,
@@ -1073,7 +1073,7 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}/operations'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 status: status,
@@ -1109,7 +1109,7 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}/pitr'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {}
 
@@ -1141,7 +1141,7 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}/replicas'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {}
 
@@ -1181,7 +1181,7 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}/restorations'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 status: status,
@@ -1245,7 +1245,7 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}/restorations'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 type: type,
@@ -1292,8 +1292,8 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}/restorations/{restorationId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{restorationId}', restoration_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{restorationId}', @client.encode_path(restoration_id))
 
             api_params = {}
 
@@ -1335,8 +1335,8 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}/restorations/{restorationId}/promotions'
-                .gsub('{databaseId}', database_id)
-                .gsub('{restorationId}', restoration_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{restorationId}', @client.encode_path(restoration_id))
 
             api_params = {}
 
@@ -1370,7 +1370,7 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}/status'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {}
 
@@ -1408,7 +1408,7 @@ module Appwrite
             end
 
             api_path = '/mongo/{databaseId}/upgrades'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 targetVersion: target_version,

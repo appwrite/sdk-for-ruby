@@ -72,7 +72,7 @@ module Appwrite
             end
 
             api_path = '/project/auth-methods/{methodId}'
-                .gsub('{methodId}', method_id)
+                .gsub('{methodId}', @client.encode_path(method_id))
 
             api_params = {
                 enabled: enabled,
@@ -129,13 +129,23 @@ module Appwrite
         # project in the same organization and region, with its own resources and
         # users. Its usage is billed under the project it belongs to.
         #
+        # Pass `resources` to copy the project into the environment. The environment
+        # is returned at once and the copy runs as a migration of the environment,
+        # listed by its migrations routes and announced on its `migrations.*`
+        # realtime events; a resource whose ID can be chosen keeps it. Users are
+        # copied newest first and at most 90 of them, so the environment keeps room
+        # under its limit of 100 users for test accounts, and the memberships of
+        # users left behind are not copied.
+        #
         # @param [String] environment_id Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, and hyphen. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] name Environment name. Max length: 128 chars.
+        # @param [Array] resources Resources to copy from the project into the environment, by type. A structural type such as `database`, `table`, `column`, `index`, `bucket`, `team`, `function` or `site` copies the structure and its settings; `row`, `file`, `user`, `membership`, `deployment` and `site-deployment` copy what it holds. A function or site is copied with its active deployment; add `deployment` or `site-deployment` to copy every deployment. Users are copied newest first and at most 90 of them, leaving room under the limit of 100 users of an environment for test accounts; the memberships of users left behind are not copied. Leave empty for an empty environment. Maximum of 100 types.
         #
         # @return [Project]
         def create_environment(
             environment_id:,
-            name:
+            name:,
+            resources: nil
         )
             if environment_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "environmentId"')
@@ -150,6 +160,7 @@ module Appwrite
             api_params = {
                 environmentId: environment_id,
                 name: name,
+                resources: resources,
             }
 
             api_headers = {
@@ -180,7 +191,7 @@ module Appwrite
             end
 
             api_path = '/project/environments/{environmentId}'
-                .gsub('{environmentId}', environment_id)
+                .gsub('{environmentId}', @client.encode_path(environment_id))
 
             api_params = {}
 
@@ -217,7 +228,7 @@ module Appwrite
             end
 
             api_path = '/project/environments/{environmentId}'
-                .gsub('{environmentId}', environment_id)
+                .gsub('{environmentId}', @client.encode_path(environment_id))
 
             api_params = {
                 name: name,
@@ -251,7 +262,7 @@ module Appwrite
             end
 
             api_path = '/project/environments/{environmentId}'
-                .gsub('{environmentId}', environment_id)
+                .gsub('{environmentId}', @client.encode_path(environment_id))
 
             api_params = {}
 
@@ -357,7 +368,7 @@ module Appwrite
             end
 
             api_path = '/project/keys/{keyId}'
-                .gsub('{keyId}', key_id)
+                .gsub('{keyId}', @client.encode_path(key_id))
 
             api_params = {}
 
@@ -405,7 +416,7 @@ module Appwrite
             end
 
             api_path = '/project/keys/{keyId}'
-                .gsub('{keyId}', key_id)
+                .gsub('{keyId}', @client.encode_path(key_id))
 
             api_params = {
                 name: name,
@@ -443,7 +454,7 @@ module Appwrite
             end
 
             api_path = '/project/keys/{keyId}'
-                .gsub('{keyId}', key_id)
+                .gsub('{keyId}', @client.encode_path(key_id))
 
             api_params = {}
 
@@ -582,7 +593,7 @@ module Appwrite
             end
 
             api_path = '/project/mock-phones/{number}'
-                .gsub('{number}', number)
+                .gsub('{number}', @client.encode_path(number))
 
             api_params = {}
 
@@ -620,7 +631,7 @@ module Appwrite
             end
 
             api_path = '/project/mock-phones/{number}'
-                .gsub('{number}', number)
+                .gsub('{number}', @client.encode_path(number))
 
             api_params = {
                 otp: otp,
@@ -655,7 +666,7 @@ module Appwrite
             end
 
             api_path = '/project/mock-phones/{number}'
-                .gsub('{number}', number)
+                .gsub('{number}', @client.encode_path(number))
 
             api_params = {}
 
@@ -2607,7 +2618,7 @@ module Appwrite
             end
 
             api_path = '/project/oauth2/{providerId}'
-                .gsub('{providerId}', provider_id)
+                .gsub('{providerId}', @client.encode_path(provider_id))
 
             api_params = {}
 
@@ -2972,7 +2983,7 @@ module Appwrite
             end
 
             api_path = '/project/platforms/android/{platformId}'
-                .gsub('{platformId}', platform_id)
+                .gsub('{platformId}', @client.encode_path(platform_id))
 
             api_params = {
                 name: name,
@@ -3070,7 +3081,7 @@ module Appwrite
             end
 
             api_path = '/project/platforms/apple/{platformId}'
-                .gsub('{platformId}', platform_id)
+                .gsub('{platformId}', @client.encode_path(platform_id))
 
             api_params = {
                 name: name,
@@ -3167,7 +3178,7 @@ module Appwrite
             end
 
             api_path = '/project/platforms/linux/{platformId}'
-                .gsub('{platformId}', platform_id)
+                .gsub('{platformId}', @client.encode_path(platform_id))
 
             api_params = {
                 name: name,
@@ -3264,7 +3275,7 @@ module Appwrite
             end
 
             api_path = '/project/platforms/web/{platformId}'
-                .gsub('{platformId}', platform_id)
+                .gsub('{platformId}', @client.encode_path(platform_id))
 
             api_params = {
                 name: name,
@@ -3361,7 +3372,7 @@ module Appwrite
             end
 
             api_path = '/project/platforms/windows/{platformId}'
-                .gsub('{platformId}', platform_id)
+                .gsub('{platformId}', @client.encode_path(platform_id))
 
             api_params = {
                 name: name,
@@ -3397,7 +3408,7 @@ module Appwrite
             end
 
             api_path = '/project/platforms/{platformId}'
-                .gsub('{platformId}', platform_id)
+                .gsub('{platformId}', @client.encode_path(platform_id))
 
             api_params = {}
 
@@ -3459,7 +3470,7 @@ module Appwrite
             end
 
             api_path = '/project/platforms/{platformId}'
-                .gsub('{platformId}', platform_id)
+                .gsub('{platformId}', @client.encode_path(platform_id))
 
             api_params = {}
 
@@ -3624,6 +3635,41 @@ module Appwrite
             end
 
             api_path = '/project/policies/deny-free-email'
+
+            api_params = {
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Project
+            )
+        end
+
+        # Configures if guests, connections without a signed-in user, may subscribe
+        # to realtime channels. When enabled, a guest can still connect and sign in
+        # over the connection, but cannot subscribe until it does.
+        #
+        # @param [] enabled Set whether or not to stop guests from subscribing to realtime channels.
+        #
+        # @return [Project]
+        def update_deny_realtime_guests_policy(
+            enabled:
+        )
+            if enabled.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "enabled"')
+            end
+
+            api_path = '/project/policies/deny-realtime-guests'
 
             api_params = {
                 enabled: enabled,
@@ -4201,9 +4247,9 @@ module Appwrite
         # Get a policy by its unique ID. This endpoint returns the current
         # configuration for the requested project policy.
         #
-        # @param [ProjectPolicyId] policy_id Policy ID. Can be one of: password-dictionary, password-history, password-strength, password-personal-data, password-pwned, password-rotation, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, mfa-factors, deny-aliased-email, deny-disposable-email, deny-free-email, deny-corporate-email, passkey.
+        # @param [ProjectPolicyId] policy_id Policy ID. Can be one of: password-dictionary, password-history, password-strength, password-personal-data, password-pwned, password-rotation, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, mfa-factors, deny-aliased-email, deny-disposable-email, deny-free-email, deny-corporate-email, deny-realtime-guests, passkey.
         #
-        # @return [PolicyPasswordDictionary, PolicyPasswordHistory, PolicyPasswordStrength, PolicyPasswordPersonalData, PolicyPasswordPwned, PolicyPasswordRotation, PolicySessionAlert, PolicySessionDuration, PolicySessionInvalidation, PolicySessionLimit, PolicyUserLimit, PolicyMembershipPrivacy, PolicyMfaFactors, PolicyDenyAliasedEmail, PolicyDenyDisposableEmail, PolicyDenyFreeEmail, PolicyDenyCorporateEmail, PolicyPasskey]
+        # @return [PolicyPasswordDictionary, PolicyPasswordHistory, PolicyPasswordStrength, PolicyPasswordPersonalData, PolicyPasswordPwned, PolicyPasswordRotation, PolicySessionAlert, PolicySessionDuration, PolicySessionInvalidation, PolicySessionLimit, PolicyUserLimit, PolicyMembershipPrivacy, PolicyMfaFactors, PolicyDenyAliasedEmail, PolicyDenyDisposableEmail, PolicyDenyFreeEmail, PolicyDenyCorporateEmail, PolicyDenyRealtimeGuests, PolicyPasskey]
         def get_policy(
             policy_id:
         )
@@ -4212,7 +4258,7 @@ module Appwrite
             end
 
             api_path = '/project/policies/{policyId}'
-                .gsub('{policyId}', policy_id)
+                .gsub('{policyId}', @client.encode_path(policy_id))
 
             api_params = {}
 
@@ -4317,6 +4363,11 @@ module Appwrite
                 return Models::PolicyDenyCorporateEmail.from(map: response)
             end
 
+            if response['$id'] == 'deny-realtime-guests'
+
+                return Models::PolicyDenyRealtimeGuests.from(map: response)
+            end
+
             if response['$id'] == 'passkey'
 
                 return Models::PolicyPasskey.from(map: response)
@@ -4345,7 +4396,7 @@ module Appwrite
             end
 
             api_path = '/project/protocols/{protocolId}'
-                .gsub('{protocolId}', protocol_id)
+                .gsub('{protocolId}', @client.encode_path(protocol_id))
 
             api_params = {
                 enabled: enabled,
@@ -4386,7 +4437,7 @@ module Appwrite
             end
 
             api_path = '/project/services/{serviceId}'
-                .gsub('{serviceId}', service_id)
+                .gsub('{serviceId}', @client.encode_path(service_id))
 
             api_params = {
                 enabled: enabled,
@@ -4404,6 +4455,32 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::Project
+            )
+        end
+
+        # Delete all sessions in the project. Any session created before this request
+        # will be invalidated immediately: users will be signed out of every active
+        # client (web, mobile, server SDKs, JWTs), and will be able to sign in again
+        # afterwards. API keys are not affected by this action.
+        #
+        #
+        # @return []
+        def delete_sessions()
+            api_path = '/project/sessions'
+
+            api_params = {}
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
             )
         end
 
@@ -4602,7 +4679,7 @@ module Appwrite
             end
 
             api_path = '/project/templates/email/{templateId}'
-                .gsub('{templateId}', template_id)
+                .gsub('{templateId}', @client.encode_path(template_id))
 
             api_params = {
                 locale: locale,
@@ -4720,7 +4797,7 @@ module Appwrite
             end
 
             api_path = '/project/variables/{variableId}'
-                .gsub('{variableId}', variable_id)
+                .gsub('{variableId}', @client.encode_path(variable_id))
 
             api_params = {}
 
@@ -4759,7 +4836,7 @@ module Appwrite
             end
 
             api_path = '/project/variables/{variableId}'
-                .gsub('{variableId}', variable_id)
+                .gsub('{variableId}', @client.encode_path(variable_id))
 
             api_params = {
                 key: key,
@@ -4796,7 +4873,7 @@ module Appwrite
             end
 
             api_path = '/project/variables/{variableId}'
-                .gsub('{variableId}', variable_id)
+                .gsub('{variableId}', @client.encode_path(variable_id))
 
             api_params = {}
 

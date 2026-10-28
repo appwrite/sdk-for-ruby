@@ -56,7 +56,7 @@ module Appwrite
             end
 
             api_path = '/presences/{presenceId}'
-                .gsub('{presenceId}', presence_id)
+                .gsub('{presenceId}', @client.encode_path(presence_id))
 
             api_params = {}
 
@@ -106,7 +106,7 @@ module Appwrite
             end
 
             api_path = '/presences/{presenceId}'
-                .gsub('{presenceId}', presence_id)
+                .gsub('{presenceId}', @client.encode_path(presence_id))
 
             api_params = {
                 userId: user_id,
@@ -162,7 +162,7 @@ module Appwrite
             end
 
             api_path = '/presences/{presenceId}'
-                .gsub('{presenceId}', presence_id)
+                .gsub('{presenceId}', @client.encode_path(presence_id))
 
             api_params = {
                 userId: user_id,
@@ -202,7 +202,7 @@ module Appwrite
             end
 
             api_path = '/presences/{presenceId}'
-                .gsub('{presenceId}', presence_id)
+                .gsub('{presenceId}', @client.encode_path(presence_id))
 
             api_params = {}
 

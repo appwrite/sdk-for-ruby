@@ -31,6 +31,9 @@ module Appwrite
             attr_reader :sites
             attr_reader :executions
             attr_reader :executions_retention_count
+            attr_reader :deployment_retention
+            attr_reader :deployment_retention_max
+            attr_reader :deployments_retention_count
             attr_reader :gb_hours
             attr_reader :realtime
             attr_reader :realtime_messages
@@ -109,6 +112,9 @@ module Appwrite
                 sites:,
                 executions:,
                 executions_retention_count:,
+                deployment_retention: 0,
+                deployment_retention_max: 0,
+                deployments_retention_count: 0,
                 gb_hours:,
                 realtime:,
                 realtime_messages:,
@@ -186,6 +192,9 @@ module Appwrite
                 @sites = sites
                 @executions = executions
                 @executions_retention_count = executions_retention_count
+                @deployment_retention = deployment_retention
+                @deployment_retention_max = deployment_retention_max
+                @deployments_retention_count = deployments_retention_count
                 @gb_hours = gb_hours
                 @realtime = realtime
                 @realtime_messages = realtime_messages
@@ -267,6 +276,9 @@ module Appwrite
                     sites: map["sites"],
                     executions: map["executions"],
                     executions_retention_count: map["executionsRetentionCount"],
+                    deployment_retention: map["deploymentRetention"],
+                    deployment_retention_max: map["deploymentRetentionMax"],
+                    deployments_retention_count: map["deploymentsRetentionCount"],
                     gb_hours: map["GBHours"],
                     realtime: map["realtime"],
                     realtime_messages: map["realtimeMessages"],
@@ -348,6 +360,9 @@ module Appwrite
                     "sites": @sites,
                     "executions": @executions,
                     "executionsRetentionCount": @executions_retention_count,
+                    "deploymentRetention": @deployment_retention,
+                    "deploymentRetentionMax": @deployment_retention_max,
+                    "deploymentsRetentionCount": @deployments_retention_count,
                     "GBHours": @gb_hours,
                     "realtime": @realtime,
                     "realtimeMessages": @realtime_messages,

@@ -239,7 +239,7 @@ module Appwrite
             end
 
             api_path = '/users/identities/{identityId}'
-                .gsub('{identityId}', identity_id)
+                .gsub('{identityId}', @client.encode_path(identity_id))
 
             api_params = {}
 
@@ -372,10 +372,10 @@ module Appwrite
         # @param [String] email User email.
         # @param [String] password User password hashed using Scrypt.
         # @param [String] password_salt Optional salt used to hash password.
-        # @param [Integer] password_cpu Optional CPU cost used to hash password.
-        # @param [Integer] password_memory Optional memory cost used to hash password.
-        # @param [Integer] password_parallel Optional parallelization cost used to hash password.
-        # @param [Integer] password_length Optional hash length used to hash password.
+        # @param [Integer] password_cpu Optional CPU cost used to hash password. Must be a power of two, at most 65536.
+        # @param [Integer] password_memory Optional memory cost used to hash password. Maximum is 16.
+        # @param [Integer] password_parallel Optional parallelization cost used to hash password. Maximum is 4.
+        # @param [Integer] password_length Optional hash length used to hash password. Must be between 16 and 128.
         # @param [String] name User name. Max length: 128 chars.
         #
         # @return [User]
@@ -595,7 +595,7 @@ module Appwrite
             end
 
             api_path = '/users/{userId}'
-                .gsub('{userId}', user_id)
+                .gsub('{userId}', @client.encode_path(user_id))
 
             api_params = {}
 
@@ -631,7 +631,7 @@ module Appwrite
             end
 
             api_path = '/users/{userId}'
-                .gsub('{userId}', user_id)
+                .gsub('{userId}', @client.encode_path(user_id))
 
             api_params = {}
 
@@ -668,7 +668,7 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/email'
-                .gsub('{userId}', user_id)
+                .gsub('{userId}', @client.encode_path(user_id))
 
             api_params = {
                 email: email,
@@ -716,7 +716,7 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/impersonator'
-                .gsub('{userId}', user_id)
+                .gsub('{userId}', @client.encode_path(user_id))
 
             api_params = {
                 impersonator: impersonator,
@@ -756,7 +756,7 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/jwts'
-                .gsub('{userId}', user_id)
+                .gsub('{userId}', @client.encode_path(user_id))
 
             api_params = {
                 sessionId: session_id,
@@ -802,7 +802,7 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/labels'
-                .gsub('{userId}', user_id)
+                .gsub('{userId}', @client.encode_path(user_id))
 
             api_params = {
                 labels: labels,
@@ -842,7 +842,7 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/memberships'
-                .gsub('{userId}', user_id)
+                .gsub('{userId}', @client.encode_path(user_id))
 
             api_params = {
                 queries: queries,
@@ -883,7 +883,7 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/mfa'
-                .gsub('{userId}', user_id)
+                .gsub('{userId}', @client.encode_path(user_id))
 
             api_params = {
                 mfa: mfa,
@@ -923,8 +923,8 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/mfa/authenticators/{type}'
-                .gsub('{userId}', user_id)
-                .gsub('{type}', type)
+                .gsub('{userId}', @client.encode_path(user_id))
+                .gsub('{type}', @client.encode_path(type))
 
             api_params = {}
 
@@ -962,8 +962,8 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/mfa/challenges/{challengeId}'
-                .gsub('{userId}', user_id)
-                .gsub('{challengeId}', challenge_id)
+                .gsub('{userId}', @client.encode_path(user_id))
+                .gsub('{challengeId}', @client.encode_path(challenge_id))
 
             api_params = {}
 
@@ -994,7 +994,7 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/mfa/factors'
-                .gsub('{userId}', user_id)
+                .gsub('{userId}', @client.encode_path(user_id))
 
             api_params = {}
 
@@ -1028,7 +1028,7 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/mfa/recovery-codes'
-                .gsub('{userId}', user_id)
+                .gsub('{userId}', @client.encode_path(user_id))
 
             api_params = {}
 
@@ -1062,7 +1062,7 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/mfa/recovery-codes'
-                .gsub('{userId}', user_id)
+                .gsub('{userId}', @client.encode_path(user_id))
 
             api_params = {}
 
@@ -1097,7 +1097,7 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/mfa/recovery-codes'
-                .gsub('{userId}', user_id)
+                .gsub('{userId}', @client.encode_path(user_id))
 
             api_params = {}
 
@@ -1135,7 +1135,7 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/name'
-                .gsub('{userId}', user_id)
+                .gsub('{userId}', @client.encode_path(user_id))
 
             api_params = {
                 name: name,
@@ -1173,7 +1173,7 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/passkeys'
-                .gsub('{userId}', user_id)
+                .gsub('{userId}', @client.encode_path(user_id))
 
             api_params = {
                 queries: queries,
@@ -1213,8 +1213,8 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/passkeys/{passkeyId}'
-                .gsub('{userId}', user_id)
-                .gsub('{passkeyId}', passkey_id)
+                .gsub('{userId}', @client.encode_path(user_id))
+                .gsub('{passkeyId}', @client.encode_path(passkey_id))
 
             api_params = {}
 
@@ -1257,8 +1257,8 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/passkeys/{passkeyId}'
-                .gsub('{userId}', user_id)
-                .gsub('{passkeyId}', passkey_id)
+                .gsub('{userId}', @client.encode_path(user_id))
+                .gsub('{passkeyId}', @client.encode_path(passkey_id))
 
             api_params = {
                 name: name,
@@ -1299,8 +1299,8 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/passkeys/{passkeyId}'
-                .gsub('{userId}', user_id)
-                .gsub('{passkeyId}', passkey_id)
+                .gsub('{userId}', @client.encode_path(user_id))
+                .gsub('{passkeyId}', @client.encode_path(passkey_id))
 
             api_params = {}
 
@@ -1337,7 +1337,7 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/password'
-                .gsub('{userId}', user_id)
+                .gsub('{userId}', @client.encode_path(user_id))
 
             api_params = {
                 password: password,
@@ -1377,7 +1377,7 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/phone'
-                .gsub('{userId}', user_id)
+                .gsub('{userId}', @client.encode_path(user_id))
 
             api_params = {
                 number: number,
@@ -1411,7 +1411,7 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/prefs'
-                .gsub('{userId}', user_id)
+                .gsub('{userId}', @client.encode_path(user_id))
 
             api_params = {}
 
@@ -1450,7 +1450,7 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/prefs'
-                .gsub('{userId}', user_id)
+                .gsub('{userId}', @client.encode_path(user_id))
 
             api_params = {
                 prefs: prefs,
@@ -1486,7 +1486,7 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/sessions'
-                .gsub('{userId}', user_id)
+                .gsub('{userId}', @client.encode_path(user_id))
 
             api_params = {
                 total: total,
@@ -1524,7 +1524,7 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/sessions'
-                .gsub('{userId}', user_id)
+                .gsub('{userId}', @client.encode_path(user_id))
 
             api_params = {}
 
@@ -1556,7 +1556,7 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/sessions'
-                .gsub('{userId}', user_id)
+                .gsub('{userId}', @client.encode_path(user_id))
 
             api_params = {}
 
@@ -1593,8 +1593,8 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/sessions/{sessionId}'
-                .gsub('{userId}', user_id)
-                .gsub('{sessionId}', session_id)
+                .gsub('{userId}', @client.encode_path(user_id))
+                .gsub('{sessionId}', @client.encode_path(session_id))
 
             api_params = {}
 
@@ -1632,7 +1632,7 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/status'
-                .gsub('{userId}', user_id)
+                .gsub('{userId}', @client.encode_path(user_id))
 
             api_params = {
                 status: status,
@@ -1670,7 +1670,7 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/targets'
-                .gsub('{userId}', user_id)
+                .gsub('{userId}', @client.encode_path(user_id))
 
             api_params = {
                 queries: queries,
@@ -1726,7 +1726,7 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/targets'
-                .gsub('{userId}', user_id)
+                .gsub('{userId}', @client.encode_path(user_id))
 
             api_params = {
                 targetId: target_id,
@@ -1770,8 +1770,8 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/targets/{targetId}'
-                .gsub('{userId}', user_id)
-                .gsub('{targetId}', target_id)
+                .gsub('{userId}', @client.encode_path(user_id))
+                .gsub('{targetId}', @client.encode_path(target_id))
 
             api_params = {}
 
@@ -1814,8 +1814,8 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/targets/{targetId}'
-                .gsub('{userId}', user_id)
-                .gsub('{targetId}', target_id)
+                .gsub('{userId}', @client.encode_path(user_id))
+                .gsub('{targetId}', @client.encode_path(target_id))
 
             api_params = {
                 identifier: identifier,
@@ -1857,8 +1857,8 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/targets/{targetId}'
-                .gsub('{userId}', user_id)
-                .gsub('{targetId}', target_id)
+                .gsub('{userId}', @client.encode_path(user_id))
+                .gsub('{targetId}', @client.encode_path(target_id))
 
             api_params = {}
 
@@ -1897,7 +1897,7 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/tokens'
-                .gsub('{userId}', user_id)
+                .gsub('{userId}', @client.encode_path(user_id))
 
             api_params = {
                 length: length,
@@ -1938,7 +1938,7 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/verification'
-                .gsub('{userId}', user_id)
+                .gsub('{userId}', @client.encode_path(user_id))
 
             api_params = {
                 emailVerification: email_verification,
@@ -1978,7 +1978,7 @@ module Appwrite
             end
 
             api_path = '/users/{userId}/verification/phone'
-                .gsub('{userId}', user_id)
+                .gsub('{userId}', @client.encode_path(user_id))
 
             api_params = {
                 phoneVerification: phone_verification,

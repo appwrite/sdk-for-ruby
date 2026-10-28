@@ -337,7 +337,7 @@ module Appwrite
             end
 
             api_path = '/proxy/rules/{ruleId}'
-                .gsub('{ruleId}', rule_id)
+                .gsub('{ruleId}', @client.encode_path(rule_id))
 
             api_params = {}
 
@@ -368,7 +368,7 @@ module Appwrite
             end
 
             api_path = '/proxy/rules/{ruleId}'
-                .gsub('{ruleId}', rule_id)
+                .gsub('{ruleId}', @client.encode_path(rule_id))
 
             api_params = {}
 
@@ -402,7 +402,7 @@ module Appwrite
             end
 
             api_path = '/proxy/rules/{ruleId}/status'
-                .gsub('{ruleId}', rule_id)
+                .gsub('{ruleId}', @client.encode_path(rule_id))
 
             api_params = {}
 

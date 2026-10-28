@@ -65,7 +65,7 @@ module Appwrite
         # @param [Array] provider_paths List of file path patterns to trigger automatic deployments. Supports wildcards. Leave empty to deploy on all file changes.
         # @param [String] build_specification Build specification for the site deployments.
         # @param [String] runtime_specification Runtime specification for the SSR executions.
-        # @param [Integer] deployment_retention Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept.
+        # @param [Integer] deployment_retention Days to keep non-active deployments before deletion. Value 0 keeps all deployments unless the server applies a default retention.
         # @param [Array] scopes List of scopes allowed for API key auto-generated for every site build and SSR execution. Maximum of 200 scopes are allowed.
         # @param [String] description Optional description for the site.
         #
@@ -231,7 +231,7 @@ module Appwrite
             end
 
             api_path = '/sites/{siteId}'
-                .gsub('{siteId}', site_id)
+                .gsub('{siteId}', @client.encode_path(site_id))
 
             api_params = {}
 
@@ -273,7 +273,7 @@ module Appwrite
         # @param [Array] provider_paths List of file path patterns to trigger automatic deployments. Supports wildcards. Leave empty to deploy on all file changes.
         # @param [String] build_specification Build specification for the site deployments.
         # @param [String] runtime_specification Runtime specification for the SSR executions.
-        # @param [Integer] deployment_retention Days to keep non-active deployments before deletion. Value 0 means all deployments will be kept.
+        # @param [Integer] deployment_retention Days to keep non-active deployments before deletion. Value 0 keeps all deployments unless the server applies a default retention.
         # @param [Array] scopes List of scopes allowed for API key auto-generated for every site build and SSR execution. Maximum of 200 scopes are allowed.
         # @param [String] description Optional description for the site.
         #
@@ -318,7 +318,7 @@ module Appwrite
             end
 
             api_path = '/sites/{siteId}'
-                .gsub('{siteId}', site_id)
+                .gsub('{siteId}', @client.encode_path(site_id))
 
             api_params = {
                 name: name,
@@ -375,7 +375,7 @@ module Appwrite
             end
 
             api_path = '/sites/{siteId}'
-                .gsub('{siteId}', site_id)
+                .gsub('{siteId}', @client.encode_path(site_id))
 
             api_params = {}
 
@@ -413,7 +413,7 @@ module Appwrite
             end
 
             api_path = '/sites/{siteId}/deployment'
-                .gsub('{siteId}', site_id)
+                .gsub('{siteId}', @client.encode_path(site_id))
 
             api_params = {
                 deploymentId: deployment_id,
@@ -454,7 +454,7 @@ module Appwrite
             end
 
             api_path = '/sites/{siteId}/deployments'
-                .gsub('{siteId}', site_id)
+                .gsub('{siteId}', @client.encode_path(site_id))
 
             api_params = {
                 queries: queries,
@@ -506,7 +506,7 @@ module Appwrite
             end
 
             api_path = '/sites/{siteId}/deployments'
-                .gsub('{siteId}', site_id)
+                .gsub('{siteId}', @client.encode_path(site_id))
 
             api_params = {
                 installCommand: install_command,
@@ -560,7 +560,7 @@ module Appwrite
             end
 
             api_path = '/sites/{siteId}/deployments/duplicate'
-                .gsub('{siteId}', site_id)
+                .gsub('{siteId}', @client.encode_path(site_id))
 
             api_params = {
                 deploymentId: deployment_id,
@@ -630,7 +630,7 @@ module Appwrite
             end
 
             api_path = '/sites/{siteId}/deployments/template'
-                .gsub('{siteId}', site_id)
+                .gsub('{siteId}', @client.encode_path(site_id))
 
             api_params = {
                 repository: repository,
@@ -685,7 +685,7 @@ module Appwrite
             end
 
             api_path = '/sites/{siteId}/deployments/vcs'
-                .gsub('{siteId}', site_id)
+                .gsub('{siteId}', @client.encode_path(site_id))
 
             api_params = {
                 type: type,
@@ -727,8 +727,8 @@ module Appwrite
             end
 
             api_path = '/sites/{siteId}/deployments/{deploymentId}'
-                .gsub('{siteId}', site_id)
-                .gsub('{deploymentId}', deployment_id)
+                .gsub('{siteId}', @client.encode_path(site_id))
+                .gsub('{deploymentId}', @client.encode_path(deployment_id))
 
             api_params = {}
 
@@ -765,8 +765,8 @@ module Appwrite
             end
 
             api_path = '/sites/{siteId}/deployments/{deploymentId}'
-                .gsub('{siteId}', site_id)
-                .gsub('{deploymentId}', deployment_id)
+                .gsub('{siteId}', @client.encode_path(site_id))
+                .gsub('{deploymentId}', @client.encode_path(deployment_id))
 
             api_params = {}
 
@@ -809,8 +809,8 @@ module Appwrite
             end
 
             api_path = '/sites/{siteId}/deployments/{deploymentId}/download'
-                .gsub('{siteId}', site_id)
-                .gsub('{deploymentId}', deployment_id)
+                .gsub('{siteId}', @client.encode_path(site_id))
+                .gsub('{deploymentId}', @client.encode_path(deployment_id))
 
             api_params = {
                 type: type,
@@ -853,8 +853,8 @@ module Appwrite
             end
 
             api_path = '/sites/{siteId}/deployments/{deploymentId}/status'
-                .gsub('{siteId}', site_id)
-                .gsub('{deploymentId}', deployment_id)
+                .gsub('{siteId}', @client.encode_path(site_id))
+                .gsub('{deploymentId}', @client.encode_path(deployment_id))
 
             api_params = {}
 
@@ -891,7 +891,7 @@ module Appwrite
             end
 
             api_path = '/sites/{siteId}/logs'
-                .gsub('{siteId}', site_id)
+                .gsub('{siteId}', @client.encode_path(site_id))
 
             api_params = {
                 queries: queries,
@@ -931,8 +931,8 @@ module Appwrite
             end
 
             api_path = '/sites/{siteId}/logs/{logId}'
-                .gsub('{siteId}', site_id)
-                .gsub('{logId}', log_id)
+                .gsub('{siteId}', @client.encode_path(site_id))
+                .gsub('{logId}', @client.encode_path(log_id))
 
             api_params = {}
 
@@ -969,8 +969,8 @@ module Appwrite
             end
 
             api_path = '/sites/{siteId}/logs/{logId}'
-                .gsub('{siteId}', site_id)
-                .gsub('{logId}', log_id)
+                .gsub('{siteId}', @client.encode_path(site_id))
+                .gsub('{logId}', @client.encode_path(log_id))
 
             api_params = {}
 
@@ -1005,7 +1005,7 @@ module Appwrite
             end
 
             api_path = '/sites/{siteId}/variables'
-                .gsub('{siteId}', site_id)
+                .gsub('{siteId}', @client.encode_path(site_id))
 
             api_params = {
                 queries: queries,
@@ -1062,7 +1062,7 @@ module Appwrite
             end
 
             api_path = '/sites/{siteId}/variables'
-                .gsub('{siteId}', site_id)
+                .gsub('{siteId}', @client.encode_path(site_id))
 
             api_params = {
                 variableId: variable_id,
@@ -1106,8 +1106,8 @@ module Appwrite
             end
 
             api_path = '/sites/{siteId}/variables/{variableId}'
-                .gsub('{siteId}', site_id)
-                .gsub('{variableId}', variable_id)
+                .gsub('{siteId}', @client.encode_path(site_id))
+                .gsub('{variableId}', @client.encode_path(variable_id))
 
             api_params = {}
 
@@ -1152,8 +1152,8 @@ module Appwrite
             end
 
             api_path = '/sites/{siteId}/variables/{variableId}'
-                .gsub('{siteId}', site_id)
-                .gsub('{variableId}', variable_id)
+                .gsub('{siteId}', @client.encode_path(site_id))
+                .gsub('{variableId}', @client.encode_path(variable_id))
 
             api_params = {
                 key: key,
@@ -1196,8 +1196,8 @@ module Appwrite
             end
 
             api_path = '/sites/{siteId}/variables/{variableId}'
-                .gsub('{siteId}', site_id)
-                .gsub('{variableId}', variable_id)
+                .gsub('{siteId}', @client.encode_path(site_id))
+                .gsub('{variableId}', @client.encode_path(variable_id))
 
             api_params = {}
 

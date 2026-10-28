@@ -176,7 +176,7 @@ module Appwrite
             end
 
             api_path = '/databases/transactions/{transactionId}'
-                .gsub('{transactionId}', transaction_id)
+                .gsub('{transactionId}', @client.encode_path(transaction_id))
 
             api_params = {}
 
@@ -214,7 +214,7 @@ module Appwrite
             end
 
             api_path = '/databases/transactions/{transactionId}'
-                .gsub('{transactionId}', transaction_id)
+                .gsub('{transactionId}', @client.encode_path(transaction_id))
 
             api_params = {
                 commit: commit,
@@ -252,7 +252,7 @@ module Appwrite
             end
 
             api_path = '/databases/transactions/{transactionId}'
-                .gsub('{transactionId}', transaction_id)
+                .gsub('{transactionId}', @client.encode_path(transaction_id))
 
             api_params = {}
 
@@ -288,7 +288,7 @@ module Appwrite
             end
 
             api_path = '/databases/transactions/{transactionId}/operations'
-                .gsub('{transactionId}', transaction_id)
+                .gsub('{transactionId}', @client.encode_path(transaction_id))
 
             api_params = {
                 operations: operations,
@@ -326,7 +326,7 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {}
 
@@ -366,7 +366,7 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 name: name,
@@ -406,7 +406,7 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {}
 
@@ -447,7 +447,7 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 queries: queries,
@@ -512,7 +512,7 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections'
-                .gsub('{databaseId}', database_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
 
             api_params = {
                 collectionId: collection_id,
@@ -563,8 +563,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {}
 
@@ -616,8 +616,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 name: name,
@@ -666,8 +666,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {}
 
@@ -711,8 +711,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 queries: queries,
@@ -779,8 +779,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/bigint'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 key: key,
@@ -857,9 +857,9 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/bigint/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -926,8 +926,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/boolean'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 key: key,
@@ -997,9 +997,9 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/boolean/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -1063,8 +1063,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/datetime'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 key: key,
@@ -1134,9 +1134,9 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/datetime/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -1201,8 +1201,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/email'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 key: key,
@@ -1273,9 +1273,9 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/email/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -1347,8 +1347,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/enum'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 key: key,
@@ -1426,9 +1426,9 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/enum/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 elements: elements,
@@ -1499,8 +1499,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/float'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 key: key,
@@ -1577,9 +1577,9 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/float/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -1651,8 +1651,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/integer'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 key: key,
@@ -1729,9 +1729,9 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/integer/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -1798,8 +1798,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/ip'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 key: key,
@@ -1870,9 +1870,9 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/ip/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -1934,8 +1934,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/line'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 key: key,
@@ -2000,9 +2000,9 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/line/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -2069,8 +2069,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/longtext'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 key: key,
@@ -2142,9 +2142,9 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/longtext/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -2211,8 +2211,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/mediumtext'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 key: key,
@@ -2284,9 +2284,9 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/mediumtext/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -2348,8 +2348,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/point'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 key: key,
@@ -2414,9 +2414,9 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/point/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -2478,8 +2478,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/polygon'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 key: key,
@@ -2544,9 +2544,9 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/polygon/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -2616,8 +2616,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/relationship'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 relatedCollectionId: related_collection_id,
@@ -2680,9 +2680,9 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/relationship/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 onDelete: on_delete,
@@ -2754,8 +2754,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/string'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 key: key,
@@ -2830,9 +2830,9 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/string/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -2900,8 +2900,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/text'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 key: key,
@@ -2973,9 +2973,9 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/text/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -3040,8 +3040,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/url'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 key: key,
@@ -3112,9 +3112,9 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/url/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -3187,8 +3187,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/varchar'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 key: key,
@@ -3263,9 +3263,9 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/varchar/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {
                 required: required,
@@ -3318,9 +3318,9 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {}
 
@@ -3461,9 +3461,9 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/attributes/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {}
 
@@ -3521,8 +3521,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 queries: queries,
@@ -3586,8 +3586,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 documentId: document_id,
@@ -3644,8 +3644,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 documents: documents,
@@ -3701,8 +3701,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 documents: documents,
@@ -3754,8 +3754,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 data: data,
@@ -3805,8 +3805,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 queries: queries,
@@ -3862,8 +3862,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents/query'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 queries: queries,
@@ -3920,9 +3920,9 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{documentId}', document_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{documentId}', @client.encode_path(document_id))
 
             api_params = {
                 queries: queries,
@@ -3980,9 +3980,9 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{documentId}', document_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{documentId}', @client.encode_path(document_id))
 
             api_params = {
                 data: data,
@@ -4040,9 +4040,9 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{documentId}', document_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{documentId}', @client.encode_path(document_id))
 
             api_params = {
                 data: data,
@@ -4095,9 +4095,9 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{documentId}', document_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{documentId}', @client.encode_path(document_id))
 
             api_params = {
                 transactionId: transaction_id,
@@ -4157,10 +4157,10 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}/{attribute}/decrement'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{documentId}', document_id)
-                .gsub('{attribute}', attribute)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{documentId}', @client.encode_path(document_id))
+                .gsub('{attribute}', @client.encode_path(attribute))
 
             api_params = {
                 value: value,
@@ -4223,10 +4223,10 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/documents/{documentId}/{attribute}/increment'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{documentId}', document_id)
-                .gsub('{attribute}', attribute)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{documentId}', @client.encode_path(document_id))
+                .gsub('{attribute}', @client.encode_path(attribute))
 
             api_params = {
                 value: value,
@@ -4275,8 +4275,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/indexes'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 queries: queries,
@@ -4347,8 +4347,8 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/indexes'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
 
             api_params = {
                 key: key,
@@ -4402,9 +4402,9 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/indexes/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {}
 
@@ -4450,9 +4450,9 @@ module Appwrite
             end
 
             api_path = '/databases/{databaseId}/collections/{collectionId}/indexes/{key}'
-                .gsub('{databaseId}', database_id)
-                .gsub('{collectionId}', collection_id)
-                .gsub('{key}', key)
+                .gsub('{databaseId}', @client.encode_path(database_id))
+                .gsub('{collectionId}', @client.encode_path(collection_id))
+                .gsub('{key}', @client.encode_path(key))
 
             api_params = {}
 

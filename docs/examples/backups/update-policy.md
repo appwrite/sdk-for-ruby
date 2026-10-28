@@ -14,7 +14,7 @@ result = backups.update_policy(
     policy_id: '<POLICY_ID>',
     name: '<NAME>', # optional
     retention: 1, # optional
-    schedule: '', # optional
+    schedule: nil, # optional
     enabled: false # optional
 )
 ```

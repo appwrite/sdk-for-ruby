@@ -17,6 +17,7 @@ module Appwrite
             attr_reader :enabled
             attr_reader :conditions
             attr_reader :config
+            attr_reader :schedule
             attr_reader :location
             attr_reader :status_code
 
@@ -35,6 +36,7 @@ module Appwrite
                 enabled:,
                 conditions:,
                 config:,
+                schedule: nil,
                 location:,
                 status_code:
             )
@@ -52,6 +54,7 @@ module Appwrite
                 @enabled = enabled
                 @conditions = conditions
                 @config = config
+                @schedule = schedule
                 @location = location
                 @status_code = status_code
             end
@@ -73,6 +76,7 @@ module Appwrite
                     enabled: map["enabled"],
                     conditions: map["conditions"],
                     config: map["config"],
+                    schedule: map["schedule"],
                     location: map["location"],
                     status_code: map["statusCode"]
                 )
@@ -94,6 +98,7 @@ module Appwrite
                     "enabled": @enabled,
                     "conditions": @conditions,
                     "config": @config,
+                    "schedule": @schedule,
                     "location": @location,
                     "statusCode": @status_code
                 }

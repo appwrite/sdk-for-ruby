@@ -23,6 +23,7 @@ result = waf.create_rate_limit_rule(
     max_bucket_size: 1, # optional
     priority: -100000, # optional
     enabled: false, # optional
-    conditions: [] # optional
+    conditions: [], # optional
+    schedule: {} # optional
 )
 ```

@@ -18,6 +18,7 @@ result = waf.create_bypass_rule(
     description: '<DESCRIPTION>', # optional
     priority: -100000, # optional
     enabled: false, # optional
-    conditions: [] # optional
+    conditions: [], # optional
+    schedule: {} # optional
 )
 ```

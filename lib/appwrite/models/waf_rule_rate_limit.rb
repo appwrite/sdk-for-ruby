@@ -17,6 +17,7 @@ module Appwrite
             attr_reader :enabled
             attr_reader :conditions
             attr_reader :config
+            attr_reader :schedule
             attr_reader :limit
             attr_reader :interval
             attr_reader :key
@@ -38,6 +39,7 @@ module Appwrite
                 enabled:,
                 conditions:,
                 config:,
+                schedule: nil,
                 limit:,
                 interval:,
                 key:,
@@ -58,6 +60,7 @@ module Appwrite
                 @enabled = enabled
                 @conditions = conditions
                 @config = config
+                @schedule = schedule
                 @limit = limit
                 @interval = interval
                 @key = key
@@ -82,6 +85,7 @@ module Appwrite
                     enabled: map["enabled"],
                     conditions: map["conditions"],
                     config: map["config"],
+                    schedule: map["schedule"],
                     limit: map["limit"],
                     interval: map["interval"],
                     key: map["key"],
@@ -106,6 +110,7 @@ module Appwrite
                     "enabled": @enabled,
                     "conditions": @conditions,
                     "config": @config,
+                    "schedule": @schedule,
                     "limit": @limit,
                     "interval": @interval,
                     "key": @key,

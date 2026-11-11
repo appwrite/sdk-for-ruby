@@ -18,6 +18,8 @@ module Appwrite
             attr_reader :status
             attr_reader :logs
             attr_reader :renew_at
+            attr_reader :expire_at
+            attr_reader :certificate_status
             attr_reader :protocol
 
             def initialize(
@@ -36,6 +38,8 @@ module Appwrite
                 status:,
                 logs:,
                 renew_at:,
+                expire_at:,
+                certificate_status:,
                 protocol:
             )
                 @id = id
@@ -53,11 +57,13 @@ module Appwrite
                 @status = validate_status(status)
                 @logs = logs
                 @renew_at = renew_at
+                @expire_at = expire_at
+                @certificate_status = certificate_status
                 @protocol = validate_protocol(protocol)
             end
 
             def self.from(map:)
-                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "domain" => "", "type" => "", "trigger" => "", "redirectUrl" => "", "redirectStatusCode" => 301, "deploymentId" => "", "deploymentResourceId" => "", "deploymentVcsProviderBranch" => "", "status" => "unverified", "logs" => "", "protocol" => "http" }.merge(map)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "domain" => "", "type" => "", "trigger" => "", "redirectUrl" => "", "redirectStatusCode" => 301, "deploymentId" => "", "deploymentResourceId" => "", "deploymentVcsProviderBranch" => "", "status" => "unverified", "logs" => "", "expireAt" => "", "certificateStatus" => "", "protocol" => "http" }.merge(map)
                 ProxyRule.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],
@@ -74,6 +80,8 @@ module Appwrite
                     status: map["status"],
                     logs: map["logs"],
                     renew_at: map["renewAt"],
+                    expire_at: map["expireAt"],
+                    certificate_status: map["certificateStatus"],
                     protocol: map["protocol"]
                 )
             end
@@ -95,6 +103,8 @@ module Appwrite
                     "status": @status,
                     "logs": @logs,
                     "renewAt": @renew_at,
+                    "expireAt": @expire_at,
+                    "certificateStatus": @certificate_status,
                     "protocol": @protocol
                 }
             end

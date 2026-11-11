@@ -51,7 +51,7 @@ module Appwrite
         # @param [Integer] maximum_file_size Maximum file size allowed in bytes. Maximum allowed value is 5GB.
         # @param [Array] allowed_file_extensions Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long.
         # @param [Compression] compression Compression algorithm chosen for compression. Can be one of none,  [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd), For file size above 20MB compression is skipped even if it&#039;s enabled
-        # @param [] encryption Is encryption enabled? For file size above 20MB encryption is skipped even if it&#039;s enabled
+        # @param [] encryption Is encryption enabled? Files of any size are encrypted.
         # @param [] antivirus Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it&#039;s enabled
         # @param [] transformations Are image transformations enabled?
         # @param [String] description Optional description for the bucket.
@@ -156,7 +156,7 @@ module Appwrite
         # @param [Integer] maximum_file_size Maximum file size allowed in bytes. Maximum allowed value is 5GB.
         # @param [Array] allowed_file_extensions Allowed file extensions. Maximum of 100 extensions are allowed, each 64 characters long.
         # @param [Compression] compression Compression algorithm chosen for compression. Can be one of none, [gzip](https://en.wikipedia.org/wiki/Gzip), or [zstd](https://en.wikipedia.org/wiki/Zstd), For file size above 20MB compression is skipped even if it&#039;s enabled
-        # @param [] encryption Is encryption enabled? For file size above 20MB encryption is skipped even if it&#039;s enabled
+        # @param [] encryption Is encryption enabled? Files of any size are encrypted.
         # @param [] antivirus Is virus scanning enabled? For file size above 20MB AntiVirus scanning is skipped even if it&#039;s enabled
         # @param [] transformations Are image transformations enabled?
         # @param [String] description Optional description for the bucket.

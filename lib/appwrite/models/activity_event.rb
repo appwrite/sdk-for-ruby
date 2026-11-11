@@ -32,6 +32,7 @@ module Appwrite
             attr_reader :hostname
             attr_reader :sdk
             attr_reader :sdk_version
+            attr_reader :reason
 
             def initialize(
                 id:,
@@ -62,7 +63,8 @@ module Appwrite
                 team_id:,
                 hostname:,
                 sdk:,
-                sdk_version:
+                sdk_version:,
+                reason:
             )
                 @id = id
                 @actor_type = actor_type
@@ -93,10 +95,11 @@ module Appwrite
                 @hostname = hostname
                 @sdk = sdk
                 @sdk_version = sdk_version
+                @reason = reason
             end
 
             def self.from(map:)
-                map = { "$id" => "", "actorType" => "", "actorId" => "", "actorEmail" => "", "actorName" => "", "resourceParent" => "", "resourceType" => "", "resourceId" => "", "resource" => "", "event" => "", "userAgent" => "", "ip" => "", "mode" => "", "country" => "", "continentCode" => "", "city" => "", "subdivisions" => "", "isp" => "", "autonomousSystemNumber" => "", "autonomousSystemOrganization" => "", "connectionType" => "", "connectionUsageType" => "", "connectionOrganization" => "", "time" => "", "projectId" => "", "teamId" => "", "hostname" => "", "sdk" => "", "sdkVersion" => "" }.merge(map)
+                map = { "$id" => "", "actorType" => "", "actorId" => "", "actorEmail" => "", "actorName" => "", "resourceParent" => "", "resourceType" => "", "resourceId" => "", "resource" => "", "event" => "", "userAgent" => "", "ip" => "", "mode" => "", "country" => "", "continentCode" => "", "city" => "", "subdivisions" => "", "isp" => "", "autonomousSystemNumber" => "", "autonomousSystemOrganization" => "", "connectionType" => "", "connectionUsageType" => "", "connectionOrganization" => "", "time" => "", "projectId" => "", "teamId" => "", "hostname" => "", "sdk" => "", "sdkVersion" => "", "reason" => "" }.merge(map)
                 ActivityEvent.new(
                     id: map["$id"],
                     actor_type: map["actorType"],
@@ -126,7 +129,8 @@ module Appwrite
                     team_id: map["teamId"],
                     hostname: map["hostname"],
                     sdk: map["sdk"],
-                    sdk_version: map["sdkVersion"]
+                    sdk_version: map["sdkVersion"],
+                    reason: map["reason"]
                 )
             end
 
@@ -160,7 +164,8 @@ module Appwrite
                     "teamId": @team_id,
                     "hostname": @hostname,
                     "sdk": @sdk,
-                    "sdkVersion": @sdk_version
+                    "sdkVersion": @sdk_version,
+                    "reason": @reason
                 }
             end
         end

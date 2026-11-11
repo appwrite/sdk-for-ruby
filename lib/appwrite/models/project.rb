@@ -22,6 +22,7 @@ module Appwrite
             attr_reader :ping_count
             attr_reader :pinged_at
             attr_reader :labels
+            attr_reader :prefs
             attr_reader :status
             attr_reader :onboarding
             attr_reader :auth_methods
@@ -31,6 +32,7 @@ module Appwrite
             attr_reader :console_accessed_at
             attr_reader :waf_enabled
             attr_reader :parent_id
+            attr_reader :environment_id
             attr_reader :billing_limits
             attr_reader :first_accessed_at
             attr_reader :mcp_accessed_at
@@ -72,6 +74,7 @@ module Appwrite
                 ping_count:,
                 pinged_at:,
                 labels:,
+                prefs: nil,
                 status:,
                 onboarding:,
                 auth_methods:,
@@ -81,6 +84,7 @@ module Appwrite
                 console_accessed_at:,
                 waf_enabled: false,
                 parent_id: nil,
+                environment_id: nil,
                 billing_limits: nil,
                 first_accessed_at: nil,
                 mcp_accessed_at: nil,
@@ -121,6 +125,7 @@ module Appwrite
                 @ping_count = ping_count
                 @pinged_at = pinged_at
                 @labels = labels
+                @prefs = prefs
                 @status = status
                 @onboarding = onboarding
                 @auth_methods = auth_methods
@@ -130,6 +135,7 @@ module Appwrite
                 @console_accessed_at = console_accessed_at
                 @waf_enabled = waf_enabled
                 @parent_id = parent_id
+                @environment_id = environment_id
                 @billing_limits = billing_limits
                 @first_accessed_at = first_accessed_at
                 @mcp_accessed_at = mcp_accessed_at
@@ -174,6 +180,7 @@ module Appwrite
                     ping_count: map["pingCount"],
                     pinged_at: map["pingedAt"],
                     labels: map["labels"],
+                    prefs: map["prefs"].nil? ? nil : Preferences.from(map: map["prefs"]),
                     status: map["status"],
                     onboarding: map["onboarding"],
                     auth_methods: map["authMethods"].map { |it| ProjectAuthMethod.from(map: it) },
@@ -183,6 +190,7 @@ module Appwrite
                     console_accessed_at: map["consoleAccessedAt"],
                     waf_enabled: map["wafEnabled"],
                     parent_id: map["parentId"],
+                    environment_id: map["environmentId"],
                     billing_limits: map["billingLimits"].nil? ? nil : BillingLimits.from(map: map["billingLimits"]),
                     first_accessed_at: map["firstAccessedAt"],
                     mcp_accessed_at: map["mcpAccessedAt"],
@@ -227,6 +235,7 @@ module Appwrite
                     "pingCount": @ping_count,
                     "pingedAt": @pinged_at,
                     "labels": @labels,
+                    "prefs": @prefs&.to_map,
                     "status": @status,
                     "onboarding": @onboarding,
                     "authMethods": @auth_methods.map { |it| it.to_map },
@@ -236,6 +245,7 @@ module Appwrite
                     "consoleAccessedAt": @console_accessed_at,
                     "wafEnabled": @waf_enabled,
                     "parentId": @parent_id,
+                    "environmentId": @environment_id,
                     "billingLimits": @billing_limits&.to_map,
                     "firstAccessedAt": @first_accessed_at,
                     "mcpAccessedAt": @mcp_accessed_at,

@@ -7,6 +7,7 @@ module Appwrite
             attr_reader :created_at
             attr_reader :updated_at
             attr_reader :user_id
+            attr_reader :user_name
             attr_reader :expire
             attr_reader :provider
             attr_reader :provider_uid
@@ -38,6 +39,7 @@ module Appwrite
                 created_at:,
                 updated_at:,
                 user_id:,
+                user_name:,
                 expire:,
                 provider:,
                 provider_uid:,
@@ -68,6 +70,7 @@ module Appwrite
                 @created_at = created_at
                 @updated_at = updated_at
                 @user_id = user_id
+                @user_name = user_name
                 @expire = expire
                 @provider = provider
                 @provider_uid = provider_uid
@@ -96,12 +99,13 @@ module Appwrite
             end
 
             def self.from(map:)
-                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "userId" => "", "expire" => "", "provider" => "", "providerUid" => "", "providerAccessToken" => "", "providerAccessTokenExpiry" => "", "providerRefreshToken" => "", "ip" => "", "osCode" => "", "osName" => "", "osVersion" => "", "clientType" => "", "clientCode" => "", "clientName" => "", "clientVersion" => "", "clientEngine" => "", "clientEngineVersion" => "", "deviceName" => "", "deviceBrand" => "", "deviceModel" => "", "countryCode" => "", "countryName" => "", "current" => false, "factors" => [], "secret" => "", "mfaUpdatedAt" => "" }.merge(map)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "userId" => "", "userName" => "", "expire" => "", "provider" => "", "providerUid" => "", "providerAccessToken" => "", "providerAccessTokenExpiry" => "", "providerRefreshToken" => "", "ip" => "", "osCode" => "", "osName" => "", "osVersion" => "", "clientType" => "", "clientCode" => "", "clientName" => "", "clientVersion" => "", "clientEngine" => "", "clientEngineVersion" => "", "deviceName" => "", "deviceBrand" => "", "deviceModel" => "", "countryCode" => "", "countryName" => "", "current" => false, "factors" => [], "secret" => "", "mfaUpdatedAt" => "" }.merge(map)
                 Session.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],
                     updated_at: map["$updatedAt"],
                     user_id: map["userId"],
+                    user_name: map["userName"],
                     expire: map["expire"],
                     provider: map["provider"],
                     provider_uid: map["providerUid"],
@@ -136,6 +140,7 @@ module Appwrite
                     "$createdAt": @created_at,
                     "$updatedAt": @updated_at,
                     "userId": @user_id,
+                    "userName": @user_name,
                     "expire": @expire,
                     "provider": @provider,
                     "providerUid": @provider_uid,

@@ -17,6 +17,7 @@ module Appwrite
             attr_reader :enabled
             attr_reader :conditions
             attr_reader :config
+            attr_reader :schedule
             attr_reader :challenge_type
             attr_reader :difficulty
             attr_reader :ttl
@@ -36,6 +37,7 @@ module Appwrite
                 enabled:,
                 conditions:,
                 config:,
+                schedule: nil,
                 challenge_type:,
                 difficulty:,
                 ttl:
@@ -54,6 +56,7 @@ module Appwrite
                 @enabled = enabled
                 @conditions = conditions
                 @config = config
+                @schedule = schedule
                 @challenge_type = challenge_type
                 @difficulty = difficulty
                 @ttl = ttl
@@ -76,6 +79,7 @@ module Appwrite
                     enabled: map["enabled"],
                     conditions: map["conditions"],
                     config: map["config"],
+                    schedule: map["schedule"],
                     challenge_type: map["challengeType"],
                     difficulty: map["difficulty"],
                     ttl: map["ttl"]
@@ -98,6 +102,7 @@ module Appwrite
                     "enabled": @enabled,
                     "conditions": @conditions,
                     "config": @config,
+                    "schedule": @schedule,
                     "challengeType": @challenge_type,
                     "difficulty": @difficulty,
                     "ttl": @ttl

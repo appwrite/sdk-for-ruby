@@ -301,6 +301,161 @@ module Appwrite
             )
         end
 
+        # Create an account switching device. A device is a container, scoped to one
+        # browser or app install, that holds multiple sessions and tracks which one
+        # is active. Once a device exists, session creation endpoints attach the new
+        # session to it automatically, so a single browser can stay signed in to
+        # several accounts and switch between them. A device holds at most one
+        # session per user: signing in again as a user it already holds replaces that
+        # user&#039;s session. The device lives as long as its newest session.
+        #
+        # The device secret is returned in a cookie. Run this on app start: if the
+        # browser already has a valid device, the existing one is returned with the
+        # same status code instead of an error, so it is always safe to call.
+        #
+        # Every session that joins the device rotates the device secret and re-issues
+        # the cookie, so an earlier copy of the secret stops working. A client that
+        # keeps the secret itself, rather than relying on the cookie, must replace it
+        # from each session response.
+        #
+        #
+        # @return [Device]
+        def create_device()
+            api_path = '/account/devices'
+
+            api_params = {}
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Device
+            )
+        end
+
+        # Get the account switching device for the current browser, including every
+        # session it holds, the name of the user each session belongs to, and the ID
+        # of the active session. Use the string &#039;current&#039; to reference the current
+        # browser&#039;s device.
+        #
+        # @param [String] device_id Device ID. Use the string &#039;current&#039; to reference the device of the current browser.
+        #
+        # @return [Device]
+        def get_device(
+            device_id:
+        )
+            if device_id.nil? || device_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "deviceId"')
+            end
+
+            api_path = '/account/devices/{deviceId}'
+                .gsub('{deviceId}', @client.encode_path(device_id))
+
+            api_params = {}
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Device
+            )
+        end
+
+        # Delete the account switching device for the current browser. Every session
+        # the device holds is signed out, each firing its own session delete event,
+        # the device is removed, and both the device and session cookies are cleared.
+        # Use the string &#039;current&#039; to reference the current browser&#039;s device.
+        #
+        # @param [String] device_id Device ID. Use the string &#039;current&#039; to reference the device of the current browser.
+        #
+        # @return []
+        def delete_device(
+            device_id:
+        )
+            if device_id.nil? || device_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "deviceId"')
+            end
+
+            api_path = '/account/devices/{deviceId}'
+                .gsub('{deviceId}', @client.encode_path(device_id))
+
+            api_params = {}
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+            )
+        end
+
+        # Switch the active account on an account switching device to one of the
+        # sessions it holds. The chosen session becomes active and its secret is
+        # written to the browser&#039;s session cookie, so subsequent requests
+        # authenticate as that account. Use the string &#039;current&#039; to reference the
+        # current browser&#039;s device.
+        #
+        # Switching rotates the chosen session&#039;s secret. Any other holder of that
+        # session, such as a copy kept elsewhere, stops working, so a session should
+        # not be shared across devices.
+        #
+        # @param [String] device_id Device ID. Use the string &#039;current&#039; to reference the device of the current browser.
+        # @param [String] session_id ID of the session, held by the device, to make active.
+        #
+        # @return [Session]
+        def update_device_session(
+            device_id:,
+            session_id:
+        )
+            if device_id.nil? || device_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "deviceId"')
+            end
+
+            if session_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "sessionId"')
+            end
+
+            api_path = '/account/devices/{deviceId}/session'
+                .gsub('{deviceId}', @client.encode_path(device_id))
+
+            api_params = {
+                sessionId: session_id,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Session
+            )
+        end
+
         # Update currently logged in user account email address. After changing user
         # address, the user confirmation status will get reset. A new confirmation
         # email is not sent automatically however you can use the send confirmation
@@ -2006,7 +2161,7 @@ module Appwrite
         # about session
         # limits](https://appwrite.io/docs/authentication-security#limits).
         #
-        # @param [OAuthProvider] provider OAuth2 Provider. Currently, supported providers are: amazon, apple, appwrite, auth0, authentik, autodesk, bitbucket, bitly, box, cloudflare, dailymotion, discord, disqus, dropbox, etsy, facebook, figma, fusionauth, github, gitlab, google, huggingface, kakao, keycloak, kick, linkedin, microsoft, notion, oidc, okta, paypal, paypalSandbox, podio, resend, salesforce, slack, spotify, stripe, tiktok, tradeshift, tradeshiftBox, twitch, webflow, wordpress, x, yahoo, yammer, yandex, zoho, zoom.
+        # @param [OAuthProvider] provider OAuth2 Provider. Currently, supported providers are: amazon, apple, appwrite, auth0, authentik, autodesk, bitbucket, bitly, box, cloudflare, dailymotion, discord, disqus, dropbox, etsy, facebook, figma, fusionauth, github, gitlab, google, huggingface, kakao, keycloak, kick, linkedin, microsoft, notion, oidc, okta, paypal, paypalSandbox, podio, resend, salesforce, slack, spotify, stripe, tiktok, tradeshift, tradeshiftBox, twitch, vipps, vippsSandbox, webflow, wordpress, x, yahoo, yammer, yandex, zoho, zoom.
         # @param [String] success URL to redirect back to your app after a successful login attempt.  Only URLs from hostnames in your project&#039;s platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.
         # @param [String] failure URL to redirect back to your app after a failed login attempt.  Only URLs from hostnames in your project&#039;s platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.
         # @param [Array] scopes A list of custom OAuth2 scopes. Check each provider internal docs for a list of supported scopes. Maximum of 100 scopes are allowed, each 4096 characters long.

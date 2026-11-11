@@ -17,6 +17,7 @@ module Appwrite
             attr_reader :enabled
             attr_reader :conditions
             attr_reader :config
+            attr_reader :schedule
 
             def initialize(
                 id:,
@@ -32,7 +33,8 @@ module Appwrite
                 priority:,
                 enabled:,
                 conditions:,
-                config:
+                config:,
+                schedule: nil
             )
                 @id = id
                 @created_at = created_at
@@ -48,6 +50,7 @@ module Appwrite
                 @enabled = enabled
                 @conditions = conditions
                 @config = config
+                @schedule = schedule
             end
 
             def self.from(map:)
@@ -66,7 +69,8 @@ module Appwrite
                     priority: map["priority"],
                     enabled: map["enabled"],
                     conditions: map["conditions"],
-                    config: map["config"]
+                    config: map["config"],
+                    schedule: map["schedule"]
                 )
             end
 
@@ -85,7 +89,8 @@ module Appwrite
                     "priority": @priority,
                     "enabled": @enabled,
                     "conditions": @conditions,
-                    "config": @config
+                    "config": @config,
+                    "schedule": @schedule
                 }
             end
 

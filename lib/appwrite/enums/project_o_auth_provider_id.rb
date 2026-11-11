@@ -43,6 +43,8 @@ module Appwrite
             TRADESHIFT = 'tradeshift'
             TRADESHIFTBOX = 'tradeshiftBox'
             TWITCH = 'twitch'
+            VIPPS = 'vipps'
+            VIPPSSANDBOX = 'vippsSandbox'
             WEBFLOW = 'webflow'
             WORDPRESS = 'wordpress'
             X = 'x'

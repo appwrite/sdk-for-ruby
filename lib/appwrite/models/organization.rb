@@ -11,6 +11,8 @@ module Appwrite
             attr_reader :prefs
             attr_reader :billing_budget
             attr_reader :budget_alerts
+            attr_reader :budget_notify
+            attr_reader :budget_critical
             attr_reader :billing_plan
             attr_reader :billing_plan_id
             attr_reader :billing_plan_details
@@ -32,6 +34,7 @@ module Appwrite
             attr_reader :program_manager_calendar
             attr_reader :program_discord_channel_name
             attr_reader :program_discord_channel_url
+            attr_reader :education_expires_at
             attr_reader :billing_limits
             attr_reader :billing_plan_downgrade
             attr_reader :billing_tax_id
@@ -48,6 +51,8 @@ module Appwrite
                 prefs:,
                 billing_budget: nil,
                 budget_alerts:,
+                budget_notify:,
+                budget_critical:,
                 billing_plan:,
                 billing_plan_id:,
                 billing_plan_details:,
@@ -69,6 +74,7 @@ module Appwrite
                 program_manager_calendar: nil,
                 program_discord_channel_name: nil,
                 program_discord_channel_url: nil,
+                education_expires_at: nil,
                 billing_limits: nil,
                 billing_plan_downgrade: nil,
                 billing_tax_id: nil,
@@ -84,6 +90,8 @@ module Appwrite
                 @prefs = prefs
                 @billing_budget = billing_budget
                 @budget_alerts = budget_alerts
+                @budget_notify = budget_notify
+                @budget_critical = budget_critical
                 @billing_plan = billing_plan
                 @billing_plan_id = billing_plan_id
                 @billing_plan_details = billing_plan_details
@@ -105,6 +113,7 @@ module Appwrite
                 @program_manager_calendar = program_manager_calendar
                 @program_discord_channel_name = program_discord_channel_name
                 @program_discord_channel_url = program_discord_channel_url
+                @education_expires_at = education_expires_at
                 @billing_limits = billing_limits
                 @billing_plan_downgrade = billing_plan_downgrade
                 @billing_tax_id = billing_tax_id
@@ -114,7 +123,7 @@ module Appwrite
             end
 
             def self.from(map:)
-                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "total" => 0, "budgetAlerts" => [75], "billingPlan" => "tier-0", "billingPlanId" => "tier-0", "billingEmail" => "", "status" => "draft", "markedForDeletion" => false, "platform" => "appwrite", "projects" => [] }.merge(map)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "total" => 0, "budgetAlerts" => [75], "budgetNotify" => ["owner", "billing"], "budgetCritical" => [], "billingPlan" => "tier-0", "billingPlanId" => "tier-0", "billingEmail" => "", "status" => "draft", "markedForDeletion" => false, "platform" => "appwrite", "projects" => [] }.merge(map)
                 Organization.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],
@@ -124,6 +133,8 @@ module Appwrite
                     prefs: Preferences.from(map: map["prefs"]),
                     billing_budget: map["billingBudget"],
                     budget_alerts: map["budgetAlerts"],
+                    budget_notify: map["budgetNotify"],
+                    budget_critical: map["budgetCritical"],
                     billing_plan: map["billingPlan"],
                     billing_plan_id: map["billingPlanId"],
                     billing_plan_details: BillingPlan.from(map: map["billingPlanDetails"]),
@@ -145,6 +156,7 @@ module Appwrite
                     program_manager_calendar: map["programManagerCalendar"],
                     program_discord_channel_name: map["programDiscordChannelName"],
                     program_discord_channel_url: map["programDiscordChannelUrl"],
+                    education_expires_at: map["educationExpiresAt"],
                     billing_limits: map["billingLimits"].nil? ? nil : BillingLimits.from(map: map["billingLimits"]),
                     billing_plan_downgrade: map["billingPlanDowngrade"],
                     billing_tax_id: map["billingTaxId"],
@@ -164,6 +176,8 @@ module Appwrite
                     "prefs": @prefs.to_map,
                     "billingBudget": @billing_budget,
                     "budgetAlerts": @budget_alerts,
+                    "budgetNotify": @budget_notify,
+                    "budgetCritical": @budget_critical,
                     "billingPlan": @billing_plan,
                     "billingPlanId": @billing_plan_id,
                     "billingPlanDetails": @billing_plan_details.to_map,
@@ -185,6 +199,7 @@ module Appwrite
                     "programManagerCalendar": @program_manager_calendar,
                     "programDiscordChannelName": @program_discord_channel_name,
                     "programDiscordChannelUrl": @program_discord_channel_url,
+                    "educationExpiresAt": @education_expires_at,
                     "billingLimits": @billing_limits&.to_map,
                     "billingPlanDowngrade": @billing_plan_downgrade,
                     "billingTaxId": @billing_tax_id,

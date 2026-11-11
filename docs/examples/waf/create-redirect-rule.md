@@ -20,6 +20,7 @@ result = waf.create_redirect_rule(
     description: '<DESCRIPTION>', # optional
     priority: -100000, # optional
     enabled: false, # optional
-    conditions: [] # optional
+    conditions: [], # optional
+    schedule: {} # optional
 )
 ```

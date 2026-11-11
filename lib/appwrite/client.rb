@@ -14,8 +14,8 @@ module Appwrite
                 'x-sdk-name' => 'Ruby',
                 'x-sdk-platform' => 'server',
                 'x-sdk-language' => 'ruby',
-                'x-sdk-version' => '30.1.0',
-                'X-Appwrite-Response-Format' => '2.6.2'
+                'x-sdk-version' => '30.2.0',
+                'X-Appwrite-Response-Format' => '2.7.1'
             }
             @endpoint = 'https://cloud.appwrite.io/v1'
             @config = {}
@@ -98,6 +98,20 @@ module Appwrite
         def set_locale(value)
             add_header('x-appwrite-locale', value)
             @config['locale'] = value
+
+            self
+        end
+
+        # Set Environment
+        #
+        # The ID of the project environment to act in, alongside the project ID. Used with Appwrite Cloud projects that have environments.
+        #
+        # @param [String] value The value to set for the Environment header
+        #
+        # @return [self]
+        def set_environment(value)
+            add_header('x-appwrite-environment', value)
+            @config['environment'] = value
 
             self
         end

@@ -94,12 +94,13 @@ module Appwrite
         end
 
         # Get a list of all environments of the project. You can use the query params
-        # to filter your results.
+        # to filter your results. An environment is listed by its ID, the one passed
+        # in the `X-Appwrite-Environment` header to act in it.
         #
-        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, teamId, labels, search, accessedAt, status, parentId
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: $id, name, search
         # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
         #
-        # @return [ProjectList]
+        # @return [EnvironmentList]
         def list_environments(
             queries: nil,
             total: nil
@@ -121,13 +122,17 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::ProjectList
+                response_type: Models::EnvironmentList
             )
         end
 
         # Create a new environment of the project. An environment is a separate
         # project in the same organization and region, with its own resources and
-        # users. Its usage is billed under the project it belongs to.
+        # users. Its usage is billed under the project it belongs to. Requests act in
+        # the environment when they carry the project&#039;s ID in the
+        # `X-Appwrite-Project` header and the environment&#039;s ID in the
+        # `X-Appwrite-Environment` header; the environment has no project ID of its
+        # own to pass.
         #
         # Pass `resources` to copy the project into the environment. The environment
         # is returned at once and the copy runs as a migration of the environment,
@@ -137,11 +142,11 @@ module Appwrite
         # under its limit of 100 users for test accounts, and the memberships of
         # users left behind are not copied.
         #
-        # @param [String] environment_id Unique Id. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, and hyphen. Can&#039;t start with a special char. Max length is 36 chars.
+        # @param [String] environment_id Environment ID, unique within the project and passed in the `X-Appwrite-Environment` header to act in the environment. Choose a custom ID such as `staging`, or generate a random ID with `ID.unique()`. Valid chars are a-z, 0-9, and hyphen. Can&#039;t start with a special char. Max length is 36 chars.
         # @param [String] name Environment name. Max length: 128 chars.
         # @param [Array] resources Resources to copy from the project into the environment, by type. A structural type such as `database`, `table`, `column`, `index`, `bucket`, `team`, `function` or `site` copies the structure and its settings; `row`, `file`, `user`, `membership`, `deployment` and `site-deployment` copy what it holds. A function or site is copied with its active deployment; add `deployment` or `site-deployment` to copy every deployment. Users are copied newest first and at most 90 of them, leaving room under the limit of 100 users of an environment for test accounts; the memberships of users left behind are not copied. Leave empty for an empty environment. Maximum of 100 types.
         #
-        # @return [Project]
+        # @return [Environment]
         def create_environment(
             environment_id:,
             name:,
@@ -174,15 +179,16 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Project
+                response_type: Models::Environment
             )
         end
 
-        # Get an environment of the project by its unique ID.
+        # Get an environment of the project by its ID, the one passed in the
+        # `X-Appwrite-Environment` header to act in it.
         #
-        # @param [String] environment_id Environment unique ID.
+        # @param [String] environment_id Environment ID.
         #
-        # @return [Project]
+        # @return [Environment]
         def get_environment(
             environment_id:
         )
@@ -205,16 +211,17 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Project
+                response_type: Models::Environment
             )
         end
 
-        # Update the name of an environment of the project.
+        # Update the name of an environment of the project. The environment ID cannot
+        # be changed.
         #
-        # @param [String] environment_id Environment unique ID.
+        # @param [String] environment_id Environment ID.
         # @param [String] name Environment name. Max length: 128 chars.
         #
-        # @return [Project]
+        # @return [Environment]
         def update_environment(
             environment_id:,
             name:
@@ -245,13 +252,13 @@ module Appwrite
                 path: api_path,
                 headers: api_headers,
                 params: api_params,
-                response_type: Models::Project
+                response_type: Models::Environment
             )
         end
 
         # Delete an environment of the project, with all of its resources and users.
         #
-        # @param [String] environment_id Environment unique ID.
+        # @param [String] environment_id Environment ID.
         #
         # @return []
         def delete_environment(
@@ -2356,6 +2363,76 @@ module Appwrite
             )
         end
 
+        # Update the project OAuth2 Vipps MobilePay configuration.
+        #
+        # @param [String] client_id &#039;Client ID&#039; of Vipps MobilePay OAuth2 app. For example: 9a3a4b3e-0000-0000-0000-0f1a6d1c3b2e
+        # @param [String] client_secret &#039;Client Secret&#039; of Vipps MobilePay OAuth2 app. For example: Ay1jb000000000000000000000000000000Vx3k
+        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        #
+        # @return [OAuth2Vipps]
+        def update_o_auth2_vipps(
+            client_id: nil,
+            client_secret: nil,
+            enabled: nil
+        )
+            api_path = '/project/oauth2/vipps'
+
+            api_params = {
+                clientId: client_id,
+                clientSecret: client_secret,
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::OAuth2Vipps
+            )
+        end
+
+        # Update the project OAuth2 Vipps MobilePay Sandbox configuration.
+        #
+        # @param [String] client_id &#039;Client ID&#039; of Vipps MobilePay Sandbox OAuth2 app. For example: 9a3a4b3e-0000-0000-0000-0f1a6d1c3b2e
+        # @param [String] client_secret &#039;Client Secret&#039; of Vipps MobilePay Sandbox OAuth2 app. For example: Ay1jb000000000000000000000000000000Vx3k
+        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        #
+        # @return [OAuth2Vipps]
+        def update_o_auth2_vipps_sandbox(
+            client_id: nil,
+            client_secret: nil,
+            enabled: nil
+        )
+            api_path = '/project/oauth2/vippsSandbox'
+
+            api_params = {
+                clientId: client_id,
+                clientSecret: client_secret,
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::OAuth2Vipps
+            )
+        end
+
         # Update the project OAuth2 Webflow configuration.
         #
         # @param [String] client_id &#039;Client ID&#039; of Webflow OAuth2 app. For example: 8bb20000000000000000000000000000000000000000000000000000000040dd
@@ -2609,7 +2686,7 @@ module Appwrite
         #
         # @param [ProjectOAuthProviderId] provider_id OAuth2 provider key. For example: github, google, apple.
         #
-        # @return [OAuth2Github, OAuth2Discord, OAuth2Figma, OAuth2Dropbox, OAuth2Dailymotion, OAuth2Bitbucket, OAuth2Bitly, OAuth2Box, OAuth2Autodesk, OAuth2Google, OAuth2Zoom, OAuth2Zoho, OAuth2Yandex, OAuth2X, OAuth2WordPress, OAuth2Webflow, OAuth2Twitch, OAuth2Stripe, OAuth2Spotify, OAuth2Slack, OAuth2Podio, OAuth2Notion, OAuth2Salesforce, OAuth2Yahoo, OAuth2HuggingFace, OAuth2Resend, OAuth2Cloudflare, OAuth2Linkedin, OAuth2Disqus, OAuth2Amazon, OAuth2Etsy, OAuth2Facebook, OAuth2Tradeshift, OAuth2Paypal, OAuth2Gitlab, OAuth2Authentik, OAuth2Auth0, OAuth2FusionAuth, OAuth2Keycloak, OAuth2Oidc, OAuth2Apple, OAuth2Okta, OAuth2Kick, OAuth2Microsoft, OAuth2TikTok, OAuth2Kakao]
+        # @return [OAuth2Github, OAuth2Discord, OAuth2Figma, OAuth2Dropbox, OAuth2Dailymotion, OAuth2Bitbucket, OAuth2Bitly, OAuth2Box, OAuth2Autodesk, OAuth2Google, OAuth2Zoom, OAuth2Zoho, OAuth2Yandex, OAuth2X, OAuth2WordPress, OAuth2Webflow, OAuth2Twitch, OAuth2Stripe, OAuth2Spotify, OAuth2Slack, OAuth2Podio, OAuth2Notion, OAuth2Salesforce, OAuth2Yahoo, OAuth2HuggingFace, OAuth2Resend, OAuth2Cloudflare, OAuth2Linkedin, OAuth2Disqus, OAuth2Amazon, OAuth2Etsy, OAuth2Facebook, OAuth2Tradeshift, OAuth2Paypal, OAuth2Gitlab, OAuth2Authentik, OAuth2Auth0, OAuth2FusionAuth, OAuth2Keycloak, OAuth2Oidc, OAuth2Apple, OAuth2Okta, OAuth2Kick, OAuth2Microsoft, OAuth2TikTok, OAuth2Kakao, OAuth2Vipps]
         def get_o_auth2_provider(
             provider_id:
         )
@@ -2798,9 +2875,19 @@ module Appwrite
                 return Models::OAuth2Facebook.from(map: response)
             end
 
+            if response['$id'] == 'tradeshift'
+
+                return Models::OAuth2Tradeshift.from(map: response)
+            end
+
             if response['$id'] == 'tradeshiftBox'
 
                 return Models::OAuth2Tradeshift.from(map: response)
+            end
+
+            if response['$id'] == 'paypal'
+
+                return Models::OAuth2Paypal.from(map: response)
             end
 
             if response['$id'] == 'paypalSandbox'
@@ -2866,6 +2953,16 @@ module Appwrite
             if response['$id'] == 'kakao'
 
                 return Models::OAuth2Kakao.from(map: response)
+            end
+
+            if response['$id'] == 'vipps'
+
+                return Models::OAuth2Vipps.from(map: response)
+            end
+
+            if response['$id'] == 'vippsSandbox'
+
+                return Models::OAuth2Vipps.from(map: response)
             end
 
             raise Exception, "Unable to match response to any expected response model"
@@ -3516,6 +3613,42 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::PolicyList
+            )
+        end
+
+        # Update whether account devices are enabled for the project. When enabled, a
+        # browser can create an account device that holds multiple sessions and
+        # switch between them. When disabled, account devices can no longer be
+        # created, so each browser is limited to a single active session.
+        #
+        # @param [] enabled Set to true to allow account devices, or false to disable them for this project.
+        #
+        # @return [Project]
+        def update_account_devices_policy(
+            enabled:
+        )
+            if enabled.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "enabled"')
+            end
+
+            api_path = '/project/policies/account-devices'
+
+            api_params = {
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Project
             )
         end
 
@@ -4247,9 +4380,9 @@ module Appwrite
         # Get a policy by its unique ID. This endpoint returns the current
         # configuration for the requested project policy.
         #
-        # @param [ProjectPolicyId] policy_id Policy ID. Can be one of: password-dictionary, password-history, password-strength, password-personal-data, password-pwned, password-rotation, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, mfa-factors, deny-aliased-email, deny-disposable-email, deny-free-email, deny-corporate-email, deny-realtime-guests, passkey.
+        # @param [ProjectPolicyId] policy_id Policy ID. Can be one of: password-dictionary, password-history, password-strength, password-personal-data, password-pwned, password-rotation, session-alert, session-duration, session-invalidation, session-limit, user-limit, membership-privacy, mfa-factors, deny-aliased-email, deny-disposable-email, deny-free-email, deny-corporate-email, deny-realtime-guests, passkey, account-devices.
         #
-        # @return [PolicyPasswordDictionary, PolicyPasswordHistory, PolicyPasswordStrength, PolicyPasswordPersonalData, PolicyPasswordPwned, PolicyPasswordRotation, PolicySessionAlert, PolicySessionDuration, PolicySessionInvalidation, PolicySessionLimit, PolicyUserLimit, PolicyMembershipPrivacy, PolicyMfaFactors, PolicyDenyAliasedEmail, PolicyDenyDisposableEmail, PolicyDenyFreeEmail, PolicyDenyCorporateEmail, PolicyDenyRealtimeGuests, PolicyPasskey]
+        # @return [PolicyPasswordDictionary, PolicyPasswordHistory, PolicyPasswordStrength, PolicyPasswordPersonalData, PolicyPasswordPwned, PolicyPasswordRotation, PolicySessionAlert, PolicySessionDuration, PolicySessionInvalidation, PolicySessionLimit, PolicyUserLimit, PolicyMembershipPrivacy, PolicyMfaFactors, PolicyDenyAliasedEmail, PolicyDenyDisposableEmail, PolicyDenyFreeEmail, PolicyDenyCorporateEmail, PolicyDenyRealtimeGuests, PolicyPasskey, PolicyAccountDevices]
         def get_policy(
             policy_id:
         )
@@ -4373,7 +4506,71 @@ module Appwrite
                 return Models::PolicyPasskey.from(map: response)
             end
 
+            if response['$id'] == 'account-devices'
+
+                return Models::PolicyAccountDevices.from(map: response)
+            end
+
             raise Exception, "Unable to match response to any expected response model"
+        end
+
+        # Get the project preferences. Preferences are a key-value object stored on
+        # the project for anyone working on it.
+        #
+        #
+        # @return [Preferences]
+        def get_prefs()
+            api_path = '/project/prefs'
+
+            api_params = {}
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Preferences
+            )
+        end
+
+        # Update the project preferences. The object you pass is stored as is and
+        # replaces any previous value. The maximum allowed prefs size is 64kB and
+        # throws an error if exceeded.
+        #
+        # @param [Hash] prefs Prefs key-value JSON object.
+        #
+        # @return [Preferences]
+        def update_prefs(
+            prefs:
+        )
+            if prefs.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "prefs"')
+            end
+
+            api_path = '/project/prefs'
+
+            api_params = {
+                prefs: prefs,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PUT',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Preferences
+            )
         end
 
         # Update properties of a specific protocol. Use this endpoint to enable or

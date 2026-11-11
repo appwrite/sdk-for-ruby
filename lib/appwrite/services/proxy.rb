@@ -386,10 +386,163 @@ module Appwrite
             )
         end
 
+        # Update the function and VCS branch a function proxy rule executes. The rule
+        # domain cannot be changed.
+        #
+        # @param [String] rule_id Rule ID.
+        # @param [String] function_id ID of function to be executed.
+        # @param [String] branch Name of VCS branch to deploy changes automatically
+        #
+        # @return [ProxyRule]
+        def update_function_rule(
+            rule_id:,
+            function_id:,
+            branch: nil
+        )
+            if rule_id.nil? || rule_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
+            end
+
+            if function_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "functionId"')
+            end
+
+            api_path = '/proxy/rules/{ruleId}/function'
+                .gsub('{ruleId}', @client.encode_path(rule_id))
+
+            api_params = {
+                functionId: function_id,
+                branch: branch,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::ProxyRule
+            )
+        end
+
+        # Update the target URL, status code and parent resource of a redirect proxy
+        # rule. The rule domain cannot be changed.
+        #
+        # @param [String] rule_id Rule ID.
+        # @param [String] url Target URL of redirection
+        # @param [StatusCode] status_code Status code of redirection
+        # @param [String] resource_id ID of parent resource.
+        # @param [ProxyResourceType] resource_type Type of parent resource.
+        #
+        # @return [ProxyRule]
+        def update_redirect_rule(
+            rule_id:,
+            url:,
+            status_code:,
+            resource_id:,
+            resource_type:
+        )
+            if rule_id.nil? || rule_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
+            end
+
+            if url.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "url"')
+            end
+
+            if status_code.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "statusCode"')
+            end
+
+            if resource_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "resourceId"')
+            end
+
+            if resource_type.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "resourceType"')
+            end
+
+            api_path = '/proxy/rules/{ruleId}/redirect'
+                .gsub('{ruleId}', @client.encode_path(rule_id))
+
+            api_params = {
+                url: url,
+                statusCode: status_code,
+                resourceId: resource_id,
+                resourceType: resource_type,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::ProxyRule
+            )
+        end
+
+        # Update the site and VCS branch a site proxy rule serves. The rule domain
+        # cannot be changed.
+        #
+        # @param [String] rule_id Rule ID.
+        # @param [String] site_id ID of site to be executed.
+        # @param [String] branch Name of VCS branch to deploy changes automatically
+        #
+        # @return [ProxyRule]
+        def update_site_rule(
+            rule_id:,
+            site_id:,
+            branch: nil
+        )
+            if rule_id.nil? || rule_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
+            end
+
+            if site_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "siteId"')
+            end
+
+            api_path = '/proxy/rules/{ruleId}/site'
+                .gsub('{ruleId}', @client.encode_path(rule_id))
+
+            api_params = {
+                siteId: site_id,
+                branch: branch,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::ProxyRule
+            )
+        end
+
         # If not succeeded yet, retry verification process of a proxy rule domain.
         # This endpoint triggers domain verification by checking DNS records. If
         # verification is successful, a TLS certificate will be automatically
-        # provisioned for the domain asynchronously in the background.
+        # provisioned for the domain asynchronously in the background. A verified
+        # rule whose certificate renewal failed or is blocked, or whose certificate
+        # expired, is checked the same way, and its certificate renewed in the
+        # background.
         #
         # @param [String] rule_id Rule ID.
         #

@@ -1262,7 +1262,7 @@ module Appwrite
         # to &#039;example.wordpress.com&#039;.
         #
         # @param [String] domain_id Domain unique ID.
-        # @param [String] name Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it.
+        # @param [String] name Record name relative to the domain, such as `www`. A CNAME cannot be at the domain itself; use an ALIAS record there. A full name ending in the domain is also accepted and stored relative to it.
         # @param [String] value Canonical target for this CNAME record.
         # @param [Integer] ttl Time to live, in seconds. Must be between 1 and 2147483647.
         # @param [String] comment A comment for this record.
@@ -1320,7 +1320,7 @@ module Appwrite
         #
         # @param [String] domain_id Domain unique ID.
         # @param [String] record_id DNS record unique ID.
-        # @param [String] name Record name relative to the domain, such as `www`, or `@` for the domain itself. A full name ending in the domain is also accepted and stored relative to it.
+        # @param [String] name Record name relative to the domain, such as `www`. A CNAME cannot be at the domain itself; use an ALIAS record there. A full name ending in the domain is also accepted and stored relative to it.
         # @param [String] value Canonical target for this CNAME record.
         # @param [Integer] ttl Time to live, in seconds. Must be between 1 and 2147483647.
         # @param [String] comment A comment for this record.

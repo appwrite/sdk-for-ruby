@@ -57,6 +57,7 @@ module Appwrite
         # @param [Integer] priority Evaluation priority. Lower numbers run earlier.
         # @param [] enabled Set to false to create the rule in a disabled state.
         # @param [Array] conditions Array of condition strings generated using the WAF Condition builder. Maximum of 100 conditions are allowed, each 4096 characters long.
+        # @param [Hash] schedule When the rule is active: mode, days, interval, anchor, startTime and endTime (HH:MM), and an optional IANA timezone (UTC by default). Leave out for always on; on update, leave out to keep the current schedule and pass an empty object to remove it.
         #
         # @return [WafRuleBypass]
         def create_bypass_rule(
@@ -67,7 +68,8 @@ module Appwrite
             description: nil,
             priority: nil,
             enabled: nil,
-            conditions: nil
+            conditions: nil,
+            schedule: nil
         )
             if rule_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
@@ -92,6 +94,7 @@ module Appwrite
                 priority: priority,
                 enabled: enabled,
                 conditions: conditions,
+                schedule: schedule,
             }
 
             api_headers = {
@@ -125,6 +128,7 @@ module Appwrite
         # @param [Integer] priority Evaluation priority. Lower numbers run earlier.
         # @param [] enabled Set to false to disable the rule.
         # @param [Array] conditions Array of condition strings generated using the WAF Condition builder. Maximum of 100 conditions are allowed, each 4096 characters long.
+        # @param [Hash] schedule When the rule is active: mode, days, interval, anchor, startTime and endTime (HH:MM), and an optional IANA timezone (UTC by default). Leave out for always on; on update, leave out to keep the current schedule and pass an empty object to remove it.
         #
         # @return [WafRuleBypass]
         def update_bypass_rule(
@@ -135,7 +139,8 @@ module Appwrite
             description: nil,
             priority: nil,
             enabled: nil,
-            conditions: nil
+            conditions: nil,
+            schedule: nil
         )
             if rule_id.nil? || rule_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
@@ -152,6 +157,7 @@ module Appwrite
                 priority: priority,
                 enabled: enabled,
                 conditions: conditions,
+                schedule: schedule,
             }
 
             api_headers = {
@@ -191,6 +197,7 @@ module Appwrite
         # @param [Array] conditions Array of condition strings generated using the WAF Condition builder. Maximum of 100 conditions are allowed, each 4096 characters long.
         # @param [Integer] difficulty Challenge difficulty from 1 (easiest) to 5 (hardest). Higher values demand more client-side proof-of-work.
         # @param [Integer] ttl How long, in seconds, a visitor stays cleared after passing the challenge before being challenged again.
+        # @param [Hash] schedule When the rule is active: mode, days, interval, anchor, startTime and endTime (HH:MM), and an optional IANA timezone (UTC by default). Leave out for always on; on update, leave out to keep the current schedule and pass an empty object to remove it.
         #
         # @return [WafRuleChallenge]
         def create_challenge_rule(
@@ -204,7 +211,8 @@ module Appwrite
             enabled: nil,
             conditions: nil,
             difficulty: nil,
-            ttl: nil
+            ttl: nil,
+            schedule: nil
         )
             if rule_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
@@ -232,6 +240,7 @@ module Appwrite
                 conditions: conditions,
                 difficulty: difficulty,
                 ttl: ttl,
+                schedule: schedule,
             }
 
             api_headers = {
@@ -271,6 +280,7 @@ module Appwrite
         # @param [Array] conditions Array of condition strings generated using the WAF Condition builder. Maximum of 100 conditions are allowed, each 4096 characters long.
         # @param [Integer] difficulty Challenge difficulty from 1 (easiest) to 5 (hardest). Higher values demand more client-side proof-of-work.
         # @param [Integer] ttl How long, in seconds, a visitor stays cleared after passing the challenge before being challenged again.
+        # @param [Hash] schedule When the rule is active: mode, days, interval, anchor, startTime and endTime (HH:MM), and an optional IANA timezone (UTC by default). Leave out for always on; on update, leave out to keep the current schedule and pass an empty object to remove it.
         #
         # @return [WafRuleChallenge]
         def update_challenge_rule(
@@ -284,7 +294,8 @@ module Appwrite
             enabled: nil,
             conditions: nil,
             difficulty: nil,
-            ttl: nil
+            ttl: nil,
+            schedule: nil
         )
             if rule_id.nil? || rule_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
@@ -304,6 +315,7 @@ module Appwrite
                 conditions: conditions,
                 difficulty: difficulty,
                 ttl: ttl,
+                schedule: schedule,
             }
 
             api_headers = {
@@ -347,6 +359,7 @@ module Appwrite
         # @param [Integer] priority Evaluation priority. Lower numbers run earlier.
         # @param [] enabled Set to false to create the rule in a disabled state.
         # @param [Array] conditions Array of condition strings generated using the WAF Condition builder. Maximum of 100 conditions are allowed, each 4096 characters long.
+        # @param [Hash] schedule When the rule is active: mode, days, interval, anchor, startTime and endTime (HH:MM), and an optional IANA timezone (UTC by default). Leave out for always on; on update, leave out to keep the current schedule and pass an empty object to remove it.
         #
         # @return [WafRuleDeny]
         def create_deny_rule(
@@ -357,7 +370,8 @@ module Appwrite
             description: nil,
             priority: nil,
             enabled: nil,
-            conditions: nil
+            conditions: nil,
+            schedule: nil
         )
             if rule_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
@@ -382,6 +396,7 @@ module Appwrite
                 priority: priority,
                 enabled: enabled,
                 conditions: conditions,
+                schedule: schedule,
             }
 
             api_headers = {
@@ -425,6 +440,7 @@ module Appwrite
         # @param [Integer] priority Evaluation priority. Lower numbers run earlier.
         # @param [] enabled Set to false to disable the rule.
         # @param [Array] conditions Array of condition strings generated using the WAF Condition builder. Maximum of 100 conditions are allowed, each 4096 characters long.
+        # @param [Hash] schedule When the rule is active: mode, days, interval, anchor, startTime and endTime (HH:MM), and an optional IANA timezone (UTC by default). Leave out for always on; on update, leave out to keep the current schedule and pass an empty object to remove it.
         #
         # @return [WafRuleDeny]
         def update_deny_rule(
@@ -435,7 +451,8 @@ module Appwrite
             description: nil,
             priority: nil,
             enabled: nil,
-            conditions: nil
+            conditions: nil,
+            schedule: nil
         )
             if rule_id.nil? || rule_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
@@ -452,6 +469,7 @@ module Appwrite
                 priority: priority,
                 enabled: enabled,
                 conditions: conditions,
+                schedule: schedule,
             }
 
             api_headers = {
@@ -492,6 +510,7 @@ module Appwrite
         # @param [Integer] priority Evaluation priority. Lower numbers run earlier.
         # @param [] enabled Set to false to create the rule in a disabled state.
         # @param [Array] conditions Array of condition strings generated using the WAF Condition builder. Maximum of 100 conditions are allowed, each 4096 characters long.
+        # @param [Hash] schedule When the rule is active: mode, days, interval, anchor, startTime and endTime (HH:MM), and an optional IANA timezone (UTC by default). Leave out for always on; on update, leave out to keep the current schedule and pass an empty object to remove it.
         #
         # @return [WafRuleRateLimit]
         def create_rate_limit_rule(
@@ -507,7 +526,8 @@ module Appwrite
             max_bucket_size: nil,
             priority: nil,
             enabled: nil,
-            conditions: nil
+            conditions: nil,
+            schedule: nil
         )
             if rule_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
@@ -545,6 +565,7 @@ module Appwrite
                 priority: priority,
                 enabled: enabled,
                 conditions: conditions,
+                schedule: schedule,
             }
 
             api_headers = {
@@ -584,6 +605,7 @@ module Appwrite
         # @param [Integer] priority Evaluation priority. Lower numbers run earlier.
         # @param [] enabled Set to false to disable the rule.
         # @param [Array] conditions Array of condition strings generated using the WAF Condition builder. Maximum of 100 conditions are allowed, each 4096 characters long.
+        # @param [Hash] schedule When the rule is active: mode, days, interval, anchor, startTime and endTime (HH:MM), and an optional IANA timezone (UTC by default). Leave out for always on; on update, leave out to keep the current schedule and pass an empty object to remove it.
         #
         # @return [WafRuleRateLimit]
         def update_rate_limit_rule(
@@ -598,7 +620,8 @@ module Appwrite
             max_bucket_size: nil,
             priority: nil,
             enabled: nil,
-            conditions: nil
+            conditions: nil,
+            schedule: nil
         )
             if rule_id.nil? || rule_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
@@ -619,6 +642,7 @@ module Appwrite
                 priority: priority,
                 enabled: enabled,
                 conditions: conditions,
+                schedule: schedule,
             }
 
             api_headers = {
@@ -654,6 +678,7 @@ module Appwrite
         # @param [Integer] priority Evaluation priority. Lower numbers run earlier.
         # @param [] enabled Set to false to create the rule in a disabled state.
         # @param [Array] conditions Array of condition strings generated using the WAF Condition builder. Maximum of 100 conditions are allowed, each 4096 characters long.
+        # @param [Hash] schedule When the rule is active: mode, days, interval, anchor, startTime and endTime (HH:MM), and an optional IANA timezone (UTC by default). Leave out for always on; on update, leave out to keep the current schedule and pass an empty object to remove it.
         #
         # @return [WafRuleRedirect]
         def create_redirect_rule(
@@ -666,7 +691,8 @@ module Appwrite
             description: nil,
             priority: nil,
             enabled: nil,
-            conditions: nil
+            conditions: nil,
+            schedule: nil
         )
             if rule_id.nil?
                 raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
@@ -701,6 +727,7 @@ module Appwrite
                 priority: priority,
                 enabled: enabled,
                 conditions: conditions,
+                schedule: schedule,
             }
 
             api_headers = {
@@ -736,6 +763,7 @@ module Appwrite
         # @param [Integer] priority Evaluation priority. Lower numbers run earlier.
         # @param [] enabled Set to false to disable the rule.
         # @param [Array] conditions Array of condition strings generated using the WAF Condition builder. Maximum of 100 conditions are allowed, each 4096 characters long.
+        # @param [Hash] schedule When the rule is active: mode, days, interval, anchor, startTime and endTime (HH:MM), and an optional IANA timezone (UTC by default). Leave out for always on; on update, leave out to keep the current schedule and pass an empty object to remove it.
         #
         # @return [WafRuleRedirect]
         def update_redirect_rule(
@@ -748,7 +776,8 @@ module Appwrite
             status_code: nil,
             priority: nil,
             enabled: nil,
-            conditions: nil
+            conditions: nil,
+            schedule: nil
         )
             if rule_id.nil? || rule_id == ''
                 raise Appwrite::Exception.new('Missing required parameter: "ruleId"')
@@ -767,6 +796,7 @@ module Appwrite
                 priority: priority,
                 enabled: enabled,
                 conditions: conditions,
+                schedule: schedule,
             }
 
             api_headers = {

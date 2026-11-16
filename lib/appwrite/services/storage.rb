@@ -540,8 +540,11 @@ module Appwrite
         # Get a file preview image. Currently, this method supports preview for image
         # files (jpg, png, and gif), other supported formats, like pdf, docs, slides,
         # and spreadsheets, will return the file icon image. You can also pass query
-        # string arguments for cutting and resizing your preview image. Preview is
+        # string arguments for cutting and resizing your preview image. Set `output`
+        # to `auto` to receive avif or webp when the client&#039;s `Accept` header
+        # supports it, falling back to the original image format. Preview is
         # supported only for image files smaller than 10MB.
+        #
         #
         # @param [String] bucket_id Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket).
         # @param [String] file_id File ID
@@ -555,7 +558,7 @@ module Appwrite
         # @param [Float] opacity Preview image opacity. Only works with images having an alpha channel (like png). Pass a number between 0 to 1.
         # @param [Integer] rotation Preview image rotation in degrees. Pass an integer between -360 and 360.
         # @param [String] background Preview image background color. Only works with transparent images (png). Use a valid HEX color, no # is needed for prefix.
-        # @param [ImageFormat] output Output format type (jpeg, jpg, png, gif and webp).
+        # @param [ImageFormat] output Output format type (jpeg, jpg, png, gif, webp, heic and avif). Pass auto to serve avif or webp when the client&#039;s Accept header supports it, falling back to the original format.
         # @param [String] token File token for accessing this file.
         #
         # @return []

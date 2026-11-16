@@ -39,6 +39,8 @@ module Appwrite
             attr_reader :build_runtime
             attr_reader :adapter
             attr_reader :fallback_file
+            attr_reader :analytics_enabled
+            attr_reader :analytics_property_id
 
             def initialize(
                 id:,
@@ -76,7 +78,9 @@ module Appwrite
                 runtime_specification:,
                 build_runtime:,
                 adapter:,
-                fallback_file:
+                fallback_file:,
+                analytics_enabled:,
+                analytics_property_id:
             )
                 @id = id
                 @created_at = created_at
@@ -114,10 +118,12 @@ module Appwrite
                 @build_runtime = build_runtime
                 @adapter = adapter
                 @fallback_file = fallback_file
+                @analytics_enabled = analytics_enabled
+                @analytics_property_id = analytics_property_id
             end
 
             def self.from(map:)
-                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "description" => "", "enabled" => true, "live" => true, "logging" => true, "framework" => "", "deploymentRetention" => 0, "deploymentId" => "", "deploymentCreatedAt" => "", "deploymentScreenshotLight" => "", "deploymentScreenshotDark" => "", "latestDeploymentId" => "", "latestDeploymentCreatedAt" => "", "latestDeploymentStatus" => "", "scopes" => [], "vars" => [], "timeout" => 15, "installCommand" => "", "buildCommand" => "", "startCommand" => "", "outputDirectory" => "", "installationId" => "", "providerRepositoryId" => "", "providerBranch" => "", "providerRootDirectory" => "", "providerSilentMode" => false, "providerBranches" => [], "providerPaths" => [], "buildSpecification" => "s-1vcpu-512mb", "runtimeSpecification" => "s-1vcpu-512mb", "buildRuntime" => "" }.merge(map)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "description" => "", "enabled" => true, "live" => true, "logging" => true, "framework" => "", "deploymentRetention" => 0, "deploymentId" => "", "deploymentCreatedAt" => "", "deploymentScreenshotLight" => "", "deploymentScreenshotDark" => "", "latestDeploymentId" => "", "latestDeploymentCreatedAt" => "", "latestDeploymentStatus" => "", "scopes" => [], "vars" => [], "timeout" => 15, "installCommand" => "", "buildCommand" => "", "startCommand" => "", "outputDirectory" => "", "installationId" => "", "providerRepositoryId" => "", "providerBranch" => "", "providerRootDirectory" => "", "providerSilentMode" => false, "providerBranches" => [], "providerPaths" => [], "buildSpecification" => "s-1vcpu-512mb", "runtimeSpecification" => "s-1vcpu-512mb", "buildRuntime" => "", "analyticsEnabled" => false, "analyticsPropertyId" => "" }.merge(map)
                 Site.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],
@@ -154,7 +160,9 @@ module Appwrite
                     runtime_specification: map["runtimeSpecification"],
                     build_runtime: map["buildRuntime"],
                     adapter: map["adapter"],
-                    fallback_file: map["fallbackFile"]
+                    fallback_file: map["fallbackFile"],
+                    analytics_enabled: map["analyticsEnabled"],
+                    analytics_property_id: map["analyticsPropertyId"]
                 )
             end
 
@@ -195,7 +203,9 @@ module Appwrite
                     "runtimeSpecification": @runtime_specification,
                     "buildRuntime": @build_runtime,
                     "adapter": @adapter,
-                    "fallbackFile": @fallback_file
+                    "fallbackFile": @fallback_file,
+                    "analyticsEnabled": @analytics_enabled,
+                    "analyticsPropertyId": @analytics_property_id
                 }
             end
         end

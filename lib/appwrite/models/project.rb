@@ -19,6 +19,22 @@ module Appwrite
             attr_reader :smtp_username
             attr_reader :smtp_password
             attr_reader :smtp_secure
+            attr_reader :ldap_enabled
+            attr_reader :ldap_hosts
+            attr_reader :ldap_port
+            attr_reader :ldap_encryption
+            attr_reader :ldap_verification
+            attr_reader :ldap_certificate
+            attr_reader :ldap_timeout
+            attr_reader :ldap_base_dn
+            attr_reader :ldap_bind_dn
+            attr_reader :ldap_bind_password
+            attr_reader :ldap_user_filter
+            attr_reader :ldap_required_group_dn
+            attr_reader :ldap_id_attribute
+            attr_reader :ldap_email_attribute
+            attr_reader :ldap_name_attribute
+            attr_reader :ldap_phone_attribute
             attr_reader :ping_count
             attr_reader :pinged_at
             attr_reader :labels
@@ -71,6 +87,22 @@ module Appwrite
                 smtp_username:,
                 smtp_password:,
                 smtp_secure:,
+                ldap_enabled:,
+                ldap_hosts:,
+                ldap_port:,
+                ldap_encryption:,
+                ldap_verification:,
+                ldap_certificate:,
+                ldap_timeout:,
+                ldap_base_dn:,
+                ldap_bind_dn:,
+                ldap_bind_password:,
+                ldap_user_filter:,
+                ldap_required_group_dn:,
+                ldap_id_attribute:,
+                ldap_email_attribute:,
+                ldap_name_attribute:,
+                ldap_phone_attribute:,
                 ping_count:,
                 pinged_at:,
                 labels:,
@@ -122,6 +154,22 @@ module Appwrite
                 @smtp_username = smtp_username
                 @smtp_password = smtp_password
                 @smtp_secure = smtp_secure
+                @ldap_enabled = ldap_enabled
+                @ldap_hosts = ldap_hosts
+                @ldap_port = ldap_port
+                @ldap_encryption = ldap_encryption
+                @ldap_verification = ldap_verification
+                @ldap_certificate = ldap_certificate
+                @ldap_timeout = ldap_timeout
+                @ldap_base_dn = ldap_base_dn
+                @ldap_bind_dn = ldap_bind_dn
+                @ldap_bind_password = ldap_bind_password
+                @ldap_user_filter = ldap_user_filter
+                @ldap_required_group_dn = ldap_required_group_dn
+                @ldap_id_attribute = ldap_id_attribute
+                @ldap_email_attribute = ldap_email_attribute
+                @ldap_name_attribute = ldap_name_attribute
+                @ldap_phone_attribute = ldap_phone_attribute
                 @ping_count = ping_count
                 @pinged_at = pinged_at
                 @labels = labels
@@ -159,7 +207,7 @@ module Appwrite
             end
 
             def self.from(map:)
-                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "teamId" => "", "region" => "fra", "smtpEnabled" => false, "smtpSenderName" => "", "smtpSenderEmail" => "", "smtpReplyToName" => "", "smtpReplyToEmail" => "", "smtpHost" => "", "smtpPort" => 0, "smtpUsername" => "", "smtpPassword" => "", "smtpSecure" => "", "pingCount" => 0, "pingedAt" => "", "labels" => [], "status" => "active", "onboarding" => {}, "authMethods" => [], "services" => [], "protocols" => [], "blocks" => [], "consoleAccessedAt" => "" }.merge(map)
+                map = { "$id" => "", "$createdAt" => "", "$updatedAt" => "", "name" => "", "teamId" => "", "region" => "fra", "smtpEnabled" => false, "smtpSenderName" => "", "smtpSenderEmail" => "", "smtpReplyToName" => "", "smtpReplyToEmail" => "", "smtpHost" => "", "smtpPort" => 0, "smtpUsername" => "", "smtpPassword" => "", "smtpSecure" => "", "ldapEnabled" => false, "ldapHosts" => [], "ldapPort" => 636, "ldapEncryption" => "ldaps", "ldapVerification" => true, "ldapCertificate" => "", "ldapTimeout" => 10, "ldapBaseDn" => "", "ldapBindDn" => "", "ldapBindPassword" => "", "ldapUserFilter" => "(uid={username})", "ldapRequiredGroupDn" => "", "ldapIdAttribute" => "entryUUID", "ldapEmailAttribute" => "mail", "ldapNameAttribute" => "cn", "ldapPhoneAttribute" => "", "pingCount" => 0, "pingedAt" => "", "labels" => [], "status" => "active", "onboarding" => {}, "authMethods" => [], "services" => [], "protocols" => [], "blocks" => [], "consoleAccessedAt" => "" }.merge(map)
                 Project.new(
                     id: map["$id"],
                     created_at: map["$createdAt"],
@@ -177,6 +225,22 @@ module Appwrite
                     smtp_username: map["smtpUsername"],
                     smtp_password: map["smtpPassword"],
                     smtp_secure: map["smtpSecure"],
+                    ldap_enabled: map["ldapEnabled"],
+                    ldap_hosts: map["ldapHosts"],
+                    ldap_port: map["ldapPort"],
+                    ldap_encryption: map["ldapEncryption"],
+                    ldap_verification: map["ldapVerification"],
+                    ldap_certificate: map["ldapCertificate"],
+                    ldap_timeout: map["ldapTimeout"],
+                    ldap_base_dn: map["ldapBaseDn"],
+                    ldap_bind_dn: map["ldapBindDn"],
+                    ldap_bind_password: map["ldapBindPassword"],
+                    ldap_user_filter: map["ldapUserFilter"],
+                    ldap_required_group_dn: map["ldapRequiredGroupDn"],
+                    ldap_id_attribute: map["ldapIdAttribute"],
+                    ldap_email_attribute: map["ldapEmailAttribute"],
+                    ldap_name_attribute: map["ldapNameAttribute"],
+                    ldap_phone_attribute: map["ldapPhoneAttribute"],
                     ping_count: map["pingCount"],
                     pinged_at: map["pingedAt"],
                     labels: map["labels"],
@@ -232,6 +296,22 @@ module Appwrite
                     "smtpUsername": @smtp_username,
                     "smtpPassword": @smtp_password,
                     "smtpSecure": @smtp_secure,
+                    "ldapEnabled": @ldap_enabled,
+                    "ldapHosts": @ldap_hosts,
+                    "ldapPort": @ldap_port,
+                    "ldapEncryption": @ldap_encryption,
+                    "ldapVerification": @ldap_verification,
+                    "ldapCertificate": @ldap_certificate,
+                    "ldapTimeout": @ldap_timeout,
+                    "ldapBaseDn": @ldap_base_dn,
+                    "ldapBindDn": @ldap_bind_dn,
+                    "ldapBindPassword": @ldap_bind_password,
+                    "ldapUserFilter": @ldap_user_filter,
+                    "ldapRequiredGroupDn": @ldap_required_group_dn,
+                    "ldapIdAttribute": @ldap_id_attribute,
+                    "ldapEmailAttribute": @ldap_email_attribute,
+                    "ldapNameAttribute": @ldap_name_attribute,
+                    "ldapPhoneAttribute": @ldap_phone_attribute,
                     "pingCount": @ping_count,
                     "pingedAt": @pinged_at,
                     "labels": @labels,

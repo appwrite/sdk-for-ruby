@@ -393,6 +393,50 @@ module Appwrite
             )
         end
 
+        # Turn analytics on or off for a site. Turning it on links an analytics
+        # property named after the site, creating one on first use, and injects the
+        # tracker into pages served on the site&#039;s production domains. Turning it on
+        # also needs the `analytics.write` scope. Turning it off stops the injection
+        # and keeps the property and its data.
+        #
+        # @param [String] site_id Site ID.
+        # @param [] enabled Inject the analytics tracker into the site&#039;s production domains. Injected pageviews and events are billed as analytics usage.
+        #
+        # @return [Site]
+        def update_analytics(
+            site_id:,
+            enabled:
+        )
+            if site_id.nil? || site_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "siteId"')
+            end
+
+            if enabled.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "enabled"')
+            end
+
+            api_path = '/sites/{siteId}/analytics'
+                .gsub('{siteId}', @client.encode_path(site_id))
+
+            api_params = {
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Site
+            )
+        end
+
         # Update the site active deployment. Use this endpoint to switch the code
         # deployment that should be used when visitor opens your site.
         #

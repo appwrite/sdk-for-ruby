@@ -1768,6 +1768,56 @@ module Appwrite
             )
         end
 
+        # Allow the user to login into their account by providing the username and
+        # password they use in the project&#039;s LDAP directory. The directory verifies
+        # the password; on the first sign-in an account is created from the directory
+        # entry, and on later sign-ins the name, email and phone follow the
+        # directory. This endpoint requires LDAP to be configured and enabled for the
+        # project. A user is limited to 10 active sessions at a time by default.
+        # [Learn more about session
+        # limits](https://appwrite.io/docs/authentication-security#limits).
+        #
+        # @param [String] username Directory username, matched against the username attribute of the project&#039;s LDAP configuration.
+        # @param [String] password Directory password.
+        # @param [Integer] duration Session length in seconds. Minimum is 60 seconds, and it cannot exceed the project maximum session length. Defaults to the project maximum session length.
+        #
+        # @return [Session]
+        def create_ldap_session(
+            username:,
+            password:,
+            duration: nil
+        )
+            if username.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "username"')
+            end
+
+            if password.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "password"')
+            end
+
+            api_path = '/account/sessions/ldap'
+
+            api_params = {
+                username: username,
+                password: password,
+                duration: duration,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Session
+            )
+        end
+
         #
         # @deprecated This API has been deprecated since 1.6.0. Please use `Account.createSession` instead.
         #
@@ -2161,7 +2211,7 @@ module Appwrite
         # about session
         # limits](https://appwrite.io/docs/authentication-security#limits).
         #
-        # @param [OAuthProvider] provider OAuth2 Provider. Currently, supported providers are: amazon, apple, appwrite, auth0, authentik, autodesk, bitbucket, bitly, box, cloudflare, dailymotion, discord, disqus, dropbox, etsy, facebook, figma, fusionauth, github, gitlab, google, huggingface, kakao, keycloak, kick, linkedin, microsoft, notion, oidc, okta, paypal, paypalSandbox, podio, resend, salesforce, slack, spotify, stripe, tiktok, tradeshift, tradeshiftBox, twitch, vipps, vippsSandbox, webflow, wordpress, x, yahoo, yammer, yandex, zoho, zoom.
+        # @param [OAuthProvider] provider OAuth2 Provider. Currently, supported providers are: amazon, apple, appwrite, auth0, authentik, autodesk, bitbucket, bitly, box, cloudflare, dailymotion, discord, disqus, dropbox, etsy, facebook, figma, fusionauth, github, gitlab, google, huggingface, kakao, keycloak, kick, linkedin, microsoft, naver, notion, oidc, okta, paypal, paypalSandbox, podio, resend, salesforce, slack, spotify, stripe, tiktok, tradeshift, tradeshiftBox, twitch, vipps, vippsSandbox, webflow, wordpress, x, yahoo, yammer, yandex, zoho, zoom.
         # @param [String] success URL to redirect back to your app after a successful login attempt.  Only URLs from hostnames in your project&#039;s platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.
         # @param [String] failure URL to redirect back to your app after a failed login attempt.  Only URLs from hostnames in your project&#039;s platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.
         # @param [Array] scopes A list of custom OAuth2 scopes. Check each provider internal docs for a list of supported scopes. Maximum of 100 scopes are allowed, each 4096 characters long.

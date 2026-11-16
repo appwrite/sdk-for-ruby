@@ -9,6 +9,7 @@ module Appwrite
             JWT = 'jwt'
             PHONE = 'phone'
             PASSKEY = 'passkey'
+            LDAP = 'ldap'
         end
     end
 end

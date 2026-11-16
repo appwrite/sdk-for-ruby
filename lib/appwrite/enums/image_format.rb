@@ -8,6 +8,7 @@ module Appwrite
             HEIC = 'heic'
             AVIF = 'avif'
             GIF = 'gif'
+            AUTO = 'auto'
         end
     end
 end

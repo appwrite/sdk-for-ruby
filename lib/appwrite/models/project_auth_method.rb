@@ -41,6 +41,7 @@ module Appwrite
                     Appwrite::Enums::ProjectAuthMethodId::JWT,
                     Appwrite::Enums::ProjectAuthMethodId::PHONE,
                     Appwrite::Enums::ProjectAuthMethodId::PASSKEY,
+                    Appwrite::Enums::ProjectAuthMethodId::LDAP,
                 ]
 
                 unless valid_id.include?(id)

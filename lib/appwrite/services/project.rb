@@ -55,7 +55,7 @@ module Appwrite
         # Update properties of a specific auth method. Use this endpoint to enable or
         # disable a method in your project.
         #
-        # @param [ProjectAuthMethodId] method_id Auth Method ID. Possible values: email-password,magic-url,email-otp,anonymous,invites,jwt,phone,passkey
+        # @param [ProjectAuthMethodId] method_id Auth Method ID. Possible values: email-password,magic-url,email-otp,anonymous,invites,jwt,phone,passkey,ldap
         # @param [] enabled Auth method status.
         #
         # @return [Project]
@@ -510,6 +510,120 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::Project
+            )
+        end
+
+        # Update the LDAP configuration for your project. Use this endpoint to
+        # connect your project to an LDAP directory, such as OpenLDAP or Active
+        # Directory, so users can sign in with their directory credentials. Omitted
+        # parameters keep their stored value. Enabling LDAP connects to the directory
+        # and binds as the service account, so a project cannot be left enabled with
+        # a configuration that cannot sign anyone in.
+        #
+        # @param [] enabled Enable or disable LDAP sign-in. Enabling connects to the directory to validate the configuration.
+        # @param [Array] hosts Directory hostnames or IP addresses, tried in order until one answers. IPv6 addresses can be written with or without square brackets. Maximum of 10 hosts are allowed. For example: [&quot;ldap.example.com&quot;]
+        # @param [Integer] port Directory port. Defaults to 636 for LDAPS and 389 otherwise.
+        # @param [ProjectLDAPEncryption] encryption Transport encryption. Use &quot;ldaps&quot; for TLS from the first byte, &quot;starttls&quot; to upgrade a plain connection, or &quot;none&quot; for a trusted network only. Allowed values are: none, ldaps, starttls. Defaults to ldaps.
+        # @param [] verification Certificate verification, false for disabled or true for enabled. Defaults to true. Has no effect when encryption is none.
+        # @param [String] certificate Certificate in PEM format of the authority that signed the directory certificate, or the directory certificate itself when it is self-signed. Several certificates can be given one after another. Leave empty to use the system trust store. Pass an empty string to clear a previously set value.
+        # @param [Integer] timeout Seconds to wait for the directory to connect and answer each operation. Maximum is 30 seconds. Defaults to 10.
+        # @param [String] base_dn Subtree the user search starts from. For example: ou=people,dc=example,dc=com
+        # @param [String] bind_dn Service account used to search for users. Pass an empty string if the directory allows anonymous search. For example: cn=appwrite,ou=services,dc=example,dc=com
+        # @param [String] bind_password Service account password. This property is stored securely and cannot be read in future (write-only). Required again when hosts, port, encryption, verification, certificate or bindDn change.
+        # @param [String] user_filter LDAP filter that finds the user signing in. {username} is replaced with the username they enter and must appear at least once. Pass an empty string to use the default, (uid={username}). For example: (sAMAccountName={username}) on Active Directory, or (|(uid={username})(mail={username})) to accept a username or an email address.
+        # @param [String] required_group_dn Group a user must belong to in order to sign in, checked on every sign-in. Pass an empty string to allow every user the directory authenticates. For example: cn=staff,ou=groups,dc=example,dc=com
+        # @param [String] id_attribute Attribute holding the identifier that stays the same when an entry is renamed or moved. Defaults to entryUUID; use objectGUID on Active Directory.
+        # @param [String] email_attribute Attribute holding the email address. Defaults to mail.
+        # @param [String] name_attribute Attribute holding the display name. Defaults to cn.
+        # @param [String] phone_attribute Attribute holding the phone number, in international format. Leave empty, the default, to leave the phone unmapped. For example: mobile
+        #
+        # @return [Project]
+        def update_ldap(
+            enabled: nil,
+            hosts: nil,
+            port: nil,
+            encryption: nil,
+            verification: nil,
+            certificate: nil,
+            timeout: nil,
+            base_dn: nil,
+            bind_dn: nil,
+            bind_password: nil,
+            user_filter: nil,
+            required_group_dn: nil,
+            id_attribute: nil,
+            email_attribute: nil,
+            name_attribute: nil,
+            phone_attribute: nil
+        )
+            api_path = '/project/ldap'
+
+            api_params = {
+                enabled: enabled,
+                hosts: hosts,
+                port: port,
+                encryption: encryption,
+                verification: verification,
+                certificate: certificate,
+                timeout: timeout,
+                baseDn: base_dn,
+                bindDn: bind_dn,
+                bindPassword: bind_password,
+                userFilter: user_filter,
+                requiredGroupDn: required_group_dn,
+                idAttribute: id_attribute,
+                emailAttribute: email_attribute,
+                nameAttribute: name_attribute,
+                phoneAttribute: phone_attribute,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Project
+            )
+        end
+
+        # Test the stored LDAP configuration against the directory without signing
+        # anyone in. Connects to the directory, binds as the service account and
+        # reads the base DN. Pass a username to also look the user up and check the
+        # required group, and a password to also verify it. The error names the step
+        # that failed.
+        #
+        # @param [String] username Username to look up in the directory. Leave empty to test the connection and service account only.
+        # @param [String] password Password of the user to verify. Only used together with a username.
+        #
+        # @return []
+        def create_ldap_test(
+            username: nil,
+            password: nil
+        )
+            api_path = '/project/ldap/tests'
+
+            api_params = {
+                username: username,
+                password: password,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
             )
         end
 
@@ -1808,6 +1922,41 @@ module Appwrite
             )
         end
 
+        # Update the project OAuth2 Naver configuration.
+        #
+        # @param [String] client_id &#039;Client ID&#039; of Naver OAuth2 app. For example: jK8pQ0000000000000Zv
+        # @param [String] client_secret &#039;Client Secret&#039; of Naver OAuth2 app. For example: 9f42A0000000000c1dEb. Find it under Application &gt; My Applications, on the overview of your app
+        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        #
+        # @return [OAuth2Naver]
+        def update_o_auth2_naver(
+            client_id: nil,
+            client_secret: nil,
+            enabled: nil
+        )
+            api_path = '/project/oauth2/naver'
+
+            api_params = {
+                clientId: client_id,
+                clientSecret: client_secret,
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::OAuth2Naver
+            )
+        end
+
         # Update the project OAuth2 Notion configuration.
         #
         # @param [String] oauth_client_id &#039;OAuth Client ID&#039; of Notion OAuth2 app. For example: 341d8700-0000-0000-0000-000000446ee3
@@ -2686,7 +2835,7 @@ module Appwrite
         #
         # @param [ProjectOAuthProviderId] provider_id OAuth2 provider key. For example: github, google, apple.
         #
-        # @return [OAuth2Github, OAuth2Discord, OAuth2Figma, OAuth2Dropbox, OAuth2Dailymotion, OAuth2Bitbucket, OAuth2Bitly, OAuth2Box, OAuth2Autodesk, OAuth2Google, OAuth2Zoom, OAuth2Zoho, OAuth2Yandex, OAuth2X, OAuth2WordPress, OAuth2Webflow, OAuth2Twitch, OAuth2Stripe, OAuth2Spotify, OAuth2Slack, OAuth2Podio, OAuth2Notion, OAuth2Salesforce, OAuth2Yahoo, OAuth2HuggingFace, OAuth2Resend, OAuth2Cloudflare, OAuth2Linkedin, OAuth2Disqus, OAuth2Amazon, OAuth2Etsy, OAuth2Facebook, OAuth2Tradeshift, OAuth2Paypal, OAuth2Gitlab, OAuth2Authentik, OAuth2Auth0, OAuth2FusionAuth, OAuth2Keycloak, OAuth2Oidc, OAuth2Apple, OAuth2Okta, OAuth2Kick, OAuth2Microsoft, OAuth2TikTok, OAuth2Kakao, OAuth2Vipps]
+        # @return [OAuth2Github, OAuth2Discord, OAuth2Figma, OAuth2Dropbox, OAuth2Dailymotion, OAuth2Bitbucket, OAuth2Bitly, OAuth2Box, OAuth2Autodesk, OAuth2Google, OAuth2Zoom, OAuth2Zoho, OAuth2Yandex, OAuth2X, OAuth2WordPress, OAuth2Webflow, OAuth2Twitch, OAuth2Stripe, OAuth2Spotify, OAuth2Slack, OAuth2Podio, OAuth2Notion, OAuth2Salesforce, OAuth2Yahoo, OAuth2HuggingFace, OAuth2Resend, OAuth2Cloudflare, OAuth2Linkedin, OAuth2Disqus, OAuth2Amazon, OAuth2Etsy, OAuth2Facebook, OAuth2Tradeshift, OAuth2Paypal, OAuth2Gitlab, OAuth2Authentik, OAuth2Auth0, OAuth2FusionAuth, OAuth2Keycloak, OAuth2Oidc, OAuth2Apple, OAuth2Okta, OAuth2Kick, OAuth2Microsoft, OAuth2TikTok, OAuth2Kakao, OAuth2Naver, OAuth2Vipps]
         def get_o_auth2_provider(
             provider_id:
         )
@@ -2955,6 +3104,11 @@ module Appwrite
                 return Models::OAuth2Kakao.from(map: response)
             end
 
+            if response['$id'] == 'naver'
+
+                return Models::OAuth2Naver.from(map: response)
+            end
+
             if response['$id'] == 'vipps'
 
                 return Models::OAuth2Vipps.from(map: response)
@@ -2966,6 +3120,36 @@ module Appwrite
             end
 
             raise Exception, "Unable to match response to any expected response model"
+        end
+
+        # Delete all passwords in the project, forcing every user to reset their
+        # password. Any password set before this request stops working for email and
+        # password sign-in immediately: signing in returns a
+        # `user_password_reset_required` error until the user sets a new password
+        # through password recovery, or until a new password is set for them with the
+        # Users API. Existing sessions are not affected; call the delete sessions
+        # endpoint to sign users out as well. Users without a password and API keys
+        # are not affected by this action.
+        #
+        #
+        # @return []
+        def delete_passwords()
+            api_path = '/project/passwords'
+
+            api_params = {}
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+            )
         end
 
         # Get a list of all platforms in the project. This endpoint returns an array

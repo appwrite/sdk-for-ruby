@@ -11,6 +11,7 @@ module Appwrite
             attr_reader :premium
             attr_reader :renewal_price
             attr_reader :renewal_period_years
+            attr_reader :reason
 
             def initialize(
                 domain:,
@@ -20,7 +21,8 @@ module Appwrite
                 period_years:,
                 premium:,
                 renewal_price: nil,
-                renewal_period_years:
+                renewal_period_years:,
+                reason: nil
             )
                 @domain = domain
                 @tld = tld
@@ -30,6 +32,7 @@ module Appwrite
                 @premium = premium
                 @renewal_price = renewal_price
                 @renewal_period_years = renewal_period_years
+                @reason = reason
             end
 
             def self.from(map:)
@@ -42,7 +45,8 @@ module Appwrite
                     period_years: map["periodYears"],
                     premium: map["premium"],
                     renewal_price: map["renewalPrice"],
-                    renewal_period_years: map["renewalPeriodYears"]
+                    renewal_period_years: map["renewalPeriodYears"],
+                    reason: map["reason"]
                 )
             end
 
@@ -55,7 +59,8 @@ module Appwrite
                     "periodYears": @period_years,
                     "premium": @premium,
                     "renewalPrice": @renewal_price,
-                    "renewalPeriodYears": @renewal_period_years
+                    "renewalPeriodYears": @renewal_period_years,
+                    "reason": @reason
                 }
             end
         end

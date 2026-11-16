@@ -28,6 +28,7 @@ module Appwrite
             KICK = 'kick'
             LINKEDIN = 'linkedin'
             MICROSOFT = 'microsoft'
+            NAVER = 'naver'
             NOTION = 'notion'
             OIDC = 'oidc'
             OKTA = 'okta'

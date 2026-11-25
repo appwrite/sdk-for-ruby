@@ -835,6 +835,214 @@ module Appwrite
             )
         end
 
+        # Create a new Bird email provider. It sends email through Bird&#039;s email API
+        # with a workspace API key that holds the `emails:write` scope.
+        #
+        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
+        # @param [String] name Provider name.
+        # @param [String] api_key Bird workspace API key.
+        # @param [String] from_name Sender Name.
+        # @param [String] from_email Sender email address. Its domain must be verified in the Bird workspace.
+        # @param [String] reply_to_name Name set in the reply to field for the mail. Default value is sender name.
+        # @param [String] reply_to_email Email set in the reply to field for the mail. Default value is sender email.
+        # @param [] enabled Set as enabled.
+        #
+        # @return [Provider]
+        def create_bird_email_provider(
+            provider_id:,
+            name:,
+            api_key: nil,
+            from_name: nil,
+            from_email: nil,
+            reply_to_name: nil,
+            reply_to_email: nil,
+            enabled: nil
+        )
+            if provider_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+            end
+
+            if name.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
+            end
+
+            api_path = '/messaging/providers/bird-email'
+
+            api_params = {
+                providerId: provider_id,
+                name: name,
+                apiKey: api_key,
+                fromName: from_name,
+                fromEmail: from_email,
+                replyToName: reply_to_name,
+                replyToEmail: reply_to_email,
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Provider
+            )
+        end
+
+        # Update a Bird email provider by its unique ID.
+        #
+        # @param [String] provider_id Provider ID.
+        # @param [String] name Provider name.
+        # @param [] enabled Set as enabled.
+        # @param [String] api_key Bird workspace API key.
+        # @param [String] from_name Sender Name.
+        # @param [String] from_email Sender email address. Its domain must be verified in the Bird workspace.
+        # @param [String] reply_to_name Name set in the Reply To field for the mail. Default value is Sender Name.
+        # @param [String] reply_to_email Email set in the Reply To field for the mail. Default value is Sender Email.
+        #
+        # @return [Provider]
+        def update_bird_email_provider(
+            provider_id:,
+            name: nil,
+            enabled: nil,
+            api_key: nil,
+            from_name: nil,
+            from_email: nil,
+            reply_to_name: nil,
+            reply_to_email: nil
+        )
+            if provider_id.nil? || provider_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+            end
+
+            api_path = '/messaging/providers/bird-email/{providerId}'
+                .gsub('{providerId}', @client.encode_path(provider_id))
+
+            api_params = {
+                name: name,
+                enabled: enabled,
+                apiKey: api_key,
+                fromName: from_name,
+                fromEmail: from_email,
+                replyToName: reply_to_name,
+                replyToEmail: reply_to_email,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Provider
+            )
+        end
+
+        # Create a new Bird SMS provider. It sends SMS through Bird with a workspace
+        # API key that holds the `sms:write` scope.
+        #
+        # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
+        # @param [String] name Provider name.
+        # @param [String] from Sender phone number or alphanumeric sender ID. Format phone numbers with a leading &#039;+&#039; and a country code, e.g., +16175551212.
+        # @param [String] api_key Bird workspace API key.
+        # @param [] enabled Set as enabled.
+        #
+        # @return [Provider]
+        def create_bird_sms_provider(
+            provider_id:,
+            name:,
+            from: nil,
+            api_key: nil,
+            enabled: nil
+        )
+            if provider_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+            end
+
+            if name.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
+            end
+
+            api_path = '/messaging/providers/bird-sms'
+
+            api_params = {
+                providerId: provider_id,
+                name: name,
+                from: from,
+                apiKey: api_key,
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Provider
+            )
+        end
+
+        # Update a Bird SMS provider by its unique ID.
+        #
+        # @param [String] provider_id Provider ID.
+        # @param [String] name Provider name.
+        # @param [] enabled Set as enabled.
+        # @param [String] api_key Bird workspace API key.
+        # @param [String] from Sender phone number or alphanumeric sender ID. Format phone numbers with a leading &#039;+&#039; and a country code, e.g., +16175551212.
+        #
+        # @return [Provider]
+        def update_bird_sms_provider(
+            provider_id:,
+            name: nil,
+            enabled: nil,
+            api_key: nil,
+            from: nil
+        )
+            if provider_id.nil? || provider_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "providerId"')
+            end
+
+            api_path = '/messaging/providers/bird-sms/{providerId}'
+                .gsub('{providerId}', @client.encode_path(provider_id))
+
+            api_params = {
+                name: name,
+                enabled: enabled,
+                apiKey: api_key,
+                from: from,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Provider
+            )
+        end
+
         # Create a new Firebase Cloud Messaging provider.
         #
         # @param [String] provider_id Provider ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.

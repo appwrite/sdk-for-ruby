@@ -1037,6 +1037,41 @@ module Appwrite
             )
         end
 
+        # Update the project OAuth2 Atlassian configuration.
+        #
+        # @param [String] client_id &#039;Client ID&#039; of Atlassian OAuth2 app. For example: uQ7mZ3s0000000000000000000000000
+        # @param [String] client_secret &#039;Client Secret&#039; of Atlassian OAuth2 app. For example: ATOA0000000000000000000000000000000000000000000000000000000000000000000000
+        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        #
+        # @return [OAuth2Atlassian]
+        def update_o_auth2_atlassian(
+            client_id: nil,
+            client_secret: nil,
+            enabled: nil
+        )
+            api_path = '/project/oauth2/atlassian'
+
+            api_params = {
+                clientId: client_id,
+                clientSecret: client_secret,
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::OAuth2Atlassian
+            )
+        end
+
         # Update the project OAuth2 Auth0 configuration.
         #
         # @param [String] client_id &#039;Client ID&#039; of Auth0 OAuth2 app. For example: OaOkIA000000000000000000005KLSYq
@@ -1732,6 +1767,41 @@ module Appwrite
             )
         end
 
+        # Update the project OAuth2 Instagram configuration.
+        #
+        # @param [String] client_id &#039;Client ID&#039; of Instagram OAuth2 app. For example: 00000000000000000000000000000000
+        # @param [String] client_secret &#039;Client Secret&#039; of Instagram OAuth2 app. For example: 00000000000000000000000000000000
+        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        #
+        # @return [OAuth2Instagram]
+        def update_o_auth2_instagram(
+            client_id: nil,
+            client_secret: nil,
+            enabled: nil
+        )
+            api_path = '/project/oauth2/instagram'
+
+            api_params = {
+                clientId: client_id,
+                clientSecret: client_secret,
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::OAuth2Instagram
+            )
+        end
+
         # Update the project OAuth2 Kakao configuration.
         #
         # @param [String] client_id &#039;REST API key&#039; of Kakao OAuth2 app. For example: 839ff5000000000000000000013206de
@@ -1846,6 +1916,76 @@ module Appwrite
             )
         end
 
+        # Update the project OAuth2 LINE configuration.
+        #
+        # @param [String] client_id &#039;Client ID&#039; of LINE OAuth2 app. For example: 1650000000
+        # @param [String] client_secret &#039;Client Secret&#039; of LINE OAuth2 app. For example: a1b2c3d4e5f600000000000000000000
+        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        #
+        # @return [OAuth2Line]
+        def update_o_auth2_line(
+            client_id: nil,
+            client_secret: nil,
+            enabled: nil
+        )
+            api_path = '/project/oauth2/line'
+
+            api_params = {
+                clientId: client_id,
+                clientSecret: client_secret,
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::OAuth2Line
+            )
+        end
+
+        # Update the project OAuth2 Linear configuration.
+        #
+        # @param [String] client_id &#039;Client ID&#039; of Linear OAuth2 app. For example: 5e1c0000000000000000000000000000
+        # @param [String] client_secret &#039;Client Secret&#039; of Linear OAuth2 app. For example: 9f8e7d6c5b4a00000000000000000000
+        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        #
+        # @return [OAuth2Linear]
+        def update_o_auth2_linear(
+            client_id: nil,
+            client_secret: nil,
+            enabled: nil
+        )
+            api_path = '/project/oauth2/linear'
+
+            api_params = {
+                clientId: client_id,
+                clientSecret: client_secret,
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::OAuth2Linear
+            )
+        end
+
         # Update the project OAuth2 Linkedin configuration.
         #
         # @param [String] client_id &#039;Client ID&#039; of Linkedin OAuth2 app. For example: 770000000000dv
@@ -1954,6 +2094,41 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::OAuth2Naver
+            )
+        end
+
+        # Update the project OAuth2 Netlify configuration.
+        #
+        # @param [String] client_id &#039;Client ID&#039; of Netlify OAuth2 app. For example: 00000000000000000000000000000000
+        # @param [String] client_secret &#039;Client Secret&#039; of Netlify OAuth2 app. For example: 00000000000000000000000000000000
+        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        #
+        # @return [OAuth2Netlify]
+        def update_o_auth2_netlify(
+            client_id: nil,
+            client_secret: nil,
+            enabled: nil
+        )
+            api_path = '/project/oauth2/netlify'
+
+            api_params = {
+                clientId: client_id,
+                clientSecret: client_secret,
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::OAuth2Netlify
             )
         end
 
@@ -2089,6 +2264,41 @@ module Appwrite
             )
         end
 
+        # Update the project OAuth2 Patreon configuration.
+        #
+        # @param [String] client_id &#039;Client ID&#039; of Patreon OAuth2 app. For example: 00000000000000000000000000000000
+        # @param [String] client_secret &#039;Client Secret&#039; of Patreon OAuth2 app. For example: 00000000000000000000000000000000
+        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        #
+        # @return [OAuth2Patreon]
+        def update_o_auth2_patreon(
+            client_id: nil,
+            client_secret: nil,
+            enabled: nil
+        )
+            api_path = '/project/oauth2/patreon'
+
+            api_params = {
+                clientId: client_id,
+                clientSecret: client_secret,
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::OAuth2Patreon
+            )
+        end
+
         # Update the project OAuth2 Paypal configuration.
         #
         # @param [String] client_id &#039;Client ID&#039; of Paypal OAuth2 app. For example: AdhIEG7-000000000000-0000000000000000000000000000000-0000000000000000000000-2pyB
@@ -2194,6 +2404,76 @@ module Appwrite
             )
         end
 
+        # Update the project OAuth2 Railway configuration.
+        #
+        # @param [String] client_id &#039;Client ID&#039; of Railway OAuth2 app. For example: 00000000000000000000000000000000
+        # @param [String] client_secret &#039;Client Secret&#039; of Railway OAuth2 app. For example: 00000000000000000000000000000000
+        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        #
+        # @return [OAuth2Railway]
+        def update_o_auth2_railway(
+            client_id: nil,
+            client_secret: nil,
+            enabled: nil
+        )
+            api_path = '/project/oauth2/railway'
+
+            api_params = {
+                clientId: client_id,
+                clientSecret: client_secret,
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::OAuth2Railway
+            )
+        end
+
+        # Update the project OAuth2 Reddit configuration.
+        #
+        # @param [String] client_id &#039;Client ID&#039; of Reddit OAuth2 app. For example: aBcD0000000000000000aB
+        # @param [String] client_secret &#039;Client Secret&#039; of Reddit OAuth2 app. For example: xYz00000000000000000000000000a
+        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        #
+        # @return [OAuth2Reddit]
+        def update_o_auth2_reddit(
+            client_id: nil,
+            client_secret: nil,
+            enabled: nil
+        )
+            api_path = '/project/oauth2/reddit'
+
+            api_params = {
+                clientId: client_id,
+                clientSecret: client_secret,
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::OAuth2Reddit
+            )
+        end
+
         # Update the project OAuth2 Resend configuration.
         #
         # @param [String] client_id &#039;Client ID&#039; of Resend OAuth2 app. For example: f47ac10b-58cc-4372-a567-0e02b2c3d479
@@ -2226,6 +2506,41 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::OAuth2Resend
+            )
+        end
+
+        # Update the project OAuth2 Roblox configuration.
+        #
+        # @param [String] client_id &#039;Client ID&#039; of Roblox OAuth2 app. For example: 1234567890123456789
+        # @param [String] client_secret &#039;Client Secret&#039; of Roblox OAuth2 app. For example: RBX-0000000000000000000000000000000000000000000000000000000000000000000000
+        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        #
+        # @return [OAuth2Roblox]
+        def update_o_auth2_roblox(
+            client_id: nil,
+            client_secret: nil,
+            enabled: nil
+        )
+            api_path = '/project/oauth2/roblox'
+
+            api_params = {
+                clientId: client_id,
+                clientSecret: client_secret,
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::OAuth2Roblox
             )
         end
 
@@ -2334,6 +2649,41 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::OAuth2Spotify
+            )
+        end
+
+        # Update the project OAuth2 Strava configuration.
+        #
+        # @param [String] client_id &#039;Client ID&#039; of Strava OAuth2 app. For example: 00000000000000000000000000000000
+        # @param [String] client_secret &#039;Client Secret&#039; of Strava OAuth2 app. For example: 00000000000000000000000000000000
+        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        #
+        # @return [OAuth2Strava]
+        def update_o_auth2_strava(
+            client_id: nil,
+            client_secret: nil,
+            enabled: nil
+        )
+            api_path = '/project/oauth2/strava'
+
+            api_params = {
+                clientId: client_id,
+                clientSecret: client_secret,
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::OAuth2Strava
             )
         end
 
@@ -2512,6 +2862,41 @@ module Appwrite
             )
         end
 
+        # Update the project OAuth2 Vercel configuration.
+        #
+        # @param [String] client_id &#039;Client ID&#039; of Vercel OAuth2 app. For example: cl_0000000000000000000000000000000
+        # @param [String] client_secret &#039;Client Secret&#039; of Vercel OAuth2 app. For example: vc_0000000000000000000000000000000000000000000000
+        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        #
+        # @return [OAuth2Vercel]
+        def update_o_auth2_vercel(
+            client_id: nil,
+            client_secret: nil,
+            enabled: nil
+        )
+            api_path = '/project/oauth2/vercel'
+
+            api_params = {
+                clientId: client_id,
+                clientSecret: client_secret,
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::OAuth2Vercel
+            )
+        end
+
         # Update the project OAuth2 Vipps MobilePay configuration.
         #
         # @param [String] client_id &#039;Client ID&#039; of Vipps MobilePay OAuth2 app. For example: 9a3a4b3e-0000-0000-0000-0f1a6d1c3b2e
@@ -2582,6 +2967,41 @@ module Appwrite
             )
         end
 
+        # Update the project OAuth2 VK configuration.
+        #
+        # @param [String] client_id &#039;Client ID&#039; of VK OAuth2 app. For example: 00000000000000000000000000000000
+        # @param [String] client_secret &#039;Client Secret&#039; of VK OAuth2 app. For example: 00000000000000000000000000000000
+        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        #
+        # @return [OAuth2VK]
+        def update_o_auth2_vk(
+            client_id: nil,
+            client_secret: nil,
+            enabled: nil
+        )
+            api_path = '/project/oauth2/vk'
+
+            api_params = {
+                clientId: client_id,
+                clientSecret: client_secret,
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::OAuth2VK
+            )
+        end
+
         # Update the project OAuth2 Webflow configuration.
         #
         # @param [String] client_id &#039;Client ID&#039; of Webflow OAuth2 app. For example: 8bb20000000000000000000000000000000000000000000000000000000040dd
@@ -2649,6 +3069,41 @@ module Appwrite
                 headers: api_headers,
                 params: api_params,
                 response_type: Models::OAuth2WordPress
+            )
+        end
+
+        # Update the project OAuth2 WorkOS configuration.
+        #
+        # @param [String] client_id &#039;Client ID&#039; of WorkOS OAuth2 app. For example: client_01H0000000000000000000000
+        # @param [String] client_secret &#039;Client Secret&#039; of WorkOS OAuth2 app. For example: wos0000000000000000000000000000000000000000000000000000000000000
+        # @param [] enabled OAuth2 sign-in method status. Set to true to enable new session creation. Setting to true will trigger end-to-end credentials validation, and will throw if the credentials are invalid.
+        #
+        # @return [OAuth2WorkOS]
+        def update_o_auth2_work_os(
+            client_id: nil,
+            client_secret: nil,
+            enabled: nil
+        )
+            api_path = '/project/oauth2/workos'
+
+            api_params = {
+                clientId: client_id,
+                clientSecret: client_secret,
+                enabled: enabled,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::OAuth2WorkOS
             )
         end
 
@@ -2835,7 +3290,7 @@ module Appwrite
         #
         # @param [ProjectOAuthProviderId] provider_id OAuth2 provider key. For example: github, google, apple.
         #
-        # @return [OAuth2Github, OAuth2Discord, OAuth2Figma, OAuth2Dropbox, OAuth2Dailymotion, OAuth2Bitbucket, OAuth2Bitly, OAuth2Box, OAuth2Autodesk, OAuth2Google, OAuth2Zoom, OAuth2Zoho, OAuth2Yandex, OAuth2X, OAuth2WordPress, OAuth2Webflow, OAuth2Twitch, OAuth2Stripe, OAuth2Spotify, OAuth2Slack, OAuth2Podio, OAuth2Notion, OAuth2Salesforce, OAuth2Yahoo, OAuth2HuggingFace, OAuth2Resend, OAuth2Cloudflare, OAuth2Linkedin, OAuth2Disqus, OAuth2Amazon, OAuth2Etsy, OAuth2Facebook, OAuth2Tradeshift, OAuth2Paypal, OAuth2Gitlab, OAuth2Authentik, OAuth2Auth0, OAuth2FusionAuth, OAuth2Keycloak, OAuth2Oidc, OAuth2Apple, OAuth2Okta, OAuth2Kick, OAuth2Microsoft, OAuth2TikTok, OAuth2Kakao, OAuth2Naver, OAuth2Vipps]
+        # @return [OAuth2Github, OAuth2Discord, OAuth2Figma, OAuth2Dropbox, OAuth2Dailymotion, OAuth2Bitbucket, OAuth2Bitly, OAuth2Box, OAuth2Autodesk, OAuth2Google, OAuth2Zoom, OAuth2Zoho, OAuth2Yandex, OAuth2X, OAuth2WordPress, OAuth2Webflow, OAuth2Twitch, OAuth2Stripe, OAuth2Spotify, OAuth2Slack, OAuth2Podio, OAuth2Notion, OAuth2Salesforce, OAuth2Yahoo, OAuth2HuggingFace, OAuth2Instagram, OAuth2Patreon, OAuth2Strava, OAuth2VK, OAuth2Netlify, OAuth2Railway, OAuth2Reddit, OAuth2Vercel, OAuth2Atlassian, OAuth2Line, OAuth2Linear, OAuth2Roblox, OAuth2WorkOS, OAuth2Resend, OAuth2Cloudflare, OAuth2Linkedin, OAuth2Disqus, OAuth2Amazon, OAuth2Etsy, OAuth2Facebook, OAuth2Tradeshift, OAuth2Paypal, OAuth2Gitlab, OAuth2Authentik, OAuth2Auth0, OAuth2FusionAuth, OAuth2Keycloak, OAuth2Oidc, OAuth2Apple, OAuth2Okta, OAuth2Kick, OAuth2Microsoft, OAuth2TikTok, OAuth2Kakao, OAuth2Naver, OAuth2Vipps]
         def get_o_auth2_provider(
             provider_id:
         )
@@ -2987,6 +3442,71 @@ module Appwrite
             if response['$id'] == 'huggingface'
 
                 return Models::OAuth2HuggingFace.from(map: response)
+            end
+
+            if response['$id'] == 'instagram'
+
+                return Models::OAuth2Instagram.from(map: response)
+            end
+
+            if response['$id'] == 'patreon'
+
+                return Models::OAuth2Patreon.from(map: response)
+            end
+
+            if response['$id'] == 'strava'
+
+                return Models::OAuth2Strava.from(map: response)
+            end
+
+            if response['$id'] == 'vk'
+
+                return Models::OAuth2VK.from(map: response)
+            end
+
+            if response['$id'] == 'netlify'
+
+                return Models::OAuth2Netlify.from(map: response)
+            end
+
+            if response['$id'] == 'railway'
+
+                return Models::OAuth2Railway.from(map: response)
+            end
+
+            if response['$id'] == 'reddit'
+
+                return Models::OAuth2Reddit.from(map: response)
+            end
+
+            if response['$id'] == 'vercel'
+
+                return Models::OAuth2Vercel.from(map: response)
+            end
+
+            if response['$id'] == 'atlassian'
+
+                return Models::OAuth2Atlassian.from(map: response)
+            end
+
+            if response['$id'] == 'line'
+
+                return Models::OAuth2Line.from(map: response)
+            end
+
+            if response['$id'] == 'linear'
+
+                return Models::OAuth2Linear.from(map: response)
+            end
+
+            if response['$id'] == 'roblox'
+
+                return Models::OAuth2Roblox.from(map: response)
+            end
+
+            if response['$id'] == 'workos'
+
+                return Models::OAuth2WorkOS.from(map: response)
             end
 
             if response['$id'] == 'resend'

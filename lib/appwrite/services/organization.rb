@@ -86,6 +86,203 @@ module Appwrite
             )
         end
 
+        # Get a list of your organization&#039;s escalations. Use `Query.search(&#039;search&#039;,
+        # term)` to search escalation IDs and names.
+        #
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, repeat, search
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
+        #
+        # @return [EscalationList]
+        def list_escalations(
+            queries: nil,
+            total: nil
+        )
+            api_path = '/organization/escalations'
+
+            api_params = {
+                queries: queries,
+                total: total,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::EscalationList
+            )
+        end
+
+        # Create an escalation for your organization. A monitor using it notifies the
+        # escalation&#039;s steps one after another while its alert fires, each by email,
+        # push and in the console, until a member acknowledges the alert or it
+        # resolves. Each step waits its `delay` in seconds, after the alert fires for
+        # the first step and after the previous step for the others, then notifies
+        # the members holding its `roles` and those named in `userIds`. With
+        # `repeat`, the steps run again from the first, a monitor&#039;s cooldown after
+        # the last step.
+        #
+        # @param [String] escalation_id Escalation ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
+        # @param [String] name Escalation name. Max length: 128 chars.
+        # @param [Array] steps Steps notified in order while nobody acknowledges the alert. Each step is an object with `delay` (seconds to wait before the step, 0 to 2592000, default 0), `roles` (organization roles such as `owner` or `developer`) and `userIds` (organization members who accepted their invitation). A step names each role and member at most once and needs at least one of `roles` or `userIds`. Maximum of 100 steps.
+        # @param [Integer] repeat How many more times the steps run from the first while nobody acknowledges the alert, between 0 and 9. Each round starts a monitor&#039;s cooldown after the last step.
+        #
+        # @return [Escalation]
+        def create_escalation(
+            escalation_id:,
+            name:,
+            steps:,
+            repeat: nil
+        )
+            if escalation_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "escalationId"')
+            end
+
+            if name.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
+            end
+
+            if steps.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "steps"')
+            end
+
+            api_path = '/organization/escalations'
+
+            api_params = {
+                escalationId: escalation_id,
+                name: name,
+                steps: steps,
+                repeat: repeat,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Escalation
+            )
+        end
+
+        # Get one of your organization&#039;s escalations by its ID.
+        #
+        # @param [String] escalation_id Escalation ID.
+        #
+        # @return [Escalation]
+        def get_escalation(
+            escalation_id:
+        )
+            if escalation_id.nil? || escalation_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "escalationId"')
+            end
+
+            api_path = '/organization/escalations/{escalationId}'
+                .gsub('{escalationId}', @client.encode_path(escalation_id))
+
+            api_params = {}
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Escalation
+            )
+        end
+
+        # Update an escalation&#039;s name, steps or repeats; what you leave out stays as
+        # it is. Alerts already escalating keep the steps they started with; the next
+        # alert uses the new ones.
+        #
+        # @param [String] escalation_id Escalation ID.
+        # @param [String] name Escalation name. Max length: 128 chars.
+        # @param [Array] steps Steps notified in order while nobody acknowledges the alert. Each step is an object with `delay` (seconds to wait before the step, 0 to 2592000, default 0), `roles` (organization roles such as `owner` or `developer`) and `userIds` (organization members who accepted their invitation). A step names each role and member at most once and needs at least one of `roles` or `userIds`. Maximum of 100 steps.
+        # @param [Integer] repeat How many more times the steps run from the first while nobody acknowledges the alert, between 0 and 9. Each round starts a monitor&#039;s cooldown after the last step.
+        #
+        # @return [Escalation]
+        def update_escalation(
+            escalation_id:,
+            name: nil,
+            steps: nil,
+            repeat: nil
+        )
+            if escalation_id.nil? || escalation_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "escalationId"')
+            end
+
+            api_path = '/organization/escalations/{escalationId}'
+                .gsub('{escalationId}', @client.encode_path(escalation_id))
+
+            api_params = {
+                name: name,
+                steps: steps,
+                repeat: repeat,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::Escalation
+            )
+        end
+
+        # Delete an escalation. An escalation that a monitor uses cannot be deleted:
+        # move the monitor to another escalation or to `notify` roles first. Open
+        # alerts keep the steps they started with.
+        #
+        # @param [String] escalation_id Escalation ID.
+        #
+        # @return []
+        def delete_escalation(
+            escalation_id:
+        )
+            if escalation_id.nil? || escalation_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "escalationId"')
+            end
+
+            api_path = '/organization/escalations/{escalationId}'
+                .gsub('{escalationId}', @client.encode_path(escalation_id))
+
+            api_params = {}
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+            )
+        end
+
         # List app installations on the organization. Any organization member can
         # read installations.
         #

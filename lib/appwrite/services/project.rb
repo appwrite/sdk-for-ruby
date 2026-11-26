@@ -5791,5 +5791,238 @@ module Appwrite
                 params: api_params,
             )
         end
+
+        # Get a list of video profiles in the current project (`GET
+        # /v1/project/videos/profiles`). Every profile is returned regardless of
+        # codec. Filter with `queries`, for example `Query.equal(&#039;codec&#039;, [&#039;h264&#039;])`
+        # for one encode ladder, or on `name`, `width`, `height`, `videoBitRate` and
+        # `audioBitRate`. Search with `Query.search()` on the `search` attribute.
+        #
+        #
+        # @param [Array] queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, codec, width, height, videoBitRate, audioBitRate, search
+        # @param [] total When set to false, the total count returned will be 0 and will not be calculated.
+        #
+        # @return [VideoProfileList]
+        def list_video_profiles(
+            queries: nil,
+            total: nil
+        )
+            api_path = '/project/videos/profiles'
+
+            api_params = {
+                queries: queries,
+                total: total,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::VideoProfileList
+            )
+        end
+
+        # Create a video profile (`POST /v1/project/videos/profiles`) describing an
+        # encoding target: output dimensions, video/audio bitrates, and encode codec.
+        # Only codecs enabled on this instance are accepted; the default is `h264`. A
+        # disabled codec is rejected. Creating a profile with the same width, height,
+        # bitrates, and codec fails with `video_profile_already_exists`. Bitrates are
+        # in bits per second and must be multiples of 1000. Renditions are encoded
+        # against a profile.
+        #
+        #
+        # @param [String] profile_id Video profile ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
+        # @param [String] name Video profile name.
+        # @param [Integer] video_bit_rate Target video bitrate in bits per second. Must be a multiple of 1000.
+        # @param [Integer] audio_bit_rate Target audio bitrate in bits per second. Must be a multiple of 1000.
+        # @param [Integer] width Target video width in pixels. Must be an even number.
+        # @param [Integer] height Target video height in pixels. Must be an even number.
+        # @param [VideoCodecId] codec Video encode codec. Codecs not enabled on this instance are rejected. Defaults to `h264`.
+        #
+        # @return [VideoProfile]
+        def create_video_profile(
+            profile_id:,
+            name:,
+            video_bit_rate:,
+            audio_bit_rate:,
+            width:,
+            height:,
+            codec: nil
+        )
+            if profile_id.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "profileId"')
+            end
+
+            if name.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "name"')
+            end
+
+            if video_bit_rate.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "videoBitRate"')
+            end
+
+            if audio_bit_rate.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "audioBitRate"')
+            end
+
+            if width.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "width"')
+            end
+
+            if height.nil?
+                raise Appwrite::Exception.new('Missing required parameter: "height"')
+            end
+
+            api_path = '/project/videos/profiles'
+
+            api_params = {
+                profileId: profile_id,
+                name: name,
+                videoBitRate: video_bit_rate,
+                audioBitRate: audio_bit_rate,
+                width: width,
+                height: height,
+                codec: codec,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'POST',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::VideoProfile
+            )
+        end
+
+        # Get a video profile by its unique ID (`GET
+        # /v1/project/videos/profiles/:profileId`).
+        #
+        #
+        # @param [String] profile_id Video profile unique ID.
+        #
+        # @return [VideoProfile]
+        def get_video_profile(
+            profile_id:
+        )
+            if profile_id.nil? || profile_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "profileId"')
+            end
+
+            api_path = '/project/videos/profiles/{profileId}'
+                .gsub('{profileId}', @client.encode_path(profile_id))
+
+            api_params = {}
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'GET',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::VideoProfile
+            )
+        end
+
+        # Update a video profile by its unique ID (`PATCH
+        # /v1/project/videos/profiles/:profileId`). Existing renditions are not
+        # re-encoded. Changing the profile onto the same width, height, bitrates, and
+        # codec as another profile fails with `video_profile_already_exists`.
+        #
+        #
+        # @param [String] profile_id Video profile unique ID.
+        # @param [String] name Video profile name.
+        # @param [Integer] video_bit_rate Target video bitrate in bits per second. Must be a multiple of 1000.
+        # @param [Integer] audio_bit_rate Target audio bitrate in bits per second. Must be a multiple of 1000.
+        # @param [Integer] width Target video width in pixels. Must be an even number.
+        # @param [Integer] height Target video height in pixels. Must be an even number.
+        #
+        # @return [VideoProfile]
+        def update_video_profile(
+            profile_id:,
+            name: nil,
+            video_bit_rate: nil,
+            audio_bit_rate: nil,
+            width: nil,
+            height: nil
+        )
+            if profile_id.nil? || profile_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "profileId"')
+            end
+
+            api_path = '/project/videos/profiles/{profileId}'
+                .gsub('{profileId}', @client.encode_path(profile_id))
+
+            api_params = {
+                name: name,
+                videoBitRate: video_bit_rate,
+                audioBitRate: audio_bit_rate,
+                width: width,
+                height: height,
+            }
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'PATCH',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+                response_type: Models::VideoProfile
+            )
+        end
+
+        # Delete a video profile by its unique ID (`DELETE
+        # /v1/project/videos/profiles/:profileId`). Renditions already encoded
+        # against it are left in place.
+        #
+        #
+        # @param [String] profile_id Video profile unique ID.
+        #
+        # @return []
+        def delete_video_profile(
+            profile_id:
+        )
+            if profile_id.nil? || profile_id == ''
+                raise Appwrite::Exception.new('Missing required parameter: "profileId"')
+            end
+
+            api_path = '/project/videos/profiles/{profileId}'
+                .gsub('{profileId}', @client.encode_path(profile_id))
+
+            api_params = {}
+
+            api_headers = {
+                "X-Appwrite-Project": @client.get_config('project'),
+                "content-type": 'application/json',
+                "accept": 'application/json',
+            }
+
+            @client.call(
+                method: 'DELETE',
+                path: api_path,
+                headers: api_headers,
+                params: api_params,
+            )
+        end
     end
 end
